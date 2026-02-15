@@ -29,7 +29,7 @@ def get_tech_news():
 # --- 2. 블로그 원고 작성 (Gemini) ---
 def generate_blog_content(news_data):
     print(f">>> Gemini가 글을 쓰는 중: {news_data['title']}")
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-3-flash-preview')
     
     prompt = f"""
     너는 IT 전문 블로거 '스포(spo)'야. 아래 뉴스 내용을 바탕으로 티스토리 블로그에 올릴 포스팅을 HTML 형식으로 작성해줘.
