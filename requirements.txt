@@ -1,4 +1,4 @@
 google-generativeai
-feedparser
 requests
-pytz
+feedparser
+beautifulsoup4
