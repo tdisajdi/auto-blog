@@ -126,43 +126,61 @@ def select_top_2(candidates, history, category_name):
     except: pass
     return filtered[:2]
 
-# --- 3. 글 작성 ---
-def write_blog_post(topic1, topic2, category_name):
+# --- 3. 매력적인 한국어 제목 생성 함수 ---
+def get_catchy_korean_title(english_title):
+    prompt = f"""
+    다음 영문 뉴스 제목을 번역하되, 사람들의 호기심을 극대화하고 클릭률(CTR)을 높일 수 있는 매력적이고 트렌디한 한국어 블로그 제목으로 만들어줘.
+    
+    [조건]
+    1. 무조건 100% 한국어로만 작성할 것 (불가피한 고유명사 제외).
+    2. 원문의 핵심을 살리되, 흥미를 유발하는 후킹(hooking) 요소를 추가할 것 (예: "결국 해냈다", "시장 판도 바꿀까?", "충격적인 결과" 등).
+    3. 특수기호(!, ?, [])를 적절히 사용하여 시선을 끌 것.
+    4. 다른 부가 설명 없이 오직 생성된 '제목 1개'만 출력할 것.
+    
+    영문 제목: {english_title}
+    """
+    try:
+        return model.generate_content(prompt).text.strip()
+    except:
+        return english_title
+
+# --- 4. 글 작성 ---
+def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     print(f"Writing {category_name} Post with Gemini...")
     
-    # 애드센스 승인 및 고품질 콘텐츠를 위한 문체 프롬프트 유지
+    # [수정됨] 10년 차 현업 베테랑 전문가 페르소나 및 어조 지침 강화
     tone_rule = """
-    [구글 애드센스 고품질 콘텐츠를 위한 필수 문체 및 어조 지침]
-    1. 문체: 가벼운 블로그 말투를 배제하고, 경제/테크 주요 언론사의 전문 칼럼니스트처럼 신뢰감 있고 정중한 경어체(~습니다, ~합니다)를 사용하세요.
-    2. 전문성(E-E-A-T 충족): 단순 사실의 나열이 아닌, 현상의 원인과 향후 파급력을 논리적이고 깊이 있게 분석하세요. 독자에게 실질적인 가치를 제공해야 합니다.
-    3. AI 말투 엄격 금지: '결론적으로', '알아보겠습니다', '이 기사를 통해', '안녕하세요' 등 AI 특유의 기계적이고 상투적인 도입/마무리 표현을 절대 금지합니다. 문단과 문단 사이를 아주 자연스럽게 이어주세요.
-    4. 체류 시간 유도: 문장은 간결하면서도 정보의 밀도를 높여 작성하여 독자의 이탈을 방지하세요.
+    [구글 애드센스 승인 및 고품질 콘텐츠를 위한 필수 문체 및 어조 지침 (10년차 현업 전문가 페르소나)]
+    1. 페르소나: 관련 업계에서 10년 이상 구르며(?) 산전수전 다 겪은 베테랑 실무 전문가. 지루한 교과서적 설명이 아닌, 현업의 '진짜 돌아가는 이야기'를 트렌디하고 감각적으로 풀어냅니다.
+    2. 문체: 군더더기 없이 깔끔하고 가독성 높은 문장을 구사합니다. "~습니다", "~하죠" 등 신뢰감 있는 경어체를 사용하되, 지인에게 고급 실무 정보를 슬쩍 공유해주듯 자연스럽고 전문가 특유의 여유가 묻어나는 어투를 사용하세요.
+    3. 주관적이고 예리한 분석: 단순 사실 전달을 넘어, "솔직히 이번 이슈로 볼 때 A사보다는 B사가 시장 선점에 훨씬 유리한 고지를 차지할 겁니다. 현업에서 그렇게 보는 이유는..."과 같이 10년차 특유의 뚜렷한 주관과 예리한 비교 분석을 반드시 포함하세요.
+    4. AI 말투 200% 금지: '결론적으로', '알아보겠습니다', '이 기사를 통해', '안녕하세요', '요약하자면', '흥미진진한' 등 AI 특유의 상투적이고 영혼 없는 표현은 절대 금지합니다. 진짜 사람이 쓴 것처럼 문단 간 연결을 매끄럽게 하세요.
     """
 
-    # [수정된 부분] 7단계 구조로 확장 (차별점 비교 및 긍정적 전망 추가)
     structure_instruction = """
     각 주제별로 반드시 아래 7가지 H2 태그 섹션을 포함해야 함:
-    1. <h2>1. 배경 및 개요 (The Context)</h2> : 현 상황을 3줄 요약 리스트(<ul>)로 제시.
-    2. <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2> : 과거 유사했던 특허나 기술, 약물 등과 비교하여 이번 주제가 어떤 방식으로 혁신적인지 명확히 분석.
-    3. <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2> : <table>을 1개 이상 반드시 포함.
-    4. <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2> : 객관적인 [수치/데이터] 포함.
-    5. <h2>5. 리스크 및 한계점 (Risk Factors)</h2> : 규제, 경쟁, 기술적 장벽 분석.
-    6. <h2>6. 긍정적 전망 및 기대 효과 (Future Hope & Impact)</h2> : 이 기술/약물이 향후 관련 산업이나 인류에게 가져올 희망적인 미래와 긍정적 파급력 서술.
-    7. <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2> : 시사점.
+    1. <h2>1. 배경 및 개요 (The Context)</h2> : 현 상황을 뻔하지 않게 3줄 요약 리스트(<ul>)로 제시.
+    2. <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2> : 과거 유사했던 사례와 비교하여 이번 주제의 진짜 혁신 포인트가 무엇인지 에디터의 시각으로 분석.
+    3. <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2> : <table>을 1개 이상 반드시 포함. 전문적이지만 독자가 이해하기 쉽게 적절한 비유를 섞어 설명.
+    4. <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2> : [매우 중요] 객관적인 데이터와 함께, "A 기업보다 B 기업이 이 국면에서 왜 더 유리한지", 혹은 "기존 강자 C 기업에게 어떤 치명적인 위협이 될지" 등 구체적이고 주관적인 기업/기술 간 우위 분석을 반드시 작성.
+    5. <h2>5. 리스크 및 한계점 (Risk Factors)</h2> : 표면적인 리스크가 아닌, 실무자/투자자 관점에서의 진짜 걸림돌(규제, 경쟁 심화, 기술적 장벽 등)을 예리하게 지적.
+    6. <h2>6. 긍정적 전망 및 기대 효과 (Future Hope & Impact)</h2> : 이 변화가 가져올 미래 산업의 모습을 생생하게 그려주듯 서술.
+    7. <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2> : 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언.
     """
     glossary_rule = "어려운 '전문 용어'는 반드시 <u> 태그로 감싸주세요."
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
     outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.").text
     
+    # [수정됨] 페르소나를 더 명확하게 부여
     p1_prompt = f"""
-    역할: 독보적인 통찰력을 지닌 {category_name} 분야 최고 전문 분석가 '스포(spo)'.
+    역할: {category_name} 업계 10년차 현업 전문가이자, 트렌디하고 깔끔한 인사이트를 제공하는 실무 분석가 '스포(spo)'.
     개요: {outline}
     주제 1: {topic1['title']} / 원문 내용: {topic1['raw']}
     {tone_rule}
     {glossary_rule}\n{bold_rule}
     [작성 지침] HTML 태그만 출력.
-    <h1>[{category_name} 심층분석] {topic1['title']}</h1>
+    <h1>[{category_name} 심층분석] {t1_kr}</h1>
     [IMAGE_PLACEHOLDER_1]
     {structure_instruction}
     [IMAGE_PLACEHOLDER_2]
@@ -177,7 +195,7 @@ def write_blog_post(topic1, topic2, category_name):
     {glossary_rule}\n{bold_rule}
     [작성 지침] 앞 내용과 자연스럽게 이어지도록 작성. HTML 태그만 출력.
     <br><hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;"><br>
-    <h1>[{category_name} 심층분석] {topic2['title']}</h1>
+    <h1>[{category_name} 심층분석] {t2_kr}</h1>
     [IMAGE_PLACEHOLDER_3]
     {structure_instruction}
     [IMAGE_PLACEHOLDER_4]
@@ -192,7 +210,7 @@ def write_blog_post(topic1, topic2, category_name):
     
     return part1 + "\n" + part2
 
-# --- 4. 이미지, 목차 생성 및 이메일 전송 ---
+# --- 5. 이미지, 목차 생성 및 이메일 전송 ---
 def get_image_tag(keyword, alt_text=""):
     search_query = f"{keyword}"
     url = f"https://api.unsplash.com/search/photos?query={search_query}&per_page=1&orientation=landscape&client_id={UNSPLASH_ACCESS_KEY}"
@@ -209,16 +227,36 @@ def get_image_tag(keyword, alt_text=""):
         """
     except: return ""
 
-def inject_images(html_text, t1, t2):
-    prompt = "Unsplash 이미지 검색용 영문 키워드를 추출해줘. 복잡한 고유명사, 신약 이름, 특허 번호 등은 모두 배제하고 'laboratory', 'doctor', 'medicine', 'blueprint', 'technology innovation' 같이 매우 직관적이고 시각적인 범용 단어 1~2개만 출력해. 기호 없이 영문만 출력:\n{}"
+def inject_images(html_text, t1, t2, mode):
+    if mode == "BIO":
+        theme_instruction = "'laboratory', 'doctor', 'medicine', 'biology', 'DNA' 같이 바이오/의료 분야와 관련된 직관적이고 시각적인 범용 단어"
+        fb1_m, fb1_s = "biology laboratory", "medical research"
+        fb2_m, fb2_s = "healthcare technology", "medicine"
+    elif mode == "PATENT":
+        theme_instruction = "'blueprint', 'patent', 'document', 'invention', 'innovation' 같이 특허/발명 분야와 관련된 직관적이고 시각적인 범용 단어"
+        fb1_m, fb1_s = "blueprint architecture", "patent document"
+        fb2_m, fb2_s = "technology invention", "business innovation"
+    else: # TECH
+        theme_instruction = "'technology', 'software', 'computer', 'digital', 'network' 같이 IT/테크 분야와 관련된 직관적이고 시각적인 범용 단어"
+        fb1_m, fb1_s = "digital technology", "software code"
+        fb2_m, fb2_s = "future tech", "network data"
+
+    prompt = f"Unsplash 이미지 검색용 영문 키워드를 추출해줘. 복잡한 고유명사나 특정 번호 등은 모두 배제하고, 반드시 본문 내용과 연관되면서 {theme_instruction} 1~2개만 출력해. 기호 없이 영문만 출력:\n{{}}"
+    
     try:
         k1_main = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t1['title'])).text.strip())
         k1_sub = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t1['title'] + " (Focus on abstract business or data concept)")).text.strip())
         k2_main = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t2['title'])).text.strip())
         k2_sub = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t2['title'] + " (Focus on abstract business or data concept)")).text.strip())
+        
+        # 키워드 생성이 제대로 안 되었을 때를 대비한 안전 장치
+        if not k1_main: k1_main = fb1_m
+        if not k1_sub: k1_sub = fb1_s
+        if not k2_main: k2_main = fb2_m
+        if not k2_sub: k2_sub = fb2_s
     except: 
-        k1_main, k1_sub = "science research", "data analysis"
-        k2_main, k2_sub = "future technology", "business innovation"
+        k1_main, k1_sub = fb1_m, fb1_s
+        k2_main, k2_sub = fb2_m, fb2_s
     
     html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_main, t1['title']))
     html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_sub, "Analysis")) 
@@ -374,7 +412,7 @@ def send_email(subject, final_content):
     except Exception as e:
         print(f"❌ Email Fail: {e}")
 
-# --- 5. 통합 처리 함수 ---
+# --- 6. 통합 처리 함수 ---
 def process_and_send(mode, category_korean, history):
     print(f"\n>>> Processing: {category_korean} ({mode})")
     candidates = get_candidates(mode)
@@ -384,8 +422,12 @@ def process_and_send(mode, category_korean, history):
         print(f"Not enough news for {mode}")
         return []
         
-    raw_html = write_blog_post(selected[0], selected[1], category_korean)
-    html_with_images = inject_images(raw_html, selected[0], selected[1])
+    t1_kr = get_catchy_korean_title(selected[0]['title'])
+    t2_kr = get_catchy_korean_title(selected[1]['title'])
+    
+    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr)
+    
+    html_with_images = inject_images(raw_html, selected[0], selected[1], mode)
     
     html_with_toc = generate_toc_and_add_ids(html_with_images)
     
@@ -396,12 +438,6 @@ def process_and_send(mode, category_korean, history):
         {html_with_tooltips}
     </div>
     """
-    
-    try:
-        t1_kr = model.generate_content(f"다음 영문 제목을 자연스러운 한국어 블로그 제목으로 번역해. 다른 말 없이 결과만 출력해:\n{selected[0]['title']}").text.strip()
-        t2_kr = model.generate_content(f"다음 영문 제목을 자연스러운 한국어 블로그 제목으로 번역해. 다른 말 없이 결과만 출력해:\n{selected[1]['title']}").text.strip()
-    except:
-        t1_kr, t2_kr = selected[0]['title'], selected[1]['title']
     
     subject = f"[{category_korean} 분석] {t1_kr} & {t2_kr}"
     send_email(subject, final_tistory_content)
