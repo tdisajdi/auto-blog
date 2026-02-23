@@ -120,35 +120,58 @@ def select_top_2(candidates, history, category_name):
     """
     try:
         res = model.generate_content(prompt)
+        time.sleep(5) # API 호출 제한 방지
         nums = [int(s) for s in re.findall(r'\b\d+\b', res.text)]
         if len(nums) >= 2:
             return [filtered[nums[0]], filtered[nums[1]]]
     except: pass
     return filtered[:2]
 
-# --- 3. 매력적인 한국어 제목 생성 함수 ---
+# --- 3. 매력적인 한국어 제목 생성 함수 (수정됨) ---
 def get_catchy_korean_title(english_title):
     prompt = f"""
-    다음 영문 뉴스 제목을 번역하되, 사람들의 호기심을 극대화하고 클릭률(CTR)을 높일 수 있는 매력적이고 트렌디한 한국어 블로그 제목으로 만들어줘.
+    다음 영문 뉴스 제목을 번역하되, 사람들의 호기심을 끌면서도 '깔끔하고 핵심을 찌르는' 한 줄짜리 한국어 블로그 제목으로 만들어줘.
     
     [조건]
     1. 무조건 100% 한국어로만 작성할 것 (불가피한 고유명사 제외).
-    2. 원문의 핵심을 살리되, 흥미를 유발하는 후킹(hooking) 요소를 추가할 것 (예: "결국 해냈다", "시장 판도 바꿀까?", "충격적인 결과" 등).
-    3. 특수기호(!, ?, [])를 적절히 사용하여 시선을 끌 것.
+    2. 길이는 30자 이내로 간결하게 1줄로 작성할 것.
+    3. 과도한 특수기호(!, ?, [])나 어그로성 단어([충격], [경악] 등)는 피하고, 전문가다운 세련되고 트렌디한 느낌을 줄 것.
     4. 다른 부가 설명 없이 오직 생성된 '제목 1개'만 출력할 것.
     
     영문 제목: {english_title}
     """
     try:
-        return model.generate_content(prompt).text.strip()
+        title_res = model.generate_content(prompt).text.strip()
+        time.sleep(5) # API 호출 제한 방지
+        return title_res
     except:
         return english_title
+
+# --- 이메일 전송용 통합 제목 생성 함수 (추가됨) ---
+def get_unified_subject(category_name, t1_kr, t2_kr):
+    prompt = f"""
+    다음 두 개의 뉴스 제목을 아우르는, 이메일 제목용 통합 블로그 제목을 작성해줘.
+
+    [조건]
+    1. 매우 간결하고 깔끔하게 1줄로 작성할 것 (최대 35자 이내).
+    2. 두 주제의 핵심 내용이 자연스럽게 어우러지는 하나의 문장이나 구로 만들 것.
+    3. '&' 같은 기호나 자극적인 수식어를 빼고 담백하면서도 인사이트가 느껴지도록 할 것.
+    4. 다른 부가 설명 없이 오직 생성된 '제목 1개'만 출력할 것.
+
+    주제1: {t1_kr}
+    주제2: {t2_kr}
+    """
+    try:
+        res = model.generate_content(prompt).text.strip()
+        time.sleep(5) # API 호출 제한 방지
+        return f"[{category_name} 분석] {res}"
+    except:
+        return f"[{category_name} 분석] {t1_kr[:15]}... 외 핵심 이슈"
 
 # --- 4. 글 작성 ---
 def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     print(f"Writing {category_name} Post with Gemini...")
     
-    # [수정됨] 10년 차 현업 베테랑 전문가 페르소나 및 어조 지침 강화
     tone_rule = """
     [구글 애드센스 승인 및 고품질 콘텐츠를 위한 필수 문체 및 어조 지침 (10년차 현업 전문가 페르소나)]
     1. 페르소나: 관련 업계에서 10년 이상 구르며(?) 산전수전 다 겪은 베테랑 실무 전문가. 지루한 교과서적 설명이 아닌, 현업의 '진짜 돌아가는 이야기'를 트렌디하고 감각적으로 풀어냅니다.
@@ -171,8 +194,8 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
     outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.").text
+    time.sleep(5) # API 호출 제한 방지
     
-    # [수정됨] 페르소나를 더 명확하게 부여
     p1_prompt = f"""
     역할: {category_name} 업계 10년차 현업 전문가이자, 트렌디하고 깔끔한 인사이트를 제공하는 실무 분석가 '스포(spo)'.
     개요: {outline}
@@ -184,9 +207,13 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     [IMAGE_PLACEHOLDER_1]
     {structure_instruction}
     [IMAGE_PLACEHOLDER_2]
+    <br>
+    [IMAGE_PLACEHOLDER_3]
     주제 1의 내용만 작성.
     """
-    part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", model.generate_content(p1_prompt).text).strip()
+    part1_res = model.generate_content(p1_prompt).text
+    time.sleep(5) # API 호출 제한 방지
+    part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", part1_res).strip()
     
     p2_prompt = f"""
     앞부분: {part1}
@@ -196,9 +223,11 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     [작성 지침] 앞 내용과 자연스럽게 이어지도록 작성. HTML 태그만 출력.
     <br><hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;"><br>
     <h1>[{category_name} 심층분석] {t2_kr}</h1>
-    [IMAGE_PLACEHOLDER_3]
-    {structure_instruction}
     [IMAGE_PLACEHOLDER_4]
+    {structure_instruction}
+    [IMAGE_PLACEHOLDER_5]
+    <br>
+    [IMAGE_PLACEHOLDER_6]
     <br><hr style="border: 0; height: 2px; background: #2c3e50; margin: 50px 0;"><br>
     <h2>🎯 통합 인사이트: 두 뉴스가 그리는 미래 (The Bridge)</h2>
     <h2>📖 오늘의 용어 정리 (Glossary)</h2>
@@ -206,19 +235,36 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
     <p style="color:grey; font-size: 0.9em; text-align: center;">* 본 콘텐츠는 정보 제공을 목적으로 하며, 투자의 책임은 본인에게 있습니다. <br> Editor: 스포(spo)</p>
     """
-    part2 = re.sub(r"```[a-zA-Z]*\n?|```", "", model.generate_content(p2_prompt).text).strip()
+    part2_res = model.generate_content(p2_prompt).text
+    time.sleep(5) # API 호출 제한 방지
+    part2 = re.sub(r"```[a-zA-Z]*\n?|```", "", part2_res).strip()
     
     return part1 + "\n" + part2
 
 # --- 5. 이미지, 목차 생성 및 이메일 전송 ---
-def get_image_tag(keyword, alt_text=""):
+def get_image_tag(keyword, used_urls, alt_text=""):
     search_query = f"{keyword}"
-    url = f"https://api.unsplash.com/search/photos?query={search_query}&per_page=1&orientation=landscape&client_id={UNSPLASH_ACCESS_KEY}"
+    # per_page를 5로 늘려 중복을 검사할 후보군을 확보합니다.
+    url = f"https://api.unsplash.com/search/photos?query={search_query}&per_page=5&orientation=landscape&client_id={UNSPLASH_ACCESS_KEY}"
     try:
         data = requests.get(url, timeout=5).json()
-        if not data['results']: 
+        if not data.get('results'): 
             return ""
-        img_url = data['results'][0]['urls']['regular']
+        
+        img_url = ""
+        # 불러온 결과 중 사용된 적 없는 이미지 URL을 찾습니다.
+        for res in data['results']:
+            candidate_url = res['urls']['regular']
+            if candidate_url not in used_urls:
+                img_url = candidate_url
+                used_urls.add(img_url)
+                break
+        
+        # 만약 전부 중복이라면 첫 번째 이미지를 어쩔 수 없이 사용합니다.
+        if not img_url:
+            img_url = data['results'][0]['urls']['regular']
+            used_urls.add(img_url)
+
         return f"""
         <figure style="margin: 30px 0;">
             <img src='{img_url}' alt='{alt_text}' style='width:100%; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'>
@@ -228,40 +274,62 @@ def get_image_tag(keyword, alt_text=""):
     except: return ""
 
 def inject_images(html_text, t1, t2, mode):
+    fb_defaults = []
     if mode == "BIO":
         theme_instruction = "'laboratory', 'doctor', 'medicine', 'biology', 'DNA' 같이 바이오/의료 분야와 관련된 직관적이고 시각적인 범용 단어"
-        fb1_m, fb1_s = "biology laboratory", "medical research"
-        fb2_m, fb2_s = "healthcare technology", "medicine"
+        fb_defaults = ["biology laboratory", "medical research", "healthcare technology", "medicine", "dna structure", "biotech"]
     elif mode == "PATENT":
         theme_instruction = "'blueprint', 'patent', 'document', 'invention', 'innovation' 같이 특허/발명 분야와 관련된 직관적이고 시각적인 범용 단어"
-        fb1_m, fb1_s = "blueprint architecture", "patent document"
-        fb2_m, fb2_s = "technology invention", "business innovation"
+        fb_defaults = ["blueprint architecture", "patent document", "technology invention", "business innovation", "future prototype", "design patent"]
     else: # TECH
         theme_instruction = "'technology', 'software', 'computer', 'digital', 'network' 같이 IT/테크 분야와 관련된 직관적이고 시각적인 범용 단어"
-        fb1_m, fb1_s = "digital technology", "software code"
-        fb2_m, fb2_s = "future tech", "network data"
+        fb_defaults = ["digital technology", "software code", "future tech", "network data", "cyber security", "ai interface"]
 
-    prompt = f"Unsplash 이미지 검색용 영문 키워드를 추출해줘. 복잡한 고유명사나 특정 번호 등은 모두 배제하고, 반드시 본문 내용과 연관되면서 {theme_instruction} 1~2개만 출력해. 기호 없이 영문만 출력:\n{{}}"
+    prompt = f"""
+    Unsplash 이미지 검색용 영문 키워드를 추출해줘. 복잡한 고유명사나 특정 번호 등은 모두 배제하고, 반드시 본문 내용과 연관되면서 {theme_instruction} 3개씩 총 6개 출력해.
+    아래 JSON 형식에 맞춰서 6개의 키워드를 작성해줘. 기호 없이 영문만 작성.
+
+    [주제 1] {t1['title']}
+    [주제 2] {t2['title']}
+
+    출력 형식 (반드시 JSON 코드만 출력):
+    {{
+        "k1_1": "주제1 첫번째 키워드",
+        "k1_2": "주제1 두번째 키워드",
+        "k1_3": "주제1 세번째 키워드",
+        "k2_1": "주제2 첫번째 키워드",
+        "k2_2": "주제2 두번째 키워드",
+        "k2_3": "주제2 세번째 키워드"
+    }}
+    """
     
     try:
-        k1_main = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t1['title'])).text.strip())
-        k1_sub = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t1['title'] + " (Focus on abstract business or data concept)")).text.strip())
-        k2_main = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t2['title'])).text.strip())
-        k2_sub = re.sub(r'[^a-zA-Z0-9\s]', '', model.generate_content(prompt.format(t2['title'] + " (Focus on abstract business or data concept)")).text.strip())
+        response_text = model.generate_content(prompt).text.strip()
+        time.sleep(5) # API 호출 제한 방지
+        # 마크다운 코드 블록 제거 및 JSON 파싱
+        json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", response_text).strip()
+        keywords = json.loads(json_str)
         
-        # 키워드 생성이 제대로 안 되었을 때를 대비한 안전 장치
-        if not k1_main: k1_main = fb1_m
-        if not k1_sub: k1_sub = fb1_s
-        if not k2_main: k2_main = fb2_m
-        if not k2_sub: k2_sub = fb2_s
-    except: 
-        k1_main, k1_sub = fb1_m, fb1_s
-        k2_main, k2_sub = fb2_m, fb2_s
+        k1_1 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_1", fb_defaults[0]))
+        k1_2 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_2", fb_defaults[1]))
+        k1_3 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_3", fb_defaults[2]))
+        k2_1 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_1", fb_defaults[3]))
+        k2_2 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_2", fb_defaults[4]))
+        k2_3 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_3", fb_defaults[5]))
+
+    except Exception as e: 
+        print(f"Keyword JSON parsing failed: {e}")
+        k1_1, k1_2, k1_3 = fb_defaults[0], fb_defaults[1], fb_defaults[2]
+        k2_1, k2_2, k2_3 = fb_defaults[3], fb_defaults[4], fb_defaults[5]
     
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_main, t1['title']))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_sub, "Analysis")) 
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_3]", get_image_tag(k2_main, t2['title']))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_4]", get_image_tag(k2_sub, "Market Insight"))
+    used_urls = set() # 중복 검사를 위한 Set 초기화
+    
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_1, used_urls, t1['title']))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_2, used_urls, "Analysis 1")) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_3]", get_image_tag(k1_3, used_urls, "Analysis 2")) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_4]", get_image_tag(k2_1, used_urls, t2['title']))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_5]", get_image_tag(k2_2, used_urls, "Market Insight 1"))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_6]", get_image_tag(k2_3, used_urls, "Market Insight 2"))
     return html_text
 
 def generate_toc_and_add_ids(html_content):
@@ -412,7 +480,7 @@ def send_email(subject, final_content):
     except Exception as e:
         print(f"❌ Email Fail: {e}")
 
-# --- 6. 통합 처리 함수 ---
+# --- 6. 통합 처리 함수 (수정됨) ---
 def process_and_send(mode, category_korean, history):
     print(f"\n>>> Processing: {category_korean} ({mode})")
     candidates = get_candidates(mode)
@@ -439,7 +507,8 @@ def process_and_send(mode, category_korean, history):
     </div>
     """
     
-    subject = f"[{category_korean} 분석] {t1_kr} & {t2_kr}"
+    # 수정된 부분: 이메일 전송 시 새로 만든 통합 제목 함수를 사용합니다.
+    subject = get_unified_subject(category_korean, t1_kr, t2_kr)
     send_email(subject, final_tistory_content)
     
     return selected
