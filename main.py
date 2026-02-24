@@ -119,7 +119,7 @@ def select_top_2(candidates, history, category_name):
     2. 오직 숫자 2개만 반환 (예: 1, 4).
     """
     try:
-        res = model.generate_content(prompt)
+        res = model.generate_content(prompt, request_options={"timeout": 600})
         time.sleep(5) # API 호출 제한 방지
         nums = [int(s) for s in re.findall(r'\b\d+\b', res.text)]
         if len(nums) >= 2:
@@ -141,7 +141,7 @@ def get_catchy_korean_title(english_title):
     영문 제목: {english_title}
     """
     try:
-        title_res = model.generate_content(prompt).text.strip()
+        title_res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
         time.sleep(5) # API 호출 제한 방지
         return title_res
     except:
@@ -162,7 +162,7 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     주제2: {t2_kr}
     """
     try:
-        res = model.generate_content(prompt).text.strip()
+        res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
         time.sleep(5) # API 호출 제한 방지
         return f"[{category_name} 분석] {res}"
     except:
@@ -193,7 +193,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     glossary_rule = "어려운 '전문 용어'는 반드시 <u> 태그로 감싸주세요."
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
-    outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.").text
+    outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.", request_options={"timeout": 600}).text
     time.sleep(5) # API 호출 제한 방지
     
     p1_prompt = f"""
@@ -211,7 +211,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     [IMAGE_PLACEHOLDER_3]
     주제 1의 내용만 작성.
     """
-    part1_res = model.generate_content(p1_prompt).text
+    part1_res = model.generate_content(p1_prompt, request_options={"timeout": 600}).text
     time.sleep(5) # API 호출 제한 방지
     part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", part1_res).strip()
     
@@ -235,7 +235,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
     <p style="color:grey; font-size: 0.9em; text-align: center;">* 본 콘텐츠는 정보 제공을 목적으로 하며, 투자의 책임은 본인에게 있습니다. <br> Editor: 스포(spo)</p>
     """
-    part2_res = model.generate_content(p2_prompt).text
+    part2_res = model.generate_content(p2_prompt, request_options={"timeout": 600}).text
     time.sleep(5) # API 호출 제한 방지
     part2 = re.sub(r"```[a-zA-Z]*\n?|```", "", part2_res).strip()
     
@@ -244,7 +244,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
 # --- 5. 이미지, 목차 생성 및 이메일 전송 ---
 def get_image_tag(keyword, used_urls, alt_text=""):
     search_query = f"{keyword}"
-    # per_page를 5로 늘려 중복을 검사할 후보군을 확보합니다.
     url = f"https://api.unsplash.com/search/photos?query={search_query}&per_page=5&orientation=landscape&client_id={UNSPLASH_ACCESS_KEY}"
     try:
         data = requests.get(url, timeout=5).json()
@@ -252,7 +251,6 @@ def get_image_tag(keyword, used_urls, alt_text=""):
             return ""
         
         img_url = ""
-        # 불러온 결과 중 사용된 적 없는 이미지 URL을 찾습니다.
         for res in data['results']:
             candidate_url = res['urls']['regular']
             if candidate_url not in used_urls:
@@ -260,7 +258,6 @@ def get_image_tag(keyword, used_urls, alt_text=""):
                 used_urls.add(img_url)
                 break
         
-        # 만약 전부 중복이라면 첫 번째 이미지를 어쩔 수 없이 사용합니다.
         if not img_url:
             img_url = data['results'][0]['urls']['regular']
             used_urls.add(img_url)
@@ -304,9 +301,8 @@ def inject_images(html_text, t1, t2, mode):
     """
     
     try:
-        response_text = model.generate_content(prompt).text.strip()
+        response_text = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
         time.sleep(5) # API 호출 제한 방지
-        # 마크다운 코드 블록 제거 및 JSON 파싱
         json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", response_text).strip()
         keywords = json.loads(json_str)
         
@@ -322,7 +318,7 @@ def inject_images(html_text, t1, t2, mode):
         k1_1, k1_2, k1_3 = fb_defaults[0], fb_defaults[1], fb_defaults[2]
         k2_1, k2_2, k2_3 = fb_defaults[3], fb_defaults[4], fb_defaults[5]
     
-    used_urls = set() # 중복 검사를 위한 Set 초기화
+    used_urls = set() 
     
     html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_1, used_urls, t1['title']))
     html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_2, used_urls, "Analysis 1")) 
@@ -480,7 +476,7 @@ def send_email(subject, final_content):
     except Exception as e:
         print(f"❌ Email Fail: {e}")
 
-# --- 6. 통합 처리 함수 (수정됨) ---
+# --- 6. 통합 처리 함수 ---
 def process_and_send(mode, category_korean, history):
     print(f"\n>>> Processing: {category_korean} ({mode})")
     candidates = get_candidates(mode)
@@ -507,7 +503,6 @@ def process_and_send(mode, category_korean, history):
     </div>
     """
     
-    # 수정된 부분: 이메일 전송 시 새로 만든 통합 제목 함수를 사용합니다.
     subject = get_unified_subject(category_korean, t1_kr, t2_kr)
     send_email(subject, final_tistory_content)
     
