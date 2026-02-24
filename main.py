@@ -8,6 +8,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import google.generativeai as genai 
+from google.api_core.exceptions import ResourceExhausted
 import re
 import html
 from bs4 import BeautifulSoup
@@ -21,6 +22,22 @@ GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 # Gemini 설정
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel('gemini-3-flash-preview')
+
+# --- API 호출 도우미 함수 (요금제 제한/오류 발생 시 자동 재시도) ---
+def call_gemini(prompt):
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = model.generate_content(prompt, request_options={"timeout": 600})
+            time.sleep(5)  # 정상 호출 시에도 약간의 텀을 둠
+            return response
+        except ResourceExhausted as e:
+            print(f"⚠️ [API 횟수 제한] 60초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
+            time.sleep(60)
+        except Exception as e:
+            print(f"⚠️ [API 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
+            time.sleep(10)
+    raise Exception("Gemini API 호출에 여러 번 실패했습니다.")
 
 # --- 0. 히스토리 관리 ---
 def load_history(filepath):
@@ -119,15 +136,14 @@ def select_top_2(candidates, history, category_name):
     2. 오직 숫자 2개만 반환 (예: 1, 4).
     """
     try:
-        res = model.generate_content(prompt, request_options={"timeout": 600})
-        time.sleep(5) # API 호출 제한 방지
+        res = call_gemini(prompt)
         nums = [int(s) for s in re.findall(r'\b\d+\b', res.text)]
         if len(nums) >= 2:
             return [filtered[nums[0]], filtered[nums[1]]]
     except: pass
     return filtered[:2]
 
-# --- 3. 매력적인 한국어 제목 생성 함수 (수정됨) ---
+# --- 3. 매력적인 한국어 제목 생성 함수 ---
 def get_catchy_korean_title(english_title):
     prompt = f"""
     다음 영문 뉴스 제목을 번역하되, 사람들의 호기심을 끌면서도 '깔끔하고 핵심을 찌르는' 한 줄짜리 한국어 블로그 제목으로 만들어줘.
@@ -141,13 +157,12 @@ def get_catchy_korean_title(english_title):
     영문 제목: {english_title}
     """
     try:
-        title_res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
-        time.sleep(5) # API 호출 제한 방지
+        title_res = call_gemini(prompt).text.strip()
         return title_res
     except:
         return english_title
 
-# --- 이메일 전송용 통합 제목 생성 함수 (추가됨) ---
+# --- 이메일 전송용 통합 제목 생성 함수 ---
 def get_unified_subject(category_name, t1_kr, t2_kr):
     prompt = f"""
     다음 두 개의 뉴스 제목을 아우르는, 이메일 제목용 통합 블로그 제목을 작성해줘.
@@ -162,13 +177,12 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     주제2: {t2_kr}
     """
     try:
-        res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
-        time.sleep(5) # API 호출 제한 방지
+        res = call_gemini(prompt).text.strip()
         return f"[{category_name} 분석] {res}"
     except:
         return f"[{category_name} 분석] {t1_kr[:15]}... 외 핵심 이슈"
 
-# --- 4. 글 작성 ---
+# --- 4. 글 작성 (이미지 배치를 위해 프롬프트 뼈대 유지) ---
 def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     print(f"Writing {category_name} Post with Gemini...")
     
@@ -180,63 +194,106 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     4. AI 말투 200% 금지: '결론적으로', '알아보겠습니다', '이 기사를 통해', '안녕하세요', '요약하자면', '흥미진진한' 등 AI 특유의 상투적이고 영혼 없는 표현은 절대 금지합니다. 진짜 사람이 쓴 것처럼 문단 간 연결을 매끄럽게 하세요.
     """
 
-    structure_instruction = """
-    각 주제별로 반드시 아래 7가지 H2 태그 섹션을 포함해야 함:
-    1. <h2>1. 배경 및 개요 (The Context)</h2> : 현 상황을 뻔하지 않게 3줄 요약 리스트(<ul>)로 제시.
-    2. <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2> : 과거 유사했던 사례와 비교하여 이번 주제의 진짜 혁신 포인트가 무엇인지 에디터의 시각으로 분석.
-    3. <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2> : <table>을 1개 이상 반드시 포함. 전문적이지만 독자가 이해하기 쉽게 적절한 비유를 섞어 설명.
-    4. <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2> : [매우 중요] 객관적인 데이터와 함께, "A 기업보다 B 기업이 이 국면에서 왜 더 유리한지", 혹은 "기존 강자 C 기업에게 어떤 치명적인 위협이 될지" 등 구체적이고 주관적인 기업/기술 간 우위 분석을 반드시 작성.
-    5. <h2>5. 리스크 및 한계점 (Risk Factors)</h2> : 표면적인 리스크가 아닌, 실무자/투자자 관점에서의 진짜 걸림돌(규제, 경쟁 심화, 기술적 장벽 등)을 예리하게 지적.
-    6. <h2>6. 긍정적 전망 및 기대 효과 (Future Hope & Impact)</h2> : 이 변화가 가져올 미래 산업의 모습을 생생하게 그려주듯 서술.
-    7. <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2> : 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언.
-    """
     glossary_rule = "어려운 '전문 용어'는 반드시 <u> 태그로 감싸주세요."
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
-    outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.", request_options={"timeout": 600}).text
-    time.sleep(5) # API 호출 제한 방지
+    outline = call_gemini(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.").text
     
+    # 주제 1 작성 프롬프트 
     p1_prompt = f"""
     역할: {category_name} 업계 10년차 현업 전문가이자, 트렌디하고 깔끔한 인사이트를 제공하는 실무 분석가 '스포(spo)'.
     개요: {outline}
     주제 1: {topic1['title']} / 원문 내용: {topic1['raw']}
     {tone_rule}
     {glossary_rule}\n{bold_rule}
-    [작성 지침] HTML 태그만 출력.
+    
+    [작성 지침] HTML 태그만 출력하세요. 아래 제공된 뼈대(Skeleton)를 반드시 그대로 복사해서 뼈대를 유지한 채 (지침) 부분을 실제 글로 채워주세요. 
+    주의: [IMAGE_PLACEHOLDER_X] 태그의 위치를 절대 임의로 옮기거나 삭제하지 마세요.
+
     <h1>[{category_name} 심층분석] {t1_kr}</h1>
+    
     [IMAGE_PLACEHOLDER_1]
-    {structure_instruction}
+    
+    <h2>1. 배경 및 개요 (The Context)</h2>
+    (지침: 현 상황을 뻔하지 않게 3줄 요약 리스트(<ul>)로 제시)
+    
+    <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2>
+    (지침: 과거 유사했던 사례와 비교하여 이번 주제의 진짜 혁신 포인트가 무엇인지 에디터의 시각으로 분석)
+    
     [IMAGE_PLACEHOLDER_2]
-    <br>
+    
+    <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2>
+    (지침: <table>을 1개 이상 반드시 포함. 전문적이지만 독자가 이해하기 쉽게 적절한 비유를 섞어 설명)
+    
+    <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2>
+    (지침: 객관적인 데이터와 함께, 구체적이고 주관적인 기업/기술 간 우위 분석을 반드시 작성)
+    
+    <h2>5. 리스크 및 한계점 (Risk Factors)</h2>
+    (지침: 표면적인 리스크가 아닌, 실무자/투자자 관점에서의 진짜 걸림돌(규제, 경쟁 심화, 기술적 장벽 등)을 예리하게 지적)
+    
     [IMAGE_PLACEHOLDER_3]
-    주제 1의 내용만 작성.
+    
+    <h2>6. 긍정적 전망 및 기대 효과 (Future Hope & Impact)</h2>
+    (지침: 이 변화가 가져올 미래 산업의 모습을 생생하게 그려주듯 서술)
+    
+    <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2>
+    (지침: 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언)
     """
-    part1_res = model.generate_content(p1_prompt, request_options={"timeout": 600}).text
-    time.sleep(5) # API 호출 제한 방지
+    part1_res = call_gemini(p1_prompt).text
     part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", part1_res).strip()
     
+    # 주제 2 작성 프롬프트
     p2_prompt = f"""
     앞부분: {part1}
     주제 2: {topic2['title']} / 원문 내용: {topic2['raw']}
     {tone_rule}
     {glossary_rule}\n{bold_rule}
-    [작성 지침] 앞 내용과 자연스럽게 이어지도록 작성. HTML 태그만 출력.
+    
+    [작성 지침] 앞 내용과 자연스럽게 이어지도록 작성하세요. HTML 태그만 출력. 아래 제공된 뼈대(Skeleton)를 반드시 그대로 복사해서 유지한 채 (지침) 부분을 실제 글로 채워주세요. 
+    주의: [IMAGE_PLACEHOLDER_X] 태그의 위치를 절대 임의로 옮기거나 삭제하지 마세요.
+
     <br><hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;"><br>
+    
     <h1>[{category_name} 심층분석] {t2_kr}</h1>
+    
     [IMAGE_PLACEHOLDER_4]
-    {structure_instruction}
+    
+    <h2>1. 배경 및 개요 (The Context)</h2>
+    (지침: 현 상황을 뻔하지 않게 3줄 요약 리스트(<ul>)로 제시)
+    
+    <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2>
+    (지침: 과거 유사했던 사례와 비교하여 이번 주제의 진짜 혁신 포인트가 무엇인지 에디터의 시각으로 분석)
+    
     [IMAGE_PLACEHOLDER_5]
-    <br>
+    
+    <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2>
+    (지침: <table>을 1개 이상 반드시 포함. 전문적이지만 독자가 이해하기 쉽게 적절한 비유를 섞어 설명)
+    
+    <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2>
+    (지침: 객관적인 데이터와 함께, 구체적이고 주관적인 기업/기술 간 우위 분석을 반드시 작성)
+    
+    <h2>5. 리스크 및 한계점 (Risk Factors)</h2>
+    (지침: 표면적인 리스크가 아닌, 실무자/투자자 관점에서의 진짜 걸림돌(규제, 경쟁 심화, 기술적 장벽 등)을 예리하게 지적)
+    
     [IMAGE_PLACEHOLDER_6]
+    
+    <h2>6. 긍정적 전망 및 기대 효과 (Future Hope & Impact)</h2>
+    (지침: 이 변화가 가져올 미래 산업의 모습을 생생하게 그려주듯 서술)
+    
+    <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2>
+    (지침: 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언)
+    
     <br><hr style="border: 0; height: 2px; background: #2c3e50; margin: 50px 0;"><br>
     <h2>🎯 통합 인사이트: 두 뉴스가 그리는 미래 (The Bridge)</h2>
+    (지침: 두 주제를 관통하는 핵심 인사이트 작성)
     <h2>📖 오늘의 용어 정리 (Glossary)</h2>
+    (지침: <u> 태그로 표시한 용어들 정리)
     <h2>🔍 SEO 및 태그 정보 (업로드용)</h2>
+    (지침: 태그 작성)
     <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
     <p style="color:grey; font-size: 0.9em; text-align: center;">* 본 콘텐츠는 정보 제공을 목적으로 하며, 투자의 책임은 본인에게 있습니다. <br> Editor: 스포(spo)</p>
     """
-    part2_res = model.generate_content(p2_prompt, request_options={"timeout": 600}).text
-    time.sleep(5) # API 호출 제한 방지
+    part2_res = call_gemini(p2_prompt).text
     part2 = re.sub(r"```[a-zA-Z]*\n?|```", "", part2_res).strip()
     
     return part1 + "\n" + part2
@@ -301,8 +358,7 @@ def inject_images(html_text, t1, t2, mode):
     """
     
     try:
-        response_text = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
-        time.sleep(5) # API 호출 제한 방지
+        response_text = call_gemini(prompt).text.strip()
         json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", response_text).strip()
         keywords = json.loads(json_str)
         
