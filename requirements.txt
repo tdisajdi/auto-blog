@@ -1,4 +1,4 @@
-google-generativeai
+google-genai
 requests
 feedparser
 beautifulsoup4
