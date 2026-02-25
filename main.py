@@ -7,13 +7,10 @@ import feedparser
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import google.generativeai as genai 
 import re
 import html
 from bs4 import BeautifulSoup
-
-# 💡 구글 최신 SDK 패키지로 변경되었습니다!
-from google import genai
-from google.genai import errors
 
 # --- 환경 변수 로드 ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -21,33 +18,9 @@ UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 GMAIL_USER = os.environ.get("GMAIL_USER")
 GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 
-# Gemini 설정 (최신 SDK 문법)
-client = genai.Client(api_key=GEMINI_API_KEY)
-
-# --- API 호출 도우미 함수 (요금제 제한/오류 발생 시 자동 재시도) ---
-def call_gemini(prompt):
-    max_retries = 5  # 재시도 횟수 5회
-    for attempt in range(max_retries):
-        try:
-            # 최신 2.0-flash 모델 호출 문법
-            response = client.models.generate_content(
-                model='gemini-2.0-flash',
-                contents=prompt
-            )
-            time.sleep(5)  # 정상 호출 시에도 5초 대기 (안정성 확보)
-            return response
-        except errors.APIError as e:
-            if e.code == 429: # API 호출 횟수 제한(할당량 초과) 발생 시
-                wait_time = 60 * (attempt + 1)
-                print(f"⚠️ [API 횟수 제한] {wait_time}초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
-                time.sleep(wait_time)
-            else:
-                print(f"⚠️ [API 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
-                time.sleep(10)
-        except Exception as e:
-            print(f"⚠️ [일반 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
-            time.sleep(10)
-    raise Exception("Gemini API 호출에 여러 번 실패했습니다. (API 상태를 확인해주세요.)")
+# Gemini 설정
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel('gemini-3-flash-preview')
 
 # --- 0. 히스토리 관리 ---
 def load_history(filepath):
@@ -146,7 +119,8 @@ def select_top_2(candidates, history, category_name):
     2. 오직 숫자 2개만 반환 (예: 1, 4).
     """
     try:
-        res = call_gemini(prompt)
+        res = model.generate_content(prompt, request_options={"timeout": 600})
+        time.sleep(5) # API 호출 제한 방지
         nums = [int(s) for s in re.findall(r'\b\d+\b', res.text)]
         if len(nums) >= 2:
             return [filtered[nums[0]], filtered[nums[1]]]
@@ -167,7 +141,8 @@ def get_catchy_korean_title(english_title):
     영문 제목: {english_title}
     """
     try:
-        title_res = call_gemini(prompt).text.strip()
+        title_res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
+        time.sleep(5) # API 호출 제한 방지
         return title_res
     except:
         return english_title
@@ -187,12 +162,13 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     주제2: {t2_kr}
     """
     try:
-        res = call_gemini(prompt).text.strip()
+        res = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
+        time.sleep(5) # API 호출 제한 방지
         return f"[{category_name} 분석] {res}"
     except:
         return f"[{category_name} 분석] {t1_kr[:15]}... 외 핵심 이슈"
 
-# --- 4. 글 작성 ---
+# --- 4. 글 작성 (이미지 배치를 위해 프롬프트 뼈대 수정) ---
 def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     print(f"Writing {category_name} Post with Gemini...")
     
@@ -207,8 +183,10 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     glossary_rule = "어려운 '전문 용어'는 반드시 <u> 태그로 감싸주세요."
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
-    outline = call_gemini(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.").text
+    outline = model.generate_content(f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성.", request_options={"timeout": 600}).text
+    time.sleep(5) # API 호출 제한 방지
     
+    # 주제 1 작성 프롬프트 (HTML 뼈대를 강제하여 이미지 위치 고정)
     p1_prompt = f"""
     역할: {category_name} 업계 10년차 현업 전문가이자, 트렌디하고 깔끔한 인사이트를 제공하는 실무 분석가 '스포(spo)'.
     개요: {outline}
@@ -248,9 +226,11 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <h2>7. 스포(spo)의 인사이트 (Actionable Insights)</h2>
     (지침: 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언)
     """
-    part1_res = call_gemini(p1_prompt).text
+    part1_res = model.generate_content(p1_prompt, request_options={"timeout": 600}).text
+    time.sleep(5) 
     part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", part1_res).strip()
     
+    # 주제 2 작성 프롬프트 (HTML 뼈대를 강제하여 이미지 위치 고정)
     p2_prompt = f"""
     앞부분: {part1}
     주제 2: {topic2['title']} / 원문 내용: {topic2['raw']}
@@ -301,7 +281,8 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
     <p style="color:grey; font-size: 0.9em; text-align: center;">* 본 콘텐츠는 정보 제공을 목적으로 하며, 투자의 책임은 본인에게 있습니다. <br> Editor: 스포(spo)</p>
     """
-    part2_res = call_gemini(p2_prompt).text
+    part2_res = model.generate_content(p2_prompt, request_options={"timeout": 600}).text
+    time.sleep(5)
     part2 = re.sub(r"```[a-zA-Z]*\n?|```", "", part2_res).strip()
     
     return part1 + "\n" + part2
@@ -366,7 +347,8 @@ def inject_images(html_text, t1, t2, mode):
     """
     
     try:
-        response_text = call_gemini(prompt).text.strip()
+        response_text = model.generate_content(prompt, request_options={"timeout": 600}).text.strip()
+        time.sleep(5) # API 호출 제한 방지
         json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", response_text).strip()
         keywords = json.loads(json_str)
         
@@ -588,11 +570,6 @@ def main():
     else: # 화~일요일
         items_bio = process_and_send("BIO", "바이오", history)
         new_items_total.extend(items_bio)
-        
-        # 카테고리가 여러 개일 때, 연속 호출로 인한 API 한도 초과 방지용 대기
-        print("⏳ 카테고리 전환 대기 중 (API 한도 방지용 30초 대기)...")
-        time.sleep(30)
-        
         items_patent = process_and_send("PATENT", "특허", history)
         new_items_total.extend(items_patent)
     
