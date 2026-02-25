@@ -22,7 +22,7 @@ GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 # 기존 request_options에 있던 timeout 설정을 클라이언트 레벨에서 전역 처리합니다.
 client = genai.Client(
     api_key=GEMINI_API_KEY,
-    http_options={'timeout': 600} 
+    http_options={'timeout': 600000} 
 )
 MODEL_ID = 'gemini-3-flash-preview'
 
