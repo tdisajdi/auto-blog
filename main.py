@@ -7,11 +7,13 @@ import feedparser
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import google.generativeai as genai 
-from google.api_core.exceptions import ResourceExhausted
 import re
 import html
 from bs4 import BeautifulSoup
+
+# 💡 구글 최신 SDK 패키지로 변경되었습니다!
+from google import genai
+from google.genai import errors
 
 # --- 환경 변수 로드 ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -19,25 +21,31 @@ UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 GMAIL_USER = os.environ.get("GMAIL_USER")
 GMAIL_APP_PASSWORD = os.environ.get("GMAIL_APP_PASSWORD")
 
-# Gemini 설정
-genai.configure(api_key=GEMINI_API_KEY)
-# 💡 모델을 안정적이고 쿼터가 넉넉한 'gemini-1.5-flash'로 변경했습니다!
-model = genai.GenerativeModel('gemini-1.5-flash')
+# Gemini 설정 (최신 SDK 문법)
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 # --- API 호출 도우미 함수 (요금제 제한/오류 발생 시 자동 재시도) ---
 def call_gemini(prompt):
     max_retries = 5  # 재시도 횟수 5회
     for attempt in range(max_retries):
         try:
-            response = model.generate_content(prompt, request_options={"timeout": 600})
+            # 최신 1.5-flash 모델 호출 문법
+            response = client.models.generate_content(
+                model='gemini-1.5-flash',
+                contents=prompt
+            )
             time.sleep(5)  # 정상 호출 시에도 5초 대기 (안정성 확보)
             return response
-        except ResourceExhausted as e:
-            wait_time = 60 * (attempt + 1)  # 60초 -> 120초 -> 180초 대기 시간 점진적 증가
-            print(f"⚠️ [API 횟수 제한] {wait_time}초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
-            time.sleep(wait_time)
+        except errors.APIError as e:
+            if e.code == 429: # API 호출 횟수 제한(할당량 초과) 발생 시
+                wait_time = 60 * (attempt + 1)
+                print(f"⚠️ [API 횟수 제한] {wait_time}초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
+                time.sleep(wait_time)
+            else:
+                print(f"⚠️ [API 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
+                time.sleep(10)
         except Exception as e:
-            print(f"⚠️ [API 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
+            print(f"⚠️ [일반 에러] {e}. 10초 대기 후 재시도합니다... (시도: {attempt+1}/{max_retries})")
             time.sleep(10)
     raise Exception("Gemini API 호출에 여러 번 실패했습니다. (API 상태를 확인해주세요.)")
 
