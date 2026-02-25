@@ -29,9 +29,9 @@ def call_gemini(prompt):
     max_retries = 5  # 재시도 횟수 5회
     for attempt in range(max_retries):
         try:
-            # 최신 1.5-flash 모델 호출 문법
+            # 최신 2.0-flash 모델 호출 문법
             response = client.models.generate_content(
-                model='gemini-1.5-flash',
+                model='gemini-2.0-flash',
                 contents=prompt
             )
             time.sleep(5)  # 정상 호출 시에도 5초 대기 (안정성 확보)
