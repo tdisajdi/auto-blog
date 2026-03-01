@@ -172,8 +172,8 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     except:
         return f"[{category_name} 분석] {t1_kr[:15]}... 외 핵심 이슈"
 
-# --- 4. 글 작성 (이미지 배치를 위해 프롬프트 뼈대 수정) ---
-def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
+# --- 4. 글 작성 (내부 링크 기능 추가) ---
+def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     print(f"Writing {category_name} Post with Gemini...")
     
     tone_rule = """
@@ -187,20 +187,60 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     glossary_rule = "어려운 '전문 용어'는 반드시 <u> 태그로 감싸주세요."
     bold_rule = "가독성을 높이기 위해 문단에서 가장 중요한 '핵심 문장'과 '주요 키워드(단어)'는 반드시 <b> 태그를 사용하여 굵게 강조해주세요."
 
+    # 이전 발행 글 목록 텍스트화 (최근 15개)
+    history_text = "이전 발행 글 없음"
+    if history:
+        recent_history = history[-15:]
+        history_lines = [f"- 원문 제목: {h.get('title', '')} (URL: {h.get('id', '')})" for h in recent_history]
+        history_text = "\n".join(history_lines)
+
+    # 대안 2: 이전 글 히스토리 기반 실제 내부 링크 삽입 (수익화/SEO 포인트 2)
+    internal_link_rule = f"""
+    [블로그 내부 링크 자동 삽입 지침 - SEO 최적화]
+    아래 '이전 발행 글 목록'을 분석하여, 현재 작성 중인 글과 맥락이 가장 잘 맞는 이전 글 1개를 선정하세요.
+    그리고 독자가 글을 읽다가 자연스럽게 누를 수 있는 위치에 아래 HTML 코드로 '관련 글 링크'를 삽입하세요.
+    (만약 연관된 글이 없거나 목록이 비어있다면, 기존처럼 https://spo26.tistory.com/search/[핵심키워드] 방식을 사용하세요.)
+
+    [이전 발행 글 목록]
+    {history_text}
+    
+    <div style="margin: 25px 0; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #3498db; border-radius: 4px;">
+        <span style="font-weight: bold; color: #2c3e50;">🔗 스포(spo) 블로그 연관 글 보기:</span> 
+        <a href="[선정된 URL]" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">[선정된 이전 글 제목 또는 클릭을 유도하는 관련 문구]</a>
+    </div>
+    """
+
+    citation_rule = """
+    [출처(Citations) 및 외부 링크 삽입 지침]
+    본문에 'Nature Medicine', 특정 임상시험 이름(예: BROOKLYN 임상 3상), 주요 논문, 공신력 있는 기관(FDA, EMA 등)이나 뉴스 매체(Reuters 등)가 언급될 경우, 
+    해당 텍스트에 실제 참고할 수 있는 공신력 있는 외부 링크(URL)를 1~2개 이상 HTML <a> 태그(target='_blank', style='color: #2980b9; text-decoration: underline;')를 사용하여 자연스럽게 걸어주세요.
+    """
+
+    stock_link_rule = """
+    [상장사 실시간 주가 링크 삽입 지침]
+    본문에 언급된 핵심 기업이 상장사(Public Company)인 경우, 독자들이 실시간 주가를 확인할 수 있도록 해당 기업이 처음 언급되는 부분(혹은 적절한 문맥)에 
+    인베스팅닷컴(Investing.com) 검색 결과 링크를 <a> 태그로 추가해주세요. 상장사가 아니면 무조건 생략하세요.
+    형식: 기업명 뒤에 괄호를 열고 삽입 (예: 테슬라 <a href='https://kr.investing.com/search/?q=Tesla' target='_blank' style='font-size: 0.85em; color: #e74c3c; text-decoration: none; font-weight: bold;'>[📈주가확인]</a>)
+    """
+
     outline_prompt = f"주제1: {topic1['title']}\n주제2: {topic2['title']}\n위 두 주제로 '{category_name} 심층 분석' 개요 작성."
     outline = client.models.generate_content(model=MODEL_ID, contents=outline_prompt).text
     time.sleep(5) # API 호출 제한 방지
     
-    # 주제 1 작성 프롬프트 (HTML 뼈대를 강제하여 이미지 위치 고정)
+    # 주제 1 작성 프롬프트 (수익화/SEO 포인트 5: 애드센스 플레이스홀더 추가)
     p1_prompt = f"""
     역할: {category_name} 업계 10년차 현업 전문가이자, 트렌디하고 깔끔한 인사이트를 제공하는 실무 분석가 '스포(spo)'.
     개요: {outline}
     주제 1: {topic1['title']} / 원문 내용: {topic1['raw']}
     {tone_rule}
     {glossary_rule}\n{bold_rule}
+    {internal_link_rule}
+    {citation_rule}
+    {stock_link_rule}
     
     [작성 지침] HTML 태그만 출력하세요. 아래 제공된 뼈대(Skeleton)를 반드시 그대로 복사해서 뼈대를 유지한 채 (지침) 부분을 실제 글로 채워주세요. 
-    주의: [IMAGE_PLACEHOLDER_X] 태그의 위치를 절대 임의로 옮기거나 삭제하지 마세요.
+    내부 링크, 외부 출처 링크, 주가 확인 링크는 뼈대를 해치지 않는 적절한 곳에 삽입하세요.
+    주의: [IMAGE_PLACEHOLDER_X] 및 [애드센스 광고 위치] 태그를 절대 임의로 옮기거나 삭제하지 마세요.
 
     <h1>[{category_name} 심층분석] {t1_kr}</h1>
     
@@ -212,6 +252,8 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <h2>2. 기존 기술/약물과의 차별점 (Comparative Analysis)</h2>
     (지침: 과거 유사했던 사례와 비교하여 이번 주제의 진짜 혁신 포인트가 무엇인지 에디터의 시각으로 분석)
     
+    <div class="adsense-placeholder" style="text-align:center; margin: 30px 0; padding: 20px; background:#f8f9fa; color:#adb5bd; border:2px dashed #dee2e6; border-radius: 8px; font-weight: bold;">[💰 애드센스 본문 상단 광고 삽입 위치 1]</div>
+
     [IMAGE_PLACEHOLDER_2]
     
     <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2>
@@ -235,15 +277,18 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     time.sleep(5) 
     part1 = re.sub(r"```[a-zA-Z]*\n?|```", "", part1_res).strip()
     
-    # 주제 2 작성 프롬프트 (HTML 뼈대를 강제하여 이미지 위치 고정)
+    # 주제 2 작성 프롬프트 (수익화/SEO 포인트 1, 3, 5: 메타, 스키마, 광고 추가)
     p2_prompt = f"""
     앞부분: {part1}
     주제 2: {topic2['title']} / 원문 내용: {topic2['raw']}
     {tone_rule}
     {glossary_rule}\n{bold_rule}
+    {internal_link_rule}
+    {citation_rule}
+    {stock_link_rule}
     
     [작성 지침] 앞 내용과 자연스럽게 이어지도록 작성하세요. HTML 태그만 출력. 아래 제공된 뼈대(Skeleton)를 반드시 그대로 복사해서 유지한 채 (지침) 부분을 실제 글로 채워주세요. 
-    주의: [IMAGE_PLACEHOLDER_X] 태그의 위치를 절대 임의로 옮기거나 삭제하지 마세요.
+    주의: [IMAGE_PLACEHOLDER_X] 및 [애드센스 광고 위치] 태그를 절대 임의로 옮기거나 삭제하지 마세요.
 
     <br><hr style="border: 0; height: 1px; background: #ddd; margin: 40px 0;"><br>
     
@@ -262,6 +307,8 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     <h2>3. 기술적 메커니즘 (Technical Deep-Dive)</h2>
     (지침: <table>을 1개 이상 반드시 포함. 전문적이지만 독자가 이해하기 쉽게 적절한 비유를 섞어 설명)
     
+    <div class="adsense-placeholder" style="text-align:center; margin: 30px 0; padding: 20px; background:#f8f9fa; color:#adb5bd; border:2px dashed #dee2e6; border-radius: 8px; font-weight: bold;">[💰 애드센스 본문 중단 광고 삽입 위치 2]</div>
+
     <h2>4. 시장 판도 및 경쟁사 분석 (Market Dynamics)</h2>
     (지침: 객관적인 데이터와 함께, 구체적이고 주관적인 기업/기술 간 우위 분석을 반드시 작성)
     
@@ -277,12 +324,36 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     (지침: 단순 요약 금지. "그래서 지금 우리는 무엇을 주목해야 하는가?"에 대한 에디터 스포의 매우 주관적이고 사람 냄새 나는 솔직한 총평과 투자/산업적 조언)
     
     <br><hr style="border: 0; height: 2px; background: #2c3e50; margin: 50px 0;"><br>
+    
     <h2>🎯 통합 인사이트: 두 뉴스가 그리는 미래 (The Bridge)</h2>
     (지침: 두 주제를 관통하는 핵심 인사이트 작성)
+    
     <h2>📖 오늘의 용어 정리 (Glossary)</h2>
     (지침: <u> 태그로 표시한 용어들 정리)
-    <h2>🔍 SEO 및 태그 정보 (업로드용)</h2>
-    (지침: 태그 작성)
+    
+    <div class="adsense-placeholder" style="text-align:center; margin: 30px 0; padding: 20px; background:#f8f9fa; color:#adb5bd; border:2px dashed #dee2e6; border-radius: 8px; font-weight: bold;">[💰 애드센스 본문 하단 광고 삽입 위치 3]</div>
+
+    <h2>🔍 SEO 및 메타 데이터 (업로드용)</h2>
+    <div style="background-color: #f1f8ff; padding: 15px; border-radius: 8px; font-size: 0.9em; color: #333;">
+        <p><b>💡 구글 검색엔진 최적화(SEO)를 위한 요약 및 태그</b><br>티스토리 '설명' 란과 '태그' 란에 아래 내용을 복사해서 넣으세요.</p>
+        <p><b>Meta Description:</b> (지침: 본문 전체의 핵심을 관통하고 독자의 클릭을 유발할 수 있는 150자 내외의 한국어 요약문 작성)</p>
+        <p><b>Tags:</b> (지침: 검색량이 많을 만한 핵심 키워드 10개 이상 쉼표로 구분하여 작성)</p>
+    </div>
+
+    <script type="application/ld+json">
+    (지침: 아래 JSON-LD 형식에 맞춰 스키마 마크업을 완성하세요. Description은 위에서 작성한 Meta Description과 동일하게 작성할 것.)
+    {{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "[{category_name} 분석] {t1_kr} 외 핵심 이슈",
+      "description": "[여기에 작성한 150자 Meta Description 삽입]",
+      "author": {{
+        "@type": "Person",
+        "name": "스포(spo)"
+      }}
+    }}
+    </script>
+    
     <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
     <p style="color:grey; font-size: 0.9em; text-align: center;">* 본 콘텐츠는 정보 제공을 목적으로 하며, 투자의 책임은 본인에게 있습니다. <br> Editor: 스포(spo)</p>
     """
@@ -333,21 +404,24 @@ def inject_images(html_text, t1, t2, mode):
         theme_instruction = "'technology', 'software', 'computer', 'digital', 'network' 같이 IT/테크 분야와 관련된 직관적이고 시각적인 범용 단어"
         fb_defaults = ["digital technology", "software code", "future tech", "network data", "cyber security", "ai interface"]
 
+    # 수익화/SEO 포인트 4: Alt 태그 구체화를 위해 프롬프트 및 JSON 스키마 수정
     prompt = f"""
-    Unsplash 이미지 검색용 영문 키워드를 추출해줘. 복잡한 고유명사나 특정 번호 등은 모두 배제하고, 반드시 본문 내용과 연관되면서 {theme_instruction} 3개씩 총 6개 출력해.
-    아래 JSON 형식에 맞춰서 6개의 키워드를 작성해줘. 기호 없이 영문만 작성.
+    Unsplash 이미지 검색용 영문 키워드와 이미지 구체적 묘사(Alt 태그용)를 함께 추출해줘. 복잡한 고유명사나 특정 번호 등은 모두 배제하고, 반드시 본문 내용과 연관되면서 {theme_instruction} 3개씩 총 6개 출력해.
+    Alt 태그용 설명은 구글 이미지 검색(SEO) 최적화를 위해, 해당 이미지가 나타내는 상황을 한국어로 30자 이내로 생생하고 구체적으로 묘사해줘. (예: "미래 지향적인 AI 소프트웨어 데이터 구조도")
+    
+    아래 JSON 형식에 맞춰서 6개의 키워드와 6개의 설명을 작성해줘. 기호 없이 영문(키워드) 및 한글(설명)만 작성.
 
     [주제 1] {t1['title']}
     [주제 2] {t2['title']}
 
     출력 형식 (반드시 JSON 코드만 출력):
     {{
-        "k1_1": "주제1 첫번째 키워드",
-        "k1_2": "주제1 두번째 키워드",
-        "k1_3": "주제1 세번째 키워드",
-        "k2_1": "주제2 첫번째 키워드",
-        "k2_2": "주제2 두번째 키워드",
-        "k2_3": "주제2 세번째 키워드"
+        "k1_1": "주제1 첫번째 키워드", "alt1_1": "주제1 첫번째 이미지 구체적 묘사",
+        "k1_2": "주제1 두번째 키워드", "alt1_2": "주제1 두번째 이미지 구체적 묘사",
+        "k1_3": "주제1 세번째 키워드", "alt1_3": "주제1 세번째 이미지 구체적 묘사",
+        "k2_1": "주제2 첫번째 키워드", "alt2_1": "주제2 첫번째 이미지 구체적 묘사",
+        "k2_2": "주제2 두번째 키워드", "alt2_2": "주제2 두번째 이미지 구체적 묘사",
+        "k2_3": "주제2 세번째 키워드", "alt2_3": "주제2 세번째 이미지 구체적 묘사"
     }}
     """
     
@@ -358,25 +432,33 @@ def inject_images(html_text, t1, t2, mode):
         keywords = json.loads(json_str)
         
         k1_1 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_1", fb_defaults[0]))
+        alt1_1 = keywords.get("alt1_1", t1['title'])
         k1_2 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_2", fb_defaults[1]))
+        alt1_2 = keywords.get("alt1_2", "Analysis 1")
         k1_3 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k1_3", fb_defaults[2]))
+        alt1_3 = keywords.get("alt1_3", "Analysis 2")
         k2_1 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_1", fb_defaults[3]))
+        alt2_1 = keywords.get("alt2_1", t2['title'])
         k2_2 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_2", fb_defaults[4]))
+        alt2_2 = keywords.get("alt2_2", "Market Insight 1")
         k2_3 = re.sub(r'[^a-zA-Z0-9\s]', '', keywords.get("k2_3", fb_defaults[5]))
+        alt2_3 = keywords.get("alt2_3", "Market Insight 2")
 
     except Exception as e: 
         print(f"Keyword JSON parsing failed: {e}")
         k1_1, k1_2, k1_3 = fb_defaults[0], fb_defaults[1], fb_defaults[2]
+        alt1_1, alt1_2, alt1_3 = t1['title'], "Analysis 1", "Analysis 2"
         k2_1, k2_2, k2_3 = fb_defaults[3], fb_defaults[4], fb_defaults[5]
+        alt2_1, alt2_2, alt2_3 = t2['title'], "Market Insight 1", "Market Insight 2"
     
     used_urls = set() 
     
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_1, used_urls, t1['title']))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_2, used_urls, "Analysis 1")) 
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_3]", get_image_tag(k1_3, used_urls, "Analysis 2")) 
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_4]", get_image_tag(k2_1, used_urls, t2['title']))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_5]", get_image_tag(k2_2, used_urls, "Market Insight 1"))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_6]", get_image_tag(k2_3, used_urls, "Market Insight 2"))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1_1, used_urls, alt1_1))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k1_2, used_urls, alt1_2)) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_3]", get_image_tag(k1_3, used_urls, alt1_3)) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_4]", get_image_tag(k2_1, used_urls, alt2_1))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_5]", get_image_tag(k2_2, used_urls, alt2_2))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_6]", get_image_tag(k2_3, used_urls, alt2_3))
     return html_text
 
 def generate_toc_and_add_ids(html_content):
@@ -527,7 +609,7 @@ def send_email(subject, final_content):
     except Exception as e:
         print(f"❌ Email Fail: {e}")
 
-# --- 6. 통합 처리 함수 ---
+# --- 6. 통합 처리 함수 (history 파라미터 전달 추가) ---
 def process_and_send(mode, category_korean, history):
     print(f"\n>>> Processing: {category_korean} ({mode})")
     candidates = get_candidates(mode)
@@ -540,7 +622,8 @@ def process_and_send(mode, category_korean, history):
     t1_kr = get_catchy_korean_title(selected[0]['title'])
     t2_kr = get_catchy_korean_title(selected[1]['title'])
     
-    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr)
+    # write_blog_post에 history 변수를 전달하여 내부 링크 생성에 활용
+    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, history)
     
     html_with_images = inject_images(raw_html, selected[0], selected[1], mode)
     
