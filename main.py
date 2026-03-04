@@ -24,7 +24,7 @@ client = genai.Client(
     api_key=GEMINI_API_KEY,
     http_options={'timeout': 600000} 
 )
-MODEL_ID = 'gemini-3-flash-preview'
+MODEL_ID = 'gemini-2.0-flash'
 
 # --- 0. 히스토리 관리 ---
 def load_history(filepath):
