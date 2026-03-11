@@ -1,4 +1,4 @@
-name: Daily Tech & Bio Blog Post
+name: Daily Tech & Bio & Patent Blog Post
 
 on:
   schedule:
@@ -8,6 +8,14 @@ on:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
+    
+    # 환경 변수를 Job 레벨로 올리면 각 스크립트마다 반복해서 적을 필요가 없어 깔끔합니다!
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      GMAIL_USER: ${{ secrets.GMAIL_USER }}
+      GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -25,15 +33,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run script
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: python main.py
+      # --- 여기서부터 스크립트 3개 분할 및 휴식(Sleep) 적용 ---
+      - name: 1. Run Tech Script (월요일 전용)
+        run: python tech.py
 
-      # --- 이 부분이 추가되었습니다: history.json 파일 저장 ---
+      - name: 💤 Sleep for 5 minutes (API 한도 초기화 대기)
+        run: sleep 300
+
+      - name: 2. Run Bio Script (화~일요일 전용)
+        run: python bio.py
+
+      - name: 💤 Sleep for 5 minutes (API 한도 초기화 대기)
+        run: sleep 300
+
+      - name: 3. Run Patent Script (화~일요일 전용)
+        run: python patent.py
+      # -----------------------------------------------------
+
+      # history.json 파일 저장
       - name: Commit and Push changes
         run: |
           git config --global user.name "GitHub Action Bot"
