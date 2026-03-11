@@ -155,7 +155,7 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     except:
         return f"[{category_name} 이슈] 오늘의 핵심 분석"
 
-# --- 4. 글 작성 (가변형 동적 프롬프트) ---
+# --- 4. 글 작성 (가변형 동적 프롬프트 + 에러 추적 기능 추가) ---
 def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     print(f"Writing {category_name} Post with Dynamic Structure...")
     
@@ -191,11 +191,24 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
     try:
         response = client.models.generate_content(model=MODEL_ID, contents=prompt)
         time.sleep(5)
+        
+        # 안전 필터 등으로 인해 텍스트 생성이 차단된 경우 처리
+        if not response.candidates or not response.candidates[0].content.parts:
+             return f"<p>안녕하세요, 스포(spo)입니다. 오류: 구글 AI가 안전 필터(Safety Filter) 문제로 답변 생성을 차단했습니다. 수집된 뉴스가 민감한 주제일 수 있습니다.</p>"
+             
         final_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         return final_html
+        
     except Exception as e:
         print(f"Error writing post: {e}")
-        return "<p>안녕하세요, 스포(spo)입니다. 포스팅 생성 중 오류가 발생했습니다.</p>"
+        # 에러가 발생하면 이메일 본문에 그 원인을 바로 쏴줍니다!
+        error_html = f"""
+        <h3>🚨 AI API 호출 에러 발생</h3>
+        <p>안녕하세요, 스포(spo)입니다. 글을 작성하는 중 에러가 발생하여 멈췄습니다.</p>
+        <p><b>에러 원인:</b> {str(e)}</p>
+        <p>GitHub Actions 로그를 확인하시거나, 위 에러 메시지를 복사해서 알려주세요!</p>
+        """
+        return error_html
 
 # --- 5. 이미지 생성 (인라인 스타일 완전 제거) ---
 def get_image_tag(keyword, used_urls, alt_text=""):
@@ -217,7 +230,6 @@ def get_image_tag(keyword, used_urls, alt_text=""):
             img_url = data['results'][0]['urls']['regular']
             used_urls.add(img_url)
 
-        # style 속성 하나도 없는 아주 깨끗한 이미지 태그
         return f"""
 <figure>
     <img src="{img_url}" alt="{alt_text}" />
@@ -290,13 +302,9 @@ def process_and_send(mode, category_korean, history):
     t1_kr = get_catchy_korean_title(selected[0]['title'])
     t2_kr = get_catchy_korean_title(selected[1]['title'])
     
-    # 1. 글 작성 (가변 구조)
     raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr)
-    
-    # 2. 이미지 삽입 (스타일 없는 순수 HTML 이미지)
     final_tistory_content = inject_images(raw_html, selected[0], selected[1], mode)
     
-    # 3. 이메일 전송
     subject = get_unified_subject(category_korean, t1_kr, t2_kr)
     send_email(subject, final_tistory_content)
     
