@@ -13,6 +13,7 @@ import html
 from bs4 import BeautifulSoup
 import random
 
+# --- 환경 변수 로드 (GitHub Actions 용) ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 GMAIL_USER = os.environ.get("GMAIL_USER")
@@ -108,7 +109,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     if history:
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
-        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 이전 글 제목] 형태로 작성해 주세요. 나중에 블로거가 직접 그 자리에 하이퍼링크를 걸 것입니다."
+        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 이전 글 제목] 형태로 작성해 주세요."
     else:
         link_instruction = "- 내부 링크: 이전 글이 없으므로 생략합니다."
 
@@ -143,9 +144,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
        - 3단계 [두 번째 뉴스 상세 분석]: {t2_kr}에 대한 상세 본문.
        - 4단계 [통합 인사이트]: 수치(PER, 밸류에이션 등)를 근거로 한 주관적 평가 1~2줄 추가하여 결론 짓기.
        
-    3. 템플릿 완전 파괴: 글 하단에 고정된 '용어 정리' 코너를 만들지 마세요. 어려운 용어는 본문 속에 괄호나 쉬운 표현으로 녹여서 설명하세요.
-    
-    4. 자연스러운 면책 조항: 마지막 문단에 "투자는 본인의 판단입니다"라는 뉘앙스의 문장을 매일 다르게 자연스럽게 한 줄 적어주세요.
+    3. 템플릿 완전 파괴: '용어 정리', '면책 조항', '출처' 코너를 절대로 직접 만들지 마세요. (파이썬 코드가 자동으로 추가할 예정입니다.)
 
     [SEO 및 체류시간 부스터]
     {table_instruction}
@@ -168,7 +167,28 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         response = client.models.generate_content(model=MODEL_ID, contents=prompt)
         time.sleep(25) 
         if not response.candidates or not response.candidates[0].content.parts: return "<p>에러: 구글 AI 차단.</p>"
-        return re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
+        
+        raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
+        
+        # 💡 [핵심] 100% 진짜 원본 기사 링크 및 공식 면책조항 강제 결합 (AI 개입 0%)
+        source_and_disclaimer_html = f"""
+        <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em;">
+            <strong style="color: #2c3e50;">🔗 참고 자료 (원본 출처)</strong>
+            <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.6;">
+                <li><a href="{topic1['id']}" target="_blank" style="color: #7f8c8d; text-decoration: underline;">{topic1['title']}</a></li>
+                <li><a href="{topic2['id']}" target="_blank" style="color: #7f8c8d; text-decoration: underline;">{topic2['title']}</a></li>
+            </ul>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <p style="color: #95a5a6; font-size: 0.85em; text-align: center; line-height: 1.5;">
+            * 본 포스팅은 정보 제공을 목적으로 하며, 특정 종목에 대한 매수/매도 권유나 기술적 판단을 의미하지 않습니다.<br>
+            투자의 최종 책임은 본인에게 있으며, 시장 상황에 따라 변동성이 발생할 수 있습니다.<br>
+            <strong>Editor: 핀큐(Fin-q)</strong>
+        </p>
+        """
+        
+        return raw_html + source_and_disclaimer_html
+        
     except Exception as e: return f"<h3>🚨 AI API 에러</h3><p>{str(e)}</p>"
 
 def get_image_tag(keyword, used_urls, alt_text=""):
