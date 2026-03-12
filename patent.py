@@ -11,8 +11,8 @@ from google import genai
 import re
 import html
 from bs4 import BeautifulSoup
+import random
 
-# --- 환경 변수 로드 ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 GMAIL_USER = os.environ.get("GMAIL_USER")
@@ -78,7 +78,7 @@ def select_top_2(candidates, history, category_name):
     filtered = [c for c in candidates if c['id'] not in history_ids]
     if len(filtered) < 2: return filtered[:2]
     cand_txt = "\n".join([f"{i}. {c['title']}" for i, c in enumerate(filtered[:15])])
-    prompt = f"역할: 전문 투자 블로거 '스포(spo)'.\n목표: {category_name} 분야 뉴스 2개 선정.\n[후보군]\n{cand_txt}\n조건: 숫자 2개만 반환 (예: 1, 4)."
+    prompt = f"역할: 전문 투자 블로거 '핀큐(Fin-q)'.\n목표: {category_name} 분야 뉴스 2개 선정.\n[후보군]\n{cand_txt}\n조건: 숫자 2개만 반환 (예: 1, 4)."
     try:
         res = client.models.generate_content(model=MODEL_ID, contents=prompt)
         time.sleep(15) 
@@ -103,29 +103,73 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
         return f"[{category_name} 이슈] {res}"
     except: return f"[{category_name} 이슈] 오늘의 핵심 분석"
 
-def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr):
+def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
+    history_text = "이전 발행 글 없음"
+    if history:
+        history_titles = [h.get('title', '') for h in history[-15:]]
+        history_text = "\n".join([f"- {title}" for title in history_titles])
+        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 이전 글 제목] 형태로 작성해 주세요. 나중에 블로거가 직접 그 자리에 하이퍼링크를 걸 것입니다."
+    else:
+        link_instruction = "- 내부 링크: 이전 글이 없으므로 생략합니다."
+
+    include_table = random.choice([True, False]) 
+    if include_table:
+        table_styles = [
+            "모던 스타일 (border-collapse: collapse; border-bottom: 1px solid #ddd;)",
+            "클래식 스타일 (border-collapse: collapse; 짝수 행 배경색)",
+            "심플 스타일 (border-collapse: collapse; 테두리 연하게)"
+        ]
+        t_style = random.choice(table_styles)
+        table_instruction = f"- 비교표: 글 중간에 <table> 1개 삽입. 디자인: [{t_style}] 적용."
+    else:
+        table_instruction = ""
+
+    writing_styles = [
+        "개인적인 투자 경험담이나 시장의 피로감 등을 편안하게 푸는 에세이 형식",
+        "핵심만 빠르게 짚어주는 리스트형 요약 시작",
+        "스스로 질문을 던지고 답을 편안하게 풀어가는 Q&A 형식",
+        "친한 지인에게 시장 상황을 설명해주듯 편안하고 쉬운 말투"
+    ]
+    chosen_style = random.choice(writing_styles)
+
     dynamic_structure_rule = f"""
-    [미션: 구글 애드센스 통과를 위한 '비정형' 고품질 포스팅 작성]
-    1. 정해진 틀 파괴: 매번 구성을 다르게 하세요.
-    2. 소제목 다양화: 대주제인 "{t1_kr}"과 "{t2_kr}" 아래에 붙는 소제목들을 내용에 맞춰 호기심을 유발하도록 지으세요.
-    3. 인간적인 서론/결론: "안녕하세요, 스포(spo)입니다."로 반드시 시작하되, 요즘 시장 분위기나 고민을 섞어 매일 첫/끝 문단이 겹치지 않게 쓰세요.
-    4. HTML 제약: 오직 <p>, <h2>, <h3>, <ul>, <li>, <strong>, <em>, <hr /> 태그만 사용. <div>, <style>, <blockquote> 금지.
+    [미션: 100% 인간이 쓴 듯한 고품질 실전 투자 포스팅 작성]
+    
+    1. 자연스러운 어투: 딱딱하고 과장된 전문가 흉내를 내지 마세요. 개인 블로거로서 힘을 빼고 편안하게 작성하세요.
+    
+    2. 글의 구조 (순서 엄수): 반드시 아래의 [4단계 순서]를 지켜서 작성해야 합니다.
+       - 1단계 [도입부]: [{chosen_style}]을 적용하여 자연스럽게 시작.
+       - 2단계 [첫 번째 뉴스 상세 분석]: {t1_kr}에 대한 상세 본문.
+       - 3단계 [두 번째 뉴스 상세 분석]: {t2_kr}에 대한 상세 본문.
+       - 4단계 [통합 인사이트]: 수치(PER, 밸류에이션 등)를 근거로 한 주관적 평가 1~2줄 추가하여 결론 짓기.
+       
+    3. 템플릿 완전 파괴: 글 하단에 고정된 '용어 정리' 코너를 만들지 마세요. 어려운 용어는 본문 속에 괄호나 쉬운 표현으로 녹여서 설명하세요.
+    
+    4. 자연스러운 면책 조항: 마지막 문단에 "투자는 본인의 판단입니다"라는 뉘앙스의 문장을 매일 다르게 자연스럽게 한 줄 적어주세요.
+
+    [SEO 및 체류시간 부스터]
+    {table_instruction}
+    - 상장사 주가 링크: 언급된 기업 뒤에 <a> 태그 삽입 (예: <a href="https://kr.investing.com/search/?q=Apple" target="_blank">[📈주가확인]</a>)
+    {link_instruction}
+    - 이미지 삽입: 글 흐름에 맞춰 [IMAGE_PLACEHOLDER_1]과 [IMAGE_PLACEHOLDER_2]를 각 1번씩 삽입.
+    
+    [이전 발행 글 목록 (제목만 제공됨)]
+    {history_text}
     """
+    
     prompt = f"""
-    역할: 업계 10년차 전문 투자 블로거 '스포(spo)'.
+    역할: 10년차 실전 투자 블로거 '핀큐(Fin-q)'.
     주제1: {topic1['title']} / 원문: {topic1['raw']}
     주제2: {topic2['title']} / 원문: {topic2['raw']}
     {dynamic_structure_rule}
-    [출력 지침] 오직 HTML 코드만 출력. 글 흐름에 맞춰 [IMAGE_PLACEHOLDER_1]과 [IMAGE_PLACEHOLDER_2]를 1번씩만 삽입.
+    [출력 지침] 오직 순수 HTML 코드만 출력하세요.
     """
     try:
         response = client.models.generate_content(model=MODEL_ID, contents=prompt)
         time.sleep(25) 
-        if not response.candidates or not response.candidates[0].content.parts:
-             return "<p>안녕하세요, 스포(spo)입니다. 오류: 구글 AI가 안전 필터 문제로 답변 생성을 차단했습니다.</p>"
+        if not response.candidates or not response.candidates[0].content.parts: return "<p>에러: 구글 AI 차단.</p>"
         return re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
-    except Exception as e:
-        return f"<h3>🚨 AI API 호출 에러 발생</h3><p>스포(spo)입니다. 에러 원인: {str(e)}</p>"
+    except Exception as e: return f"<h3>🚨 AI API 에러</h3><p>{str(e)}</p>"
 
 def get_image_tag(keyword, used_urls, alt_text=""):
     url = f"https://api.unsplash.com/search/photos?query={keyword}&per_page=5&orientation=landscape&client_id={UNSPLASH_ACCESS_KEY}"
@@ -141,13 +185,13 @@ def get_image_tag(keyword, used_urls, alt_text=""):
         if not img_url:
             img_url = data['results'][0]['urls']['regular']
             used_urls.add(img_url)
-        return f'<figure>\n    <img src="{img_url}" alt="{alt_text}" />\n</figure>'
+        return f'<figure style="margin: 30px 0;">\n    <img src="{img_url}" alt="{alt_text}" style="width:100%; border-radius:12px;" />\n</figure>'
     except: return ""
 
 def inject_images(html_text, t1, t2, mode):
-    fb_defaults = ["blueprint architecture", "technology invention"]
+    fb_defaults = ["patent document", "technology blueprint"]
     try:
-        prompt = f"주제1({t1['title']})과 주제2({t2['title']})에 어울리는 Unsplash 이미지 검색 영문 키워드 2개를 추출해.\n출력 예시: {{\"k1\": \"영문키워드1\", \"k2\": \"영문키워드2\"}}"
+        prompt = f"주제1({t1['title']})과 주제2({t2['title']})에 어울리는 Unsplash 영문 키워드 2개 추출.\n출력: {{\"k1\": \"키워드1\", \"k2\": \"키워드2\"}}"
         res = client.models.generate_content(model=MODEL_ID, contents=prompt).text.strip()
         time.sleep(15) 
         json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", res).strip()
@@ -156,17 +200,17 @@ def inject_images(html_text, t1, t2, mode):
     except: k1, k2 = fb_defaults[0], fb_defaults[1]
     
     used_urls = set() 
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1, used_urls, "본문 관련 이미지 1"))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k2, used_urls, "본문 관련 이미지 2")) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1, used_urls, "특허 기술 관련 이미지 1"))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k2, used_urls, "특허 기술 관련 이미지 2")) 
     return html_text
 
 def send_email(subject, final_content):
     escaped_html = html.escape(final_content)
     email_body = f"""
     <div style="font-family: sans-serif; max-width: 800px; margin: 0 auto;">
-        <h2>스포(spo)님, 새 포스팅 HTML입니다!</h2>
+        <h2>핀큐(Fin-q)님, 새 포스팅 HTML입니다!</h2>
         <textarea style="width: 100%; height: 300px; font-family: monospace; font-size: 13px; padding: 10px;" readonly>{escaped_html}</textarea>
-        <hr /><h3>👀 포스팅 미리보기</h3><div style="border: 1px solid #ccc; padding: 20px;">{final_content}</div>
+        <hr /><h3>👀 포스팅 미리보기</h3><div style="border: 1px solid #ccc; padding: 20px; line-height: 1.6;">{final_content}</div>
     </div>
     """
     msg = MIMEMultipart()
@@ -178,35 +222,33 @@ def send_email(subject, final_content):
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
             server.login(GMAIL_USER, GMAIL_APP_PASSWORD)
             server.send_message(msg)
-        print(f"✅ Email Sent: {subject}")
-    except Exception as e: print(f"❌ Email Fail: {e}")
+    except: pass
 
 def process_and_send(mode, category_korean, history):
-    print(f"\n>>> Processing: {category_korean} ({mode})")
     candidates = get_candidates(mode)
     selected = select_top_2(candidates, history, category_korean)
     if len(selected) < 2: return []
+    
     t1_kr = get_catchy_korean_title(selected[0]['title'])
     t2_kr = get_catchy_korean_title(selected[1]['title'])
-    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr)
+    
+    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, history)
     final_tistory_content = inject_images(raw_html, selected[0], selected[1], mode)
+    
     subject = get_unified_subject(category_korean, t1_kr, t2_kr)
     send_email(subject, final_tistory_content)
     return selected
 
-# --- 메인 실행 (patent.py) ---
 def main():
     history_file = 'history.json'
     history = load_history(history_file)
     kst_now = datetime.datetime.now() + datetime.timedelta(hours=9)
     weekday = kst_now.weekday()
     
-    if weekday != 0: # 0(월요일)이 아닐 때만 실행
-        print("💡 오늘은 화~일요일! [특허] 포스팅을 시작합니다.")
+    if weekday != 0: 
+        print("💡 [특허] 포스팅 시작.")
         items = process_and_send("PATENT", "특허", history)
         if items: save_history(history_file, history, items)
-    else:
-        print("오늘은 월요일입니다. 특허 스크립트를 건너뜁니다.")
 
 if __name__ == "__main__":
     main()
