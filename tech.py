@@ -105,16 +105,14 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
     except: return f"[{category_name} 이슈] 오늘의 핵심 분석"
 
 def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
-    # 이전 발행 글 목록 준비
     history_text = "이전 발행 글 없음"
     if history:
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
-        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 이전 글 제목] 형태로 작성해 주세요."
+        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. (목록의 제목이 영문일 경우 자연스럽게 한국어로 번역해서 적을 것). 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 한글 이전 글 제목] 형태로 작성해 주세요."
     else:
         link_instruction = "- 내부 링크: 이전 글이 없으므로 생략합니다."
 
-    # 표 무작위 구성
     include_table = random.choice([True, False]) 
     if include_table:
         table_styles = [
@@ -127,7 +125,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     else:
         table_instruction = ""
 
-    # 문체 무작위 구성
     writing_styles = [
         "개인적인 투자 경험담이나 시장의 피로감 등을 편안하게 푸는 에세이 형식",
         "핵심만 빠르게 짚어주는 리스트형 요약 시작",
@@ -142,7 +139,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     1. 자연스러운 어투: 딱딱하고 과장된 전문가 흉내를 내지 마세요. 개인 블로거로서 힘을 빼고 편안하게 작성하세요.
     
     2. 글의 구조 (순서 엄수): 반드시 아래의 [4단계 순서]를 지켜서 작성해야 합니다.
-       - 1단계 [도입부]: [{chosen_style}]을 적용하여 자연스럽게 시작.
+       - 1단계 [도입부]: 반드시 "안녕하세요, 핀큐(Fin-q)입니다."라는 첫인사로 시작하고, [{chosen_style}]을 적용하여 자연스럽게 시작.
        - 2단계 [첫 번째 뉴스 상세 분석]: {t1_kr}에 대한 상세 본문.
        - 3단계 [두 번째 뉴스 상세 분석]: {t2_kr}에 대한 상세 본문.
        - 4단계 [통합 인사이트]: 수치(PER, 밸류에이션 등)를 근거로 한 주관적 평가 1~2줄 추가하여 결론 짓기.
@@ -173,7 +170,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         
-        # 💡 [핵심] 100% 진짜 원본 기사 링크 및 공식 면책조항 강제 결합 (AI 개입 0%)
         source_and_disclaimer_html = f"""
         <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em;">
             <strong style="color: #2c3e50;">🔗 참고 자료 (원본 출처)</strong>
@@ -255,6 +251,10 @@ def process_and_send(mode, category_korean, history):
     t1_kr = get_catchy_korean_title(selected[0]['title'])
     t2_kr = get_catchy_korean_title(selected[1]['title'])
     
+    # 💡 history.json에 향후 영문 대신 '한국어 번역 제목'이 저장되도록 데이터 덮어쓰기
+    selected[0]['title'] = t1_kr
+    selected[1]['title'] = t2_kr
+
     raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, history)
     final_tistory_content = inject_images(raw_html, selected[0], selected[1], mode)
     
