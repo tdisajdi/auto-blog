@@ -109,9 +109,12 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     if history:
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
-        link_instruction = "- 내부 링크 유도(필수): 제공된 [이전 발행 글 목록] 중 오늘 주제와 가장 맥락이 잘 맞는 글 제목 1개를 골라 본문 중에 자연스럽게 언급하세요. (목록의 제목이 영문일 경우 자연스럽게 한국어로 번역해서 적을 것). 단, HTML 태그를 쓰지 말고 제목 양옆에 대괄호를 쳐서 [링크: 선택한 한글 이전 글 제목] 형태로 작성해 주세요."
+        link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
+       아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 언급하세요.
+       언급할 때는 반드시 대괄호를 사용하여 [링크: 선택한 이전 글 제목] 형태로 정확히 적어야 합니다.
+       (작성 예시: "최근 흐름은 지난번 다루었던 [링크: 이전 글 제목] 포스팅과 비슷한 맥락입니다.")"""
     else:
-        link_instruction = "- 내부 링크: 이전 글이 없으므로 생략합니다."
+        link_rule = "3. 내부 링크: 이전 발행 글이 없으므로 생략합니다."
 
     include_table = random.choice([True, False]) 
     if include_table:
@@ -144,15 +147,16 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
        - 3단계 [두 번째 뉴스 상세 분석]: {t2_kr}에 대한 상세 본문.
        - 4단계 [통합 인사이트]: 수치(PER, 밸류에이션 등)를 근거로 한 주관적 평가 1~2줄 추가하여 결론 짓기.
        
-    3. 템플릿 완전 파괴: '용어 정리', '면책 조항', '출처' 코너를 절대로 직접 만들지 마세요. (파이썬 코드가 자동으로 추가할 예정입니다.)
+    {link_rule}
+       
+    4. 템플릿 완전 파괴: '용어 정리', '면책 조항', '출처' 코너를 절대로 직접 만들지 마세요. (파이썬 코드가 자동으로 추가할 예정입니다.)
 
     [SEO 및 체류시간 부스터]
     {table_instruction}
     - 상장사 주가 링크: 언급된 기업 뒤에 <a> 태그 삽입 (예: <a href="https://kr.investing.com/search/?q=Apple" target="_blank">[📈주가확인]</a>)
-    {link_instruction}
     - 이미지 삽입: 글 흐름에 맞춰 [IMAGE_PLACEHOLDER_1]과 [IMAGE_PLACEHOLDER_2]를 각 1번씩 삽입.
     
-    [이전 발행 글 목록 (제목만 제공됨)]
+    [이전 발행 글 목록 (이 중 하나를 골라 반드시 본문에 쓸 것)]
     {history_text}
     """
     
