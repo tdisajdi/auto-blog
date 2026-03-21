@@ -79,7 +79,8 @@ def select_top_2(candidates, history, category_name):
     filtered = [c for c in candidates if c['id'] not in history_ids]
     if len(filtered) < 2: return filtered[:2]
     cand_txt = "\n".join([f"{i}. {c['title']}" for i, c in enumerate(filtered[:15])])
-    prompt = f"역할: 전문 투자 블로거 '핀큐(Fin-q)'.\n목표: {category_name} 분야 뉴스 2개 선정.\n[후보군]\n{cand_txt}\n조건: 숫자 2개만 반환 (예: 1, 4)."
+    # 💡 이름 수정: 스포(Spo)
+    prompt = f"역할: 전문 투자 블로거 '스포(Spo)'.\n목표: {category_name} 분야 뉴스 2개 선정.\n[후보군]\n{cand_txt}\n조건: 숫자 2개만 반환 (예: 1, 4)."
     try:
         res = client.models.generate_content(model=MODEL_ID, contents=prompt)
         time.sleep(15) 
@@ -109,6 +110,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     if history:
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
+        # 💡 [우선순위 최상위] 내부 링크 강제 주입 규칙
         link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
        아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 언급하세요.
        언급할 때는 반드시 대괄호를 사용하여 [링크: 선택한 이전 글 제목] 형태로 정확히 적어야 합니다.
@@ -142,7 +144,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     1. 자연스러운 어투: 딱딱하고 과장된 전문가 흉내를 내지 마세요. 개인 블로거로서 힘을 빼고 편안하게 작성하세요.
     
     2. 글의 구조 (순서 엄수): 반드시 아래의 [4단계 순서]를 지켜서 작성해야 합니다.
-       - 1단계 [도입부]: 반드시 "안녕하세요, 핀큐(Fin-q)입니다."라는 첫인사로 시작하고, [{chosen_style}]을 적용하여 자연스럽게 시작.
+       - 1단계 [도입부]: 반드시 "안녕하세요, 스포(Spo)입니다."라는 첫인사로 시작하고, [{chosen_style}]을 적용하여 자연스럽게 시작.
        - 2단계 [첫 번째 뉴스 상세 분석]: {t1_kr}에 대한 상세 본문.
        - 3단계 [두 번째 뉴스 상세 분석]: {t2_kr}에 대한 상세 본문.
        - 4단계 [통합 인사이트]: 수치(PER, 밸류에이션 등)를 근거로 한 주관적 평가 1~2줄 추가하여 결론 짓기.
@@ -160,8 +162,9 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     {history_text}
     """
     
+    # 💡 이름 수정: 스포(Spo)
     prompt = f"""
-    역할: 10년차 실전 투자 블로거 '핀큐(Fin-q)'.
+    역할: 10년차 실전 투자 블로거 '스포(Spo)'.
     주제1: {topic1['title']} / 원문: {topic1['raw']}
     주제2: {topic2['title']} / 원문: {topic2['raw']}
     {dynamic_structure_rule}
@@ -174,6 +177,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         
+        # 💡 에디터 수정: 스포(Spo)
         source_and_disclaimer_html = f"""
         <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em;">
             <strong style="color: #2c3e50;">🔗 참고 자료 (원본 출처)</strong>
@@ -186,7 +190,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         <p style="color: #95a5a6; font-size: 0.85em; text-align: center; line-height: 1.5;">
             * 본 포스팅은 정보 제공을 목적으로 하며, 특정 종목에 대한 매수/매도 권유나 기술적 판단을 의미하지 않습니다.<br>
             투자의 최종 책임은 본인에게 있으며, 시장 상황에 따라 변동성이 발생할 수 있습니다.<br>
-            <strong>Editor: 핀큐(Fin-q)</strong>
+            <strong>Editor: 스포(Spo)</strong>
         </p>
         """
         
@@ -229,9 +233,10 @@ def inject_images(html_text, t1, t2, mode):
 
 def send_email(subject, final_content):
     escaped_html = html.escape(final_content)
+    # 💡 이름 수정: 스포(Spo)
     email_body = f"""
     <div style="font-family: sans-serif; max-width: 800px; margin: 0 auto;">
-        <h2>핀큐(Fin-q)님, 새 포스팅 HTML입니다!</h2>
+        <h2>스포(Spo)님, 새 포스팅 HTML입니다!</h2>
         <textarea style="width: 100%; height: 300px; font-family: monospace; font-size: 13px; padding: 10px;" readonly>{escaped_html}</textarea>
         <hr /><h3>👀 포스팅 미리보기</h3><div style="border: 1px solid #ccc; padding: 20px; line-height: 1.6;">{final_content}</div>
     </div>
