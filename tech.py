@@ -40,6 +40,23 @@ def save_history(filepath, history, new_items):
     for item in new_items: cleaned.append({"id": item['id'], "title": item['title'], "date": today})
     with open(filepath, 'w', encoding='utf-8') as f: json.dump(cleaned, f, ensure_ascii=False, indent=4)
 
+# 💡 [신규 추가] 스포님 티스토리를 스캔해서 진짜 발행 주소 훔쳐오기
+def update_tistory_urls(history):
+    try:
+        # 스포님의 티스토리 RSS 피드 접속
+        feed = feedparser.parse("https://fin-q.tistory.com/rss")
+        for item in history:
+            hist_title = item.get('title', '')
+            if not hist_title: continue
+            for entry in feed.entries:
+                # 스포님이 블로그 올릴 때 제목을 살짝 바꾸거나 태그를 달아도 매칭되도록 '포함(in)'으로 유연하게 확인
+                if hist_title in entry.title or entry.title in hist_title:
+                    item['tistory_url'] = entry.link
+                    break
+    except:
+        pass
+    return history
+
 def scrape_article_text(url):
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
@@ -110,8 +127,8 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
         link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
-       아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 언급하세요.
-       언급할 때는 반드시 대괄호를 사용하여 [링크: 선택한 이전 글 제목] 형태로 정확히 적어야 합니다.
+       아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 자연스럽게 언급하세요.
+       언급할 때는 반드시 대괄호를 사용하여 [링크: 선택한 이전 글 제목] 형태로 정확히 적어야 합니다. (오타 주의, 목록에 있는 제목 그대로 복사)
        (작성 예시: "최근 흐름은 지난번 다루었던 [링크: 이전 글 제목] 포스팅과 비슷한 맥락입니다.")"""
     else:
         link_rule = "3. 내부 링크: 이전 발행 글이 없으므로 생략합니다."
@@ -128,7 +145,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     else:
         table_instruction = ""
 
-    # 🎲 서론 전개 방식 및 감정선 완벽 분리
     writing_styles = [
         "최근 시장의 변동성이나 하락장에 대한 '피로감'을 솔직하게 털어놓으며 독자와 공감대를 형성하는 에세이 형식",
         "새로운 혁신 기술이나 신약 발표를 보며 느끼는 투자자로서의 '설렘'과 '기대감'을 담은 긍정적인 도입부",
@@ -174,6 +190,22 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         if not response.candidates or not response.candidates[0].content.parts: return "<p>에러: 구글 AI 차단.</p>"
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
+        
+        # 💡 [핵심 추가] AI가 남긴 [링크: 제목] 대괄호를 찾아, 파이썬이 진짜 티스토리 주소로 HTML 교체
+        def link_replacer(match):
+            title = match.group(1).strip()
+            target_url = None
+            for h in history:
+                if title in h.get('title', '') or h.get('title', '') in title:
+                    # 크롤링으로 얻은 티스토리 주소가 우선, 없으면 원본 뉴스 주소 백업
+                    target_url = h.get('tistory_url', h.get('id'))
+                    break
+            if target_url:
+                return f'<a href="{target_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
+            else:
+                return f'<b>{title}</b>'
+
+        raw_html = re.sub(r"\[링크:\s*(.*?)\]", link_replacer, raw_html)
         
         source_and_disclaimer_html = f"""
         <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em;">
@@ -278,6 +310,10 @@ def process_and_send(mode, category_korean, history):
 def main():
     history_file = 'history.json'
     history = load_history(history_file)
+    
+    # 💡 실행되자마자 스포님 블로그 RSS에서 진짜 주소를 찾아 history.json 실시간 업데이트
+    history = update_tistory_urls(history)
+    
     kst_now = datetime.datetime.now() + datetime.timedelta(hours=9)
     weekday = kst_now.weekday()
     
