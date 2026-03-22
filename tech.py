@@ -79,7 +79,6 @@ def select_top_2(candidates, history, category_name):
     filtered = [c for c in candidates if c['id'] not in history_ids]
     if len(filtered) < 2: return filtered[:2]
     cand_txt = "\n".join([f"{i}. {c['title']}" for i, c in enumerate(filtered[:15])])
-    # 💡 이름 수정: 스포(Spo)
     prompt = f"역할: 전문 투자 블로거 '스포(Spo)'.\n목표: {category_name} 분야 뉴스 2개 선정.\n[후보군]\n{cand_txt}\n조건: 숫자 2개만 반환 (예: 1, 4)."
     try:
         res = client.models.generate_content(model=MODEL_ID, contents=prompt)
@@ -110,7 +109,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     if history:
         history_titles = [h.get('title', '') for h in history[-15:]]
         history_text = "\n".join([f"- {title}" for title in history_titles])
-        # 💡 [우선순위 최상위] 내부 링크 강제 주입 규칙
         link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
        아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 언급하세요.
        언급할 때는 반드시 대괄호를 사용하여 [링크: 선택한 이전 글 제목] 형태로 정확히 적어야 합니다.
@@ -130,11 +128,12 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     else:
         table_instruction = ""
 
+    # 🎲 서론 전개 방식 및 감정선 완벽 분리
     writing_styles = [
-        "개인적인 투자 경험담이나 시장의 피로감 등을 편안하게 푸는 에세이 형식",
-        "핵심만 빠르게 짚어주는 리스트형 요약 시작",
-        "스스로 질문을 던지고 답을 편안하게 풀어가는 Q&A 형식",
-        "친한 지인에게 시장 상황을 설명해주듯 편안하고 쉬운 말투"
+        "최근 시장의 변동성이나 하락장에 대한 '피로감'을 솔직하게 털어놓으며 독자와 공감대를 형성하는 에세이 형식",
+        "새로운 혁신 기술이나 신약 발표를 보며 느끼는 투자자로서의 '설렘'과 '기대감'을 담은 긍정적인 도입부",
+        "감정을 완전히 배제하고, 철저히 팩트와 숫자, 시장의 논리에만 집중하여 냉철하고 날카롭게 시작하는 도입부",
+        "친밀한 지인과 커피 한잔하며 '요즘 시장에 진짜 재밌는/어이없는 일이 있었는데 말이야'라고 썰을 푸는 듯한 위트 있는 말투"
     ]
     chosen_style = random.choice(writing_styles)
 
@@ -162,7 +161,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
     {history_text}
     """
     
-    # 💡 이름 수정: 스포(Spo)
     prompt = f"""
     역할: 10년차 실전 투자 블로거 '스포(Spo)'.
     주제1: {topic1['title']} / 원문: {topic1['raw']}
@@ -177,7 +175,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         
-        # 💡 에디터 수정: 스포(Spo)
         source_and_disclaimer_html = f"""
         <div style="margin-top: 40px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; font-size: 0.9em;">
             <strong style="color: #2c3e50;">🔗 참고 자료 (원본 출처)</strong>
@@ -218,22 +215,30 @@ def get_image_tag(keyword, used_urls, alt_text=""):
 def inject_images(html_text, t1, t2, mode):
     fb_defaults = ["technology innovation", "software logic"]
     try:
-        prompt = f"주제1({t1['title']})과 주제2({t2['title']})에 어울리는 Unsplash 영문 키워드 2개 추출.\n출력: {{\"k1\": \"키워드1\", \"k2\": \"키워드2\"}}"
+        prompt = f"""주제1({t1['title']})과 주제2({t2['title']})에 어울리는 Unsplash 영문 검색 키워드 2개와, 구글 SEO에 최적화된 구체적인 한국어 이미지 설명(alt 태그용) 2개를 추출해.
+        출력 형식(JSON): {{"k1": "영문키워드1", "alt1": "주제1을 구체적으로 묘사하는 한국어 짧은 문장", "k2": "영문키워드2", "alt2": "주제2를 구체적으로 묘사하는 한국어 짧은 문장"}}"""
+        
         res = client.models.generate_content(model=MODEL_ID, contents=prompt).text.strip()
         time.sleep(15) 
         json_str = re.sub(r"```[a-zA-Z]*\n?|```", "", res).strip()
         keywords = json.loads(json_str)
-        k1, k2 = keywords.get("k1", fb_defaults[0]), keywords.get("k2", fb_defaults[1])
-    except: k1, k2 = fb_defaults[0], fb_defaults[1]
+        
+        k1 = keywords.get("k1", fb_defaults[0])
+        alt1 = keywords.get("alt1", f"{t1['title']} 관련 시각 자료")
+        k2 = keywords.get("k2", fb_defaults[1])
+        alt2 = keywords.get("alt2", f"{t2['title']} 관련 시각 자료")
+        
+    except: 
+        k1, k2 = fb_defaults[0], fb_defaults[1]
+        alt1, alt2 = f"{t1['title']} 참고 이미지", f"{t2['title']} 참고 이미지"
     
     used_urls = set() 
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1, used_urls, "테크 관련 이미지 1"))
-    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k2, used_urls, "테크 관련 이미지 2")) 
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_1]", get_image_tag(k1, used_urls, alt1))
+    html_text = html_text.replace("[IMAGE_PLACEHOLDER_2]", get_image_tag(k2, used_urls, alt2)) 
     return html_text
 
 def send_email(subject, final_content):
     escaped_html = html.escape(final_content)
-    # 💡 이름 수정: 스포(Spo)
     email_body = f"""
     <div style="font-family: sans-serif; max-width: 800px; margin: 0 auto;">
         <h2>스포(Spo)님, 새 포스팅 HTML입니다!</h2>
@@ -260,7 +265,6 @@ def process_and_send(mode, category_korean, history):
     t1_kr = get_catchy_korean_title(selected[0]['title'])
     t2_kr = get_catchy_korean_title(selected[1]['title'])
     
-    # 💡 history.json에 향후 영문 대신 '한국어 번역 제목'이 저장되도록 데이터 덮어쓰기
     selected[0]['title'] = t1_kr
     selected[1]['title'] = t2_kr
 
