@@ -40,7 +40,7 @@ def save_history(filepath, history, new_items):
     for item in new_items: cleaned.append({"id": item['id'], "title": item['title'], "date": today})
     with open(filepath, 'w', encoding='utf-8') as f: json.dump(cleaned, f, ensure_ascii=False, indent=4)
 
-def get_tistory_published_posts(rss_url="https://fin-q.tistory.com/rss"):
+def get_tistory_published_posts(rss_url="https://spo26.tistory.com/rss"):
     posts = []
     try:
         feed = feedparser.parse(rss_url)
@@ -195,7 +195,7 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, published_posts
                 return f'<a href="{target_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
             else:
                 encoded_title = urllib.parse.quote(title)
-                search_url = f"https://fin-q.tistory.com/search/{encoded_title}"
+                search_url = f"https://spo26.tistory.com/search/{encoded_title}"
                 return f'<a href="{search_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
 
         raw_html = re.sub(r"\[링크:\s*(.*?)\]", link_replacer, raw_html)
