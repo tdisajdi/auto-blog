@@ -5,6 +5,7 @@ import time
 import requests
 import feedparser
 import smtplib
+import urllib.parse
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from google import genai
@@ -39,19 +40,14 @@ def save_history(filepath, history, new_items):
     for item in new_items: cleaned.append({"id": item['id'], "title": item['title'], "date": today})
     with open(filepath, 'w', encoding='utf-8') as f: json.dump(cleaned, f, ensure_ascii=False, indent=4)
 
-def update_tistory_urls(history):
+def get_tistory_published_posts(rss_url="https://fin-q.tistory.com/rss"):
+    posts = []
     try:
-        feed = feedparser.parse("https://fin-q.tistory.com/rss")
-        for item in history:
-            hist_title = item.get('title', '')
-            if not hist_title: continue
-            for entry in feed.entries:
-                if hist_title in entry.title or entry.title in hist_title:
-                    item['tistory_url'] = entry.link
-                    break
-    except:
-        pass
-    return history
+        feed = feedparser.parse(rss_url)
+        for entry in feed.entries[:15]:
+            posts.append({'title': entry.title, 'link': entry.link})
+    except: pass
+    return posts
 
 def scrape_article_text(url):
     try:
@@ -117,10 +113,10 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
         return f"[{category_name} 이슈] {res}"
     except: return f"[{category_name} 이슈] 오늘의 핵심 분석"
 
-def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
+def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, published_posts):
     history_text = "이전 발행 글 없음"
-    if history:
-        history_titles = [h.get('title', '') for h in history[-15:]]
+    if published_posts:
+        history_titles = [p['title'] for p in published_posts]
         history_text = "\n".join([f"- {title}" for title in history_titles])
         link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
        아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 자연스럽게 언급하세요.
@@ -190,14 +186,17 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         def link_replacer(match):
             title = match.group(1).strip()
             target_url = None
-            for h in history:
-                if title in h.get('title', '') or h.get('title', '') in title:
-                    target_url = h.get('tistory_url', h.get('id'))
+            for p in published_posts:
+                if title in p['title'] or p['title'] in title:
+                    target_url = p['link']
                     break
+            
             if target_url:
                 return f'<a href="{target_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
             else:
-                return f'<b>{title}</b>'
+                encoded_title = urllib.parse.quote(title)
+                search_url = f"https://fin-q.tistory.com/search/{encoded_title}"
+                return f'<a href="{search_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
 
         raw_html = re.sub(r"\[링크:\s*(.*?)\]", link_replacer, raw_html)
         
@@ -294,7 +293,9 @@ def process_and_send(mode, category_korean, history):
     selected[0]['title'] = t1_kr
     selected[1]['title'] = t2_kr
 
-    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, history)
+    published_posts = get_tistory_published_posts()
+
+    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, published_posts)
     final_tistory_content = inject_images(raw_html, selected[0], selected[1], mode)
     
     subject = get_unified_subject(category_korean, t1_kr, t2_kr)
@@ -304,10 +305,6 @@ def process_and_send(mode, category_korean, history):
 def main():
     history_file = 'history.json'
     history = load_history(history_file)
-    
-    # 💡 실행되자마자 스포님 블로그 RSS에서 진짜 주소를 찾아 history.json 실시간 업데이트
-    history = update_tistory_urls(history)
-    
     kst_now = datetime.datetime.now() + datetime.timedelta(hours=9)
     weekday = kst_now.weekday()
     
