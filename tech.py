@@ -41,8 +41,7 @@ def save_history(filepath, history, new_items):
     for item in new_items: cleaned.append({"id": item['id'], "title": item['title'], "date": today})
     with open(filepath, 'w', encoding='utf-8') as f: json.dump(cleaned, f, ensure_ascii=False, indent=4)
 
-# 💡 [핵심 신규 추가] 스포님 블로그 실시간 스캔 함수 (진짜 발행된 글만 가져옴)
-def get_tistory_published_posts(rss_url="https://fin-q.tistory.com/rss"):
+def get_tistory_published_posts(rss_url="https://spo26.tistory.com/rss"):
     posts = []
     try:
         feed = feedparser.parse(rss_url)
@@ -185,7 +184,6 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, published_posts
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         
-        # 💡 [핵심 로직] AI가 고른 제목을 '진짜 티스토리 주소' 또는 '검색 URL'로 100% 무적 방어 변환
         def link_replacer(match):
             title = match.group(1).strip()
             target_url = None
@@ -194,12 +192,11 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, published_posts
                     target_url = p['link']
                     break
             
-            # 정확히 매칭되면 진짜 주소로, 못 찾으면 티스토리 검색 주소로 무조건 스포님 블로그 안에서 연결!
             if target_url:
                 return f'<a href="{target_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
             else:
                 encoded_title = urllib.parse.quote(title)
-                search_url = f"https://fin-q.tistory.com/search/{encoded_title}"
+                search_url = f"https://spo26.tistory.com/search/{encoded_title}"
                 return f'<a href="{search_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
 
         raw_html = re.sub(r"\[링크:\s*(.*?)\]", link_replacer, raw_html)
@@ -297,7 +294,6 @@ def process_and_send(mode, category_korean, history):
     selected[0]['title'] = t1_kr
     selected[1]['title'] = t2_kr
 
-    # 💡 뉴스 중복 방지용 history 대신, 실시간 블로그 진짜 글 목록을 글쓰기 함수에 전달
     published_posts = get_tistory_published_posts()
 
     raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, published_posts)
