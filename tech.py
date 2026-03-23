@@ -5,6 +5,7 @@ import time
 import requests
 import feedparser
 import smtplib
+import urllib.parse
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from google import genai
@@ -40,22 +41,15 @@ def save_history(filepath, history, new_items):
     for item in new_items: cleaned.append({"id": item['id'], "title": item['title'], "date": today})
     with open(filepath, 'w', encoding='utf-8') as f: json.dump(cleaned, f, ensure_ascii=False, indent=4)
 
-# 💡 [신규 추가] 스포님 티스토리를 스캔해서 진짜 발행 주소 훔쳐오기
-def update_tistory_urls(history):
+# 💡 [핵심 신규 추가] 스포님 블로그 실시간 스캔 함수 (진짜 발행된 글만 가져옴)
+def get_tistory_published_posts(rss_url="https://fin-q.tistory.com/rss"):
+    posts = []
     try:
-        # 스포님의 티스토리 RSS 피드 접속
-        feed = feedparser.parse("https://fin-q.tistory.com/rss")
-        for item in history:
-            hist_title = item.get('title', '')
-            if not hist_title: continue
-            for entry in feed.entries:
-                # 스포님이 블로그 올릴 때 제목을 살짝 바꾸거나 태그를 달아도 매칭되도록 '포함(in)'으로 유연하게 확인
-                if hist_title in entry.title or entry.title in hist_title:
-                    item['tistory_url'] = entry.link
-                    break
-    except:
-        pass
-    return history
+        feed = feedparser.parse(rss_url)
+        for entry in feed.entries[:15]:
+            posts.append({'title': entry.title, 'link': entry.link})
+    except: pass
+    return posts
 
 def scrape_article_text(url):
     try:
@@ -121,10 +115,10 @@ def get_unified_subject(category_name, t1_kr, t2_kr):
         return f"[{category_name} 이슈] {res}"
     except: return f"[{category_name} 이슈] 오늘의 핵심 분석"
 
-def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
+def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, published_posts):
     history_text = "이전 발행 글 없음"
-    if history:
-        history_titles = [h.get('title', '') for h in history[-15:]]
+    if published_posts:
+        history_titles = [p['title'] for p in published_posts]
         history_text = "\n".join([f"- {title}" for title in history_titles])
         link_rule = """3. 🚨 내부 링크 강제 주입 (절대 누락 금지):
        아래 제공된 [이전 발행 글 목록] 중 가장 잘 맞는 글 1개를 무조건 선택해서 본문 문장 속에 자연스럽게 언급하세요.
@@ -191,19 +185,22 @@ def write_blog_post(topic1, topic2, category_name, t1_kr, t2_kr, history):
         
         raw_html = re.sub(r"```[a-zA-Z]*\n?|```", "", response.text).strip()
         
-        # 💡 [핵심 추가] AI가 남긴 [링크: 제목] 대괄호를 찾아, 파이썬이 진짜 티스토리 주소로 HTML 교체
+        # 💡 [핵심 로직] AI가 고른 제목을 '진짜 티스토리 주소' 또는 '검색 URL'로 100% 무적 방어 변환
         def link_replacer(match):
             title = match.group(1).strip()
             target_url = None
-            for h in history:
-                if title in h.get('title', '') or h.get('title', '') in title:
-                    # 크롤링으로 얻은 티스토리 주소가 우선, 없으면 원본 뉴스 주소 백업
-                    target_url = h.get('tistory_url', h.get('id'))
+            for p in published_posts:
+                if title in p['title'] or p['title'] in title:
+                    target_url = p['link']
                     break
+            
+            # 정확히 매칭되면 진짜 주소로, 못 찾으면 티스토리 검색 주소로 무조건 스포님 블로그 안에서 연결!
             if target_url:
                 return f'<a href="{target_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
             else:
-                return f'<b>{title}</b>'
+                encoded_title = urllib.parse.quote(title)
+                search_url = f"https://fin-q.tistory.com/search/{encoded_title}"
+                return f'<a href="{search_url}" target="_blank" rel="noopener" style="color: #0066cc; font-weight: bold; text-decoration: underline;">{title}</a>'
 
         raw_html = re.sub(r"\[링크:\s*(.*?)\]", link_replacer, raw_html)
         
@@ -300,7 +297,10 @@ def process_and_send(mode, category_korean, history):
     selected[0]['title'] = t1_kr
     selected[1]['title'] = t2_kr
 
-    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, history)
+    # 💡 뉴스 중복 방지용 history 대신, 실시간 블로그 진짜 글 목록을 글쓰기 함수에 전달
+    published_posts = get_tistory_published_posts()
+
+    raw_html = write_blog_post(selected[0], selected[1], category_korean, t1_kr, t2_kr, published_posts)
     final_tistory_content = inject_images(raw_html, selected[0], selected[1], mode)
     
     subject = get_unified_subject(category_korean, t1_kr, t2_kr)
@@ -310,10 +310,6 @@ def process_and_send(mode, category_korean, history):
 def main():
     history_file = 'history.json'
     history = load_history(history_file)
-    
-    # 💡 실행되자마자 스포님 블로그 RSS에서 진짜 주소를 찾아 history.json 실시간 업데이트
-    history = update_tistory_urls(history)
-    
     kst_now = datetime.datetime.now() + datetime.timedelta(hours=9)
     weekday = kst_now.weekday()
     
