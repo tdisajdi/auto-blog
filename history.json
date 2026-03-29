@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRHNRcjdnbExyTmMzei1TWlhLRThRcWZMTTc3bnBzejNydzhJeHBDOWxaTzN5VGgwbGRYYnktcFEyLXh6bjU5OGZER05TeTVZdjFpQzludVBSZVc5YkNmd0FRa0s3WkxJM0dwWEltS1BrN3pIYkhEMHp1Z0thWEhYV1N4QjAxU2JYSXQzS29nQzBHUTUwN2xFWWpNbFRDNmc?oc=5",
-        "title": "Behind Generate's 'feverish' race to raise $400M IPO while window remains open - Fierce Biotech",
-        "date": "2026-02-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNeEJxaVNEVG11QjZZNmE1NDdDSlQxM2NnS1pKTEZwVHJwa2F3U1VlRnh0V1QzNVNPem5WcjlNaUpCcXI2dF9nNU1TRGpydmppYVhMX0tYbWtrSHRybWw1b1gxZkVQZlo5WS1nUUJzZFdUdHYzTTJGYkc4WU5XZGE2RUhMS21kR0JXZ2ZYUXNUMUZlVGh0MWJlVmVCNlJGcGwz?oc=5",
-        "title": "Dr Halmos on the FDA Approval of Zongertinib in HER2 TKD–Mutated NSCLC - OncLive",
-        "date": "2026-02-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNUGNZTmdKcVJldUlYQ0xHWDF5Slc3eGRLXy12ZFZ0Rm4yU2JSZ0NLNmpKX2d4ZmNfRm9JekpOUnJId0tva0ZTcWgwQ25veVF2WjVMclh1YmFZTGFZTmpHbXoyMEVkcTR1Tk1SQjZlazFQZGNqWHNTdDBURHl2Q1p6bGJuc1FiRXFxYUxBQUxWRVhoSktRNDd1ZzhxYkJqVjR4QTJlYkQzUnNCYUZDV1JoOGthaUFvQ0JmSktsckMyRjhiMjVBNExnc2xuaG04ZGw5OHdiS0NMcml2LThiaGNxN0F6TzBNb1VEaHk4ZVVNdjZjelRHSnNQQldLSVo2ejhudTJR?oc=5",
-        "title": "U.S. International Trade Commission Reaffirms GoPro's Patent Claim, Prevents Importation of Insta360's Infringing Products - PR Newswire",
-        "date": "2026-02-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPQ29qWmMzb1V0eEZhZUdGSXdySC1ncXRGdWZUYUJXelczZkIyTjZEVUFVUjNvdEQ1bXVhOE45cUxnajBqRmduUlZVNFE4M1h4eFZjX0NSUUNIdWtVcGNxM2xBYloxRlZCNTkxQlVKSjVmYWt1bkRiZTNNdmZST29IejB0aG5sMlRRbnpSRXFnOTQyQU82UXNYZ3plTDVGQnRmbENuNnpFYnltVkd2dVc1czRsMnU0emxTNXhUQW1GbW1reW1QTEJCbUVB?oc=5",
-        "title": "Merck jumps as investors focus on reorganization plan and improving Keytruda patent-cliff outlook - Quiver Quantitative",
-        "date": "2026-02-27"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TYU5fVGYtNzh6SUlGWk5CNTB6YjhBWFZndklGWDBrRUtwRlk2eDhGdy1MckdNWkIxNndZQkxpdXJuMmgxOWpwNGdHREpmN0RPcHAwSkVtRnRLX1A4enhr?oc=5",
         "title": "Obicetrapib in patients with heterozygous familial hypercholesterolemia: the BROOKLYN randomized clinical trial - Nature",
         "date": "2026-02-28"
@@ -648,5 +628,15 @@
         "id": "https://news.google.com/rss/articles/CBMipANBVV95cUxPNzZjMlBaVG9jbjY5V0VNRkpQOUdZbUV3czlfWWtNZkNXZFhTRmlPZkk4Sm9uMVRLbU1VaG5MNDZtNC1aN1BFbmhhM2ExSWFUREI5Uk52emF0N05qamNtemJ0NEc2TlZzUXJ4eUFuSTNOdlJqUS05cTlhcGVGU3FKY2hYMW1DS082RElJWk9tcWVLMUVvbmtyQ1ltRkpQRnBBOGlUYjJHREVwTEstVkZNZEtjZWtkTFRjNUt3MU9OUWprZ292ZEljbGpnazB5Z1lvcWhxY0RXbXlXNzQ0M2hNLUZPT2xqUHByN1FVMl9lVG1KcW9ldTlGckxidjJ3NWJ5V3RKOU5KckE4TzBRNDZ4dzN2UEQ1SXdOQXBRYkJQUzdGQjZnc2F4NGZGVFAxUjhDdTZhdVF5OFkzYkRFanZSaFF1eWRDSFhMeEhUQUExVlFKRXdGUXRlWENUMUVFUV9xZlozczF1RVFER2F4UUMzdHF5T2Izb0NmRkpTT1pVekhHQW0tZlN1RDV5N1dHMnk1MmJFREtsOUJueDQ5SE8yV2hTSWQ?oc=5",
         "title": "글로벌파운드리, 타워 세미컨덕터 특허 침해 소송 제기",
         "date": "2026-03-28"
+    },
+    {
+        "id": "https://www.theverge.com/column/902668/apple-antitrust-app-store-war",
+        "title": "애플의 길고 치열한 앱스토어 반독점 전쟁",
+        "date": "2026-03-29"
+    },
+    {
+        "id": "https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/",
+        "title": "소라 중단 위기, AI 영상 시장의 냉정한 현실 점검",
+        "date": "2026-03-29"
     }
 ]
