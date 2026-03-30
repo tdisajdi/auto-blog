@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5TYU5fVGYtNzh6SUlGWk5CNTB6YjhBWFZndklGWDBrRUtwRlk2eDhGdy1MckdNWkIxNndZQkxpdXJuMmgxOWpwNGdHREpmN0RPcHAwSkVtRnRLX1A4enhr?oc=5",
-        "title": "Obicetrapib in patients with heterozygous familial hypercholesterolemia: the BROOKLYN randomized clinical trial - Nature",
-        "date": "2026-02-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxQWGJXeFktZXNJZ3JXZjIyc2lHckV1WmlsSVFOdXZBYXlRSEk2RTJJMG8wd2VBbU1xREdyeS04RHJpSTNKVTBUdXpDTEl1clZNcW1VNDFvZkNtckRUMU1EUllFMU5LT3NwWjJ3R0hiNjgwel82VWdad0NMRktMVU16MjhfNG5NaVBhc05YVFlVcVhaODdES3N6RWpCUkRNdw?oc=5",
-        "title": "What stands between brain implants and FDA approval? - statnews.com",
-        "date": "2026-02-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPN1lROE4xR3A3TXdHcnhTTVp4SEJUZ1J5VHFpYzFKa1ZsUnZYZ3BSTkx0YkkwdnJrTkVvcjgzT1F2ejY2R2Q0dEVtdEtiOXZWMFF3TENHRG9sN1JnblI5NHB1Qzc5ZnVSWWtLNjZMZXpVc3ZJc041RFQ4Znc0TkFVNDQzTzNibjY0ODF1VmZpVWpyRnVUbjdMMVRNNHVUS1F6a05ESGRkV1lQZURkNFg4WnM3WW1rakJ5eWpR?oc=5",
-        "title": "Section 101: Cryptocurrency Patent Claims Hit the Blockchain Wall (and Talking Olympics) | Insights - Holland & Knight",
-        "date": "2026-02-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOMU16TDFfLVNkbHZfTlRTWG5kblBiOWs0alVra0IyMExpWDlfQklEeHNmcldWWTdSeWxYMnBBMzZCVXJNeDk2V2FoWnk0V3cyVXVYVUhhVS1ZOE5meEZZOTdTTGJiYXBoTWI2blM2TXAxUnJVaGVHVTFHY1VkNTBMb3JLYnFyLVhoZk03NFR6dzRZLXRuRm9SeVNraGtrVURPNldaVVk4MkZyRkJmdTliQTVvRjl6b0ItZ2lqRA?oc=5",
-        "title": "Federal Circuit clarifies patent-eligibility under 35 U.S.C. § 101 for claims covering recombinant DNA molecules - White & Case LLP",
-        "date": "2026-02-28"
-    },
-    {
         "id": "https://techcrunch.com/2026/03/01/polymarket-saw-529m-traded-on-bets-tied-to-bombing-of-iran/",
         "title": "Polymarket saw $529M traded on bets tied to bombing of Iran",
         "date": "2026-03-01"
@@ -638,5 +618,25 @@
         "id": "https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/",
         "title": "소라 중단 위기, AI 영상 시장의 냉정한 현실 점검",
         "date": "2026-03-29"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWczNUp1WWFZcjVYVW5aZE91QVBpMFBGOGhMaHdOR2pFY1BIMy1qY1dld2tLOE1IZzduSkRqRXpENHo5ek90RnJOVjVYWG9lZEs5OHJpcTV6NFVTV0VZakp3dWNRWGVpUlFaaFI2dDlrcVdpT2RCaTdudlNmcFVDeERfSDc3X1BCVEZ4TDBKWk9EV3Y3anIwVGVVbTFidU1NNkE?oc=5",
+        "title": "코셉트 난소암 치료제 FDA 승인 및 투자 등급 상향",
+        "date": "2026-03-30"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQR3pYN1ZtM2dVV09iR05vQ05WN0lLcTJtV251b0c0WkV6cWd0QU5hWjMwZEpVV2hSdUtnb3pQRTNyTmp5S25TWDg1bDVkUE1qM0pxbzBnSlk1bG5YZWYxV1hkSGQtMUJPaW1EdlpUd3p5WWJFOVdiVjZUNFc3dzhBY21FUE5qSFU?oc=5",
+        "title": "노보 노디스크 기저 인슐린 ‘아위클리’ FDA 승인",
+        "date": "2026-03-30"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNU21BZ1BtN29VcHYwWXRNdnI0ZDFoaWh5ek12WTRyaGp5cUlSMFNDMVVmcEhHdzdzUzJQcnp2OElBckxRNGRjUjJFd3BaWGpUT09KTnpuSWtxNE9ib0RxZkwxN0RfNkVmeU1TNEFHWDNrTXV0aVZKY2xJQUhXQVhKZU05QkU1ZDZKVmxaNVFFQ3hwUERHUVRPRUlPek1PRm9VV1hOQldVT1dLRFdlZnRKOVYzSQ?oc=5",
+        "title": "글로벌파운드리, 타워 세미컨덕터 상대 특허 소송 제기",
+        "date": "2026-03-30"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOUGlFLVAzR2oyQy1Oa1Rrd25ZYjZYM3lrRmEyOHQzYXplXzRpMkp6Z0x6SnotbG9ucUtyU05fc21DajdHNXMwYmEzQkxybTVjaGFfaC10M1V1TDV2TFdjRXRwOGdUME4yT2M0OWNfRVZxRTZhWmZ4VE5YNGtXb1ctLW5udXFEeUZYRUdHak8xcmhEQVBQLUxqNUJB?oc=5",
+        "title": "테슬라 새 특허, 스티어 바이 와이어 회전 범위 2배 확대",
+        "date": "2026-03-30"
     }
 ]
