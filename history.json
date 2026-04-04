@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMisANBVV95cUxQZ3VlZ2xWS3FCMHFzY0hoSW9DN3RvTmxISUd4RFBLeDhvOUVGV2pzbGxCdTg3YUhCOWpYWG45N0czYzl0akNXMnRqandINzFLM1ZWS2M3OWp4em5GZkd5Yl9Qd29YNmZfcDVfTFp2U1czbUxnODZLekR5Qi14YTdoN0RzRk5aRjQ4eUdTZENPdjhPTVRhU0VVYnVjaUZwSkxwalYxQzBEWnVyMkUzQ3VFeHFnY3BsTmJTUjdFRWx6Q1VmZ3VndlowZW9WZlFfSWZwZjBudzhtMDR6S2RWS2xhcVIyZUZvU084YXZiRnFlWk9VaFFYMlZqZUo0ZVlUVDZyR0xtdjRrelVtUDZSU0FDRDRkZ01EVHRsNE9fZFRJVUE0TUdFN1poMWp3NksyRldDei1LQlI2cFlDak93T0RPenBzMTFUOVRzalFUVEpaTzRWUDdmZmhpNUl0WlpEOGNrbzh4b0JFVWZ5LVN4VWlQZjJoZWJFeDR0M211VHhFNlZORUZNV3pzM3A0VlJOS1FiT09WTk9hc1VWc3o3c0p5bGpza3NNWkpIXzFDMU5sR2U?oc=5",
-        "title": "MAHA Is Bringing Chaos to Biotech Investment Beyond Just Vaccines - WSJ",
-        "date": "2026-03-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPZE9hQTNfRG44MExxVldXbTFtRTJ6c3pOLUV5TG9HZTh3MXJMQlBQQnRHYzh3UDFRSVlyOFpvY1N5Z1U0Nmw0RVNEMFN3anY2VHc1YzBpVnVsR250WVpvZUJjRlJub2g2RHdLeVlUWkljMFBXUnVQWVducHRYTHZvRU9Db2xRdm5oclYyNHJoQ2ZHMGliR0E?oc=5",
-        "title": "JPM 2026: What it revealed about biotech’s new reality - pharmaphorum",
-        "date": "2026-03-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOVVZiUEtUelFaRVUtWkh2U09NM2pGSTNwR1hPNlBWWlhVeGtoQmNDMVVHbkgtdlBYWFJMNnpRTkdxQUhjUVFzT2hzaUVUbTFMZld1V1BSdEMtblI0LTVJUXlQNlkxVlpBX0RTTEdtU29zRi1QZ2dROUU5UzhaZzZWY0Jhd2xRdkNQMFpHRWp1dmJsejQ?oc=5",
-        "title": "Caltech Sues Zoom, Alleging Patent on Technology Born at CERN - Pasadena Now",
-        "date": "2026-03-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiswNBVV95cUxPRWwteVktX2JGZ1VBdENFckIxUlp4ZnlWbGZxb0RiZ1BnY01wdXQ2LXFIM0prcUVTSm56VmRhR0xiTVNZS3JnazFSZHdSYUhpMmVfbUhhLTVnY0RQQjdUWTRtbmFKN2lIRUxTZ2g0YzNKZzNzdEppZ3pqYjllUFc0c2xsdUR6STBXcU5NQUx2ZkxnUm1tbkd1WGFsY0J2aTVuZmVaT3R6cjh2OGN1enAyeVNmN2M3N0gzZmxsYlR3UEllWTFzd0pac2RqZlB6QW5BbnBjYlk3WWRWRUdlX2wzNC0zZkdxNGlLbEdfRWNzSGhfVC1nb0NQblpZNjNqTlJjWW1FZ2g5eVJ3dFdUdGhWbmhTTFRuNy00SHc1OG41ZkRnXzVvcmMwbHJPbVpDMTY1SXpNZlhJX2kxSzAydDJXQXhNSGI2cDRoYWZJYTlfbFFNSmtfel9jODRoREFlZnR5RjJ6a2lFZG5GQVZLSkpzMG1rWU5PZURjTEZKSFlkX3VqMDBiQjZkZUh5d0hiMUMzY29mNklwOHR2TUVjS1NrM2NRSFUzeXJhUEpPMEstNVFkOWc?oc=5",
-        "title": "Moderna to Pay $950 Million to Settle Patent Cases From Arbutus, Genevant - WSJ",
-        "date": "2026-03-05"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMizwJBVV95cUxOcDU3RmdhYV9kNmVKaVBpVWdBX3hTQnBSZHY1eFNjV0VZZnJLcnhaTVc0TGZWd2d2d0ZWeHFjUUV1TVJXS1pYcnZUakFKYmNheTFpRDNLZ2JReUV5WThRbGk5Rm95N3ZfdEZKYVgtZ1RycEw2QmdvX0ZPT1FxdkVjRmRnMzlVdTZ1elpYOEt5SFprT1RFbFpld2t4MDBhcU15ak1Yc01wQkg0TU53TVBlTWZ1YVAtZURiSS1mRGlBZjVoUWdsdUw0SEFhVUhuSThNZkF3WDBTTXNtb1BXZGxaTFhvMTJ2eTVFUHlYdk90WkZsV3dmNmJTSTRTb3dWT0M5S0ZrR1NqU29RRXFXa0lKNkJFcDBHOXRqZzlaVlA5Vl9DcExtMVVhV1JSYnFRR2R4MTJHZ1JadjdFWEZseW5EUlNlQ1RWemx3U1FDQWVCRQ?oc=5",
         "title": "Johnson & Johnson Announces U.S. FDA Approval of TECVAYLI® plus DARZALEX FASPRO® for Relapsed/Refractory Multiple Myeloma, Offering a Potential New Standard of Care as Early as Second Line - Johnson & Johnson",
         "date": "2026-03-07"
@@ -668,5 +648,25 @@
         "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOdm1DRzJZaXBTRlVHYlhiSG16N1NvT08tRnJrVDYybDF6TWVhOVpLWlNRdHEwWVdTWXpuSDNRWE9xdG95QTN1cGhGdEg5SDJWdGV1Vlp1ZVc2ME4yZUtBdkRscnQyNEFDY2M5UXZsbWRVcUxYNzRyZTdwNFRLZXRkMUlvdFNNNE15MWNVZVRiWlZxVXBubFA0TkdfUHhKSEdia1BZLWQwU0tqN3V4?oc=5",
         "title": "미국 특허청, 닌텐도 ‘보조 캐릭터 소환 전투’ 특허 거절",
         "date": "2026-04-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYXZ6ZFBqMU9rUzF5WEJIeWFHaWpBaGY0Z0tQRDZTamZhU2hNLWRMYkx0aHNMNV9idXN6a3piS1AxN0ZXd0ctOUxmcHUzUF9jS2JGcE1mUFBWa2RJU1pEOVhjbHJiekFOLWpibkZKQU9NLUhaNnh2Qld2TzlSR2tFVVpGUmQ3QlNiUmVtaW5KVXUxcVk5OHJlTmNDTFhRMGNzRkdoZl84eVg?oc=5",
+        "title": "앤스로픽, 바이오 스타트업 코이피션트 바이오 인수",
+        "date": "2026-04-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbXNISnM4QXZCMWZKdzUySDJVelNmeGpxMTRETGNVcFZIRjM2bHRRSmxIdkQxNlRMSGw3UThVNHFKZE5SLXQwZ2xHWkEwSmxqX1RGWkxNVmZteks2UVVneC1fYl9qVWFGM0Q4dUo1NHFMU01rVldfZjEzT2JQeHkySHRWa2xTLU5McEVHMTZBa3ROUQ?oc=5",
+        "title": "파운다요 FDA 승인에 일라이 릴리 주가 6.5% 급등",
+        "date": "2026-04-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxONG9DRGVKU3MyYWppVjRTakhOU3Uzalhibko2Y1c4ZGM3N05Id2szTC03c1J6Q0pOaUstS09BTVZ2bll4WWJEcFlrN2JET19wRlozLUtDM3NiUnRXTjR2Wk1mVVBHMkJLS2F5ODJBTTZZSmp3T2V3N205aEtJX256d1ZrV3RRUjZPeHFnT0NDQmVZZmNhbmcwVGtYR01wME5hWkpxZUdHcUJTdmM?oc=5",
+        "title": "삼성, 인터디지털 1조원대 특허 계약 \"황당·지속불가\"",
+        "date": "2026-04-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNNnhoQ0NBXzhVTndjbVpPd0VvdVBmaV9sd2Vfb3FBZXgxWmhkZXoteDBfZjR5d3V5MkMxOHdQS05pdXFGd1NZZUtJMTVVMXA5TERXMVJXc1hLN1RuaW5yM2E1X21mazVTOG9MTmx0ZHl4d3JIX2hlV2NEZDhESlhxRGdTMzdQVTI0a19XOUdSUGVDdXdqS2dUOUJ1QXJNWDJSUWh2LW81QkRNZm02enAyQjV2NW5mMkc4?oc=5",
+        "title": "SK하이닉스·키옥시아·엔비디아, 미 무역위 특허 침해 조사",
+        "date": "2026-04-04"
     }
 ]
