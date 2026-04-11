@@ -1,65 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcTlBWmc2T2VhT05DaFd0ZllJX092bkdyUlhoOHo3YlRhT1J5VGVnMXRaOFNjVW5zeDd3TTJqTjI0TC1FcHdZa1QteW11WWxtczRqV1JTbmdzVTh2RTVkRUUyT2tfZVVyeGQwLVVkUG5wajhlc3c2dW5MREZBVzViWFd6YlRNcmQ0d29WN1ZlQi0zUnNNQklFdGh3M1Bxa19DLWhBXw?oc=5",
-        "title": "DBV Touts Viaskin Patch Results, Soon Will Seek FDA Approval - Allergic Living",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQUWdfeDlwNTJpcC1tX3dCV0Z6c3ByWHJqM0Y5bGxhQ3lxM2lZWS14SGRvOWJjOGhFRkNOTVp0MW9kMDNxT2RLYWptS1hQY21MUUhOMmxmZWFuTk1tV21sNmNXRmwyRi1DSDNsYzFGM0g3bXVNTGF1MGpocHRDTi10ZnFSa3JyTE5ZajRWWHBhU3dDdFJfZEhEWElJOHp3MUU4a2ZaTG8xczZTMTE0bHZRV0RHWEthZE9VOEVITjFCbFpQVXgzRFltMWxZczFDZw?oc=5",
-        "title": "Globalizing Biotech: How China, AI, and Strategic Foresight Are Reshaping Drug Development - Yicai Global",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPUXV2NTMwclFHa0RERDVoYncwV25pWVV1alFRbXp1LVZtQ3JkNlliTW5LWnA5bjQ2UHM1Z2dlczlWOEFWM3poaTcwY2RpSUhsQ2lYN1J1RVdVYlA4MXExTTF2dVZzTHU0d3VHZm01ZXJrQVpfemtrUUdtejdLS1E2Z1ZsNWtmczZrZ2c?oc=5",
-        "title": "Your Patent Is in Trouble When Borat Is Cited as Prior Art - JD Supra",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYk1OdTFIWlB5RGRCT3d0VVM2Q2xvTEYyb2pFcVJrMGJtZ0owTE1TbFpfTUMtQUJjM01CSmNnQktUOEdsbHVjWWFqRW5IOGtjWmtxUlpfSDdJX1JBWHkwMkpIOXdrYmdSRFF2VXdTVlJXMnNDV3dNblRDYzB5SGdadHdPd0JpUQ?oc=5",
-        "title": "Gen Digital overturns $481 million patent award in Columbia University lawsuit - Yahoo Finance",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPc0tweGZhMldZNS1XdldDMmRqTHFLX0lyUEVBWEwxTWdJMHhtcFV1Y3RqUVl3dmtiRnJWS08wSTZZX1N3Tm1mUVZBQU95MGNRVTFGa1N2LWViT1RKanB5X2ttanFreWFmb1pqR2FOUjRMY29ldkpKbUJUOWNHdXBJNmtqVlFKZjBKaXFnMGlrc2FJaHVEelhYc0c1UUtLV1UtcmlQcA?oc=5",
-        "title": "Josh Brown: Biotech growth stocks immune to disruption risk - 24/7 Wall St.",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPR2FsTDdrVWhNbTVGQ0lwaUpyaFRpQTN2YW01elpMZGNVOFhkYW1hRTB2Mkw5dU9DTU5TNWYzcDZYb1E1eFUwT1pESmNjejVGQ0VtcWI4NHNyR21vNHQ0S0F1ZktIcWlHWHU2RW5OdGVVYXl5X1k4UW5ZRTRzUFdjUUhwbndickVR?oc=5",
-        "title": "Eli Lilly Invests $500 Million in Korea's Biotech Growth - 조선일보",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPVVlzbDV6bXhYTTh1MkRobWxwVlRCWUFKY0hhaDdmLVozb2w2OG5wX1dDMW1xLS1ObDI1QVpfYXFHRkFoYUk4RkctY01Oa0VRU094TGZNTDg2WE1SQnJ1aVlNaWhMbEltdDhtb2JoZTgtY185NnRqdFpocG4zT3RDSXFxUjg?oc=5",
-        "title": "Predicting the future - one patent citation at a time - Science|Business",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQSFFyd19xd0MtNDM2U1Eza0hRaEJFeUtrVlVVTElLMXhKMngxZTdMX1ZEVTZGcEdZZmpjSWhlY3FJVmRmc3lxamUza1pCVHhfNkZKY1BneFVPUDBHdkxEUU1BZmpBRWpPTlM1eV9qYVg2REtCZC1peTlOY0lpT3JXNFVhYWI4ZlNwU3A2WWdUNHhlZDkxYWtMcWNzTU5MVUw2TlNmSnpod09RSklGQzdZcnFxdw?oc=5",
-        "title": "Keynote Presentation: The Future of Battery Technology Innovation - Benchmark Mineral Intelligence",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPa2JrNk1FOHItNTFocTRqQUxUMFA1eFZoMkpuZDJoZFhCWGV5LU96WFMyaHBoVkFKUDFiVDczVVNfcUM3RW1QY3BLTk5SaFB0NWt3dW8xdnpUalpxaDVmVkxxaVRuS3NIb0RIaG10aUFsd21FY0RhV0EwUHE3UUJzQmdvSFlCbmd0NllwcWtWQ2FsMW5mQVVBTFItSENET1FpVm9qRW5VRXlkWXRZdW4xUA?oc=5",
-        "title": "Pfizer Ignite, designed to accelerate promising biotech therapies, fizzles out - Fierce Biotech",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOeXc1LVJZZDI5M2cwZGw4Z3EwSnBVYXk5ZzEyNnR4WXZRb1I2SEtkRW1aOGFsYkI1LTVTQnZ1Nm1sbnc0Zk9JNGhWd1d4UVdQQkgtNnR1Mkx2d0h1ajVMdk9rdHpmYkhOMFZTU0t3VUlnQ3hKcTVtTTJEX2EwSDdiVkd2Tmd5LWJ0X0ZiWjJhbnVpY2NlMGRZOVRjRVhpWTl2cUk0TTFYaEVXMW4wTXF3VHdfNmxabl9VM0tWQmp5V0lybmloRHpoTnNTa3RNSUh2S3JBYlEwU2g1TWxKd01HWmYtY0FEcnM?oc=5",
-        "title": "VALANX Biotech secures €3 million to advance LIV-1 ADC for metastatic triple-negative breast cancer - News-Medical",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONmVtSUVhdS16SllKY1F3NHNyNEVkU213U0dBVS1yRmo4RFRDZEdaSEVLejZPSzI5dmhfSVF5RTBhcnBxQ2UzZl9MOEVnQ3RKQmxpUi1MaTE0S1VKMFZkM0h1UHYwdC1LdlNFNzkxcDNBY3RCMVRkWDB3ZnNIck5RSDltNmJxZnVvNnd5UlJvc1VyX3BCYzFEemtvS0lGN3BZLW1zSkhFQnFjSThoZUEyTGhDMkdaZVZIRkJEZHRIQkR6cTlTRW4wcFZSRWhMQQ?oc=5",
-        "title": "New European patent covers all dosing regimens of experimental MS therapy - Multiple Sclerosis News Today",
-        "date": "2026-03-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPeFBwVmd3Wkh2TkNsUDd5cXpydWNBT3hoZVhteFdKMl9rWXA4ZFJHME9nVmlkbHZxX3NYc19oenhSajl1Q09tUjVRQXQ5bVQ1N2ZwYXR5Rjd0SldIY2F3UVd0TUdQWWwwTEdiNHBLZDBQeE9zUV81aUVlNFZPWFZuYVZvald5cFdyUTl2dHpjRXE4UFNMNEhObU1Ka3Q3dTZEZF9hcGIzZUk0T0t3RUhTeTBrOGtVWTJCV2ZlejhoamRrTHVFV01XV2dmLUtNOWF5eGo0S0dCUnYwbGhZOWxWNE5MbFRhMzhsZkpaSTI2VXBxTnprZmlZM01VR0VoRjdu?oc=5",
-        "title": "MetaVia Expands Global Patent Protection for Vanoglipel, Supporting Metabolic and Liver Disease Therapy Through 2035 - PR Newswire",
-        "date": "2026-03-12"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNVBzUW5UMllESktiU010b1BzVnBYYXFUWWVHN2Z3Y3JOTGM2NS1yTFpEaEtPa3RMX1RxZVFjVFhRMFpfZ0thM1NFTVlMeWVGQ21WRnZ2akx5ZDNiS2o3ajBDY3ZDUTlEVllBdnJ5Z0VlSjRUUnJUdFdyNU9lTGU3OE5UZ2JYNHk4QTBLd052T05zUTJDYXpwT09NNTVLQUtoTE5FYzVERQ?oc=5",
         "title": "중국 바이오, FDA 승인으로 세포 치료제 임상 최초 달성",
         "date": "2026-03-13"
@@ -628,5 +568,25 @@
         "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNMkwxMVBEZDA5Mm4wc0tLTzNIZ2kzcV9CNlF0MnBXeHRFeG5DRDEtaDBES0h1eDY5NlY3OEpsUGtXSTRSdmRmdnM5S1N0MWJJclFEcnFERlU0dnBKeUxGU3owTncyNnU0bEZ2X2VmeFA2YjZHbWRKSzFmazlQQ1NOQ1hteVBOSmE5d2RUZHg0enN4M2t1cEhFZTA2a0dfR3BmSUx0WUNVbmRPRFpiazU4LXREQ1ZKZzhuOGtial9n?oc=5",
         "title": "Patent Disputes Over Data Centers' Cooling Tech Heating Up in Chicago Fed. Court, Data Shows - Law.com",
         "date": "2026-04-10"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOSEp3VUtLN0ZoVE5QcGRRTTJiM3ozUW9VZXF4VmV6Y0hhM1hmUTJuM1JqR1dHZEVMblhoVDNLNERiaWY2N2FCdjR5Y2NabVJpcEU3WEpxcEwtbVN4Nk9tbkhDUms5bXZtS0ExcGF4YzJESi1LcGNaVWRJTzhnOWE3cHN2djlob3JVMDV5aDg0ZXNBVnM?oc=5",
+        "title": "트럼프·중국 공세에 저무는 유럽 제약 강국 시대",
+        "date": "2026-04-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNdm1zNHY5YmoyZEtPRkR1WU5iMERvVEZWT0tCd2FMeFMzVTNPWUJXQkJvN0E3Zzk0WTJBS001SHZrWXk5dnFNOFk1dDhmYndYYXNEY0xXOHV5b2M1YUt6Ry1RR0JXZFJVZzVJNnJFdVg1OS02MjFETzlaV3d5OTNLd3J1ejFQWEJWYjNHZFVGb2JTZmpJcG9oNHZqVmZsS1FHZWlsbi1SLTBidTFmeUtCMWFwbw?oc=5",
+        "title": "바이오 차세대 골드러시, '악마의 분자'의 등장",
+        "date": "2026-04-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQYXhVZEJLYnNJNnVXTkQwMmJJMlFFTkctNnp4YW5SZjdrTVBCSmk1QUZHcklLVmRZT1JWbTJYbkM5b0J1OC1MeVpHclZFM3UtQmxzV2FDRFd3MnZTWTR6OGVycFNmNEwzbEJZYTNSZmU1LWhpQ3QyMXFsNTY0SGJ1MDVoczNPbUM0RUdxc19xTW16bGNsUkd5QU5CUWN3UnVjdGwzRXZn?oc=5",
+        "title": "미쓰비시 전기, 인공지능 특허로 디지털 전환 재편",
+        "date": "2026-04-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1UTjQ1ZnVPY2dpNEpDOXhYVlZ1YzMyWlJvX25iNGxtWG1YZmhRTTVhVUtaRGloOGo1b0d2a2Zsd0NGYzlZakdTRlBPNGhhQVFUZ09VX2I4ZHZTUQ?oc=5",
+        "title": "토요타, 수소 연소 엔진 개발 본격화",
+        "date": "2026-04-11"
     }
 ]
