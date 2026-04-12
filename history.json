@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNVBzUW5UMllESktiU010b1BzVnBYYXFUWWVHN2Z3Y3JOTGM2NS1yTFpEaEtPa3RMX1RxZVFjVFhRMFpfZ0thM1NFTVlMeWVGQ21WRnZ2akx5ZDNiS2o3ajBDY3ZDUTlEVllBdnJ5Z0VlSjRUUnJUdFdyNU9lTGU3OE5UZ2JYNHk4QTBLd052T05zUTJDYXpwT09NNTVLQUtoTE5FYzVERQ?oc=5",
-        "title": "중국 바이오, FDA 승인으로 세포 치료제 임상 최초 달성",
-        "date": "2026-03-13"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNa3dESTA0MXRkd1VSYVQtLXc3RVo5UkhkemdSU3VoLW9FajJTTkZQcm1aRm9BMmxQcHQ2M1gxLWVKT3FOeUJlTkRFeGhCdnNfMC1lM0pvUUE2cGZFNlZTTm83QXZORk5XLUpjdmxldWk4Q2VNUFFzZDhZTXZlcHZ6aHQxR2FTdmoxRldJUE5PUy01Si1rLWtKbDVuRVVJWWJhU1U2UlJpS19oNlhMNHNKMy0zaWdfb1dhUm5CVjRB?oc=5",
-        "title": "GSK RSV 백신 접종 대상 확대, 미국 FDA 승인",
-        "date": "2026-03-13"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOVTVtbTY1Si1HcEhZNDFQOWhYSVVqZ1RZdklIeTBPbEdwMmdOS2dUMlAxNnpoQ2UxbnpOaGdHa2lia2FsNVhfNEVOY28tNHYyY3RROWVtdGVYSGE1ZUpRNnRkZ3FjMXhjUXI5a05mZnd2RnVmdUtMTVRtb1FaQy1OaE5yYkVDR2d0MjMyakVucUFDcHhQX1Z2MWMtbXZWUTRHVGlGR3ppZmJuNkxCbWpCOHJVY1pTeEhfUW05NVd3dUJZQnl1Z3Nr?oc=5",
-        "title": "Increased Flexibility for Graphical User Interface Design Patent Applicants - Foley & Lardner LLP",
-        "date": "2026-03-13"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNdloweEl6MU54ODBUWEp2MFBic2t3MDVTbnlzNlZUZ0dzZGYzYTVwTlBXUl9IamlTOTRncEtXZnAyQ0VfMTZPMks4cVg3aTM4cjhkdTVVcGdTMFNQbGNQeWdIU1p3VmUzSFZsU1BfX3hFMW10YkJVSEN3RklTVHdiR0FoVGRpVm55cFE0MVZnLVhJNDVOUkRBbHlhNkxPM2RtdzlTblhMaURCajV3bUlpQXRB?oc=5",
-        "title": "Patent Patrol: Inventor with Tire Pressure Management System Patent Seeks Industry Partner - Bikerumor",
-        "date": "2026-03-13"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMTd1UG5IRklzaHo0NENwS2EzajVvbzNTZmZxczdaQ1FFWVpyV3c4cllUalhtQTcxSGFPeThIS1lnU18wbzNWWm12Wm53dGIxa3lOdTctWi1PR0ZucUZiSHptbmFQSk1ZWGUyZzFyV0FtREc3ZGFEYUhzNlVSMmNsdzJBMUNZdGYzZVJaM3QyRWkyMElsc0M5RjQ0ZVh5YTBIMmJDZFNoTTQ3cmhiNFdtQllYeElfNFNpN3RuM3VPVldNYXdHWmY3Rw?oc=5",
         "title": "BRAF 변이 전이성 대장암 1차 치료제 FDA 승인",
         "date": "2026-03-14"
@@ -588,5 +568,15 @@
         "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1UTjQ1ZnVPY2dpNEpDOXhYVlZ1YzMyWlJvX25iNGxtWG1YZmhRTTVhVUtaRGloOGo1b0d2a2Zsd0NGYzlZakdTRlBPNGhhQVFUZ09VX2I4ZHZTUQ?oc=5",
         "title": "토요타, 수소 연소 엔진 개발 본격화",
         "date": "2026-04-11"
+    },
+    {
+        "id": "https://www.theverge.com/column/910019/ai-coding-wars-openai-google-anthropic",
+        "title": "격화되는 AI 코드 개발 전쟁",
+        "date": "2026-04-12"
+    },
+    {
+        "id": "https://www.theverge.com/transportation/910717/netherlands-tesla-supervised-full-self-driving",
+        "title": "네덜란드, 유럽 최초 테슬라 ‘감독형 FSD’ 승인",
+        "date": "2026-04-12"
     }
 ]
