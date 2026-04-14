@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/business/895026/meta-laying-off-20-percent",
-        "title": "메타, 전체 인력의 최대 20% 감원 전망",
-        "date": "2026-03-15"
-    },
-    {
-        "id": "https://techcrunch.com/2026/03/15/wiz-investor-unpacks-googles-32b-acquisition/",
-        "title": "구글의 44조 원 위즈 인수, 투자자가 분석한 상세 내막",
-        "date": "2026-03-15"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPTGd2UTBNVTZyRGhvRDZILXY3M1hnU1E2SkFGa2Joa0tlSG8zOF9XYzQxSkFMb0NKa2NGRS1nNE5Dc0ZLT1gxcXJiY0ZhTWZaYUlsVmtGTkRNUmRFM0F0U3VmMVV4d2pqMWJZMDBTR1M1OFlVZ0NCT2E5VS02aHBmZXF0LTlockVwb01WbnVfTHFlQ1hkXzNEM3dBNVZTRlRIY3JHMHY3N2Q5NTN1NzRLRVk1VDVXRjNCejFoZUhXUXJwSVRzeW1jWHY0NlhGRmRLN2dUZE9uWUM5ZmljVE91Y182VQ?oc=5",
         "title": "옵튠 팍스 FDA 승인, 췌장암 다중요법 패러다임 전환",
         "date": "2026-03-16"
@@ -578,5 +568,25 @@
         "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9BaFBsa3VBODZidGc4WHRhRkg5bUVFRmpBS3NoVXBtNTdWTk5fZjRFdTFJZXBHNjQxOGxRQnlmaUQzb0k2NW9IcDJRclBRLXZYT2dXOW9URS1ZcnRvSzVhLXRIZGZWcHBLNHJNSnVDb0xwR1BrYjBnZTJLRnJnZw?oc=5",
         "title": "Google Patent Signals New Search Layer - Practical Ecommerce",
         "date": "2026-04-13"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNSE5nWjRmeVh6V1ljYnBYUFNuY29BdEVFaDBOUzFiMXFjczBLaG1PZWlPS0FGcDFJWVVPdlVibGVveFctNFc1cHE4Ynl3VVFoazFoTDFlRTVmVVJrckkwRTRPdzBTZk1DVmppNkw4eU96Z2xsYWVqYUVzLUdXRTNwaGpRc29wdDkxa09sTnpJLWg?oc=5",
+        "title": "트래버 테라퓨틱스 필스파리 FDA 정식 승인 획득",
+        "date": "2026-04-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQaG91VWRMLThpQmFsT2RnUTAtWXRpVVA0QXhLZjJLbWlldFhKc2FncGZWb2o0S2RRWi1WWXlOa3NWMkNoZ29HQ3JEN0hEQVRNeldVa3M1Tm9feFRpaGlxc3Z1bHkzdVBGZDhyT0tKcEhnaWpkUTNHMjNnQU5pb3BRSkVCb183dlFTSUdKd2ZyVEdGdnM?oc=5",
+        "title": "릴리, 3억 달러 ADC 기업 인수로 암 치료 격차 해소",
+        "date": "2026-04-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNUlJhd1FHZnRVX3E0S1lpQ2lLc0F3R1E5UWlrVkJtcm1lWHZHUGEzVC14c2xhYXpRY1B1eW80ZUhrbmk0N3Z4T1FZV3pLV2pRenlZY25LUExOX3ZYM3ZUY2t4OENBN0VhR3hGYXE3WmdVdW1PQzhJdkgzRnBFa3dvMXJXMlZLcjNxRkhEb2pYOUcxSk1TbjhHbGszNllpZkZndmRjX3QwbUYybjV5UE51cE4tYVh1VFU5LXFydVdRbE15S19BeHFpQ2FBcDhmdw?oc=5",
+        "title": "Heartflow sues cardiology AI rival Cleerly over alleged patent infringement - Cardiovascular Business",
+        "date": "2026-04-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONVR5N1VQU2k1NnJ4RnVKcjNmZFBWYnFheW9NRi1RTzFkQ2NseTRhYWdfMVZjMl9qSjJLdnRNZ19nYXdBVkMzWkhiWS1mY25fV2Vub3NXbERXOWxKOFRYeGhaSkw5ZVZLZWlTMkZ4NnFLNWdtUUQ5Y05DQ0RhbzRYYzh2cUNhb1R1NS1rdjNGQ2JLbFY5UF9KMDVnUnhJSUNVU3BJRGtmejVaNXpsUkhzbXo1VF9xc0owYW1jTE9yQmFPRE5ZQkE?oc=5",
+        "title": "Heartflow hits Cleerly with patent lawsuit - AuntMinnie",
+        "date": "2026-04-14"
     }
 ]
