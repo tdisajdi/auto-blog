@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPcmR2b2NXN3lMZFdWaVppejE1cm1qTWVHb29fR19wVzgwSWtMMk0zXy1CNmtiTWNQX05VWXNCLWRlRlJOTDlXTGtNaU5TTFdlQW41a1R2WFZQMXpKNmg2WnhMVE5uVEh0Z25xd3lvb09wM0g4LUtSdl9ac2hPZGlpekk3dmNPZUhoTmwza1BfM015MkhhWmM5LXVwTEZuSzlnenJ2cEJqZkcxa3BfRm1FMg?oc=5",
-        "title": "존슨앤존슨, 먹는 건선 치료제 아이코타이드 FDA 승인",
-        "date": "2026-03-20"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQT2VPUlF3Q3lnUE5WV2owZVVPd2luQmxKeUhGSjVkaWFYWFR0OGlwcWd2ck90ZmI1NEE3ZHQ5N0FSWnRVSlJxUFdreVhkOUFQWmtGVEEtUlJuLUtqbEo0Mnh6d1NhOVpGRk9uVzExdmE5eHYwbFdDRTNWNEVXU0ZMOGhfZ1dBNVQxQ3BzTU1BVmVYdW9mcVJsSjBfVEhiRkg4aDVnTDRXRmtFUHhwMHdrdXFCQQ?oc=5",
-        "title": "FDA 신속 승인, 고용량 위고비 4월 약국 출시",
-        "date": "2026-03-20"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQbzM2bV9wYk1IbUZ3d3BWRjlleXpDT3VsbVc1NUJQMENSdTc2dDlUVEdrWFdXQmZtQUdVSmd0RVpSLXJGVEFldG1PUmZTeFhEWXF6dDY1Vi15NzJJQWhjVmtGRTRrNjlJTXJpSnh6RHBNUzVzZ2ZzUE5ET193a3FSYndjSDRRVm9MYmJYZXFJa1BWMjdwM0dXZXdOZ3pxanNMZnJVQjRhZzI3T1hpZmJlYWNyaWpxMTBmV2hUcG5IOA?oc=5",
-        "title": "전고체 배터리 특허 급증, 시장을 선점한 선두 기업들",
-        "date": "2026-03-20"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQaGFhNnR5NGExYjJfSnhHbXc4ZUpSTl82ZmlNSktxMDBaenpISW5mSUR5c2NEdTV6Nnp2TDItdjAwUGhqalk4M1dYRWQ0UVNPV2l1UV95MWlOYVlmQTBZVHlfLWJXWVlXNmVfeDdYNjFPQmtvOG9zRW5IZUhZLVh5Ny16QU43ZkFnRkl6VWF2V05lYS1F?oc=5",
-        "title": "노보 핵심 특허 만료로 오젬픽 복제약 시대 개막",
-        "date": "2026-03-20"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPdnBFUzZYZWp3MHNzZUxxMEp1dlJKUUdWV2M1bnE2S3VtVEduU2JCZ25UZFpEQkFnQXlKV1Z2Njc0NHQ5QjRSbjVReDlrZEdGbGFNcjFaaUxBQlBDUEQxSVJvZlMyZ1Q4T1pIcGJla1JMUG90U19ZRUFOWTBsTms2ZlNtNmhSWEdRZmR6SktOcWJ0SGdTMzkyTmw0X2pEYXFPa0FmVg?oc=5",
         "title": "노바티스, 경쟁 심화 속 20억 달러 유방암 신약 인수",
         "date": "2026-03-21"
@@ -588,5 +568,15 @@
         "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOOFBXc3VReUxwS0QySFBGVzhMWmpPV0JuamZyQUo1RWNEcHhlTDVST0NCNnRjVS1HU1FQa1lDU0dXelI5bFNIWDhUSHlLVUVna2tuejVIWk1nMlp2NTdqZ1BkMDFnVkhXemZhUFZFaFR4SzVuUGhMZ3RhRmxGRFlYeWVNNXpKaWZ0cTJwcUlUYVNMTmVCcXlFTnVFRQ?oc=5",
         "title": "특허 절벽 위기 화이자, 신규 항암제 사업으로 승부수",
         "date": "2026-04-18"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/914672/the-ram-shortage-could-last-years",
+        "title": "램 부족 현상, 향후 수년간 지속될 전망",
+        "date": "2026-04-19"
+    },
+    {
+        "id": "https://techcrunch.com/2026/04/19/openais-existential-questions/",
+        "title": "오픈AI가 마주한 실존적 질문들",
+        "date": "2026-04-19"
     }
 ]
