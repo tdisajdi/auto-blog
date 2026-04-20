@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPdnBFUzZYZWp3MHNzZUxxMEp1dlJKUUdWV2M1bnE2S3VtVEduU2JCZ25UZFpEQkFnQXlKV1Z2Njc0NHQ5QjRSbjVReDlrZEdGbGFNcjFaaUxBQlBDUEQxSVJvZlMyZ1Q4T1pIcGJla1JMUG90U19ZRUFOWTBsTms2ZlNtNmhSWEdRZmR6SktOcWJ0SGdTMzkyTmw0X2pEYXFPa0FmVg?oc=5",
-        "title": "노바티스, 경쟁 심화 속 20억 달러 유방암 신약 인수",
-        "date": "2026-03-21"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNWZZWnQxWUdraE1ybEFqVGNTUFdHSDlrLThxTU1sZ3BLQnZneW5scVdibFIyQ2FVeUZvRnlKYnRrQmRkWUh4R0djZXlSNEItTVJaNHFlY3VIV3oyUGhLazBqczdrMW53YTBMdzdJNHFCQ3VaR2ZrNnBKbDNMdF96WE51RWZjWTctekNrU2k3Q3cwdC12LXJrbDRXV0NEUm8tcFRFUEZzN05LWld2T2Mwc1M5WFloT28?oc=5",
-        "title": "비만 신약 레타트루타이드, 임상 시험서 유망한 결과 확인",
-        "date": "2026-03-21"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNMEp6WW1BemVLOVRXOVprYXFmb3E5X1Nsc1JHajUxU0dKTGZiVERoOG1hWURpcThJZW1wTHg1ZjZpSFltOTQwbjZRVUpldVVpeEhNN29SZVg3X1V5WWdoMk5sRzBNUHB5Q3d6Q0NlZUlLYkw0NFlIRG9DVnJjczAwdjBVM0lVTkxBLW5hUS0ycEVHdEJrRXd6aUlidUpqWFJ0Ty1TSXJzMVVaVWNHN1VCN1VKYkNhV3prUU9Cd0x5UVdzSEhQZ2t4dXVGYjJ5ZXFxNmUzZGRVS28?oc=5",
-        "title": "노보 노디스크 특허 만료…인도 저가 비만약 시대 개막",
-        "date": "2026-03-21"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNeTViVmNLc0szS0hXc1NIc0RZMzNoeDlRZkZ0Z0dCNVZ2MEJqRUd2dXlfZEVXRHNYYWxIU1dSR1FVVlduOW5mUW5nTUpkSFJhVUhuaFVsZ3RuRnhRRGRhbnJTWXhFcUcteURYT2Z6N3oxY2RuWWt5SjlUcWIwaldNd05wbjFRZ2VJaTh3UE1McDRIRTJodDVyMHlzekJ4SThpcTVzX0QzZHQ5Y2g0YmNkY3g5aHRHWUg0ZnlIY1hSQWRzV2pxSVo4?oc=5",
-        "title": "가와사키, 역사적 특허 소송서 4,800만 달러 승소",
-        "date": "2026-03-21"
-    },
-    {
         "id": "https://www.theverge.com/games/897982/gdc-2026-ai-game-developer-conference",
         "title": "게임 컨퍼런스 휩쓴 AI 열풍, 정작 실제 게임엔 없었다",
         "date": "2026-03-22"
@@ -578,5 +558,25 @@
         "id": "https://techcrunch.com/2026/04/19/openais-existential-questions/",
         "title": "오픈AI가 마주한 실존적 질문들",
         "date": "2026-04-19"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVmNTcnQ3cjNRRmlRMnhaSHlGRHNaaGNfb2h6Z3BlRDhkbW1uZU9BTkg4Y0ZMOEtjSDU1VU9TSEVjbXhEY0JPOXM1ZDF1a2Q3M2ZpNlF5dFBmRnZOa2NzTUY5MmpMSjdEY1lhWTdYbVMwcjJGQUhNM3BoWHh6SkYzQzRpWEdoWnktM1RwTkNJNDBsYWFaNC1R?oc=5",
+        "title": "Lilly picks up another in vivo CAR-T company with Kelonia buyout worth up to $7B - Fierce Biotech",
+        "date": "2026-04-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNaWRObGhOSllKblFxaXlqYm03b3VsajRGc2dwYUNhQVRLbU1FQkhENFBwbU5wN1dfck05WG9uUmRnb1RpUUtNbmFzeG5CSG52WnprcGhDSXRVTkF6cXdMN29yLUE5b3Q0bTZNeVItSzh6UEVWNms1RlVYdmExRTJaZ3VaUjM?oc=5",
+        "title": "다시 시작되는 바이오 IPO 열풍, 그 이유는?",
+        "date": "2026-04-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOd3EtSXVvUzBWVlBkOEpCZWliWWY0dTNmb1B6M3FHa1ZWcFZEcm04Qkc3UHdUTldPN0NhcmRyV05RWGcxY3JLMDgzZzhlTFA3LVJIdU5Qb0xocjJ4SkJlaDBsVFNrZWEtM01GYTIwZmRVUUYwbGthVjNwMHllMGR3dG80LXhsdlNjWEc4MW5qZlM2X2l5Rm5VYXlnVzE1TTVZUm5vS3p1VHU?oc=5",
+        "title": "미국 특허청, 트리나솔라 탑콘 특허 무효화 결정",
+        "date": "2026-04-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPdl92Ym80ZGtRa1UtMFo0am5uZWx2SGg5RUJieDR0TnBsVHZXc0VaeEpLMld4Szh1WlpEUEJVOVRLMVhtREtNUERhQV9hRUlveHBEQ2xaVUVHSDg4ODJKZ1NlUXZhOC1vV0VlYTJjM1Qza1dUU1plZ0pqMmZySFJZbno3X0tmRmNK?oc=5",
+        "title": "머스크가 밝힌 테슬라 옵티머스의 충격적인 특허 내용",
+        "date": "2026-04-20"
     }
 ]
