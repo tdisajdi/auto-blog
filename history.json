@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/games/897982/gdc-2026-ai-game-developer-conference",
-        "title": "게임 컨퍼런스 휩쓴 AI 열풍, 정작 실제 게임엔 없었다",
-        "date": "2026-03-22"
-    },
-    {
-        "id": "https://techcrunch.com/2026/03/22/elon-musk-unveils-chip-manufacturing-plans-for-spacex-and-tesla/",
-        "title": "일론 머스크, 스페이스엑스·테슬라 반도체 생산 계획 공개",
-        "date": "2026-03-22"
-    },
-    {
         "id": "https://www.theverge.com/tech/898815/samsung-quick-share-airdrop-support-galaxy-s26",
         "title": "삼성 갤럭시 S26, 에어드롭 기능 공식 지원",
         "date": "2026-03-23"
@@ -578,5 +568,25 @@
         "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPdl92Ym80ZGtRa1UtMFo0am5uZWx2SGg5RUJieDR0TnBsVHZXc0VaeEpLMld4Szh1WlpEUEJVOVRLMVhtREtNUERhQV9hRUlveHBEQ2xaVUVHSDg4ODJKZ1NlUXZhOC1vV0VlYTJjM1Qza1dUU1plZ0pqMmZySFJZbno3X0tmRmNK?oc=5",
         "title": "머스크가 밝힌 테슬라 옵티머스의 충격적인 특허 내용",
         "date": "2026-04-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNZEtGM05YRGFndDdWM2ZBTldUY0NVenM0WC1HYjhyWnMwdGtZZDM0RlZGcUhCTmJrMmxnTGlVaXU2aDA5T1pfcnNmYmhfLVp3X0JTMjZkdnBWUHJoRVZId3VQbG93UmNfOXZRM0lDSVp2VmR4OEtBQ2tKZ0hveTFjcEZLMTZYbmFTa1lGbURWN0RxeU5xMGV1OXU2bVNNNmNURU9qaDVBNnZXVjJHVDlNSld2WDRzdw?oc=5",
+        "title": "바이오 혁신 가로막는 정책 규제와 자금 조달 장벽",
+        "date": "2026-04-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPa3FhZlVKTzVkaWVsUy05MzNxNDktMGpQMHJ4NDhqcHVSamluTzhsLVJCaERaWmVqTDFfdm1NM2xWOGRIMVpxaGE1aHpiVVI1NFlvYk9TbXhBOHFXVzNTYUxCYUlIMF9sYV9zdUw0TDloUFFIQnU2Yms3aHA5VndMVUFpVmoxMURnYXZPX2NRZGZmZ0ItdUNSQTJOYmlMdlppM2pfTlZsU3lTYTFQY01XNXM2WC1aYUM0VnQxN1dMdUZROXJrYnhWcFFRMWFPNTZJNFY0SHp1RQ?oc=5",
+        "title": "바이오라이프, 셀실 크라이오케이스로 바이오 혁신상 수상",
+        "date": "2026-04-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNZkF1S3RQSFNhTlVlQU5odldwLUY2ZmMyQjVsaUd3MEZTREZlRDdCRU0ya2p2Nm96eEpaU0pfZ1haOUFoVDNWY1d6SjJHY3JaMlZlV2xjLTlaQzRiYjdQWlg0TGxJZ1Z5bEpqOGhXVk0yMzF2WFJnTFUwWElkcG1tZ1NRd1I0X3lyQXFiSzJCdGREMTB5VW9mbUNwZnNDOHJYdks0NnJCQjFDcWpGQ1c3UFlPWF81bDc4alpsVW02NHF2MlUxYWNzWnB5SEhTRnRhVEdyWg?oc=5",
+        "title": "메드테크 시장 반등에 대비한 전략적 지식재산권 고려사항",
+        "date": "2026-04-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNU1FFR1pEQ0U2d0dmVTRUTW1sWUJJR0QtQzZLeXZQR2lYZlRkWl9FRUxMdFZoX3FCTzk2b3o3dThVME1RUm96cmRPUC1NSHNsRnNfby1neVZXVVF1c3FidkI2d2VjMHJBVWd1Zk83WFNZQWVYd253S2pMZ2pRVzE1bnpXcU1pWUVzV0Rzdm9WODU2QzJINEpMeDNqd3VWVXJ4aWZ2eENSUQ?oc=5",
+        "title": "에너지저장장치 특허 분쟁 급증과 개발사 대응 전략",
+        "date": "2026-04-21"
     }
 ]
