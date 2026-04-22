@@ -1,55 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/tech/898815/samsung-quick-share-airdrop-support-galaxy-s26",
-        "title": "삼성 갤럭시 S26, 에어드롭 기능 공식 지원",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://www.theverge.com/ai-artificial-intelligence/898722/musk-terafab-chip-plant",
-        "title": "머스크, 텍사스 오스틴에 테라팹 칩 공장 건설",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPZ0dhMFBhSU5ULWJyak9ZcWY1MG1UV1hUdGlNX1ZEbjZyTGVGUWRja29zS1R4RWNYWjVFak1kaENMLWJVSWsyNnBvTWRFQ1pWeVdIZEZXUi1ueUt5VWk3WUxRTmFidGFUbHhPTUZtY2tSV2pzT0t5NlZyX0RmWFY3SmdSajNKeWRBdk8wSUZRNW9NYmNOOU1pQnJBSnZoWldDRUJrN2s3Nkk4Q3EtWjY4Rk1qalBJREZEbnJQdTBqMndpeGlmbjZleWFmYmduU0laTmVONEtEcw?oc=5",
-        "title": "Gilead nears up to $2 billion buyout of biotech Ouro Medicines, FT reports - Reuters",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbDlvZHNjOWxSMTBvdzZVa2htYXdudTRyQnBXZnZTV0VUb20yYVU2ZC1NZVNqblBqTllFNThVT05pZ01Ma0NJYTFhRmFHSF9hY2VOVTNHOERIeEhJUERrRmFzSDh1bmw5MF9od1VWQnNzSTRrUW9FZXo2WGhhaTRkNGtwTHpCNW5IZ1U1LTg5Z3FRWkp5NjJ5OWJLZXBlZw?oc=5",
-        "title": "경영진 전면 개편 소식에 오리니아 주가 폭등",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNSWZ6dTRyWDhQNERZRllFMC1nTnBWOTJ2NWh3QzlJNWxWcnZ5UmVWT3NZVFR4cTF6M3Rrekh6TENSV1VYTlpNQ2c4Z0pyY2plMHRaX2pzc21lTEJoakJaNzZRZE83c2YwSmtYaVUzS0xKRzktZHBYSG9GUF9OWWE0akpkZVg5blE?oc=5",
-        "title": "테슬라, 트레일러 이중 배터리 주행거리 연장 특허 공개",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1QZUl5Qmt2ZE00a2xrY1lsXzZYVzViS3NPdUJHal9uT0lZWGtrY0ZVVl84T0pmT2M1eEFfcmh2YVJST2Fya1gwbDRrOExIcTFpTTR3NDdEV0RSc0JCMGRfWWhhbDdVRk1ZYi1qTElITlZRVFMwaEZ3?oc=5",
-        "title": "디제이아이와 인스타360의 특허 소송전 본격 격화",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPVlljU3RsZ0pFbDMxY3lFM1NYX1JBb1o3R19ZVlFiblJvREtjSTJGZmRuaGx4X2hNT09RcWVEZ08yUk0xMi03V3ZDQkp3UFc3M19UN09BMnRsRUJMZjBFQUVlT2MxbngwRmpOX1Y3WWhwZEpSQ3RQeS1HYzk2YXVkdkYzejA?oc=5",
-        "title": "길리어드, 자가면역 기업 오우로 20억 달러 인수 임박",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQQXpyWU9lVVZmX3hEZTdLQmsyWm5BRFhxbmxucXBlX2JGcnpNTm1aVkQ5V0hGWkJhQjVnNmlRTjZxdFA3Zk9DaVJCN0FoS2FSazctcXBubUF0RjNCcldMMWR0U3R3Ni1GQWJNOEpDNkhSakh5QkFCLS1DYjRfdVprWXIwNWsyYTNrZkFKQTBJMjNfeTIwWW9QVUF1eWxoMFVEMHpHd3Y5aUYtQ1VnWUE?oc=5",
-        "title": "호지킨 림프종 1차 치료제 옵디보 미국 식품의약국 승인",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNUWdPQTZNRi0zYlhWS0Ftcml6MHJRWXNISGZmcWstXzZXemtsTW9SckpGU01VeXdfbU4tbUl4RFFibl9WbnpsLVVHbEpHT3A3NU1oUmhVRnc0a2lTWlhrcmNGX1JOZVJHZklUcW9KU2xUcGdyMWotVVRsZzNKTG4wVlZNblJTR0h1RWxOZHdzb0JEUUtPUWowY3NpNGxOZE52eDN4eFE2dE5EWGRyX2NMUmZ3?oc=5",
-        "title": "노바티스, 역대급 특허 절벽 위기에도 성장 지속 전망",
-        "date": "2026-03-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPa0xFZDhqclJPNldrbHVnMzdNczlDYnVRaWlIeFkxS3dnalZRQjdMR2VkWERnU2VVWngyOEVYMXdaaDZlaWtaNFlVZzhudUtJQzN6UUpqclBSRmJUQjNpcGdkUmhkYnYybHNUQnlFX0V3S3ZELXRPUXBhZEhueVJDZ19xd284blFmQXdDUWVETW1XdWlIdkJRcllJdnhjTHAyZ2M4eldvcGU3dlZYVGc3ZXZTVmtaMWNtcDlFajZ3?oc=5",
-        "title": "주행거리 불안 끝? 테슬라 신규 특허가 예고한 신기능",
-        "date": "2026-03-23"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNdktWaHg0ekd0YW9NR3pib1F5eHVxanFhLU10SzgzcGNyMzN0enlUOG5yVmxxZlUzcWpGdDA1d1ZPLXBlX2Jic1RaWFBTaFFFLXpuWnBoWGkyZWtWb0twZlNIUTB4WWRWMk5jUEM4bTdNbnVuU0lvREQxVExjZ2ZRYVRHRDFvXzNMQzVseTB6Q25WYlVxWVVZb0Y2Mmo?oc=5",
         "title": "길리어드, 면역 바이오텍 인수… 갈라파고스 회생 신호탄",
         "date": "2026-03-24"
@@ -588,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNU1FFR1pEQ0U2d0dmVTRUTW1sWUJJR0QtQzZLeXZQR2lYZlRkWl9FRUxMdFZoX3FCTzk2b3o3dThVME1RUm96cmRPUC1NSHNsRnNfby1neVZXVVF1c3FidkI2d2VjMHJBVWd1Zk83WFNZQWVYd253S2pMZ2pRVzE1bnpXcU1pWUVzV0Rzdm9WODU2QzJINEpMeDNqd3VWVXJ4aWZ2eENSUQ?oc=5",
         "title": "에너지저장장치 특허 분쟁 급증과 개발사 대응 전략",
         "date": "2026-04-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5KOVVDSTBRZk04NVNtTTl4eXloWU16V05va05XZWNCN2dUQy0yX3R3ZmRyZzd3RHNxTERDeUgxS0dtdUtfbFlWMmRHWVlwS0g1Ynpac3hfSTVVNVpBS2VLS19TS2RHSW9CNnlQd0x3Qk1KUlo4?oc=5",
+        "title": "이드빈소, 미국 FDA 승인 획득",
+        "date": "2026-04-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNeU8tZ1NfcGcxTVdQV3BMUUNGc3ZObGU2UWY0clFISDZjeEtfWDg2THl3T1VFc0dLa3ZkQi1zODRMTkp0dnJoc1hqV2dxeDZqV2lsLXZvQ0x1T1lSY3c4c2pfc1JUbG9GRHJ0SWJkVFhJckpqN0NUNHk2M1d6R2RqNlFCNkNKcGZB?oc=5",
+        "title": "일라이 릴리, 항암 바이오 기업 인수 계약 체결",
+        "date": "2026-04-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPcVRvOV91ZXhSQkZpQjdWcEJHbGpMMDZOOTZvZldZV0QzdTl5cjB1RmtrSjNxd0NlQlJ6aHluam9xTTNJY0RhTjlmSFI4UWYyZVcyalZWdWNKZW5NWW5LZkJVNTZhTzFOVExTNnoya2tjdVdxalZ6cjFmZUhmQ3J1WWE2elQ1VTFfajdGdkxPc0tBNkctSl8xczFkcmpGelXSAaQBQVVfeXFMUGJWcUZHTW1zNkdaUGFrMWt5RDQ3ZUdVczJHMGFxR1RUQ1BERmlzMjAyRW1yRW1QZ3ExNXBkOGZDYlRQVTNpSVAtejJHa2xQbDlYaWFkc3JocTJraUZxNGE2ZEZsOW1SemR6c3RNX2g5UlZEeDZOVElrcm9Jc2dfcjk4OU5zeUlMeDRDLVJhTFJLbnZ1UGJheTAzM3NHZE1VaGFoVmw?oc=5",
+        "title": "OpenAI Patent Reveals Custom AI Chip With 20 HBM Stacks, Using Intel EMIB-Style Bridges to Smash Current Limits - Wccftech",
+        "date": "2026-04-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOeTdwUDhodzZYZDg0N2FhRVZuc2Zza1A2REVBOEVRNjc1Q1d4NlhDNGdLcldQWnFhdjluYkp5T3hyVElIWHExa2tNWk1IRkxVc1J3OV9sblpwcFFHdWUyYndfT0FEbXR5UzBPNkx0R0MxaEVvMzRacHlHcXRpbTI5RGNzX1hQQzdJeHRtLTdPcw?oc=5",
+        "title": "Nio Hit With $250M Patent Demand Over Battery Swap IP - eletric-vehicles.com",
+        "date": "2026-04-22"
     }
 ]
