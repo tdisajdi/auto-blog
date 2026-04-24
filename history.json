@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiqwNBVV95cUxNQzEtaTduX0p6YjM2UGVKR2lHaFZheUNWcWJXUzRobjJSSjUxWnktblRpSUpBMWlKemM3aFNNV1dLUFVzTm4wU3lkazFZbGZfVTlNbUF5TmEwWktodXB3WDg4bXpxVVZTajNEc0xQdS15OF9Fb083c3RSQ3Jpd0V4aGhwQTJrdHhodnlzbVBLWlNxTkN1a1JtZTNia3NCdWRtWGdDUG9zbDVCR0MxMjhjakJBVUUwRUZPZEhkT2dvQ1NxVzh1S05rVkNQZ0RSZmdpbkowd3padzRsVDljLUNxRUJjRlNWMjdaWXhjR1JyVEVPUWp6U1JvNzEyY1FOQkZJVWdIODNNSDlsX1dYMXFjNE9sOFNmb2t0THRhaWNFY1F0VHNxYTRjV3lsLU9FZ1R6YzF4Mmp3eGJFbG1aM19YQmtjNzNrR25SRlpjcmxrbF9ldm0zZXZDT3ctbDhra2p0STgzcXVtTEdVcFZ4UDBkYXpFUlVKcUdoRHFNa3ZjdHMzSlFZM3cyZ1Y0anhKM1M0REVfSlNMeXlzYkREODFac3hfZmtYRE44aUdF?oc=5",
-        "title": "머크, 항암제 기업 '턴스' 약 60억 달러에 인수",
-        "date": "2026-03-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRzFCVmZQQjNuTU9BWW9qYU5tYUVQcW5tTXJSMXluaVE5M1NEMGplMXBBOUEtUFVXSUpvMXA0QjIwaHJncUhzQnluQXhpaHZfOWhmYjRxV09OQXl3alNzYWtRQjlNb0VPdXpPZExjcXVFOWI3b0hOQ25MdnV1S213dmMtZE9UMkl2Z3ltX2NlRVB3cDBoTmk5dDNWeXJhRGU1bFRydDRheDhnd3BvTE5fLTktbjJ2RjU4WXRTUVo1cUM?oc=5",
-        "title": "노보 노디스크 당뇨 신약 중국 임상 성공 글로벌 가속",
-        "date": "2026-03-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNX2ozWHJmNjd0WVlFbkljSmd0VnNKQ29YZWRCSWRUd0NjdGlBY2ZVYWpkWmtXRVZYUmRxWTNSUXlpSmw3NDFDTHIyZUNxcEJFdENfRUNvUG1fX0M3LXBUQ2gyd3prMzYwN1NBTnlnNG8yWTc1Vk1YZkZrLWpZQ0xDRjZVNTYyRl9EY1pIOVZYOVV3cnctMC05U3ZUaEwxLV9fTzlpR1NqVXM3R2xxeUtCZWtxb3pQSnVLWTJLdFlmMGw?oc=5",
-        "title": "특허 패소·천억 적자 고프로, 2026년 재기 승부수",
-        "date": "2026-03-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOX2swTUJhNGpMRkVlZ0dhQU9UN1dnZk16ZmFma2xORzBwMFNkR2lNcFE4dE5CYldFU3VpbUZUX25kU1RZM1lteHBkakFfSmVZVHNBY0FteU9RMXR6Z2tqNlpSZlkyTTdvdFRCendneXhFQkJOLVpERmh4YmN0Wkt6ci1IR0tEekV5SWVhLWtGWHZ2RDR1YnExTXNn?oc=5",
-        "title": "매그니피센트 7 기업의 특허 부채 분석",
-        "date": "2026-03-25"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiqwNBVV95cUxOSThnczZIWFFleXdlUHFadXZCSDhPWGlnN1Y5T19MVndSNTR6dHhXWUg4SVdVLXl6VkRzbFRmb1lJUktZUDI3eTYyQXZHQnZwck9Jb183WjQ1NnB4Uk9Zc1FuMlQ2aWNFZ1ZvNGF2WGphVE5ub3VNU2tic1IyWHJUNDVINXdmS3B3SWhaMEZKRnlWaDRtRndSNEN3NTE3V1NqTVlNQUc4dEVWZUVyazNBbkVPQl94djRzeVotV2VHTmVqWjdNM1RyU1Z6UXJ2LUZfczA3WG5uUW5DX215VFhYdWVWdGVuSENyOEU0N1JrRjJVWDBrREdiRjJFaU5yZ29qYUtseVhwaFlxMzJIYW1vak9FR2JSMFNuR3JFTmVSUnQ1ekU4Z2lrdmpiajRrdEh2a1F5eVYzYTZVeElfVDhjclVZcXlCbE5ka0tUNkNxeDd6ZUVDNzZfU3J1cjJZRl83VUdJVGw0RG5SNWQ3QTd4SUVjaTNpYURFVkJSb3B5OXVBQmNHaTZyVFhETlZPdmYzb3c3LWdGclFGdlMtVmkxSkdsSHZFUC05cW9B?oc=5",
         "title": "머크, 60억 달러 규모 항암 바이오 '턴스' 인수",
         "date": "2026-03-26"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxObktQejdwSFdPME9QRVFsUzZVbHE3TWtSMVJ0dEVVQXN0RTVxU2tvRnlmU2VLcEpCdmc4dHc3RmpzSWNsS3FHYWkyVXczQkpkdXRsRzl3dFZ2ZTBDMDlzaFkzUEgzcXFrWmZwUTJ4M0d2QUF5a2prZlhjUm5JY2ZpOUZYak80Rk13SmxaTHJuYTFDTi1DbUJqdEZHQnpkSURHaGQ4b044TUR2SENwT1kzTWJRTThBS2pEWEtTOA?oc=5",
         "title": "## 노키아 1분기 특허수익 10%↑…26년 매출 정체 전망",
         "date": "2026-04-23"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQTy1PSjZZdzg4cV82ZjFUNzJnNzVYb2lycUl0UE1pcEpLQ3htdkJpZXVDTGl1cElZMUdvZnNhaDRIMDVCeklYMVk3cFRWWDZBMEI3Qi1PaXFYNm5YcGs2U043NzN1TkxWbFF2aVlHcTdzenhPR21UTnJXVmtocENwdzNnWQ?oc=5",
+        "title": "## 일라이 릴리, 경영난 항암 벤처 32억 달러 인수 이유",
+        "date": "2026-04-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOeXA1NXBtcHRreWhab1BjcS05M0pTam9GNWVzTmdqbjRYbjB6MmlOM2JuZGNoNDMyeVZPMHl5Y0EyUHV5QzFOUk9MZjFwTlhkbjNFd0lXUm1JUXFhRF9SMGpER3RXWGNPLUV4M0hXZjh6RDU4NkJQTEpnQWctQUZWT3lyemYzV0Rfc2oyT3VMcW5QZ0NyVGhrWERvd1VTMGM3Z0Zlb1BGWE5JdVJDUXc?oc=5",
+        "title": "신약 승인과 임상 성공, 코셉트 테라퓨틱스 가치 분석",
+        "date": "2026-04-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOVXo1ZWNwR3hBbTM4X0tLVTM0bG5wSFZVc0trSnBuMmZUbFZHYXNqQUI1TlJJYklOYzVOQnpyYWVybEREM0RRYm13YTI0QXBhUW9uN0hIcmlsYWo2RTVYZnlhNUhLUERPb205eUhsYnRxclZEd1pGRnVleTAtNXhnajYzSE5MeThOSjlpYWs5eGxJVGtjMFlHMFk4LUgwVkVFaUNRb3d0WDM4ZGtOX3A0clQ4bDNTdVk?oc=5",
+        "title": "큐어백, 모더나 상대 코로나 백신 특허 침해 소송",
+        "date": "2026-04-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRU9CckNNbDdBRTFObmpuSGc3a01BdF9Bc3BwRTE1cmljMlpRVEVqQ1A5RG5rRWEwVW9aX3NYZFBJZS1NLThFQzZ6Vzh0NjlDa3VFNGpwZmh3Vm5BUjBxM3RsejI2a3UyM0tYRFU2RzZadVhhcFBTdVJoM3I2aW5nNDloUHp1ampKZGdhTkkxb0FXTDZDNFpibFYzRWRySGlBZXY4MVFCTlpDUThFOExpT0pRZw?oc=5",
+        "title": "마이크로소프트 코파일럿, 인공지능 검색 특허 소송 피소",
+        "date": "2026-04-24"
     }
 ]
