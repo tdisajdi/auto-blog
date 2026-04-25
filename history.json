@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiqwNBVV95cUxOSThnczZIWFFleXdlUHFadXZCSDhPWGlnN1Y5T19MVndSNTR6dHhXWUg4SVdVLXl6VkRzbFRmb1lJUktZUDI3eTYyQXZHQnZwck9Jb183WjQ1NnB4Uk9Zc1FuMlQ2aWNFZ1ZvNGF2WGphVE5ub3VNU2tic1IyWHJUNDVINXdmS3B3SWhaMEZKRnlWaDRtRndSNEN3NTE3V1NqTVlNQUc4dEVWZUVyazNBbkVPQl94djRzeVotV2VHTmVqWjdNM1RyU1Z6UXJ2LUZfczA3WG5uUW5DX215VFhYdWVWdGVuSENyOEU0N1JrRjJVWDBrREdiRjJFaU5yZ29qYUtseVhwaFlxMzJIYW1vak9FR2JSMFNuR3JFTmVSUnQ1ekU4Z2lrdmpiajRrdEh2a1F5eVYzYTZVeElfVDhjclVZcXlCbE5ka0tUNkNxeDd6ZUVDNzZfU3J1cjJZRl83VUdJVGw0RG5SNWQ3QTd4SUVjaTNpYURFVkJSb3B5OXVBQmNHaTZyVFhETlZPdmYzb3c3LWdGclFGdlMtVmkxSkdsSHZFUC05cW9B?oc=5",
-        "title": "머크, 60억 달러 규모 항암 바이오 '턴스' 인수",
-        "date": "2026-03-26"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbGFTTE9hLXVhU3VNT0pJOFVabmxDeVhvYi0wMHRFX2FxUm5wdlRLbUFteTFWaW9xRDFHVVZ0bWhQMVppMEZBT29ZS1A1OE8wVWdTTTBQTFNYdGJIUXkwWHk1cThta1dHa2phSmg3XzQyTk1tSTVxMHNnS2xIRHpNcFBvaXg0RVdTVkpnWDZjby1TSHBLVHJ6RlVhVDdJSHE4QVBUd1B2TTQyX1gtWkRYRUdkSURpQi01Yy1GVGx4S1FFa1REQm5yRGRLcw?oc=5",
-        "title": "데날리 FDA 승인, 뇌 투과 치료제의 새 지평 열다",
-        "date": "2026-03-26"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipANBVV95cUxQYUtpNEFwcHVITXZwNzNyRmhqaGRLaXFaMWd1ZW5VNWZ4UkNETkVuYVJobUg2WGh4aVJnSVRUcHVmUDB0NzN3RFRteVZVdWQ3WWlENnJ2YTB0SXNlSWpCMUViRzlvczlkQ3Y1U0ZnbEphejJ5RGZINW5sWTg0SmZKRnNYMk1CT0IzNkFzcHM4LUZuaGgtSVlOSVg1OFVteEE3cmlrTS1vTFVGTF9weE5lSXdoMUNvTVpBX1dnSUNFUDRQZ2ViMDZpSmxJQ2tGUHlCT2JNQTRoV3FtOG1ITE5kbkhhNzI3MFdyQ3hVZmJKT0kxUGhPeWdLZ2Y1eWdKQU9yQmMyYjFQQUZybG9lT1dsLUVMOGM5UlBzMFZpSXNkZjloc2lHWGV6NlY0ZWRwQ0UxejlMVjR6WGI1YlowcVZUNTJkR3RJZlJNYU14TEY2enk3NmxhM012b2E2QmRzaVV3Z1N1MlpkNm9xRmJfQkdNdWNUMkVDWko0RWQ0QVU2cERFTWVnanc1SUFFUGRCdmNKaWRNM2FqWlk3Z3RmR25uNjBGdFA?oc=5",
-        "title": "글로벌파운드리, 타워 세미컨덕터 특허 침해 소송 제기",
-        "date": "2026-03-26"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB0TE5EaUtxemVPYnZYQXJkSlh6UEt5TFJ6SDdPTzIzRkM1cXE3SWgzY1k2MjNvNXRGZzBJWVVjRTEzWDktYzRBQVQ0ZnkxYWhMVWNWZXpmeUt6RHB5NHBfNkRjbnJ4dDgyWTgwWFJ1dw?oc=5",
-        "title": "특허 절벽 위기에 거대 제약사 2만 2천 명 대규모 감원",
-        "date": "2026-03-26"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPWDVEZ0VCRW93QVE2YVJvWmVXR0JOdXNwaWxBVnFCUW1IRkg1Q3l3Nm9ZNVVocHJJUi1GUjF6MHBoZWJyZG5jTFJRQWxYZVJHMllpcjZUT3JCc3ZqSlhyQ1p0aGphUU9sZi14YmNDRzMwWnc2TE52NmlPMmFhMzN2R3dIVjQxeTl5WHdB0gGQAUFVX3lxTE9vdDRvQ3F5dFdaem0yUkFGTVFRdEI0ZE5EeWxtUzRiTk9GQTVxcllvenpMMEdQYm1ERWxiRUJORmtFUTU1WFY5Q2ZlaGJ3LTJzUnprZGVfZUJWUzJIT0JaV01iZ2VNSlhLTko5TWp1RFFEbFQ2dThPTTFvVFpXMGwwWWgtVENvWHFwd3ZVUTdLcA?oc=5",
         "title": "노바티스, 엑셀러지 20억불 인수…일주일 새 두 번째",
         "date": "2026-03-27"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRU9CckNNbDdBRTFObmpuSGc3a01BdF9Bc3BwRTE1cmljMlpRVEVqQ1A5RG5rRWEwVW9aX3NYZFBJZS1NLThFQzZ6Vzh0NjlDa3VFNGpwZmh3Vm5BUjBxM3RsejI2a3UyM0tYRFU2RzZadVhhcFBTdVJoM3I2aW5nNDloUHp1ampKZGdhTkkxb0FXTDZDNFpibFYzRWRySGlBZXY4MVFCTlpDUThFOExpT0pRZw?oc=5",
         "title": "마이크로소프트 코파일럿, 인공지능 검색 특허 소송 피소",
         "date": "2026-04-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPeGRQYm9ZMC1yeXpDVEExcWh3a055bFJieHFwTXlNVFNXNFcxMkthcDZOZ3JHNTlUc3NqdFpCcm9KWEVwOTJjNG80V1VhMGQxMjVldzZENk9ncWFTdS1qU1JXczBXa1paXzhZMEFsZzVsOVJybzY5TENwWGgyb05aOVh4aFpBbVc1cWV5TlR6MGx4Q00yWHZJVk9BcmpEZm5tOV9tbVVmRQ?oc=5",
+        "title": "써모피셔, 바이오제약 수요 강세로 1분기 실적 호조",
+        "date": "2026-04-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPNkdwMWM1YUdzNTE1RFdHNkFpUUVtVFYwcmd1VFBKbjNCZ1hZS21ITGtoSWszd0JKeURJVUotU01SVnZxUlZIMGlFU3VLSmhPaUdpX0FaRU5VNXFBa1lkTzNwQWxjSlYwUmNuWm5SYmlmc3RadVU0N2xRYmtJMUxtZVV3cmEycUJRVHVYbG5wTW1RbXgxLTZwbkR4bDlLdHZjaDl5eQ?oc=5",
+        "title": "리제네론, 미 식약국 승인·약가 합의·임상 성공 3중 호재",
+        "date": "2026-04-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOelZpVTRqYzN3UEE3eTFrc0otc0VZRi1MRGEzb0V6TlduYmExQ2NJM2k5VndVV2pnZE9hdTRmcXd6cnZ2eTRxZDgtQWlpYV8wRW14ZGVaLUFEeGp2dk5LRmdTYVp6MWt1WVBlQ1dzLVZBN0dlZTVTVmJjQnQweURkMzZvd1ZWTGlGT3FLYTVNNA?oc=5",
+        "title": "사노피, 듀피젠트 성장세 속 미국 독점권 연장 강력 대응",
+        "date": "2026-04-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQN2YtLUxvNWRHTzRxLTF3emUxV201eThyZmw1TDZHckl3M2lJVGkxanI3TFpBLTRLei1SZ0JnV2FHRk1FcUc4VW96SjFEQTVJU1dQT2NjS2lDZTFxbTIySHFubHlYMGNzYjEtNDJ5eWFDYUs0VmFUUHBRcFpKZ2VMMGhBNElFQ0dQNnlSWHROWHNPWDZhdWFjSXQtSkNzOXFpN0tUQQ?oc=5",
+        "title": "미 특허심판원, 크리스퍼 특허 분쟁서 브로드 연구소 재차 승소",
+        "date": "2026-04-25"
     }
 ]
