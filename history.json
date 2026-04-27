@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPcExfZzVNdUI3Zl9PZGVkTzliNFlSMElaNTJRZ0o0a1FtS05mRUdxT09uZVFyeXNrWllNamVMS0hpcjNzampIUWMycUxtTFRPSTVSMDR1Z19fU0sxNXFEQWQ0cGc4RXF1MkFPdnpMN0VMUzNzblY3LVd6NHRWQ0VJZzNLSjJMeVdPWjdHQzZERnVIcjBGRUVTR0ZLNnc4RkdwWUJuWHdWUUJLVnltOC1tRXV2Z3ZwOHlaSzFiTUJkcHNUdDRkLV9BbTB1a0Q0V25pTWJUU0NnRmJGdw?oc=5",
-        "title": "35% 급등한 바이오주, 분석가들 \"더 큰 상승장 온다\"",
-        "date": "2026-03-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOVEhsNlJYR00wUkNiVmRLaUdFWjBHU0t6cnFBeVNhTF9iQWI1ZEJoVGt0b2ZCSlN5TnFCdEUtYXlnSXVNd3lOTmVrZElYczVSTlB6Vll0TTEwbFIzTENIeXQ3UU5FWUVuQV9uTnVlTkxua1hpREhGVUFPdXJuVXpXRVZYbERJcjBjaDhta3hNYS16V05CRHdrZkhmYm9VYkxQeDlQT0VWaHpVUVpadEVLbHYzNHljZU9mVXBZZ1hxYUpHcy0tNV9PdklR?oc=5",
-        "title": "노바티스, 미국 엑셀러지 최대 20억 달러에 인수",
-        "date": "2026-03-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOMG5pSUpLLXh3eUtOd3pNR1N3WXdxdFNsZ3hMXzZPeTZzczlVOFhLcHBxRkdNTER3MmhJcXV0MjlNSWhRVjJSMXNhN09JTncxYWNBOTM4VmpPQmI5clE5dWc3YjBiRk9YejVPX3pTbHdOWGQzNkRGQm15ZGlZNVV5Z3ZDY01lVUgyZDJjOXhCd2FETGo2Q2pPRGZvYzhyVDZnNlh6b2RockFfWnJLY2FVdGVGcjhUTGhwbWF5cEhadExwLWE3Smx0bUlwYnFPNzZWZWhfaTU4ZjE5aHNhMFl1ZkdjeXJtcGE1MFZr0gHwAUFVX3lxTE85bUM2dWJ2MnBpa0NMdXlpY1NOeTdVRWc5Z3lEcWVoVTlfdWlqSGZOR0Y4MmxVTDd3Yk44VFBYNkFWY01LdlpzUmk1NUhQaWJkWXJ0TG10bVQtOER1eGNUSl9heVJmdGlxQ3ViQlg5RFNaTHZXSFZpQWtaNGx5MVUwTlFmT3BUV3VJV09leEdnNERDNGd4b2RQZ2I2dTNfaUhoZ0FlVHVINS12WkZxUHd1NjB5a1dLZDlZSEpWNFZlcmdfZlZwMmhzTURZWlptVkNXOEJRcHk2RVdBaVpmaW5sTDNlZHRPSDRLSmxzSWtGQQ?oc=5",
-        "title": "크레도 특허 분쟁 해결, 인공지능 데이터센터 비전 재편",
-        "date": "2026-03-28"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipANBVV95cUxPNzZjMlBaVG9jbjY5V0VNRkpQOUdZbUV3czlfWWtNZkNXZFhTRmlPZkk4Sm9uMVRLbU1VaG5MNDZtNC1aN1BFbmhhM2ExSWFUREI5Uk52emF0N05qamNtemJ0NEc2TlZzUXJ4eUFuSTNOdlJqUS05cTlhcGVGU3FKY2hYMW1DS082RElJWk9tcWVLMUVvbmtyQ1ltRkpQRnBBOGlUYjJHREVwTEstVkZNZEtjZWtkTFRjNUt3MU9OUWprZ292ZEljbGpnazB5Z1lvcWhxY0RXbXlXNzQ0M2hNLUZPT2xqUHByN1FVMl9lVG1KcW9ldTlGckxidjJ3NWJ5V3RKOU5KckE4TzBRNDZ4dzN2UEQ1SXdOQXBRYkJQUzdGQjZnc2F4NGZGVFAxUjhDdTZhdVF5OFkzYkRFanZSaFF1eWRDSFhMeEhUQUExVlFKRXdGUXRlWENUMUVFUV9xZlozczF1RVFER2F4UUMzdHF5T2Izb0NmRkpTT1pVekhHQW0tZlN1RDV5N1dHMnk1MmJFREtsOUJueDQ5SE8yV2hTSWQ?oc=5",
-        "title": "글로벌파운드리, 타워 세미컨덕터 특허 침해 소송 제기",
-        "date": "2026-03-28"
-    },
-    {
         "id": "https://www.theverge.com/column/902668/apple-antitrust-app-store-war",
         "title": "애플의 길고 치열한 앱스토어 반독점 전쟁",
         "date": "2026-03-29"
@@ -548,5 +528,25 @@
         "id": "https://techcrunch.com/2026/04/26/techcrunch-mobility-elons-admission/",
         "title": "테크크런치 모빌리티: 일론 머스크의 인정",
         "date": "2026-04-26"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPWV93bGVYaHp2cmVDc2RrSlhHV2RhZ2l0ekJMMnBFNDFUeUhJbkc3YW4xTTdidzI5b0hEcVV0cjk0UEFCNmxYbUxxSWV3OEstTHFJRmRFaDlfTWpNNkJhcHRsV2pWWlotdWJNSnR0Y1A0aTdlSlNWcUJWZkZnQ2lKdG5oMTIyNFRqU0tWMllsUUNOejM3dW9wT1FHeEcyaWFvbzFsNFFSSms4cC0y?oc=5",
+        "title": "릴리, 차세대 JAK 억제제 아약스 23억 달러 인수",
+        "date": "2026-04-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbW5KOFpsQXdPWnlTLXdyVG9YU0dMWXpmUVJfU0hZdC1HWEEwZHo4WThrc1VEeG1DV0FVZ2NacTZQakNPclc3YTVYRFN5TjJqZ2llYjctTV9wa01NZkdFUWJycWQxclVSUDN5MGd1THVNczBmWG5ZYnR1MFdseFBuSTladE1iY1BTS3N5cE9B?oc=5",
+        "title": "Intellia is seeking FDA approval for what could be the first in vivo CRISPR gene editing therapy - qz.com",
+        "date": "2026-04-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOaTdIekl6OVFvdy1VZnE3QkFBaWNRcDlwXy1IRFZ2Q21mNl9zUjBZQzBuTVdneTlEa3ctMEJSQWdBYkIzMG5jY3ViY0dlZ21XM0x5VW83dml6a3RPZkRTQ0JQd2FwN1dCaFZVSW9QYllXel9NNVYxOUotTm1sSzZJWWJHd1dXME5WaGtRV2d3?oc=5",
+        "title": "Article: China’s solar giants form industry-first patent pool - IAM Patent",
+        "date": "2026-04-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcmt0Q1F5Z0djTENLMW9ob05MazI3aHFLUm5YOGpqblJUTHYzZ0tDVlRoRlVuM2otYjJGME91d0ZZVHgtOWdyVG81SFJKUDVmN1ZKUUtXQW9PMnI4MG5mRzZEOXNKVzFER3NfZHd5ZmliNnN6cEtvcUNGTmhjSTBEeXJBVXhMYlFRRnpfMHltbWd6eUtUQ2ZKNDNJQ2RGVzg0V2tYMGQ3WGpkRTFLbmRsdzFVLWtmck91QWNiLVBWcVo5V2xYMG9j?oc=5",
+        "title": "파이퍼 샌들러, 브릿지바이오 특허 합의에 투자의견 유지",
+        "date": "2026-04-27"
     }
 ]
