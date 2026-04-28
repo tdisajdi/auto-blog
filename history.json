@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/column/902668/apple-antitrust-app-store-war",
-        "title": "애플의 길고 치열한 앱스토어 반독점 전쟁",
-        "date": "2026-03-29"
-    },
-    {
-        "id": "https://techcrunch.com/2026/03/29/soras-shutdown-could-be-a-reality-check-moment-for-ai-video/",
-        "title": "소라 중단 위기, AI 영상 시장의 냉정한 현실 점검",
-        "date": "2026-03-29"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPSWczNUp1WWFZcjVYVW5aZE91QVBpMFBGOGhMaHdOR2pFY1BIMy1qY1dld2tLOE1IZzduSkRqRXpENHo5ek90RnJOVjVYWG9lZEs5OHJpcTV6NFVTV0VZakp3dWNRWGVpUlFaaFI2dDlrcVdpT2RCaTdudlNmcFVDeERfSDc3X1BCVEZ4TDBKWk9EV3Y3anIwVGVVbTFidU1NNkE?oc=5",
         "title": "코셉트 난소암 치료제 FDA 승인 및 투자 등급 상향",
         "date": "2026-03-30"
@@ -548,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcmt0Q1F5Z0djTENLMW9ob05MazI3aHFLUm5YOGpqblJUTHYzZ0tDVlRoRlVuM2otYjJGME91d0ZZVHgtOWdyVG81SFJKUDVmN1ZKUUtXQW9PMnI4MG5mRzZEOXNKVzFER3NfZHd5ZmliNnN6cEtvcUNGTmhjSTBEeXJBVXhMYlFRRnpfMHltbWd6eUtUQ2ZKNDNJQ2RGVzg0V2tYMGQ3WGpkRTFLbmRsdzFVLWtmck91QWNiLVBWcVo5V2xYMG9j?oc=5",
         "title": "파이퍼 샌들러, 브릿지바이오 특허 합의에 투자의견 유지",
         "date": "2026-04-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBGRU9zM3BtYndESGgwMzh5T1RNd3RXalFoTzVySkVVRElzMWQ0U2dPQkZ4N25hVXBTNHlidkE3dlFDaFVlamZiM2l1ZWktUHVLSHV6OWlRX0dGcGFXM1Jz?oc=5",
+        "title": "세계 최초 유전성 난청 유전자 치료제 FDA 승인",
+        "date": "2026-04-28"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPbDF4ZS1jNWl2bXNpX1liRzN6X3dRSjNSOThWTlM2RUxvcDYyVm4zYnlaNUVXSXJtb2tFLTdwcGhmTHVTb0ZWTkVnYmgtOUV5SjdLc2JKUzVhV185M2pnYUxmM2tEME9WVW15OThscENLdzZLeDlGWDlVcmFTN09XN29qWm5FWWlsRENfdHFOMEkwX2V4M05fOC01US0wYVNKcVhwYndlRzNDcEkyVXM3akFKdw?oc=5",
+        "title": "릴리, 인공지능 기업과 3조 원대 유전자 치료제 협력",
+        "date": "2026-04-28"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOOVZKbXFHZWtqU0pNMDNjcDdlbzJPT1JQQ19QWWNhdU0xdnJtWmJObGZESGI1MjdtOVVBaEI5VlQzelRzOGN0dC1KalNPTmRDZEZibkZyWktzR1B0c0RvXzZmR01xelFscnZuNlVlYnJmLVh0RVdsN3JPTGVxc215SmhNRGZQTmdOLWtieGhpYTEyd0M1NEFYc1hwZFVvaXNXcXpJVE13dnNxSGF4UGxISVdISmk?oc=5",
+        "title": "화이자, 계약 통해 주력 희귀질환 치료제 특허 연장",
+        "date": "2026-04-28"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRHZGUjlwN0huZ3pyNDNLVDU1c20wblV6QV8xTVAtNm9lUWNWS29KSVpLWlpqbXJkWGYwQ0FhUml1dXllOUIzeUFYLWhDU1kzNTNyTWpEdzhTLXg0eHRSRkJNU2d6cU1TZWdMdnduWlEwS3VxMWJBVEgyNFY5REdnT0Zxdmo5OGtCYXVBRVFGQ2M0UQ?oc=5",
+        "title": "미국 바이오시밀러 확산과 특허 덤불 규제 강화",
+        "date": "2026-04-28"
     }
 ]
