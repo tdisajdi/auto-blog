@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPak5tYmtqUkMzZWM3ZWNUQzhRNVItMTl4aFQzc21XSXlMdnZaZGdUd1VRRUlSTG4wbU90bk5xN2M5ODJKUUZuaHlYMTBVNER2bk9tYl9ZQkJXM3pDOWlGeWh1aF80RlpNbHVFbGMxZDlqMXU5TUxxOHYxakdxd1ZpQnJseDF6RnVUZVpUT0xwQ240VmNJVURRZjh1UWlOTmd0bUZhNg?oc=5",
-        "title": "앤스로픽, 바이오 기업 코에피션트 4억 달러 인수",
-        "date": "2026-04-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9wNzQwaDMwZU9Gckg2aHpWSHA1ay1KTXRVU1FaS1ludGVuNDFzVkdpYnhQVEtydS1TTWo1cDFZRnZidms2RUp3Um9DRDVTQWgtRm5hdHd4OEFRTHFMbjA0Y2stZFNKcmV5eDhlYQ?oc=5",
-        "title": "FDA, 식단 제한 없는 일라이 릴리 신규 비만약 승인",
-        "date": "2026-04-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOdjFLdHdZUWVXWVdhLXRndzFrOWlPREVVVHB1dFRwY0xWTjVMZDJ3V1RFbnJXamNEd0xNYWNXTllkY1RKSzlSU1NvYTMwSDRuTFJZd2FRRnpVWDYyaDkyMS02T1lWQldQQjJVY2otdWhmQzVvYkhoS18yUlB4empuN1BmSFR4WlRKMG9RZjZpeFFMdUhFTW1wVnZTaThVM1JCOGc5TjNsMy1xOU42RE1wOFdyRS1IcFNxT29Ec0lsY0ZhOEJDaTRPcw?oc=5",
-        "title": "특허 가치를 훼손하는 발명자 기재 오류 대응 실무",
-        "date": "2026-04-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOdm1DRzJZaXBTRlVHYlhiSG16N1NvT08tRnJrVDYybDF6TWVhOVpLWlNRdHEwWVdTWXpuSDNRWE9xdG95QTN1cGhGdEg5SDJWdGV1Vlp1ZVc2ME4yZUtBdkRscnQyNEFDY2M5UXZsbWRVcUxYNzRyZTdwNFRLZXRkMUlvdFNNNE15MWNVZVRiWlZxVXBubFA0TkdfUHhKSEdia1BZLWQwU0tqN3V4?oc=5",
-        "title": "미국 특허청, 닌텐도 ‘보조 캐릭터 소환 전투’ 특허 거절",
-        "date": "2026-04-03"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOYXZ6ZFBqMU9rUzF5WEJIeWFHaWpBaGY0Z0tQRDZTamZhU2hNLWRMYkx0aHNMNV9idXN6a3piS1AxN0ZXd0ctOUxmcHUzUF9jS2JGcE1mUFBWa2RJU1pEOVhjbHJiekFOLWpibkZKQU9NLUhaNnh2Qld2TzlSR2tFVVpGUmQ3QlNiUmVtaW5KVXUxcVk5OHJlTmNDTFhRMGNzRkdoZl84eVg?oc=5",
         "title": "앤스로픽, 바이오 스타트업 코이피션트 바이오 인수",
         "date": "2026-04-04"
@@ -558,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQWllfSTdLd3dJNmhFQkdxaERrcWZUaWFhU2RfUnBzNGRvdHgtSDNhWGhXT0NpU29wNlBEczdmekVGZTJaQzJ4RlhCOS1meGlIV0l1b3pLTHl5RlhUTzFYbzVpbXhwNzdhWXZRdENBOGgzQVgxUGVjR2h3RVlvMEIyS0J0X2pBcEJZOW1CQnVOMml3aHcyeGJ4bE5vRXAyaC1fVUtOekFYOVpTR2ZrOHpOdHRDUDlIVUN4NHpkd1BfTkFPWXZVRGN3TmRKTQ?oc=5",
         "title": "삼성, 영국 ZTE 특허 소송 패소… 5400억 지급",
         "date": "2026-05-02"
+    },
+    {
+        "id": "https://www.theverge.com/column/921599/ai-music-is-flooding-streaming-services-but-who-wants-it",
+        "title": "스트리밍 점령한 AI 음악, 과연 누가 원할까?",
+        "date": "2026-05-03"
+    },
+    {
+        "id": "https://www.theverge.com/policy/922380/new-mexico-meta-public-nuisance-trial-kids-safety",
+        "title": "메타 역사적 패소, 3억 7,500만 달러 이상의 손실 예고",
+        "date": "2026-05-03"
     }
 ]
