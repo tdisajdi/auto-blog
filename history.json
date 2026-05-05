@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://techcrunch.com/2026/04/05/copilot-is-for-entertainment-purposes-only-according-to-microsofts-terms-of-service/",
-        "title": "마이크로소프트 이용 약관 “코파일럿은 단순 오락용”",
-        "date": "2026-04-05"
-    },
-    {
-        "id": "https://techcrunch.com/2026/04/05/can-orbital-data-centers-help-justify-a-massive-valuation-for-spacex/",
-        "title": "우주 데이터 센터, 스페이스X 기업 가치 입증할까?",
-        "date": "2026-04-05"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNTV9FWGdlbHlhazRRUUYtOXNNWFlVSUF4UWZxcU5aaW1TVmQ5ckhPLWxSVmFockx2YzVhbTRfWV9MYnZhMHlNeTJkQ1dEQ2x6T2dXb0JJVW5vRDJnQmtFNlkweTJMcjM2NHR6cUVjMGVOMFhid2Y3TmplZldBN1N3QzVMZDZvZFFZamQ2LTdaSVB2M2tJeGw0UzZNMTVhOFRaNWVB?oc=5",
         "title": "앤스로픽, 4억 달러 규모 코이피션트 바이오 인수",
         "date": "2026-04-06"
@@ -548,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbGdCT1k1aTB0eUhHS1JNVmV4OC1fbWthVWd4ajExMTVEQVNGWmJ1S2s0SmtRbTJCd051am4tdDhzMHBHZ2J3VEFfSHdPYXhuM29IemY5dmtNYXN0WFFYdUNjSHpaY2l2aVRrMHNMd3VrMm5xTFptR3VKU2JlWmJyNHE4b1NvX2pnX3JibGc5bE5ROHgzakRseUdsaTNwYmFaX1E?oc=5",
         "title": "1억 7천만 달러 판결 관련 ‘취소 특허’ 조사 명령",
         "date": "2026-05-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNRDYtd3NidXU2eUlnWFZsNlBTRW1ncFhWZURYWDBSbWZTQmlfTjhZTW5UYzdId3dFQ09sX1RmQUVfWmhzd0dqY0tzdlR5NTVTTEJYQ05uTWZ5OTFvMFpmNTZUcEo0RzJJZkwyd0FzSDU2aGhZVzg5SmF3SlJNMTNvY2lIM2hHZkcwREJEMEI3RGZHWVpUTXhQYUFyUFBUYlZHTC02UlV4dGZHSUxPRUhUbDJCV2MxSHZSRTUxcm9XVVpOeW1RSldVbmlsb0pjcGtNOFVqcTlpUWgxMV9LdG51c1JTTlp4X0xEaUtZc2lHMFp5QmxqS0lXR0M4Ty1NU3BneHRiWVNXVGlsUktwZGVDdUY3R284UWExZkFhRlh6TTlkSlJyNUFzUUUteXZMa19CSFZRaXJLZ2dOWjhYcFpNSmZkYWlITDdsRUh4T2VsUEhhbG4tRXlLdjlRdmR6S1RyT0c5ZHEzbHFKZzhpVDEzYg?oc=5",
+        "title": "아피캄텐, 비폐색성 비대성 심근병증 임상 3상 성공",
+        "date": "2026-05-05"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTGtFdVhLeHlaRi1lZ1RXUjd1VnZJaGRHZTcwd3pQQUNHQTYyTXRwX3ZyWjFzVjZMTjRuelFIaG5tSVplaDlHQUZ1ai1KOWI0Ui0xN21haTVXXzNxMGpXZnc5bUdzOTN5M3dqX3prX1JDblVHOUIzSWV0NF9tOTNsa1Q3YUo2dmphMGh0MjRGYzBpWExJZUk1dlVJOWdWSE5FVEtOMDBNSmhEczFsa29xUFgwamtNc0RvZFRRTQ?oc=5",
+        "title": "바이오 업계 강력한 인수합병 순풍, 미셸 로스 전망",
+        "date": "2026-05-05"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1ckJvbVp1YjBvX2ctRWtTYWpoRjJqaG1ZZUh2bTRveXFtLU1MRVE0dllON19TS0kzVnhSSlZtQUV5LUxVX3p5X2t4NENiRDRuektTVkV0MEo2UVRRblFfRmQtX2stcXlJTjB5c003cE5XQQ?oc=5",
+        "title": "테슬라 전기차 주행거리를 늘리는 기발한 방법",
+        "date": "2026-05-05"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNcjFXcHdnOTZOLTRzMS1UY2h2ZEJac183aWR5bUpHQS1jX2xWQW5Ibl92NFgtYXVXWG0ycGlEcGtPZEhDRFZweWdEdm9fcjZOZFFwYzlIV1BIb1dGOUttaDE5WGhsaFYzVHBoZk1Zalcxbm9TRjJhR1luX2R1ZnZZMy1rNjljRnVveUp5S2QzdW9IZlVRNEtDOWx3UVBaQ2lUQ0VaT0RMQXZNQ0Z4N0sta19ubVZBN3FkOW1nVWRpY1d1V09iMGZJendlc3Frd1J6aVRmYU81Zko0MnVpV0hBZWdweGVBR01qQkhsWWo5Ujc4R19ubFNOSzVEanpkOHFSZ1FsdUc1YjA1QQ?oc=5",
+        "title": "제네릭 ‘스키니 라벨’의 위기, 히크마 대 아마린 판결 시사점",
+        "date": "2026-05-05"
     }
 ]
