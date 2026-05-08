@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMitgJBVV95cUxPZmxWZ1lmNE00TFR1R2FacmNOYm9qREstWUFEVGpwX3lDRXpIYnlZRi1MdTVHcFA5bG5hWGJ2ay0wNVpaZmdja05Jek1jNkQ3SHNTdndoYkNOZXJieEpsUjRTTHN2QXVaQ1JpVWNzbUdKaTJXaGRRSk5ESlZfbFNWa0RuRFpOVi1zTE1VZ3hFQlhFSlJleTVMX0ZuN2dWYlhXY2ZIejZYdkR2WHlqVXdKSkU4NFNKTk5LNFJvZ2pkOE1OUW02WEJyVG9PMktEbXpRV2xKTEtrbzZGaXRZWlRIZWNWaHJQZEFHbzRVZnREN0tqWUpmOGJ3X2QwNVVKN29wSDZvWC1zSjNJVVdTQU5BVDNEU3dlUk8yMDQ1Rnd1dG5QanNqQWlYT1JxZEs4S2tsQ2dZRm13?oc=5",
-        "title": "반다 제약, GLP-1 구토 예방약 네레우스 임상 개시",
-        "date": "2026-04-08"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBWRmxWTjdBdEh5dEItODBrSW1sUVZJZ3JMX0lSTlFTQlQ3V2FfaFZQOU0xYXlPcV9LdzJLTTJVOGk2VGVMdlRLS0tMOGM4T3RXWDJSZFk4OGl1dktnVHJWaWdVSEJTUUluQktSczh0U1FQRWlCMk1Wdkh3?oc=5",
-        "title": "테카투스 CAR-T 치료제, FDA 정식 승인 획득",
-        "date": "2026-04-08"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPXzhyR0ZRQjNMeXM2RWZJOC1XaFBuZGUwOXlYSjdxQno0Q1BfZmlYV2VnNnVkY1ZBS3h1eHBhVEtDN01UdlA2N2tyXzJZRVI1dFRVMHZlSE9aa2s0UTFxM3ExODdlblJUTDhoR2ZIVnZKLThmaWRsLUJnWlNseEplRFlnSXJGbHZZMVNWN0FjYk1SYTlMSHFRSDkyTzZMNDByeE4wbzBfWS0zX3BuMlE?oc=5",
-        "title": "정보 교환 특허 101조 부적격 판결 및 미시간대 우승",
-        "date": "2026-04-08"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbTNCQ1Zza2FOaUhoOGxVSGFaVENLcy1YcWNUcWs1azh3MmxUOWxhNVdoOExGbEl4UUhMc2tyb2ZYeUZLWm1ZY3RGSWpKalZQeWtLelZEU3ZKdkJxVWcyZUZudUstS1JNNjM3ejRJV29EenBDZExIaVFNMFlHVEZJRGFDMmtvNWJyb3d5MWVNMTl3VHBtbllwU01sVDNNT3pwSWtYNElvTE8wWTBCWHp4V2wyM2pJZ1NFUDlqZlVwUEtFYWNpVWE5cTVtUGZaVjlJaWZKaGlMVQ?oc=5",
-        "title": "미 연방항소법원, 정보 교환 특허 부적격 결정 확정",
-        "date": "2026-04-08"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOcDlfSW1BTVlORmFOU3dyeS1XR1VIN0h2ZEVWU3JxeEdhY3VqOEpyaWNxNU02elh5eXpoc2hBZ01SUWtOTmJqTmlBWVlSbmRJNllYNjBWWDRIa0I1RnBWcEdGV1dFOUJHU283ZEkzeHBWSm5pWXA4WWpCbjhweFdTbno0SGpkTzBUc1MtYjNYQzd2R3Vvb0twUTg0azJsSTlwMkh4Q2JEOEYxcTNF?oc=5",
         "title": "Clinical trial shows gene editing works for β-Thalassaemia, too - Ars Technica",
         "date": "2026-04-09"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOdlBHdTl6RGxrRUYwYkZjZmhiOGRGQ1Q1NGRlTS0yV0x1VVc2WXNMUEJJNFBFdC1NeVQ3XzhZMFRhTjRHYWYxbk5TODVmT0N0a1d3NDQwMk1abmMzZUdtY3J1R0pZb1ZZRkM3SjgtcGt5OUhxay1TVUR3VU9wQm8wdTFHRUE5RU55dE9seE1pNlY0Yms?oc=5",
         "title": "Hyundai patent reveals new body-on-frame EV battery setup - Electrek",
         "date": "2026-05-07"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQTG5NYzVma19PdUhKTWM4T0h3Z1pGLTk2d2lTWXIyVDc0WHNjQUtUaEp5VXgtY0F6Y3VJWExPaDktcXpDVjlqeU52OEpDR0l1WWFES3o0THJSWEFJQmJoc25tU2lYMVY1OVdKQTU5RmpvbW5xWm9PTmtXUk1YOHF3M0tDQnZqU2tTT3ZRTzFkM21xbG1FNmR5SVZtdlJZUzk5NXViRUtxaUJTbk4xNjNma2Nzbzcxb080bE1SYlJaeEE3Y3pr?oc=5",
+        "title": "바이오 오디세이, 증액된 美 IPO서 2억 7900만 달러 확보",
+        "date": "2026-05-08"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOU3Uxb2J2dHdScGZrU1k5XzR6RHlDYmh3djA1NHVmUE9PMF9rbjNWbG9lUXBST0RpQktOZkFrMWstRnB5aGRHX2t6MERQbDNoby1MSE1RTks3S0pCTWwtUFBiTU0xWGZkNnU2X1JXYWhuWFdIMDFZOExWUXc4VmgtVGpzU1FfaFVxam1kc1lpd3ozLWQ3eGtzWjF5Ry01cjBlRmVtcnlzMHBxTTR2WGVVd1JOUTg5QTZYeVE?oc=5",
+        "title": "비브가르트, 모든 성인 중증근무력증 FDA 승인 확대",
+        "date": "2026-05-08"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNUExPZnpUSDdCZnQxMEUwWFJYNXVqN2VyQjVIYVZpaUpmT3lRQzNmdU0zYWtqZl9QZE8zWVFOVU9NenZlMUczMVZKcko1Q2V4Z2dkNjNOY25vR0VnR2Fjdko5MG56d1VSQ2w3SGNBMkRudU9IcllRMTI5bm9QTnU0ak5nMWx3RTYxUzdFT01KOHMyTEtVMTNlUFhKc3Ruc0JRaVRxVGk2dE0?oc=5",
+        "title": "조마 로열티 7억 달러 인수, 특허 수익화의 획기적 이정표",
+        "date": "2026-05-08"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNNUxCU3RadzE3WHBMakJqSTNfTXBnMm5ncUxEUXR4U216YVpvRUFPMnM5cThxeUM5REljLTRBazZieVMzRGxkWkZNTDd2ZmZEbXVmQlFDZFRjU0Y3ZzAzaV9ETHJwX3BLWllXQVB4TnpCeWkyLWo0bFI3dTl0VnBKS0ZFQ0VWNldSZldacnJXVlhlbUF3RG1UcVpKMmthMUs4LXNYWjJiSXdHVjdGZ25IMUotZlFmU0dPZDFPYzhEbUFURldYMUZ3?oc=5",
+        "title": "GLP-1 특허 만료와 제네릭: 약물 전달 기기 및 조달 전략",
+        "date": "2026-05-08"
     }
 ]
