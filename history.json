@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNc3FtVWdSaUZKdWF0UlVtcVlwdUF5UnZQeDVOV3RGSVpVVDdZYUZiWTZHQlJpT1hwcmx3RTI4dVI4eHBzZkpvbkZJZnVOMU9TQllxaU9IQVl1dWZMWVNvLUtuNEdXUmNLLUdmX3JMTDgwNmNBTEVucldGLXRSSWQtM3pGTFFZRnpO?oc=5",
-        "title": "기존 과학의 재발견과 바이오 투자 전략의 변화",
-        "date": "2026-04-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPaXV3dmllSGRadHFoSXYyT19WZEY0N3BoNkdtbFJsWi16WTR6TE0wREdJWXlPTjlaQU1IbVJHUnc1NDgyVEdBdC0xRHc2NUNfLXczRGtoWTRURi1ocDQ4SnEyUThaOVNnek1CcjNCaTRKNGV1Mm1RRUY4cVpPYzBDWTZ6OEhZSU9WUENOZFZMMENDeEdOaWZDRzViaG95RUhjZE9zbDR2WTRRMnpxWTkw?oc=5",
-        "title": "Biotech’s IPO comeback; Trump’s tariff loophole for pharma - Pharma Voice",
-        "date": "2026-04-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNd0xGdmM2blBJRl9ReW1aeUVraUR1Vy1aRmtUTVJJNmJxTnBpb3l4WWNNX1JiOFJoZi1tNkdoVEdXMWt3c01Nc1loVDhzdUtaVGhZb1R1UEF3V3lfblY2OGQ4VWE3eGJ6RkFkUnpsTEt1U1JET0NOSDNQaTEtaVFuU0VTVlpIYXdJNE1EblFDSWJrQQ?oc=5",
-        "title": "A startup building the Harvey for patent law has raised $40 million - Business Insider",
-        "date": "2026-04-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNMkwxMVBEZDA5Mm4wc0tLTzNIZ2kzcV9CNlF0MnBXeHRFeG5DRDEtaDBES0h1eDY5NlY3OEpsUGtXSTRSdmRmdnM5S1N0MWJJclFEcnFERlU0dnBKeUxGU3owTncyNnU0bEZ2X2VmeFA2YjZHbWRKSzFmazlQQ1NOQ1hteVBOSmE5d2RUZHg0enN4M2t1cEhFZTA2a0dfR3BmSUx0WUNVbmRPRFpiazU4LXREQ1ZKZzhuOGtial9n?oc=5",
-        "title": "Patent Disputes Over Data Centers' Cooling Tech Heating Up in Chicago Fed. Court, Data Shows - Law.com",
-        "date": "2026-04-10"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOSEp3VUtLN0ZoVE5QcGRRTTJiM3ozUW9VZXF4VmV6Y0hhM1hmUTJuM1JqR1dHZEVMblhoVDNLNERiaWY2N2FCdjR5Y2NabVJpcEU3WEpxcEwtbVN4Nk9tbkhDUms5bXZtS0ExcGF4YzJESi1LcGNaVWRJTzhnOWE3cHN2djlob3JVMDV5aDg0ZXNBVnM?oc=5",
         "title": "트럼프·중국 공세에 저무는 유럽 제약 강국 시대",
         "date": "2026-04-11"
@@ -558,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNZkFmd285SWVwMUhDM3NyeGdMdEFyUlQwaXFSRFZhRlV4UGhJdjhGU1pNU3kyaWxuVUlJMDZjWHUweHh6eFdma2xkM0N6NmNZNUhUZV9lSTlYUXkxeFlBSDgwYzF2M3IzRnNqWlhCT2JOX1ZINmdjWVAwZnpNa1FMV3VhLXh6Z042YkVGcVg1Y1RMTy1ucDh4OTJhaS1ndU1tb0xUVm0xOHZzWjZuMFYyTmlUTmFvU0RycGpfVHROUXA1Zw?oc=5",
         "title": "제넨텍·TD뱅크가 AI 방어 특허 기구를 지지하는 이유",
         "date": "2026-05-09"
+    },
+    {
+        "id": "https://techcrunch.com/2026/05/10/techcrunch-mobility-limes-ipo-gamble/",
+        "title": "테크크런치 모빌리티: 라임의 기업공개 승부수",
+        "date": "2026-05-10"
+    },
+    {
+        "id": "https://techcrunch.com/2026/05/10/were-feeling-cynical-about-xais-big-deal-with-anthropic/",
+        "title": "We’re feeling cynical about xAI’s big deal with Anthropic",
+        "date": "2026-05-10"
     }
 ]
