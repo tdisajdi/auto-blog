@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOSEp3VUtLN0ZoVE5QcGRRTTJiM3ozUW9VZXF4VmV6Y0hhM1hmUTJuM1JqR1dHZEVMblhoVDNLNERiaWY2N2FCdjR5Y2NabVJpcEU3WEpxcEwtbVN4Nk9tbkhDUms5bXZtS0ExcGF4YzJESi1LcGNaVWRJTzhnOWE3cHN2djlob3JVMDV5aDg0ZXNBVnM?oc=5",
-        "title": "트럼프·중국 공세에 저무는 유럽 제약 강국 시대",
-        "date": "2026-04-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNdm1zNHY5YmoyZEtPRkR1WU5iMERvVEZWT0tCd2FMeFMzVTNPWUJXQkJvN0E3Zzk0WTJBS001SHZrWXk5dnFNOFk1dDhmYndYYXNEY0xXOHV5b2M1YUt6Ry1RR0JXZFJVZzVJNnJFdVg1OS02MjFETzlaV3d5OTNLd3J1ejFQWEJWYjNHZFVGb2JTZmpJcG9oNHZqVmZsS1FHZWlsbi1SLTBidTFmeUtCMWFwbw?oc=5",
-        "title": "바이오 차세대 골드러시, '악마의 분자'의 등장",
-        "date": "2026-04-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQYXhVZEJLYnNJNnVXTkQwMmJJMlFFTkctNnp4YW5SZjdrTVBCSmk1QUZHcklLVmRZT1JWbTJYbkM5b0J1OC1MeVpHclZFM3UtQmxzV2FDRFd3MnZTWTR6OGVycFNmNEwzbEJZYTNSZmU1LWhpQ3QyMXFsNTY0SGJ1MDVoczNPbUM0RUdxc19xTW16bGNsUkd5QU5CUWN3UnVjdGwzRXZn?oc=5",
-        "title": "미쓰비시 전기, 인공지능 특허로 디지털 전환 재편",
-        "date": "2026-04-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1UTjQ1ZnVPY2dpNEpDOXhYVlZ1YzMyWlJvX25iNGxtWG1YZmhRTTVhVUtaRGloOGo1b0d2a2Zsd0NGYzlZakdTRlBPNGhhQVFUZ09VX2I4ZHZTUQ?oc=5",
-        "title": "토요타, 수소 연소 엔진 개발 본격화",
-        "date": "2026-04-11"
-    },
-    {
         "id": "https://www.theverge.com/column/910019/ai-coding-wars-openai-google-anthropic",
         "title": "격화되는 AI 코드 개발 전쟁",
         "date": "2026-04-12"
@@ -548,5 +528,25 @@
         "id": "https://techcrunch.com/2026/05/10/were-feeling-cynical-about-xais-big-deal-with-anthropic/",
         "title": "We’re feeling cynical about xAI’s big deal with Anthropic",
         "date": "2026-05-10"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOc250cVdfa2VkT1JrVnR0amZDV0c5OFZPTnVIZ0xVdHlzMGczakFzX2hDTFgxU0FydzJRUDRnTTUybDdQNnJTVTQtWXRFLXdjSV9IQlBPRXgyM0FXM0FaMmlXLWFlRWlPMFJVV2d0N0xpV2N1XzFqQkVTUHRFUHZheU5LZWUwWEYwS1lid1RIWm9LR2ZGZ3NVRXg2Z0hWX0JkTWdhYlV0bUhSLTdWMzZEVlFB?oc=5",
+        "title": "최초 유방암 PROTAC 벱데게스트란트 FDA 승인 소식",
+        "date": "2026-05-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1VSllSdmtqM2VvTW1wTHExNUxaTlpycTJ3U0FwMUhxdjRBdGtkaDB0SjJwQmlsMllIZWVQMWlTV1NxOFZkaElpRXhXdVdXODVSLTV0LTJ6VFdkRXc?oc=5",
+        "title": "일라이 릴리 경구용 GLP-1, FDA 승인 후 수요 급증",
+        "date": "2026-05-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOMTM2aXotaHpOTlR6TWY0NS1EX2Vhc2tLXzJEcElycTh2Wjhld2QxX0pTSWtaMC1jQmNUWmwwQ1lQLXdlWnBXcDIyRXhNYzdJcEJjOEFDU01lamJPS3JaV0RmMnNVaWs2eFVObmlsb0hJLU1VTnpOSjVTNHF6Sl9jVnZpcWhkdWhha1dUNkxaSQ?oc=5",
+        "title": "털사대 연구진, 뇌암 치료 기술 특허 출원",
+        "date": "2026-05-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPYVQ4UXoyMVNvSmxkc3pydjRIOWFMNTF6R3JmRllUSVRYcGxubVdhVy1EMk5BS0JGU0ZzX0IxelZQd0VwdjQ5R0h3eDllaTE3WlVoX0NlSzdoM25PbElyN0p3aE9NYTBpUFBIdGVoWVIxcDBhRFdQWm5pZ3d4SGRJemRIeF9fS1B0RWF3RjNJUkpuUUd0b2FFOFQyaXQ3VzBPVE1ZSHZaYkllNWtj?oc=5",
+        "title": "Tapestry’s Mira AI cuts days of data work to minutes, wins patent - Stock Titan",
+        "date": "2026-05-11"
     }
 ]
