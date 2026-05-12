@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/column/910019/ai-coding-wars-openai-google-anthropic",
-        "title": "격화되는 AI 코드 개발 전쟁",
-        "date": "2026-04-12"
-    },
-    {
-        "id": "https://www.theverge.com/transportation/910717/netherlands-tesla-supervised-full-self-driving",
-        "title": "네덜란드, 유럽 최초 테슬라 ‘감독형 FSD’ 승인",
-        "date": "2026-04-12"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxORWtBQVNGMWVXaUdNOFdzV3ItMXZMT1dmZUxhRXBnSmdsMXRYa0pObGFRVVZEXzBadjVtdGlJMjVwRjl2eE91YTVMRk9IN3R2ZnE3aFZ6RU5zQ2tLVThIVFVTUTdUMDFMUjlfYldXNzJOcnhVc2hpbzdldUNPODlSVFcyS0FKSk5MTzN0U2NaekNscFRYSzBONHZDZVFBaHhZdm1UUEhCNzQ?oc=5",
         "title": "대형 제약사의 소규모 인수 전략, 바이오 기업엔 호재",
         "date": "2026-04-13"
@@ -548,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPYVQ4UXoyMVNvSmxkc3pydjRIOWFMNTF6R3JmRllUSVRYcGxubVdhVy1EMk5BS0JGU0ZzX0IxelZQd0VwdjQ5R0h3eDllaTE3WlVoX0NlSzdoM25PbElyN0p3aE9NYTBpUFBIdGVoWVIxcDBhRFdQWm5pZ3d4SGRJemRIeF9fS1B0RWF3RjNJUkpuUUd0b2FFOFQyaXQ3VzBPVE1ZSHZaYkllNWtj?oc=5",
         "title": "Tapestry’s Mira AI cuts days of data work to minutes, wins patent - Stock Titan",
         "date": "2026-05-11"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQLU13bjg5dGRTSmN4VUtuUmpBMG55eWlXM2pfVUhoRVNmMFdNNnJ2cWZuS2wyTHNXMjNkdEhZQTRRcFZKTUl2eEtLNXJSR0YxcWl2UDVwZExjd0pwbXhreExwcEhWeWl5UVlqbzlEWUE1N1dKcE5FTWFiMEhWemhGMmducHptUTNIeGZudEhFaUs3SUh4d21WMmNYYURNMzA5TkJObXNmZ0tDMF8wS2JGMUZkZ0taVUFYcjhQTUJHb0ZiZw?oc=5",
+        "title": "아이소모픽 랩스, 21억 달러 유치로 신약 설계 가속화",
+        "date": "2026-05-12"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNVEIzNGhpdnJKNWRkTU11STJSV2VpTlBxOWdRbmZhNmZFSEdpQkVhamN2ZVBhRDVUdkhSR2dHUERaMmVjV0tLNmJkNFV4LTNsOGxDWmlTbUNKRUxMWXN2S3JzWEtWdTN2M0hIZVlTQ0kyMjZBeGJfRmU4eVZZeHpjek1qYnBZSkE5Wk9NYTl3WTRySWFabElTbV9jVGY4ME5qcGpwTS1YWURiTU5GTFVxdTFR?oc=5",
+        "title": "마카리 식약국 사퇴, 바이오 업계 ‘혼란 종식’ 기대",
+        "date": "2026-05-12"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNalhXbEJob2VCUWJRWDFGdlhUTmdVYzRURUNXNFdSbHdMaDdpTHZteW5ONHppa0hIbWZ4UWJnRU1kVDNsbmRCQjV1dG5YZEs1NGxwS0JTUUpPMXV5dnU1bWVqRE1CRjhhVnFfb1VnX3ViVDZKOUxlUnN5VmZ0STRqLU9MWXpjcHBPaE96S1BQRG5XMkVI?oc=5",
+        "title": "특허 절벽 앞 바이오 제약의 숨겨진 위험, '통찰력 격차'",
+        "date": "2026-05-12"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPQ2FKTC1DZHFNSXA0X2d4RlpTSkpUWExDNDJzNTBVQkM1ck9UT0hWb3A2SmFkeXU1Q01qaERNcThOcFRwV21BS1FUaHBiblhwblBwWF9oenoya1g1azV6eTBndDJrejFBa3BiamhpRjgydHVRUVJqRG5jS0ZlMmhSc0FNTHlhS0NGSkE?oc=5",
+        "title": "테슬라 새 특허, 일반 자동차 부품의 혁신적 변화 예고",
+        "date": "2026-05-12"
     }
 ]
