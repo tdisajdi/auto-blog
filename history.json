@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxONVZLdDRyZVVSMlJCMEFsODYwTHNkQXVLV1RXMmdaeFJPYWFNdGNObG9qYUZvRVE1M3NpYVBDYUZrLWZ5ZEtPcXdCVjJHMkNTRG41MGIteTR0dEhSbWl5am1xREdMNThFejZTMWxpazk5SWNsalM1dGdMZS1xbWJoRDhfSUV6RWQxc1J4S1I2OU11bWdWTTFvZUl0eXRxWENGcDJIU3Q0a2VGWWFHa2tHOUk4alkzV2JOS0E?oc=5",
-        "title": "카일레라, 6억 2500만 달러 규모 바이오 상장 신기록 경신",
-        "date": "2026-04-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUzEybW5KVW1EUy1ZZm4yMkJuRHhQTGNPZ0lEdkFMa2xVM3lCY2Z3eW5EdHpQTEtXc2N6OEVLY1RBbm9NSThmUGRwWE84bFY4U0FLYzcwZ1hYSVh6UFVoQ1VNSU1WVWowVVl6YkstTHJrOXNCZEFqY01XbmF5THl2b1BSdHFPYXhNUFN1VjEtX3J5TGpVSV9r?oc=5",
-        "title": "오픈AI, 바이오 특화 AI 모델 ‘GPT-로잘린드’ 출시",
-        "date": "2026-04-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1ScGVGYzRjZGxGRjhyandXRWVEdXo0WDJMMUNOa2JYaU96Y0Exb1RTVmtvdS02V3FQYjV4OW14aGNlb2tUMWRMMGQwRERTd0NMNFpz?oc=5",
-        "title": "테바, 릴리 상대 편두통 특허 승소 및 주요 제약 소식",
-        "date": "2026-04-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOOFBXc3VReUxwS0QySFBGVzhMWmpPV0JuamZyQUo1RWNEcHhlTDVST0NCNnRjVS1HU1FQa1lDU0dXelI5bFNIWDhUSHlLVUVna2tuejVIWk1nMlp2NTdqZ1BkMDFnVkhXemZhUFZFaFR4SzVuUGhMZ3RhRmxGRFlYeWVNNXpKaWZ0cTJwcUlUYVNMTmVCcXlFTnVFRQ?oc=5",
-        "title": "특허 절벽 위기 화이자, 신규 항암제 사업으로 승부수",
-        "date": "2026-04-18"
-    },
-    {
         "id": "https://www.theverge.com/ai-artificial-intelligence/914672/the-ram-shortage-could-last-years",
         "title": "램 부족 현상, 향후 수년간 지속될 전망",
         "date": "2026-04-19"
@@ -548,5 +528,25 @@
         "id": "https://techcrunch.com/2026/05/17/for-eclipse-the-2-5b-cerebras-win-is-just-the-start-of-realizing-its-physical-world-thesis/",
         "title": "이클립스, 세레브라스 성과로 '물리 세계' 전략의 서막",
         "date": "2026-05-17"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPM3NFOVdnTUZOYm9HTVpIQzFRRTNueklrT1BCOXJ4cVh2X0NPZnBhTThBS0FPWmdPLWNSVWx6RVdOSjRQLWYzZFJndjh5OWxpQjU0OXVXbFB1MnJtWlk0OXZhTVZTajJVZDg3Mm11dTNMaHhFTm5FZzNQR0RnR0xjT3BuTkh3WDZwdHQ0aGxYVDNLVDM1eXlkX3lXTm92dUYzVzAyUXd1dEVEZ2V1dHU3dg?oc=5",
+        "title": "중국 문제로 분열되는 바이오 업계",
+        "date": "2026-05-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPanhrWEpSQUw5RVpKOGw1dUI2bnVNRXVxV0swdExvSnlsa1RWNWxISTNjWkFCMHpQQTVVLTU3UnN4dGF2YTR4Vi1tNFAzbjJEbEV3VHBiMEx2NjllektaR3U0X0dBQ3NpRnlEenY3RWs2Vk1CSFBrNkhpVHQ1cjRsRkpBbUpTVXRCd3ZfYWVDWUVnbjZaR1hQVFNnYllEbzFqTFhUREtkcGMzOE5pdkVaelJGUjdnc0RQVnJ5QTRsV0hBa1R3S1pwMXEwM05FNlJr0gHgAUFVX3lxTE5Qa25lemZKRElHVExOcDZRMkg4QV9DTDFYSjN5c1N6Vm5SSFBUaUgzVl85cWt0R0dEUWdOaTU0d2FaR0Z2VklJQUJBLTI5UHBfb2c1Tjc1ZkVKM0tTaU5XZ0R0OGVpX0k1Z0lKWXRpYU5lZHJZTURLSldLN2xvWXF3WVBOYVd6aW1oSUJoRF83dzNzaFJyNDRtSUg2RFhodVEyRFliZHZRNHlTdW5DSEd3QkpacDk4aFI0NENjQ3lXX0dLVFotUGJMQ3NpOTlIbjJkV2pCbWh6ZTVfMzMzdVFB?oc=5",
+        "title": "먹는 비만 치료제 오르포글리프론 임상 시험의 모든 것",
+        "date": "2026-05-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE55SVVEbUpWTmY2RjlLZWV2aXM0SDJsTTFDcWZ0RDJuc1FUc0RoVGpMbE9mOTZXeTB3Y3VHLXMtRy1hdDBTM19nSXVEVHBOb3FSY3Z4ajNuOXBCR0JsNGtj?oc=5",
+        "title": "항체-약물 접합체 특허 관련 최신 동향",
+        "date": "2026-05-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNRDZlMjZYWjE4b3hxWTI2bHhNekY4eUY4N0xVLWl4RUR1R0h0ZzEzcHl4YlZTQk5kRnluVWFaZW5CcjZ3bGUyeXI0UUlkdFdiRFdfcm12bjUyMUo2N2oxUHhFWjNaa2VXZ0lTUVpOb3lTdDhwM2Y1YlpoSkFURnAxUFBYRG1QdzNmSkoyMQ?oc=5",
+        "title": "CCIA, 애플-ITC 특허 소송 법정 의견서 제출",
+        "date": "2026-05-18"
     }
 ]
