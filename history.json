@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPeGRQYm9ZMC1yeXpDVEExcWh3a055bFJieHFwTXlNVFNXNFcxMkthcDZOZ3JHNTlUc3NqdFpCcm9KWEVwOTJjNG80V1VhMGQxMjVldzZENk9ncWFTdS1qU1JXczBXa1paXzhZMEFsZzVsOVJybzY5TENwWGgyb05aOVh4aFpBbVc1cWV5TlR6MGx4Q00yWHZJVk9BcmpEZm5tOV9tbVVmRQ?oc=5",
-        "title": "써모피셔, 바이오제약 수요 강세로 1분기 실적 호조",
-        "date": "2026-04-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPNkdwMWM1YUdzNTE1RFdHNkFpUUVtVFYwcmd1VFBKbjNCZ1hZS21ITGtoSWszd0JKeURJVUotU01SVnZxUlZIMGlFU3VLSmhPaUdpX0FaRU5VNXFBa1lkTzNwQWxjSlYwUmNuWm5SYmlmc3RadVU0N2xRYmtJMUxtZVV3cmEycUJRVHVYbG5wTW1RbXgxLTZwbkR4bDlLdHZjaDl5eQ?oc=5",
-        "title": "리제네론, 미 식약국 승인·약가 합의·임상 성공 3중 호재",
-        "date": "2026-04-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOelZpVTRqYzN3UEE3eTFrc0otc0VZRi1MRGEzb0V6TlduYmExQ2NJM2k5VndVV2pnZE9hdTRmcXd6cnZ2eTRxZDgtQWlpYV8wRW14ZGVaLUFEeGp2dk5LRmdTYVp6MWt1WVBlQ1dzLVZBN0dlZTVTVmJjQnQweURkMzZvd1ZWTGlGT3FLYTVNNA?oc=5",
-        "title": "사노피, 듀피젠트 성장세 속 미국 독점권 연장 강력 대응",
-        "date": "2026-04-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQN2YtLUxvNWRHTzRxLTF3emUxV201eThyZmw1TDZHckl3M2lJVGkxanI3TFpBLTRLei1SZ0JnV2FHRk1FcUc4VW96SjFEQTVJU1dQT2NjS2lDZTFxbTIySHFubHlYMGNzYjEtNDJ5eWFDYUs0VmFUUHBRcFpKZ2VMMGhBNElFQ0dQNnlSWHROWHNPWDZhdWFjSXQtSkNzOXFpN0tUQQ?oc=5",
-        "title": "미 특허심판원, 크리스퍼 특허 분쟁서 브로드 연구소 재차 승소",
-        "date": "2026-04-25"
-    },
-    {
         "id": "https://techcrunch.com/2026/04/26/amazons-new-podcast-strategy-monetize-everything/",
         "title": "아마존 팟캐스트 신전략: 모든 것의 수익화",
         "date": "2026-04-26"
@@ -548,5 +528,25 @@
         "id": "https://www.theverge.com/entertainment/936860/robert-moor-on-trails-book-review",
         "title": "On Trails is a wandering tale that blends hiking, science, and history",
         "date": "2026-05-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPek1iRUFhNlRjYnh2YW1sSEhWcFczd2xZdFJhekRhUWlOUE9SUkoyeXNLU1BVR2RIYzIwbDdMZ0R4alNoNEtkckdFZmpMV2czamF2eFV6M1pES0RCaUstR2t5VmxxY1otRHZSelQ1NktGREhiZnNlNjVJREpxdTU1UF9jZ29rdWdKRWxoMnpGQ2o5czhzeVR0d1pLMDNjSll1UWVfR0VDOW82UEtYdy03QVFLRXY5bG4teWN4cE54c3Rha3ZB?oc=5",
+        "title": "Clinical Trial Endpoints in PLGG: Rebound Regrowth, and the Unanswered Question of Tumor Senescence - OncLive",
+        "date": "2026-05-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd0VsT28wbmZGa1RwclhmazlvSno0QlBPTURfV1p5ZGRRN0pTSHB6eUx6dVMzYUFtSHhSamtzaHZ0N3pQSHdzQ1Z1eUlXUkhkakdjUVotdGlQVkZ2U09fSWxvVTR4LTJWMW4xQlF2bVJaWERldER5bFNrVVlzSzRtcnZZV09xcV9xRVJYRS1Wbkh1U28?oc=5",
+        "title": "AstraZeneca, Daiichi Sankyo’s Datroway receives FDA approval for TNBC - Pharmaceutical Technology",
+        "date": "2026-05-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNdjBYQjhoNzhSWXZnRXg4Yms4OHc1bGhrcmhYcUlwLTFkaXdwYTJ1UDhzV3JqdnEyNzFFSFFPeTNuYWJ5TlVYZlJYY1dpX18xa1BMZUpvNVJNdjFCbnVMaTZldzc3dGNDMXdodXM2dXlvY3hfWHhoOWQ2LUpxeFQ0NVEzWWdTaVpPOHo0NGFNcV9NWjZqZkhxTk1TVzNWcTJmdEV2OXhFTHE0cms3MVlMQ1BuNk4?oc=5",
+        "title": "Question of the Day: When did the Wright Brothers get a patent for their flying machine? - KVAL",
+        "date": "2026-05-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQRlg2U1hKRmtMdTUxTjNySlN5Vnl4aEdMb0MzVVZSRElfNU0xZnc2RDZXeHpKUENKSWZZTk1CbV9LS3hKTXZJc1B3aGEyZWtxZ0dpaWZ5X0FWN3dmekhrSkZORjRzeUdFa3lpbHFydHlDQ00wc1Z4RkJsVHg0Y2xHXzE1eDFnZFlUNUV5bkhGa2JmOGptYzd5MFI0MU5acnBYTTZoVg?oc=5",
+        "title": "Ferrari's New Clutch Patent Could Make Future Supercars Feel Old School Again - Yahoo Autos",
+        "date": "2026-05-25"
     }
 ]
