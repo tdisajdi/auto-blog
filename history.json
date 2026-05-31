@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPRFNqRUlpV25CWl9HM0dLbm1pektCYS0xaUNFb0lobG82QURTbmNTQmx4RkU2ek9oWm5oMk0xY0o1d3NJd0wtc2FLdTZpRmUtMF9PMVB5OFVOMTNWWk1veWF2RmN5cmpKbngyT28yWGRqMzZkQlJOektETmdHQ24tcjkxSjd3Nmw4Qno4VmJaUl94NzRXeHRuNnc0b0JtRWFFZ2Fn?oc=5",
-        "title": "오벨리티 FDA 승인 및 에스페리온 11억 달러 매각",
-        "date": "2026-05-01"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNallZU2VyU0RRenUwVTFhcXp5SmthUmNkRy14bGQ4SEh2ekdjQ3BGUVozOHlwUU43ZGxZMmNIYTNVako0el9iZWlxS01sLVRmd0NfNFpmZWJoYlN0REJmQ2tnNmZESzVTVl9Ib0djWS1ybkdYY1NSOVpnRzVmdkRMOGVjUTVRUU1aTVZSVUg0T0VzRTBIQ290S255eDA5WDZ1YzNGTEx1UWhjVGtWT2E2ekYwcjRDTExYbkE?oc=5",
-        "title": "FDA, ESR1 변이 유방암 최초 PROTAC 승인",
-        "date": "2026-05-01"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNQVFadWV1VEhlZjF3cnNFdHpJZUMxWUdhTXdVYjZ4X3lycXE2b0gzTWpJSi1URTI1cUhqcG1uY2ZuR0Njc0s3ZDJpNkZYSG03SVZwZGozLU1sMGhoOW52d0xiWWtMOW1Sa3BKTEtuX0NYLUxBb2JmUF9iR3BsYnJUWGpwcDRaWWNtb3ppdUpKRnNiRU41V1VXZGs0b1ZOdlowZEtGYjVhUFpQY1o3Zk54cEU3X2tELTVDZnc?oc=5",
-        "title": "특허 만료 위기에 대형 제약사 인수합병 역대급 호황",
-        "date": "2026-05-01"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcy1GSU5YX2tkcU5qbmtURlBhYVFvWlBJd3FMWHQyRWVyUmZBTlMyb0VrQzdFQ1hJX1NHRndkb3RZQUd1cGh4Vk5pTWdEVUhRa2Vudm1lUU1XeUNZZ0UzM0RZNUNBcjY1UUUyOEstVm9seWN1S0U0Y1BWRW82V0FmX2NWQzRkSjdsbVNlZFRFTVh3WXVOM3FsaWUtb09GZw?oc=5",
-        "title": "140억 달러 엘리퀴스 특허 절벽과 수익 감소 분석",
-        "date": "2026-05-01"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPZzYwMWRDMG5DaGNPZDdtN2VZZFphcEhtdmZ6c2VCczB2MV9wbjRuV1hoczZlUUJ2QlpweTh3Nk5Za0tFVk5xNU1HRXFWSUpkM1g1ajlVS1ppMlRydmVlMUlWUU8yaGlUUzN5X2NaOV9lcEw0TklEMlpLSWh3Nm5mUWJOVnY4cEFLc2Rybml1WHdRcml2dElaeFlneGdFOEk?oc=5",
         "title": "뱅크오브아메리카 선정 2026년 최고의 바이오주 버텍스",
         "date": "2026-05-02"
@@ -558,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOX25NN1JZRFFOZnkxdlF6TXJYWFRjMHVNTnppUGZCZ0ZWSVdoY0hZdVZFbTFiT09QR09pMXhERnlPaHB2Y1BDS1NHMklqOE1GTEhlc1pTN3JUOTJXV1pYVm9VRFRtMFE1bGRkLXk2UkU5OUZqSHlVd0NiUzJCSnd6TzNXNkxWRmUxc3FWbkk0MWR4eGRXRVlUR3d5UWVSVWc?oc=5",
         "title": "CCIA, Industry Associations Ask Supreme Court to Hear Patent Case - CCIA",
         "date": "2026-05-30"
+    },
+    {
+        "id": "https://www.theverge.com/tech/940572/apples-strategy-smart-glasses-smart-watches",
+        "title": "Apple’s strategy for smart glasses is the same as smart watches",
+        "date": "2026-05-31"
+    },
+    {
+        "id": "https://www.theverge.com/tech/940540/how-to-watch-nvidias-computex-keynote",
+        "title": "How to watch Nvidia&#8217;s Computex keynote",
+        "date": "2026-05-31"
     }
 ]
