@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/column/921599/ai-music-is-flooding-streaming-services-but-who-wants-it",
-        "title": "스트리밍 점령한 AI 음악, 과연 누가 원할까?",
-        "date": "2026-05-03"
-    },
-    {
-        "id": "https://www.theverge.com/policy/922380/new-mexico-meta-public-nuisance-trial-kids-safety",
-        "title": "메타 역사적 패소, 3억 7,500만 달러 이상의 손실 예고",
-        "date": "2026-05-03"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNNHIydUhhMFdHU04wd0RSYTlPMWpzNzFEYzlWWlAxSS00dzRRM0E0cGtiLWlnSWlEdG5mRzd6d284OEI1MjdfcFVsaXd3WmJoWXJfMlp5ckJLRDNCaGl4bEdfMDgtNzlzSUI4dFdsQzRRUzIyM19kbHhQX3hyRTZYNnl6M3U3NDZyWFpuNFVqZldfOFE2c0luUFJadFk4WTJGZXYya0MtdExYYm1Tdm9USjJfTVBsM004V3V5S1hqN0w?oc=5",
         "title": "오르포글리프론 FDA 승인, 먹는 비만 치료제 접근성 강화",
         "date": "2026-05-04"
@@ -548,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNQ0ZmRUF3Nk5CektpeTRuSXRNZVlMR3J0RS1SdmlWTFBLT1lhd0hVVGtEd1hqV3VydHJnV0w2M29zYVlQQ2l1ZUlVRkxnUWpLRVZtVE9Md3prdmdJWnZZMm00Y0ItQW5XUjJ6TVdpUkhIa29GYlBsakdWTDMtVlZUNk85SWJWQndrNF94RGlzUDFORUhlcjhZT1FmalJ0ZENMcTdfTzk4YTN0dGd4Z3I2NEp6RWZncWlISkFjbXZMRWFYalE2LXlvU1NlWGFwVW5ZcDJvSTJlXzZQSWxYTmtHamlfU2o?oc=5",
         "title": "US Federal Court Names Ripple as Established Blockchain Standard in JPMorgan Patent Ruling - TradingView",
         "date": "2026-06-01"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeTJlUlNoRWpWY2tVcjBYcjZ4MGItSE5MVzBSWGlyWmtCeDA5aFRocERMM3NocHhKS3FTMy1qQW92V19SN0Z4Wlhucm5DSW9FSl9vTVl6a3VKcDJpQ1pJR2wxUTRUV19XWl9Zd0laYTlTN0hTR3BmQlRNX19tU0FMVXRIYXVIc0R2UVE?oc=5",
+        "title": "The Precedent: Federal Circuit Considers Patent Eligibility and Damages Based on Foreign Sales for Computer Software in Trs. of Columbia Univ. v. Gen Digital Inc. - JD Supra",
+        "date": "2026-06-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQeXFyMjhOR2FDbXdKY3A5NW0zZGowYnhGWVlaTEdkT2dGZTVHdWlWX1RmcTB0dHpzcUZWMmhfWTM2dHhWbV9TQ3EzcmQ4eWZTaFlGNV8xbUZ6d1A1czBZdkFUS09mLWF2THVZeDZLdHdnd2RycWxadFpOa3Zmc3N2VmJwMlVxc0lSWDIxd00xLTZqQk92RFR6bmtsREhSeTJlTDJ1ZmR2Z21yYjVTVGZSYy0xN0Q?oc=5",
+        "title": "Federal Circuit Affirms Patent Ineligibility of Farming Data Collection Patents - IPWatchdog.com",
+        "date": "2026-06-02"
     }
 ]
