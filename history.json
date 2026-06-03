@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNNHIydUhhMFdHU04wd0RSYTlPMWpzNzFEYzlWWlAxSS00dzRRM0E0cGtiLWlnSWlEdG5mRzd6d284OEI1MjdfcFVsaXd3WmJoWXJfMlp5ckJLRDNCaGl4bEdfMDgtNzlzSUI4dFdsQzRRUzIyM19kbHhQX3hyRTZYNnl6M3U3NDZyWFpuNFVqZldfOFE2c0luUFJadFk4WTJGZXYya0MtdExYYm1Tdm9USjJfTVBsM004V3V5S1hqN0w?oc=5",
-        "title": "오르포글리프론 FDA 승인, 먹는 비만 치료제 접근성 강화",
-        "date": "2026-05-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxONGhIWS1QNi1UZ2RNci15NG9JTDBLbDZvZHNXV2FmcjNiUTFvNDhwTFExREhFbWxkdFJwV3hhY0cxLVpGVkRFVDdCWHBXd0RlbC1yMVdhLUxMQTRLTDVvT3p5UDRQakhTSUxqLU5BRGhwdERGNFNDOWRKLWR0V2gybUttNFUxSVhzcTJPV3Z0cWUwcG1uRkxWV3BkNGZmNVJRQlMweGttanVHVkNzMVE?oc=5",
-        "title": "셀큐어티 게다톨리십, 3상서 노바티스 피크레이 압도",
-        "date": "2026-05-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQd3lRaE5uYkZEUEtnXy1IU3JaYnBaY2x5NGdmZUxYRmNMeGRienl3V1NwOU91Qmh6NGEtYjVwbmhXS2lLdVE3U3k3blZlNk1xNS16dXowZzNNaDZ5Y1lfRy1Qb2M1SC1PbEctUWF6SHVXZG9sWVN1emVlOXAyTjVtMV8xVjhLdmQxWnp2MWN5b00yckZhTkQzVXlPODUzZVBvQi1WdWNQRjVMdTAzMWEtY29HbG1TMUg4Wi14R0owTDFCNW1uQTByTzdOcU1aR242LTJJMA?oc=5",
-        "title": "윌슨 손시니, 캔디드-UCB 20억 달러 인수 특허 자문",
-        "date": "2026-05-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbGdCT1k1aTB0eUhHS1JNVmV4OC1fbWthVWd4ajExMTVEQVNGWmJ1S2s0SmtRbTJCd051am4tdDhzMHBHZ2J3VEFfSHdPYXhuM29IemY5dmtNYXN0WFFYdUNjSHpaY2l2aVRrMHNMd3VrMm5xTFptR3VKU2JlWmJyNHE4b1NvX2pnX3JibGc5bE5ROHgzakRseUdsaTNwYmFaX1E?oc=5",
-        "title": "1억 7천만 달러 판결 관련 ‘취소 특허’ 조사 명령",
-        "date": "2026-05-04"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNRDYtd3NidXU2eUlnWFZsNlBTRW1ncFhWZURYWDBSbWZTQmlfTjhZTW5UYzdId3dFQ09sX1RmQUVfWmhzd0dqY0tzdlR5NTVTTEJYQ05uTWZ5OTFvMFpmNTZUcEo0RzJJZkwyd0FzSDU2aGhZVzg5SmF3SlJNMTNvY2lIM2hHZkcwREJEMEI3RGZHWVpUTXhQYUFyUFBUYlZHTC02UlV4dGZHSUxPRUhUbDJCV2MxSHZSRTUxcm9XVVpOeW1RSldVbmlsb0pjcGtNOFVqcTlpUWgxMV9LdG51c1JTTlp4X0xEaUtZc2lHMFp5QmxqS0lXR0M4Ty1NU3BneHRiWVNXVGlsUktwZGVDdUY3R284UWExZkFhRlh6TTlkSlJyNUFzUUUteXZMa19CSFZRaXJLZ2dOWjhYcFpNSmZkYWlITDdsRUh4T2VsUEhhbG4tRXlLdjlRdmR6S1RyT0c5ZHEzbHFKZzhpVDEzYg?oc=5",
         "title": "아피캄텐, 비폐색성 비대성 심근병증 임상 3상 성공",
         "date": "2026-05-05"
@@ -548,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQeXFyMjhOR2FDbXdKY3A5NW0zZGowYnhGWVlaTEdkT2dGZTVHdWlWX1RmcTB0dHpzcUZWMmhfWTM2dHhWbV9TQ3EzcmQ4eWZTaFlGNV8xbUZ6d1A1czBZdkFUS09mLWF2THVZeDZLdHdnd2RycWxadFpOa3Zmc3N2VmJwMlVxc0lSWDIxd00xLTZqQk92RFR6bmtsREhSeTJlTDJ1ZmR2Z21yYjVTVGZSYy0xN0Q?oc=5",
         "title": "Federal Circuit Affirms Patent Ineligibility of Farming Data Collection Patents - IPWatchdog.com",
         "date": "2026-06-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOQlVvejN2clN4TFJMUGgydEhxTE5LZHRiZ3lvV1pMR1Fqa25GWG9PYXJIdm1Oc21CcVpDRnh3dkJZZ2tQSjAtc3RUUUpvVXBNSHhCQkJhbzhld0tuenpoX2hmdEhmVFk5RUtYZTFUMlJqaVhQR1VfQnZyaExVVVBEVlVOV3lXN3l5TGpja2dOV29Lbk84MmxQeUdlOE5SVnh1bVdtNFFSNTFOdTVxOENXSQ?oc=5",
+        "title": "As Akeso takes center stage at ASCO, China biotech industry cements its coming of age - Fierce Pharma",
+        "date": "2026-06-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNUEdCSk9sRUF6LW5tUTlPeld4WmFPbEhKV3d2LWZZdklsemw1ajBmTGxEc2JmeFpISFloUWpqbDFzaFVIQlVrSHAweFhFbFFOM3RsRUVFWVMxM2RKWVRxYlZlM0tSeVBKODlGa3I5MTMxSlA4SXFCd1FjSlpEOU0zcUxMRjU5SDNwaGhPNlZuVVpVTHp2bkR4c3RB?oc=5",
+        "title": "Legend Biotech emerged as a rare market winner - statnews.com",
+        "date": "2026-06-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNaE9sS2FncFRuaVh1SV9nT2o2Q04wRDFQbmNPTUEwa0NKcXRxMUZxMTlETUhFQ1puWUNRUGtCWXl2ZUJsdjNGTVZKX3pBOVoyLVFtTklHSzEtNTJrc0xEZDMxeXVnQnFrWDhzYXVySHh0NEdJZXduODFWdTFfTEZyQWtlU2hxR3hRNXJMY2R3?oc=5",
+        "title": "Biopharmaceutical Innovation: The Patent Imperative - IPWatchdog.com",
+        "date": "2026-06-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOclRFQzdsTXVmeFNIOFZkd0VzX0hobE9McVV5ZDdQRVBmNG04TXRseUV4V2VzQUhkbHM4bTNZU2FjdC0yYnAzZWFfTzBiM2RMSlBNU3dCcEZyY1laQ3ZTWHVRR2RSTVdQQnlwVVJqWlNlSnpFSWhmUllIT3JRUUNFeDRTSVVFTU94V1B1ekRDSXRtMDhaT1VzOFRmYUJRNDhoSnNDWWZnN1BvYjY1Y1VhY19vYUJqTEJ4TURxZkk2dmlnYjJ0aUHSAcYBQVVfeXFMTnJURUM3bE11ZnhTSDhWZHdFc19IaGxPTHFVeWQ3UEVQZjRtOE10bHlFeFdlc0FIZGxzOG0zWVNhY3QtMmJwM2VhX08wYjNkTEpQTVN3QnBGcmNZWkN2U1h1UUdkUk1XUEJ5cFVSalpTZUp6RUloZlJZSE9yUVFDRXg0U0lVRU1PeFdQdXpEQ0l0bTA4Wk9VczhUZmFCUTQ4aEpzQ1lmZzdQb2I2NWNVYWNfb2FCakxCeE1EcWZJNnZpZ2IydGlB?oc=5",
+        "title": "Wayne State University secures new U.S. patent for breakthrough surgical technology innovation | Newswise - Newswise",
+        "date": "2026-06-03"
     }
 ]
