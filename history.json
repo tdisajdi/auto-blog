@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNRDYtd3NidXU2eUlnWFZsNlBTRW1ncFhWZURYWDBSbWZTQmlfTjhZTW5UYzdId3dFQ09sX1RmQUVfWmhzd0dqY0tzdlR5NTVTTEJYQ05uTWZ5OTFvMFpmNTZUcEo0RzJJZkwyd0FzSDU2aGhZVzg5SmF3SlJNMTNvY2lIM2hHZkcwREJEMEI3RGZHWVpUTXhQYUFyUFBUYlZHTC02UlV4dGZHSUxPRUhUbDJCV2MxSHZSRTUxcm9XVVpOeW1RSldVbmlsb0pjcGtNOFVqcTlpUWgxMV9LdG51c1JTTlp4X0xEaUtZc2lHMFp5QmxqS0lXR0M4Ty1NU3BneHRiWVNXVGlsUktwZGVDdUY3R284UWExZkFhRlh6TTlkSlJyNUFzUUUteXZMa19CSFZRaXJLZ2dOWjhYcFpNSmZkYWlITDdsRUh4T2VsUEhhbG4tRXlLdjlRdmR6S1RyT0c5ZHEzbHFKZzhpVDEzYg?oc=5",
-        "title": "아피캄텐, 비폐색성 비대성 심근병증 임상 3상 성공",
-        "date": "2026-05-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTGtFdVhLeHlaRi1lZ1RXUjd1VnZJaGRHZTcwd3pQQUNHQTYyTXRwX3ZyWjFzVjZMTjRuelFIaG5tSVplaDlHQUZ1ai1KOWI0Ui0xN21haTVXXzNxMGpXZnc5bUdzOTN5M3dqX3prX1JDblVHOUIzSWV0NF9tOTNsa1Q3YUo2dmphMGh0MjRGYzBpWExJZUk1dlVJOWdWSE5FVEtOMDBNSmhEczFsa29xUFgwamtNc0RvZFRRTQ?oc=5",
-        "title": "바이오 업계 강력한 인수합병 순풍, 미셸 로스 전망",
-        "date": "2026-05-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMickFVX3lxTFB1ckJvbVp1YjBvX2ctRWtTYWpoRjJqaG1ZZUh2bTRveXFtLU1MRVE0dllON19TS0kzVnhSSlZtQUV5LUxVX3p5X2t4NENiRDRuektTVkV0MEo2UVRRblFfRmQtX2stcXlJTjB5c003cE5XQQ?oc=5",
-        "title": "테슬라 전기차 주행거리를 늘리는 기발한 방법",
-        "date": "2026-05-05"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiigJBVV95cUxNcjFXcHdnOTZOLTRzMS1UY2h2ZEJac183aWR5bUpHQS1jX2xWQW5Ibl92NFgtYXVXWG0ycGlEcGtPZEhDRFZweWdEdm9fcjZOZFFwYzlIV1BIb1dGOUttaDE5WGhsaFYzVHBoZk1Zalcxbm9TRjJhR1luX2R1ZnZZMy1rNjljRnVveUp5S2QzdW9IZlVRNEtDOWx3UVBaQ2lUQ0VaT0RMQXZNQ0Z4N0sta19ubVZBN3FkOW1nVWRpY1d1V09iMGZJendlc3Frd1J6aVRmYU81Zko0MnVpV0hBZWdweGVBR01qQkhsWWo5Ujc4R19ubFNOSzVEanpkOHFSZ1FsdUc1YjA1QQ?oc=5",
-        "title": "제네릭 ‘스키니 라벨’의 위기, 히크마 대 아마린 판결 시사점",
-        "date": "2026-05-05"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQZDFFcjZteVNtMzZqUW5ienZ0VzVwM3lIVUVFYWNyTXFDbGJsem0yaENFcnNCejZ6VGlHdVhjeUFyNzEzUzJJV1N1UGNqWV9SRUpQcEhzWDN2cFRaR2xUeGJPeGFzV1ktMmN1S1BLUlFOTTA0UkNiTmkteW1CdWdCbmFhRGFhQ2l1ODQ5eHNfNWFmT25UY0YzM3lWc0N5MEk?oc=5",
         "title": "바이엘, 24억 달러에 퍼퓨즈 인수…안과 신약 확보",
         "date": "2026-05-06"
@@ -548,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOclRFQzdsTXVmeFNIOFZkd0VzX0hobE9McVV5ZDdQRVBmNG04TXRseUV4V2VzQUhkbHM4bTNZU2FjdC0yYnAzZWFfTzBiM2RMSlBNU3dCcEZyY1laQ3ZTWHVRR2RSTVdQQnlwVVJqWlNlSnpFSWhmUllIT3JRUUNFeDRTSVVFTU94V1B1ekRDSXRtMDhaT1VzOFRmYUJRNDhoSnNDWWZnN1BvYjY1Y1VhY19vYUJqTEJ4TURxZkk2dmlnYjJ0aUHSAcYBQVVfeXFMTnJURUM3bE11ZnhTSDhWZHdFc19IaGxPTHFVeWQ3UEVQZjRtOE10bHlFeFdlc0FIZGxzOG0zWVNhY3QtMmJwM2VhX08wYjNkTEpQTVN3QnBGcmNZWkN2U1h1UUdkUk1XUEJ5cFVSalpTZUp6RUloZlJZSE9yUVFDRXg0U0lVRU1PeFdQdXpEQ0l0bTA4Wk9VczhUZmFCUTQ4aEpzQ1lmZzdQb2I2NWNVYWNfb2FCakxCeE1EcWZJNnZpZ2IydGlB?oc=5",
         "title": "Wayne State University secures new U.S. patent for breakthrough surgical technology innovation | Newswise - Newswise",
         "date": "2026-06-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQRWljMkkydDFzRkVrdGIyeWV1TFhiVEJobGlKUGdJQkJBQ0ZTelBqVnBXRWwzZ1JHS01CMzFIUHlQV2tOSVNVMWJLQW9ZRHo4VWVNTlYzNl9sOHZvVm5FZ3hUTWhEdnJybDJQRnJodWJFTzdPNEJJLWxBSjNJSW5mRlUwLWFBc0NMYW9JenBZN2M0STJQS05kb01IUUk5VzZoaTNzSjFibjIyUkRGNDF5QVpzaEZEOGhLdWRN?oc=5",
+        "title": "As China biotech crackdown calls reverberate in Washington, the pushback gets louder, too - Fierce Biotech",
+        "date": "2026-06-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxORmRseHI2ODdXTkZVQ2xYeEp5N0xXZHNRVGFxR2tzT1p2NS1SRWh0eW9adm00WmhNajFwWEppWTVzNWlTdndjZ3hNUzViV1NlZ3FxZW1DM3diNVZrZWxFVExLa0RTbzdXWXN2TkhFX3hpZ2VZME5hbzFRTTB3SXRtdGY2MnI5TFRnRFNneHI5TFF2WUlJeTV2TkhVWGpWMU50YXVKLQ?oc=5",
+        "title": "Mapping the Clinical Trial Landscape for Stem Cell Therapies in Parkinson Disease - Neurology Live",
+        "date": "2026-06-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZllIOFNLRzBNQnNSWkd5ekVlYUgxNXp2TDh6WW4wWTBjb2xFWmhwVjRzV2tlVTE1RmdhWFpueTc2WWhCNm9LTHp3b2hMSDg1cnBNUnJIaHQwRWMxWVd5Y0I0UWs5N0hIcXNTcU5SeWp3U2swcllvNTRYcWdrM1R3MG1XZXpUX1dlMWZxM1NXMnZmNWlqd2Z0LUVaOWo2NW5SMFlvNDBtaHNoczg?oc=5",
+        "title": "US Supreme Court backs generic drugmaker in 'skinny label' patent case - Reuters",
+        "date": "2026-06-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVGJlQ09Yc2xKVmdYTm9CcjFOcmhfMG5MM1YzenlQVHpxcVN4bUVXZU1hZlN0XzZ1RzNjVHZkdkpGWUxJT2ptMWNOVk4tQzJDSGlpQ3R5UVhqRG1UNE1idG5LSGNySUtRbFBhckV4RFBicnlidmZUdnltQ1ZuNVhYVzNJN2pPUHg5eTZoMWxTb05yTlNDZmo4R21LWmQtMVNCZEJ1Y2xka2RTM3d1X1pucjlDS1JWQUE?oc=5",
+        "title": "Supreme Court Reinforces Pleading Standards For Active Inducement Of Patent Infringement - Gibson Dunn",
+        "date": "2026-06-04"
     }
 ]
