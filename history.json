@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNbmd6TjcyQWNPTG0xTGJpZzVXTk5QLWlXaU1peTcwZW9xcTNuTWZrQVhyRVFyRFl5V0s0VGFFU0JMX1VmNFNvNjJUUlJ1TC1tSDdDRGZLejI3Yzh5T0cwX01ISjFrcUZmemJ1RjhuWFVpWFdfa2QyVTUwOEM3c0dYSHBFcFBnZjBaSnVCYmVDa2kwZHUwSmwxa1ZkTTd6bEV0VzRKQ2wxbVVYd1pjT1E?oc=5",
-        "title": "예일대 주도 유방암 치료 기술, 사상 첫 FDA 승인",
-        "date": "2026-05-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxOdUtjTmJ3Z3VwVjEtWVBXcXg1SWNsZmRoYmgtN0R2ZzFjMHlWRzhYU1BmNnVUb2FpSTlodTkzMllJbEphQnZJa1pEMXV1Q2lhbURsV01ZdVhUdHI5NHZqWEVvLVJOZXFrNVpSV295RVVuak9Hek54MEVRdEpOSWZaalZXZDluM1JIbWlSUWcxQi1yV1gxRnFIUG5OSUUtdw?oc=5",
-        "title": "로슈, AI 병리 기업 PathAI 7억 5천만 달러에 인수",
-        "date": "2026-05-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWU9vR1FKODFUY0VlZnUzSXhvTnhpNFQ1cExBQkp3UzNvMWNuRFlFZHhRalBjSndnZ3V0WEFSZmw4WDlCWE96cFN2Ny1GOFdlQTZiaXNBX0wxcTlGOUVGOHJHMUFXQ0ZHQkdUZnJ4MDdWZEhFTVJ3YUFwaFV0SjJGc0dSMG1Ja1l0OUhNaTl4ZFdJdUYxS2tpZ1RtNjh4SVI5X0Y3VFl3dGFTelUzWXdLbXRBVHBvYlNSN2E2VQ?oc=5",
-        "title": "E-Power, 전고체 배터리 수명 연장하는 신규 특허 공개",
-        "date": "2026-05-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOdlBHdTl6RGxrRUYwYkZjZmhiOGRGQ1Q1NGRlTS0yV0x1VVc2WXNMUEJJNFBFdC1NeVQ3XzhZMFRhTjRHYWYxbk5TODVmT0N0a1d3NDQwMk1abmMzZUdtY3J1R0pZb1ZZRkM3SjgtcGt5OUhxay1TVUR3VU9wQm8wdTFHRUE5RU55dE9seE1pNlY0Yms?oc=5",
-        "title": "Hyundai patent reveals new body-on-frame EV battery setup - Electrek",
-        "date": "2026-05-07"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQTG5NYzVma19PdUhKTWM4T0h3Z1pGLTk2d2lTWXIyVDc0WHNjQUtUaEp5VXgtY0F6Y3VJWExPaDktcXpDVjlqeU52OEpDR0l1WWFES3o0THJSWEFJQmJoc25tU2lYMVY1OVdKQTU5RmpvbW5xWm9PTmtXUk1YOHF3M0tDQnZqU2tTT3ZRTzFkM21xbG1FNmR5SVZtdlJZUzk5NXViRUtxaUJTbk4xNjNma2Nzbzcxb080bE1SYlJaeEE3Y3pr?oc=5",
         "title": "바이오 오디세이, 증액된 美 IPO서 2억 7900만 달러 확보",
         "date": "2026-05-08"
@@ -548,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNkdocGtxR2l2NnJKR0dJdDlIY1lpc3YzNktkdnZUSzR0VEp0LUlueUlNa0VvaFVmNnVVbUhQSGVlV2dHRXVxVnFfbWlOeDRoX1RsOGVHMlpTZmEzUndMTXJVb0FOTklmT3ZCSDloYkFFOUVaRUxVVF9lT01MZ3F4LTMwWVVHX0RlOXlncEM4cTdtaUFZTTJOMk44TVlXUnlfN0o2NQ?oc=5",
         "title": "Life Spine Announces “Total Victory” in Patent Battle with Globus - Ortho Spine News",
         "date": "2026-06-05"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNbXRaN0E0N1ZURnZRT3NJRXE1LWVtZUxIX3ZwNmhxekpfeXlKT1hDSDVNU21yUjZiazlpMmRHbWVDS3lkTkNVQVRlMGVxaXVNSnpDLTh5dEM0alFNaG1FWk02Tm1pQnhaRDN0MGl0SjMwcS1sRWdqVEhtYjhZX0Facm14WdIBiAFBVV95cUxQQWVyYVFxbHh1MFdHM21IcDFibExCYXBDeUl3YTBIMnAyQUlNdk9KWDMtTDBjYXRiMlA5cEJqVVhTV2llMWZCUUY5a0lWWnZfWEJmZTEzNF9hVS1rc3VoYnZQaHhRcnNqY0M5N2lYbHRhTHRPLUFRNG11dUxOYXlxUzB6dHE2eC1T?oc=5",
+        "title": "‘Buying stuff like it’s going out of fashion’: Biotech M&A on track for best year since pre-Covid - CNBC",
+        "date": "2026-06-06"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNMkFjc3E5cG5mX3dYc0tEaWs0RHFOUVlBaTNId0RvZ05Wb0l2ZmQ5dk0xUmF0QzlBRjNGejhieEpMVFNJSkM5WXcwQzBBSGZOSFc2eWVHMjVmX3d3aVNaTDdodGUzaElfNTB6enFFWkUzMFMxc0t1Rm51VUNvRlB1X2o3MTlCRnBrajZfekJtT1g2cllxTnVWOGtJMA?oc=5",
+        "title": "A Spanish biotech banks $87M to make differentiated ADCs - BioPharma Dive",
+        "date": "2026-06-06"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOcWdFQ0lpWTVMSDhVeW0tLTJzNjhMUEhtQW05YXFqdlJpa0FDeGlodEhSM0UxQmJFZXhJd081LXdMMEtqWGdmbEw4YWNIUUVRek5ZS3p5cE1pUWctMnowUWh4N1k2UmRjRWY3UGQwdUVrMHVVU2ZRMzhSVHJocExocXNDX1FLeVNWSDltNUFDTkl5UQ?oc=5",
+        "title": "An ongoing commitment to leadership in the patent profession - IAM Patent",
+        "date": "2026-06-06"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUXczaVN1d211ZkFaVjFmbE1XZzgwdjRxb0oxcWd4SmJ3NllsVUE5bFZRZi1vVEJBZnRWNHNRRC1qa3pOZzI1Vm9FTktvUFZlQW5scm41XzFGUElzUW9QVTRZQ1B2QXVoUUJ2dWJ1ZC04T3dhTk9Mdl9ucXVzd3VkczV2R0pvYXZGdzVzUnFVYjJxM1lMODZBeHgxSnpfU2VmdlRlZ0NRdFBLdw?oc=5",
+        "title": "Can Pfizer's Dividend Survive the Patent Cliff? This $10.5 Billion Cancer Bet Could Hold the Answer. - Yahoo Finance",
+        "date": "2026-06-06"
     }
 ]
