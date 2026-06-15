@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRDYtYVFoNVVDd1RoX2t1MEpNN0dMWmdqN21kZDlqWjlxUmR1VXQwdE5WeXMzM1RTNFR1S0Q0NXItR3F2b25hbWcwdWdGMFRMcnJHOU5ZMDJQZ2tjeXlnUkFHaHdTeldoVDlsU05ocEhORW1DLTVqbmttMEx4dHQ0RFRVYjRwWFZGa0J6Njh4SHZnMmhqVnZ5VF9CTDdMWG8?oc=5",
-        "title": "FDA, HER2 양성 조기 유방암 엔허투 이중 승인",
-        "date": "2026-05-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOazJidUdQLXhMcFRON2FpWlk5RW9VMkZwazV5VjJXM2dBRFdCQWlvM3BTQmRiS1h2VDdIeUJqS1d3a0N4ME1sZ3NlSWVQQVd4LVE4Smd6MVg5RmZTOC1vZklDMHh3bDVsdU5DQXZnN2VnYXBtazQ4Q2dGaUs1SER5blFTUG55clBCcVE?oc=5",
-        "title": "리젠엑스바이오 뒤셴 임상 성공, 미국 허가 신청 가시화",
-        "date": "2026-05-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPUDhPOEhNZG9XeTJQcnlOTnNaN214S3gyakxhcDREY1hma3RsaTVYLVBoclJab0FmVC04TXJ4N3BfYW5iZ2l4dW8xdUJTX3JFMEF5b0FMUFVTa2prQmo3Vi1IWlhHQW56dHJlNm42VVlFTkhDOEZIN1NPWXQ5YWliY05vdl9ZLTMtNTJmLWZRZHNQNzBaT2Z5Y1hmU1ZMNW56OFRKUzI1X0JPa3RNZHRFT2JHSXA2R1U1V2RDWDREc0ZyTkFwN0UzUQ?oc=5",
-        "title": "테슬라 특허: FSD V14 인간형 주행과 라이트 비밀",
-        "date": "2026-05-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQcjFmbzFmVi0wM1lfWHpEZTFGNFRURG9sQl9BTUVTQ08zd2J4QlAtN1RodDZpVS15ZUdvUEhzbWdsVEh5SkZwTEUzaG1EN2MxNU9WMlRCQjA4Ym9qb3M2c2w3akJpWm54Q3NvRXYwNGdvNVRvWWNMVWRUb0V6MmJkU2pMRXZYQTdrSmtQOEQ0Tm5waXEzWGxVZjd0WVFobTJibUE?oc=5",
-        "title": "고다디 1억 7천만 달러 특허 판결 유지, 고의성 기각",
-        "date": "2026-05-16"
-    },
-    {
         "id": "https://techcrunch.com/2026/05/17/why-trust-is-a-big-question-at-the-elon-musk-openai-trial/",
         "title": "머스크-오픈AI 소송, 왜 '신뢰'가 핵심 쟁점인가",
         "date": "2026-05-17"
@@ -538,5 +518,25 @@
         "id": "https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos",
         "title": "China may have accessed Mythos",
         "date": "2026-06-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPclcyOWVPMzc5YmJJclJ3N215NEwteWtwcGFMOFdYdXM2SGJhVk9FbVdtTERrUFhYS1BTZzdma2FPNjhYX1ZySzNTRUo0V2c1NC1XaUVSdGZSLTFxQTF6Rjl4ODJfQjNjdUp4LWMzU1JSRzhTSUtLWUpMYmVUMm9DRVpVWm1vUUtBbHBJZU9TYlpoOG9xUnVVS1VCV3ZqbmJZRkJ2czZ6ZnJIWldpU2IydjBwMWFOMnpPMml3?oc=5",
+        "title": "Toni Choueiri, MD, reacts to FDA approval of adjuvant belzutifan with pembrolizumab for ccRCC - Urology Times",
+        "date": "2026-06-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQejNOLVNQZnJmcDBDWEotcFBMTWNPaXVuZkFsT05aNGZDaWphRXo2emZPUGhoeDI5WExoREY4MEptSmtjbWptZzJKWnVjTTlHSFVfMm5RLVpQT1NmMlc5QlZ3blFsaWJRR2htSndCVXFxa3NFekw5bFZFOEZSaDBSV3NYTlRkNzh1N1JTaXJVcERsR1N2RzItSDM5TWNkdFM3QlVzUjBPS2htLTlxQ2Q1MmF1V2VDNDlrX0d3aUdIT1NmR3pkbm0w?oc=5",
+        "title": "Addressing Barriers to Clinical Trial Participation in Rural Communities - National Institutes of Health (.gov)",
+        "date": "2026-06-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQMlpFWXdUbjJ5LTNtX3dBaEczTTVIejljMTduR1JEQWpmc0FqWHprV3IxMzRXTE0xNlBSUHdnYW84Qm5NQTRVRDFSMFF5UjZtSE56LTUyODdFRURQZTNqUlRySnYtTjBEUzh0cWlLNlNNd1VPWEZUUTN6dGswVUpXa2FSLXlJaThQdVkwNGRJUGhLWlFzbG16bTVCbzFJRmFlNFlVblBFb1k?oc=5",
+        "title": "Amgen loses in Harbour antibody patent case, ordered to pay $20M+ - Fierce Biotech",
+        "date": "2026-06-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPX09UODRCLXAzLS1YX0NjM210dnI4NFdYUFRyX0VGbFNXajBBMG1Dai04Mkl5aTgtUk15QURnVnM3eF8ybDliSzZVMVpjRVktUUNDUWJIOGlOQVQ2RXBKaU83X2ZuMHJXZEtUS0tZdWxNZGhnWGZoeTJuRTVZSEE4blBUTkFINk1QeFJqbXZ6YnlvT2NKeGJPTlBCU01nbzA?oc=5",
+        "title": "FDA issues guidance on sharing potential NDA patent information - RAPS.org",
+        "date": "2026-06-15"
     }
 ]
