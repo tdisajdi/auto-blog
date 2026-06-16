@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://techcrunch.com/2026/05/17/why-trust-is-a-big-question-at-the-elon-musk-openai-trial/",
-        "title": "머스크-오픈AI 소송, 왜 '신뢰'가 핵심 쟁점인가",
-        "date": "2026-05-17"
-    },
-    {
-        "id": "https://techcrunch.com/2026/05/17/for-eclipse-the-2-5b-cerebras-win-is-just-the-start-of-realizing-its-physical-world-thesis/",
-        "title": "이클립스, 세레브라스 성과로 '물리 세계' 전략의 서막",
-        "date": "2026-05-17"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPM3NFOVdnTUZOYm9HTVpIQzFRRTNueklrT1BCOXJ4cVh2X0NPZnBhTThBS0FPWmdPLWNSVWx6RVdOSjRQLWYzZFJndjh5OWxpQjU0OXVXbFB1MnJtWlk0OXZhTVZTajJVZDg3Mm11dTNMaHhFTm5FZzNQR0RnR0xjT3BuTkh3WDZwdHQ0aGxYVDNLVDM1eXlkX3lXTm92dUYzVzAyUXd1dEVEZ2V1dHU3dg?oc=5",
         "title": "중국 문제로 분열되는 바이오 업계",
         "date": "2026-05-18"
@@ -538,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPX09UODRCLXAzLS1YX0NjM210dnI4NFdYUFRyX0VGbFNXajBBMG1Dai04Mkl5aTgtUk15QURnVnM3eF8ybDliSzZVMVpjRVktUUNDUWJIOGlOQVQ2RXBKaU83X2ZuMHJXZEtUS0tZdWxNZGhnWGZoeTJuRTVZSEE4blBUTkFINk1QeFJqbXZ6YnlvT2NKeGJPTlBCU01nbzA?oc=5",
         "title": "FDA issues guidance on sharing potential NDA patent information - RAPS.org",
         "date": "2026-06-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE84VFdBVFZyZy0wOEt1ZktReF9aVXNaNnBFb2p0NnpZUmcxVzlvdWprVnlmdVM5bExTdUs2dFlVWUJHSUpvc2t1ZFhYcHplN2oycmthNnQyVTNfMkpyVlVCUldmdjNLWFFuR2xsZUltRFA5VzJmNEwzUGVGT25YeHM?oc=5",
+        "title": "Colorado gets FDA approval to import cheaper prescription drugs from Canada - WBUR",
+        "date": "2026-06-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPVDZkT0llRU12b3ZZZzZ3RUVrNk1GSFBVUHVHUGxodmd5dEI1VVNLWUZKR1hDX2hSa2lZdlJyRFNQeXBEcVpYTmRBS01IS25abDFxVHJTaGhNZ3JTQ1pabmFDc0JTMGJFME5fUWZLREFhTzVLbzJuTDg0ZXN3ODBZQWczdVZOaFNjR0lSY01fdW11UDVaVlFXcU5vb0M4bnowVnJ6OXVjSHQ1cDEwb2RfRThuX2tHbU9OQUpJUHVNNHdZak53QVVDeXNCVWl3ZjluY2hNTEYyd3JaUQ?oc=5",
+        "title": "Council agrees mandate on measures to advance biotech innovation in the EU - consilium.europa.eu",
+        "date": "2026-06-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZ0M0QmhFWWNNS04wMEJmNTdZWkYtMGxxRGIzWlc5ellDNHFpMWFYTzZvcVFRMlBENF9pSTFSVnRvY0NsQXhEaFdrSTFDZE9ScDFKN216MkZNcUVrOEp3c3QtZFBVZGE2ZU52MVZyZWZvbUJENGlhWUpYUWNwZlRsWmZRTDFvRTdZ?oc=5",
+        "title": "America’s Broken Patent System Must Return to First Principles - IPWatchdog.com",
+        "date": "2026-06-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVGo5cFc4OGpLbXFoQ3JRME4yUW12X2xqZm83ME1hTFNrNUluckdJWmE4SjJXa3phUDZJeDc1RERfVDJENHBXNXJNVTQtMlRDbTE2enNBZjRScnJwc2ZVc2JkQmtsQ0hlY0RxTU5KbG9RWG9OX05WT2p0YTZfZzdCOA?oc=5",
+        "title": "StemSight gains patent for off-the-shelf limbal stem cell platform patent milestone for STE-101 - Modern Retina",
+        "date": "2026-06-16"
     }
 ]
