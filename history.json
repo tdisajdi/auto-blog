@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBURkpsMl91WEJqOEdpd0NKU3Vybm1Kd1k4UWI4ZWh3VHFBQTM1Z3ZDUW1Bb2ZIaGJGVVJpNEZuU3FBTDlxWW5oMEE3eXV3TzdldVp3djJqWFJDMThk?oc=5",
-        "title": "우시의 거대 바이오테크 제국 탐구",
-        "date": "2026-05-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNTTYzTFF6bEZsRExKNUpjTmkzSnVOVnZjelhSTklxQkZCemZPVUdrTUZwSGVTWnUwQmtTTVNPckFSQ0M4Y0xoSVNpWFVhYnN1SmtndldfVEt3V210cGZQNVA4MFdaU3hBSDZRNnV6MVkyZ3l5akVId21EZm8xa0llYWs0N3hLb2tTejRaeE51ZEdiWDVJOG50QzhB?oc=5",
-        "title": "RGX-202 유전자 치료제, DMD 3상 목표 달성",
-        "date": "2026-05-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQc25wc0E3MGlzaEs2SUYtMHdsamp1dlRwQVVwbmhxV2JLU1ZzU1FjODhWQU9OaUZTTHYyOHhkRDQxa0d1akY3SDIzSG8ya0VsZm91cGFCTlRETUFFUzRHM0VnRlBPLWhFRUNHb25USFA4ZE9MNl8yV2s3V24tWFlOUVJkb3lITXhZdTdPMjdoNnlOajRXdTlkM051dzdmd1dhN2RkSGx5YUFiYzd1cXRnakNBOGozQ0ZOc0l1MFhwdjJlOXVfT0ZGUERYdUw1bWpCa0hUeHZ3T0JDbFNPR2R4QUQ2bw?oc=5",
-        "title": "에이전틱 AI 특허 소송 스틸타, 145억 시드 투자 유치",
-        "date": "2026-05-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNM1EwYWlpWWhvOTh1Y21CdkcwdU4xU1hEdC1ZRWlUbHBZa2lXMlBqNWhUV1lFZnVOaXc5eG1NNVprOFUxY2p5Yk4zSWlnbEZGRDQzdXNxTUZqZzJoTlpVSTJiRk9TNGJpT095cDNyUGcySjllR1AzQnZUU21naFF1Z19QTlk1aDV0ZVRqR2x4dGo1T3ZWdXNxRV9wREVEbXZ6dm5NS1Z0TEo?oc=5",
-        "title": "Texas court denies injunction against Samsung after $445m patent verdict - IAM Media",
-        "date": "2026-05-19"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPbkZtNTlRa291YVU4cGE3bzZ4OWNqdWhXOUxldWh0alRzWHI1bTJlNHJESnppNDR3dVp3SlV2NUJKUkFENXQ0N2ZscVRnbGlMWHpZWHByYlI2NktqOFNjWnJOSXB6TmMzNEVBbVh3Z3BkbDB3bnN4SHJSRjItLVdjMWRFd2hGdm5TWUpNV3lWbmZZbjA?oc=5",
         "title": "MAHA 혼란에 개의치 않는 바이오 투자자들",
         "date": "2026-05-20"
@@ -548,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5YUVlLLUFfNGRacHNERXdyYnUzMk1pV1Y2Z0tHT3dmZDVKbFdzcF8xM2Q5cXY1cVRHRm5TV0pQVkFaT3VzQU9QdW9Fb2liSFZiVVhJSF9IQnFNNDE3MnBoQmdRNkVQdWsyM3p2ZU1BUzNtRGlHVEN1Uk5sMA?oc=5",
         "title": "Get Your First Look at the Radical Lucid Cosmos in These New Patent Images - Car and Driver",
         "date": "2026-06-17"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5GVHVkd1AxcTYxZzRYVW1JTXpuRTFZSGZUYW1lemxQOXZESlhBWFNOY0ZJVlk3SHAxdlo3UHhCNXBKazRaNFBUbS1IU2g4bUJJTzZxc1JBUlRmbXUtMGwwcnhxX2xIdkU0ZGU4Z2QwbGE5dnBTcWdZeWptLXVzZ3c?oc=5",
+        "title": "Don’t restrict Chinese biotech - The Economist",
+        "date": "2026-06-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPNEdFUEttZUFkT0VTT09YM2tsd1A1bG5ieW5HMEd5dGpXakhGY3NfbkxYcWJDOGRBNVRHUzc5U09tMUhvMGdVbmZhbGRvU2I2RWM4d1dVckxOT2tsNk9UeXBJajR6MWJTTnl0NlZrN19ncFc0NGswOHEtQzB3S1YzY0JFb2RydEEzaWFHcGdrc0lKMUtVV1ZINU1hdWFoX1huZDZEd3dWR05udTd0SW1TcTc1MnZ3dmRxMnREb0ZWazRGSEFHVkExaTJBcHlMWGdY?oc=5",
+        "title": "Northwestern Medicine Collaborates with Vizlitics to Advance Cancer Clinical Trial Recruitment and Real-World Data - Northwestern Medicine Newsroom",
+        "date": "2026-06-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNYTJOZ0I5ZHdwZjhCdGNNTDZWVnRHak11X0tHYmg2QUJsMVdkbGRBc1doN1B0ZmR1V19wVER4OXZUNm5yMVNLYUVpeEU2U2dOMFZOdFB0Nm42ZVRQY1NDUl95eXlsVDVSeVhieE9HSEo0S0NKaDF3N2s2LV9HZm0xRlRGNkRHQjFtNVJFZk84cXBtbmhlQVhGOTFfWGdMcGUxQWJxSlJDSUFxUlVKZlpOZFZlUzRRbDRJWlozNWxMUkMtd0E4R24xdUJfdWJfOWNHVnkwNEdNYXVVSWdHUWNVNE1SYkk0aWFkM0RpTkZObmp4cjlSc3dsRTc1Ql9PY1dyR0E?oc=5",
+        "title": "PATENT—D. Del.: Single-cell sequencing patents invalidated for lack of written description and anticipation - VitalLaw.com",
+        "date": "2026-06-18"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNX0pTeWpzTE5jQVkyWVBqdGFDSnpZS0NrblViSFBaUmdaVlZpekxQczI3bnRPS2ZYQnN3dFFHNDR2bXVveDVaTHlVdVhJbUtlNy1rMzJBLWFOejdFVWs0cjkzRGVZRlRLS0g4NG5lS2xTaW9QWGJiLUNjRE8ydFhjUDN5N1dpUFlCdXBxSjdic2RReXdVQWpQeFJWMXpWV28xZTRGc2MxR1FhSFk?oc=5",
+        "title": "When AI Is the Inventor, the Patent Problem Starts Before Filing - Law.com",
+        "date": "2026-06-18"
     }
 ]
