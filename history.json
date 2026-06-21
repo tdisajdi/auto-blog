@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQZlMtUXFWWTBLcXU0YkJrcld1MUFucEtDZFM5V2JHeDRnelJMbGl0NEd0enA4b3ltaUcxcXJHc1lrdUxwbnRGRmNNR25nazVSZ3l2WmVKV29xd3VBYWs2M1JPMWlEVjkxVFhkT0pFd1lhd3hMM1dSTWNJQzVRNlR6WE9FT0VfN2tBeFdOejNqSnNFdXMxcWdV?oc=5",
-        "title": "뷜레비르타이드, 만성 델타형 간염 최초 FDA 승인",
-        "date": "2026-05-22"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOMVJQVjVIS0FySnM0SHZiRzltMnJfN3ptTDFkT2xlZHZiUkxrY0gxLXFKeDZWWTVsbEloMld5cFU3VWZITFNoUEplTkRkcGJkMmdOYkd0cWcxQVlQYjdfZHBsZU11RnRHOVN1SmZmcnYxa2pfZTkzWDQ2UjBaNGFNeVRFeE5XMFczTVpJbklheVl5R3pkWjNSbFVDZUkwN3YyVWJ5RGQ1NmZzQl9KOWRsQ1VFako0NmZwX292cnJOTQ?oc=5",
-        "title": "다토포타맙, 면역요법 부적합 삼중음성 유방암 1차 승인",
-        "date": "2026-05-22"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQRmhQRzV5WF85S2c3QlJMd0MxX3NTdUhJREpRdnV2SU53WDE3eEdoNkQyV0pPS0ZxbEdJeTRVUzNnMF9oWHoyeHZ0X0pnVHZDUHF2eTJ1dU5VSk5fSmpIbWUyNWtSWXNmRWk0X3FlUXYxSDBuc0lUX2ptZWFzdEJ2TVZjcXI3bUxSTHRHbjNKSnY2UzFLbDZ0cDVXWnpsVGFwa2xMeHFKMmRLN2x5bjJkVkUyLWRmVkcxazZhb0FfUXFQSWpaR09kM1Axcm5YaEJCVlE?oc=5",
-        "title": "삼성·ZTE 영국 표준특허 판결이 미국에 주는 시사점",
-        "date": "2026-05-22"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNZjhoZmxxQ2l2elBHejAwNTZEcXpFd2RZUWZzellPeTJfTDhDckxxWXVwQUtFQU9MaHFFT2xkNWFvYXloTHNXcEtzdDFzZE5xeXpUTE9TNVZCWnZwQ0NWSU16Qk1ybDdhWU1aTFhlYTk2UW9qYnNLTk5FdkhDVDlRcEFhcllMZVgzNVRGVDZyVm9PLVFNcWFkVlV1OTRhUlBHc2llT09OcUs?oc=5",
-        "title": "TCL, 스마트폰 기술 특허 침해 소송 당해",
-        "date": "2026-05-22"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMmx3ZWxuR0NZNzBFbWllVGFqT28xcnV3X3puTjFUSE13eG0wNWNwSi1YWGtWUUxaZU8zNjVxa2Vfc21lbHBqVDJ5TlBTVVdaREZiNVl0cjBiR0FhelBHZ21vM0N5cTAySnRXOUxaOHNrNEluQUh4STZrWUJHUnlWaW5nYlpXM21SUGRWcEZ2YVpsd2x2R1ZpRzRPRUk0eU9Lb0tvaWNDWlNaa0NX?oc=5",
         "title": "삼중음성 유방암 신약 Dato-DXd FDA 승인 전문가 분석",
         "date": "2026-05-23"
@@ -538,5 +518,15 @@
         "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZ2tvdkFfRV9BMzZ3ZUprb3J4ekgxeUVubk8xM1J0UUZVTGU5TFVOdTFJaGpyVEE5anpxcF91UHpCVTFGNExpdVVrWW1fWExuTUdfUElfUmRyWVNrX0JJNWNhTG9weVdpUGxzLXN3Uk1YeGJlRTdoLVRNZlZLcmVtQ2ZjWlVHaG85VmFIVG5TYjY0N1BVVXdtclFNenhCcTNQbGQ4TF9OZG1oTUoxaVMteFJYYw?oc=5",
         "title": "AbbVie would gain an experimental eczema drug by buying biotech: report - MarketWatch",
         "date": "2026-06-20"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/953324/bose-studios-record-label-media-company",
+        "title": "Bose thinks it can be a media company for some reason",
+        "date": "2026-06-21"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/953303/cold-court-hands-up-ep-music-review",
+        "title": "Cold Court’s debut EP is an infectious, glitchy genre mashup",
+        "date": "2026-06-21"
     }
 ]
