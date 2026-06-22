@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMmx3ZWxuR0NZNzBFbWllVGFqT28xcnV3X3puTjFUSE13eG0wNWNwSi1YWGtWUUxaZU8zNjVxa2Vfc21lbHBqVDJ5TlBTVVdaREZiNVl0cjBiR0FhelBHZ21vM0N5cTAySnRXOUxaOHNrNEluQUh4STZrWUJHUnlWaW5nYlpXM21SUGRWcEZ2YVpsd2x2R1ZpRzRPRUk0eU9Lb0tvaWNDWlNaa0NX?oc=5",
-        "title": "삼중음성 유방암 신약 Dato-DXd FDA 승인 전문가 분석",
-        "date": "2026-05-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQcTdNQ3VTR3FYWldQelpxTDloVmFtb05vWWNyVU43TE9fRVE4ZF9reC10eWhvSjQyUmhvTFdWN25JaE9YdndXYXMtaDUya291bDhGeWxzbVZWR1FGbEtmOWFVN0w2T0pxMmFqT19Yc2h3Y1E0WllJNUMtaVhORWxwS2UxRQ?oc=5",
-        "title": "주목받던 파킨슨병 신약 후보, 주요 임상 시험 실패",
-        "date": "2026-05-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNQTNYUllXY1NaNFdDUGdvTGZhbEktcFcwdHpUUzN6djlxZ1hONmF3WFdvZ3VRMnh0bkhEOWgtXzV4NFdUbC1OaUVSLUZvSUllMS1rUkNERkVYXzB5djlBNk1vT1U4NktYZGY4c3NLUV9FMHY4a2Q0OF80VjY4NjlLMHBQXzZDOXJ1dXI4NEhYb1BSallEUHdBeVhOc3BheWJuaEI3UFJJUEJFZS14SWQ5U3F3?oc=5",
-        "title": "다케다 8.8억 달러 배상 판결과 특허 전략 반독점 리스크",
-        "date": "2026-05-23"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxONElHWmFBSm52SmJ4aGtzWXJYMGpPcWs5VzIwbUxDQ0xwaDljaXFENmR1UXNLWmo3R29Cclh2WUNNWHdidUVvOHN4UXdTbTlEMXItVWxKLXpzUHhuWUZtVHctZ1BvVXlFaDRxM0pqT0JBcVp0OTYyZlQ2bm1TU3VMYVgzaHJBV1NNMk5meHdpUEJsVHkyWGZyeU9jbDJ4NGdIelp4U1BQR3NYem1JSkw0R1JVOVZpU0ljcEg0bkR0Vy1iWTRXMmh3TF9HRQ?oc=5",
-        "title": "The AI Patent Litigation War Hasn’t Started—But It’s Coming Fast - Bloomberg Law News",
-        "date": "2026-05-23"
-    },
-    {
         "id": "https://www.theverge.com/gadgets/936196/best-memorial-day-sales-tech-deals-2026",
         "title": "The best Memorial Day sales you can shop this weekend",
         "date": "2026-05-24"
@@ -528,5 +508,25 @@
         "id": "https://www.theverge.com/entertainment/953303/cold-court-hands-up-ep-music-review",
         "title": "Cold Court’s debut EP is an infectious, glitchy genre mashup",
         "date": "2026-06-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNODZJZGFTLVdRNm1vaFVJVVE0VUoxOGZISVpOdVZzYkZrQnhoSDZyRHB6ZnBqS2dMRV81S2M5Mm5OMm5BQzU0UkF1cXplVE8ySTBpeGRadWFhQUtrb0FMRFgwci1IRWwyWHctYmpWVzBUamVnM3VsbWN4aEp6a01aZFBMdVdxbU1tS0xzNmVDLUJ4dw?oc=5",
+        "title": "Pharma goes on a spending spree, snapping up biotechs in a hurry - statnews.com",
+        "date": "2026-06-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQRWZHc3NtYmF5eUhCSUtHMFpJbk1WX0ZXRnl6MTlTUXpxLW02U3JhTUlLanNSblpVYU9lSXd2SkstVFl1TU5WbDExLVZiemJhVXVuT0s5NGZyY0t6Y0JFUWt1anBPVUJRUWtKcWJtN3dhdHE1aEFsZXJTQTE5ekRaVHctbUFMS0tQTGtNN3RjbkJYT3FtaWxSR2JIR2tNbnZITnVZV0wta2RHSTdESGNFSUoyWUhwODh1N1FmX1lhNHBaSGxqWHIwRXRHWV8?oc=5",
+        "title": "China closing in but US leads in biotech quality, commercial reach, survey finds - Reuters",
+        "date": "2026-06-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9xSVk5T0RvVE5hNUI4NklOQS15QmJ2a2c1aWpOTERJUjJhZ005N2FrdjViZmRWWlRmcU1pdGRmR0w2TVpnTU11YWtiaGFqRzFxWjFyWnJRM0JTQ0k?oc=5",
+        "title": "Webinar: Using AI Before Drafting to Build a Stronger Patent Pipeline - IPWatchdog.com",
+        "date": "2026-06-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaURFMFAzUzBKVGF5dk4yQVB4a1FWWGV3RWlYUmtwamlwV19mNmtWeHlEby1pblBnREQ0bnNhcF9pRkdvbTZpcGZuVWRoOWZ2dW55WWpIR29pdHlyNVBPdHJ5U25rSDBGeUd0SVRvVmZlNHVrOWRVNmZRQXBTLUFVcHJPZTZVbEQtLUhVZFY2Z3pJMDhfeWM5dDh2OXktbDU5YjgxeG1HbE1IQQ?oc=5",
+        "title": "Nokia strikes patent licensing deals with Lenovo and Acer - JUVE Patent",
+        "date": "2026-06-22"
     }
 ]
