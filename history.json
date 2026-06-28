@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNSDh3cnNOaG1ETi1pMUw5aGd2ejYtTzRVUWNqSzIxOXFuYjFvZks1LThwZmRhUzJnRm1yS2tYVHZjSWMtM296TlVXa1NuMTJ4YU16YnJzWnNZWUU3QW8zNjRoWkhMVEVvb1Y5STBkNXktZ3BiaEhBVUpGQW8zcXlWS0M3eS0wQml3dzY5RV9tZFBvakFSWDZSYlNRenlWd3p0MnYzZnpIcTBlOGZld3E2NlVMa0xyU3pqS3VIS3Z6TjR1Zmc3LWYyRkljek91dzl5M0pQMkg0UkhCSnFCZXA0U3RJcVZUQUgzekpISnZtLXg?oc=5",
-        "title": "Pharmalittle: We're reading about Replimune drug getting third try at FDA approval, a Pfizer deal in China, and more - statnews.com",
-        "date": "2026-05-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5RXzA4czlnS0UtM3kwOXJUWDE4QTNJNHlGT0hBM3A0UkhqcmtCQUhoVDVUbEJFTFo0cURubGwyN1p4TTRJZkZOQTJzT3hBVlg0OWdaY3ZhYlkzTm16T2ZwQURRY3FEbEF0TWR5a3dXYmJVU1NWYUZFXw?oc=5",
-        "title": "Boston, China and the future of biotech - Fierce Biotech",
-        "date": "2026-05-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNQ3FSQk8yTVVSOVlCVk5IejVsQVpnV2FweFBDSG9aWHlUMTVvcC03LXB5WnVBdEZ4OVZKUl92VTFPSFh3Und4d0VseTVQQ2ljd19iYVNUSy1wbDBpYmplTklkbDJXT3EwVFlQOE1yS1FSUUU1T3JnMU1oblhJYWo0LXpSMkZRYzU0NVJnOE4yTm5yS0tmd19PVjZCTzZjaXhJekhIU21XLTJtRlFkVTM5VU1lTF94Y2x0VExWMy1pbHVGaTdPV25HdV9pUjVBTmVSMnpsZ1JNLTBMRUtqMWVuNlJtZVBrSU80M3o5ZXFB?oc=5",
-        "title": "Actinium Pharmaceuticals Receives Two Patent Allowances Spanning Its Actimab-A and Iomab-ACT Programs - PR Newswire",
-        "date": "2026-05-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxNNU8zNkxBc09PQmozVFFhQ0cwY3lseWFxTnkzbWwwX0ZQRzMzVjdoeFRNWWVNOVN3SzBaY3NCcGJIdUVXRmQyejhCQmgwYXR2WlhhY0F4Ui1BWF9xLW5GaGc3Ni1DQVJJVU1pQzRDUDM0S0M5YjA2WnI5RHBJNmNtR1BRalpOTElKRFFoM21SZWhWbER3dENfcnkxYTFDdw?oc=5",
-        "title": "Wilson Sonsini, Attorneys Recognized in 2026 IAM Patent 1000 - Wilson Sonsini",
-        "date": "2026-05-29"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNYU5ESVZqUEVjQ1o1d1pvaG1zQV9ucks5V29jaEI4OTFSTGw4U3RIMzBtM2ZBWHZYNHg1TUs0dlJaaXZlbU9RNXl4cTdrTGt6R1h1cEJFWEZ2SVQ4ckhRMTBWOGlHelNYNnpQVjRwQXFQc0x1cldYMUFfODlGSW5rVFBsRXJjazM5UDFiM3lLLUh4dVNhMGNwX1p1N05MVUNNZHBYRlIyOFZCQ181dEx1QTBxUEpNWUVhU1hBLW1sVjJWZFhWbE1WMHBB?oc=5",
         "title": "After a brachytherapy clinical trial, stage 4 melanoma is now cancer-free - UT MD Anderson",
         "date": "2026-05-30"
@@ -538,5 +518,15 @@
         "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOQnN0cUNaSUhzNFQ0S3huTHRNVWxhRnVON0xKWU5Ncy1HQ19GcnRYTG1VczMzX0ZnTkhyd1JOSEJGS3NOWTNXRWRPV3RiY2lRVUxFXzdSZ1g1QU5fdktxMEp2cVBKTlJVSFRTMl9ybEFUM01MdGl5X1V1aVFkSzdyODRfcm80Nk1Dbll0bF9mS2xPTVpiYlBfa3lENXVKLXhuUkVkOTdiQTV1V0MwYlFjLXhxM2lSQQ?oc=5",
         "title": "Chinese courts’ national favouritism reinforces need to limit US patent system access - IAM Patent",
         "date": "2026-06-27"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity",
+        "title": "China’s Z.ai claims it can match Mythos on cybersecurity",
+        "date": "2026-06-28"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/958801/suno-launches-spark-incubator-program-to-feed-independent-artists-to-its-ai-machine",
+        "title": "Suno launches Spark incubator program to feed independent artists to its AI machine",
+        "date": "2026-06-28"
     }
 ]
