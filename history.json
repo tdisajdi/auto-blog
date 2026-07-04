@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQRWljMkkydDFzRkVrdGIyeWV1TFhiVEJobGlKUGdJQkJBQ0ZTelBqVnBXRWwzZ1JHS01CMzFIUHlQV2tOSVNVMWJLQW9ZRHo4VWVNTlYzNl9sOHZvVm5FZ3hUTWhEdnJybDJQRnJodWJFTzdPNEJJLWxBSjNJSW5mRlUwLWFBc0NMYW9JenBZN2M0STJQS05kb01IUUk5VzZoaTNzSjFibjIyUkRGNDF5QVpzaEZEOGhLdWRN?oc=5",
-        "title": "As China biotech crackdown calls reverberate in Washington, the pushback gets louder, too - Fierce Biotech",
-        "date": "2026-06-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxORmRseHI2ODdXTkZVQ2xYeEp5N0xXZHNRVGFxR2tzT1p2NS1SRWh0eW9adm00WmhNajFwWEppWTVzNWlTdndjZ3hNUzViV1NlZ3FxZW1DM3diNVZrZWxFVExLa0RTbzdXWXN2TkhFX3hpZ2VZME5hbzFRTTB3SXRtdGY2MnI5TFRnRFNneHI5TFF2WUlJeTV2TkhVWGpWMU50YXVKLQ?oc=5",
-        "title": "Mapping the Clinical Trial Landscape for Stem Cell Therapies in Parkinson Disease - Neurology Live",
-        "date": "2026-06-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPZllIOFNLRzBNQnNSWkd5ekVlYUgxNXp2TDh6WW4wWTBjb2xFWmhwVjRzV2tlVTE1RmdhWFpueTc2WWhCNm9LTHp3b2hMSDg1cnBNUnJIaHQwRWMxWVd5Y0I0UWs5N0hIcXNTcU5SeWp3U2swcllvNTRYcWdrM1R3MG1XZXpUX1dlMWZxM1NXMnZmNWlqd2Z0LUVaOWo2NW5SMFlvNDBtaHNoczg?oc=5",
-        "title": "US Supreme Court backs generic drugmaker in 'skinny label' patent case - Reuters",
-        "date": "2026-06-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVGJlQ09Yc2xKVmdYTm9CcjFOcmhfMG5MM1YzenlQVHpxcVN4bUVXZU1hZlN0XzZ1RzNjVHZkdkpGWUxJT2ptMWNOVk4tQzJDSGlpQ3R5UVhqRG1UNE1idG5LSGNySUtRbFBhckV4RFBicnlidmZUdnltQ1ZuNVhYVzNJN2pPUHg5eTZoMWxTb05yTlNDZmo4R21LWmQtMVNCZEJ1Y2xka2RTM3d1X1pucjlDS1JWQUE?oc=5",
-        "title": "Supreme Court Reinforces Pleading Standards For Active Inducement Of Patent Infringement - Gibson Dunn",
-        "date": "2026-06-04"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNQ2VIMXBRQjc5Njc5Y1YxMDFWQ3lMTVRlV3k0MnNMR201MWM4MTNQeDBPYW1vOGhaMEFCTnBNMUNtT0VidFBmZG13V0N3OVhOX1hPWllGNGZYT3dzbzFHajhjWVF2QUQ5QjlRdUxIQklOaVlZNmUwTm1vaTVZOVJfWlJlTndFUnd4eENISHBxX2duVzkxM29BV2VucnNSZmZL?oc=5",
         "title": "Winning the lottery with a clinical trial to treat pancreatic cancer - UCLA Health",
         "date": "2026-06-05"
@@ -548,5 +528,25 @@
         "id": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNQUsxd203bFBXdHdwTHQ5bjNqYWpkSG5CdDZvVVoyaVFLa2thLUVNbDlKU0FMcnh3eTh0SEFoZGNxcDRfR2l0QWNEZ3NlQjNCR282X2lnd050ME1aRmJ6YmVCY1NnLVhELWRqQ0JkbGF2Ylk4bG9MeXBRTkxnOWFUUzFaYjdkSGVZTEhSMldpOHFGaU1PenFqTjJrVmVFaVJZSnc5MU0xNXBncDRUUXY2VUxseFNaT0JLWlgzUHM0TkNZdGtGRnZ3Rm1GZG1INXc?oc=5",
         "title": "Senator questions Merck over patent strategy for blockbuster cancer drug Keytruda - International Consortium of Investigative Journalists - ICIJ",
         "date": "2026-07-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORTduRVplU1JFYV9SVDh1Y1Z6R2ktTGFxWTNWQ1RMZjVfeDlXUllVclNuX3BXdWc5SjFKSVN6OXlKbmlhQmwtVEY0dU51U0JyQ3hhM3RYS1VJMGVNeUROdkFMSU9sVm1sYXNKa2V4X0FpSEZNZnJ2WVlnbEhrMjduR3ZUVGtvRTFsYVd1NUVWSmJEMnpTTjI0OFhleG0zdjJWMDZfTG9GbWFTamdiVE5NcHlMYw?oc=5",
+        "title": "Vanguard Health Care vs. iShares Biotech: How Do These ETFs Stack Up? - The Motley Fool",
+        "date": "2026-07-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQVDkyTWFMczQ4Tmg5blVDTjNaZEJFZUVJMHI4Vk1uRWRZdS00SGlZN3oxTlNuZVBrZW5JUTlkMWlmUmFIOVFkZjZHUkdMcnFIcWNDdExya2xidTRaRzB1SVd5dnB2M1B5bkotT05yT0c4UUd3MGsyZTE3ZGlBN1dLODl1aVNUVHlvVWxubGZyVGJaV0lMQUVOU25oMFhQeTRsWFhaNGNPbVg0S3VaOVFNWFVUakI4TmhSYTA3Mmt4TXRmUGloVHVHMmE1Tk50MzBLdjlCem1uTGZXRDlnRGNyOVp3TFlTeFN3VExUUtIB8gFBVV95cUxPZkxvQWNYLTJ2VWxFXzJkeUtyODNNeUJJeDEyWEUzUDk3SkFTMVplOE4yb3Y1MGloMUxTZV8wNXRRb3F4SWpSQU5WS0NXZFBsNkN5TkY3NVdQdV9RUkkxRmRNRU9BUWdDN0RnamhlWjBEWF93YXB5VnduaEFfbTJ3MjdEVFV4WDgzZ3dOZ1BmOE9nVlczUF9IRlJvSnFaMnJOek5SVFYzZ2RicVdwdGl2ZDQ2RFVfN0RzOUo5bmY5Z1JsZDh4NHQtU1BhY3lham5wcHc5bUhiU0lROHdtV2dRWEZJdnhheC1KWjJVMjZLOHVwZw?oc=5",
+        "title": "Is Vertex Pharmaceuticals (VRTX) Undervalued After CASGEVY Won Expanded FDA Approval? - simplywall.st",
+        "date": "2026-07-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxObWhnYkZ4VmVVbnZoVG80VnhBb3ExbVU1WnZ1U1FwYWM4SWFyU0VVcE5sTXN5UlNIUFRwbkZMbE5jRjZVODJ6N3g3U1pYSTNqSHljUjVqYUFaT1FGODFlQ2ZuZDhQNFJ6LTZmWTB0OURnTzBvdHdIY2J2QUlmMWZweEVBT1M?oc=5",
+        "title": "Patent Bots is Seeking a Product Specialist - IPWatchdog.com",
+        "date": "2026-07-04"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOa1VfSlJFUHh3YXdGWXlrSl9Td0dROFpLOTUzei1qR0dNaWxxMG1LWGdGWXp5SEhXX2VmU3dUVzBtT2hadWxkaW9pOFBPbUM3MUUwYWYtamt1YzQ1Tm9qcTVWZWR5M3pDU0otWEQ5LXpzSVN0UE5XaDI5c1lOelpfMThuSzBsQ18zQzFvTzhhNFdkM1ZIZkhaZTFzT0ZObHJaMW9pbW01RWJxT0JkY2c?oc=5",
+        "title": "A “Beef and Broccoli” Colorway Lands on the Nike Air Force 1 Low Patent Leather - Hypebeast",
+        "date": "2026-07-04"
     }
 ]
