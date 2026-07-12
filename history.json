@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZ0hmbHBTTjVEZEw2RjRDQ0JBaVhQVUUxNVc5djQyTURhTUJkVEZBMzVSSjdsUHdnZnZ4SlVOS1piQVY4VVU1d1FPRVJrM2d0WkpHemVJTHBkX3ZtbnFaVFFVbm9Ya0taWTkyeWk0YUtUY0N3QjNhUWlBdGNzSEl5OV9xQWNwVlZBbDc5RExEWlpSQ3hfbVl4ZXFYVnZFaDEtNmFz?oc=5",
-        "title": "Teplizumab Receives Accelerated FDA Approval for Stage 3 T1D in Children - HCPLive",
-        "date": "2026-06-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNX19UaUhLQlhOV3RFemdTYWRnVVgxQWJCS1BJUENrTVV0ZUdnZUJTQTJHSC1pZkFGSU1JMDVwMVNNTWprTk1BOWRoSkpqYUpINXM1ZzJCNlZuWDN2b1A0UG8wek50Q2d2aVR5Uk9kNGdRb01UM1k3elRFbGRud0R4THVaRHJEbk9iTFllbjFBY3BRa1M4Y2FtaXhLdWdCYmhpQUNsMjhxcFFzdw?oc=5",
-        "title": "Capivasertib Combo Earns FDA Approval in PTEN-Deficient Metastatic HSPC - CancerNetwork",
-        "date": "2026-06-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNQnJvUExxcGJqNGlTNXNudnVvTkp2MXQyamIzUC0wSmZYLXBUakFaN1NXMTIyak1yOXRMc0JUdFlWVTB4VTEyUVpRX215MTFkcUpGTWpVcXVxSmNHQzVQTFVPa2VtVzF5MGs3d0UtNGJhcW5Xb3kzMlQ3d2tIX0R4cmtVRnV3SGsyR2U1Y2dlbzRSN1puUU8xRVRHNEtQeDBZdDhFcXFYTmpMZ3FzaVhRaFJ5LThTcUhDYjh2cWRUejl4ZEVBWWlfd2J0bw?oc=5",
-        "title": "Free Taft IP Webinar - The New Shape of Things: Design Patent Prosecution, Litigation, and Damages in 2026 - IPWatchdog.com",
-        "date": "2026-06-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1fT05WWVh1ZUZCTE1xandqN3VldzJVRGNSaER1eWJmMFdWSG1PbEg5dzJUVk54VWQ3VC10T2I5RWlSZ0ZuM1JDV3FkM3Foc3VQVm1OSmVKVW45SGg2aXgxYXR2VnE?oc=5",
-        "title": "State-run drug company can’t fix a broken patent system - R Street Institute",
-        "date": "2026-06-12"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQM3BuU3lsU05qSUJpU1J2UVZQVXBLZUprXzE5Ul9kVC1VMEJZMFMyUUc4WE9LMnJ5ekRxTTlMelp5R0l6OFJMVC0zU09Wd0VqX3RuX1Y5NUVFVXJ1bVlYemdidUU2ZjVXRldrMDlpMVdJb1pRUU1jSzNwbkxQbVVuV09yMk5xU1RrbnVGRGd2ZkhBRzV0UU5fbXQ3VTZYOGh3?oc=5",
         "title": "‘I wouldn’t call it a blip’: Biotech IPOs here to stay after another record-breaking listing - Fierce Biotech",
         "date": "2026-06-13"
@@ -528,5 +508,15 @@
         "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNeVBTRkVIYmZkNjZUS1VZZmF2cVZSclFnOERHeUxWN0pqck9CT0hELVFHOVQwNC10SE5GQm90VlpZZ0FfeHR6X2tiNDVQSk1MVmgzYTB4ZGRtVnBCMkpQUFBVdkhCSUFYMGowWnM4aUJsU1J1OWJHaTZGRlpseUxRR2FrRS1NS0szM3BEUHZaS2UtaDA1Z3JfUV9lQmJnY2huMkE?oc=5",
         "title": "This Day in History: U.S. patent issued for the three-point seatbelt design - KLTV.com",
         "date": "2026-07-11"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/964539/lorde-says-ray-ban-meta-ai-glasses-are-not-sexy",
+        "title": "Lorde says Ray-Ban Meta AI glasses are ‘not sexy’",
+        "date": "2026-07-12"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/964532/the-soft-pink-truth-shall-we-go-on-sinning-so-that-grace-may-increase-review",
+        "title": "Shall We Go On Sinning So That Grace May Increase? is hypnotic, healing, and hopeful",
+        "date": "2026-07-12"
     }
 ]
