@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/tech/949648/fbi-fake-town-cyberattacks-kinetic-cyber-range",
-        "title": "The FBI built a small town to simulate cyberattacks",
-        "date": "2026-06-14"
-    },
-    {
-        "id": "https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos",
-        "title": "China may have accessed Mythos",
-        "date": "2026-06-14"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPclcyOWVPMzc5YmJJclJ3N215NEwteWtwcGFMOFdYdXM2SGJhVk9FbVdtTERrUFhYS1BTZzdma2FPNjhYX1ZySzNTRUo0V2c1NC1XaUVSdGZSLTFxQTF6Rjl4ODJfQjNjdUp4LWMzU1JSRzhTSUtLWUpMYmVUMm9DRVpVWm1vUUtBbHBJZU9TYlpoOG9xUnVVS1VCV3ZqbmJZRkJ2czZ6ZnJIWldpU2IydjBwMWFOMnpPMml3?oc=5",
         "title": "Toni Choueiri, MD, reacts to FDA approval of adjuvant belzutifan with pembrolizumab for ccRCC - Urology Times",
         "date": "2026-06-15"
@@ -518,5 +508,25 @@
         "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1HRVJIVnBWS1l1M1I5MlRkWVlGa0wzQW9ZWjRTOGtVZTM2bndDU3hTVDJFbVJPZFp2SGs4VW5VV3BTZnhFTTNwbnNiX1RSY3NlVU0tMHZDbVc4ZE9CbmJWR1JXaExuTURhOGQzZ0VDanZ3TDFiaVlyLVRR?oc=5",
         "title": "A $5M startup claims rare earth-free electric motor breakthrough - Electrek",
         "date": "2026-07-13"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPMmpXYmpqX01jU0llX3BjLU45RlVVUE1QcjM4SHZOODBWQTJLVnUycUlodkVrUGhiRkZmNVNSRUFlWGIwSU43OHZfYklsWXlyOENENmwtRUsxVWswLXd1cWM2V0NuVHdJaVlDVWRqOFpjMTBSSkZpN3VuR1pOMVZ2bU1fT3dCQnhwcGRLMzBjMHp1ZkZkck9ITWZKLWFYYUJ2dkF0Q0JhU202UXc1RmdDOFRFeHQ?oc=5",
+        "title": "Over half of clinical trial sites see recruitment hindered by inefficiencies: survey - Fierce Biotech",
+        "date": "2026-07-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNaGhDM3hXSTRJVjFiQ19JeTRzZmMyRGd5Yng5T2N4c3JHYUJzTWVtSmNGcXdPR0JvSzlUcG1zRG90UHFxVnhxLUViSkVSVU9Qa0cwVnoycWRmVUJYUG9jLU9seDNES0tJaExKaVNwc25mTWpETG5Ia19BdEhxZ2VNZmV3UnFrbHRfQ3V0VS1tOGl3ejVY?oc=5",
+        "title": "Biotech startup funding gap widens despite rebound in VC investment - BioPharma Dive",
+        "date": "2026-07-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOMlhTUlpTYld6aUc2a290ODR2czRieVE5VzZ5R0NzSF94YVlmV0NIVzJHU3RqNjI3Z0cxc3NRWXhMYzJTYUZ5OEo5dWsxbFFSa3RjOThMWVFzUElXUWVZdVJ3a0tXRkdGOWpLaGVFdU1JbVBvRjFCUzRpU2RSemlBRUE1bDBwNTJYWG5oZ1JZSmdrSXZFczFiS0c5anBkZkZNUS1EOUk5OFRULS1aX1JkMVRyNndxMjdBTm9qYnlUckhPNFR2UUkwM3pVRWVNZFNjcGxNdXVUckRhV0RuV3c?oc=5",
+        "title": "CCIA Testified at Senate Judiciary Hearing on Patent System Supporting Innovation, Emerging Technologies like AI - CCIA",
+        "date": "2026-07-14"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNT2RfTUJpLXMzZklrWm4wOVllR2xBallZRE1FYnRwa1BOaUlwbHlLcWExVS1tcjJlcjVFTFJRQVJsakNWa3BfU1dDaW5oOEdFZUZZWGhpMmw1WlQ0ZFZVZUQxQUdCS1JfSDlkZmpmWUxXTkpoVEZDZUNscTRIaXNpT3VOSXBXcDRkT2M3WTB2TXYxRkFYNElOellDLTBraFNX?oc=5",
+        "title": "NIST Receives New Patent for Microbe-Killing Water Heater - National Institute of Standards and Technology (.gov)",
+        "date": "2026-07-14"
     }
 ]
