@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMif0FVX3lxTE84VFdBVFZyZy0wOEt1ZktReF9aVXNaNnBFb2p0NnpZUmcxVzlvdWprVnlmdVM5bExTdUs2dFlVWUJHSUpvc2t1ZFhYcHplN2oycmthNnQyVTNfMkpyVlVCUldmdjNLWFFuR2xsZUltRFA5VzJmNEwzUGVGT25YeHM?oc=5",
-        "title": "Colorado gets FDA approval to import cheaper prescription drugs from Canada - WBUR",
-        "date": "2026-06-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPVDZkT0llRU12b3ZZZzZ3RUVrNk1GSFBVUHVHUGxodmd5dEI1VVNLWUZKR1hDX2hSa2lZdlJyRFNQeXBEcVpYTmRBS01IS25abDFxVHJTaGhNZ3JTQ1pabmFDc0JTMGJFME5fUWZLREFhTzVLbzJuTDg0ZXN3ODBZQWczdVZOaFNjR0lSY01fdW11UDVaVlFXcU5vb0M4bnowVnJ6OXVjSHQ1cDEwb2RfRThuX2tHbU9OQUpJUHVNNHdZak53QVVDeXNCVWl3ZjluY2hNTEYyd3JaUQ?oc=5",
-        "title": "Council agrees mandate on measures to advance biotech innovation in the EU - consilium.europa.eu",
-        "date": "2026-06-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZ0M0QmhFWWNNS04wMEJmNTdZWkYtMGxxRGIzWlc5ellDNHFpMWFYTzZvcVFRMlBENF9pSTFSVnRvY0NsQXhEaFdrSTFDZE9ScDFKN216MkZNcUVrOEp3c3QtZFBVZGE2ZU52MVZyZWZvbUJENGlhWUpYUWNwZlRsWmZRTDFvRTdZ?oc=5",
-        "title": "America’s Broken Patent System Must Return to First Principles - IPWatchdog.com",
-        "date": "2026-06-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVGo5cFc4OGpLbXFoQ3JRME4yUW12X2xqZm83ME1hTFNrNUluckdJWmE4SjJXa3phUDZJeDc1RERfVDJENHBXNXJNVTQtMlRDbTE2enNBZjRScnJwc2ZVc2JkQmtsQ0hlY0RxTU5KbG9RWG9OX05WT2p0YTZfZzdCOA?oc=5",
-        "title": "StemSight gains patent for off-the-shelf limbal stem cell platform patent milestone for STE-101 - Modern Retina",
-        "date": "2026-06-16"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQNkFtUFcyRFdkTTNtanV3UkVfd0p1SHRFWjhhalFQc2JCN3RiRWNXVXk3TWZJdmF2SjJGY2dIa0duQlIxMHplU3A1YXFSZFZpNVdZOXVEYUdJWmt3U3hScDVZN0pDQTNfZ294OEdLdVAyWXBXYXJYNWs5dnNIdGVTazM0Z2xJRUJuQWR2SUxZcGtoZkpFS3U5UjdtcGRsWVU?oc=5",
         "title": "Behind the FDA approval of capivasertib for mHSPC, with Daniel J. George, MD - Urology Times",
         "date": "2026-06-17"
@@ -528,5 +508,25 @@
         "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQam4zdzhURnNBd1ZqVHVZOGhjWTBlb0pBaF94aFFJNDFaZGlxSEZGa3AtQXBkc05qeUMwQTZwQ0FBRXNQS0NOVnpzbkxocTVISXlidTVhTjR0eHJSOXE0OFpFUjh2bENGcVhOOVNOd2dnSjA5VHptcjVzX3pHVE9CQ1dMQWVtTm5RVzQxdEhUV0lLWTUxQ3Y0VXduN01ydzUyYmpBdw?oc=5",
         "title": "Syngenta sues BASF for infringing US herbicide patent - Reuters",
         "date": "2026-07-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQaHRSTHo0S1BBd1BhQmVNbVE3Nlkxc2p6NkNsaTg5SXlZQXNWenRYMFdNdml3aVBKLVVNOG9XQVdhdVI4aTJCRkJpSEdXeWludnZ0c2xjTS1aVjhYV2FyVHY5am1wRXA5WmpZVDNNa2JhQnh1blRhLU1GUU1hNnBWdzJ1YzI5TE8zWW1IbUlZX3FCQzJ6Rnl3MWdTcTdFZy1TZm00QUZPaw?oc=5",
+        "title": "Kalshi comes for biopharma, with prediction markets for clinical trials and FDA approvals - STAT",
+        "date": "2026-07-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQaHFFcVluQ2dIeTh5ak1rSnE2MUVBNm1rNXNLdWpJcnNXNDktVTlhQnpYNXlmay1RM0FKcXBHVFY4Tm9TZFViNWVfd1c4UWdwNk54YlFkV3FjN1FlZDdIMi13bW1ZYVRhVElrZEJtOU1MVkcwNVdCaUh3QnZNTlRLX0x3MUI3SUpMTGhJcEtJYXlCcTZlNHhSOUJZRi1IcEZBb1FrUjdfTnFheVAteHh2OTZuVnVVYm54?oc=5",
+        "title": "Kalshi Will Offer Sports-Style Betting on Drug Trial Results - Bloomberg.com",
+        "date": "2026-07-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPLVlrbTh1eTZNa3YtSFFyV3BwazY5NWU0LXp2MkFPTzNfdWxRbjEtdFFaT1Q0S0NER2U4Ylpsb2tRajhSWVE1b2I0LUllVXFwbUNrT1NKZENlSHM3N1owalA4ZzJvMDZPT1BwRVoxMm5aTkU4bXhPM3JueEFDVTk1bVlQLXZZS214V2FqekFmb2VPLURzajZTRUlha1V6RTY1eE9jZjc1dFJaREtyY0o3ZQ?oc=5",
+        "title": "CAFC Affirms Two PTAB Obviousness Rulings in Canon Printhead Patent Disputes - IPWatchdog.com",
+        "date": "2026-07-16"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxONzVmc3NTc2VrMnJLN1N4Qk5uVkt5NXpQbEhjYWRRNWZodldGdWQ5cjNQSnhSWldnSHRnWHNEcDJXVnlJZXdxUmxLWll6VDNrc1AzbDZES3R0T2FkZEhmVmNOVjl3QmhtdzBvNnRZVDI1S3NhZ00zYktjVWYzRzZyWlJvZFlWN1BVREc0QWJQdHk4Tkk?oc=5",
+        "title": "W.D. Texas Asserts the Exclusivity of U.S. Jurisdiction in Patent Cases - Transnational Litigation Blog",
+        "date": "2026-07-16"
     }
 ]
