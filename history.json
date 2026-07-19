@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOeHlQZzIweVdnYi1mVUhVdkl5NTk5ekZiS1QyUWhJQ0QxN29NSWtGd0NTRFJ5SkctRFZrUUlEMmJtZU5UbVo1OGZXNU4xZ2JiV2h0b1JURnJFSURPOU1NbkFabWY0NkRja1M0aU9vT3k3SHV1SEtIMGFtb0E4Q09yMXZQcHNHX1lQenE0S2x5Q1MzTkE2YWM2OVRfUTJBVTJNQUQ1X0s3ampLTmpGdW1IZ3dURlAzNGRlUno3bEJTRndUVHluVEVpc20tSQ?oc=5",
-        "title": "Do Clinical Trial Results Hold Up in the Real World? A New Study on ALK+ Lung Cancer Says Yes—Mostly - Targeted Oncology",
-        "date": "2026-06-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTE43akx6clVwSGRkemRNMkdvdjFkNEpqNkxTUXdBdF9GNEltbzVBUEQxSkJTaDJGREVWS3hfMnlHZmp6TlRROGZ1d2VUNU9vLUYwM3AwdjBxSDNULXNKamkxNkwtNzJLNTlmVU1wR1VOS09YMXNSd3FKUkhBZ1JSUQ?oc=5",
-        "title": "Additive Manufacturing's Application in Pharma and Biotech - Pharmaceutical Executive",
-        "date": "2026-06-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQYm1XRi1FbWdTbXBYS3lzRDFkNVZWYjV3X2V6Z2piTGVlX1BzMk5Nb3czY1hDdWJSVnVfWEVkblprRHZ6R0xwZUhZN1d6NEJ4SU1vdDc4eU5VemFQdE9POXJVUUc0dF95VU9jWnRGNmllWVhOVWYycEJmNDZNcGVBWUk3OFpFX3l1VjFURWF1RQ?oc=5",
-        "title": "A useful patent management government notice - Massachusetts Lawyers Weekly",
-        "date": "2026-06-19"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPakJsV3ZWRzAyQVoyb1lUNE01dFZGQzlIRVFxd2RiZHktU1dxUTZiTjVqWFhYaklYcWcxSHR3SlhVbFZ2Q0R2MUdpaU9XMFhKRy1QN2xuTXk2VXdiX3Z2cmFMZ0JxMlZaM1RoS3gyTnMwaWE4RmVZVFlBNkhBMF9rUERLU0I3UVNv?oc=5",
-        "title": "FDA Issues New Guidance for Submitting Patent Information for Listing in the “Orange Book” - JD Supra",
-        "date": "2026-06-19"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNTjhTR3AyZnhvOHZ1Wmw2UHhVTlh3RzB6aUdwaHFzLWxvbktobmw3Qy1DendSMkRySHl6MG5Fbkppa0VmdXNobUFJRTk0NnFQRGc3ZGZFS1E4UWdxem9LRjVDM3J2VDNmQzZldlhmbS1zOWxESlEzVlVHUkg0NFBxU25LRkZ0YUh5d0N1bEJfSEJ5dkU?oc=5",
         "title": "Legend Biotech launches $226 million offering - The Pharma Letter",
         "date": "2026-06-20"
@@ -528,5 +508,15 @@
         "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQVlZFcGRlbXlPckN4WG0xMkpjTmktRDJibEJPamwwYlc2elYzb3JoMm1VR3c1bU9lSHoxNlJUTEZMUnZXek56aXc4ZTBRdWpLbnVtOHQ2THJ3UDNtN1hJS0F1VHFURUFpWWtPQW5wYzAyTUNDcU4wZE9SU2FEdVJMOFRuSXh2VlQ4WTNJY3hCNWVNUWRPNXFTM0xGaFNKTWpUUFF5Qk13NThFNjVHSFpyZmN6NXRYdzJqQzBZWGx3c2IzY2hGMmM0anJ6S0R1WHFLbEhUdDNZTUZldEx2ZW5sUmxn?oc=5",
         "title": "Platypnea-Orthodeoxia Syndrome Caused by a Patent Foramen Ovale and Interatrial Septal Aneurysm: A Case Report - Cureus",
         "date": "2026-07-18"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/967696/four-tet-wingdings-album-review",
+        "title": "This unpronounceable series of glyphs is an incredible side project from Kieran Hebden (aka Four Tet)",
+        "date": "2026-07-19"
+    },
+    {
+        "id": "https://www.theverge.com/gadgets/967687/kodak-ec35-point-and-shoot-film-camera",
+        "title": "Kodak EC35 is a dirt-cheap point-and-shoot film camera",
+        "date": "2026-07-19"
     }
 ]
