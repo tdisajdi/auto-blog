@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNTjhTR3AyZnhvOHZ1Wmw2UHhVTlh3RzB6aUdwaHFzLWxvbktobmw3Qy1DendSMkRySHl6MG5Fbkppa0VmdXNobUFJRTk0NnFQRGc3ZGZFS1E4UWdxem9LRjVDM3J2VDNmQzZldlhmbS1zOWxESlEzVlVHUkg0NFBxU25LRkZ0YUh5d0N1bEJfSEJ5dkU?oc=5",
-        "title": "Legend Biotech launches $226 million offering - The Pharma Letter",
-        "date": "2026-06-20"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZ2tvdkFfRV9BMzZ3ZUprb3J4ekgxeUVubk8xM1J0UUZVTGU5TFVOdTFJaGpyVEE5anpxcF91UHpCVTFGNExpdVVrWW1fWExuTUdfUElfUmRyWVNrX0JJNWNhTG9weVdpUGxzLXN3Uk1YeGJlRTdoLVRNZlZLcmVtQ2ZjWlVHaG85VmFIVG5TYjY0N1BVVXdtclFNenhCcTNQbGQ4TF9OZG1oTUoxaVMteFJYYw?oc=5",
-        "title": "AbbVie would gain an experimental eczema drug by buying biotech: report - MarketWatch",
-        "date": "2026-06-20"
-    },
-    {
         "id": "https://www.theverge.com/entertainment/953324/bose-studios-record-label-media-company",
         "title": "Bose thinks it can be a media company for some reason",
         "date": "2026-06-21"
@@ -518,5 +508,25 @@
         "id": "https://www.theverge.com/gadgets/967687/kodak-ec35-point-and-shoot-film-camera",
         "title": "Kodak EC35 is a dirt-cheap point-and-shoot film camera",
         "date": "2026-07-19"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQeVF0aDhHaFRTYmNIa0lERTU0OThfNE9CaFZPRVBvSHNJS2VsdXZZaGNscDVBbG5ZT25YR2t2aEVEYWJZWDltTDhqMHh3N0RKNlpHRjlVWXpzc1NOT25aam85LVpvQmdVQzNGaEZiMkNlWWdnUEp0ZG9vRlJWeDQ3dFhaNXFfX2wtSjV4X2sxV1NuWDJ5RWhYY09QT0k4YmM?oc=5",
+        "title": "Why Legend Biotech stock fell 10% despite record Carvykti sales - Fierce Pharma",
+        "date": "2026-07-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNMFVDYlZJZVRiTTV0UVc2TWRaRzdnTmVuTkpSUjY4T1pFNFlfM2NWU2JSWlpadVBZaFZFT3RoSGhKeTBUX2cwdy10THAyYzZSS3FTTjdCVk9VVUtrZjYwSHdXWTlBTGVPRDNqUUxDZlNaWFZ4Nzk0aTBrYXZnRVdQdzRvRFBBemtfbmVoLXNiMmVzMms0UmdWYmdMbGdXcXJyLS1mRW9TbU9qVWI5M1kxRUlaSTdIQXk0cGFGbTF3aHhqcXlvR1FyTXIzbjVXRVNLMHdFSXdzWQ?oc=5",
+        "title": "Behind the FDA Approval: Isatuximab On-Body Injector Supports ‘Patient-Centric’ Priorities in Multiple Myeloma - Targeted Oncology",
+        "date": "2026-07-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxON0hzVGZManVGWXE2MVZvQU5Od0Q1eWtHMnNfZzVaYlJaOWJ0cUw4QzFQTHp2c3dMYWlCczVCcWNWSnpQVXdMTzhxVHJpUFFmLWlJOGVrR1JSZGlBWF96MmJ6eE5Ha2hCMnA3X2x3WGNodnJOV0VpRUx3UDFIMFd6WmIyNUNQZ1ZZaWNzRDgwN0ZTVVlCT0plMEV6WXM4dHhoQTBtMFJuNHM?oc=5",
+        "title": "Celebrating 250: Commemorative patent and trademark signing ceremony - United States Patent and Trademark Office (.gov)",
+        "date": "2026-07-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYkJ1a3dUbHFaa3NKZG1yaWFYVzdUNmk3eG1RdnVsVElkR1dMN1FCUkdmbjJKNUw0czRkNVkyZmkxaExLM3o3bGtoYjEwSFZnOGlvMEJjTnFKZmQyeVB2aXdhX0tNRDgwYjdtNWhWdWROOFBQSnVuY1NnamxaSkJ2eGR1ay1yV3dWZFJWalFHelNtM19yU0I0bkczY0Y1QkVPTjBZaGFETkk5RVlDcmh1dw?oc=5",
+        "title": "The AI Tension in Healthcare: Patent Strategy, FDA Reality, and HIPAA Constraints - MedCity News",
+        "date": "2026-07-20"
     }
 ]
