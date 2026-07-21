@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/entertainment/953324/bose-studios-record-label-media-company",
-        "title": "Bose thinks it can be a media company for some reason",
-        "date": "2026-06-21"
-    },
-    {
-        "id": "https://www.theverge.com/entertainment/953303/cold-court-hands-up-ep-music-review",
-        "title": "Cold Court’s debut EP is an infectious, glitchy genre mashup",
-        "date": "2026-06-21"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNODZJZGFTLVdRNm1vaFVJVVE0VUoxOGZISVpOdVZzYkZrQnhoSDZyRHB6ZnBqS2dMRV81S2M5Mm5OMm5BQzU0UkF1cXplVE8ySTBpeGRadWFhQUtrb0FMRFgwci1IRWwyWHctYmpWVzBUamVnM3VsbWN4aEp6a01aZFBMdVdxbU1tS0xzNmVDLUJ4dw?oc=5",
         "title": "Pharma goes on a spending spree, snapping up biotechs in a hurry - statnews.com",
         "date": "2026-06-22"
@@ -528,5 +518,25 @@
         "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYkJ1a3dUbHFaa3NKZG1yaWFYVzdUNmk3eG1RdnVsVElkR1dMN1FCUkdmbjJKNUw0czRkNVkyZmkxaExLM3o3bGtoYjEwSFZnOGlvMEJjTnFKZmQyeVB2aXdhX0tNRDgwYjdtNWhWdWROOFBQSnVuY1NnamxaSkJ2eGR1ay1yV3dWZFJWalFHelNtM19yU0I0bkczY0Y1QkVPTjBZaGFETkk5RVlDcmh1dw?oc=5",
         "title": "The AI Tension in Healthcare: Patent Strategy, FDA Reality, and HIPAA Constraints - MedCity News",
         "date": "2026-07-20"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdWtEdXpuREdoSk9MV0lUUHQ5Z1dJeGc2WEJfNW9xTW8yNWstRlI5WXJjWnZaN2g5T0RONHVnblFuTV93NjhueDVqOGtfTmlOeFNRMU9PX21WTXFmTVpLbW05QlEwa0hmMmNmeHNoR3VlVnRNOGkxRU9tZVdVZll0S25qVnMtVGJrWG5tYURJLWRmZ1AxRjlfV2RhanpfWmlFb1l6VWhidWw4dEk?oc=5",
+        "title": "Most-Wanted Fugitive Hid Out For 21 Years As A Biotech Exec - Investor's Business Daily",
+        "date": "2026-07-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPbjVTb1g0VnAtcGFkdlpKZGJ2Vi1zV21pOWtjS2VXZVJrVzBob3lvREo3LXA0UUt4MUthcFFzajNmOXJ5R19IdTF6c3BvVHdoRU5GSmZvSzFwOG9VV3V1azZ4clg2SkthdXcyWXZRRUJJWG5QZzQxWlZPYkNHMzJ6LTRoWU9iT2ZIMGF3V2JKZFhPYU9MdDV1VXVLaEJoUzJMaHJ0c2pzcTRreDkxWlBUb1NoWQ?oc=5",
+        "title": "How Does the FDA Approval of Risankizumab Impact Pediatric Psoriasis and PsA? With Amy Paller, MD - HCP Live",
+        "date": "2026-07-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOUVZwZ0tWWFFkYWhOT2hTNkhsUEdDNGdTemd2Q3BXcld3UGxYeGc1YmNpSDNQdzJ4UW42UTZTcW9idkRycWd1bkNJaUdjUDBFaHR2NDZaR2RYbkJWVC1LWFJKd2ZpLWZDMDY2bTNha0ZIbmstZVBNRVVHVTN4Y2pPR18tM3hRbV9BSkV6dzdUV1dXbGVXSFVhR212cHNzSEJVZHV2Z3kwblZyVGdqZjlPUEh5d3hSNV8xNjZUSzlnbWk1ZFUyUWp6VjBRYm56eFEwZldSYWQxY2M?oc=5",
+        "title": "Federal Circuit Vacates Summary Judgment in Treadmill Patent Dispute, Finding Claim Construction Too Narrow - IPWatchdog.com",
+        "date": "2026-07-21"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOQTZfbll2U0NMb3paT3dEdDdTdTBBcWh3NGVudkU4alRXMzlWSHZNUlBXa21KdjRiYkxkRDJiTDNNeDBEcXhpQTdFUWFYMzl4OFBiTGg0Q2xHLTVsdGU4bF9YQ0poZ1ktNFEzT3lGRGFITHNZOEV3VDk5MGxmMC1CWjFMaG9iS0xZTkVYOW9Md2ZidTFVZzVyZkZPN0laZmdQd2N5ai1tOXhrUQ?oc=5",
+        "title": "Novartis Returns to Growth After Key Drugs Offset Patent Expirations - WSJ",
+        "date": "2026-07-21"
     }
 ]
