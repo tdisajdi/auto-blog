@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQUFVucThXaExrOTFfaUlwMFAxa0Y1WXY0dy01SzZaMVJzZ0k4bU4zb3phMUUyeU03THppWEdVUTg3QTJYWjZHbWRLQTI2X05IemtNQ1FJME9TbnQ1bUMtdEVmWE05aTd3cnhkWkdQLTZTMWZWTWJfUEViLUY1ZmxsdkZvOW1YZGx6LWJHbWt1aVVKdkU?oc=5",
-        "title": "2 Biotech Stocks Worth Buying Before Their Potential Buyouts - The Motley Fool",
-        "date": "2026-06-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOQ0thOXZLc2Q3QWJuNmgyWUJBcWh0V2dKeUY1NUZGWnRNSVl5TVg2dERkN3ZYOU8wSU4yRnhscUxEZHZVM01xWDZSbVRZbFlZcXlJQkppbEM0X1NCNHo0aGFPUy1UeFJPUFRlX0NMbVJneFI5bGFkTDRSLUNoa0g5OVZGYnN2S1pBSjBLd1Q4TQ?oc=5",
-        "title": "US, Texas biotech firm to build 'Noah's Ark' for endangered species - Yahoo",
-        "date": "2026-06-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNUkdRT1U0ZnFtMUZZOEVKN2lZS3g4SWFhQ1E2TW5ydlp2cjEtR2Y3dW5tSVhVSVdndmprQk1oVEZNRnpwdGN1WTREb0VZd3RWVWdFbTZKVjhvMHBNRWVpOXVHYUJmUHVtWmU2OVBJN3ZGMVJpdXM5Z3I0V3ZGQnJNa2J5b0laN0hxYTNCenFacUFPUQ?oc=5",
-        "title": "Tesla Cybercab Patent Reveals Unique Wheel Design - Not a Tesla App",
-        "date": "2026-06-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOQnN0cUNaSUhzNFQ0S3huTHRNVWxhRnVON0xKWU5Ncy1HQ19GcnRYTG1VczMzX0ZnTkhyd1JOSEJGS3NOWTNXRWRPV3RiY2lRVUxFXzdSZ1g1QU5fdktxMEp2cVBKTlJVSFRTMl9ybEFUM01MdGl5X1V1aVFkSzdyODRfcm80Nk1Dbll0bF9mS2xPTVpiYlBfa3lENXVKLXhuUkVkOTdiQTV1V0MwYlFjLXhxM2lSQQ?oc=5",
-        "title": "Chinese courts’ national favouritism reinforces need to limit US patent system access - IAM Patent",
-        "date": "2026-06-27"
-    },
-    {
         "id": "https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity",
         "title": "China’s Z.ai claims it can match Mythos on cybersecurity",
         "date": "2026-06-28"
@@ -528,5 +508,25 @@
         "id": "https://www.theverge.com/tech/971101/apple-smart-glasses-privacy",
         "title": "Apple is banking on privacy to set its smart glasses apart",
         "date": "2026-07-26"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbzNHUXdta2p2NjR0NDNBbG84cHRQcXllLUp4MXN5Z1FLTEtCaHFneGZHbVAxb1FEcDVmV1o5UG9JcS1jRVlsbG1GNUZUR1QxclNWcXBkaHg3SlZzcnRRZTllcVlaSVNpQ3VVNjBZT2M1aHlTTlVzSVlvZEdnOHRWMXU1QTMwWHoxTnJZd3ZSZmRUY2JZZFJoRnMxU2NLYXM4dHFqT083aw?oc=5",
+        "title": "Legend Biotech CEO abruptly steps down without permanent replacement - Fierce Pharma",
+        "date": "2026-07-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNcmpodzZxblVTdEhta1NfZ1hBSWR2ZUVBUlBvYjVhZ3d4RG1tR3llbG5MYWhycFhrQ25WTHF0MUVaalVYcTBxM01CUWFIMzRWX3M3M2VESVRrbVJ1NVd4S1B1NWpzSnlwemI2R2w5bk5PTUxiUDBjclU4T0JKNlVWUUdTVUJhcnNkSlZpUHhaYk9FM0o2RXo2QVlKODdWM1hGTG9wa1REM3BQcjYzYnc?oc=5",
+        "title": "FDA finalizes three guidances to broaden cancer clinical trial eligibility - RAPS",
+        "date": "2026-07-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNU1hGVzdfS3YtVFNOcE1Yc042dlptaVktalhwZ1A5WVc2UnhETktUNFBHVGg4aHVnVVUtSWxlWHlQLV9zLTNhUENTTnBhQS11UUtNQW9WbWd0MGRZaUtadWZJTEc3eGRza1RGMTRJZmtmWXNKa25GbGNUYmNreTlPUEFGcWdsdzQ?oc=5",
+        "title": "Circle Acquires IBM Blockchain Patent Portfolio - Circle Internet Financial",
+        "date": "2026-07-27"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPWEpTMkdBeDF0ME9YLTY1bXVvbFVMWkYtekNCUXVUbDBxRUdyTjBWaU9nbHNyYWU5eTJVcERNck4yUFJ2bUpVOERPMmplNGdFWXQ4Qjg3UHZ0ZkNOdzlfNW1fY2I0RE5FVW9xUC1fX05vNGRJV1psMl95SnJacXVObnR6aEtfeU93YTY0bUhiQzRQeTl0QndRVzlweWt0a0FORlJzVQ?oc=5",
+        "title": "Knight Foundation Fellowship in Healthcare Technology Innovation - Florida Hospital News and Healthcare Report",
+        "date": "2026-07-27"
     }
 ]
