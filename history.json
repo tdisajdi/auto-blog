@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxONkUtcHFGTDVrbWtheVpMMHFZR2Q2SVkzRjFNcER1OVJVQVN0N2RXQ1B4dHRQM3dmMkJFV3ZnUkNqaHd5RE9RXzZISVFvOHBxWHo5Vm9UdmNvS0M2dk5iNjJoT3o5Tl9VVUl1UFYtR1lvRm8tbi12cW05YXNDOHJXTGJxY0FFczhFeUJXblczT29nMEFkUzM2N0lxQWs?oc=5",
-        "title": "Vera Therapeutics Wins FDA Approval for TRUTAKNA in IgA Nephropathy, Sets Launch - Yahoo Finance",
-        "date": "2026-07-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPOENrX01WbE96aTdZdnJSM0hCbE94TWIxclNnaTdUaWtaYkhILVdlMkRIUmxVc3pLZWM4MDc2eDNuTXlmcDlfZ2tNUk5jZmxpNmU1Mms0T3Y2U1k5dHdTSG1SVWp1T1JQWklkUU1YbF85U1ZnVWRQNFZMNFpkeEFTQkdkc3ZTUmZIOHI2TmZ3UFBLclJkTm04aDNUWXQ5djY2M3BGN2VSX2M?oc=5",
-        "title": "U.S. Biotechs Are Keeping More Secrets to Beat Copycats in China - WSJ",
-        "date": "2026-07-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQb3NlWC1rcEc0VEx5bDRHRmk5QjFrWkJCcmNIUmxDUm83S0JxSVZKOGRFYjlfRFVHbUYwOEU0VmEtSXZmN1J6TTdWR0s1b0gtQ3J6UDFxTWdoNi1KN0hnSVdyR25DaElYdVlza0otdENBYjAzbmFIeFFzLXV0TmFHb1Q2N1hJRXhLUG1MVFV0RWFXTnl3cTJEYmh3OWpMdXpXU25PakRLVFNYRktvMlRuclJzSm5NQnhIV183TzlValM?oc=5",
-        "title": "Bipartisan momentum on drug-patent reform could clear a faster path for affordable generics - Niskanen Center",
-        "date": "2026-07-11"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNeVBTRkVIYmZkNjZUS1VZZmF2cVZSclFnOERHeUxWN0pqck9CT0hELVFHOVQwNC10SE5GQm90VlpZZ0FfeHR6X2tiNDVQSk1MVmgzYTB4ZGRtVnBCMkpQUFBVdkhCSUFYMGowWnM4aUJsU1J1OWJHaTZGRlpseUxRR2FrRS1NS0szM3BEUHZaS2UtaDA1Z3JfUV9lQmJnY2huMkE?oc=5",
-        "title": "This Day in History: U.S. patent issued for the three-point seatbelt design - KLTV.com",
-        "date": "2026-07-11"
-    },
-    {
         "id": "https://www.theverge.com/ai-artificial-intelligence/964539/lorde-says-ray-ban-meta-ai-glasses-are-not-sexy",
         "title": "Lorde says Ray-Ban Meta AI glasses are ‘not sexy’",
         "date": "2026-07-12"
@@ -548,5 +528,25 @@
         "id": "https://www.theverge.com/tech/977161/mark-zuckerberg-yacht-wilderness-legacy-stranded-boat",
         "title": "Zuckerberg&#8217;s yacht was closer, but someone else saved a stranded boat",
         "date": "2026-08-09"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNUTA4ZlVfdVFxUnlTOThQZkstNDZYWG84c1BwTGx3VTNmRHN6RmRkeDhiVzk4MzJZblIyeGRDczRoeUFMR3Zrb3hSRGFsQjlEaVNHRGJDV1NvdWpLaWRQYTlpYTFqdVJaSjhpNXR2cmxSOHJsLWFFMHk0aXZWSEthaGlvZVFHZXQ0MWFCQnIzVDVqMTNZYnZ0QXZBUUFhNmRReXdDSjE0OEx4eFM5?oc=5",
+        "title": "How Is City of Hope Widening National Clinical Trial Access for Oncology? - CancerNetwork",
+        "date": "2026-08-10"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOQWhjOHYyNE5jME1wWDV2V3BRTjFaTXNYN0FTem0yR2pEa1dYNjRDeEpzN1hqcG1rcjI5dVVyWUdjVlZMTERkeVFIMkNjUGc2MGdqZTV1MnFZWFFoVGNoNThnMnVNZ3YtbVR4TjNNVnNoV1l0ZE1jdE9raWk4c28yenBNc3VtM19rbmJoQlBLamxmN1RBRzh1TmJ3?oc=5",
+        "title": "FDA approval of mFLUSIVA highlights Moderna’s position in mRNA market - Clinical Trials Arena",
+        "date": "2026-08-10"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5Wd0Rkc3ptU3NjNnh3SXRGTU1PYXV3c3VkWm1kakZVdE9LUk1sbWFaVHhiSUxMLVlHYlpUWmpmSENpaVBXY0N2ZzduN0xNTjgxeDBKNkx0VHRUUW1LU0ZLVjJLa2ZUajRP?oc=5",
+        "title": "Webinar: AI Capabilities and the Future in Life Sciences Patent Practice - IPWatchdog.com",
+        "date": "2026-08-10"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPM1VEbUdoOEJWc0cxVjBoaEU5SUVOcFpzcWV3Wkwya0xtNTN0NTRPRUhiVFctUllfUjVMQ0JmWmdBb1k5SDhPdHc3blZkZkYwM1NTdy0wcjNINDZhQnBqOGhQV1I4d3B5MzB6MUU4WWQyNmpobmIwbko0R1l0aGpkSXBCZ3pyVERCNFRDTEo2djlxTkh2ZExTaHNlblFaOVBFcTRhVHZSMXdSWWN4SmhIRHhn?oc=5",
+        "title": "Navitas sues rival chipmaker Renesas for patent infringement - Reuters",
+        "date": "2026-08-10"
     }
 ]
