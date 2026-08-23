@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPbXpuTXNoN0dOaTI3eWVtU0lPeVpWbXN3NmtLNzVsTVdJMHF1UHZMX0FzNGN6QnFCVVZhSVdQd3RISVlKY19wb05uLXR6cmZzaWxiSndiWjF2TTZMeGZPejd0aVo5cGt1cGpMWDM4YmRfM0xYbmtyQjlGdW05MmZWcnF2ZU4xNkxQanlzaE5NNURPLUg5ZExRUlFtY1pRZ2tCdnZxNk9hR0QycWtWemFWLQ?oc=5",
-        "title": "FDA approves Outlook Therapeutics' LYTENAVA for the treatment of wet AMD - Ophthalmology Times Europe",
-        "date": "2026-07-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOUGhCeDV6VDVPakZjWWg4ZUNQMjlPZ1dxMklBN0ZQWlBMSWpZdVZ6c21RRDJyN21nZ1IyWjlmWnB4c0hueVdnR0JnaXQ3c2Ewc3RXRkE3a2U1cW1kZWFBVEVITkhIZGhZNUNEMlo0ZVlkUzdpRFB2WDVHNkN6ZXFnYms3M1M?oc=5",
-        "title": "Big pharma's patent cliff meets a new biotech Cold War: We need to outrun China, not outlaw it - Fortune",
-        "date": "2026-07-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNME03LXJiSlpKcmJ1RUhoRFVEUUU3MnNXSUp6OF9ZZS1vcVhmRWdpSDFHbEd3YjZkSHpoaXRJb1lxTE05R2c0NVZ4dGcyUnQ3MHlPaGs0TVN0OC1wVWFPLVJSS1E1ZXpJYzZOZThhc1h3VkJUNEh0ZkpQa0VlN3JEUzg3VkdtM0g4WG9HeVI2YkpmNjMtMzNoNkp4YVVyYldyUjRIdkFkSW1XRENiRktDZ01KRTY2UQ?oc=5",
-        "title": "Purdue Polytechnic research team secures patent for 3D-printed flexible sensors - Purdue Polytechnic",
-        "date": "2026-07-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdURpNDNlbzN5cVR1QzBabWd2bVVJZVkySWQwSEhnay05OEhOTjZsX3dpcXFYSE8zeDJkeWEwVzI3U3ZVRl9TSEl2dXMwUC1Vc3ZZVjgxT3B2RnV1dE1ER2hRNWQzYm1tTnd1NjQ0SzFLTHdsNDlvbEk0c05UMjhHaEo0YkRfV0l1SkxNTnM5dHVzQ0tRMUxHQm4ydk5RdWtmSVJIWTE1dDZQYzJyNEE?oc=5",
-        "title": "Federal Circuit Rejects Bid to Revive Railroad Safety Patent - Bloomberg Law News",
-        "date": "2026-07-24"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOZld1Q3MwaE01bDdEYVJmLW1QR3FqdTc5WUhiVDlDNElJdEZlU2JrZXZGVFp1VjJ0Tkh6cWEyUGx3S3EyUXFfNDJldXB3TURNMUhnbWN2ejlIb2t1VFlTNEc2X2FNRjdxTkQ2NjN4VlY1OG5GaWdoM2FXSHNXZ1FKQTNoR2xHdGxNaE1FbGJmSG1kMDBLTmh3LWRZbw?oc=5",
         "title": "Is Agilent Technologies (A) Undervalued Following Its FDA Approval For OPDIVO Companion Diagnostics? - Yahoo Finance UK",
         "date": "2026-07-25"
@@ -558,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxPeHdJV1FHbG1vU1Iwd2dBM05jZ3JJUW9XSlhLSnV3NlZ6Q3FuQTI0TXZSQWhPXzMtd0h4U2dKUnRKSUliZzBfYnB1Z2gtbHdBZnF1SzFwbWk5ZlNyUkpJNmhuZkdEZmJkUXhuTEVrUzhQZV8yNXlPY3ozV0hESmxlT3p4R2FPcVFXZ21CV2FrOGJKRy1rOWY3RjlQTFd1UQ?oc=5",
         "title": "Is HPE’s (HPE) Storage Leadership Enough To Offset Patent Risks In Its AI Infrastructure Strategy? - Yahoo Finance",
         "date": "2026-08-22"
+    },
+    {
+        "id": "https://www.theverge.com/23987993/gta-6-news-trailers-rockstar-games",
+        "title": "GTA VI: all the news on Rockstar’s next entry in the Grand Theft Auto series",
+        "date": "2026-08-23"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/983177/jane-schoenbrun-were-all-going-to-the-worlds-fair-horror-movie-review",
+        "title": "We’re All Going to the World’s Fair is an intimate coming-of-age horror film",
+        "date": "2026-08-23"
     }
 ]
