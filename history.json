@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/column/971103/champagne-and-bullets-bad-movies-review",
-        "title": "Champagne and Bullets belongs on the Mount Rushmore of bad movies",
-        "date": "2026-07-26"
-    },
-    {
-        "id": "https://www.theverge.com/tech/971101/apple-smart-glasses-privacy",
-        "title": "Apple is banking on privacy to set its smart glasses apart",
-        "date": "2026-07-26"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbzNHUXdta2p2NjR0NDNBbG84cHRQcXllLUp4MXN5Z1FLTEtCaHFneGZHbVAxb1FEcDVmV1o5UG9JcS1jRVlsbG1GNUZUR1QxclNWcXBkaHg3SlZzcnRRZTllcVlaSVNpQ3VVNjBZT2M1aHlTTlVzSVlvZEdnOHRWMXU1QTMwWHoxTnJZd3ZSZmRUY2JZZFJoRnMxU2NLYXM4dHFqT083aw?oc=5",
         "title": "Legend Biotech CEO abruptly steps down without permanent replacement - Fierce Pharma",
         "date": "2026-07-27"
@@ -548,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPdjVVMlI0a3Azd2ZnMXhjaC12TEFBcFVodXZWbXRMdkcwU0JiRXhKTk9LVUpTNF9YR21NSFlwRXVkcXRpVTh6WldZQWdRcE1oekJobGdYSXh0X01WSDBCSmV1SUJtbVNUSEpVdXdmd0hLX0NndDVYaFhJYjYxX2lXa1JVd0pRVjMxLTYzcEhqSkg?oc=5",
         "title": "The AI Patent Gold Rush: Volume, Value and Patent Strategy - IPWatchdog.com",
         "date": "2026-08-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQR2hxb0VuaDIzVG9rUzNrSzN3SGktWWVKS2RHaEcxZTlhd2F4Vzd3bDNObG85LTZlb2w5OWdGX2g3R2dOWWllY1d0M1J1UEJYdkFVWHYxa1o3V1cteDRoeTc2MHJsZ3JCaHRlWVZiLTdvUnlhRnVWQk1udW5ESU8tb1lVZmQzZENoanRaMndZYXZFSGwzUlFkcUc1M1dQeFMtNTVXUXVvN0JFc21MSDFnX0RPX1hQMy1malp6T3lDMmthZGJlZVpuN1Z4OTdXMUhUd1VzNFZyelZ4V0U5UE91OQ?oc=5",
+        "title": "Behind the FDA Approval: ‘Historic’ Iberdomide Trial Spotlights MRD End Point and Potential of CELMoDs Across Myeloma - Targeted Oncology",
+        "date": "2026-08-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSG9LUER5U1NEdjZEMXM1UjVHdmEwcnpsMFpIMEF3bXBrUGk1WExJdjZYbVhGNHRQTUFEYmlZb3h2eFdWZ0ZmVlRKWkVLSmNQQjI5LXhWRVF5RnZuaTh4LTBXcngxcUR4T3JmcHdybDEzWDI2dDZBODN6QWN1T19YS3BrdVlyR2xhMnd0alRWalFyelpHOFhtTWx5RUVkYkVRSlhmazlXSGpiSU1UREFPWFZveXFDOHZ0QnlENkwxRQ?oc=5",
+        "title": "Mother with metastatic breast cancer finds hope in clinical trial - UT MD Anderson",
+        "date": "2026-08-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQRjUwVlo1ODl5OVJLRGxsNEg2aTcwcTJMVm1NWklkcm1wWUo0V2c1YVp1c3JWcGxSU1ZZWDVoSThZZmdDbDVoSjlTV1hKaW5DZmFFUzAzdGtOSF9FSVI2bW9idzU2S0tUbms5Um5SbDFMQXVUN2FkTl9neTgzb1Q5WEtKSVRhS3JDTjhiMUJDdVExVmZPeWVicG03eFEzckJIVjJZMjVkeWpUMVBOT0VMeThDYnlLRl9f?oc=5",
+        "title": "Turkish antitrust authorities probe Teva for allegedly gaming the patent system, disparaging rival drugs - STAT",
+        "date": "2026-08-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPd3R2WHdnUDhNZHlCRUdaeGQ4NDk3VUNMbWJoanA3R2Z5MVVJSUREWFA5a08xTXU4QVVFODYtdm92Vmw2bDlnZWlPbXBsTzB3dkp1cldPLUxZaDdlLWhEeTdxN0VoNUV0NDRKWDVGaEdnVms4LTgybjdnVDRDYjFxZEZkbktjTC1SZFcxZmd0U1YtdnVwTHhzMmtjR0N3TzU2aTJnUmxNcUhhTzVSbWxlU094aWU2MHQwY1Jqa3ZRYTFnUFdJdGY2eWN0am55YTZ3d25kOHRVdkF5dF9RYmVUVzNqMjNhZVBHMjlnOXpn?oc=5",
+        "title": "PATENT NEWS—Patent owner asks Supreme Court to review web conferencing eligibility ruling - VitalLaw.com",
+        "date": "2026-08-25"
     }
 ]
