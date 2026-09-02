@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPdmdJdDF0RUJ5MGVyUXJyTzUySksxdzJURnh1STVsclR6N3ZVMUc3WlFERVZpdGtjTHVwbjM5MVB4SzVxTHVZWWRrZWdiYkl1cjNNU3JrbTZJUDBiWlNrejR6Szh2Y1N6eWRvVHFwTzVLY3VHOXJTSUZfclM3MVl2alo1MEx4YkpjVkQxNVJfcGc?oc=5",
-        "title": "Work ethic becomes a flashpoint as China’s biotech pace quickens - Endpoints News",
-        "date": "2026-08-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPVVgxM0kwV0lIVFRqX2lTWUFLWDV1NUlGTjNjNktCM2hiOEhYOEltMzV4X0JqSUs3bzFEMDBxWGxsdUtIMmcwVzE4NW9fRm1rSXpCcmhIamdvc0FEUlFuQmZSWkVjcU81TzJRWklQYTBnU0d2UzZiNjN2VGc2TEZwNkI4S3pGN0xhQ3dWb0Z3dTdrdTBMOWJ0bE9n?oc=5",
-        "title": "Rebecsinib Clinical Trial Means New Options for Blood Cancer - UC San Diego Today",
-        "date": "2026-08-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNcDhmcTVpTFQ1UlE0NG1aem92b0JuM3RRYTNYQU9HTE12cTM1N0t2NzBoUUItMTllT3hwbjU2Z1dqNHhMZlV2aFE3WFFmVkF1MjhqMGRleFNmQzJ3X0pJR0tvMUFKc1UzamZFNDVvdVM5SFVNSzFud1NRaUpCY2k5UFFjUUkxTDhpalBFTms3ekw0Nl9pd3dROEZfUQ?oc=5",
-        "title": "Risky Business: Patent Term Adjustment in the Post- Forest Era - IPWatchdog.com",
-        "date": "2026-08-03"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNclMydzUybXhjQXZ2RS01bkZSYk1QTE5rM294bHYzR0pkX294dzJ2OVNSc1VXQzJ0V1VFNW5faUltdzc5elozV1N6OVFKcWFzVDJnZG9xMzBCZEs1dTdBUkxTRkdaQ2hzaHcwekwxUFVXdUxtX3hyWWZkc01NT2dkdzBjUmMwY0NpQ1QwX3FWWVIzZ25vWWdFRUZza0llR050WFE?oc=5",
-        "title": "Canon’s Latest Patent Shows Off a Wild 12mm f/1.2 Ultra-Wide Lens - Canon Rumors",
-        "date": "2026-08-03"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5RZE1DaFhLaEhoLThhSkV4VFM3Q0o0eXc2cUxtUUtWVjFzRUotbmxFV2I3ektkc0phclMzclA3cjEwQ3YzS3BCejgxUWJQX2FydE5oLUhDTlE?oc=5",
         "title": "Houston's End-to-End Biotech Ecosystem Takes Center Stage at the Future of Biotech Expo - houston.org",
         "date": "2026-08-04"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNS0g1X1JDZ1FRSUUxcGVGc0tKZTFzOU5VYnNNSEpSdUVRdDdTNWVoVG1YeVVTa2tHLXdaUldqZjN1bWxvVUNXajg4V1FMOGlwZzVnRlRoaW9UZHdTakpwb1BLaG5pdy11YU9JeEYyQmJTQ01Wd0ZZVFFZVnZBNExoaHAzODY0STFiRUI2eHptQ29sb2hDTFpPRmZDd01KSjlrc3VwVktCb195RDRIclRiaXBR?oc=5",
         "title": "A&O Shearman Hires Former Texas Patent Magnet Judge Albright - Bloomberg Law News",
         "date": "2026-09-01"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPNml4QWxWeHNleFdpVmo2LXpZQzBNdU51bno5bExPLTEtSDBNVU9sSE1BZ2YxZ1dzQWpZOEZVakk3UV9sUFBiZkdGbVZ0MnY2eHgwVXdLam05MVFZVzhrMkE4azN3blAyZDZyTXk4aHVXa0RkcTZjUGJCTEo1VkI1TWxYRUw5bjhWUkIwQnJabm5ILUtUWHVXbThNWlg1UGJXRjBNREVOVmk?oc=5",
+        "title": "FDA Approval of Essential Thrombocythemia Drug is “Important Milestone” - CancerNetwork",
+        "date": "2026-09-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPVlNXT0hyYWk2NkhDRGY4N0RMVEp3ZXJTb3U5UVF1VXRQdkw3LVNvUE5sZU9fSmxvTWk2OVdSY2VfOUZBWWI4U0JEaktVT3hhemJwWlpOVmRqQzZaNU5pZWlTUjd3d3kzZGhaQjRsbW5UTEM1cTFtMkZrOVFDeVNjRklod1RYbkdXamNJTERVNGcySVNvdHE5bEM1aGctWHpUT21EVFFpcFBlMUNqVG14aHVCSGlKc0pXOF9fRzZRR2JUYllyRE1oSlRiUjhIMnNVT2RfUjBob0tLVEtWRWRxUTBEbUl4dHhjcWR4YnZpbEkta1E1SG1rTVpRbnE?oc=5",
+        "title": "Navigating the Regulatory Labyrinth: How Biotech Leaders Are Rethinking Strategy in an Uncertain Regulatory Era - Genetic Engineering and Biotechnology News",
+        "date": "2026-09-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNZlNkbVFKdS1LWGpjY2dlaGNtU0ZQOVQtWnJnZ2tsV21JcmxOem11UnVGb2FoNGdhNU44V194N1NyM2M3LUZfQXRzN3pEWkdudE1kdmhDdnlOb0tsY2RqYWlCdG1XeUcwUEx2SFgtOEt5UTgxRUR3V3hjVzBKWWJPd0N5UTNSVmp2UEJjVm9VVQ?oc=5",
+        "title": "Patent Bots Releases Second Annual Patent Speed Rankings - IPWatchdog.com",
+        "date": "2026-09-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWXpDVlBOaXFtQlluYVc2RWdSZG5TZEVvNzVOR1dkTk8yTDJZazVMWmd0V2RWTTV4aTFsaTRDdjhnalBzQnJULXBMSHZTNVFkRkNVVlRrUmdxdms1b2kxc0lzTDNTRmJXTXJ3VHhTd0pQTmpmUy1idHI4aUxzSUZ3VVJvYkR6MGI0ZEtLcUdYLWhrZ3E4OHpGSEYzMTk0YXJqeTNHMVZ5RFI3aVNzMWkydUtfaw?oc=5",
+        "title": "Can AI Save Pfizer Stock Before Its Patent Cliff Hits? - Trefis",
+        "date": "2026-09-02"
     }
 ]
