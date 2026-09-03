@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5RZE1DaFhLaEhoLThhSkV4VFM3Q0o0eXc2cUxtUUtWVjFzRUotbmxFV2I3ektkc0phclMzclA3cjEwQ3YzS3BCejgxUWJQX2FydE5oLUhDTlE?oc=5",
-        "title": "Houston's End-to-End Biotech Ecosystem Takes Center Stage at the Future of Biotech Expo - houston.org",
-        "date": "2026-08-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNSHFPS0FSdEZCRDNrZDRhRGlQLUF5TVlLc1oyUUI3aXRERmJyVVVUOF9ITGlRWjE3cGZfaDlNMmJ5Tk1tZmxscGNzclZKVWlDVm1tbjFoZ194U29tMEQ3dTYxN2ozaUNuek82RWpaa0EtTTVzYm9vS0F1dXZTNjBJQzBVS1hYYzZIQXljZFBULVB0WXhjUnAzLWVB?oc=5",
-        "title": "Tips for Participating in a Cancer Clinical Trial - HealthCentral",
-        "date": "2026-08-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNUkRCNGFocmpkY2VmSVhQSGVYNHdTTU84ZTJlUzFySjl1VC04c2hPMl8yRjBMQWtaZ2pNMGRJWW1iX2ROOUk4NURFWWpmOG80RVdEY1FvbjdwWXJRaU9NMm4wOHBSb0FsTXN3a1hURExhOHB3dllHTzRfU0hqV0tveG45cnJnSnpuaDlmMlk2c2tDM1ZHY3hSVnNCdDZmNmx1VDdsRXllVHgxcnlleng2SlcwbmExVGpwTExZd09YckhpTE5NT1E?oc=5",
-        "title": "CAFC Reverses IPSec Claim Construction, Revives Patent Owner’s Infringement Case Against Apple - IPWatchdog.com",
-        "date": "2026-08-04"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPMTdyVnMwTnZrZDhBYmo0ZWZKWHlDckdtelZhOFBZeHNRdDhTbS1nVXpMZ3o4a25SdkVSYXV5SU1nUmlSd3VZRjg3VF9US2RUVnMxZHYtZ1psa2tPa1BmdjF2WVJlaklOZnFaX2lfSGlJQWtWeDVWVklNNzhLd05PR09kbHR3SEdTX0Y1eEU4LTNKdFhGSmROQkROeGd5ZWRn?oc=5",
-        "title": "The Patent Cliff and the Drug Market’s Innovation Cycle - The American Action Forum",
-        "date": "2026-08-04"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNWEJkTDRKaS1iVUstRGlrT2x6Z2RVQW9TekREVUJBb0d3OGx1Y1VIMDVlMllaeEd4NV9IYWRpLUdJTFZXeE95TmtUWHJiQW9WTXRORFRZQnBpakRXT0RuR0tqMHp5amUtZDFkenBfekg5M2VMWVN6a0czTXFWRmg2MTVKbjRycGhkdl9sYjNTYTA1VXIwMV9JTzlmV25TRDVYS3BtVDdPTnltZzRlVDBtLWJGaXdxOVpHSjNVNU1SQkpwQ2NSTVd3bjFuSm1fZw?oc=5",
         "title": "Organizations Unite to Advance First-Ever Clinical Trial Framework for Charcot-Marie-Tooth Disease - Muscular Dystrophy Association",
         "date": "2026-08-05"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQWXpDVlBOaXFtQlluYVc2RWdSZG5TZEVvNzVOR1dkTk8yTDJZazVMWmd0V2RWTTV4aTFsaTRDdjhnalBzQnJULXBMSHZTNVFkRkNVVlRrUmdxdms1b2kxc0lzTDNTRmJXTXJ3VHhTd0pQTmpmUy1idHI4aUxzSUZ3VVJvYkR6MGI0ZEtLcUdYLWhrZ3E4OHpGSEYzMTk0YXJqeTNHMVZ5RFI3aVNzMWkydUtfaw?oc=5",
         "title": "Can AI Save Pfizer Stock Before Its Patent Cliff Hits? - Trefis",
         "date": "2026-09-02"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOV0VQWnZUdDA5UDNzYk83Q052bXFFWURoQUs0TDJXaFJ3aGJRVG5CZGFyX0tfS0lrenUzMjk3Zk1PYmpOM0tjS2ttRlM2Y0h6Yno0dU1NeG9MSkVvWEs4QlRmSlR6by1CV3lQSm5YdUNENGtQVUl5WEZlLXFyWVRjLUpqcWZaUURQTlZj?oc=5",
+        "title": "Ionis wins FDA approval for first drug for Alexander disease, a rare and deadly neurological disorder - STAT",
+        "date": "2026-09-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNWnBvR3Axcmh6eUg3WDBldi1adjg3azUwSmpxeU1IaENCSG9HU0N0Z2I1YmJSN0ZORTRfUWJBRG9SVkFBcHJMU2ZCX0ZhV215TmVybk9wekM5bS1wMHNWNXV0aFBtb0FfZXlKLUJwaWRIYWlTMnZlVXJJeE8xNjRzQ3VSN1QwdjU2WWFWZkxERGHSAZYBQVVfeXFMTkpGa3lTNGZ4OFFNVlpiR2hfUFh2bmtUbkI4X2F6NEhmZlQxd2tVQ3laTjVvY2NQa3ZLekZwUXJuUHJmbmpibUF3cE5QNG9HMXRxVDVZc3RRWmMtSVY4ODdXc0hIck1HSTRZcmFCT0J3RUtPc290XzVCb2NmNDVHdlcwOEtYeHJkQThrUV9BV3BpclhEQXNR?oc=5",
+        "title": "Billionaire family offices back healthcare and biotech startups in August - CNBC",
+        "date": "2026-09-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPdEdURmV5TTlhd0lqbWxkb1F1T084cTZxZUJkZGtjNjRxd0pNWTFWYnBvWDZTVVR2TVZPbzVULWtfWktXUzVOVDV4ZWhBTmNNOHZ2TVdiaDNSaTMxSDFCeTBZRzk5MmZfLXhYVFE2UXY1bFVBdTM5b3N3dVlWWmN3YTdpUGJLSDM3b05PbWxfT09xc0Y4?oc=5",
+        "title": "G 1/25: two decisions for the price of one? - Wolters Kluwer",
+        "date": "2026-09-03"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNSTYyNUFUTl9GX1pYWVFkbURFQ1RTQTlDeVV3WEpieFNMU1gwcTBPN0x1cld1YmRvWlRMOEVfMGJYTEYxZlRRSjQwclRUSWs2V3VoS2g2VE9WajFiTDl6UlFGb09JeXhpajQ2dmV3blFJcnplVWpDZWo2RXNrWE5wRnhOc0VycmNDeDJpOFozS01zV3p1QTdTN2doa2xHVEMtM0ZONlFKLWxPNHV3aUE0c1Y5WGQ1YWsxWjR0S1Z0eUQ?oc=5",
+        "title": "CAFC Finds Most Patent Owner Arguments Forfeited in Vitamin D Baby Drops Appeal from PTAB - IPWatchdog.com",
+        "date": "2026-09-03"
     }
 ]
