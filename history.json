@@ -1,45 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPVHhZX1BBRXphUWRJYmZVRjJUckR4Z3prenpFTV9WbVhINklWdmlKbFBQdVFWS2NDUFgyZWpPam5CWjZnbjhIc1hieW9kTTdjS2lFcDZfdE9PS3o1OWJFMFlHa3o0aTFxdEZmTzhPSnN0YUhZR05hX291dk50N2xSWTZTU0V4ak04RHc2aWU0S2NZcEJRTXhhTWxPSnFYaldJdUxaemZPMmRCVTV2ZnpjUTdST29lN252TXJsOG5veUZkckl3ZUVkUzRDOWRrRXNHdm5JcQ?oc=5",
-        "title": "Slotkin, Ricketts Introduce Bipartisan Legislation to Keep Biotech Industry in America, Not China - U.S. Senate (.gov)",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPb1YzVGxJSGFMTzl6TGxLbjgzbS1ONHVKSjFHUjJjQVRkU3llVFE5MDduRUlCMmY3MVZTOFFJbVg0azVjWFhfdW4zYi1lNUFhRHpYUG9pXzYyeGlsR210LVlaZmF6RjZqdGZzcENVUHYxQk9ELXBTVzMxb3BIeVdUSHljMC1zYUNsZ2NwWWpuYw?oc=5",
-        "title": "Replimune rebounds to win FDA approval of melanoma drug - biopharmadive.com",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1pbEpsU3djZjFmUzRObjBJckg0d0ZlS1o2QVQyVmY3SGRyUXkzZHRaZU5pWkxBSzRDbzJoaERmb2I3ejl1SkxaczVpODRLcmFCSDd0LUZuMlE4cl82QkE?oc=5",
-        "title": "Webinar: AI-Powered Patent Landscaping - Turning Emerging Technology Questions into Strategic IP Insight - IPWatchdog.com",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQTHZTY1dHT2xVam5NclZvc2NwSGdHZkJkVWZNMlhmOFpfeWdKRzFmVWdWTDBVWmZpNmxBVExyd3pnS3RqVUNMTVlmYXluY1FwMW1tR3ZvZnZleUltd0hoTzRiM212a09uRmc3OXhCYkVTX2dEczBCXzJvTTNnWURLSVl2T05FNVZLU0JVcG1EYnBvbDRtY1FWMWQ0TXF0eXVq?oc=5",
-        "title": "Externship Puts Recent Grad in Copenhagen to Share Patent Research - Syracuse University Today",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNSU9WM3dTSzVOcDRLTkRJNmxGSTMtb2NpaXQ1aEo2clFnVU5HWE9Wa1ByU0p4cXhMT1cwMHN6MkJ6ek9VWHBzc1k4UFlCc082ZHhZUlh4QU1oa0lDOFpKakptSDFwMlFYMlhhRDNWVl9meVBQdG9FeGloXzlwdm5sUTlFbXgxd3FlVUczYVMtbno2UUdFUzRWUEstcjByRmphX2xCMWhyNG5aT3ZOX3hzbGJRazRHQWtEOXpmb2t6QkQ5VmJIb3RTdUx0Mk5WaThOOWpfNjc2czRYRXZDZjB5cFQ5R2ZEdU5NcFBDbG1ONXFkUQ?oc=5",
-        "title": "Stanford's AI agents designed a drug Merck later built, too - venturebeat.com",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBBMS13cHBNalFlWHlmcC1kaHFsTzI4NTAtMHREdFc2ZXN2cEdJU1A3MW5LNG85aEYwY0lEanNOdktVQnF2UVJXMDhPM1lXd2JPOXhSc0ZvWGprMWxSZWJ1Y01hWUVqRU0wN1EwQm1VWW9ubm1uTlFJMFdLa3VBZw?oc=5",
-        "title": "Biotech Stocks: The New Drugs That Could Fuel Big Gains - Barron's",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPeV9QTTktVjQ1WFFyMDJNLXdGUWFCY2tGb2FaYkE5bDdyU1BQeWl1cTY5dkl5cXZUUWpaUTZIa0s3YWRtYkRLbzVNSlkxUVhnYllObVFNeFZtb1VSZHZyZnVMMmJKMUZieTE2c1JtUnZfd2tYc2hlLVhHZFBrSlltRzhWZw?oc=5",
-        "title": "Rise of OpenAI in the Patent System - Patently-O",
-        "date": "2026-08-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPR3BoeGhwZ3lWV0VmZkl1ckVLQ2FUZkVmcHlLYS02eEdFeDNwTkY2VGYwd2d3Z3ZEVXlPX2NvLTJQM3F0Wmk2Mnd2eHRaUklndmpwYnlYUENxTkw5VXBwU0FSZkowcHRBWG9vc3NYNE5sOXZFWTF3cFdkLUtMSi00SXNwa0huTkNRRlo1YnUzMlFvdVJT?oc=5",
-        "title": "Federal Circuit Patent Watch: Patent Not Enabled Where Specification \"Disclosed No Actual Dosages for Any Compound Within the Scope of the Claims\" - WilmerHale",
-        "date": "2026-08-07"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPcmZvM3J2bXI0ZDJRNlo2Z1lCa1RfdElwZl8tTU5oOFpiTjFkYnIyMkk2Tk5mdXNRdjJVb1VBM2JKZzVWbXBfWl93SlZWbVZralVndUd4bjgzMHpjRmpsWU9obDVUcnY2RFlURDllNHcwRlMzWWFLRjN1My01bTAzVXVybXktalFlcktodGxOMGVNWnRhR3ozcnR0TDgyZjBHS3U3bWplRUJJdElzQXZIRmtwa29LUmVsZGxFSWVLTDN0amZ4RFo3alcxRmRNdWfSAc8BQVVfeXFMT2UtZU5qQ28tblcwWXZkNUxQR1pJX0NwTl9qa1hTXzNxbmZUalNBOV9NQXctaGVIb3ROOEVBOVY4NW1zRHdUSkY0anpiWG53bkprcE5JU05RTENsT0FkNXZad3ZGcEtEVFFxTy1fbTZ4UzNpVU00MnRfVS1mZ1pTZDBmZHdiZG10a3pEWG5SRlNKUEdzVXFDaC0zZ0I0bzVROUhSc0IxeHh2d0VTVFJ4UzFxR3l0ZndEZW1DZXAyblhCS01venhnNTFBOVZlR0tZ?oc=5",
         "title": "Global pharma giants turn to Chinese biotech to tap innovation, valuation growth - South China Morning Post",
         "date": "2026-08-08"
@@ -578,5 +538,15 @@
         "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQMnJiTktFVDVCWTVnRTRwNzNmc0tWWkd1UnVzeFVScXFaM18yQng1OVZpbjQ5eUNpZU12bjVIcWU5WGowVWh0bzhMYWRtQ29hNnJNb1A4MlB3VndQTEFCOEtXN2luWlRWUXJBMkc2UW9CbUE2bWVZUWJrNkZOaUVTa2NLQUQzTXF4?oc=5",
         "title": "Would You Sleep Inside Your Ford Bronco? This Patent Makes a Strong Case. - motortrend.com",
         "date": "2026-09-05"
+    },
+    {
+        "id": "https://www.theverge.com/tech/990918/amazon-cargo-plane-crashed-miami",
+        "title": "An Amazon cargo plane crashed at Miami International Airport",
+        "date": "2026-09-06"
+    },
+    {
+        "id": "https://www.theverge.com/science/990906/isar-aerospace-europe-orbital-rocket-launch",
+        "title": "Europe has its first commercial orbital rocket",
+        "date": "2026-09-06"
     }
 ]
