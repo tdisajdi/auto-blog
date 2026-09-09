@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNUTA4ZlVfdVFxUnlTOThQZkstNDZYWG84c1BwTGx3VTNmRHN6RmRkeDhiVzk4MzJZblIyeGRDczRoeUFMR3Zrb3hSRGFsQjlEaVNHRGJDV1NvdWpLaWRQYTlpYTFqdVJaSjhpNXR2cmxSOHJsLWFFMHk0aXZWSEthaGlvZVFHZXQ0MWFCQnIzVDVqMTNZYnZ0QXZBUUFhNmRReXdDSjE0OEx4eFM5?oc=5",
-        "title": "How Is City of Hope Widening National Clinical Trial Access for Oncology? - CancerNetwork",
-        "date": "2026-08-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOQWhjOHYyNE5jME1wWDV2V3BRTjFaTXNYN0FTem0yR2pEa1dYNjRDeEpzN1hqcG1rcjI5dVVyWUdjVlZMTERkeVFIMkNjUGc2MGdqZTV1MnFZWFFoVGNoNThnMnVNZ3YtbVR4TjNNVnNoV1l0ZE1jdE9raWk4c28yenBNc3VtM19rbmJoQlBLamxmN1RBRzh1TmJ3?oc=5",
-        "title": "FDA approval of mFLUSIVA highlights Moderna’s position in mRNA market - Clinical Trials Arena",
-        "date": "2026-08-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5Wd0Rkc3ptU3NjNnh3SXRGTU1PYXV3c3VkWm1kakZVdE9LUk1sbWFaVHhiSUxMLVlHYlpUWmpmSENpaVBXY0N2ZzduN0xNTjgxeDBKNkx0VHRUUW1LU0ZLVjJLa2ZUajRP?oc=5",
-        "title": "Webinar: AI Capabilities and the Future in Life Sciences Patent Practice - IPWatchdog.com",
-        "date": "2026-08-10"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPM1VEbUdoOEJWc0cxVjBoaEU5SUVOcFpzcWV3Wkwya0xtNTN0NTRPRUhiVFctUllfUjVMQ0JmWmdBb1k5SDhPdHc3blZkZkYwM1NTdy0wcjNINDZhQnBqOGhQV1I4d3B5MzB6MUU4WWQyNmpobmIwbko0R1l0aGpkSXBCZ3pyVERCNFRDTEo2djlxTkh2ZExTaHNlblFaOVBFcTRhVHZSMXdSWWN4SmhIRHhn?oc=5",
-        "title": "Navitas sues rival chipmaker Renesas for patent infringement - Reuters",
-        "date": "2026-08-10"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPWnNIYUVmZkJnUzFkM3dqNFpZaFZRRUdTUWNxb2lMeDY4NklMMGJobEM0NDU3LUQ2ZmRhYjNNaTlRM3N4MzZHOExoV3BGQXk1a1dKNDFHaHlrT0RZX3pYd0g0OVhlNnZobEtEdzBtLTh3ZnRsSWFpbGNjRVVpU1VIMA?oc=5",
         "title": "Fierce Biotech Fundraising Tracker '26: Vaderis nets $152M series B; Epicrispr adds $90M - Fierce Biotech",
         "date": "2026-08-11"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPVWowRTVTaTFkN3R4SWRNQ2JrWmJvSG5DaW90Zkw4ZmRDSUE3Vi14Q1owTGV4MW1DODg4SzJkczhram9URkJVVUZtX2hieEVYaUhYUjFySERwMTQ4N2ZoQ1hOdlVWOUhKeTNIeDQ1dDM2MmRoZWpneHZqenpQeUI2OTc2a0ZvSHhrYnliVnA5NmNKQkdMUlBXNW9yN2RzVTA0VWVXX3pwSW52am5fTUdiRGtjaVRtVVhab0N5WE9WQUV0Z1ZFZzJn?oc=5",
         "title": "Shoulder Innovations Announces Settlement of Patent Litigation with Catalyst OrthoScience - Ortho Spine News",
         "date": "2026-09-08"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQRHNhSmVsMU8xTFpGczEyUW82LWZBTUFVdDd2d0lRdUI4dVZQQi1GaWNlRGNMbHpmVWhUUmxNTk92eFB3cXFCOEZPMEMtRHVmN3J0di1aVFFpQkY2OHRYMTA5SkU4dklxb1NvalVBTThnMzJlUEQ1eUZham40SUVkUk1xbE1sRUFTc1NTZjg3RG9Pa21XSmJZaUh5bzdxOTg?oc=5",
+        "title": "Leukemia drug data suggested a different way to treat diabetes. A new biotech will test that idea - statnews.com",
+        "date": "2026-09-09"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNemwtT3ExaXpzMHhPUGhfM2RnMFFLd3JicHJHeWNCU3gxYVZoSU9xXzZnNW9FTG1Nd1lCU0o4LTVkbmFzQU44SGRNZlIxWFI4N3NDb3YzUHZLZ2FESDl1OWFIRloxcGJzRnljbTVaUEdDai1jS0xONW9LS3JZUnF6RUk3bVE0enQ1SWN1UnFEX3ZXUWZ1TVRwOUtMUFA?oc=5",
+        "title": "Kura spins diabetes work into a Lilly-backed biotech startup - BioPharma Dive",
+        "date": "2026-09-09"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOaUxPNGVKWl9KNXJZazB5SjlwLVpzZFRXU2VIR0RmOUd3VGhpZHlQUzRzWkFxWDZndW1ZcTBISWxXSWczU295R3JaSWVVbWVNV19jVW5NdVBhZ1ZJNkxUSzZYaGJxa3NtMGszVFhGMFI0ZW5iV3pfUFJBeDNVNjJNdzFZZ3B3T0cwVmFSZ3dobkJFUXNFbmJXYTFMc2NVaE5EeE5sYldKLVRPYmVKbUluU2hR?oc=5",
+        "title": "Will AI Data Centers Become the Next Patent Battleground? - IPWatchdog.com",
+        "date": "2026-09-09"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1fRTE0MGgxSXhKRVJtcm1vYXdiUkkyeTBMOTdMcWhGRzBNNHlhVDZWSDJwNkhZQTRtZWNZTTEyYzc4T2pNWEV5MlJMSDlobkpldTNfSTFmdmI?oc=5",
+        "title": "Atticus: strong lineup of post-patent products to manage rising input costs - brownfieldagnews.com",
+        "date": "2026-09-09"
     }
 ]
