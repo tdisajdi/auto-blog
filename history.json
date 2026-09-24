@@ -1,45 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxPai04NW5KT2JLVDMyQ3lhZHl3Qkhma1IzRW1wMm4zcUhIdFBfQU9TbkFFbkRERkJ2MHR3ZGVJd0xWWWRFYUl6T3NNMTN4V2pqMXpfNUg3RGRBMTBNeF9YRkpHdzczc3ZoRlNKU2FDUC04d1FHWmRrVkQ2NUFrT01meFAtNUFELXdJUWhkMDlGdmFOR2Z5enhRVWdGX3Nvdw?oc=5",
-        "title": "Lady Gaga and her fiancé launch a biotech startup - STAT",
-        "date": "2026-08-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSmpXUURvTTdBYWIwX3A1Ykk0QUJma1NIQmlKMGhXRld1RThWTVhoTjdISld0ZE43clUwYmppQUdXT2Zkam5VbnBSa3dWeVdKNUdHVlFSem90VlN3UktPMG5qMlhTQkIxMzJBSG5IRlFIRVVVeTdXOUZVU1YxTUo2dTFGeFhsWUo0QkJSYzMxQkF3cmVUdGdvaHpRS2dkMk8w?oc=5",
-        "title": "Biotech stocks are breaking out. How Josh Brown is trading them - CNBC",
-        "date": "2026-08-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNY2E4eXJkTHVab2hiUTNZTTV3Z3JCWEVkSlpRWHl1UVduckFhTU90SjB4TWljaVc4UDRMY3Z4b3NEUl9LWGRYenZ0WUtUdUhjMTNPdVlKZGZJbDdlWkRmZzl1anlVU2hHYmx0VjBFRUZkbnBxWlpyRlFkV2h6d2hYTmQtV1lSNTl1cWMtU1c1SHRrTDcyZ180Q0p5NE14M01QZmwwSXAyTkNEb2F5Ulc1SzdVVUpKYUtmWXJfQjVvMjI?oc=5",
-        "title": "U.S. court orders Guardant to pay $245 million in DNA sequencing patent dispute - Reuters",
-        "date": "2026-08-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPdjVVMlI0a3Azd2ZnMXhjaC12TEFBcFVodXZWbXRMdkcwU0JiRXhKTk9LVUpTNF9YR21NSFlwRXVkcXRpVTh6WldZQWdRcE1oekJobGdYSXh0X01WSDBCSmV1SUJtbVNUSEpVdXdmd0hLX0NndDVYaFhJYjYxX2lXa1JVd0pRVjMxLTYzcEhqSkg?oc=5",
-        "title": "The AI Patent Gold Rush: Volume, Value and Patent Strategy - IPWatchdog.com",
-        "date": "2026-08-24"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQR2hxb0VuaDIzVG9rUzNrSzN3SGktWWVKS2RHaEcxZTlhd2F4Vzd3bDNObG85LTZlb2w5OWdGX2g3R2dOWWllY1d0M1J1UEJYdkFVWHYxa1o3V1cteDRoeTc2MHJsZ3JCaHRlWVZiLTdvUnlhRnVWQk1udW5ESU8tb1lVZmQzZENoanRaMndZYXZFSGwzUlFkcUc1M1dQeFMtNTVXUXVvN0JFc21MSDFnX0RPX1hQMy1malp6T3lDMmthZGJlZVpuN1Z4OTdXMUhUd1VzNFZyelZ4V0U5UE91OQ?oc=5",
-        "title": "Behind the FDA Approval: ‘Historic’ Iberdomide Trial Spotlights MRD End Point and Potential of CELMoDs Across Myeloma - Targeted Oncology",
-        "date": "2026-08-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPSG9LUER5U1NEdjZEMXM1UjVHdmEwcnpsMFpIMEF3bXBrUGk1WExJdjZYbVhGNHRQTUFEYmlZb3h2eFdWZ0ZmVlRKWkVLSmNQQjI5LXhWRVF5RnZuaTh4LTBXcngxcUR4T3JmcHdybDEzWDI2dDZBODN6QWN1T19YS3BrdVlyR2xhMnd0alRWalFyelpHOFhtTWx5RUVkYkVRSlhmazlXSGpiSU1UREFPWFZveXFDOHZ0QnlENkwxRQ?oc=5",
-        "title": "Mother with metastatic breast cancer finds hope in clinical trial - UT MD Anderson",
-        "date": "2026-08-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQRjUwVlo1ODl5OVJLRGxsNEg2aTcwcTJMVm1NWklkcm1wWUo0V2c1YVp1c3JWcGxSU1ZZWDVoSThZZmdDbDVoSjlTV1hKaW5DZmFFUzAzdGtOSF9FSVI2bW9idzU2S0tUbms5Um5SbDFMQXVUN2FkTl9neTgzb1Q5WEtKSVRhS3JDTjhiMUJDdVExVmZPeWVicG03eFEzckJIVjJZMjVkeWpUMVBOT0VMeThDYnlLRl9f?oc=5",
-        "title": "Turkish antitrust authorities probe Teva for allegedly gaming the patent system, disparaging rival drugs - STAT",
-        "date": "2026-08-25"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPd3R2WHdnUDhNZHlCRUdaeGQ4NDk3VUNMbWJoanA3R2Z5MVVJSUREWFA5a08xTXU4QVVFODYtdm92Vmw2bDlnZWlPbXBsTzB3dkp1cldPLUxZaDdlLWhEeTdxN0VoNUV0NDRKWDVGaEdnVms4LTgybjdnVDRDYjFxZEZkbktjTC1SZFcxZmd0U1YtdnVwTHhzMmtjR0N3TzU2aTJnUmxNcUhhTzVSbWxlU094aWU2MHQwY1Jqa3ZRYTFnUFdJdGY2eWN0am55YTZ3d25kOHRVdkF5dF9RYmVUVzNqMjNhZVBHMjlnOXpn?oc=5",
-        "title": "PATENT NEWS—Patent owner asks Supreme Court to review web conferencing eligibility ruling - VitalLaw.com",
-        "date": "2026-08-25"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQV3k0a2JLVkpObG5KNmttUjlPSGo1MHhicUNjZkQyQk1MTzNjb0VZdFJWbFFsZ25wY1JDNUlSaWQ2RnFXeDZEUC04VW9kRXhzQi1GT084aS12N2tBT3YxZENpQ0NUUzlMMWZFMklqOTlGRjlkbjhYSkhqV0dhVzNyT19GUGJWdDIxQ3RqY0RpU2F3SHpPZHFSMHFWcmVGLTdIcDVaX3R0UDlDYVlHc2xkUnNLbHVqZFhZU3c?oc=5",
         "title": "Revolution's lifesaving pancreatic cancer drug wins speedy FDA approval - Reuters",
         "date": "2026-08-27"
@@ -558,5 +518,25 @@
         "id": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPQmlqMlRNcWdHZ3ZyeTF0YmFVbUJxVHpIN2ZGWUdQblVwV093b05WaVBhcjZKYmgzMTQ5M05hUEpDdU51MkNsVzNHRWd5ekpwUlJIYVBnelR3TUY4cWt5bFBOanVPVzN1bFZ2OEpaWGxyd2UtOGtHOGdYTVh4QmZrcDBWanVJVWgyNXM3SHRCekZRb2UwWTVvWVZMTjM1TGtKRmNhQUgwdkEwZnI4dW9sSkdNQmlRRVE1SUFSOVd3Y2dpU2FCdFdNWVB2NFRDc0E2WkQ0dExvS3p5cFRrdkUwY1k0aG1udEJKazFuZ2xR?oc=5",
         "title": "Risks of Decompression Sickness and Venous Thromboembolism during Spaceflight and Patent Foramen Ovale Implications - nasa.gov",
         "date": "2026-09-22"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNS1dza3NTZzVfTGRENHNWakYxVV9lUEpSWHpIQnM5MldFYksybmNqRWhNdmR2WlFZSzN2SGQ3RzIzQWNMZ2Q1TGlEc3V5bjhiYkpvY1ZNVVFYMVUyYjliV3dfVUYtSU5iWl9YVGV6SmZBdkhYUDkyRTdYZmdSVU9Eb0lySm5aX2hfcDJfODNZUHFXYXdxZ0lZ?oc=5",
+        "title": "Biotech Stocks Widely Dive. Here Are The Hardest Hit. - Investor's Business Daily",
+        "date": "2026-09-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOT3N4NDh0OTU5TWltV1I0c0Y2MnU4azlONDNHUHVXbDN4OThDbzBhRGM2emluQVJDMlVZTU5ISzFqN3RmRnN3OWJGbXBDWTUtQmRTVnF1dllUdU40TjFKZ2lVR0dEYXMxUnhYS1VvRklwSFRDRW5NUndLMTBRUkZyQmc4a2xIRUdhQkJBM1JwZ0plUFpORnRDaV84VGdHOHdxLWxKelZQTQ?oc=5",
+        "title": "Dr Mayer on the FDA Approval of Camizestrant for ESR1-Mutated Breast Cancer - onclive.com",
+        "date": "2026-09-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPejAwdkRETWE2bVRGbURVdU9XMFJtdUlDUzdKMDRXNXBtZS1ENG5ONEROS0txeUlSRE9sSkhob2taZzdTdHBBVzlUM3hKTHJmQzE3b3RsT2c5dUlmQ3RPMUFUekp5MXlnSzNUQnlqMVUtZXREam5jc29HS1ktYzdUMUE4dG1IZWkybnVxSFl4S0Nqdm9CVXA0b01WUWhUYjktS0NPRUwzV2RGVlpBV3U0?oc=5",
+        "title": "Practice Makes Permanent: How AI Can Be Used Effectively for Patent Training - IPWatchdog.com",
+        "date": "2026-09-24"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPd0drczFpX0NLdG1SS3ViclBCWk1XUFljMlFjVVdOM09Hd3pHYnRWZDVRNWdxRnFSTzVSVjFvR08yZ2w1NUV4TnU4T0xZYjNPY1pWUzFsOFYyb1g5d1dQM2JHZExVR2Rha0cxYkpodk92SHpIWGZ5c0RfXzFMOVJiZFREUUJZVzB4RUNOc2sxcHFYenNBUWQyUWtKV1hxTEU?oc=5",
+        "title": "AI is a ‘Supportive Assistant’ for Patent Examiners, Official Says - meritalk.com",
+        "date": "2026-09-24"
     }
 ]
