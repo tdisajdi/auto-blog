@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQV3k0a2JLVkpObG5KNmttUjlPSGo1MHhicUNjZkQyQk1MTzNjb0VZdFJWbFFsZ25wY1JDNUlSaWQ2RnFXeDZEUC04VW9kRXhzQi1GT084aS12N2tBT3YxZENpQ0NUUzlMMWZFMklqOTlGRjlkbjhYSkhqV0dhVzNyT19GUGJWdDIxQ3RqY0RpU2F3SHpPZHFSMHFWcmVGLTdIcDVaX3R0UDlDYVlHc2xkUnNLbHVqZFhZU3c?oc=5",
-        "title": "Revolution's lifesaving pancreatic cancer drug wins speedy FDA approval - Reuters",
-        "date": "2026-08-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQSDYyMnVEWnpjZFNYbVE4Mno3bGJyYlNoZWlaNUgyQnNGNnRrV0pnWXI0Tl9Ndm41dDNDYlZ2M1loc3owT1FfZU4wX1FqSThNaTJGZ3NQRzltMXhpenRMR0pQRnhabG5PYVRqc2RKaWdqQUJiekN1dVo3ZnZJczBSMkJQd1Bkb0k0YXowN0E3b3hNLVRwZmpvZGxSXy1IZll0MWc?oc=5",
-        "title": "Daraxorasib FDA Approval: A New Hope for Pancreatic Cancer - Oncology News Central",
-        "date": "2026-08-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9jdHdTZHFxbHVJN0tLOFV6U1dseklkNTVzSmlfZ2FXQTQ4WHJWdWRhV24zWHZqSVV1LUpHY1dOT19YbFhJblVnVHdaU1lHV3d0bzQ0aFFkM2ViUlhIZzRRcGJjbkxFZTdwMmZzTUNHQXRfRU5HcTVoR3ZKNA?oc=5",
-        "title": "A Year of Patent Cert Denials - Patently-O",
-        "date": "2026-08-27"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPR3RFbDlsVWFueW9TeHZoU0l5VVFPSzJSZjJrMm5sX3oyQ1FDajlqZ0x3Um9EZHZXd1p1U0lkd2s4WWZzXzRZdmJzMjFrX0VianZZd3ZhRmlTdkctRXBweTAwSExXUVlYYmNwZDVkR0tiYTVJZG13RHJPLUpGUUxBUFZySFdZZXpXTWNtdlE2cGd0R3k5aXQ5S0JuSlFubzlheEFlSg?oc=5",
-        "title": "Why High-Quality U.S. Patent Specifications Face Fatal Failures in China - IPWatchdog.com",
-        "date": "2026-08-27"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPRDVtNGlYdktlSnJEMWZWdmFGX21NUFBpODZ4aUMtR2tUY0JBaXNENlVzNDBpQThmc0JLMFdMVS1ucmExbUVQV0hnYnhoeUtHMmp1VWdwR2pGN2wzelRGVGwyNnpEM3NteURwNDVzSGozaHFBelRPWENYV0lVeUdMQ05fSU9zUVBi?oc=5",
         "title": "FDA Approval Opens New Chapter in Pancreatic Cancer Treatment - University of Miami",
         "date": "2026-08-28"
@@ -558,5 +538,25 @@
         "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPMjhpU1pqVTYyREZEbmp5NHlhT2Y4QjlVMV9sNWczM2w2bnF5UC10c3dMWnF1SUJKVWk4Q3E5WTRIakppSmZRQmpmczExdkZYZkREX3RPNHRrcExUcEEzZ19peUs3NnRnR2xRS3BGMUJVdVd1ZDFIT3ZEcWF2VmFFak5GWEs3OVRFMHVXRVhVU0piV2w3ZWIxWWpkVDlkQ1RDX2laUW1maG5LMy0zMzE4UA?oc=5",
         "title": "Qualcomm Announces Renewal of Global Patent License Agreement with Apple - Qualcomm",
         "date": "2026-09-25"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMingFBVV95cUxNSFJSckJpdW45Wi1DUFFoRGpNVHRfSWFKeHZLMC12TS1GYjR5V2JOVTBjMEdMOXlPQWhmZzBEZTBpeUI3cFcyTFJESWU4UXFpTjdfemwtLWc0Tm9sTk92SERfZFp1NEN5ZkRNZUJPeEZadG9UQXh2U3VPdmFOUXdoRmNSbkg4Zl9RUmZkUkFUTjJLbHRfMkl1RUFkX3Zudw?oc=5",
+        "title": "Zilurgisertib Receives FDA Approval for FOP in Patients 12 and Older - HCPLive",
+        "date": "2026-09-26"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPeENIQzBSd0xUdXdfRDdGNXlKOHFpRlMxOU01cnZPVkpoVGpHeFdTcUxud0hsbzdyajRJazVKZGlwZUNHbkY1Q0JNUHE2azVxekZaRXVKVmxHMmdKSHV2allRdW8xNVE5X2FyRzZzM3lKSlhFcHpvdng3bm9adkZLbDEzZTRPSWNPUWZIOXVUX0Jla1N1Y1FxVlVKTmhoX0ZNWVNtWFdXUko1SDRqM1RVT1dVX1BaTkxZV1o5QlRIM3lobDBSa1E?oc=5",
+        "title": "Mirum bags FDA approval for ultra-rare bone lesion disorder, heating up rivalry with Regeneron - Fierce Pharma",
+        "date": "2026-09-26"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPbko3REstVTUtTVRwSTc2M09mQV95Q0FhVkZaamRYREl2X2k3NHhRR1J4VTRuWERScC1iOWNSbmVESHFNLXJSV2pEN0hNWVlTTElqZE8tWTZwUE10aUFSc01UR3lOT3NpcVNMOEE3OFc3Ri1Zd0pDYlFyZ0pDU2VWYzgwTVE0cjF3dlZWVHg3YXBwaWstVElRNQ?oc=5",
+        "title": "Want to Lower Drug Prices? Reform the U.S. Patent System - Kaiser Permanente",
+        "date": "2026-09-26"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOS1JzU2NySEdMamlOUkZPa1VScUJFZ2I0SXJSd3NQOUdOck82TEdTVTcyX2ZrTHZRT0tmR3JqT0p2UkRJTUwzSUlXb1dRUlZnNzhaVWhUVVpMbmxWYzd1UkFNdi1nczNMeHBUNVlUdE5YRHJtSjM5Q1ZsTGJXRmVSdERPWVlycEJTemlUcVIxN3FVc1oyeUFLSXNzdVk4aE9zSUE?oc=5",
+        "title": "Apple Owes $5.7 Billion to Litigation-Funded Firm in Patent Case - Bloomberg Law News",
+        "date": "2026-09-26"
     }
 ]
