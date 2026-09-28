@@ -1,45 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNQ3dHb0pJVkxRR01BUHlFb2VYdHRwS0FVZ3BvUjhjZjR5enFoeDkwRVp5bkVqS05tb21JdmZnU2pDeE9vbklJa2pCMDZ1OWFZVUIwaUN6MGt3Zk5fbHo3X0dqSDUxMGxWX3hKM1drMjUyZFlCeWxKUG43aDRSM1pLMzE1eXBKYmdHTkhVQm80NEszLTJv?oc=5",
-        "title": "China is a Threat to Biotech’s Massive Bull Run - WSJ",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQdzRXbDRCMHhzaTJ4Qm1YQVJUSUkwYm5XbW5udWVkTFdUdkZyVHRzWkprSUdVUVpqVVBSeUY3VVlMNkJMMXdSU0x0LTYzenpVcEkwRHhXT3RQbWtIa0JMNnEyZU4ySXVkLTVQUnR6VFVXcllpQ2E3WHlpZ2FQMXhJUHBUSnJ2TEUxbWtoNkVCV2kxR0tvQ0Q5SEwwN0NUWFBW?oc=5",
-        "title": "Behind the FDA Approval: Daraxonrasib Delivers in Pancreatic Cancer - Targeted Oncology",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNQ2F4dDMtckdkUjZIanJGMG14alRPaThsZ2pPcVRzcU9OVkZDdExRNldxeG9SOXFycU9UTURtR1Zya1F6VVVlYnI2enJHUVEyRU80NXFMU0FlUmRrenVHOGZTanpfejlqcXNrcjh0WWd4WGxfUVM0VzhodjZRUldHQlFvamtXMTNfMTF1QzRYM2tVdGVMSDM1YlBkaXlDa0puckdKcnpFaVlTRmlBUVI5cnhDU1ZXR0tlczM5WDFtMncxM2JTUHc?oc=5",
-        "title": "10x Genomics Wins Patent Infringement Verdict Against Parse Biosciences - PR Newswire",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQY0VGbTM5VUNtc0gyckhWZUt1c2otQjlFOTRDQ25nN1JHWkNuYTA3WkdPOFVBWDhCOWhqNzUtVjRyVGFRN09Ddlp4aGotSHdSRXJ6UGE1Q19RM3B6SkhxNmN2LWUzWXR5RW5tazA0UGR2NVk1VXNpaTFMVUdxUzEwWmxZdTFtamNITDJxaVNGYUl6M1d3Qm5JcW55S3dTd1d0bGl6bA?oc=5",
-        "title": "Pharma Industry Stares Down Biggest Patent Cliff in Decades - WSJ",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA1cEExbTMwTGljdmJDNVVWd0VzM2tBNGlsZFlzWVZRTE43NjZiYkkweEthUDVEakJUOGVsSFZUcnhvM29QYlRMVkNxdnZvNmZVc1g5bDRwSzFqeHlua19kdlUzUnZwZGJveUtBTEVDSQ?oc=5",
-        "title": "Keto diet cut liver fat by 67% in a clinical trial - Science Daily",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQS1hlSXRyWVVJejlGSVUtUVVha1JiM3VGbW5tXy1lZ3VMN0xGLTBjZEprdUYtTnlieUlSOU9iTTNpb0t4MDRRczlhNEpqWWFXeG50ZjJwNFEzenNnWnZWcVREdmxUeV9HQ3hhM1BzTnNyalNzYVA3bGhvRTVURWxnWHh6cmM5ZWZLQzRtUHpjSkM4R0JSWWZhRU5R?oc=5",
-        "title": "A bill is supposed to protect U.S. biotech from Chinese competition. But there’s a loophole - STAT",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQS2oxMkU0MERrYjBndXlHNE1FSXhSUlhaSm8xNUV4UTViSVdhSGNrbnUyR041dzZIdnBuV0xSWnRwREZZb0w1R3gtUjZDTGV1LUp4bHE4S25jRW14VFdtcjZzNElUcXZvQmRuRmFQVm9MRkdpUVVGaEt6R0VhVlZ2dzhSVmtuWHh5NmotbmtTaGcyamFwMGI1TXFhQmt6Q1U?oc=5",
-        "title": "Encourage Entrepreneurship by Fortifying America’s Patent System - CT Examiner",
-        "date": "2026-08-29"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMVZtSzJ4eU4xTU4xbkZ6YUZaVEVOT3M5bERtUVZ3NzFmUTVENGR2Nk5XSlQyQVphMnUzQS1qRlJDVlFTSEtXZm5XTzJPbjdrQk43ZTdsUjlLTlFraDRVSEJRYUZhc09DSHowdXVxTGtiUFd4TlFWNlB6TzhSYzM4Y1NiUThMQ2xwRVppZTRmeWhfbEhjWmZpWVBPZzBKTXB5cXBIV0s5dVBLQzV6ZEFN?oc=5",
-        "title": "August 29, 1854 - Patent for the first commercially viable self-governing windmill - WLBT",
-        "date": "2026-08-29"
-    },
-    {
         "id": "https://www.theverge.com/entertainment/986564/professor-murder-rides-the-subway-dance-punk-perfection-review",
         "title": "Professor Murder Rides the Subway is a forgotten slice of dance punk perfection",
         "date": "2026-08-31"
@@ -558,5 +518,15 @@
         "id": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNU1VOZW5BcW9ncDVQMDlmZ3FZNmxvcXlYZGQ2MzV2TEVTWUt3MWlJQUN0dFB3enlhZHN3SjlXMzFJanpGdk44b2ZkcXRwX1hBNURSeEZwVmZKQzZpcVVkOWpmNjROTExtWW9XVVZUSnRBVy04aDFxejdGOGpMaWFjZkw4MlQyMEFwYnJKcGRmdmlVZFXSAZgBQVVfeXFMUDVnNVVadXhlSXJ0c2l5MHRPNXhFVWJhM3pXMlBZVTh6NWJubmNGT1RJN0NjdnBoYlM4N0ZLdHBDRUUxUk9wNHFsdGZfQXBVajVMMHo2akpjYm5CMHlHSEZfWVBfRzd2NUtKQnZPNDh6T1AtWThwdUQ0aE1VOU1NR1h3RjhFVmRKUFU5VkI4ajlNb09Kcjk5TVE?oc=5",
         "title": "Apple faces $5.7 billion patent infringement verdict over iPhone and Apple Watch haptics - CNBC",
         "date": "2026-09-27"
+    },
+    {
+        "id": "https://www.theverge.com/games/1001206/out-of-the-park-baseball-cozy-sim-video-game-review",
+        "title": "Out of the Park Baseball lets me enjoy baseball even when the Mets suck",
+        "date": "2026-09-28"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/1001193/engram-sampler-ai-hallucinations-music",
+        "title": "Engram is a sampler that turns broken AI hallucinations into music",
+        "date": "2026-09-28"
     }
 ]
