@@ -1,35 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/tech/990918/amazon-cargo-plane-crashed-miami",
-        "title": "An Amazon cargo plane crashed at Miami International Airport",
-        "date": "2026-09-06"
-    },
-    {
-        "id": "https://www.theverge.com/science/990906/isar-aerospace-europe-orbital-rocket-launch",
-        "title": "Europe has its first commercial orbital rocket",
-        "date": "2026-09-06"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9laXQ2R0NJbmhBQXFzbktUQUowWWhoQmZfR20wLTFDZExsTmpsNUJOWnpabjhzNlF4a3JqdXlSLWQtcG5oTU9rNFU0Nmk3V19fWkVtd0dLbUk1VWtEQ29V?oc=5",
-        "title": "Integration of proteomic aging clocks in a phase 2a clinical trial supports simultaneous geroprotective assessment - Nature",
-        "date": "2026-09-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNV2ExNmF2c0tWUms4bG5veXpLNC1DSWhaenp4U2R0SERxNjRrdFV2S0dPZGdsYUpBOGpQX2lQTDB4S2xGUktlN2NDNHBLSlFSckdCLXY2R0FPbUtTa1NfcVowNmE1NFJ4eTZ3OWthT0hfMlpMWEM5amtzaU9PS3NwWEw1NWlaOVZqTll4Q2FBNXNaQTB6YzdCX1B5dEE5R1hLblN6bVo0MElZZE0wVzd1d19UNTU?oc=5",
-        "title": "AI-Discovered Drug Reverses Aging Markers In Study, Biotech Says - Bloomberg.com",
-        "date": "2026-09-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUHNKei0xbGVFaDROQjJJVERzTzJkd3BQZVBOUnhwSDNEdkM4UGVTWVZtSF9rMVphU3BSdnVQUVFBVkpoQ1ZTcHNFTkFEbkVneXFtYmJLYnQtVldTLVVVVGtSQUhseFpWVWxOc29xNWxfM1pVTU1TVTdVVkU3ZjF0elVfRlkyWGEybHJjeEZQT2sxUWo0aVA5UVNWUDQyRnZ6ai1DaW94TmpEUQ?oc=5",
-        "title": "A USPTO Docketing Change Behind the Terminal Disclaimer Collapse - patentlyo.com",
-        "date": "2026-09-07"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNemlTZWZteml0RC1DelExbVdRSF9PUk8wdFJDVmN5d3NQcUJaSXdKNm5PbzZDXzk1dnI1M1lBekVYSHZmaG1fNmIxNm9faFc0dU1rVkYzcy16b3d1SFhmNzVlMmhrbVBEU1hqMlR4cGNVQ0dxVHEtVlZlNnNDYUJDWm16Y2VxVm0xQkljNHJHWDZiQkQyOVZxOUdlaXVaclRNbnBtT3l0TVI1b0E?oc=5",
-        "title": "IBM and Samsung top AI semiconductor patent rankings amid 114% filing boom - iam-media.com",
-        "date": "2026-09-07"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPdVVXbGRjX1YxMDFSNjM2UDJEQ19RM1RyRkVlc3VBYWhCS0J1V1dyMWEzbjFMTjFwQnVsX2s2UTd3T08xZ0ZGbmxtTVVfM3QzZkcxekNvQ3lIWlNHU2NFaXUwTmk0Y2tYeFlIdk8zRjB1d0t3RS15QjdIZVlzUzRLQ0ZjeTgxeTVUS0pIWDVkdEdxajV1Qmw3eWlOeTJLNDVteHc?oc=5",
         "title": "Why a cannabis business is betting on dogs to reach FDA approval - MJBizDaily",
         "date": "2026-09-08"
@@ -528,5 +498,25 @@
         "id": "https://www.theverge.com/entertainment/1004595/prick-industrial-glam-punk-album-review",
         "title": "Prick’s theatrical industrial punk is perfect for spooky season",
         "date": "2026-10-05"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOMVdxY1NsZDhBZ0JQR1h5OC1VRjBidHVJVTdVdW5sOFpRQTg5eTJydlNOQVhpODFjT3gxMnVETWRYcHBIRFdPYmUzXzZvaE9aQzJ5SXJ2bWlaYjR0RU04dkNLalFfSklhVjBJdE96SEY2OE5DU3ZFNnBrSjJjWExtdnhMek9yemZwSkFnM0dKUm1PWnNWbU1pNnE4azJkLUFjZmJkaXpR?oc=5",
+        "title": "Biotechs Sell Off — These Are The Biggest Losers - Investor's Business Daily",
+        "date": "2026-10-07"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPUmNZQnF4Y084Rk9TalFvYTZhU3lnaWtsak9aWW9MbXN2VXlQZlZlN29xU2ZCb3ZVQWVtX3NZbk1Zb2hUREFidlVWNGlVdHpjcFNKUTBzSkpLdGRjS18zYlpDTjlISDU4amRVRU1Ga1FMTWlyWTRXZEVVdDN0Z1U4MFpKNlZ1RDBZcWxHMDY5WnlldzBlTWdUcQ?oc=5",
+        "title": "Why This Biotech Stock Is Having Its Worst Day Ever - Barron's",
+        "date": "2026-10-07"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPc0dja1V6cGlrZUw1Y3pGc0pkblBOMVdwbUhMYUx6X1dtT0Z1SkhkdnRsekdySkZBc3hkVUg2MVRYempraVVuRGFjRHVPdW1NZjhYUzRWMEVPdjB2cnVWb0dTLUVoVXc4UGNjZ09ETFlWMGZWV2x1UExXUkh2LUtuUUJxLTEtNDg5RVR0OWFPME85VW9zZVFGMUM5emtoN2tEdVFuRWxGM0pHTVQ2M3Z2MFFn?oc=5",
+        "title": "Micron enters $600 million settlement of Netlist patent dispute - Reuters",
+        "date": "2026-10-07"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPcjNUeC1Zbi0ydThNV3NlRV9jN3dLbnE1a0c1NmRIM0RQSWpEem41clpoYUladmJ1WWJsYkM0TVZoTjFLQ2x4aHlHNzN4Vml5YVktTXQ4Qi13OVBCWXB2REJRcW5QSmRHcUQwMWp1XzNuSXozcU9wdVRtN09landrMFhnT0lrUlFGcEE4Yzk4ZDV3WUprcGoxU3ZadmdKS0xFQzQwSUpod3FERlY2TzgwdHZzUEllMXlxUjNBWkZR?oc=5",
+        "title": "Netlist and Micron Enter Patent License and Settlement Agreements - PR Newswire",
+        "date": "2026-10-07"
     }
 ]
