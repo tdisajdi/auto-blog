@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOWmNaVS1HT1lJaG53Mk9MVXhRVmh3bHduSTU2a1JVRFNLQm9jVDB1MVhaQ2ttaDYzR1Fja1B0V3hvSXZTaTVCbnMtWGFkV0VwWjI2LWd3aEFTbkV2eTRKR0FBUXBSUTh1ZUJORy1idFoyUWI4aEJKZ25jRlVndUViMXFGcTdjR3Y5anZHanBGV3BKaEI5aVIyVQ?oc=5",
-        "title": "Biotech firm to build 130,000-square-foot research hub in San Antonio to fight New World screwworm - San Antonio Report",
-        "date": "2026-09-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPZnBDQ1VNUk9qOFVNZHpwNFNKM0xadDI2YjlHbFBIdG45T2djTVJQRWZGX3FFam5zTHRvcVVrWENDOXA2NDJjaHdoZm9RNzZXNVpma0hvTWtVNkRhZUV3ampCTEsxTC1iYmR5WHNxZ3lldktRVUNOTnVlWjRwQXBpZ2ZMcmxfTFgzaEJsS1RB?oc=5",
-        "title": "A booming business on Wall Street would love more biotechs to quietly die - BioPharma Dive",
-        "date": "2026-09-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiekFVX3lxTE14aHZ6aHN6SXNBNGZhbVZwOXRwVnlpaU5Eelg2VXJsZWJublhhbWdYOU11bE94TEk3RGJwY1oxblZLaGtIeFVyTE45UGQzb2hzQWYwaGdrbm9JSjlEQlRDT3FZM3I2T3Zzb2k5TWtqaGtSdkNfbnZWVVln?oc=5",
-        "title": "NewHydrogen has filed a third patent around ThermoLoop, its heat-driven process designed to make hydrogen without relying on conventional electrolysis - Energies Media",
-        "date": "2026-09-12"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPazdtR19QN203X0pMNHRic3J3VFE3QkNzQXg2S3Nmdml1YTZqc2E5MmJub2h0Z2xWbEFlN0FNOVRHeUhPbWtDYms0TTZZWEZ5WnZ2OV9OMEduNVdTcnhDUzgzT09nMy1oMVNVX2NOWHhVT3ZFQ2pHMTExajNEODNTRGh4OGR1Q0JITl84M2tHM3V3aDVu?oc=5",
-        "title": "BioMarin Shares Jump 5% After Global Patent Settlement With Ascendis - Yahoo Finance",
-        "date": "2026-09-12"
-    },
-    {
         "id": "https://www.theverge.com/ai-artificial-intelligence/994441/trump-mike-johnson-ai-industry-overreacting",
         "title": "Trump and Mike Johnson think the AI industry is overreacting",
         "date": "2026-09-13"
@@ -518,5 +498,15 @@
         "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPanFRUzNFWnJ0bUpKU2hiZEU1dTJFSk84QW9hc0xCTTBxWDBJWlFoc1JvY1M3ZXFNZm1IaDFtN0hiMTFERFhzQ25qaUVFMmdkN3RjVFI4Mlg5VXZCdmtIM1B4ajBmcHZ0cnBJMGk4UUZZMkh5aGlWUXVROXRIRm0tX0szc3JISjJsMkEzeTVvZTE1OVA0NXBkZnlVY3ozcWpMYjFpMURpbFZUd2xvSVpoZQ?oc=5",
         "title": "After Williamson: Who Changed Their Claims, and Where the Function Went - Patently-O",
         "date": "2026-10-11"
+    },
+    {
+        "id": "https://www.theverge.com/tech/1009411/elgin-community-college-flock-safety-cameras",
+        "title": "A college in Illinois tried to cancel its Flock contact and it refused",
+        "date": "2026-10-12"
+    },
+    {
+        "id": "https://www.theverge.com/ai-artificial-intelligence/1009406/silicon-valley-is-falling-in-line-with-trumps-attempt-to-rename-ai",
+        "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
+        "date": "2026-10-12"
     }
 ]
