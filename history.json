@@ -1,15 +1,5 @@
 [
     {
-        "id": "https://www.theverge.com/ai-artificial-intelligence/994441/trump-mike-johnson-ai-industry-overreacting",
-        "title": "Trump and Mike Johnson think the AI industry is overreacting",
-        "date": "2026-09-13"
-    },
-    {
-        "id": "https://www.theverge.com/tech/994426/apple-iphone-game-controllers",
-        "title": "Apple is reportedly working on iPhone game controllers",
-        "date": "2026-09-13"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOQmF3YWNuTGdXVTgzWmRCYm45Ny1CMC1PQ3VQVHVSVktydllHQmtzSFdOX0VaRzF4TXE2ZlUtOTJxT3pjMFVseGp4MXFiZDNrWDVKc2Y4U2x4WXFTN0xPc2xkRGNpbmhidGNWdEwwOVotUDNTZk00QVB5UUo3M1ZtZ0VNTjU2UXBvN2kxZDBRaG43WllheFlDRjFkN0NxV0FBV0RNb0hYMDFLWkFScDNYcmV3MDdRc3dlbjJDQWd5SWdxSzJlYXhaVVA5QjFFWUFNTHl4S2pidXNIQk9BeUhXOFZR?oc=5",
         "title": "ESCRS 2026: Real-world enVista Envy outcomes match clinical trial results, even with residual refractive error - Ophthalmology Times",
         "date": "2026-09-15"
@@ -508,5 +498,25 @@
         "id": "https://www.theverge.com/ai-artificial-intelligence/1009406/silicon-valley-is-falling-in-line-with-trumps-attempt-to-rename-ai",
         "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
         "date": "2026-10-12"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNdmhwWjFYTUNrQ0NIdU8wcW5kcHlld0RtVUN0WEVsUXJWWFdLUkp6UG9XeFNhTHNqNjcwZXpUdU54NGx4NWV6NjlNVGJ4a1Y5SFpiTkgybFJBclVtenVmWkdoczVYYWdaTGRyRDM2Q25vYWtNOVlSSWRHb3YyVFRzS2N5V1l0V0NVY2ZkaTM0cFdDa0pGVFBCRm56Xy0tS2NoMWgzLQ?oc=5",
+        "title": "Biotech’s Rebound Reality: Surging M&A Deals Meet Deep Retail Skepticism - ETF Database",
+        "date": "2026-10-13"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMibkFVX3lxTE53VzR6UVozR2djNXdBT3lLUURHdFJ2ZVo1clo0NlRDeEVoUFhpQ1RQRElSR1IyMFBULXVzcnBUalVKLWNzbVF0V3pTTFlfb2p6TnI1MUlEOHI0NkVnX3NiaDJPOW02eF9nRUJUNXpR?oc=5",
+        "title": "Leisa Talbert Peschel Featured in Bloomberg Law Discussing Hospital–Biotech Partnerships in IP Litigation - Jackson Walker LLP",
+        "date": "2026-10-13"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQkhKYWxBa1JfREpwR1JSUGE0aEd6TlV2ZlktSVloejE0bUtCUkI0bU4yQ1pFb1c4SHRQMVIzZ0RITGJpd0JETUo2d0NvMTRlcDQta09FTGN6NkFUSk5VSUc4YUZuTHJNY1RLT2hIcy02VnFjZ3B6RjJDdjM1Wi1TY2N4cGdTNlIzRlV1LXNTVzVUM2pVSGFUY1dtcTVrelc3cUxKY0F3?oc=5",
+        "title": "Bad Patents, Patent Trolls, and the PR Campaign Created to Excuse Infringement - IPWatchdog",
+        "date": "2026-10-13"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPMnBCaFpKR1lWaVh4a241MWNjNkxmaGlXc0VLQUtPNFZTN3lKM0puQ3QxUnhodFRQLUJfU3dnZll3VkNqNTJMM3QtZFNqTGJGTF9ndUZ1bWFPaUViYXV3RFFlclM2SzBkdHc2T1FBY3VMdmM1el9nWVZxYkFlbnJHNm9vUjZmV1gxbmptT3RHLXpQUEdKUXNqUmRydDF0NzF5cTdVRXR3RndHTGxzdFdxbjJZTGdiZG5LajdNekw1cF9TS1d5?oc=5",
+        "title": "MIT files patent lawsuit against Amazon over cloud security technology - Reuters",
+        "date": "2026-10-13"
     }
 ]
