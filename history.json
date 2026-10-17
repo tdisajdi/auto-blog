@@ -1,45 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPRGhGM3BQWmhSWXQ0MHlSaF9rYXRUYkZkVHJka0VtMnJSb1NQMDNrSW82UG5zemJhOWNvVVBSTTNUMldiNTBXOHdfYmhZQmhxSExKV2NmUnV1MVBySzJNeElkNnlwNkhGRmtOS2xLcWlGa0dkRDF0VDVXa3JLSF9pNA?oc=5",
-        "title": "What the FDA's Approval of Ameluz PDT Means for Skin Cancer - HCPLive",
-        "date": "2026-09-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNSExjdkVBQ0w2aHV4RW42UXpTMEhGc3hJUlhKV1I1akVDRm5PZENCcUZ2aUIydUV0cEd0Ml9DZEtJS0pxVURiTG9Vcl9RV0NpNC1jWkhCS3IxekM5UGF0VHdoa0VMcXBKQzVRbTZTOW5aUXVMa0FTQmtscXRCNzZmY0lITU5YUlBEaTA0T0FWZ3hqd0RqTlMwTVdvWmx5dGdHREZxazA0OWZtNlh1Z1VuNg?oc=5",
-        "title": "Trump Administration Shift Puts This Corner of Biotech Back in Favor - WSJ",
-        "date": "2026-09-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPenRBVW42c0gzYWpJMWtiSDJiaXJmemNyRmRUZFZLSzc5WU5ZWEstZVRtR3Z5OEphOHhKSF9FdWRwaGhLNk96SklaaFFXOHIyVEFpWlNsZmdqbmZjY2RCeWJ5Rnhkd2ExaVVuazNTcFJaM0tyN0F6Qloxd2VfSHNyU1BjRmh4WmF1aHpKd2pxUkRtWkprNDRGU3RYeVNZenBEN0dYanJMcWlRQnFaVE1QSnF5R3I3ZzlIbVFFa3pEV3Y?oc=5",
-        "title": "First Solar drops ITC patent case, shifts focus to lawsuits against rivals - Reuters",
-        "date": "2026-09-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNdDRRbVJXX0lxOWhRUmNlYTVHWlR0cXZRbkFUR0dSXzZNa1NsekdRY2tzZDQ2NGhzRThRdzlQR1QzQUJzTnVCREswbUNyenhBWGFYMWo3SUdLWjdCT3VQZE5DenhlYkNtZ1h6TlNRRzk2QVkxTmxWOVh3TGxOWUpvdGdacGZNWGdyV293am1VZjdvZ1pDQU1ITlcwVHBSbW1rQ1VDYWJ5eDNFTVQ3MFdQNGdFZ0RuZllLRFp3VGpRSzJfWm5qUWtNUXgwNFFyeWxvc08xSHl1N1JYVTBQ?oc=5",
-        "title": "CCIA Asks Supreme Court to Hear Patent Case that Involves Process to Review Weak Patents Used by Patent Trolls - CCIA",
-        "date": "2026-09-16"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRnFHYlZsNzYwS2NwYWtleUtJSC13SUJCTlJQelk4ZFd2OHEydmdPQjB5R2F0ZXl4UWhYS2pjc213S3RPemJaUWQ3bHlGQzlRZlFENUhjZ3hDelBmOGtTbFRfTXlqVHpSSzJnRVl0UXFWMUl6ZXpSd1B3OTU4NnFRMA?oc=5",
-        "title": "Virtual biotech company puts thousands of AI scientist agents to work on drug discovery - Stanford Medicine",
-        "date": "2026-09-17"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPNXM5VjlXbnpGd29UaGw3d2Y2cTFIbXhNc3p4MzR3VFNTLUJCVmNQSHl2dlBuVWhQTTJPMFJiMlRHaVFpSEFub3hNRTZGUTRGbW1vSWMzRU5LVzU3VFQyMVI4NHdVTnNKb3F2UlVCREFDVWhTOE93UEwtWTZNckRxR05PbHNsS2s?oc=5",
-        "title": "A biotech hedge fund births a new immunology company - STAT",
-        "date": "2026-09-17"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPRk80elFOU2JuSzY5dXc1SllZdU1WRUZrQ1FWOUlXOXJDOW5lX2VPNU1HcDhRVE13TVB1cTV4OWd5YjhfT3lRckQzYlhsQ1N6a3R3WHdVZVFpSlgxdi1JRWtVQTJkWDlIOFJuN2hTQ3J5UVlYN3ZWUHFBS24wRTBDd2RVVDBWckxEV2k3Uk5nT1lDdk5scW5xejZkU3g0OTZkWENCQm5vUTVLYTE3c0xUeENEQTQ?oc=5",
-        "title": "The largest US solar manufacturer is changing fronts in its patent war - renewableenergyworld.com",
-        "date": "2026-09-17"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPaVU3Nkg3TExVczFlOWM2UXdqUGZvanM3WHlwa251V3p5MFdSMHBJZGZzNEdteG04U2RwV3BZYWdUcUo5eEdTdUFFSzZLS2djdFZ3X3FBaHBOZHpUa24xaXlhRlF5YTFFMnpKV1hqS3VLSXJfVk42d1FacEN6VHk5dFJxSVRXUXdfR3lZSWN6ZEJuLXVNeU5NYlpn?oc=5",
-        "title": "In Memoriam: Dan Brown: Inventor, Entrepreneur, Patent Advocate - IPWatchdog.com",
-        "date": "2026-09-17"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQam05cHpheGUtRWRPVVZ6X3RfbDRQVVhzOEZVaFhkNlJQZUlyaHBqblJvZUZtY2JiZFR1SGNOZHRYdGFsalcxMlkzcnYwZlAzblRNS04xeVVoRHdmM21rS2MwMDdKZWZKSW5ETDRNZElmOUJUMkRNUi1QaVdQTmFKVWxkWmZuLVBrZE0zWEZPamhzVGxwbXhFbW91aDBCbG90Qnp3TXV3dDM?oc=5",
         "title": "Refreshed Novo corrals 3 new early-stage obesity drugs from Kallyope - Fierce Biotech",
         "date": "2026-09-18"
@@ -538,5 +498,25 @@
         "id": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPeG9VbkM1MkZhbDdXMVFtNXp1eXZBVXYyYzFNbUZWdFpnSTZxcWw4RE81XzN0QU44TlVQZ1kwVFE4bjdYdWVIVVhRWkpPdkdEQ1lvYnJIanNBMlZ2N24tYlEtX2QxZlRnVjc5T3QtMXg1UjJSNnpDWTBQYmN0Rm5zeklpRVdURFU2ZmlGbVhlZ01kVm5YU1E?oc=5",
         "title": "More Than Skin Deep: New System for Wound Analysis Earns Patent for NJIT Researcher - NJIT News",
         "date": "2026-10-15"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVEFNRV9lSkdZUnFpMUdmVEVjbzB1X2d2Y2VmeXZ0WVJuLWVnOUo1R2puWWJtRFc3RmNHVUI4YmVxVjhrNWZuQlFuZkl3ZWVpMkdoSndrVWs0WXBMdUZVdE5rTEZ1NHEtTmpTYXFiUTltbUx2WnZxRV9GM3Q2XzVnMVZiMzFiWmptQUxqcmxFaTRnSjR2Z05oRFRyY3NKSE9fMzcwaFBn?oc=5",
+        "title": "China looks to ban foreign acquisitions of critical biopharma platforms - Fierce Biotech",
+        "date": "2026-10-17"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNMWNnS1haU3c5T3lybTBzQUNxZF9lMmhWaFp0Yk5UbzhDdklobHpkRHk2dExFU1dWZmVMVENFNEVLOW9JWDdscm15VDhObXhhc1JwYjlIelZjeFJuMG9jVERmTHRNRTZtSlBRYndNc2IxZTRkdWtPUGdlWDhoSEZQTHVZNzIwMFUzWVhjT3gxUWl1X2VpM1VOM29BZElFRjlaek1uRDFQb2N5aF9FTlF4U1N4WFZRVmtyUTBLdmVJc0Rzb3E2NkZ5ZQ?oc=5",
+        "title": "Beijing seeks tighter grip on AI exports amid US rivalry - Reuters",
+        "date": "2026-10-17"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdHFXOWhJNDlQRThzTHR4aFBIRFA1OHlCaF9ubGdiVVJKRnBBZVZUUnFPSW4xZGgyQ3FSa1RwLVB1S294ODNoUlVpLTlJQ1BXZ0p3WW5mTnFiMDhRWkp4ajJ1bWtrV3prb0dwVnAybFd5cUl4X1NIZGFnM1UwUGZJUlFfcHBpeVppT2pSaFNkNzU1dFlfVmxIV3hDLTVwY2pfM1p5T05jYlg2QQ?oc=5",
+        "title": "Comcast Found Liable for $213M in Patent Infringement Suit - TVTechnology",
+        "date": "2026-10-17"
+    },
+    {
+        "id": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPTXNKWjZIMERUWDk0YWpsVHpaZnBmQVdFTW5hYjNQQ19kQXlWUUhtVEhLWnozaFQ3SUdWRVJROEJJUTV0THFfX0ttMWtLdkFQREFjdU83VzdSRzRCN2RVWnhwNEdMNFdoWjJGVmNGeXExbEdKMk52LXlnakNMQ1Y3NGhTNGJvVUE?oc=5",
+        "title": "Webinar: Training Patent Attorneys in the Age of AI - IPWatchdog",
+        "date": "2026-10-17"
     }
 ]
