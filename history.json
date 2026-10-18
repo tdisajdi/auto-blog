@@ -1,25 +1,5 @@
 [
     {
-        "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQam05cHpheGUtRWRPVVZ6X3RfbDRQVVhzOEZVaFhkNlJQZUlyaHBqblJvZUZtY2JiZFR1SGNOZHRYdGFsalcxMlkzcnYwZlAzblRNS04xeVVoRHdmM21rS2MwMDdKZWZKSW5ETDRNZElmOUJUMkRNUi1QaVdQTmFKVWxkWmZuLVBrZE0zWEZPamhzVGxwbXhFbW91aDBCbG90Qnp3TXV3dDM?oc=5",
-        "title": "Refreshed Novo corrals 3 new early-stage obesity drugs from Kallyope - Fierce Biotech",
-        "date": "2026-09-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNODR5X0ItQl9tV0tmcmUxQVZsRjBUSWNxRGFWVlF6NFE3eFllWWExYUhuT3lxOHNzRDZRdFB4SmhKX0puZWtieHBkbUwxMTZaQUZ2NXhHTFdtVUJHaGtFVDZPcUd1bUNtb1RuRkZreEVkeWJDbDZ5NTBUeHdoZzdIbXUxSUZlU0tlLWp4STB4Tk5GU0c5R1pMdA?oc=5",
-        "title": "4 Biotech Stocks to Watch as Potential Takeover Targets - Yahoo Finance",
-        "date": "2026-09-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNYWtVZ0M0eDhQZ3FDNkZOVXB5ODBFY1pqalpYWDQwX3pIZVRsZlRfaHhqOXFtRXRkSVJfeUg5VHpDREhCWnJ2T3ozTXRxTV9ycnQ5b196TDJNZFJod0k2aWlpbUxMTmhsUEZPVHBIOFBtUV9LQ1lWWDh4MzhJMWtoZFJmRmlXM3dYTzRWQUgtMG44Qmc2WnNyYTJkZ3FlX19GdklaRnRyZDJsaXc1Q09KZTUybFJCZ2NfUVBNdHFFTQ?oc=5",
-        "title": "Stratasys awarded $27.6m in damages in first of two patent infringement cases against Bambu Lab - TCT Magazine",
-        "date": "2026-09-18"
-    },
-    {
-        "id": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5aZDBibFZBZHFlck5MdnUxRElCUzMxeUR0NFo1dDVlU0R1bWtVTnllNzZ1TnkxMG9WYUR5YWlRVjdYM0FnMGQzNWtwR1lPMFVZM084VFdhQ3RNd2NPU2k1RE1RT0xndVUzSm1rOHlXSQ?oc=5",
-        "title": "Ford's Fastback Truck Patent Makes Ram's Idea Look Boring - CarBuzz",
-        "date": "2026-09-18"
-    },
-    {
         "id": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOQlQxalJKX1U1TTF5UWlDdzdKZE5ROG94UDdpU1VJQ2g0U3hZTDJnQ3g5TE1CSFFvTl9LNG1sbDJPMzZVMjdHQXlBNGU0TXlmX3Y2dUw5VUpBeXh0YkxldzRyMEZrXzVpSUZjaXNma3p3bERpU0VRYWp2LTZSTmtJOFdSM21tVHkyR3Fvalp4Nm9FVG56Qk1fNUlFOG1lX0p3eVZwSHpPSU0?oc=5",
         "title": "China plans to transform $3M biotech sector into $522B powerhouse by 2030 - BioSpace",
         "date": "2026-09-19"
@@ -538,5 +518,15 @@
         "id": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNd0tPdUFjWnhGWW5uTTAtLTJ6ZnBxV1J2LXZEQmVHLXZQVUxyYlpkU25HOV84cjZnSjRfbWZva0JNZW5RNDZtdnJYbHBmeGdJZkxhdU1qbXlVT3laSDdWTXMybDQwTmNjMFJGZlFuQmRYbndGdkN1bi1LWk9FOEhLZkRPb0J1NFhfa2xpVk9SLWRoSVoyQ1pXM1hzaXFIR0dpWEtua05yU0xFVnc?oc=5",
         "title": "The missing question in patent monetisation: who actually needs this technology? - IAM Patent",
         "date": "2026-10-17"
+    },
+    {
+        "id": "https://www.theverge.com/policy/1013573/spd-officer-fired-flock-ice-husband",
+        "title": "A Savannah police officer gave her Flock login to her ICE agent husband",
+        "date": "2026-10-18"
+    },
+    {
+        "id": "https://www.theverge.com/entertainment/1013545/mister-organ-horror-documentary-review",
+        "title": "Mister Organ is one of the most unsettling documentaries I’ve ever seen",
+        "date": "2026-10-18"
     }
 ]
