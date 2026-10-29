@@ -1,3 +1,4 @@
+import sys
 import time
 import requests
 from datetime import datetime
@@ -171,6 +172,9 @@ MAX_SAME_THEME_IN_WINDOW = 2     # 같은 주제가 이만큼 있으면 그 주�
 RECENT_TYPE_WINDOW = 6           # 글 종류 비율을 볼 최근 편수
 COMPARISON_TARGET_SHARE = 0.34   # 최근 글 중 비교 글 비율이 이보다 낮으면 비교 글을 만든다
 _TICKER_REPLY_STOPWORDS = {"OK", "YES", "NO", "GO", "HI", "THX", "TY"}
+EXPLAINER_TYPE_WINDOW = 10                               # 글 종류 비율을 볼 최근 편수
+EXPLAINER_TARGET_SHARE = {"guide": 0.2, "issue": 0.15}   # 이 비율보다 적으면 가이드/이슈 글을 추천
+EXPLAINER_MIN_HISTORY = 3                                # 기록이 이보다 적으면 ETF 글부터
 
 
 # 국내 ETF 자동 발굴: 네이버 금융 ETF 목록에서 거래대금 상위 종목을 그날의 후보에 더한다.
@@ -189,7 +193,7 @@ _KR_UNDERLYING_RULES = [
     (r"2차전지|이차전지", "2차전지", "섹터"),
     (r"골드|금현물|금선물", "금", "원자재"),
     (r"은선물|실버", "은", "원자재"),
-    (r"CD금리|KOFR|SOFR|머니마켓|MMF|단기금리|초단기", "파킹형(초단기금리)", "채권"),
+    (r"CD.{0,3}금리|KOFR|SOFR|머니마켓|MMF|단기금리|초단기", "파킹형(초단기금리)", "채권"),
     (r"미국채\s?30년|미국\s?30년|30년국채", "미국 장기국채", "채권"),
     (r"미국채\s?10년|미국\s?10년", "미국 중기국채", "채권"),
     (r"국고채\s?10년", "한국 국고채10년", "채권"),
@@ -2404,6 +2408,27 @@ def _create_backtest_simulation_chart(ticker, data, wrapper_style, usd_krw_rate=
     except Exception as e:
         print(f"⚠️ {ticker} 백테스트 시뮬레이션 차트 생성 실패: {type(e).__name__}: {e}")
         return "", None  # 실패해도 본문 전체를 막지 않도록 조용히 생략
+
+
+def _create_chrome_driver():
+    print("🚀 크롬 브라우저를 실행합니다...")
+    options = Options()
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    # [신규] GitHub Actions 등 디스플레이(화면)가 없는 무인 실행 환경에서는
+    # 헤드리스 모드가 아니면 크롬 자체가 실행되지 않는다. NONINTERACTIVE=1일
+    # 때 자동으로 헤드리스로 전환하고, 로컬 터미널에서 직접 돌릴 때(사람이
+    # 화면으로 로그인/발행 과정을 지켜봐야 하는 경우)는 기존처럼 창이 보이게 유지한다.
+    if os.environ.get("NONINTERACTIVE"):
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")
+    try:
+        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+    except Exception as e:
+        print(f"❌ 크롬 드라이버 초기화 실패: {type(e).__name__}: {e}")
+        print("   확인해보세요: 1) 크롬 브라우저가 설치되어 있는지, 2) 인터넷 연결 상태(드라이버 자동 다운로드 필요), 3) 방화벽/백신이 드라이버 실행을 막고 있지는 않은지.")
+        raise SystemExit(1)
 
 
 def get_macro_data():
@@ -4650,7 +4675,39 @@ def _find_comparison_partner(ticker):
     return random.choice(options) if options else []
 
 
+def _article_type_of(article):
+    meta = (article.get('topic_data') or article.get('etf_data') or {}).get('_meta') or {}
+    if meta.get('article_type') in ("guide", "issue"):
+        return meta['article_type']
+    return "comparison" if len(_article_tickers(article)) >= 2 else "analysis"
+
+
+def _choose_explainer_topic(macro_data):
+    """최근 글 종류 비율을 보고, 가이드/이슈 글이 목표 비율보다 모자라면 그 주제를 돌려준다.
+    반환: ("GUIDE:id" 또는 "ISSUE:id", 글 종류 이름, 사유) 또는 None(오늘은 ETF 글)."""
+    import explainer_engine as xe
+    articles = _recent_articles(EXPLAINER_TYPE_WINDOW)
+    if len(articles) < EXPLAINER_MIN_HISTORY:
+        return None
+    shares = {k: sum(1 for a in articles if _article_type_of(a) == k) / len(articles) for k in EXPLAINER_TARGET_SHARE}
+    for kind in sorted(EXPLAINER_TARGET_SHARE, key=lambda k: EXPLAINER_TARGET_SHARE[k] - shares[k], reverse=True):
+        if shares[kind] >= EXPLAINER_TARGET_SHARE[kind]:
+            continue
+        if kind == "guide":
+            t = xe.pick_guide_topic()
+            if t:
+                return f"GUIDE:{t['id']}", "기초 가이드", f"최근 {len(articles)}편 중 가이드 비율 {shares[kind]:.0%} (목표 {EXPLAINER_TARGET_SHARE[kind]:.0%})"
+        else:
+            issue_kind, why = xe.pick_issue_kind(macro_data)
+            if issue_kind:
+                return f"ISSUE:{issue_kind}", "이슈 해설", why
+    return None
+
+
 def _topic_label(topic):
+    if topic.startswith(("GUIDE:", "ISSUE:")):
+        import explainer_engine as xe
+        return xe.topic_label(topic)
     tickers = [x for x in topic.split(",") if x]
     return " vs ".join(f"{_etf_display_name(x)}({_etf_theme(x)})" for x in tickers)
 
@@ -5401,6 +5458,26 @@ def run_discover_and_notify():
             print(f"ℹ️ 기존 추천({pending['ticker']})이 {REMINDER_MAX_DAYS}일을 넘겨서 폐기하고 새로 발굴합니다.")
             _clear_pending()
 
+    explainer = _choose_explainer_topic(get_macro_data())
+    if explainer:
+        topic, article_type, why = explainer
+        _save_pending({
+            "ticker": topic,
+            "label": _topic_label(topic),
+            "article_type": article_type,
+            "reason": why,
+            "candidates": [],
+            "created_at": datetime.now().isoformat(),
+            "reminder_count": 0,
+        })
+        _telegram_send_message(
+            f"📌 오늘의 추천 주제\n\n글 종류: {article_type}\n주제: {_topic_label(topic)}\n이유: {why}\n\n"
+            f"{REPLY_HELP_TEXT}\n({REMINDER_MAX_DAYS}일간 리마인드되고, 그 안에 응답 없으면 자동으로 새로 추천해드려요)",
+            with_approve_button=True,
+        )
+        print(f"✅ 새 추천을 알림으로 보냈습니다: {topic} ({article_type})")
+        return
+
     candidates = discover_candidates()
     if not candidates:
         # 발굴에서 아무 후보도 못 찾았을 때(전부 쿨다운에 걸림) - 재포스팅으로 폴백
@@ -5741,6 +5818,12 @@ def run_automation():
         raw_inputs = auto_pick["ticker"]
         print(f"ℹ️ 무인 실행 모드 - 자동 선정된 티커로 진행합니다: {raw_inputs} (사유: {auto_pick['reason']})")
 
+    if raw_inputs.strip().upper().startswith(("GUIDE:", "ISSUE:")):
+        import explainer_engine as xe
+        kind, _, topic_id = raw_inputs.strip().partition(":")
+        xe.run_explainer(f"{kind.upper()}:{topic_id.strip()}", sys.modules[__name__])
+        return
+
     etf_list = [n.strip().upper() + (".KS" if len(n.strip()) == 6 and any(char.isdigit() for char in n.strip()) else "") for n in raw_inputs.split(",")]
 
     # [수정] RSS 조회를 시리즈 추적보다 먼저 실행하도록 순서를 옮김 -
@@ -5808,24 +5891,7 @@ def run_automation():
     macro_data = get_macro_data()
     print(f"✅ 수집 완료 - 환율: {macro_data['usd_krw']} / 금리: {macro_data['us_10y']} / 공포탐욕지수: {macro_data['fear_greed']}")
 
-    print("🚀 크롬 브라우저를 실행합니다...")
-    options = Options()
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    # [신규] GitHub Actions 등 디스플레이(화면)가 없는 무인 실행 환경에서는
-    # 헤드리스 모드가 아니면 크롬 자체가 실행되지 않는다. NONINTERACTIVE=1일
-    # 때 자동으로 헤드리스로 전환하고, 로컬 터미널에서 직접 돌릴 때(사람이
-    # 화면으로 로그인/발행 과정을 지켜봐야 하는 경우)는 기존처럼 창이 보이게 유지한다.
-    if os.environ.get("NONINTERACTIVE"):
-        options.add_argument("--headless=new")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--window-size=1920,1080")
-    try:
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-    except Exception as e:
-        print(f"❌ 크롬 드라이버 초기화 실패: {type(e).__name__}: {e}")
-        print("   확인해보세요: 1) 크롬 브라우저가 설치되어 있는지, 2) 인터넷 연결 상태(드라이버 자동 다운로드 필요), 3) 방화벽/백신이 드라이버 실행을 막고 있지는 않은지.")
-        raise SystemExit(1)
+    driver = _create_chrome_driver()
     
     quote_data = get_unique_quote()
     print(f"✅ 선택된 명언: {quote_data['kor']} - {quote_data['author']}")
