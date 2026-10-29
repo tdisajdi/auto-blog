@@ -158,12 +158,12 @@ ETF_UNIVERSE = {
     "INDA": {"theme": "해외 주식", "group": "인도"},
     "TQQQ": {"theme": "레버리지", "group": "나스닥100 3배"},
     # 국내 상장: 같은 지수의 미국 ETF와 group을 공유한다.
-    "069500.KS": {"theme": "국내 주식", "group": "코스피200"},
-    "360750.KS": {"theme": "미국 대표지수", "group": "S&P500"},
-    "133690.KS": {"theme": "미국 대표지수", "group": "나스닥100"},
-    "458730.KS": {"theme": "배당", "group": "미국 배당다우존스"},
-    "132030.KS": {"theme": "원자재", "group": "금"},
-    "148070.KS": {"theme": "채권", "group": "한국 국고채10년"},
+    "069500.KS": {"theme": "국내 주식", "group": "코스피200", "name": "KODEX 200"},
+    "360750.KS": {"theme": "미국 대표지수", "group": "S&P500", "name": "TIGER 미국S&P500"},
+    "133690.KS": {"theme": "미국 대표지수", "group": "나스닥100", "name": "TIGER 미국나스닥100"},
+    "458730.KS": {"theme": "배당", "group": "미국 배당다우존스", "name": "TIGER 미국배당다우존스"},
+    "132030.KS": {"theme": "원자재", "group": "금", "name": "KODEX 골드선물(H)"},
+    "148070.KS": {"theme": "채권", "group": "한국 국고채10년", "name": "KIWOOM 국고채10년"},
 }
 
 RECENT_THEME_WINDOW = 7          # 최근 이 편수 안에서
@@ -173,6 +173,80 @@ COMPARISON_TARGET_SHARE = 0.34   # 최근 글 중 비교 글 비율이 이보다
 _TICKER_REPLY_STOPWORDS = {"OK", "YES", "NO", "GO", "HI", "THX", "TY"}
 
 
+# 국내 ETF 자동 발굴: 네이버 금융 ETF 목록에서 거래대금 상위 종목을 그날의 후보에 더한다.
+# 이름으로 주제/지수 묶음을 정해서, 같은 지수의 다른 운용사 상품(예: TIGER·KODEX·ACE
+# S&P500)끼리 비교 글을 만들 수 있게 한다. 레버리지·인버스는 금융 글 위험이 커서 제외.
+KR_DYNAMIC_TOP_N = 40
+_KR_EXCLUDE_PATTERN = r"레버리지|인버스|2X|곱버스|합성.*인버스"
+_KR_UNDERLYING_RULES = [
+    # (이름 패턴, 묶음, 주제) - 위에서부터 먼저 맞는 것을 쓴다
+    (r"S&P\s?500|에스앤피500", "S&P500", "미국 대표지수"),
+    (r"나스닥\s?100|NASDAQ\s?100", "나스닥100", "미국 대표지수"),
+    (r"배당다우존스", "미국 배당다우존스", "배당"),
+    (r"다우존스\s?30|다우30", "다우30", "미국 대표지수"),
+    (r"테크\s?TOP\s?10|빅테크|매그니피센트|M7", "미국 빅테크", "섹터"),
+    (r"반도체", "반도체", "섹터"),
+    (r"2차전지|이차전지", "2차전지", "섹터"),
+    (r"골드|금현물|금선물", "금", "원자재"),
+    (r"은선물|실버", "은", "원자재"),
+    (r"CD금리|KOFR|SOFR|머니마켓|MMF|단기금리|초단기", "파킹형(초단기금리)", "채권"),
+    (r"미국채\s?30년|미국\s?30년|30년국채", "미국 장기국채", "채권"),
+    (r"미국채\s?10년|미국\s?10년", "미국 중기국채", "채권"),
+    (r"국고채\s?10년", "한국 국고채10년", "채권"),
+    (r"국고채\s?30년", "한국 국고채30년", "채권"),
+    (r"코스닥\s?150", "코스닥150", "국내 주식"),
+    (r"(^|\s)200(TR)?$|코스피\s?200|KOSPI\s?200", "코스피200", "국내 주식"),
+]
+_KR_CATEGORY_THEME = {"1": "국내 주식", "2": "섹터", "4": "해외 주식", "5": "원자재", "6": "채권"}
+_DYNAMIC_UNIVERSE = {}
+
+
+def _classify_kr_etf(name, category=None):
+    """국내 ETF 이름(과 네이버 분류)으로 (주제, 묶음)을 정한다. 제외 대상이면 None."""
+    name = str(name or "")
+    if str(category) == "3" or re.search(_KR_EXCLUDE_PATTERN, name, flags=re.IGNORECASE):
+        return None
+    underlying = next(((g, th) for pat, g, th in _KR_UNDERLYING_RULES
+                       if re.search(pat, name, flags=re.IGNORECASE)), None)
+    if re.search(r"커버드콜|프리미엄|타겟위클리|위클리|옵션", name):
+        return "커버드콜", f"커버드콜:{underlying[0] if underlying else name}"
+    if underlying:
+        return underlying[1], underlying[0]
+    if re.search(r"배당", name):
+        return "배당", name
+    return _KR_CATEGORY_THEME.get(str(category), "기타"), name
+
+
+def load_dynamic_kr_etfs(top_n=KR_DYNAMIC_TOP_N):
+    """거래대금 상위 국내 ETF를 불러와 _DYNAMIC_UNIVERSE에 채운다. 실패해도 고정 목록만으로 진행."""
+    if _DYNAMIC_UNIVERSE:
+        return _DYNAMIC_UNIVERSE
+    try:
+        df = fdr.StockListing('ETF/KR')
+        if 'Amount' in df.columns:
+            df = df.sort_values('Amount', ascending=False)
+        added = 0
+        for _, row in df.iterrows():
+            if added >= top_n:
+                break
+            code = f"{str(row.get('Symbol', '')).zfill(6)}.KS"
+            meta = _classify_kr_etf(row.get('Name'), row.get('Category'))
+            if not meta or code in ETF_UNIVERSE:
+                continue
+            _DYNAMIC_UNIVERSE[code] = {"theme": meta[0], "group": meta[1], "name": str(row.get('Name'))}
+            added += 1
+        print(f"✅ 거래대금 상위 국내 ETF {len(_DYNAMIC_UNIVERSE)}개를 후보에 추가했습니다.")
+    except Exception as e:
+        print(f"⚠️ 국내 ETF 목록 조회 실패(고정 목록만으로 진행): {type(e).__name__}: {e}")
+    return _DYNAMIC_UNIVERSE
+
+
+def _universe():
+    merged = dict(_DYNAMIC_UNIVERSE)
+    merged.update(ETF_UNIVERSE)
+    return merged
+
+
 def _normalize_ticker(raw):
     t = str(raw).strip().upper()
     if re.fullmatch(r"\d{6}", t):
@@ -180,13 +254,38 @@ def _normalize_ticker(raw):
     return t
 
 
-def _etf_theme(ticker):
-    return ETF_UNIVERSE.get(_normalize_ticker(ticker), {}).get("theme", "기타")
-
-
-def _etf_group(ticker):
+def _etf_meta(ticker, name=None):
+    """티커의 주제/묶음/이름. 목록에 없는 국내 ETF는 이름이 있으면 이름으로 분류한다
+    (예전에 자동 발굴로 썼던 종목도 발행 기록에 저장된 이름으로 다시 분류됨)."""
     t = _normalize_ticker(ticker)
-    return ETF_UNIVERSE.get(t, {}).get("group", t)
+    meta = _universe().get(t)
+    if meta:
+        return meta
+    if name and t.endswith(".KS"):
+        cls = _classify_kr_etf(name)
+        if cls:
+            return {"theme": cls[0], "group": cls[1], "name": name}
+    return {"theme": "기타", "group": t, "name": name or t}
+
+
+def _etf_theme(ticker, name=None):
+    return _etf_meta(ticker, name)["theme"]
+
+
+def _etf_group(ticker, name=None):
+    return _etf_meta(ticker, name)["group"]
+
+
+def _etf_display_name(ticker):
+    t = _normalize_ticker(ticker)
+    name = _universe().get(t, {}).get("name")
+    return name or t.replace(".KS", "")
+
+
+def _article_ticker_names(article):
+    data = article.get('etf_data') or article.get('topic_data') or {}
+    return {_normalize_ticker(k): (v or {}).get('name') for k, v in data.items()
+            if not str(k).startswith('_') and isinstance(v, dict)}
 
 
 def _article_tickers(article):
@@ -199,7 +298,7 @@ def _article_tickers(article):
         return keys
     title = article.get('title', '')
     found = []
-    for t in ETF_UNIVERSE:
+    for t in _universe():
         code = t.replace('.KS', '')
         if re.search(rf'(?<![A-Za-z0-9]){re.escape(code)}(?![A-Za-z0-9])', title):
             found.append(t)
@@ -4309,10 +4408,16 @@ def _last_written_dates():
 def _last_written_dates_by_group():
     """같은 지수/자산 묶음(group) 단위로 가장 최근에 쓴 날짜를 돌려준다."""
     by_group = {}
-    for ticker, dt in _last_written_dates().items():
-        g = _etf_group(ticker)
-        if g not in by_group or dt > by_group[g]:
-            by_group[g] = dt
+    for article in _load_state().get('articles', []):
+        try:
+            dt = datetime.fromisoformat(article.get('timestamp', ''))
+        except (ValueError, TypeError):
+            continue
+        names = _article_ticker_names(article)
+        for t in _article_tickers(article):
+            g = _etf_group(t, names.get(t))
+            if g not in by_group or dt > by_group[g]:
+                by_group[g] = dt
     return by_group
 
 
@@ -4327,7 +4432,8 @@ def _recent_theme_counts(n=RECENT_THEME_WINDOW):
     from collections import Counter
     counts = Counter()
     for article in _recent_articles(n):
-        for theme in {_etf_theme(t) for t in _article_tickers(article)}:
+        names = _article_ticker_names(article)
+        for theme in {_etf_theme(t, names.get(t)) for t in _article_tickers(article)}:
             counts[theme] += 1
     return counts
 
@@ -4429,8 +4535,9 @@ def discover_candidates(top_n=5):
     폴백할지 판단).
     """
     now = datetime.now()
+    load_dynamic_kr_etfs()
     last_by_group = _last_written_dates_by_group()
-    universe = list(ETF_UNIVERSE.keys())
+    universe = list(_universe().keys())
     saturated = _saturated_themes()
     if saturated:
         print(f"ℹ️ 최근 {RECENT_THEME_WINDOW}편에 몰린 주제라 오늘은 제외: {', '.join(sorted(saturated))}")
@@ -4503,9 +4610,13 @@ def _recent_comparison_share(n=RECENT_TYPE_WINDOW):
 
 
 def _find_comparison_partner(ticker):
-    """비교 글의 짝을 찾는다. 같은 지수의 다른 상장(미국↔국내)과, 같은 주제의
-    다른 묶음 중 최근 30일 안에 안 쓴 것을 후보로 두고 하나를 고른다.
-    짝이 없으면 None(그날은 단일 분석 글로 간다)."""
+    """비교 글의 짝을 찾는다. 반환은 짝 티커 리스트(1~2개), 없으면 [].
+    - 국내 ETF: 같은 지수의 다른 운용사 국내 상품이 있으면 1~2개(운용사 비교, 최대 3개 비교)
+    - 같은 지수의 미국↔국내 상장
+    - 같은 주제의 다른 묶음 중 최근 30일 안에 안 쓴 것
+    이 중에서 무작위로 고른다."""
+    load_dynamic_kr_etfs()
+    universe = _universe()
     t = _normalize_ticker(ticker)
     group, theme, is_kr = _etf_group(t), _etf_theme(t), t.endswith('.KS')
     now = datetime.now()
@@ -4515,33 +4626,39 @@ def _find_comparison_partner(ticker):
         dt = last_by_group.get(_etf_group(x))
         return dt is None or (now - dt).days >= COOLDOWN_NORMAL_DAYS
 
-    cross_listed = [x for x in ETF_UNIVERSE
-                    if x != t and _etf_group(x) == group and x.endswith('.KS') != is_kr]
+    same_group = [x for x in universe if x != t and _etf_group(x) == group]
+    kr_siblings = [x for x in same_group if x.endswith('.KS')]
+    cross_listed = [x for x in same_group if x.endswith('.KS') != is_kr]
     peers, seen = [], set()
-    for x in ETF_UNIVERSE:
+    for x in universe:
         g = _etf_group(x)
         if x == t or g == group or _etf_theme(x) != theme or g in seen or not group_is_fresh(x):
             continue
         seen.add(g)
         peers.append(x)
 
+    # 같은 지수 국내 운용사 비교(예: TIGER vs ACE vs SOL S&P500)는 검색 수요가 커서 절반 확률로 우선한다.
+    if is_kr and kr_siblings and random.random() < 0.5:
+        return random.sample(kr_siblings, min(2, len(kr_siblings)))
     options = []
+    if is_kr and kr_siblings:
+        options.append(random.sample(kr_siblings, min(2, len(kr_siblings))))
     if cross_listed:
-        options.append(cross_listed[0])
+        options.append([random.choice(cross_listed)])
     if peers:
-        options.append(random.choice(peers))
-    return random.choice(options) if options else None
+        options.append([random.choice(peers)])
+    return random.choice(options) if options else []
 
 
 def _topic_label(topic):
     tickers = [x for x in topic.split(",") if x]
-    return " vs ".join(f"{x.replace('.KS', '')}({_etf_theme(x)})" for x in tickers)
+    return " vs ".join(f"{_etf_display_name(x)}({_etf_theme(x)})" for x in tickers)
 
 
 def get_trending_candidates():
     """[하위 호환용] 예전 pick_next_topic()이 쓰던 단순 후보 목록.
     discover_candidates()로 대체됐지만, 혹시 다른 곳에서 참조할 경우를 대비해 남겨둠."""
-    return list(ETF_UNIVERSE.keys())
+    return list(_universe().keys())
 
 
 def pick_next_topic(cooldown_days=14, repost_after_days=90):
@@ -5272,7 +5389,7 @@ def run_discover_and_notify():
             _telegram_send_message(
                 f"⏰ 아직 승인 안 하신 추천이 있어요 ({age_days}일째)\n\n"
                 f"글 종류: {pending.get('article_type', '단일 분석')}\n"
-                f"주제: {_topic_label(pending['ticker'])}\n"
+                f"주제: {pending.get('label') or _topic_label(pending['ticker'])}\n"
                 f"이유: {pending['reason']}\n\n"
                 f"{REPLY_HELP_TEXT}\n"
                 f"(이 알림은 {REMINDER_MAX_DAYS}일까지 반복되고, 넘기면 새로 추천해드려요)",
@@ -5309,13 +5426,14 @@ def run_discover_and_notify():
     topic, article_type = decision["ticker"], "단일 분석"
     comparison_share = _recent_comparison_share()
     if comparison_share < COMPARISON_TARGET_SHARE:
-        partner = _find_comparison_partner(topic)
-        if partner:
-            topic, article_type = f"{topic},{partner}", "비교"
+        partners = _find_comparison_partner(topic)
+        if partners:
+            topic, article_type = ",".join([topic] + partners), "비교"
             print(f"ℹ️ 최근 비교 글 비율 {comparison_share:.0%} → 오늘은 비교 글: {topic}")
 
     _save_pending({
         "ticker": topic,
+        "label": _topic_label(topic),
         "article_type": article_type,
         "reason": decision["reason"],
         "candidates": [{"ticker": c["ticker"], "signal_score": c["signal_score"]} for c in candidates],
@@ -5389,6 +5507,11 @@ def run_check_universe():
     """ETF_UNIVERSE의 각 티커가 야후 파이낸스에서 가격/이름을 받아오는지 점검한다.
     국내 ETF 코드가 맞는 상품인지도 이름으로 확인할 수 있다."""
     failed = []
+    load_dynamic_kr_etfs()
+    print("[자동 발굴 국내 ETF - 거래대금 상위, 레버리지·인버스 제외]")
+    for t, meta in _DYNAMIC_UNIVERSE.items():
+        print(f"   {t:10} {meta['theme']:8} {meta['group']:16} {meta['name']}")
+    print("\n[고정 목록 데이터 점검]")
     for t, meta in ETF_UNIVERSE.items():
         name, rows = "", 0
         try:
@@ -5492,7 +5615,8 @@ def run_check_approval():
     })
     _clear_pending()
     memo_note = "\n📝 운영자 메모도 함께 실려요." if pending.get("memo") else ""
-    _telegram_send_message(f"✅ '{_topic_label(confirmed_topic)}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
+    label = pending.get('label') if confirmed_topic == pending.get('ticker') else None
+    _telegram_send_message(f"✅ '{label or _topic_label(confirmed_topic)}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
 
 
 def _insert_operator_memo(body_html, memo):
