@@ -400,14 +400,15 @@ def _news_shared_base(today_str, category_label, topic1, topic2, chosen_style, p
     key_message_line = f"- [이번 글의 핵심 메시지] {plan['key_message']}\n" if plan.get('key_message') else ""
     outline_lines = "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan['outline'])
     return (
-        f"당신은 {category_label} 전문 블로거 '스포(Spo)'입니다.\n"
+        f"당신은 {category_label} 소식을 공개 자료로 정리해 전달하는 블로그 'ondo'의 작성자입니다. "
+        "전문가인 척하거나 가짜 경험담을 쓰지 마세요.\n"
         f"{_READABILITY_RULES}"
         f"- 이 글은 {today_str} 기준입니다.\n"
         f"- 다루는 두 소재: (1) {topic1['title']} (2) {topic2['title']}\n"
         f"- [이번 글 전체 목차 - 기획 부서가 이 소재 조합만을 위해 직접 설계함. 반드시 이 구성을 따르세요]\n"
         f"{outline_lines}\n"
         f"{key_message_line}"
-        "- [자기소개 금지] '스포(Spo)의 시선' 같은 자기소개 박스를 본문 중간에 스스로 만들지 마세요. "
+        "- [자기소개 금지] 'ondo의 시선' 같은 자기소개 박스를 본문 중간에 스스로 만들지 마세요. "
         "작가 소개는 시스템이 별도로 삽입합니다. 실제로 존재하지 않는 블로그 글 링크를 지어내 삽입하지 "
         "마세요 - 내부 링크는 오직 지정된 파트에서 실제 확인된 URL로만 넣습니다.\n"
         "- [중복 금지] 앞선 Part에서 이미 설명한 내용(같은 소재의 같은 사실관계, 같은 문장 구조)을 "
@@ -498,8 +499,7 @@ def generate_news_article(topic1, topic2, category_code, category_label, session
     # 특정 파트에 고정으로 붙인다.
     part_extras = {
         1: (
-            f'첫 문장은 반드시 "안녕하세요, 스포(Spo)입니다."로 시작하고, '
-            f'[{chosen_style}]을 적용해 위 "지금 작성할 내용"으로 자연스럽게 이어가세요.'
+            f'인사말이나 자기소개 없이 [{chosen_style}]을 적용해 위 "지금 작성할 내용"으로 바로 시작하세요.'
         ),
         2: "[필수] 이 파트 어딘가에 [IMAGE_PLACEHOLDER_1]을 정확히 1번 삽입하세요.",
         3: "[필수] 이 파트에 <table> 비교표를 반드시 1개 포함하세요(수치/경쟁구도/타임라인 등 이 파트 내용에 맞는 것으로).",
@@ -637,7 +637,7 @@ def build_source_and_disclaimer_block(topic1, topic2, category_code):
 <hr style="border:0;border-top:1px solid #eee;margin:30px 0;">
 <p style="color:#95a5a6;font-size:0.85em;text-align:center;line-height:1.5;">
 {disclaimer}<br>
-<strong>Editor: 스포(Spo)</strong>
+<strong>Editor: ondo</strong>
 </p>
 """
 
