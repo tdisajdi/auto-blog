@@ -96,7 +96,7 @@ if _missing:
 # 버전과 다르면 그 세션은 자동으로 무효화되어 재생성된다. blog_engine.py의
 # 공용 세션 캐싱 로직과는 별개로, ETF 고유 프롬프트 개정 이력을 추적하는 용도라
 # etf_auto.py에만 둔다(뉴스 카테고리는 이 방식의 세션 버전 관리를 쓰지 않음).
-PROMPT_LOGIC_VERSION = 33
+PROMPT_LOGIC_VERSION = 34
 
 INVESTING_ETF_SLUGS = {
     "QQQ": "powershares-qqqq",
@@ -731,7 +731,12 @@ def _add_scenario_analysis(etf_data_cache, title_tickers):
         final_value_5y = principal * ((1 + annual_return_estimate) ** 5)
         annual_dividend = principal * (yield_pct / 100)
         total_5y_dividend = annual_dividend * 5
-        tax_on_dividend = total_5y_dividend * 0.154
+        overseas = _is_overseas_listed(d)
+        div_tax_rate = TAX_US_DIVIDEND_WITHHOLDING if overseas else TAX_DOMESTIC_DIVIDEND
+        div_tax_label = "배당세(미국 원천징수 15%)" if overseas else "배당소득세(15.4%)"
+        sale_tax_note = ("매도 차익 세금(연 250만 원 공제 후 22%)은 빠져 있습니다." if overseas
+                         else "매도 차익 세금(일반계좌 15.4%, 국내 주식형 ETF는 비과세)은 빠져 있습니다.")
+        tax_on_dividend = total_5y_dividend * div_tax_rate
         net_after_tax = (final_value_5y - principal) + (total_5y_dividend - tax_on_dividend)
 
         # [수정] "5년 후 평가액"이 원금보다 늘었는지 줄었는지와 무관하게 항상
@@ -762,7 +767,7 @@ def _add_scenario_analysis(etf_data_cache, title_tickers):
 <td style="border:1px solid #ddd;padding:10px;text-align:right;">{int(total_5y_dividend/10000):,}만원</td>
 </tr>
 <tr>
-<td style="border:1px solid #ddd;padding:10px;">배당소득세(15.4%)</td>
+<td style="border:1px solid #ddd;padding:10px;">{div_tax_label}</td>
 <td style="border:1px solid #ddd;padding:10px;text-align:right;"><span style="color:#2166ac;">-{int(tax_on_dividend/10000):,}만원</span></td>
 </tr>
 <tr style="background:#f0f0f0;font-weight:bold;">
@@ -770,7 +775,7 @@ def _add_scenario_analysis(etf_data_cache, title_tickers):
 <td style="border:1px solid #ddd;padding:10px;text-align:right;"><span style="color:{'#c0392b' if net_after_tax >= 0 else '#2166ac'};font-size:14px;">약 {int(net_after_tax/10000):,}만원</span></td>
 </tr>
 </table>
-<p style="margin-top:10px;font-size:11px;color:#7f8c8d;"><em>※ 위 시나리오는 이 ETF의 실제 과거 가격 데이터로 계산한 연평균성장률(CAGR)을 그대로 5년간 유지된다고 가정한 예시이며, 미래 수익을 보장하지 않습니다. 실제 데이터 확보 기간이 5년 미만인 경우, 확보된 기간의 CAGR을 사용했습니다.</em></p>
+<p style="margin-top:10px;font-size:11px;color:#7f8c8d;"><em>※ 위 시나리오는 이 ETF의 실제 과거 가격 데이터로 계산한 연평균성장률(CAGR)을 그대로 5년간 유지된다고 가정한 예시이며, 미래 수익을 보장하지 않습니다. 실제 데이터 확보 기간이 5년 미만인 경우, 확보된 기간의 CAGR을 사용했습니다. 세금은 배당에 대한 것만 반영했고, {sale_tax_note}</em></p>
 </div>
 """
     return html
@@ -960,6 +965,10 @@ def _add_age_based_portfolio_guide(etf_list=None, etf_data_cache=None,
 
     primary = _clean(etf_list[0]) if etf_list else "핵심 성장 ETF"
     primary_raw = etf_list[0] if etf_list else None
+    if _is_overseas_listed(etf_data_cache.get(primary_raw)):
+        account_plan_text = f"{primary}는 해외 상장이라 ISA·연금계좌로 직접 살 수 없음. 절세 계좌를 쓰려면 같은 지수의 국내 상장 ETF로 ISA → 연금저축/IRP 순"
+    else:
+        account_plan_text = "ISA 우선, 차후 연금저축/IRP"
 
     # 이 글이 다루는 ETF 중 배당수익률이 가장 높은 것을 '배당 축' 후보로 선정
     div_ticker = primary
@@ -1054,7 +1063,7 @@ def _add_age_based_portfolio_guide(etf_list=None, etf_data_cache=None,
 <div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;margin-top:15px;font-size:14px;">
 <tr style="background:#f1f5f9;"><th style="border:1px solid #ddd;padding:10px;">항목</th><th style="border:1px solid #ddd;padding:10px;">권장</th></tr>
 {young_body}
-<tr><td style="border:1px solid #ddd;padding:10px;"><strong>계좌 구성</strong></td><td style="border:1px solid #ddd;padding:10px;">ISA 우선, 차후 IRP/연금저축</td></tr>
+<tr><td style="border:1px solid #ddd;padding:10px;"><strong>계좌 구성</strong></td><td style="border:1px solid #ddd;padding:10px;">{account_plan_text}</td></tr>
 </table></div>
 <p style="font-size:13px;color:#555;margin-top:12px;"><em>💡 전략: {young_strategy_note}</em></p>
 </div>
@@ -1295,7 +1304,16 @@ def _get_previous_analysis(etf_list, today_str, rss_posts=None):
         # 표시됨). 같은 티커의 모든 과거 글을 모아서 그 중 "가장 최근에 쓴
         # 글"과 비교하도록 수정 - 이래야 "지난 분석 대비"라는 서술이 실제로
         # 바로 직전 글을 가리키고, 버전 번호도 정확히 이어진다.
-        matching_articles = [a for a in state.get('articles', []) if ticker_clean in a['title']]
+        all_matching = [a for a in state.get('articles', []) if ticker_clean in a['title']]
+        # 같은 날 쓴 글과 비교하면 "지난 분석(오늘 날짜) 대비" 같은 모순 문장이
+        # 나온다(7/21에 같은 티커 글이 두 번 발행되며 실제로 발생). 오늘보다 이전
+        # 날짜의 글만 비교 대상으로 삼고, 버전 번호는 전체 글 기준으로 이어간다.
+        try:
+            today_iso = datetime.strptime(today_str, "%Y년 %m월 %d일").strftime("%Y-%m-%d")
+        except (TypeError, ValueError):
+            today_iso = datetime.now().strftime("%Y-%m-%d")
+        matching_articles = [a for a in all_matching if str(a.get('timestamp', ''))[:10] < today_iso]
+        max_version = max((a.get('version', 1) for a in all_matching), default=0)
         if matching_articles:
             try:
                 latest_article = max(matching_articles, key=lambda a: a.get('timestamp', ''))
@@ -1321,8 +1339,9 @@ def _get_previous_analysis(etf_list, today_str, rss_posts=None):
                 'etf_data': latest_article.get('etf_data', {}),  # 과거 데이터 로드
                 'content': latest_article.get('content', ''),  # 섹션 구성 비교(차별화 지시)에 사용
             }
-            version = previous['version'] + 1  # 다음 버전
-        
+        if all_matching:
+            version = max_version + 1  # 다음 버전
+
         previous_analyses[ticker_clean] = {
             'previous': previous,
             'current_version': version,
@@ -1411,25 +1430,21 @@ def _add_fee_comparison_table(etf_data_cache, principal=100_000_000):
     발생하지 않고, 대신 매매차익에 대한 양도소득세(해외 ETF는 22%)가
     적용된다. 이 구분이 없어서 실제로 "IBIT는 배당이 없다고 앞서 명시했는데
     왜 배당세를 매기냐"는 치명적 모순으로 검수에서 지적된 사례가 확인됨.
-    이제 실제 배당수익률(yield)이 0에 가까운지 확인해 두 경우를 구분한다."""
+    지금은 배당 여부가 아니라 상장 위치로 나눈다: 해외 상장 ETF는 ISA·연금
+    계좌로 살 수 없어서(예전 글에서 사실 오류로 나갔음), 그 계좌들은 같은
+    지수의 국내 상장 ETF를 산다는 대안으로만 비교한다."""
     html = '<h3 style="margin-top:30px;">💰 계좌별 실수료 비교: 1억 원 투자 시 실제 비용</h3>'
 
-    # 이 글이 다루는 ETF들이 실제로 배당을 지급하는지 확인 (하나라도 무배당이면
-    # 표 자체의 성격이 달라지므로, 대표 ETF 기준으로 판단)
-    is_dividend_paying = False
-    for d in etf_data_cache.values():
-        try:
-            y = float(str(d.get('yield', '0')).replace('%', '').strip())
-            if y > 0:
-                is_dividend_paying = True
-                break
-        except (ValueError, TypeError):
-            continue
+    # 대표 ETF(첫 번째)가 해외 상장인지에 따라 비교할 계좌 자체가 달라진다.
+    # 해외 상장 ETF는 ISA/연금저축/IRP로 직접 살 수 없으므로, 그 계좌들은
+    # "같은 지수를 추종하는 국내 상장 ETF를 산다면"이라는 대안으로만 보여준다.
+    primary_d = next(iter(etf_data_cache.values()), {})
+    overseas = _is_overseas_listed(primary_d)
 
-    if is_dividend_paying:
-        html += '<p style="color:#555;">같은 ETF라도 계좌에 따라 세금 부담이 크게 다릅니다</p>'
+    if overseas:
+        html += f'<p style="color:#555;">{OVERSEAS_ACCOUNT_NOTE} 아래 표는 직접 투자와, 같은 지수의 국내 상장 ETF를 계좌별로 샀을 때를 비교합니다.</p>'
     else:
-        html += '<p style="color:#555;">이 ETF는 배당을 지급하지 않으므로, 여기서는 매매차익에 대한 세금 부담을 계좌별로 비교합니다.</p>'
+        html += '<p style="color:#555;">같은 ETF라도 어떤 계좌로 사느냐에 따라 세금 부담이 크게 달라집니다.</p>'
     html += '''
 <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:15px;">
 <tr style="background:#f0f7ff;">
@@ -1463,18 +1478,31 @@ def _add_fee_comparison_table(etf_data_cache, principal=100_000_000):
     
     future_value = principal * (1 + annual_return) ** 10
 
-    if is_dividend_paying:
+    def _overseas_direct_tax(gain):
+        return max(0.0, gain - OVERSEAS_CG_DEDUCTION) * TAX_OVERSEAS_CAPITAL_GAINS
+
+    def _isa_tax(gain):
+        return max(0.0, gain - ISA_TAX_FREE_LIMIT) * ISA_SEPARATE_TAX
+
+    def _general_tax(gain):
+        return gain * TAX_DOMESTIC_DIVIDEND
+
+    def _pension_tax(gain):
+        return gain * PENSION_TAX
+
+    alt = "국내 상장 같은 지수 ETF"
+    if overseas:
         accounts = [
-            {"name": "과세계좌", "tax_rate": 0.154, "tax_timing": "매년 배당", "color": "#2166ac", "desc": "즉시 세금 납부"},
-            {"name": "ISA 계좌", "tax_rate": 0.0, "tax_timing": "비과세", "color": "#c0392b", "desc": "3년간 비과세"},
-            {"name": "IRP/연금저축", "tax_rate": 0.1155, "tax_timing": "인출 시", "color": "#f39c12", "desc": "세금 유예"}
+            {"name": "해외 직접투자(일반계좌)", "rate_label": "22%", "tax_timing": "250만 원 공제 후 매매차익", "color": "#2166ac", "tax_fn": _overseas_direct_tax},
+            {"name": f"{alt}(일반계좌)", "rate_label": "15.4%", "tax_timing": "매매차익·분배금", "color": "#7f8c8d", "tax_fn": _general_tax},
+            {"name": f"{alt}(ISA)", "rate_label": "9.9%", "tax_timing": "200만 원 초과분", "color": "#c0392b", "tax_fn": _isa_tax},
+            {"name": f"{alt}(연금저축/IRP)", "rate_label": "3.3~5.5%", "tax_timing": "연금 수령 시", "color": "#f39c12", "tax_fn": _pension_tax},
         ]
     else:
-        # 무배당 ETF: 배당소득세가 아니라 매매차익 양도소득세(해외 ETF 22%) 구조
         accounts = [
-            {"name": "과세계좌", "tax_rate": 0.22, "tax_timing": "매도 시 차익", "color": "#2166ac", "desc": "양도소득세 22% (해외ETF)"},
-            {"name": "ISA 계좌", "tax_rate": 0.0, "tax_timing": "비과세", "color": "#c0392b", "desc": "3년간 비과세"},
-            {"name": "IRP/연금저축", "tax_rate": 0.1155, "tax_timing": "인출 시", "color": "#f39c12", "desc": "세금 유예"}
+            {"name": "일반계좌", "rate_label": "15.4%", "tax_timing": "매매차익·분배금", "color": "#2166ac", "tax_fn": _general_tax},
+            {"name": "ISA", "rate_label": "9.9%", "tax_timing": "200만 원 초과분", "color": "#c0392b", "tax_fn": _isa_tax},
+            {"name": "연금저축/IRP", "rate_label": "3.3~5.5%", "tax_timing": "연금 수령 시", "color": "#f39c12", "tax_fn": _pension_tax},
         ]
 
     # [신규] 연령별 포트폴리오 가이드 등 다른 섹션에서 "이 ETF 기준 계좌별 실질
@@ -1484,8 +1512,8 @@ def _add_fee_comparison_table(etf_data_cache, principal=100_000_000):
     for account in accounts:
         annual_fee = principal * (avg_expense_ratio / 100)
         total_fee_10y = sum([annual_fee * (1 + annual_return) ** i for i in range(10)])
-        dividend_income = future_value - principal
-        tax_amount = dividend_income * account['tax_rate']
+        gain = future_value - principal
+        tax_amount = account['tax_fn'](gain)
         total_cost = total_fee_10y + tax_amount
         net_value = future_value - total_cost
         actual_return = ((net_value / principal) ** (1/10) - 1) * 100
@@ -1496,7 +1524,7 @@ def _add_fee_comparison_table(etf_data_cache, principal=100_000_000):
 <tr>
 <td style="border:1px solid #ddd;padding:12px;text-align:center;font-weight:bold;color:{account['color']};">{account['name']}</td>
 <td style="border:1px solid #ddd;padding:12px;text-align:center;">
-    <span style="color:{account['color']};font-weight:bold;">{account['tax_rate']*100:.1f}%</span><br/>
+    <span style="color:{account['color']};font-weight:bold;">{account['rate_label']}</span><br/>
     <span style="font-size:10px;color:#666;">{account['tax_timing']}</span>
 </td>
 <td style="border:1px solid #ddd;padding:12px;text-align:center;">
@@ -1519,6 +1547,9 @@ def _add_fee_comparison_table(etf_data_cache, principal=100_000_000):
 - 투자원금: 1억 원<br/>
 - 연 수익률: {annual_return*100:.1f}% ({return_basis_note})<br/>
 - 운용보수: ETF 평균 {avg_expense_ratio:.2f}% 적용<br/>
+- 세금: {TAX_RULES_BASIS}, 10년 뒤 한 번에 매도한다고 단순 가정 (연금은 최고 세율 5.5% 적용)<br/>
+- ISA는 연 2,000만 원 납입 한도가 있어 1억 원을 한 번에 넣을 수 없습니다. 세율 차이를 보여주기 위한 비교입니다.<br/>
+- 국내 주식형 ETF의 매매차익은 일반계좌에서도 비과세라, 그 경우 일반계좌 세금은 이보다 적습니다.<br/>
 </p>
 '''
     tax_comparison_result = {
@@ -2660,7 +2691,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         "hedge_cost": f"{hedge_cost:.2f}%",  # 하위 호환용으로 유지 (내부 채점/세금계산 참조)
         "custom_attractiveness_score": custom_score,
         "custom_attractiveness_notes": custom_rationale,
-        "tax_metrics": _estimate_account_tax_impact(calculated_yield, d={'expense_ratio': expense_ratio, 'hedge_cost': hedge_cost}),
+        "tax_metrics": _estimate_account_tax_impact(calculated_yield, d={'expense_ratio': expense_ratio, 'hedge_cost': hedge_cost}, overseas=is_fx_exposed),
         "fee_impact_100m_10y": _estimate_fee_impact(100_000_000, expense_ratio),
         "issuer": info.get('fundFamily', '정보 없음') if not is_kr else "정보 없음",
         # [수정] 이전에는 info.get('underlyingSymbol', ...)를 "추종 지수"로 썼는데,
@@ -2682,27 +2713,57 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     _set_cached_record(cache, ticker_symbol, result)
     return result
 
-def _estimate_account_tax_impact(yield_str, d=None):
+# 세법 기준값. 세법이 바뀌면 여기만 고치면 된다. (확인 시점: TAX_RULES_BASIS)
+TAX_RULES_BASIS = "2025년 세법 기준"
+TAX_DOMESTIC_DIVIDEND = 0.154          # 국내 일반계좌 배당소득세(해외지수·채권형 국내 ETF 매매차익 포함)
+TAX_US_DIVIDEND_WITHHOLDING = 0.15     # 미국 상장 ETF 배당 원천징수(한미 조세조약)
+TAX_OVERSEAS_CAPITAL_GAINS = 0.22      # 해외 상장 주식/ETF 양도소득세(지방세 포함)
+OVERSEAS_CG_DEDUCTION = 2_500_000      # 해외 양도소득 연 기본공제
+ISA_TAX_FREE_LIMIT = 2_000_000         # ISA 일반형 비과세 한도(서민형은 400만 원)
+ISA_SEPARATE_TAX = 0.099               # ISA 비과세 한도 초과분 분리과세
+PENSION_TAX = 0.055                    # 연금 수령 시 연금소득세 3.3~5.5% 중 최고치(보수적 가정)
+OVERSEAS_ACCOUNT_NOTE = (
+    "해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. "
+    "이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다."
+)
+
+
+def _is_overseas_listed(d):
+    return str((d or {}).get('fx_exposure', '')).startswith('있음')
+
+
+def _estimate_account_tax_impact(yield_str, d=None, overseas=False):
     try:
         if not yield_str:
-            return {"taxable_dividend_tax": "정보 없음", "isa_tax_saving": "정보 없음", "irp_tax_saving": "정보 없음", "pension_tax_saving": "정보 없음"}
+            return {"taxable_dividend_tax": "정보 없음", "isa_tax_saving": "정보 없음", "irp_tax_saving": "정보 없음", "pension_tax_saving": "정보 없음", "account_note": OVERSEAS_ACCOUNT_NOTE if overseas else ""}
 
         yield_val = float(str(yield_str).replace('%','').strip())
         dividend_income = 100_000_000 * (yield_val / 100)
-        taxable_tax = dividend_income * 0.154
-        isa_tax = 0.0
-        irp_tax = dividend_income * 0.154 * 0.75
-        pension_tax = dividend_income * 0.154 * 0.75
 
+        if overseas:
+            na = "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)"
+            return {
+                "taxable_dividend_tax": f"{dividend_income * TAX_US_DIVIDEND_WITHHOLDING:,.0f}원(미국 원천징수 15%)",
+                "isa_tax_saving": na,
+                "irp_tax_saving": na,
+                "pension_tax_saving": na,
+                "account_note": OVERSEAS_ACCOUNT_NOTE,
+                "notes": f"{TAX_RULES_BASIS}. 배당은 미국에서 15% 원천징수, 매매차익은 연 250만 원 공제 후 22% 양도소득세(다음 해 5월 직접 신고)."
+            }
+
+        taxable_tax = dividend_income * TAX_DOMESTIC_DIVIDEND
+        isa_tax = max(0.0, dividend_income - ISA_TAX_FREE_LIMIT) * ISA_SEPARATE_TAX
+        pension_tax = dividend_income * PENSION_TAX
         return {
             "taxable_dividend_tax": f"{taxable_tax:,.0f}원",
             "isa_tax_saving": f"{(taxable_tax - isa_tax):,.0f}원",
-            "irp_tax_saving": f"{(taxable_tax - irp_tax):,.0f}원",
+            "irp_tax_saving": f"{(taxable_tax - pension_tax):,.0f}원",
             "pension_tax_saving": f"{(taxable_tax - pension_tax):,.0f}원",
-            "notes": "ISA는 3년 비과세(연 2천만, 총 1억원), IRP/연금저축은 과세이연 후 인출 때 세율 적용(보통 15.4% 이하)"
+            "account_note": "",
+            "notes": f"{TAX_RULES_BASIS}. ISA는 200만 원(서민형 400만 원)까지 비과세, 초과분 9.9% 분리과세, 3년 의무가입. 연금저축/IRP는 인출 전까지 과세 이연, 연금 수령 시 3.3~5.5%."
         }
     except (ValueError, TypeError):
-        return {"taxable_dividend_tax": "계산 실패", "isa_tax_saving": "계산 실패", "irp_tax_saving": "계산 실패", "pension_tax_saving": "계산 실패"}
+        return {"taxable_dividend_tax": "계산 실패", "isa_tax_saving": "계산 실패", "irp_tax_saving": "계산 실패", "pension_tax_saving": "계산 실패", "account_note": OVERSEAS_ACCOUNT_NOTE if overseas else ""}
 
 
 def _estimate_fee_impact(principal, expense_ratio):
@@ -2832,7 +2893,11 @@ def _generate_chained_article(today_str, collected_context, series_context, widg
         "올바른 예: `<h4>🔸 지금 투자해도 될까요?</h4>`. 잘못된 예(절대 이렇게 쓰지 마세요): `<h4 h4=\"\" 될까요?<=\"\" 지금=\"\" 투자해도=\"\" 🔸=\"\">`.\n"
         "- [가독성 절대 원칙] 대주제가 바뀔 때는 반드시 `<hr style='border:0; height:1px; background:#ddd; margin:35px 0;'>` 태그를 삽입해 시각적으로 분리하세요.\n"
         "- [가독성 절대 원칙] 핵심 내용은 `<div style='background:#f8f9fa; padding:15px; border-left:4px solid #1f3c88; margin:15px 0; border-radius:4px;'>` 같은 박스를 활용해 깔끔하게 강조하세요.\n"
-        "- 반드시 수치와 출처(Yahoo Finance, 운용사 팩트시트, 한국거래소)를 명시하세요.\n"
+        "- [출처 원칙] 수치는 제공된 데이터 그대로 쓰고, 출처는 실제로 제공된 것만 밝히세요(Yahoo Finance, 한국거래소, Investing.com). "
+        "뉴스를 인용할 때는 [최근 주요 뉴스]에 있는 기사만 쓰고, 그 기사의 매체명과 주소를 `<a href=\"주소\" target=\"_blank\" rel=\"noopener\">매체명</a>` 형태로 다세요. "
+        "'외신 보도', '업계에 따르면', '운용사 팩트시트', '전문가들은' 처럼 확인할 수 없는 출처는 절대 쓰지 마세요.\n"
+        "- [사실 원칙] 제공된 데이터와 뉴스에 없는 사실(다른 운용사의 신상품 출시, 특정 기업의 실적·발표, 규제 진행 상황, 구성 종목 비중 등)은 단정해서 쓰지 마세요. "
+        "필요하면 '~일 수 있습니다'처럼 일반적인 가능성으로만 짧게 언급하세요.\n"
         "- 결과는 반드시 HTML로 출력하세요. 모든 표는 `<table>`, `<tr>`, `<th>`, `<td>` HTML 태그로 작성해야 합니다. 텍스트표나 마크다운 표는 금지합니다.\n"
         "- [차별화 절대 원칙] 아래 [오늘의 거시경제 지표]/[최근 경제 이슈]는 참고용 원시 데이터일 뿐입니다. 이 문구를 그대로 복사하거나 다른 ETF 글에도 통째로 쓸 수 있는 일반론('환율 상승으로 부담 커진 상황' 등)으로 서술하지 마세요. 반드시 지금 다루는 ETF의 실제 구성종목·섹터 비중·통화 노출·배당 정책과 연결해, 이 ETF에서만 성립하는 문장으로 재구성하세요. 예: 금리 상황을 언급할 때는 이 ETF가 보유한 업종이 금리에 어떻게 반응하는지까지 써야 합니다.\n"
         f"- 이 분석은 {today_str} 기준입니다.\n"
@@ -2939,6 +3004,7 @@ def _generate_chained_article(today_str, collected_context, series_context, widg
         f"2) 메타 설명 작성: 120~160자 사이(Rank Math SEO 플러그인 권장 범위 - 너무 짧으면 정보 부족, 너무 길면 검색결과에서 잘림)로 이 글의 핵심을 요약하는 문장을 만드세요. HTML 주석(<!-- -->) 형식으로 본문 최상단에 삽입하세요 (화면에는 안 보이지만, 이후 Part5에서 이 문장을 Article 스키마의 description 필드에 그대로 재사용해야 실제로 검색엔진에 전달되니, 나중에 다시 쓸 수 있도록 명확한 문장으로 작성하세요).\n"
         f"3) 서론만 작성: {intro_style or '현재 거시경제 상황을 요약하며 시작하세요.'} 제공된 컨텍스트에 [시리즈 업데이트] 정보가 있을 경우에만 '지난번 분석 이후 현재 시점에서 어떤 변화가 있는지 점검해보겠습니다' 식으로 과거와 비교하는 언급을 추가하세요. 업데이트 정보가 없다면 첫 분석이므로 해당 멘트를 절대 넣지 말고, 서론 안에서 현재 거시경제(원/달러: {usd_krw}, 금리: {us_10y}, 공포/탐욕: {fear_greed}) 상황도 함께 자연스럽게 녹여 작성하세요. 인사말('안녕하세요' 등)은 사용하지 마세요.\n"
         f"4) 기초정보+차트: 주요 ETF 지표, 월봉 차트 설명, 고정 표를 작성하세요. 작성 후 차트가 들어갈 위치에 반드시 정확히 [[CHART_WIDGET_PLACEHOLDER]] 문구를 삽입하세요.\n"
+        f"   [중복 금지] 기간별 수익률 표(1개월/3개월/1년)와 배당 지급 내역 표는 Part 2에서 정해진 양식으로 만듭니다. Part 1에서는 이 두 표를 만들지 말고, 기초정보 표에는 종목명·운용사·지수·운용보수·배당수익률·상장일·환노출 여부·MDD·배당성장률만 넣으세요. 수익률이나 배당 이야기는 한두 문장으로만 짧게 언급하세요.\n"
         f"5) [투자 온도계 - 절대 반복 금지] 위에 제시된 온도계 HTML 블록(단일 투자 온도계 및 변동성/밸류에이션/환율/인플레이션 4대 온도계+종합 온도계)은 이미 글 맨 앞(제목 위)에 자동으로 삽입되어 있습니다. 당신은 이 블록들을 다시 출력하지 마세요. 그리고 온도계의 메시지 문구(예: '투자 타이밍이 중립적입니다' 등)나 4대 온도계의 숫자를 서론이나 본문 어디에서도 그대로 반복하지 마세요. 온도계의 점수나 등급을 언급하고 싶다면, 그 숫자가 왜 그렇게 나왔는지 이 ETF/시장의 실제 데이터로 새롭게 풀어서 설명하되, 정해진 안내 문구를 재사용하지 마세요.\n"
         f"6) 커스텀 지표: 아래 [블록 참고]의 \"커스텀 지표\" 블록을 그대로(스타일, 수치, 마크업을 절대 바꾸지 말고) 삽입하세요. 이 표는 이미 정확히 계산되어 있으므로 직접 다시 만들거나 숫자를 재작성하지 마세요.\n"
         f"7) 데이터 출처: 아래 [블록 참고]의 \"데이터 출처\" 블록을 그대로(URL과 링크를 절대 바꾸지 말고) 삽입하세요. 직접 다른 형태로 다시 만들지 마세요.\n"
@@ -3008,7 +3074,8 @@ def _generate_chained_article(today_str, collected_context, series_context, widg
    <div style="overflow-x:auto;"><table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px; margin-bottom:20px;"><tr style="background:#f1f5f9;"><th style="border:1px solid #ddd; padding:10px;">지급 기준일</th><th style="border:1px solid #ddd; padding:10px;">지급액</th><th style="border:1px solid #ddd; padding:10px;">직전 배당 대비 증감</th></tr><tr><td style="border:1px solid #ddd; padding:10px;">...</td><td style="border:1px solid #ddd; padding:10px;">...</td><td style="border:1px solid #ddd; padding:10px; font-weight:bold; color:[[COLOR]];">...</td></tr></table></div>
 
 이후 아래 두 섹션은 이 ETF에서 어느 쪽이 더 중요한 이야깃거리인지 스스로 판단해서, 순서와 분량을 다르게 배치하세요(항상 같은 순서·같은 분량으로 기계적으로 나열하지 마세요):
-- 시나리오 분석: ISA/IRP/연금저축 세금 비교 + 3개 페르소나 구체화. [필수] 세금 비교 수치는 위쪽 [핵심 데이터]의 "[세금 시뮬레이션(배당 1억 기준)]" 항목에 있는 값을 그대로 사용하세요. 새로운 세율이나 절세액을 직접 계산하지 마세요.
+- 시나리오 분석: 계좌별 세금 비교 + 3개 페르소나 구체화. [필수] 세금 비교 수치는 위쪽 [핵심 데이터]의 "[세금 시뮬레이션(배당 1억 기준)]" 항목에 있는 값과 "(기준: ...)"에 적힌 세율 설명을 그대로 사용하세요. 새로운 세율이나 절세액을 직접 계산하거나, 거기 없는 세율(예: "ISA 전액 비과세")을 쓰지 마세요.
+  [필수] [핵심 데이터]의 "[계좌 안내(필수 반영)]"를 반드시 따르세요. 해외 상장 ETF라면 "ISA·연금저축·IRP로 이 ETF를 산다"는 문장을 절대 쓰지 말고, 이 계좌를 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 한다고 설명하세요. 페르소나별 조언도 이 사실과 어긋나면 안 됩니다. 국내 상장 대체 ETF의 구체적인 상품명은 데이터에 없으므로 지어내지 마세요.
 - 최근 뉴스/실제 사례: 최근 2~3건의 뉴스 또는 공시 간략 정리. 특별히 주목할 뉴스가 없다면 짧게 넘어가거나 생략하세요.
 [블록 참고]
 시나리오 분석: {section_htmls.get('시나리오 분석', '')}
@@ -5280,7 +5347,12 @@ def run_automation():
         if analysis['previous']:
             prev = analysis['previous']
             series_context += f"[{ticker_clean} 시리즈 이전(v{prev['version']}) 분석 데이터]\n"
-            series_context += f"- 이전 분석일: {prev['date']}\n"
+            prev_day = str(prev['date'])[:10]
+            try:
+                prev_day = datetime.strptime(prev_day, "%Y-%m-%d").strftime("%Y년 %m월 %d일")
+            except ValueError:
+                pass
+            series_context += f"- 이전 분석일: {prev_day} (오늘은 {today_str}. 두 날짜를 혼동하지 마세요)\n"
             
             # 이전 팩트 데이터 추출
             past_data = None
@@ -5433,6 +5505,7 @@ def run_automation():
                 'is_recent': inception_year and inception_year >= 2008 if inception_year else None
             }
             
+            tax_m = _estimate_account_tax_impact(d.get('yield'), overseas=_is_overseas_listed(d))
             collected_context += (
                 f"[{ticker} 핵심 데이터]\n"
                 f"- 종목명: {d['name']} / 운용사: {d['issuer']} / 지수: {d['index']}\n"
@@ -5446,9 +5519,11 @@ def run_automation():
                 f"- [배당성장률]: {d.get('dividend_growth_rate', '정보 없음')} / [환노출 여부]: {d.get('fx_exposure', 'N/A')} "
                 f"(주의: 이 ETF가 실제로 환헤지 상품인지는 별도로 확인된 사실이 아니므로, '환헤지 비용'이라는 표현은 쓰지 말고 '환노출 리스크'로만 서술하세요)\n"
                 f"- [투자 매력도 점수]: {d.get('custom_attractiveness_score', '정보 없음')} (사유: {', '.join(d.get('custom_attractiveness_notes', []))})\n"
-                f"- [세금 시뮬레이션(배당 1억 기준)]: 과세계좌 {d.get('tax_metrics', {}).get('taxable_dividend_tax', 'N/A')}, "
-                f"ISA 절세 {d.get('tax_metrics', {}).get('isa_tax_saving', 'N/A')}, "
-                f"IRP/연금저축 절세 {d.get('tax_metrics', {}).get('irp_tax_saving', 'N/A')}\n"
+                f"- [세금 시뮬레이션(배당 1억 기준)]: 과세계좌 {tax_m.get('taxable_dividend_tax', 'N/A')}, "
+                f"ISA 절세 {tax_m.get('isa_tax_saving', 'N/A')}, "
+                f"IRP/연금저축 절세 {tax_m.get('irp_tax_saving', 'N/A')} "
+                f"(기준: {tax_m.get('notes', '')})\n"
+                f"- [계좌 안내(필수 반영)]: {OVERSEAS_ACCOUNT_NOTE if _is_overseas_listed(d) else '국내 상장 ETF라 ISA·연금저축·IRP로 매수 가능'}\n"
                 f"- [운용보수 1억 10년 영향]: {d.get('fee_impact_100m_10y', '정보 없음')}\n"
                 f"- [1,000만 원 투자 시뮬레이션]: {d['simulated_result']}\n"
                 f"- 공식 홈페이지 URL: {d['website']}\n"
@@ -5470,7 +5545,11 @@ def run_automation():
     revision_history_html = _build_revision_history_section(previous_analyses, etf_data_cache, today_str)
 
     if has_us_etf:
-        collected_context += f"[미국 ETF 감지]\n- 미국 ETF 티커: {', '.join(us_etf_tickers)}\n- 한국 투자자 관점 필수 포함: 환율 변동 영향, 국내 상장 동일 지수 ETF와 비교(수수료·세금 등)\n"
+        collected_context += (
+            f"[미국 ETF 감지]\n- 미국 ETF 티커: {', '.join(us_etf_tickers)}\n- 한국 투자자 관점 필수 포함: 환율 변동 영향, 국내 상장 동일 지수 ETF와 비교(수수료·세금 등)\n"
+            f"- [상장 위치(사실)]: {', '.join(us_etf_tickers)}는 미국 거래소에 상장된 ETF입니다. 한국 투자자 입장에서는 '해외 상장 ETF'라고만 쓰고, "
+            f"'미국 외 국가에 상장' 같은 표현이나 이중 부정 문장('~가 아닌 해외 상장')은 쓰지 마세요.\n"
+        )
 
     widgets_html_block = f'<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; margin: 30px auto;">{"".join(widget_items)}</div>' if is_multi else "".join(widget_items) + "<br>"
 
