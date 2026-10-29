@@ -1,0 +1,245 @@
+name: ETF 블로그 자동 발행 (발굴→토론→승인 흐름)
+
+on:
+  # [1] 매일 아침: 1번(발굴)->2번(토론) 진행 후 텔레그램으로 알림만 보냄.
+  # 아래 cron은 UTC 기준 22:30 = 한국시간(KST) 07:30. 원하는 시간으로 조정 가능.
+  schedule:
+    - cron: '30 22 * * *'   # 매일 아침 발굴+토론+알림
+    - cron: '*/10 * * * *'  # 10분마다 승인 여부 확인
+    - cron: '0 20 * * 1'    # 매주 월요일 - Search Console 성과 동기화
+    - cron: '0 21 * * 0'    # 매주 일요일 - 주간 상태 점검 리포트
+
+  # 수동 실행(테스트/디버깅용) - 예전처럼 topic/detect_only로 즉시 발행도 가능
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: '특정 티커로 강제 지정 (비워두면 자동 선정 로직 사용)'
+        required: false
+        default: ''
+      detect_only:
+        description: '실제 발행 없이 다음 후보 티커만 확인'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# [수정] discover-and-notify(매일 22:30 UTC)와 check-approval-and-publish(10분마다)는
+# 22:30이 10분 간격 위에 정확히 걸려서 매일 동시에 트리거된다. 주간 잡(월 20:00, 일 21:00 UTC)도
+# 마찬가지로 10분 그리드와 겹친다. 게다가 이제 publish_news.yml(테크/바이오/특허)도 같은
+# 저장소의 같은 브랜치에 상태 파일을 커밋+푸시하므로, 그룹 이름을 레포 전체 공용으로
+# 맞춰서(blog-publish-state) 두 워크플로우 사이의 푸시 경합까지 함께 막는다.
+# cancel-in-progress:false로 서로 취소시키지 않고 순서대로(큐잉) 실행되게 한다.
+concurrency:
+  group: blog-publish-state
+  cancel-in-progress: false
+
+env:
+  # 모든 잡에서 공통으로 쓰는 시크릿/설정. (잡마다 반복 정의하는 대신 여기 한 번만)
+  NONINTERACTIVE: "1"
+  PLATFORM: wordpress
+  CHART_MODE: script
+  MIN_PUBLISH_INTERVAL_HOURS: "20"
+  # blog_engine.py가 이 값으로 상태 파일 이름을 접두어(etf_)로 구분한다.
+  # 뉴스 카테고리(publish_news.yml)와 상태 파일이 섞이지 않게 하는 용도.
+  BLOG_CATEGORY: etf
+
+jobs:
+  # ============================================================
+  # 잡 1: 매일 아침 - 1번(발굴) -> 2번(토론) -> 텔레그램 알림
+  # cron '30 22 * * *' 에 의해서만 실행되도록 조건을 건다.
+  # ============================================================
+  discover-and-notify:
+    if: github.event.schedule == '30 22 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+      - name: 발굴 + 토론 + 텔레그램 알림
+        run: python etf_auto.py --discover-and-notify
+      - name: 대기 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pending_recommendation.json 2>/dev/null || true
+          git add telegram_offset.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 오늘의 추천 후보 갱신 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+  # ============================================================
+  # 잡 2: 10분마다 - 승인/override 응답 확인. 확정되면 바로 이어서
+  # 3~5번(기획->글쓰기->검수->발행)까지 같은 잡 안에서 진행.
+  # cron '*/10 * * * *' 에 의해서만 실행되도록 조건을 건다.
+  # ============================================================
+  check-approval-and-publish:
+    if: github.event.schedule == '*/10 * * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: browser-actions/setup-chrome@v1
+      - run: sudo apt-get update && sudo apt-get install -y xclip
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+
+      - name: 텔레그램 응답 확인
+        id: check
+        run: |
+          OUTPUT=$(python etf_auto.py --check-approval)
+          echo "$OUTPUT"
+          TICKER=$(echo "$OUTPUT" | grep -oP 'APPROVED_TICKER:\K.*' || true)
+          echo "ticker=$TICKER" >> "$GITHUB_OUTPUT"
+
+      - name: 승인 상태 파일 커밋 (pending 해제/offset 갱신)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pending_recommendation.json 2>/dev/null || true
+          git add telegram_offset.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 텔레그램 응답 반영 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+      - name: 승인된 티커로 발행 파이프라인 실행
+        if: steps.check.outputs.ticker != ''
+        run: python etf_auto.py --topic "${{ steps.check.outputs.ticker }}"
+
+      - name: 발행 상태 파일 커밋
+        if: steps.check.outputs.ticker != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add etf_article_state.json 2>/dev/null || true
+          git add etf_generation_state.json 2>/dev/null || true
+          git add etf_api_usage_log.json 2>/dev/null || true
+          git add indexnow_key.json 2>/dev/null || true
+          git add etf/published_articles 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+  # ============================================================
+  # 잡 3: 매주 - Search Console 성과 데이터 동기화 (성과 분석 부서용).
+  # GSC 연동 설정을 아직 안 했으면 코드가 알아서 건너뛰고 조용히 끝난다.
+  # ============================================================
+  sync-performance:
+    if: github.event.schedule == '0 20 * * 1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+      - name: 성과 데이터 동기화
+        run: python etf_auto.py --sync-performance
+      - name: 성과 데이터 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add search_performance.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 검색 성과 데이터 동기화 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+  # ============================================================
+  # 잡 4: 매주 - 상태 점검 리포트 (완전 무료, API 호출 없음).
+  # ============================================================
+  health-report:
+    if: github.event.schedule == '0 21 * * 0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+      - name: 주간 상태 점검 리포트 전송
+        run: python etf_auto.py --health-report
+
+  # ============================================================
+  # 잡 5: 수동 실행 전용 (workflow_dispatch로 사람이 직접 눌렀을 때만).
+  # 예전처럼 즉시 topic/detect_only로 테스트하고 싶을 때 사용.
+  # ============================================================
+  manual-run:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: browser-actions/setup-chrome@v1
+      - run: sudo apt-get update && sudo apt-get install -y xclip
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+
+      - name: 수동 실행
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.detect_only }}" = "true" ]; then
+            ARGS="--detect-only"
+          elif [ -n "${{ github.event.inputs.topic }}" ]; then
+            ARGS="--topic ${{ github.event.inputs.topic }}"
+          fi
+          python etf_auto.py $ARGS
+
+      - name: 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add etf_article_state.json 2>/dev/null || true
+          git add etf_generation_state.json 2>/dev/null || true
+          git add etf_api_usage_log.json 2>/dev/null || true
+          git add indexnow_key.json 2>/dev/null || true
+          git add etf/published_articles 2>/dev/null || true
+          git add pending_recommendation.json 2>/dev/null || true
+          git add telegram_offset.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 수동 실행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi

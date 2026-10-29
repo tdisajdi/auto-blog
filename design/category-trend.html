@@ -1,0 +1,905 @@
+<div id="ondo-cat-page">
+<style>
+  #ondo-cat-page {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    background: #0a1322;
+    color: #f4f6fb;
+  }
+  #ondo-cat-page * { box-sizing: border-box; }
+  #ondo-cat-page { word-break: keep-all; overflow-wrap: break-word; }
+  #ondo-cat-page a { text-decoration: none; color: inherit; }
+  #ondo-cat-page .oc-inner { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── 상단 바: 로고 + 브레드크럼 + 카테고리 탭 ── */
+  #ondo-cat-page .oc-topbar {
+    position: relative;
+    z-index: 3;
+  }
+  #ondo-cat-page .oc-topbar .oc-inner {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 6px;
+  }
+  #ondo-cat-page .oc-logo {
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1.6px;
+    line-height: 1.25;
+    color: #e8b944;
+  }
+  #ondo-cat-page .oc-crumb {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    color: #cdd6e6;
+  }
+  #ondo-cat-page .oc-crumb b { color: #e8b944; font-weight: 700; }
+  #ondo-cat-page .oc-tabs {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-left: auto;
+  }
+  #ondo-cat-page .oc-tab {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #c7d2e6;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color .15s;
+  }
+  #ondo-cat-page .oc-tab:hover { color: #e8b944; }
+  #ondo-cat-page .oc-tab.is-active { color: #ffffff; border-bottom-color: #e8b944; }
+
+  /* ── 히어로: 풀블리드 배경 + 초대형 카테고리 타이틀 ── */
+  #ondo-cat-page .oc-hero {
+    position: relative;
+    margin-top: -64px;           /* 상단 바 뒤로 배경이 이어지게 */
+    padding-top: 64px;
+    overflow: hidden;
+    background: linear-gradient(120deg, #16244a 0%, #0b1428 100%);
+  }
+  #ondo-cat-page .oc-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.55;
+  }
+  #ondo-cat-page .oc-hero-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,19,34,0.42) 0%, rgba(10,19,34,0.62) 55%, #0a1322 100%);
+  }
+  #ondo-cat-page .oc-hero .oc-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-top: 54px;
+    padding-bottom: 34px;
+  }
+  /* [시안] 초대형 골드 카테고리명 */
+  #ondo-cat-page .oc-hero-title {
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-size: 88px;
+    font-weight: 900;
+    color: #e8b944;
+    letter-spacing: 3px;
+    line-height: 1.0;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    text-shadow: 0 3px 22px rgba(0,0,0,0.5);
+  }
+  /* [시안] 영문 태그라인 (화이트 대문자) */
+  #ondo-cat-page .oc-hero-tagline {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 22px;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.55);
+  }
+  #ondo-cat-page .oc-hero-desc {
+    font-size: 16px;
+    color: #dfe6f2;
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 0 26px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  }
+  #ondo-cat-page .oc-hero-desc b { color: #ffffff; font-weight: 700; }
+
+  /* ── [시안] 필터 칩 ── */
+  #ondo-cat-page .oc-chips {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-bottom: 6px;
+  }
+  #ondo-cat-page .oc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #14203a;
+    background: #e8b944;
+    border: 1.5px solid #e8b944;
+    border-radius: 999px;
+    padding: 11px 22px;
+    cursor: pointer;
+    transition: background .15s, color .15s, transform .15s;
+  }
+  #ondo-cat-page .oc-chip:hover { transform: translateY(-1px); }
+  #ondo-cat-page .oc-chip:not(.is-active) {
+    background: transparent;
+    color: #e8b944;
+  }
+  #ondo-cat-page .oc-chip svg { display: block; }
+
+  /* ── 본문 ── */
+  #ondo-cat-page .oc-body { padding-top: 30px; padding-bottom: 26px; }
+
+  /* [시안] 피처드: 가로형 대형 카드 (이미지 좌 / 텍스트 우) */
+  #ondo-cat-page .oc-feat {
+    display: flex;
+    gap: 30px;
+    border: 1px solid rgba(197,209,229,0.28);
+    background: rgba(16,28,52,0.55);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 26px;
+    position: relative;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  #ondo-cat-page .oc-feat:hover {
+    transform: translateY(-3px);
+    border-color: rgba(232,185,68,0.8);
+    box-shadow: 0 14px 38px rgba(0,0,0,0.4);
+  }
+  #ondo-cat-page .oc-feat-img {
+    width: 44%;
+    min-height: 300px;
+    align-self: stretch;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: block;
+    border: 1px solid rgba(232,185,68,0.5);
+  }
+  #ondo-cat-page .oc-feat-txt {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 64px 12px 4px;
+  }
+  #ondo-cat-page .oc-feat-cat {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: #e8b944;
+    margin-bottom: 12px;
+  }
+  #ondo-cat-page .oc-feat-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.38;
+    margin: 0 0 14px;
+  }
+  #ondo-cat-page .oc-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #c3cee2;
+    margin-bottom: 16px;
+  }
+  #ondo-cat-page .oc-meta .oc-cal {
+    display: inline-flex;
+    width: 17px; height: 17px;
+    border: 1.5px solid #e8b944;
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  #ondo-cat-page .oc-meta .oc-cal::before {
+    content: '';
+    position: absolute;
+    left: 2px; right: 2px; top: 4px;
+    height: 1.5px;
+    background: #e8b944;
+  }
+  #ondo-cat-page .oc-meta .dot { color: #55648a; margin: 0 2px; }
+  #ondo-cat-page .oc-feat-excerpt {
+    font-size: 15px;
+    color: #b4c0d8;
+    line-height: 1.75;
+    margin: 0;
+  }
+  /* [시안] 골드 원형 화살표 버튼 */
+  #ondo-cat-page .oc-fab {
+    position: absolute;
+    right: 26px;
+    bottom: 26px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #e8b944;
+    color: #14203a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    transition: transform .18s;
+  }
+  #ondo-cat-page .oc-feat:hover .oc-fab,
+  #ondo-cat-page .oc-card:hover .oc-fab { transform: translateX(4px); }
+
+  /* [시안] 2단 카드 그리드 */
+  #ondo-cat-page .oc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+  #ondo-cat-page .oc-card {
+    display: flex;
+    gap: 22px;
+    border: 1px solid rgba(197,209,229,0.28);
+    background: rgba(16,28,52,0.55);
+    border-radius: 18px;
+    padding: 20px;
+    position: relative;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  #ondo-cat-page .oc-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(232,185,68,0.8);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  }
+  #ondo-cat-page .oc-card-img {
+    width: 170px;
+    align-self: stretch;
+    min-height: 210px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: block;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  #ondo-cat-page .oc-card-txt {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6px 6px 40px 0;
+  }
+  #ondo-cat-page .oc-card-cat {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e8b944;
+    margin-bottom: 10px;
+  }
+  #ondo-cat-page .oc-card-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.42;
+    margin: 0 0 12px;
+  }
+  #ondo-cat-page .oc-card .oc-meta { margin-bottom: 0; }
+  #ondo-cat-page .oc-card .oc-fab { right: 20px; bottom: 20px; width: 42px; height: 42px; font-size: 18px; }
+
+  /* 빈 상태 */
+  #ondo-cat-page .oc-empty {
+    border: 1px dashed rgba(232,185,68,0.5);
+    border-radius: 18px;
+    text-align: center;
+    padding: 70px 24px;
+    margin-bottom: 26px;
+  }
+  #ondo-cat-page .oc-empty-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #e8b944;
+    margin: 0 0 10px;
+  }
+  #ondo-cat-page .oc-empty-desc {
+    font-size: 14px;
+    color: #9fabc6;
+    margin: 0;
+  }
+
+  /* [시안] 페이지네이션 */
+  #ondo-cat-page .oc-pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 38px 0 10px;
+  }
+  #ondo-cat-page .oc-page {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(197,209,229,0.4);
+    color: #dfe6f2;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: transparent;
+    transition: border-color .15s, background .15s, color .15s;
+  }
+  #ondo-cat-page .oc-page:hover { border-color: #e8b944; color: #e8b944; }
+  #ondo-cat-page .oc-page.is-active {
+    background: #e8b944;
+    border-color: #e8b944;
+    color: #14203a;
+  }
+  #ondo-cat-page .oc-page.is-disabled { opacity: 0.35; pointer-events: none; }
+
+  #ondo-cat-page .oc-loading {
+    padding: 70px 0;
+    text-align: center;
+    color: #8fa0be;
+    font-size: 14px;
+  }
+
+  /* ── 푸터 ── */
+  #ondo-cat-page .oc-footer {
+    background: #081020;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin-top: 40px;
+    padding: 48px 0 30px;
+  }
+  #ondo-cat-page .oc-footer-cols { display: flex; gap: 48px; flex-wrap: wrap; }
+  #ondo-cat-page .oc-footer-brand {
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1.6px;
+    color: #e8b944;
+    line-height: 1.3;
+  }
+  #ondo-cat-page .oc-footer h4 {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.4px;
+    color: #ffffff;
+    margin: 0 0 12px;
+  }
+  #ondo-cat-page .oc-footer p {
+    font-size: 13px;
+    color: #98a3b8;
+    line-height: 1.9;
+    margin: 0;
+  }
+  #ondo-cat-page .oc-copy {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    color: #66738c;
+    padding-top: 34px;
+  }
+
+  /* ── 반응형 ── */
+  @media (max-width: 920px) {
+    #ondo-cat-page .oc-inner { padding: 0 18px; }
+    #ondo-cat-page .oc-tabs { margin-left: 0; gap: 14px; }
+    #ondo-cat-page .oc-tab { font-size: 11px; }
+    #ondo-cat-page .oc-hero-title { font-size: 52px; }
+    #ondo-cat-page .oc-hero-tagline { font-size: 12px; letter-spacing: 1.6px; }
+    #ondo-cat-page .oc-hero-desc { font-size: 14px; }
+    #ondo-cat-page .oc-chip { font-size: 13px; padding: 9px 16px; }
+    #ondo-cat-page .oc-feat { flex-direction: column; gap: 18px; padding: 16px; }
+    #ondo-cat-page .oc-feat-img { width: 100%; min-height: 0; aspect-ratio: 16/9; }
+    #ondo-cat-page .oc-feat-txt { padding: 0 0 46px; }
+    #ondo-cat-page .oc-feat-title { font-size: 21px; }
+    #ondo-cat-page .oc-grid { grid-template-columns: 1fr; gap: 18px; }
+    #ondo-cat-page .oc-card-img { width: 120px; min-height: 150px; }
+    #ondo-cat-page .oc-card-title { font-size: 16px; }
+    #ondo-cat-page .oc-page { width: 38px; height: 38px; font-size: 13px; }
+    #ondo-cat-page .oc-footer-cols { gap: 26px; }
+  }
+</style>
+
+  <!-- 상단 바 -->
+  <div class="oc-topbar">
+    <div class="oc-inner">
+      <a class="oc-logo" href="/">DATA-DRIVEN<br>INSIGHTS</a>
+      <div class="oc-crumb">INSIGHTS / <b id="oc-crumb-cat"></b></div>
+      <div class="oc-tabs" id="oc-tabs"></div>
+    </div>
+  </div>
+
+  <!-- 히어로 -->
+  <div class="oc-hero">
+    <!-- ★★★ 배경 사진을 직접 지정하려면 아래 src에 이미지 URL을 넣으세요.
+         비워두면 미디어 라이브러리에서 자동으로 찾습니다. ★★★ -->
+    <img class="oc-hero-img" id="oc-hero-img" src="" alt="" />
+    <div class="oc-hero-fade"></div>
+    <div class="oc-inner">
+      <h1 class="oc-hero-title" id="oc-hero-title"></h1>
+      <div class="oc-hero-tagline" id="oc-hero-tagline"></div>
+      <p class="oc-hero-desc" id="oc-hero-desc"></p>
+      <div class="oc-chips" id="oc-chips"></div>
+    </div>
+  </div>
+
+  <!-- 본문 -->
+  <div class="oc-inner">
+    <div class="oc-body">
+      <div id="oc-list">
+        <div class="oc-loading">불러오는 중...</div>
+      </div>
+      <div class="oc-pager" id="oc-pager" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="oc-footer">
+    <div class="oc-inner">
+      <div class="oc-footer-cols">
+        <div style="flex:1.2;min-width:200px;">
+          <div class="oc-footer-brand">DATA-DRIVEN<br>INSIGHTS</div>
+        </div>
+        <div style="flex:1;min-width:180px;">
+          <h4>ABOUT</h4>
+          <p>데이터 기반 인사이트로<br>투자 경험을 지원하는<br>프리미엄 정보 플랫폼입니다.</p>
+        </div>
+        <div style="flex:1;min-width:150px;">
+          <h4>LEGAL</h4>
+          <p>이용약관<br>개인정보처리방침<br>저작권 안내</p>
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <h4>CONTACT</h4>
+          <p>제휴 및 광고 문의<br>파트너십 문의</p>
+        </div>
+      </div>
+      <div class="oc-copy">&copy; 2026 DATA-DRIVEN INSIGHTS. ALL RIGHTS RESERVED.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var SITE_API = 'https://ondo99.com/wp-json/wp/v2';
+
+  /* ── 브라우저 언어 감지: 한국어면 한국어 문구, 그 외에는 영어 문구 ── */
+  var KO = ((navigator.language || navigator.userLanguage || '') + '').toLowerCase().indexOf('ko') === 0;
+  var T = KO ? {
+    loading: '불러오는 중...',
+    comingSoonTitle: '곧 공개됩니다',
+    comingSoonDesc: '이 카테고리의 첫 글을 준비하고 있습니다. 조금만 기다려주세요.',
+    noTagPosts: '이 주제의 글이 아직 없습니다. 다른 필터를 눌러보세요.',
+    loadError: '글을 불러오지 못했습니다. 페이지를 새로고침 해보세요.',
+    minRead: '분 읽기',
+    all: 'ALL'
+  } : {
+    loading: 'Loading...',
+    comingSoonTitle: 'Coming Soon',
+    comingSoonDesc: 'The first article in this category is on its way. Stay tuned.',
+    noTagPosts: 'No articles on this topic yet. Try another filter.',
+    loadError: 'Could not load articles. Please refresh the page.',
+    minRead: ' min read',
+    all: 'ALL'
+  };
+  document.querySelectorAll('#ondo-cat-page .oc-loading').forEach(function (n) { n.textContent = T.loading; });
+
+  /* ★★★ 이 페이지의 카테고리: 'etf' | 'patents' | 'biotech' | 'trend' 중 하나로 바꾸세요 ★★★ */
+  var CATEGORY = 'trend';
+
+  /* 카테고리별 설정: 라벨, 영문 태그라인, 소개 문구, 대체 이미지, 필터 칩.
+     chips의 각 항목은 {label: 화면에 보일 이름, tag: 워드프레스 태그 검색어} 입니다.
+     글에 그 태그가 없으면 "글이 아직 없습니다"로 표시되므로, 실제 쓰는 태그에 맞게 수정하세요. */
+  var CATEGORY_META = {
+    etf: {
+      label: 'ETF',
+      tagline: 'Diversified. Transparent. Growth-Focused.',
+      desc: '<b>ETF</b> 투자 전략과 시장 흐름을 데이터로 풀어냅니다.',
+      desc_en: '<b>ETF</b> strategies and market currents, decoded with data.',
+      image: 'https://ondo99.com/wp-content/uploads/2026/07/ETF-Category.png',
+      chips: [
+        { label: KO ? '미국 ETF' : 'US ETF', tag: '미국' },
+        { label: KO ? '배당' : 'Dividend', tag: '배당' },
+        { label: KO ? '섹터' : 'Sector', tag: '섹터' },
+        { label: KO ? '환율' : 'FX', tag: '환율' }
+      ]
+    },
+    patents: {
+      label: 'Patents',
+      tagline: 'Intellectual Property. Advantage.',
+      desc: '특허 흐름으로 읽는 기술 트렌드와 기업의 미래 가치를 분석합니다.',
+      desc_en: 'Reading technology trends and future corporate value through patent flows.',
+      image: 'https://ondo99.com/wp-content/uploads/2026/07/Patents-Category.png',
+      chips: []
+    },
+    biotech: {
+      label: 'Biotech/New Drugs',
+      tagline: 'Innovation. Discovery. Transformation.',
+      desc: '혁신 신약과 임상 진전, 의학의 미래를 만드는 기업들을 심층 분석합니다.',
+      desc_en: 'Deep dives into breakthrough therapies, clinical advances, and the companies shaping the future of medicine.',
+      image: 'https://ondo99.com/wp-content/uploads/2026/07/Biotech-Category.png',
+      chips: []
+    },
+    trend: {
+      label: 'Trend',
+      tagline: 'Spotting What Moves The Market.',
+      desc: '시장을 움직이는 트렌드를 포착하고 분석합니다.',
+      desc_en: 'Spotting and analyzing what moves the market.',
+      image: 'https://ondo99.com/wp-content/uploads/2026/07/Trend-Category-with-tagline.png',
+      chips: []
+    }
+  };
+
+  /* 탭/버튼이 이동할 주소. 카테고리 전용 페이지를 만들었다면 그 페이지 주소로 바꾸세요. */
+  var PAGE_LINKS = {
+    etf: '/category/etf/',
+    patents: '/category/patents/',
+    biotech: '/category/biotech/',
+    trend: '/category/trend/'
+  };
+
+  /* 한 페이지에 보여줄 글 수: 피처드 1 + 그리드 4 */
+  var PER_PAGE = 5;
+
+  /* ── 테마 폭 제한 탈출 + 상단 헤더/여백까지 덮기 (잘 작동하는 검증된 코드) ── */
+  var COVER_TOP = true;
+
+  function fullBleed() {
+    var el = document.getElementById('ondo-cat-page');
+    if (!el) return;
+    el.style.position = 'relative';
+    el.style.zIndex = '10';
+    el.style.setProperty('margin-left', '0px', 'important');
+    el.style.setProperty('margin-right', '0px', 'important');
+    el.style.setProperty('max-width', 'none', 'important');
+    if (COVER_TOP) el.style.setProperty('margin-top', '0px', 'important');
+    el.style.width = '';
+    var vw = document.documentElement.clientWidth;
+    var rect = el.getBoundingClientRect();
+    el.style.width = vw + 'px';
+    el.style.setProperty('margin-left', (-rect.left) + 'px', 'important');
+    if (COVER_TOP) {
+      var bar = document.getElementById('wpadminbar');
+      var barH = bar ? bar.offsetHeight : 0;
+      var topGap = rect.top + window.scrollY - barH;
+      if (topGap > 0) el.style.setProperty('margin-top', (-topGap) + 'px', 'important');
+    }
+    var after = el.getBoundingClientRect().left;
+    if (Math.abs(after) > 1) {
+      el.style.setProperty('margin-left', ((-rect.left) - after) + 'px', 'important');
+    }
+    if (COVER_TOP) {
+      var bar2 = document.getElementById('wpadminbar');
+      var barH2 = bar2 ? bar2.offsetHeight : 0;
+      var topResidual = el.getBoundingClientRect().top + window.scrollY - barH2;
+      if (Math.abs(topResidual) > 1) {
+        var curTop = parseFloat(el.style.marginTop) || 0;
+        el.style.setProperty('margin-top', (curTop - topResidual) + 'px', 'important');
+      }
+    }
+    // 아래쪽: 위젯과 테마 푸터 사이의 흰 여백도 덮기
+    var footer = document.querySelector('footer');
+    if (footer && !el.contains(footer) && !footer.contains(el)) {
+      el.style.setProperty('margin-bottom', '0px', 'important');
+      var botGap = footer.getBoundingClientRect().top - el.getBoundingClientRect().bottom;
+      if (botGap > 0) el.style.setProperty('margin-bottom', (-botGap) + 'px', 'important');
+    }
+  }
+  fullBleed();
+  window.addEventListener('resize', fullBleed);
+  window.addEventListener('load', fullBleed);
+  setTimeout(fullBleed, 600);
+  setTimeout(fullBleed, 2000);
+
+  /* ── 유틸 ── */
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+  function stripHtml(html) {
+    var div = document.createElement('div');
+    div.innerHTML = html || '';
+    return (div.textContent || div.innerText || '').trim();
+  }
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function formatDate(iso) {
+    try {
+      var d = new Date(iso);
+      return d.getFullYear() + '.' + pad2(d.getMonth() + 1) + '.' + pad2(d.getDate());
+    } catch (e) { return ''; }
+  }
+  function getThumb(post, fallback) {
+    try {
+      var media = post._embedded['wp:featuredmedia'];
+      if (media && media[0] && media[0].source_url) return media[0].source_url;
+    } catch (e) {}
+    return fallback;
+  }
+  /* 글별 소제목 라벨: 첫 번째 태그 이름을 쓰고, 없으면 카테고리 라벨 */
+  function getPostLabel(post) {
+    try {
+      var groups = post._embedded['wp:term'] || [];
+      for (var i = 0; i < groups.length; i++) {
+        for (var j = 0; j < groups[i].length; j++) {
+          if (groups[i][j].taxonomy === 'post_tag' && groups[i][j].name) return groups[i][j].name;
+        }
+      }
+    } catch (e) {}
+    return meta.label;
+  }
+  /* 읽기 시간: 본문 글자수 기준 대략 계산 (한국어 분당 ~600자) */
+  function readMinutes(post) {
+    try {
+      var chars = stripHtml(post.content && post.content.rendered ? post.content.rendered : '').length;
+      return Math.max(2, Math.round(chars / 600));
+    } catch (e) { return 3; }
+  }
+  function metaLine(post) {
+    return '<span class="oc-meta"><span class="oc-cal"></span>' + escapeHtml(formatDate(post.date)) +
+      '<span class="dot">&middot;</span>' + readMinutes(post) + T.minRead + '</span>';
+  }
+
+  var meta = CATEGORY_META[CATEGORY] || CATEGORY_META.etf;
+
+  /* ── 상단 바 + 히어로 텍스트 ── */
+  (function () {
+    document.getElementById('oc-crumb-cat').textContent = meta.label.toUpperCase();
+    document.getElementById('oc-hero-title').textContent = meta.label;
+    document.getElementById('oc-hero-tagline').textContent = meta.tagline;
+    document.getElementById('oc-hero-desc').innerHTML = KO ? meta.desc : (meta.desc_en || meta.desc);
+    var order = ['etf', 'patents', 'biotech', 'trend'];
+    var html = '';
+    order.forEach(function (slug) {
+      var m = CATEGORY_META[slug];
+      var cls = 'oc-tab' + (slug === CATEGORY ? ' is-active' : '');
+      html += '<a class="' + cls + '" data-slug="' + slug + '" href="' + PAGE_LINKS[slug] + '">' + escapeHtml(m.label) + '</a>';
+    });
+    document.getElementById('oc-tabs').innerHTML = html;
+  })();
+
+  /* ── 탭 링크 자동 연결: 사이트의 실제 페이지(제목: ETF/PATENTS/BIO/TREND 등)를 찾아 탭에 연결 ── */
+  try {
+    var TAB_TITLE_MAP = {
+      etf: ['etf'],
+      patents: ['patents', 'patent'],
+      biotech: ['bio', 'biotech', 'biotech/new drugs'],
+      trend: ['trend']
+    };
+    fetch(SITE_API + '/pages?per_page=100&_fields=link,title')
+      .then(function (r) { return r.json(); })
+      .then(function (pages) {
+        if (!pages || !pages.length) return;
+        var found = {};
+        pages.forEach(function (pg) {
+          var t = stripHtml(pg.title && pg.title.rendered ? pg.title.rendered : '').toLowerCase().trim();
+          Object.keys(TAB_TITLE_MAP).forEach(function (slug) {
+            if (!found[slug] && TAB_TITLE_MAP[slug].indexOf(t) !== -1) found[slug] = pg.link;
+          });
+        });
+        document.querySelectorAll('#oc-tabs .oc-tab').forEach(function (a) {
+          var slug = a.getAttribute('data-slug');
+          if (found[slug]) a.setAttribute('href', found[slug]);
+        });
+      })
+      .catch(function () {});
+  } catch (e) {}
+
+  /* ── 히어로 배경 자동 찾기 (허브 페이지와 동일 로직) ── */
+  try { (function () {
+    var hero = document.getElementById('oc-hero-img');
+    if (!hero) return;
+    if (hero.getAttribute('src')) return; // 직접 지정했으면 그대로 사용
+    fetch(SITE_API + '/media?media_type=image&per_page=100&orderby=date&order=desc&_fields=source_url,slug,media_details')
+      .then(function (r) { return r.json(); })
+      .then(function (items) {
+        if (!items || !items.length) return;
+        var good = ['hero', 'banner', 'city', 'main', 'header', 'bg', 'insight'];
+        var bad = ['category', 'logo', 'icon', 'favicon', 'profile'];
+        var best = null, bestScore = -1;
+        for (var i = 0; i < items.length; i++) {
+          var it = items[i];
+          var slug = (it.slug || '').toLowerCase();
+          var skip = false;
+          for (var b = 0; b < bad.length; b++) { if (slug.indexOf(bad[b]) !== -1) { skip = true; break; } }
+          if (skip || !it.source_url) continue;
+          var score = 0;
+          for (var g = 0; g < good.length; g++) { if (slug.indexOf(good[g]) !== -1) { score += 4; break; } }
+          var d = it.media_details || {};
+          if (d.width >= 1200) score += 1;
+          if (d.width && d.height && d.width > d.height * 1.6) score += 2;
+          if (score > bestScore) { bestScore = score; best = it; }
+        }
+        if (best && bestScore > 0) hero.src = best.source_url;
+      })
+      .catch(function () {});
+  })(); } catch (e) {}
+
+  /* ── 필터 칩 렌더 ── */
+  var activeChip = null; // null = ALL
+  (function () {
+    var wrap = document.getElementById('oc-chips');
+    var chips = meta.chips || [];
+    var html =
+      '<span class="oc-chip is-active" data-tag="">' +
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">' +
+          '<path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>' +
+        T.all + '</span>';
+    chips.forEach(function (c) {
+      html += '<span class="oc-chip" data-tag="' + escapeHtml(c.tag) + '">' + escapeHtml(c.label) + '</span>';
+    });
+    wrap.innerHTML = html;
+    if (!chips.length) wrap.style.display = 'none';
+    wrap.addEventListener('click', function (e) {
+      var chip = e.target.closest ? e.target.closest('.oc-chip') : null;
+      if (!chip) return;
+      wrap.querySelectorAll('.oc-chip').forEach(function (c) { c.classList.remove('is-active'); });
+      chip.classList.add('is-active');
+      activeChip = chip.getAttribute('data-tag') || null;
+      loadPosts(1);
+    });
+  })();
+
+  /* ── 글 목록 렌더 ── */
+  function renderList(posts) {
+    var wrap = document.getElementById('oc-list');
+    if (!posts.length) {
+      var isFiltered = !!activeChip;
+      wrap.innerHTML =
+        '<div class="oc-empty">' +
+          '<div class="oc-empty-title">' + T.comingSoonTitle + '</div>' +
+          '<div class="oc-empty-desc">' + (isFiltered ? T.noTagPosts : T.comingSoonDesc) + '</div>' +
+        '</div>';
+      return;
+    }
+    var featured = posts[0];
+    var rest = posts.slice(1);
+    var title = stripHtml(featured.title.rendered);
+    var excerpt = stripHtml(featured.excerpt.rendered);
+    if (excerpt.length > 160) excerpt = excerpt.slice(0, 160) + '...';
+    var html =
+      '<a class="oc-feat" href="' + featured.link + '">' +
+        '<img class="oc-feat-img" src="' + getThumb(featured, meta.image) + '" alt="' + escapeHtml(title) + '" />' +
+        '<div class="oc-feat-txt">' +
+          '<div class="oc-feat-cat">' + escapeHtml(getPostLabel(featured)) + '</div>' +
+          '<h2 class="oc-feat-title">' + escapeHtml(title) + '</h2>' +
+          metaLine(featured) +
+          '<p class="oc-feat-excerpt">' + escapeHtml(excerpt) + '</p>' +
+        '</div>' +
+        '<span class="oc-fab">&#8594;</span>' +
+      '</a>';
+    if (rest.length) {
+      html += '<div class="oc-grid">';
+      rest.forEach(function (post) {
+        var t = stripHtml(post.title.rendered);
+        html +=
+          '<a class="oc-card" href="' + post.link + '">' +
+            '<img class="oc-card-img" src="' + getThumb(post, meta.image) + '" alt="' + escapeHtml(t) + '" />' +
+            '<div class="oc-card-txt">' +
+              '<div class="oc-card-cat">' + escapeHtml(getPostLabel(post)) + '</div>' +
+              '<div class="oc-card-title">' + escapeHtml(t) + '</div>' +
+              metaLine(post) +
+            '</div>' +
+            '<span class="oc-fab">&#8594;</span>' +
+          '</a>';
+      });
+      html += '</div>';
+    }
+    wrap.innerHTML = html;
+  }
+
+  /* ── 페이지네이션 렌더 ── */
+  function renderPager(current, total) {
+    var pager = document.getElementById('oc-pager');
+    if (total <= 1) { pager.style.display = 'none'; return; }
+    pager.style.display = 'flex';
+    var html = '';
+    html += '<span class="oc-page' + (current <= 1 ? ' is-disabled' : '') + '" data-page="' + (current - 1) + '">&#8249;</span>';
+    var start = Math.max(1, Math.min(current - 2, total - 4));
+    var end = Math.min(total, start + 4);
+    for (var p = start; p <= end; p++) {
+      html += '<span class="oc-page' + (p === current ? ' is-active' : '') + '" data-page="' + p + '">' + p + '</span>';
+    }
+    html += '<span class="oc-page' + (current >= total ? ' is-disabled' : '') + '" data-page="' + (current + 1) + '">&#8250;</span>';
+    pager.innerHTML = html;
+  }
+  document.getElementById('oc-pager').addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('.oc-page') : null;
+    if (!btn || btn.classList.contains('is-disabled') || btn.classList.contains('is-active')) return;
+    var p = parseInt(btn.getAttribute('data-page'), 10);
+    if (p >= 1) {
+      loadPosts(p);
+      var body = document.querySelector('#ondo-cat-page .oc-body');
+      if (body) body.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  /* ── 데이터 로딩 ── */
+  var categoryIdCache;
+  var tagIdCache = {};
+
+  function getCategoryId() {
+    if (categoryIdCache !== undefined) return Promise.resolve(categoryIdCache);
+    return fetch(SITE_API + '/categories?slug=' + encodeURIComponent(CATEGORY))
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        categoryIdCache = (data && data.length > 0) ? data[0].id : null;
+        return categoryIdCache;
+      })
+      .catch(function () { categoryIdCache = null; return null; });
+  }
+  function getTagId(search) {
+    if (tagIdCache[search] !== undefined) return Promise.resolve(tagIdCache[search]);
+    return fetch(SITE_API + '/tags?search=' + encodeURIComponent(search) + '&_fields=id,name&per_page=1')
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        tagIdCache[search] = (data && data.length > 0) ? data[0].id : null;
+        return tagIdCache[search];
+      })
+      .catch(function () { tagIdCache[search] = null; return null; });
+  }
+
+  function loadPosts(page) {
+    var wrap = document.getElementById('oc-list');
+    wrap.innerHTML = '<div class="oc-loading">' + T.loading + '</div>';
+    getCategoryId().then(function (catId) {
+      if (!catId) { renderList([]); renderPager(1, 1); return; }
+      var tagPromise = activeChip ? getTagId(activeChip) : Promise.resolve(null);
+      tagPromise.then(function (tagId) {
+        if (activeChip && !tagId) { renderList([]); renderPager(1, 1); return; }
+        var url = SITE_API + '/posts?categories=' + catId +
+          (tagId ? '&tags=' + tagId : '') +
+          '&per_page=' + PER_PAGE + '&page=' + page + '&orderby=date&order=desc&_embed';
+        fetch(url)
+          .then(function (res) {
+            var total = parseInt(res.headers.get('X-WP-TotalPages') || '1', 10);
+            return res.json().then(function (posts) { return { posts: posts || [], total: total }; });
+          })
+          .then(function (r) {
+            renderList(Array.isArray(r.posts) ? r.posts : []);
+            renderPager(page, r.total);
+          })
+          .catch(function () {
+            wrap.innerHTML = '<div class="oc-loading">' + T.loadError + '</div>';
+          });
+      });
+    });
+  }
+
+  loadPosts(1);
+
+  // 10초 후에도 로딩 중이면 안내 문구로 교체
+  setTimeout(function () {
+    var box = document.getElementById('oc-list');
+    if (box && box.querySelector('.oc-loading') && box.querySelector('.oc-loading').textContent === T.loading) {
+      box.innerHTML = '<div class="oc-loading">' + T.loadError + '</div>';
+    }
+  }, 10000);
+})();
+</script>

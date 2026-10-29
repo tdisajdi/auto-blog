@@ -1,0 +1,80 @@
+=================================================================
+ ondo 블로그 자동화 — 수정 기록 (최신이 맨 위)
+ 전체 진행 상황은 PROJECT_STATUS.txt 참고
+=================================================================
+
+[2026-10-29]
+- 새 시스템을 main 브랜치에 합침 (사용자 요청). 이 시점부터 옛 이메일
+  봇(daily_post.yml)은 사라지고 ETF 자동화 스케줄이 작동함.
+- 깃허브 시크릿 DOTENV_CONTENTS 등록 완료 (사용자). 옛 봇 전용 시크릿
+  7개는 main 합친 뒤 삭제 예정으로 PROJECT_STATUS.txt에 기록.
+- 워드프레스 디자인 파일을 저장소 design/ 폴더에 보관 (다시 잃어버리지
+  않도록): hub.html(허브), category-etf/patents/biotech/trend.html,
+  post-dark-theme.css. 옛 zip의 "redesign" 최종본 사용.
+- post-dark-theme.css 목차 버그 다시 고침: 옛 zip에 남아있던 건 목차가
+  사라지던 첫 버전(sticky + 음수 마진)이었음. 이전에 고쳤던 내용대로
+  오른쪽 float 방식으로 되돌리고, 본문 폭 제한 해제(9번 항목)도 다시
+  추가. 워드프레스 코어의 강제 가운데 정렬 규칙을 넣은 테스트 화면에서
+  넓은/좁은 화면 둘 다 정상 표시 확인.
+  → 사이트 "추가 CSS"에 붙여넣은 게 옛 버전이면 이걸로 바꿔야 함.
+- 깃허브가 시크릿(DOTENV_CONTENTS)을 .env로 복원하는 방식을 바꿈
+  (publish.yml 5곳, publish_news.yml 3곳, 가이드 문서 설명).
+  이유: 예전 방식은 시크릿 내용을 명령어 안에 그대로 끼워 넣어서,
+  내용에 따옴표(")나 $ 같은 문자가 있으면 에러 없이 조용히 내용이
+  망가졌음. 실제 .env로 재현해보니 지금 값들은 무사했지만 설명 주석의
+  따옴표가 사라졌음. 나중에 비밀번호 등에 특수문자가 들어가면 그 값이
+  망가질 수 있어서, 환경변수로 넘기는 방식으로 바꿈 (재현 테스트에서
+  원본과 100% 동일하게 복원되는 것 확인).
+- 사용자가 텔레그램까지 채운 최신 .env를 보내줘서 개인 보관용 완성본
+  zip에 포함 (저장소에는 안 올림). 확인 결과 WP_PASSWORD는 실제
+  비밀번호가 아니라 임시값(xxxx)이 들어있음 → Selenium 예비 발행
+  경로는 지금 작동 안 함. 토큰 방식이 기본이라 당장 문제는 없음.
+- 텔레그램 봇(Ondo_news) 만들고 .env에 토큰/채팅ID 채움 (사용자 로컬,
+  저장소 변경 없음). PROJECT_STATUS.txt 상태 갱신.
+- main 브랜치 내용을 이 브랜치에 합침. 옛 봇이 오늘 아침에도
+  history.json을 커밋해서 충돌이 났고, 옛 봇 파일이라 삭제 상태로 정리.
+  (main에 합치기 전까지 옛 봇이 매일 아침 커밋하므로, 합칠 때 같은
+  충돌이 또 날 수 있음. 똑같이 삭제로 정리하면 됨)
+- 뉴스 3종(테크/바이오/특허) 자동 스케줄 끔 (publish_news.yml).
+  이유: main에 합치면 승인 없이 매일 자동 발행이 시작되는데, 지금은
+  ETF만 하기로 했고 UNSPLASH_ACCESS_KEY도 비어 있음. 수동 실행 버튼은
+  남겨둠. 시작할 때 schedule 4줄 주석만 풀면 됨.
+- 옛 ETF 발행 기록 이전: tistory_bot_2.zip의 article_state.json을
+  etf_article_state.json으로 이름 바꿔 추가 (ondo99.com에 7월에 올린
+  QQQ 글 4개). 이유: 새 코드는 카테고리 이름이 붙은 파일을 찾음. 이게
+  있어야 이전 글과 수치 비교, 내부 링크, 같은 주제 반복 방지가 이어짐.
+- 워드프레스 토큰 방식 설명 추가: PROJECT_STATUS.txt에 3-1절 신설.
+  처음의 앱 비밀번호 방식이 왜 실패했는지, 지금 토큰 방식은 무엇이고
+  토큰은 어떻게 다시 받는지, 실패 시 예비 경로까지 정리.
+- get_wp_oauth_token.py(토큰 발급 도우미)를 옛 zip(tistory_bot_2)에서
+  가져와 저장소에 추가. .env.example이 이 파일을 안내하는데 저장소에
+  빠져 있었음. 비밀값은 안 들어 있음.
+- blog_engine.py 주석이 없는 문서(자동화_변경사항.txt)를 가리키던 것을
+  PROJECT_STATUS.txt 3-1절로 수정. (주석만 수정, 동작 변화 없음)
+- 저장소 교체: 옛 티스토리 이메일 봇(tech.py, bio.py, patent.py,
+  history.json, .github/workflows/daily_post.yml) 삭제.
+  새 ondo 워드프레스 시스템으로 교체: blog_engine.py, etf_auto.py,
+  news_engine.py, tech_auto.py, bio_auto.py, patent_auto.py,
+  publish.yml, publish_news.yml, .env.example, .gitignore,
+  GITHUB_ACTIONS_GUIDE.md, requirements.txt
+  (출처: auto-blog-refactor.zip)
+  이유: 옛 봇은 글을 직접 발행하지 않고 Gmail로 HTML만 보냈고,
+  저자/사이트도 옛날 것(스포, spo26.tistory.com)이었음.
+- .env 정리 (파일은 저장소에 없음, 사용자에게 따로 전달):
+  티스토리 키 3개(TISTORY_ID, TISTORY_PW, BLOG_NAME) 제거,
+  PLATFORM=wordpress / CHART_MODE=script 명시.
+  텔레그램 2개는 아직 비어있음.
+- 진행 상황 문서(PROJECT_STATUS.txt)와 이 수정 기록 파일을 저장소에
+  추가. 앞으로 수정할 때마다 여기에 기록함.
+- 주의: 이 변경은 claude/priority-check-z0uw9b 브랜치에만 있음.
+  main에 합치기 전까지 옛 봇이 계속 돌아감.
+
+[이전 작업 요약 — 날짜 기록 없음]
+- 7,002줄짜리 tistory_auto.py를 공용 엔진(blog_engine.py) +
+  ETF(etf_auto.py) + 뉴스(news_engine.py) + 카테고리 wrapper로 분리.
+- 깃허브 시크릿을 DOTENV_CONTENTS 하나로 통합.
+- 고친 버그: f-string 따옴표 중첩, _load_json_file 중복 정의,
+  chart_js 미삽입, 튜플 언패킹 누락 2건, PROMPT_LOGIC_VERSION 위치,
+  etf_data= 옛 키워드 6곳, BLOG_CATEGORY 기본값 누락.
+- 워드프레스 디자인(허브, 카테고리 4종, 글 다크테마 CSS, 저자 소개
+  페이지)은 따로 전달함. 이 저장소에는 없음.
