@@ -1,4 +1,19 @@
-google-genai
 requests
+pandas
+yfinance
+FinanceDataReader
+selenium
+webdriver-manager
+python-dotenv
+pyperclip
+google-api-python-client
+google-auth
+
+# 테크/바이오/특허(news_engine.py)의 RSS 발굴 + 기사 스크래핑에 사용
 feedparser
 beautifulsoup4
+
+# CHART_MODE=image로 바꿔서 정적 PNG 차트를 쓰려면 아래 두 줄의 주석을 해제하세요.
+# (CHART_MODE=script를 쓰는 동안에는 필요 없습니다)
+# plotly
+# kaleido

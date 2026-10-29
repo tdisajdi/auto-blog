@@ -1,0 +1,137 @@
+name: 뉴스 블로그 자동 발행 (테크/바이오/특허)
+
+# [설계 배경] 예전 tech.py/bio.py/patent.py는 매일 실행되고 스크립트 내부에서
+# 요일을 확인해 "오늘은 내 차례가 아니면 조용히 종료"하는 방식이었다. 그러면
+# 실행할 필요가 없는 날에도 매번 체크아웃+의존성설치까지는 하게 되어 CI 시간이
+# 낭비된다. 이제는 cron의 요일 필드(5번째 필드)로 애초에 필요한 날에만 잡이
+# 트리거되게 해서 이 낭비를 없앴다 - 예전과 스케줄(테크=월요일, 바이오/특허=
+# 화~일요일)은 동일하게 유지했다.
+
+on:
+  schedule:
+    - cron: '0 21 * * 1'        # 테크: 매주 월요일 21:00 UTC (KST 06:00)
+    - cron: '0 6 * * 2,3,4,5,6,0'  # 바이오: 화~일 06:00 UTC (KST 15:00)
+    - cron: '30 6 * * 2,3,4,5,6,0' # 특허: 화~일 06:30 UTC (KST 15:30)
+
+  # 수동 실행(테스트/디버깅용) - 3개 카테고리를 한꺼번에 다 돌리면 Gemini 호출량이
+  # 3배로 낭비되므로, 테스트할 카테고리 하나를 선택하게 한다.
+  workflow_dispatch:
+    inputs:
+      category:
+        description: '테스트할 카테고리'
+        required: true
+        type: choice
+        options: [tech, bio, patent]
+        default: tech
+
+permissions:
+  contents: write
+
+# [중요] publish.yml(ETF)과 그룹 이름을 동일하게(blog-publish-state) 맞춰서,
+# 서로 다른 워크플로우 파일이라도 같은 저장소/브랜치에 상태 파일을 커밋+푸시할 때
+# 생기는 git push 경합을 함께 막는다. cancel-in-progress:false로 서로 취소하지
+# 않고 순서대로 큐잉되어 실행된다.
+concurrency:
+  group: blog-publish-state
+  cancel-in-progress: false
+
+env:
+  NONINTERACTIVE: "1"
+  MIN_PUBLISH_INTERVAL_HOURS: "20"
+
+jobs:
+  # ============================================================
+  # 테크: 매주 월요일
+  # ============================================================
+  tech:
+    if: github.event.schedule == '0 21 * * 1' || (github.event_name == 'workflow_dispatch' && github.event.inputs.category == 'tech')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BLOG_CATEGORY: tech
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+      - name: 테크 발굴+글쓰기+발행
+        run: python tech_auto.py
+      - name: 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add tech_article_state.json tech_topic_history.json tech_api_usage_log.json 2>/dev/null || true
+          git add indexnow_key.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 테크 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+  # ============================================================
+  # 바이오: 화~일요일
+  # ============================================================
+  bio:
+    if: github.event.schedule == '0 6 * * 2,3,4,5,6,0' || (github.event_name == 'workflow_dispatch' && github.event.inputs.category == 'bio')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BLOG_CATEGORY: bio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+      - name: 바이오 발굴+글쓰기+발행
+        run: python bio_auto.py
+      - name: 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bio_article_state.json bio_topic_history.json bio_api_usage_log.json 2>/dev/null || true
+          git add indexnow_key.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 바이오 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+  # ============================================================
+  # 특허: 화~일요일
+  # ============================================================
+  patent:
+    if: github.event.schedule == '30 6 * * 2,3,4,5,6,0' || (github.event_name == 'workflow_dispatch' && github.event.inputs.category == 'patent')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BLOG_CATEGORY: patent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+      - name: 특허 발굴+글쓰기+발행
+        run: python patent_auto.py
+      - name: 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add patent_article_state.json patent_topic_history.json patent_api_usage_log.json 2>/dev/null || true
+          git add indexnow_key.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 특허 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
