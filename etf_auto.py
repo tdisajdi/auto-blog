@@ -4623,6 +4623,7 @@ def discover_candidates(top_n=5):
     # 필요도 없음 - 어차피 후보에 못 들면 뉴스도 안 쓰임)
     for c in top_candidates:
         c["news"] = _get_recent_news_headlines(c["ticker"])
+    _attach_search_trends(top_candidates)
 
     return top_candidates
 
@@ -4750,6 +4751,45 @@ def pick_next_topic(cooldown_days=14, repost_after_days=90):
 # [2번 부서: 토론] 후보별 독립 옹호 논거 생성 -> 심사(최종 선정)
 # ============================================================
 
+def _trend_keyword(ticker):
+    """구글 트렌드에서 검색할 단어. 미국 ETF는 티커(한국에서도 SCHD·QQQ처럼 티커로 많이 검색),
+    국내 ETF는 상품명보다 검색량이 잡히는 지수/주제 이름을 쓴다."""
+    t = _normalize_ticker(ticker)
+    if not t.endswith(".KS"):
+        return t
+    meta = _etf_meta(t)
+    if meta["theme"] == "커버드콜":
+        return "커버드콜 ETF"
+    group = re.sub(r"\(.*?\)", "", meta["group"]).strip()
+    if group in (t, meta.get("name")):
+        return meta.get("name") or t
+    return f"{group} ETF" if len(group) <= 4 else group
+
+
+def _attach_search_trends(candidates):
+    """후보마다 구글 검색 관심도(최근 7일 vs 3개월 평균)를 붙인다. 실패하면 조용히 건너뜀."""
+    try:
+        import trend_engine
+        keywords = {c["ticker"]: _trend_keyword(c["ticker"]) for c in candidates}
+        interest = trend_engine.get_interest(list(keywords.values()), geo="KR", timeframe="today 3-m")
+    except Exception as e:
+        print(f"ℹ️ 검색 트렌드 조회 건너뜀: {type(e).__name__}: {e}")
+        return candidates
+    for c in candidates:
+        kw = keywords.get(c["ticker"])
+        if kw in interest:
+            c["search_trend"] = {"keyword": kw, **interest[kw]}
+    return candidates
+
+
+def _trend_line(candidate):
+    tr = candidate.get("search_trend")
+    if not tr:
+        return ""
+    return (f"구글 검색 관심도(한국, '{tr['keyword']}'): 최근 7일 평균이 3개월 평균 대비 "
+            f"{tr['momentum_pct']:+.1f}% (참고 신호일 뿐, 숫자가 작으면 큰 의미를 두지 마세요)\n")
+
+
 def _build_advocate_prompt(candidate):
     news_lines = "\n".join(f"- {h}" for h in candidate.get("news", [])) or "(관련 뉴스 헤드라인을 찾지 못함)"
     return f"""당신은 ETF 분석 블로그의 콘텐츠 기획자입니다.
@@ -4757,13 +4797,13 @@ def _build_advocate_prompt(candidate):
 다른 후보와 비교하지 말고, 이 후보 하나의 장점/시의성에만 집중하세요.
 
 [후보 정보]
-티커: {candidate['ticker']}
+티커: {candidate['ticker']} ({_etf_display_name(candidate['ticker'])}, 주제: {candidate.get('theme', '')})
 전일 대비 등락률: {candidate['pct_change']}%
 20일 평균 대비 거래량 배율: {candidate['volume_ratio']}배
 최근 관련 뉴스:
 {news_lines}
 마지막으로 이 티커를 다룬 지: {candidate['days_since_last']}일 전 (없으면 처음 다루는 것)
-
+{_trend_line(candidate)}
 [요청]
 1) 이 종목이 오늘 시의성 있는 이유를 2~3문장으로 설명
 2) 독자에게 어떤 흥미로운 이야깃거리를 줄 수 있는지 1~2문장으로 설명
@@ -5777,6 +5817,8 @@ def run_automation():
                          help="Search Console 성과 데이터를 동기화하고 종료")
     parser.add_argument("--check-universe", action="store_true",
                          help="발굴 대상 ETF 목록이 실제로 데이터를 받아오는지 점검하고 종료")
+    parser.add_argument("--check-trends", action="store_true",
+                         help="구글 트렌드 조회 방법들이 실제로 데이터를 주는지 점검하고 종료")
     parser.add_argument("--health-report", action="store_true",
                          help="주간 상태 점검 리포트를 텔레그램으로 보내고 종료")
     cli_args, _unknown = parser.parse_known_args()
@@ -5787,6 +5829,11 @@ def run_automation():
 
     if cli_args.check_universe:
         run_check_universe()
+        return
+
+    if cli_args.check_trends:
+        import trend_engine
+        trend_engine.check()
         return
 
     if cli_args.sync_performance:

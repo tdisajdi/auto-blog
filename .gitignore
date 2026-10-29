@@ -12,3 +12,6 @@ raw_responses/
 # 로컬 가상환경을 쓰는 경우
 .venv/
 venv/
+
+# 검색 트렌드 임시 캐시
+trend_cache.json
