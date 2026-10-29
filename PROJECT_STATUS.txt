@@ -184,9 +184,8 @@
   (tech.py/bio.py/patent.py + daily_post.yml, 저자 "스포(Spo)",
   spo26.tistory.com). 글을 직접 발행하지 않고 HTML을 Gmail로만 보내던
   방식 → 사용자 결정으로 폐기, 새 ondo 방식으로 교체.
-- 교체본은 claude/priority-check-z0uw9b 브랜치에 커밋됨.
-  주의: 깃허브 예약 실행(cron)은 main 브랜치에서만 돌아감. 이 브랜치를
-  main에 합치기 전까지는 옛 이메일 봇이 계속 매일 아침 실행됨.
+- 2026-10-29 새 시스템을 main에 합침 → 옛 이메일 봇은 꺼지고 새 ETF
+  자동화가 켜짐. (깃허브 예약 실행은 main 브랜치 기준으로만 돌아감)
 
 [.env 상태] (2026-10-29 정리 완료, 값은 채팅에 노출 안 함)
 - 채워짐: WP_SITE_URL, WP_OAUTH_TOKEN, WP_SITE_ID, WP_EMAIL,
@@ -226,7 +225,7 @@
    가능성 높음)
 3. (완료 2026-10-29) .env 완성본 전체 내용을 DOTENV_CONTENTS 시크릿 1개로 등록
    (GITHUB_ACTIONS_GUIDE.md 4단계 참고)
-4. claude/priority-check-z0uw9b → main 합치기
+4. (완료 2026-10-29) claude/priority-check-z0uw9b → main 합치기
 5. 그 다음은 스케줄대로 자동 실행 (ETF 후보 텔레그램 알림 → 승인
    답장 → 자동 발행)
 
