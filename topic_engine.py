@@ -452,11 +452,15 @@ def discover_energy():
     table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f}, 하루 {x['d1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}%"
                       for x in rows)
     news = google_news(f"{best['name']} 가격", 6)
-    direction = "오른" if best["m1"] > 0 else "내린"
+    # 한 달 변화가 작고 하루 변화가 큰 경우(급등락)는 하루 기준으로 제목을 단다.
+    if abs(best["m1"]) >= 3:
+        move = f"한 달 새 {abs(best['m1']):.0f}% {'오른' if best['m1'] > 0 else '내린'}"
+    else:
+        move = f"하루 만에 {abs(best['d1']):.1f}% {'뛴' if best['d1'] > 0 else '떨어진'}"
     facts = (f"[사실 자료 - 원자재 선물 가격, 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
              f"{_eia_crude_inventory() if best['ticker'] in ('CL=F', 'BZ=F') else ''}\n[관련 뉴스]\n{_news_block(news)}\n")
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news,
-             "title_seed": f"{best['name']} 가격이 한 달 새 {abs(best['m1']):.0f}% {direction} 이유와 생활에 미치는 영향",
+             "title_seed": f"{best['name']} 가격이 {move} 이유와 생활에 미치는 영향",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
              "source_note": "원자재 가격: Yahoo Finance" + (", 원유 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") else "")}]
@@ -576,6 +580,10 @@ def run_discover_and_notify():
         f"이유: {best['reason']}\n\n• 승인: [✅ 승인] 버튼\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'\n"
         f"({REMINDER_MAX_DAYS}일간 리마인드되고, 응답 없으면 새로 추천해드려요)",
         with_approve_button="approve_topic")
+    if not msg_id:
+        # 못 보낸 추천을 저장하면 다음 날 '아직 승인 안 하신…'으로 엉뚱하게 리마인드되므로 버린다.
+        print("❌ 텔레그램 전송에 실패해 추천을 저장하지 않았습니다. TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID를 확인하세요.")
+        return
     best.update({"created_at": datetime.now().isoformat(), "sent_at": datetime.now().isoformat(), "message_id": msg_id})
     _save_json_file(PENDING_TOPIC_FILE, best)
     print(f"✅ 두 번째 글 추천을 보냈습니다: {topic_label(best)}")

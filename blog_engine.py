@@ -1241,7 +1241,7 @@ def get_gemini_response(prompt, thinking_budget=0):
     # 다른 계정에서 나온 경우, 짧은 시간에 요청이 몰려 RPM에 걸렸을 가능성이 커서
     # 무조건 포기하기보다 일정 시간(_EXHAUSTED_RETRY_WAIT_SECONDS) 후 한 번 더
     # 전체 키를 시도해본다. 그마저 실패하면 그때는 진짜 RPD 소진으로 보고 포기한다.
-    global _all_keys_exhausted, _all_keys_exhausted_at, _exhausted_retry_cycles
+    global _all_keys_exhausted, _all_keys_exhausted_at, _exhausted_retry_cycles, _current_key_index
     if _all_keys_exhausted:
         elapsed = time.time() - _all_keys_exhausted_at if _all_keys_exhausted_at else 999999
         if elapsed < _EXHAUSTED_RETRY_WAIT_SECONDS:
@@ -1418,6 +1418,10 @@ def get_gemini_response(prompt, thinking_budget=0):
                     remaining = len([k for k in GEMINI_API_KEYS if k not in _permanently_excluded_keys])
                     print(f"🚫 이 키는 403(권한 거부)으로 이번 실행 동안 완전히 제외합니다. "
                           f"(남은 사용 가능 키: {remaining}개)")
+                # 400(요청 형식 오류)은 키가 아니라 그 모델이 이 요청 설정을 안 받는 경우라
+                # 다른 키로 돌려봐도 똑같이 실패한다 → 이 모델의 남은 키는 건너뛰고 바로 다음 모델로.
+                if response.status_code == 400 and num_models > 1:
+                    _current_key_index = num_keys - 1
                 if not _advance(f"HTTP 오류({response.status_code})"):
                     _sleep_backoff(attempt, 15)
                 consecutive_failures += 1
