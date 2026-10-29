@@ -61,7 +61,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 발굴 + 토론 + 텔레그램 알림
         run: python etf_auto.py --discover-and-notify
       - name: 대기 상태 파일 커밋
@@ -95,7 +97,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y xclip
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
 
       - name: 텔레그램 응답 확인
         id: check
@@ -154,7 +158,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 성과 데이터 동기화
         run: python etf_auto.py --sync-performance
       - name: 성과 데이터 커밋
@@ -183,7 +189,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 주간 상태 점검 리포트 전송
         run: python etf_auto.py --health-report
 
@@ -204,7 +212,9 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y xclip
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
 
       - name: 수동 실행
         run: |

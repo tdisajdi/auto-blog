@@ -58,7 +58,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 테크 발굴+글쓰기+발행
         run: python tech_auto.py
       - name: 상태 파일 커밋
@@ -90,7 +92,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 바이오 발굴+글쓰기+발행
         run: python bio_auto.py
       - name: 상태 파일 커밋
@@ -122,7 +126,9 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
-        run: printf '%s' "${{ secrets.DOTENV_CONTENTS }}" > .env
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 특허 발굴+글쓰기+발행
         run: python patent_auto.py
       - name: 상태 파일 커밋

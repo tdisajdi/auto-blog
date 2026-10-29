@@ -185,8 +185,10 @@
 
 [.env 상태] (2026-10-29 정리 완료, 값은 채팅에 노출 안 함)
 - 채워짐: WP_SITE_URL, WP_OAUTH_TOKEN, WP_SITE_ID, WP_EMAIL,
-  WP_PASSWORD, GEMINI_API_KEY(키 10개), PLATFORM=wordpress,
-  CHART_MODE=script
+  GEMINI_API_KEY(키 10개), PLATFORM=wordpress, CHART_MODE=script
+- WP_PASSWORD: 실제 비밀번호가 아니라 임시값(xxxx)임. Selenium 예비
+  발행이 필요해지면 실제 워드프레스 비밀번호로 바꿔야 함.
+- 최신 .env 사본은 개인 보관용 zip(ondo-backup-YYYYMMDD.zip)에 있음.
 - 2026-10-29 채움(사용자 로컬 .env): TELEGRAM_BOT_TOKEN,
   TELEGRAM_CHAT_ID (봇 이름 Ondo_news)
 - 비어있음(나중에): UNSPLASH_ACCESS_KEY(뉴스 3종 시작 시),
@@ -201,6 +203,7 @@
 
 [저장소에 추가로 반영한 것]
 - 뉴스 3종 자동 스케줄 꺼둠 (publish_news.yml, 수동 실행만 가능)
+- 시크릿 → .env 복원을 환경변수 방식으로 변경 (특수문자 안전)
 - etf_article_state.json: 7월 ondo99.com QQQ 글 4개 기록 이전
   (사이트에서 이 글들을 지웠다면 이 파일도 정리 필요)
 
