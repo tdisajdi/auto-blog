@@ -21,6 +21,11 @@ on:
         required: false
         type: boolean
         default: false
+      check_universe:
+        description: '발굴 대상 ETF 목록이 데이터를 받아오는지 점검 (발행 안 함)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -219,7 +224,9 @@ jobs:
       - name: 수동 실행
         run: |
           ARGS=""
-          if [ "${{ github.event.inputs.detect_only }}" = "true" ]; then
+          if [ "${{ github.event.inputs.check_universe }}" = "true" ]; then
+            ARGS="--check-universe"
+          elif [ "${{ github.event.inputs.detect_only }}" = "true" ]; then
             ARGS="--detect-only"
           elif [ -n "${{ github.event.inputs.topic }}" ]; then
             ARGS="--topic ${{ github.event.inputs.topic }}"

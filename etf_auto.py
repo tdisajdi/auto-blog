@@ -55,7 +55,7 @@ from blog_engine import (
     _upload_image_to_wordpress, _check_publish_interval, _clean_stale_sessions,
     ping_indexnow,
     _render_html_to_image, _threads_post_carousel, _threads_post,
-    _telegram_send_message, _telegram_get_updates,
+    _telegram_send_message, _telegram_get_updates, _telegram_update_is_authorized,
     _check_duplicate, _save_published_article_file, _register_article,
     _load_state,
     generate_optimized_title,
@@ -114,6 +114,96 @@ INVESTING_ETF_SLUGS = {
 }
 INVESTING_BASE = "https://kr.investing.com/etfs"
 INVESTING_SEARCH = "https://kr.investing.com/search/?q="
+
+# 매일 후보를 고르는 ETF 목록.
+# - theme: 주제. 최근 글에 같은 주제가 몰리면 그 주제는 후보에서 뺀다(주제 쏠림 방지).
+# - group: 같은 지수/자산 묶음. 재사용 금지 기간을 묶음 단위로 적용해서,
+#   SPY 글 직후에 VOO나 TIGER 미국S&P500 글이 나오는 "사실상 같은 글"을 막는다.
+# 데이터가 안 받아지는 티커는 발굴 단계에서 자동으로 건너뛴다. 목록 점검은
+# `python etf_auto.py --check-universe` (깃허브 Actions 수동 실행의 check_universe).
+ETF_UNIVERSE = {
+    "SPY": {"theme": "미국 대표지수", "group": "S&P500"},
+    "VOO": {"theme": "미국 대표지수", "group": "S&P500"},
+    "IVV": {"theme": "미국 대표지수", "group": "S&P500"},
+    "QQQ": {"theme": "미국 대표지수", "group": "나스닥100"},
+    "QQQM": {"theme": "미국 대표지수", "group": "나스닥100"},
+    "VTI": {"theme": "미국 대표지수", "group": "미국 전체시장"},
+    "DIA": {"theme": "미국 대표지수", "group": "다우30"},
+    "IWM": {"theme": "미국 대표지수", "group": "러셀2000"},
+    "SCHD": {"theme": "배당", "group": "미국 배당다우존스"},
+    "VYM": {"theme": "배당", "group": "미국 고배당"},
+    "DGRO": {"theme": "배당", "group": "미국 배당성장"},
+    "JEPI": {"theme": "커버드콜", "group": "JEPI"},
+    "JEPQ": {"theme": "커버드콜", "group": "JEPQ"},
+    "QYLD": {"theme": "커버드콜", "group": "QYLD"},
+    "XYLD": {"theme": "커버드콜", "group": "XYLD"},
+    "TLT": {"theme": "채권", "group": "미국 장기국채"},
+    "IEF": {"theme": "채권", "group": "미국 중기국채"},
+    "SHY": {"theme": "채권", "group": "미국 단기국채"},
+    "BND": {"theme": "채권", "group": "미국 종합채권"},
+    "LQD": {"theme": "채권", "group": "미국 회사채"},
+    "HYG": {"theme": "채권", "group": "미국 하이일드"},
+    "XLK": {"theme": "섹터", "group": "기술"},
+    "XLF": {"theme": "섹터", "group": "금융"},
+    "XLE": {"theme": "섹터", "group": "에너지"},
+    "XLV": {"theme": "섹터", "group": "헬스케어"},
+    "SMH": {"theme": "섹터", "group": "반도체"},
+    "GLD": {"theme": "원자재", "group": "금"},
+    "SLV": {"theme": "원자재", "group": "은"},
+    "DBC": {"theme": "원자재", "group": "원자재 종합"},
+    "EFA": {"theme": "해외 주식", "group": "선진국"},
+    "EEM": {"theme": "해외 주식", "group": "신흥국"},
+    "VWO": {"theme": "해외 주식", "group": "신흥국"},
+    "EWJ": {"theme": "해외 주식", "group": "일본"},
+    "INDA": {"theme": "해외 주식", "group": "인도"},
+    "TQQQ": {"theme": "레버리지", "group": "나스닥100 3배"},
+    # 국내 상장: 같은 지수의 미국 ETF와 group을 공유한다.
+    "069500.KS": {"theme": "국내 주식", "group": "코스피200"},
+    "360750.KS": {"theme": "미국 대표지수", "group": "S&P500"},
+    "133690.KS": {"theme": "미국 대표지수", "group": "나스닥100"},
+    "458730.KS": {"theme": "배당", "group": "미국 배당다우존스"},
+    "132030.KS": {"theme": "원자재", "group": "금"},
+    "148070.KS": {"theme": "채권", "group": "한국 국고채10년"},
+}
+
+RECENT_THEME_WINDOW = 7          # 최근 이 편수 안에서
+MAX_SAME_THEME_IN_WINDOW = 2     # 같은 주제가 이만큼 있으면 그 주제는 후보에서 제외
+RECENT_TYPE_WINDOW = 6           # 글 종류 비율을 볼 최근 편수
+COMPARISON_TARGET_SHARE = 0.34   # 최근 글 중 비교 글 비율이 이보다 낮으면 비교 글을 만든다
+_TICKER_REPLY_STOPWORDS = {"OK", "YES", "NO", "GO", "HI", "THX", "TY"}
+
+
+def _normalize_ticker(raw):
+    t = str(raw).strip().upper()
+    if re.fullmatch(r"\d{6}", t):
+        t += ".KS"
+    return t
+
+
+def _etf_theme(ticker):
+    return ETF_UNIVERSE.get(_normalize_ticker(ticker), {}).get("theme", "기타")
+
+
+def _etf_group(ticker):
+    t = _normalize_ticker(ticker)
+    return ETF_UNIVERSE.get(t, {}).get("group", t)
+
+
+def _article_tickers(article):
+    """저장된 글 기록에서 그 글이 다룬 티커 목록을 꺼낸다. 발행 때 함께 저장된
+    데이터(etf_data/topic_data)의 키를 우선 쓰고, 없으면 제목에서 티커를 찾는다.
+    제목 검색은 앞뒤가 영숫자가 아닐 때만 인정해 QQQM 글을 QQQ로 착각하지 않는다."""
+    data = article.get('etf_data') or article.get('topic_data') or {}
+    keys = [_normalize_ticker(k) for k in data if not str(k).startswith('_')]
+    if keys:
+        return keys
+    title = article.get('title', '')
+    found = []
+    for t in ETF_UNIVERSE:
+        code = t.replace('.KS', '')
+        if re.search(rf'(?<![A-Za-z0-9]){re.escape(code)}(?![A-Za-z0-9])', title):
+            found.append(t)
+    return found
 NEWS_CACHE_TTL = 60 * 60  # 1시간 캐시
 
 def get_tistory_rss_links(blog_url):
@@ -1304,7 +1394,9 @@ def _get_previous_analysis(etf_list, today_str, rss_posts=None):
         # 표시됨). 같은 티커의 모든 과거 글을 모아서 그 중 "가장 최근에 쓴
         # 글"과 비교하도록 수정 - 이래야 "지난 분석 대비"라는 서술이 실제로
         # 바로 직전 글을 가리키고, 버전 번호도 정확히 이어진다.
-        all_matching = [a for a in state.get('articles', []) if ticker_clean in a['title']]
+        all_matching = [a for a in state.get('articles', [])
+                        if a.get('status') != 'draft'
+                        and _normalize_ticker(ticker) in _article_tickers(a)]
         # 같은 날 쓴 글과 비교하면 "지난 분석(오늘 날짜) 대비" 같은 모순 문장이
         # 나온다(7/21에 같은 티커 글이 두 번 발행되며 실제로 발생). 오늘보다 이전
         # 날짜의 글만 비교 대상으로 삼고, 버전 번호는 전체 글 기준으로 이어간다.
@@ -2717,7 +2809,8 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         "description": info.get('longBusinessSummary', '정보 없음')[:300] if not is_kr else "정보 없음",
         "tv_symbol": "KRX200" if is_kr else raw_code,
         "website": info.get('website', '공식 홈페이지 정보 없음') if not is_kr else "정보 없음",
-        "investing_url": f"{INVESTING_BASE}/{INVESTING_ETF_SLUGS.get(raw_code, raw_code)}" if not is_kr else ""
+        "investing_url": (f"{INVESTING_BASE}/{INVESTING_ETF_SLUGS[raw_code]}" if raw_code in INVESTING_ETF_SLUGS
+                          else f"{INVESTING_SEARCH}{urllib.parse.quote(raw_code)}") if not is_kr else ""
     }
     _set_cached_record(cache, ticker_symbol, result)
     return result
@@ -4200,7 +4293,6 @@ def _last_written_dates():
     state = _load_state()
     last_dates = {}
     for article in state.get('articles', []):
-        title = article.get('title', '')
         ts = article.get('timestamp', '')
         if not ts:
             continue
@@ -4208,11 +4300,40 @@ def _last_written_dates():
             ts_dt = datetime.fromisoformat(ts)
         except (ValueError, TypeError):
             continue
-        for known_ticker in INVESTING_ETF_SLUGS.keys():
-            if known_ticker in title:
-                if known_ticker not in last_dates or ts_dt > last_dates[known_ticker]:
-                    last_dates[known_ticker] = ts_dt
+        for ticker in _article_tickers(article):
+            if ticker not in last_dates or ts_dt > last_dates[ticker]:
+                last_dates[ticker] = ts_dt
     return last_dates
+
+
+def _last_written_dates_by_group():
+    """같은 지수/자산 묶음(group) 단위로 가장 최근에 쓴 날짜를 돌려준다."""
+    by_group = {}
+    for ticker, dt in _last_written_dates().items():
+        g = _etf_group(ticker)
+        if g not in by_group or dt > by_group[g]:
+            by_group[g] = dt
+    return by_group
+
+
+def _recent_articles(n):
+    state = _load_state()
+    return sorted(state.get('articles', []), key=lambda a: a.get('timestamp', ''), reverse=True)[:n]
+
+
+def _recent_theme_counts(n=RECENT_THEME_WINDOW):
+    """최근 n편에서 주제별로 몇 편이었는지 센다. 비교 글처럼 한 글이 여러 주제를
+    다루면 각 주제를 한 번씩 센다."""
+    from collections import Counter
+    counts = Counter()
+    for article in _recent_articles(n):
+        for theme in {_etf_theme(t) for t in _article_tickers(article)}:
+            counts[theme] += 1
+    return counts
+
+
+def _saturated_themes():
+    return {th for th, c in _recent_theme_counts().items() if c >= MAX_SAME_THEME_IN_WINDOW}
 
 
 # [신규] 중복 방지 3단계 규칙에 쓰이는 기준값들. 대화로 합의된 대로:
@@ -4308,12 +4429,16 @@ def discover_candidates(top_n=5):
     폴백할지 판단).
     """
     now = datetime.now()
-    last_dates = _last_written_dates()
-    universe = list(INVESTING_ETF_SLUGS.keys())
+    last_by_group = _last_written_dates_by_group()
+    universe = list(ETF_UNIVERSE.keys())
+    saturated = _saturated_themes()
+    if saturated:
+        print(f"ℹ️ 최근 {RECENT_THEME_WINDOW}편에 몰린 주제라 오늘은 제외: {', '.join(sorted(saturated))}")
 
     candidates = []
+    theme_skipped = []
     for ticker in universe:
-        last_dt = last_dates.get(ticker)
+        last_dt = last_by_group.get(_etf_group(ticker))
         days_since = (now - last_dt).days if last_dt else None
         status = _classify_cooldown(days_since)
 
@@ -4333,15 +4458,34 @@ def discover_candidates(top_n=5):
             if not is_extreme:
                 continue
 
-        candidates.append({
+        entry = {
             "ticker": ticker,
+            "theme": _etf_theme(ticker),
+            "group": _etf_group(ticker),
             "days_since_last": days_since,
             "cooldown_status": status,
             **signal,
-        })
+        }
+        if entry["theme"] in saturated:
+            theme_skipped.append(entry)
+            continue
+        candidates.append(entry)
+
+    if not candidates and theme_skipped:
+        # 주제 제한 때문에 후보가 0개가 되면 발행 자체가 멈추므로, 이때만 제한을 풀어준다.
+        print("⚠️ 주제 제한을 적용하면 후보가 없어서, 오늘만 제한 없이 고릅니다.")
+        candidates = theme_skipped
 
     candidates.sort(key=lambda c: c["signal_score"], reverse=True)
-    top_candidates = candidates[:top_n]
+    # 같은 지수 묶음(예: SPY/VOO/IVV)은 신호가 가장 강한 하나만 남긴다.
+    seen_groups = set()
+    deduped = []
+    for c in candidates:
+        if c["group"] in seen_groups:
+            continue
+        seen_groups.add(c["group"])
+        deduped.append(c)
+    top_candidates = deduped[:top_n]
 
     # 뉴스는 최종 후보로 뽑힌 것들만 조회 (전체 12개마다 다 조회하면 느리고
     # 필요도 없음 - 어차피 후보에 못 들면 뉴스도 안 쓰임)
@@ -4351,10 +4495,53 @@ def discover_candidates(top_n=5):
     return top_candidates
 
 
+def _recent_comparison_share(n=RECENT_TYPE_WINDOW):
+    articles = _recent_articles(n)
+    if not articles:
+        return 0.0
+    return sum(1 for a in articles if len(_article_tickers(a)) >= 2) / len(articles)
+
+
+def _find_comparison_partner(ticker):
+    """비교 글의 짝을 찾는다. 같은 지수의 다른 상장(미국↔국내)과, 같은 주제의
+    다른 묶음 중 최근 30일 안에 안 쓴 것을 후보로 두고 하나를 고른다.
+    짝이 없으면 None(그날은 단일 분석 글로 간다)."""
+    t = _normalize_ticker(ticker)
+    group, theme, is_kr = _etf_group(t), _etf_theme(t), t.endswith('.KS')
+    now = datetime.now()
+    last_by_group = _last_written_dates_by_group()
+
+    def group_is_fresh(x):
+        dt = last_by_group.get(_etf_group(x))
+        return dt is None or (now - dt).days >= COOLDOWN_NORMAL_DAYS
+
+    cross_listed = [x for x in ETF_UNIVERSE
+                    if x != t and _etf_group(x) == group and x.endswith('.KS') != is_kr]
+    peers, seen = [], set()
+    for x in ETF_UNIVERSE:
+        g = _etf_group(x)
+        if x == t or g == group or _etf_theme(x) != theme or g in seen or not group_is_fresh(x):
+            continue
+        seen.add(g)
+        peers.append(x)
+
+    options = []
+    if cross_listed:
+        options.append(cross_listed[0])
+    if peers:
+        options.append(random.choice(peers))
+    return random.choice(options) if options else None
+
+
+def _topic_label(topic):
+    tickers = [x for x in topic.split(",") if x]
+    return " vs ".join(f"{x.replace('.KS', '')}({_etf_theme(x)})" for x in tickers)
+
+
 def get_trending_candidates():
     """[하위 호환용] 예전 pick_next_topic()이 쓰던 단순 후보 목록.
     discover_candidates()로 대체됐지만, 혹시 다른 곳에서 참조할 경우를 대비해 남겨둠."""
-    return list(INVESTING_ETF_SLUGS.keys())
+    return list(ETF_UNIVERSE.keys())
 
 
 def pick_next_topic(cooldown_days=14, repost_after_days=90):
@@ -4364,26 +4551,25 @@ def pick_next_topic(cooldown_days=14, repost_after_days=90):
     구버전 흐름)에서 쓰인다. 새 3단계 쿨다운 규칙을 간략화해서 반영한다.
     """
     now = datetime.now()
-    last_dates = _last_written_dates()
-    trending = get_trending_candidates()
+    last_by_group = _last_written_dates_by_group()
+    saturated = _saturated_themes()
+    universe = get_trending_candidates()
 
-    fresh = [
-        t for t in trending
-        if t not in last_dates or (now - last_dates[t]).days >= COOLDOWN_NORMAL_DAYS
-    ]
-    if fresh:
-        return {"ticker": fresh[0], "reason": "new"}
+    def days_since(t):
+        dt = last_by_group.get(_etf_group(t))
+        return (now - dt).days if dt else None
 
-    stale_candidates = [
-        (t, last_dates[t]) for t in trending if t in last_dates
-        and (now - last_dates[t]).days >= repost_after_days
-    ]
-    if stale_candidates:
-        stale_candidates.sort(key=lambda x: x[1])
-        oldest_ticker, oldest_date = stale_candidates[0]
-        return {"ticker": oldest_ticker, "reason": "repost"}
+    fresh = [t for t in universe if days_since(t) is None or days_since(t) >= COOLDOWN_NORMAL_DAYS]
+    fresh_unsaturated = [t for t in fresh if _etf_theme(t) not in saturated]
+    if fresh_unsaturated or fresh:
+        return {"ticker": (fresh_unsaturated or fresh)[0], "reason": "new"}
 
-    return {"ticker": trending[0], "reason": "fallback"}
+    stale = [t for t in universe if (days_since(t) or 0) >= repost_after_days]
+    if stale:
+        return {"ticker": max(stale, key=lambda t: days_since(t) or 0), "reason": "repost"}
+
+    # 모두 최근에 썼다면, 가장 오래전에 쓴 묶음을 고른다(방금 쓴 종목 반복 방지).
+    return {"ticker": max(universe, key=lambda t: days_since(t) or 0), "reason": "fallback"}
 
 
 # ============================================================
@@ -4643,7 +4829,7 @@ def get_performance_summary_for_judge():
         if matched_perf is None:
             continue
 
-        ticker = next((t for t in INVESTING_ETF_SLUGS.keys() if t in title), None)
+        ticker = ",".join(_article_tickers(article)) or None
         eligible_articles.append({"ticker": ticker, "title": title, **matched_perf})
 
     if len(eligible_articles) < PERFORMANCE_MIN_ARTICLE_COUNT:
@@ -4690,53 +4876,22 @@ REMINDER_MAX_DAYS = int(os.environ.get("REMINDER_MAX_DAYS", "3"))  # C안: 이 �
 # [신규] 다양성 관리 부서 (무료 - API 호출 없이 코드 로직으로만 판단)
 # ============================================================
 
-ETF_CATEGORY_MAP = {
-    "QQQ": "성장주(나스닥)", "QQQM": "성장주(나스닥)", "TQQQ": "성장주(레버리지)",
-    "SPY": "대형 우량주", "IVV": "대형 우량주", "VOO": "대형 우량주", "VTI": "전체시장",
-    "IWM": "중소형주",
-    "EFA": "해외선진국", "EEM": "신흥국",
-    "GLD": "원자재(금)", "SLV": "원자재(은)",
-}
-
-
-def get_diversity_note(recent_n=10, dominant_threshold=0.6):
+def get_diversity_note(recent_n=RECENT_THEME_WINDOW):
     """
-    [다양성 관리 부서] 최근 recent_n편의 카테고리 분포를 보고, 한 카테고리가
-    dominant_threshold(기본 60%) 이상을 차지하면 경고 문구를 돌려준다.
-    API 호출 없이 article_state.json만 읽어서 계산하므로 완전 무료.
-
-    반환: 편중이 없으면 None, 있으면 심사 프롬프트에 넣을 안내 문자열.
+    [다양성 관리 부서] 최근 recent_n편의 주제 분포를 심사 담당에게 알려준다.
+    몰린 주제는 이미 발굴 단계에서 후보에서 빠지므로, 여기서는 "덜 다룬 주제"를
+    우선 고려하라는 참고 정보만 준다. API 호출 없이 기록 파일만 읽는다.
     """
-    state = _load_state()
-    articles = sorted(state.get('articles', []), key=lambda a: a.get('timestamp', ''), reverse=True)[:recent_n]
-    if len(articles) < 5:
-        return None  # 데이터가 너무 적으면 판단 보류
-
-    categories = []
-    for a in articles:
-        title = a.get('title', '')
-        for ticker, cat in ETF_CATEGORY_MAP.items():
-            if ticker in title:
-                categories.append(cat)
-                break
-    if not categories:
+    counts = _recent_theme_counts(recent_n)
+    if sum(counts.values()) < 3:
         return None
-
-    from collections import Counter
-    counts = Counter(categories)
-    total = len(categories)
-    dominant_cat, dominant_count = counts.most_common(1)[0]
-
-    if dominant_count / total >= dominant_threshold:
-        all_categories = set(ETF_CATEGORY_MAP.values())
-        underrepresented = [c for c in all_categories if counts.get(c, 0) <= 1]
-        pct = round(dominant_count / total * 100)
-        note = (f"[다양성 관리 부서] 최근 {total}편 중 {dominant_count}편({pct}%)이 "
-                f"'{dominant_cat}' 카테고리에 편중되어 있습니다.")
-        if underrepresented:
-            note += f" 특별한 이유가 없다면 {', '.join(underrepresented)} 계열 후보를 우선 고려하는 것도 방법입니다."
-        return note
-    return None
+    all_themes = {v["theme"] for v in ETF_UNIVERSE.values()}
+    underrepresented = sorted(t for t in all_themes if counts.get(t, 0) == 0)
+    dist = ", ".join(f"{t} {c}편" for t, c in counts.most_common())
+    note = f"[다양성 관리 부서] 최근 {recent_n}편 주제 분포: {dist}."
+    if underrepresented:
+        note += f" 아직 안 다룬 주제: {', '.join(underrepresented)}. 다른 조건이 비슷하면 이쪽을 우선하세요."
+    return note
 
 
 # ============================================================
@@ -5087,6 +5242,13 @@ def _save_telegram_offset(offset):
     _save_json_file(TELEGRAM_OFFSET_FILE, {"offset": offset})
 
 
+REPLY_HELP_TEXT = (
+    "• 승인: [✅ 승인] 버튼\n"
+    "• 다른 종목으로: 티커를 답장 (예: SPY 또는 SPY,360750)\n"
+    "• 운영자 메모(선택): '메모: 내용'으로 답장하면 글에 그대로 들어가요"
+)
+
+
 def run_discover_and_notify():
     """
     [매일 예약 실행되는 진입점] 1번(발굴) -> 2번(토론)까지만 진행하고,
@@ -5109,9 +5271,10 @@ def run_discover_and_notify():
             _save_pending(pending)
             _telegram_send_message(
                 f"⏰ 아직 승인 안 하신 추천이 있어요 ({age_days}일째)\n\n"
-                f"티커: {pending['ticker']}\n"
+                f"글 종류: {pending.get('article_type', '단일 분석')}\n"
+                f"주제: {_topic_label(pending['ticker'])}\n"
                 f"이유: {pending['reason']}\n\n"
-                f"승인하시려면 [✅ 승인] 버튼을 누르시거나, 다른 티커를 그대로 답장해주세요.\n"
+                f"{REPLY_HELP_TEXT}\n"
                 f"(이 알림은 {REMINDER_MAX_DAYS}일까지 반복되고, 넘기면 새로 추천해드려요)",
                 with_approve_button=True,
             )
@@ -5127,13 +5290,14 @@ def run_discover_and_notify():
         fallback = pick_next_topic()
         _telegram_send_message(
             f"ℹ️ 오늘은 새로 다룰 만한 신호가 있는 종목이 없어서, 재포스팅(업데이트) 후보를 추천드려요.\n\n"
-            f"티커: {fallback['ticker']}\n"
+            f"주제: {_topic_label(fallback['ticker'])}\n"
             f"사유: {fallback['reason']}\n\n"
-            f"승인하시려면 [✅ 승인]을 누르시거나, 다른 티커를 답장해주세요.",
+            f"{REPLY_HELP_TEXT}",
             with_approve_button=True,
         )
         _save_pending({
             "ticker": fallback["ticker"],
+            "article_type": "단일 분석",
             "reason": f"재포스팅 폴백: {fallback['reason']}",
             "candidates": [],
             "created_at": datetime.now().isoformat(),
@@ -5142,8 +5306,17 @@ def run_discover_and_notify():
         return
 
     decision = debate_and_select(candidates)
+    topic, article_type = decision["ticker"], "단일 분석"
+    comparison_share = _recent_comparison_share()
+    if comparison_share < COMPARISON_TARGET_SHARE:
+        partner = _find_comparison_partner(topic)
+        if partner:
+            topic, article_type = f"{topic},{partner}", "비교"
+            print(f"ℹ️ 최근 비교 글 비율 {comparison_share:.0%} → 오늘은 비교 글: {topic}")
+
     _save_pending({
-        "ticker": decision["ticker"],
+        "ticker": topic,
+        "article_type": article_type,
         "reason": decision["reason"],
         "candidates": [{"ticker": c["ticker"], "signal_score": c["signal_score"]} for c in candidates],
         "created_at": datetime.now().isoformat(),
@@ -5153,28 +5326,99 @@ def run_discover_and_notify():
     candidate_summary = ", ".join(f"{c['ticker']}({c['signal_score']}점)" for c in candidates)
     _telegram_send_message(
         f"📌 오늘의 추천 주제\n\n"
-        f"티커: {decision['ticker']}\n"
+        f"글 종류: {article_type}\n"
+        f"주제: {_topic_label(topic)}\n"
         f"이유: {decision['reason']}\n\n"
         f"검토한 후보군: {candidate_summary}\n\n"
-        f"승인하시려면 [✅ 승인]을 누르시거나, 다른 티커를 그대로 답장해주세요.\n"
+        f"{REPLY_HELP_TEXT}\n"
         f"({REMINDER_MAX_DAYS}일간 리마인드되고, 그 안에 응답 없으면 자동으로 새로 추천해드려요)",
         with_approve_button=True,
     )
-    print(f"✅ 새 추천을 알림으로 보냈습니다: {decision['ticker']}")
+    print(f"✅ 새 추천을 알림으로 보냈습니다: {topic} ({article_type})")
+
+
+MAX_OPERATOR_MEMO_CHARS = 300
+
+
+def _parse_topic_reply(text):
+    """텔레그램 답장이 종목 지정인지 판단한다. 맞으면 (정규화된 "A,B" 문자열, 강제 여부),
+    아니면 None. "OK"처럼 짧은 영어 답장을 종목으로 착각하지 않도록 목록에 없는
+    영문 티커는 2~5자이면서 흔한 답장 단어가 아닐 때만 인정한다."""
+    t = (text or "").strip().upper()
+    force = t.startswith("강제")
+    if force:
+        t = t[2:].strip()
+    tokens = [x.strip() for x in t.split(",") if x.strip()]
+    if not tokens or len(tokens) > 3:
+        return None
+    out = []
+    for tok in tokens:
+        if re.fullmatch(r"\d{6}(\.KS)?", tok):
+            out.append(_normalize_ticker(tok[:6]))
+        elif tok in ETF_UNIVERSE:
+            out.append(tok)
+        elif re.fullmatch(r"[A-Z]{2,5}", tok) and tok not in _TICKER_REPLY_STOPWORDS:
+            out.append(tok)
+        else:
+            return None
+    return ",".join(out), force
+
+
+def _parse_memo_reply(text):
+    m = re.match(r"^\s*(메모|memo)\s*[:：]?\s*(.+)$", text or "", flags=re.IGNORECASE | re.DOTALL)
+    if not m:
+        return None
+    memo = m.group(2).strip()
+    return memo[:MAX_OPERATOR_MEMO_CHARS] if memo else None
+
+
+def _recently_written_groups(topic, within_days=COOLDOWN_HARD_FLOOR_DAYS):
+    """topic의 종목 중 within_days 안에 같은 지수 묶음 글이 있는 것을 (그룹, 일수)로 돌려준다."""
+    now = datetime.now()
+    last_by_group = _last_written_dates_by_group()
+    hits = []
+    for t in topic.split(","):
+        g = _etf_group(t)
+        dt = last_by_group.get(g)
+        if dt and (now - dt).days < within_days:
+            hits.append((g, (now - dt).days))
+    return hits
+
+
+def run_check_universe():
+    """ETF_UNIVERSE의 각 티커가 야후 파이낸스에서 가격/이름을 받아오는지 점검한다.
+    국내 ETF 코드가 맞는 상품인지도 이름으로 확인할 수 있다."""
+    failed = []
+    for t, meta in ETF_UNIVERSE.items():
+        name, rows = "", 0
+        try:
+            tk = yf.Ticker(t)
+            rows = len(tk.history(period="1mo"))
+            try:
+                name = (tk.info or {}).get("shortName") or (tk.info or {}).get("longName") or ""
+            except Exception:
+                name = "(이름 조회 실패)"
+        except Exception as e:
+            name = f"(오류: {type(e).__name__})"
+        mark = "✅" if rows else "❌"
+        print(f"{mark} {t:10} {meta['theme']:8} {meta['group']:12} 가격 {rows:3}일  {name}")
+        if not rows:
+            failed.append(t)
+    print(f"\n점검 결과: {len(ETF_UNIVERSE) - len(failed)}/{len(ETF_UNIVERSE)}개 정상"
+          + (f", 실패: {', '.join(failed)}" if failed else ""))
 
 
 def run_check_approval():
     """
     [자주 실행되는(예: 10분마다) 진입점] 텔레그램 응답을 확인해서:
-    - [✅ 승인] 버튼(callback_query) -> 대기 중이던 추천 그대로 승인
-    - 텍스트로 다른 티커 입력 -> 그 티커로 override (1~2번 건너뛰고 3번 기획부터)
-    - 아무 응답 없음 -> 아무것도 안 하고 그대로 둠(다음 예약 때 리마인드됨)
+    - [✅ 승인] 버튼 -> 대기 중이던 추천 그대로 승인
+    - 종목 답장(예: "SPY" 또는 "SPY,360750") -> 그 종목으로 바꿔서 진행
+      (단, 7일 안에 같은 지수 글이 있으면 거절. "강제 SPY"면 그래도 진행)
+    - "메모: 내용" -> 운영자 메모로 저장(승인 전에 보내도 됨), 글에 그대로 실린다
+    - 운영자 채팅방이 아닌 곳에서 온 메시지는 모두 무시
 
-    확정된 티커가 있으면 표준출력에 아래 형식으로 한 줄 출력한다:
-        APPROVED_TICKER:{ticker}
-    GitHub Actions 워크플로우가 이 줄을 grep해서, 있으면 다음 스텝(실제
-    글쓰기 파이프라인, --topic으로 이 티커를 넘겨 실행)을 조건부로 실행하게
-    만드는 용도.
+    확정되면 표준출력에 APPROVED_TICKER:{주제} 한 줄을 출력한다
+    (GitHub Actions가 grep해서 --topic으로 글쓰기 파이프라인을 실행).
     """
     pending = _load_pending()
     if not pending:
@@ -5187,49 +5431,85 @@ def run_check_approval():
         print("ℹ️ 새로운 텔레그램 응답이 없습니다.")
         return
 
-    confirmed_ticker = None
+    confirmed_topic = None
+    override = False
     max_update_id = offset or 0
+    pending_changed = False
 
     for update in updates:
         max_update_id = max(max_update_id, update.get("update_id", 0))
+        if not _telegram_update_is_authorized(update):
+            print("⚠️ 운영자 채팅방이 아닌 곳에서 온 텔레그램 메시지를 무시했습니다.")
+            continue
 
         callback = update.get("callback_query")
         if callback and callback.get("data") == "approve":
-            confirmed_ticker = pending["ticker"]
+            confirmed_topic, override = pending["ticker"], False
             continue
 
-        message = update.get("message")
-        if message:
-            text = (message.get("text") or "").strip().upper()
-            # 알려진 티커 목록에 있거나, 영문 대문자 2~5자리(일반적인 티커 형태)면
-            # 사람이 직접 지정한 것으로 간주. 그 외(잡담 등)는 무시.
-            if text in INVESTING_ETF_SLUGS or re.fullmatch(r"[A-Z]{2,5}", text):
-                confirmed_ticker = text
+        text = ((update.get("message") or {}).get("text") or "").strip()
+        if not text:
+            continue
+
+        memo = _parse_memo_reply(text)
+        if memo:
+            pending["memo"] = memo
+            pending_changed = True
+            _telegram_send_message(f"📝 운영자 메모를 저장했어요. 이 글에 그대로 실립니다:\n\"{memo}\"")
+            continue
+
+        parsed = _parse_topic_reply(text)
+        if not parsed:
+            continue
+        topic, force = parsed
+        recent = _recently_written_groups(topic)
+        if recent and not force:
+            detail = ", ".join(f"{g}({d}일 전)" for g, d in recent)
+            _telegram_send_message(
+                f"⛔ {topic.replace('.KS', '')}: 최근 {COOLDOWN_HARD_FLOOR_DAYS}일 안에 같은 지수 글이 있어 진행하지 않았어요 → {detail}\n"
+                f"같은 내용이 반복되면 애드센스 심사에 불리해요. 그래도 진행하려면 '강제 {topic.replace('.KS', '')}'로 답장해주세요."
+            )
+            continue
+        confirmed_topic, override = topic, True
 
     _save_telegram_offset(max_update_id + 1)
+    if pending_changed and not confirmed_topic:
+        _save_pending(pending)
 
-    if confirmed_ticker:
-        print(f"✅ 확정된 티커: {confirmed_ticker}")
-        print(f"APPROVED_TICKER:{confirmed_ticker}")
-        # [신규] 3번(기획) 단계가 "왜 이 주제가 선정됐는지"를 이어받아 쓸 수 있게,
-        # pending을 지우기 전에 선정 사유를 별도 파일로 남겨둔다. run_automation()이
-        # --topic으로 이 티커를 받으면 이 파일을 읽어 기획에 활용하고, 다 쓰면
-        # 다음 실행을 위해 다시 지운다.
-        if pending.get("ticker") == confirmed_ticker:
-            _save_json_file("confirmed_topic_context.json", {
-                "ticker": confirmed_ticker,
-                "reason": pending.get("reason", ""),
-            })
-        else:
-            # 사람이 추천과 다른 티커를 직접 입력한 경우 - 선정 사유는 "사람이 직접 지정"으로
-            _save_json_file("confirmed_topic_context.json", {
-                "ticker": confirmed_ticker,
-                "reason": "사용자가 추천 대신 직접 지정한 티커",
-            })
-        _clear_pending()
-        _telegram_send_message(f"✅ '{confirmed_ticker}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.")
-    else:
-        print("ℹ️ 응답은 있었지만 승인/티커로 해석되지 않았습니다. 계속 대기합니다.")
+    if not confirmed_topic:
+        print("ℹ️ 응답은 있었지만 승인/종목 지정으로 해석되지 않았습니다. 계속 대기합니다.")
+        return
+
+    print(f"✅ 확정된 주제: {confirmed_topic}")
+    print(f"APPROVED_TICKER:{confirmed_topic}")
+    # 3번(기획) 단계와 글쓰기가 선정 사유·글 종류·운영자 메모를 이어받을 수 있게 남겨둔다.
+    # run_automation()이 읽어서 쓰고 지운다.
+    _save_json_file("confirmed_topic_context.json", {
+        "ticker": confirmed_topic,
+        "reason": "사용자가 추천 대신 직접 지정한 주제" if override else pending.get("reason", ""),
+        "article_type": ("비교" if "," in confirmed_topic else "단일 분석") if override else pending.get("article_type", "단일 분석"),
+        "memo": pending.get("memo", ""),
+    })
+    _clear_pending()
+    memo_note = "\n📝 운영자 메모도 함께 실려요." if pending.get("memo") else ""
+    _telegram_send_message(f"✅ '{_topic_label(confirmed_topic)}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
+
+
+def _insert_operator_memo(body_html, memo):
+    """운영자가 텔레그램으로 보낸 한 줄 메모를 서론 다음(첫 대제목 앞)에 넣는다.
+    AI가 고쳐 쓰지 않도록 코드가 그대로 넣고, HTML로 해석되지 않게 이스케이프한다."""
+    import html as _html
+    block = (
+        '<div class="ondo-operator-memo" style="margin:24px 0;padding:14px 18px;'
+        'border-left:3px solid #e8b944;background:#f8f9fa;border-radius:4px;">'
+        '<p style="margin:0 0 6px 0;font-weight:bold;font-size:14px;">✍️ 운영자 메모</p>'
+        f'<p style="margin:0;font-size:15px;line-height:1.7;">{_html.escape(memo)}</p>'
+        '</div>'
+    )
+    m = re.search(r'<h3[\s>]', body_html)
+    if not m:
+        return body_html + block
+    return body_html[:m.start()] + block + body_html[m.start():]
 
 
 def _ask_yn(prompt, default_when_noninteractive='n'):
@@ -5294,12 +5574,18 @@ def run_automation():
                          help="텔레그램 승인/override 응답을 확인하고 결과를 출력")
     parser.add_argument("--sync-performance", action="store_true",
                          help="Search Console 성과 데이터를 동기화하고 종료")
+    parser.add_argument("--check-universe", action="store_true",
+                         help="발굴 대상 ETF 목록이 실제로 데이터를 받아오는지 점검하고 종료")
     parser.add_argument("--health-report", action="store_true",
                          help="주간 상태 점검 리포트를 텔레그램으로 보내고 종료")
     cli_args, _unknown = parser.parse_known_args()
 
     if cli_args.health_report:
         send_weekly_health_report()
+        return
+
+    if cli_args.check_universe:
+        run_check_universe()
         return
 
     if cli_args.sync_performance:
@@ -5896,8 +6182,12 @@ def run_automation():
     # ============================================================
     confirmed_context = _load_json_file("confirmed_topic_context.json", None)
     selection_reason = ""
-    if confirmed_context and confirmed_context.get("ticker") in etf_list:
-        selection_reason = confirmed_context.get("reason", "")
+    operator_memo = ""
+    if confirmed_context:
+        confirmed_set = {_normalize_ticker(x) for x in str(confirmed_context.get("ticker", "")).split(",") if x.strip()}
+        if confirmed_set == {_normalize_ticker(x) for x in etf_list}:
+            selection_reason = confirmed_context.get("reason", "")
+            operator_memo = (confirmed_context.get("memo") or "").strip()
 
     plan = plan_article(", ".join(etf_list), series_context=series_context, selection_reason=selection_reason)
     if plan:
@@ -6219,8 +6509,16 @@ def run_automation():
 
     if _check_duplicate(final_title, generated_body, _load_state()):
         print("⚠️ 이미 비슷한 내용을 게시한 글이 발견되었습니다. 중복 등록을 생략합니다.")
+        _telegram_send_message(
+            f"⚠️ 발행 중단: '{final_title}'이(가) 이미 올린 글과 너무 비슷해서 올리지 않았어요.\n"
+            f"같은 내용 반복은 애드센스 심사에 불리해서 자동으로 막았습니다. 다음 추천을 기다려주세요."
+        )
         driver.quit()
         return
+
+    if operator_memo:
+        generated_body = _insert_operator_memo(generated_body, operator_memo)
+        print("📝 운영자 메모를 본문에 넣었습니다.")
 
     # 등록 시 버전 정보 포함
     current_version = 1
@@ -6257,32 +6555,32 @@ def run_automation():
 
     try:
         if PLATFORM == "wordpress":
-            # [추가] 품질 점수가 심각하게 낮으면(0.3 미만) API 자동 발행 자체를
-            # 시도하지 않고 곧바로 사람 확인 절차로 넘어갑니다. 기존에는 점수가
-            # 몇 점이든 상관없이 publish_to_wordpress()가 무조건 먼저 실행되어,
-            # 부실한 글도 API/Selenium이 살아있으면 그대로 발행될 위험이 있었습니다.
-            CRITICAL_QUALITY_THRESHOLD = 0.3
-            if final_quality_score is not None and final_quality_score < CRITICAL_QUALITY_THRESHOLD:
-                print("\n" + "="*50)
-                print(f"🛑 품질 점수({final_quality_score:.2f})가 매우 낮아 자동 발행을 건너뜁니다.")
-                print(f"   (기준: {CRITICAL_QUALITY_THRESHOLD} 미만이면 자동 발행 자체를 시도하지 않음)")
-                print("="*50)
+            # 품질 점수가 기준(PUBLISH_MIN_QUALITY, 기본 0.7) 미만이거나 검수 자체가
+            # 실패하면 공개 발행하지 않고 워드프레스 "임시글"로만 올린 뒤 텔레그램으로
+            # 알린다. 예전에는 0.3만 넘으면 자동 공개 발행돼서, 검수가 "위험 신호"라고
+            # 판단한 글(0.3~0.6)도 그대로 사이트에 올라갔다.
+            publish_min_quality = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
+            if final_quality_score is None or final_quality_score < publish_min_quality:
+                score_text = "검수 실패" if final_quality_score is None else f"{final_quality_score:.2f}"
+                print(f"🛑 품질 점수({score_text})가 기준({publish_min_quality}) 미만이라 임시글로만 올립니다.")
                 _print_final_quality_summary(final_quality_score, final_quality_issues, policy_issues_overall)
-                pyperclip.copy(blog_content)
-                print("\n" + "="*50)
-                print("✅ 원고는 생성되었으나, 품질 문제로 자동 발행은 건너뛰었습니다.")
-                print("👉 아래 지적된 문제점을 직접 수정한 뒤, 워드프레스 에디터에서")
-                print("   '코드 편집기'(HTML 모드)로 전환해 붙여넣기(Ctrl+V) 하세요.")
-                print("="*50)
-                publish_confirm = _ask_yn("\n❓ 문제를 직접 수정해서 워드프레스에 발행하셨나요? (y/n): ")
-                if publish_confirm in ['y', 'yes', '네', 'ㅇ']:
-                    estimated_wp_url = _estimate_wp_url(final_facts_json_str)
-                    _register_article(final_title, generated_body, status='published', notes='autosaved with AI risk filter (manual paste, low quality override)', version=current_version, extra_data=etf_data_cache, url=estimated_wp_url)
-                    promote_published_article(driver, etf_list, plan, estimated_wp_url)
-                    print("✅ 글 정보 및 팩트 데이터가 저장되었습니다. 다음 실행 시 과거 수치 비교가 작동합니다.")
+                draft_ok, draft_result = publish_to_wordpress(final_title, blog_content, tags=tags, status="draft")
+                issues_text = "\n".join(f"- {i}" for i in (final_quality_issues or [])[:6]) or "- (지적 내용 없음)"
+                if draft_ok:
+                    _register_article(final_title, generated_body, status='draft',
+                                      notes=f'below quality threshold ({score_text})', version=current_version,
+                                      extra_data=etf_data_cache, url=draft_result)
                     _clear_generation_state(session_label=session_label)
+                    _telegram_send_message(
+                        f"📝 임시글로만 올렸어요 (공개 안 됨)\n\n제목: {final_title}\n"
+                        f"품질 점수: {score_text} (기준 {publish_min_quality})\n지적된 문제:\n{issues_text}\n\n"
+                        f"워드프레스 '글 → 임시글'에서 확인한 뒤, 고쳐서 발행하거나 삭제해주세요."
+                    )
                 else:
-                    print("ℹ️ 발행하지 않으셨으므로 버전 정보가 저장되지 않았습니다. 다음 실행 시 동일한 버전으로 유지됩니다.")
+                    _telegram_send_message(
+                        f"⚠️ 품질 점수 {score_text}(기준 {publish_min_quality}) 미달이라 임시글로 올리려 했는데 그것도 실패했어요.\n"
+                        f"제목: {final_title}\n오류: {str(draft_result)[:200]}"
+                    )
                 return
 
             # [신규] 워드프레스는 API로 직접 발행하므로 브라우저 조작이 전혀

@@ -496,10 +496,29 @@ def _extract_section_titles(html_content, max_titles=15):
     return cleaned[:max_titles]
 
 
+def _normalize_title_for_compare(title):
+    t = re.sub(r"\[[^\]]*\]", " ", title or "")      # [ETF 비교] 같은 머리말
+    t = re.sub(r"(19|20)\d{2}\s*년?", " ", t)          # 연도
+    t = re.sub(r"[^\w가-힣]+", "", t.lower())
+    return t
+
+
+def _is_similar_title(a, b, threshold=0.85):
+    """제목에서 머리말·연도·문장부호를 뺀 뒤 비교한다. "2026년"만 붙은 사실상 같은
+    제목(티스토리에서 실제로 같은 글이 3일 간격으로 두 번 나간 사례)을 잡기 위함."""
+    import difflib
+    na, nb = _normalize_title_for_compare(a), _normalize_title_for_compare(b)
+    if not na or not nb:
+        return False
+    return na == nb or difflib.SequenceMatcher(None, na, nb).ratio() >= threshold
+
+
 def _check_duplicate(title, content, state):
     h = _get_text_hash(content)
     for item in state.get('articles', []):
         if item.get('hash') == h or item.get('title') == title:
+            return True
+        if _is_similar_title(item.get('title', ''), title):
             return True
         if _is_similar_text(item.get('content', ''), content):
             return True
@@ -2225,6 +2244,18 @@ def _telegram_send_message(text, with_approve_button=False):
     except Exception as e:
         print(f"⚠️ 텔레그램 전송 중 오류: {e}")
         return False
+
+
+def _telegram_update_is_authorized(update):
+    """봇 이름을 아는 누구나 메시지를 보낼 수 있으므로, 운영자 채팅방(TELEGRAM_CHAT_ID)에서
+    온 메시지/버튼 클릭만 인정한다. 이 확인이 없으면 남이 승인하거나 사이트에 실릴
+    운영자 메모를 써넣을 수 있다."""
+    if not TELEGRAM_CHAT_ID:
+        return False
+    callback = update.get("callback_query") or {}
+    message = update.get("message") or callback.get("message") or {}
+    chat_id = (message.get("chat") or {}).get("id")
+    return chat_id is not None and str(chat_id) == str(TELEGRAM_CHAT_ID).strip()
 
 
 def _telegram_get_updates(offset=None):
