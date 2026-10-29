@@ -4,6 +4,8 @@
 =================================================================
 
 [2026-10-29]
+- 깃허브 시크릿 DOTENV_CONTENTS 등록 완료 (사용자). 옛 봇 전용 시크릿
+  7개는 main 합친 뒤 삭제 예정으로 PROJECT_STATUS.txt에 기록.
 - 워드프레스 디자인 파일을 저장소 design/ 폴더에 보관 (다시 잃어버리지
   않도록): hub.html(허브), category-etf/patents/biotech/trend.html,
   post-dark-theme.css. 옛 zip의 "redesign" 최종본 사용.

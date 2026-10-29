@@ -206,6 +206,13 @@
   도는 승인 확인도 비용 없음. 대신 저장소 파일은 누구나 볼 수 있으니
   실제 키 값은 절대 커밋 금지 (.env는 .gitignore로 막혀 있음).
 
+[깃허브 시크릿 정리 대상] main 합친 뒤 지워도 됨 (옛 봇 전용, 새 코드는
+  DOTENV_CONTENTS만 읽음): GEMINI_API_KEY, GEMINI_API_KEY_1/2/3,
+  GMAIL_APP_PASSWORD, GMAIL_USER, UNSPLASH_ACCESS_KEY
+  - 단, UNSPLASH_ACCESS_KEY는 예전에 발급받은 키가 있다는 뜻. 뉴스 3종
+    시작할 때 unsplash.com/developers에서 값을 확인해 .env에 넣으면 됨
+    (깃허브 시크릿은 값을 다시 보여주지 않음).
+
 [저장소에 추가로 반영한 것]
 - 뉴스 3종 자동 스케줄 꺼둠 (publish_news.yml, 수동 실행만 가능)
 - 시크릿 → .env 복원을 환경변수 방식으로 변경 (특수문자 안전)
@@ -217,7 +224,7 @@
 2. Settings → Actions → General → "Read and write permissions" 확인
    (옛 봇이 history.json을 자동 커밋하고 있었으므로 이미 켜져 있을
    가능성 높음)
-3. .env 완성본 전체 내용을 DOTENV_CONTENTS 시크릿 1개로 등록
+3. (완료 2026-10-29) .env 완성본 전체 내용을 DOTENV_CONTENTS 시크릿 1개로 등록
    (GITHUB_ACTIONS_GUIDE.md 4단계 참고)
 4. claude/priority-check-z0uw9b → main 합치기
 5. 그 다음은 스케줄대로 자동 실행 (ETF 후보 텔레그램 알림 → 승인
