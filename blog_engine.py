@@ -755,6 +755,24 @@ DEFAULT_ETF_PART_DESCRIPTIONS = (
 )
 
 
+def _extra_quality_items(category_label):
+    """실제 발행 글에서 놓쳤던 오류 유형을 검수 항목에 명시한다(2026-07 QQQ 글 점검 결과)."""
+    items = (
+        "6. repeated_blocks: 같은 표(예: 수익률표, 배당내역표)나 같은 문단이 글 안에서 두 번 이상 나오는가?\n"
+        "7. unsupported_claims: 링크나 구체적 출처 없이 '외신 보도', '업계에 따르면', '운용사 팩트시트' 같은 "
+        "뭉뚱그린 출처를 단 주장, 또는 위 데이터에 없는 사실(다른 회사의 신상품 출시, 특정 기업 실적 등)을 "
+        "단정적으로 쓴 문장이 있는가?\n"
+        "8. date_confusion: '지난 분석(날짜) 대비'처럼 비교 기준 날짜가 글 작성일과 같거나 뒤섞인 문장이 있는가?\n"
+    )
+    if "ETF" in (category_label or ""):
+        items += (
+            "9. korea_account_rules: 한국 계좌 규칙 오류가 있는가? 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP로 "
+            "직접 살 수 없는데 그 계좌로 이 ETF를 사라고 안내하거나, 'ISA 전액 비과세'처럼 한도 없이 비과세라고 "
+            "쓴 경우를 반드시 지적하세요.\n"
+        )
+    return items + "\n"
+
+
 def _llm_quality_check(content, facts_json_str=None, max_retries=2, category_label="ETF/투자", part_descriptions=None):
     """
     단순 단어 카운트가 아니라, Gemini에게 실제로 글을 읽고 채점하게 합니다.
@@ -830,6 +848,7 @@ def _llm_quality_check(content, facts_json_str=None, max_retries=2, category_lab
         "그대로 붙여넣어도 말이 되는가? 그렇다면 그건 이 글만의 고유 정보가 아니라 뻔한 일반론이므로 문제로 지적하세요. "
         "특히 연령별 포트폴리오, 매매 타이밍, 경제 사이클, 결론/제언 섹션에 이런 일반론적 문장이 없는지 확인하세요.\n\n"
         f"{fact_check_item}"
+        f"{_extra_quality_items(category_label)}"
         "[본문 구성 안내] 이 글은 다음 5개 파트를 이어붙여 만들어졌습니다. 문제를 발견하면 그 문제가 "
         "실제로 어느 파트에서 비롯됐는지 함께 판단하세요:\n"
         f"{part_descriptions or DEFAULT_ETF_PART_DESCRIPTIONS}\n\n"
