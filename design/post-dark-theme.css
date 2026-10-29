@@ -1,0 +1,296 @@
+/* ============================================================
+   ONDO99 글 페이지 다크 테마 (DATA-DRIVEN INSIGHTS 스타일)
+
+   [적용 방법] 워드프레스 관리자 → 외모(Appearance) → 사용자 정의하기
+   (Customize) → 추가 CSS(Additional CSS) 에 이 파일 내용 전체를
+   붙여넣고 "공개" 버튼을 누르면 끝입니다.
+
+   - 글(포스트) 페이지에만 적용됩니다 (허브/카테고리 페이지는
+     이미 자체 다크 디자인이라 건드리지 않음).
+   - 이미 발행된 글과 앞으로 자동 발행될 글 모두에 적용됩니다.
+   - 글 본문 HTML은 그대로 두고 화면에서만 색을 바꾸는 방식이라,
+     언제든 이 CSS만 지우면 원래 흰 배경으로 돌아갑니다.
+   ============================================================ */
+
+/* ── 1. 페이지 전체: 다크 네이비 배경 + 밝은 기본 글자 ── */
+body.single-post,
+body.single-post .wp-site-blocks,
+body.single-post main {
+  background: #0a1322 !important;
+  color: #dbe3f0 !important;
+}
+
+/* 글 제목 */
+body.single-post h1,
+body.single-post .wp-block-post-title {
+  color: #ffffff !important;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+/* 본문 소제목: 골드 + 밑줄 포인트 */
+body.single-post .entry-content h2,
+body.single-post .wp-block-post-content h2,
+body.single-post .entry-content h3,
+body.single-post .wp-block-post-content h3 {
+  color: #e8b944 !important;
+  font-weight: 800;
+}
+body.single-post .entry-content h4,
+body.single-post .wp-block-post-content h4 {
+  color: #f2d998 !important;
+}
+
+/* 본문 문단/리스트 */
+body.single-post .entry-content p,
+body.single-post .wp-block-post-content p,
+body.single-post .entry-content li,
+body.single-post .wp-block-post-content li {
+  color: #dbe3f0;
+  line-height: 1.85;
+}
+
+/* 링크: 골드 */
+body.single-post .entry-content a,
+body.single-post .wp-block-post-content a {
+  color: #e8b944 !important;
+  text-decoration-color: rgba(232, 185, 68, 0.55);
+}
+body.single-post .entry-content a:hover,
+body.single-post .wp-block-post-content a:hover {
+  color: #f2d998 !important;
+}
+
+/* ── 2. 표: 다크 + 골드 헤더 ──
+   (본문 표는 인라인 스타일로 border:#ddd, 헤더 배경 #f1f5f9가
+   박혀 있어서 !important로 덮어씁니다) */
+body.single-post .entry-content table,
+body.single-post .wp-block-post-content table {
+  background: #101d36 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+body.single-post .entry-content th,
+body.single-post .wp-block-post-content th {
+  background: #1a2a4a !important;
+  color: #e8b944 !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+body.single-post .entry-content td,
+body.single-post .wp-block-post-content td {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #dbe3f0;
+}
+body.single-post .entry-content tr[style*="background"],
+body.single-post .wp-block-post-content tr[style*="background"] {
+  background: #1a2a4a !important;
+}
+
+/* ── 3. 본문 속 밝은 배경 박스들 → 다크 카드로 ──
+   자동 생성 글에는 background:#f8f9fa, #fff, #fafafa 같은 밝은
+   인라인 배경의 안내/요약 박스가 여러 종류 들어갑니다.
+   전부 다크 카드 스타일로 통일합니다.
+   단, 투자 온도계의 색 게이지(height:100% 채움 막대)는 색이
+   의미를 가지므로 제외합니다. */
+body.single-post .entry-content [style*="background:#f"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background: #f"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background:#e"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background: #e"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background:#d"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background-color: #f"]:not([style*="height:100%"]),
+body.single-post .entry-content [style*="background-color:#f"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background:#f"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background: #f"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background:#e"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background: #e"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background:#d"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background-color: #f"]:not([style*="height:100%"]),
+body.single-post .wp-block-post-content [style*="background-color:#f"]:not([style*="height:100%"]) {
+  background: #121f3a !important;
+  color: #dbe3f0 !important;
+  border-color: rgba(232, 185, 68, 0.30) !important;
+  box-shadow: none !important;
+}
+
+/* 온도계 게이지의 회색 트랙만 살짝 어둡게 (채움 막대 색은 유지) */
+body.single-post .entry-content [style*="background:#ececec"],
+body.single-post .wp-block-post-content [style*="background:#ececec"] {
+  background: #22304f !important;
+}
+
+/* ── 4. 인라인 어두운 글자색 → 밝게 ── */
+body.single-post .entry-content [style*="color:#333"],
+body.single-post .entry-content [style*="color: #333"],
+body.single-post .entry-content [style*="color:#555"],
+body.single-post .entry-content [style*="color: #555"],
+body.single-post .entry-content [style*="color:#666"],
+body.single-post .entry-content [style*="color: #666"],
+body.single-post .entry-content [style*="color:#2c3e50"],
+body.single-post .wp-block-post-content [style*="color:#333"],
+body.single-post .wp-block-post-content [style*="color: #333"],
+body.single-post .wp-block-post-content [style*="color:#555"],
+body.single-post .wp-block-post-content [style*="color: #555"],
+body.single-post .wp-block-post-content [style*="color:#666"],
+body.single-post .wp-block-post-content [style*="color: #666"],
+body.single-post .wp-block-post-content [style*="color:#2c3e50"] {
+  color: #dbe3f0 !important;
+}
+body.single-post .entry-content [style*="color:#888"],
+body.single-post .entry-content [style*="color:#7f8c8d"],
+body.single-post .wp-block-post-content [style*="color:#888"],
+body.single-post .wp-block-post-content [style*="color:#7f8c8d"] {
+  color: #93a1bd !important;
+}
+
+/* 브랜드 남색(#1f3c88) 제목/강조 → 골드 */
+body.single-post .entry-content [style*="color:#1f3c88"],
+body.single-post .entry-content [style*="color: #1f3c88"],
+body.single-post .wp-block-post-content [style*="color:#1f3c88"],
+body.single-post .wp-block-post-content [style*="color: #1f3c88"] {
+  color: #e8b944 !important;
+}
+
+/* 어두운 배경에서 안 보이는 진한 파랑/빨강 → 밝은 톤으로 */
+body.single-post .entry-content [style*="color:#2166ac"],
+body.single-post .entry-content [style*="color:#2980b9"],
+body.single-post .wp-block-post-content [style*="color:#2166ac"],
+body.single-post .wp-block-post-content [style*="color:#2980b9"] {
+  color: #6db3f2 !important;
+}
+body.single-post .entry-content [style*="color:#c0392b"],
+body.single-post .entry-content [style*="color:#721c24"],
+body.single-post .wp-block-post-content [style*="color:#c0392b"],
+body.single-post .wp-block-post-content [style*="color:#721c24"] {
+  color: #ff8a7a !important;
+}
+
+/* ── 5. 상태 박스(경고/위험/성공/정보)는 다크 톤으로 색 유지 ──
+   (3번 규칙보다 아래에 있어서 이 색이 우선 적용됩니다) */
+body.single-post .entry-content [style*="background:#fff3cd"],
+body.single-post .wp-block-post-content [style*="background:#fff3cd"] {
+  background: #2e2712 !important;
+  border-color: rgba(232, 185, 68, 0.6) !important;
+}
+body.single-post .entry-content [style*="background:#f8d7da"],
+body.single-post .wp-block-post-content [style*="background:#f8d7da"] {
+  background: #331418 !important;
+  border-color: rgba(255, 138, 122, 0.5) !important;
+}
+body.single-post .entry-content [style*="background:#d4edda"],
+body.single-post .entry-content [style*="background:#e8f5e8"],
+body.single-post .wp-block-post-content [style*="background:#d4edda"],
+body.single-post .wp-block-post-content [style*="background:#e8f5e8"] {
+  background: #12271a !important;
+  border-color: rgba(111, 227, 161, 0.45) !important;
+}
+body.single-post .entry-content [style*="background:#d1ecf1"],
+body.single-post .entry-content [style*="background:#e3f2fd"],
+body.single-post .entry-content [style*="background:#f0f8ff"],
+body.single-post .wp-block-post-content [style*="background:#d1ecf1"],
+body.single-post .wp-block-post-content [style*="background:#e3f2fd"],
+body.single-post .wp-block-post-content [style*="background:#f0f8ff"] {
+  background: #10233b !important;
+  border-color: rgba(109, 179, 242, 0.45) !important;
+}
+
+/* ── 6. 인용/구분선/이미지 ── */
+body.single-post .entry-content blockquote,
+body.single-post .wp-block-post-content blockquote {
+  background: #121f3a !important;
+  border-left: 3px solid #e8b944 !important;
+  border-radius: 0 12px 12px 0;
+  color: #eef1f7 !important;
+  padding: 18px 24px;
+}
+body.single-post .entry-content hr,
+body.single-post .wp-block-post-content hr {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+body.single-post .entry-content img,
+body.single-post .wp-block-post-content img {
+  border-radius: 12px;
+}
+
+/* ── 7. 목차(핵심 목차) ──
+   기본(모바일/좁은 화면): 본문 안 다크 카드.
+   넓은 화면(900px 이상): 본문 오른쪽에 떠 있고 글이 옆으로 흐름. */
+body.single-post .ondo-toc,
+body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"],
+body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] {
+  background: #121f3a !important;
+  border-left: 3px solid #e8b944 !important;
+  border-radius: 0 12px 12px 0;
+  box-shadow: none !important;
+}
+body.single-post .ondo-toc h2,
+body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"] h2,
+body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] h2 {
+  color: #e8b944 !important;
+}
+body.single-post .ondo-toc a,
+body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"] a,
+body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] a {
+  color: #dbe3f0 !important;
+  text-decoration: none;
+  line-height: 2.0;
+}
+body.single-post .ondo-toc a:hover,
+body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"] a:hover,
+body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] a:hover {
+  color: #e8b944 !important;
+}
+
+@media (min-width: 900px) {
+  /* 넓은 화면: 목차를 본문 오른쪽에 띄우고 글이 왼쪽으로 흐르게 합니다.
+     sticky나 음수 마진은 쓰지 않습니다 - 워드프레스가 본문 블록에
+     margin-left/right:auto !important를 강제로 걸어서 목차가
+     사라지는 버그가 있었기 때문입니다. */
+  body.single-post .ondo-toc,
+  body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"],
+  body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] {
+    float: right;
+    clear: none;
+    box-sizing: border-box;
+    width: 280px;
+    max-width: 38%;
+    margin: 4px 0 24px 32px !important;
+    padding: 18px 20px !important;
+    border-radius: 12px;
+    border: 1px solid rgba(232, 185, 68, 0.35) !important;
+    border-left: 3px solid #e8b944 !important;
+  }
+  body.single-post .ondo-toc ul,
+  body.single-post .entry-content div[style*="border-left:3px solid #1f3c88"] ul,
+  body.single-post .wp-block-post-content div[style*="border-left:3px solid #1f3c88"] ul {
+    font-size: 14px;
+  }
+
+}
+
+/* 목차 링크로 이동할 때 제목이 화면 맨 위에 딱 붙지 않도록 여유 */
+body.single-post .entry-content h3,
+body.single-post .wp-block-post-content h3 {
+  scroll-margin-top: 100px;
+}
+
+/* ── 8. 사이드바 위젯(환율 정보 센터 등)도 다크 카드로 (있을 때만) ── */
+body.single-post .widget,
+body.single-post aside .wp-block-group {
+  background: #101d36 !important;
+  color: #dbe3f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
+}
+body.single-post .widget a,
+body.single-post aside .wp-block-group a {
+  color: #dbe3f0 !important;
+}
+
+/* ── 9. 본문 폭 제한 해제 ──
+   워드프레스는 글 안쪽 블록들의 최대 폭을 이 값 하나로 정합니다.
+   블록 설정을 층마다 끄는 대신, 이 값을 100%로 바꿔서 한 번에 풉니다. */
+body.single-post {
+  --wp--style--global--content-size: 100%;
+}
