@@ -26,6 +26,11 @@ on:
         required: false
         type: boolean
         default: false
+      check_trends:
+        description: '구글 트렌드 조회가 되는지 점검 (발행 안 함)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -224,7 +229,9 @@ jobs:
       - name: 수동 실행
         run: |
           ARGS=""
-          if [ "${{ github.event.inputs.check_universe }}" = "true" ]; then
+          if [ "${{ github.event.inputs.check_trends }}" = "true" ]; then
+            ARGS="--check-trends"
+          elif [ "${{ github.event.inputs.check_universe }}" = "true" ]; then
             ARGS="--check-universe"
           elif [ "${{ github.event.inputs.detect_only }}" = "true" ]; then
             ARGS="--detect-only"

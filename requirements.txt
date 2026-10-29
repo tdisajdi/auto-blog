@@ -13,6 +13,10 @@ google-auth
 feedparser
 beautifulsoup4
 
+# 구글 트렌드(검색 관심도·급상승 검색어) - trend_engine.py, 공식 API가 없어 비공식 라이브러리 사용
+trendspy
+pytrends
+
 # CHART_MODE=image로 바꿔서 정적 PNG 차트를 쓰려면 아래 두 줄의 주석을 해제하세요.
 # (CHART_MODE=script를 쓰는 동안에는 필요 없습니다)
 # plotly

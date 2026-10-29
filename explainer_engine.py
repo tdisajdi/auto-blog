@@ -143,6 +143,21 @@ def pick_issue_kind(macro_data):
     if "sentiment" in scores and fg and (int(fg.group()) <= 25 or int(fg.group()) >= 75):
         scores["sentiment"] += 1.5
         reasons["sentiment"] = f"공포/탐욕 지수 {macro_data.get('fear_greed')}"
+    trending_words = {
+        "fx": ("환율", "달러", "원화", "엔화"),
+        "rates": ("금리", "국채", "연준", "FOMC", "파월", "한국은행", "기준금리"),
+        "sentiment": ("코스피", "나스닥", "증시", "주가", "폭락", "급락", "급등", "S&P"),
+    }
+    try:
+        import trend_engine
+        trending = trend_engine.get_trending_searches("KR")
+    except Exception:
+        trending = []
+    for k in available:
+        hits = [t for t in trending if any(w.lower() in t.lower() for w in trending_words[k])]
+        if hits:
+            scores[k] += 1.0
+            reasons[k] = (reasons[k] + " / " if reasons[k] else "") + f"구글 급상승 검색어: {', '.join(hits[:3])}"
     best = max(available, key=lambda k: scores[k])
     if scores[best] <= 0:
         return None, ""
