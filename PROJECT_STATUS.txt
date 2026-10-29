@@ -195,6 +195,11 @@
   코드가 검사조차 안 함)
 - 정리된 .env는 사용자에게 파일로 전달함. 저장소에는 절대 안 올림.
 
+[저장소에 추가로 반영한 것]
+- 뉴스 3종 자동 스케줄 꺼둠 (publish_news.yml, 수동 실행만 가능)
+- etf_article_state.json: 7월 ondo99.com QQQ 글 4개 기록 이전
+  (사이트에서 이 글들을 지웠다면 이 파일도 정리 필요)
+
 [남은 순서]
 1. 텔레그램 값 2개 채우기
 2. Settings → Actions → General → "Read and write permissions" 확인
