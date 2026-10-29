@@ -66,6 +66,7 @@
     overflow: hidden;
     background: linear-gradient(120deg, #16244a 0%, #0b1428 100%);
   }
+  #ondo-cat-page .oc-hero-img[src=""] { display: none; }
   #ondo-cat-page .oc-hero-img {
     position: absolute;
     inset: 0;
@@ -510,7 +511,7 @@
   };
   document.querySelectorAll('#ondo-cat-page .oc-loading').forEach(function (n) { n.textContent = T.loading; });
 
-  /* ★★★ 이 페이지의 카테고리: 'etf' | 'patents' | 'biotech' | 'trend' 중 하나로 바꾸세요 ★★★ */
+  /* ★★★ 이 페이지의 카테고리: 'etf' | 'trend' | 'patents' | 'biotech' | 'energy' | 'society' 중 하나로 바꾸세요 ★★★ */
   var CATEGORY = 'trend';
 
   /* 카테고리별 설정: 라벨, 영문 태그라인, 소개 문구, 대체 이미지, 필터 칩.
@@ -530,28 +531,44 @@
         { label: KO ? '환율' : 'FX', tag: '환율' }
       ]
     },
+    trend: {
+      label: 'Trend',
+      tagline: 'What People Are Talking About.',
+      desc: '요즘 사람들이 무엇에 관심을 갖는지, 검색 데이터로 트렌드를 읽습니다.',
+      desc_en: 'What people care about right now, read through search data.',
+      image: 'https://ondo99.com/wp-content/uploads/2026/07/Trend-Category-with-tagline.png',
+      chips: []
+    },
     patents: {
-      label: 'Patents',
-      tagline: 'Intellectual Property. Advantage.',
-      desc: '특허 흐름으로 읽는 기술 트렌드와 기업의 미래 가치를 분석합니다.',
-      desc_en: 'Reading technology trends and future corporate value through patent flows.',
+      label: 'Tech & Patents',
+      tagline: 'Ideas That Shape Tomorrow.',
+      desc: 'AI·우주·로봇 같은 신기술과 특허 흐름으로 미래 산업을 살펴봅니다.',
+      desc_en: 'New technologies such as AI, space and robotics, and the patents behind them.',
       image: 'https://ondo99.com/wp-content/uploads/2026/07/Patents-Category.png',
       chips: []
     },
     biotech: {
       label: 'Biotech/New Drugs',
       tagline: 'Innovation. Discovery. Transformation.',
-      desc: '혁신 신약과 임상 진전, 의학의 미래를 만드는 기업들을 심층 분석합니다.',
-      desc_en: 'Deep dives into breakthrough therapies, clinical advances, and the companies shaping the future of medicine.',
+      desc: '신약 승인과 임상 결과처럼 확인된 사실을 중심으로 바이오 소식을 정리합니다.',
+      desc_en: 'Biotech news grounded in confirmed facts such as approvals and trial results.',
       image: 'https://ondo99.com/wp-content/uploads/2026/07/Biotech-Category.png',
       chips: []
     },
-    trend: {
-      label: 'Trend',
-      tagline: 'Spotting What Moves The Market.',
-      desc: '시장을 움직이는 트렌드를 포착하고 분석합니다.',
-      desc_en: 'Spotting and analyzing what moves the market.',
-      image: 'https://ondo99.com/wp-content/uploads/2026/07/Trend-Category-with-tagline.png',
+    energy: {
+      label: 'Energy & Climate',
+      tagline: 'Power. Resources. Planet.',
+      desc: '전력·자원·식량·기후 변화를 공식 데이터로 풀어봅니다.',
+      desc_en: 'Power, resources, food and climate, explained with official data.',
+      image: '',
+      chips: []
+    },
+    society: {
+      label: 'Society',
+      tagline: 'How We Live Is Changing.',
+      desc: '인구와 사회의 변화를 통계로 읽습니다.',
+      desc_en: 'Population and social change, read through statistics.',
+      image: '',
       chips: []
     }
   };
@@ -561,7 +578,9 @@
     etf: '/category/etf/',
     patents: '/category/patents/',
     biotech: '/category/biotech/',
-    trend: '/category/trend/'
+    trend: '/category/trend/',
+    energy: '/category/energy/',
+    society: '/category/society/'
   };
 
   /* 한 페이지에 보여줄 글 수: 피처드 1 + 그리드 4 */
@@ -640,7 +659,8 @@
       var media = post._embedded['wp:featuredmedia'];
       if (media && media[0] && media[0].source_url) return media[0].source_url;
     } catch (e) {}
-    return fallback;
+    // 대표 이미지도 카테고리 기본 이미지도 없으면 투명 이미지로 채워 깨진 그림 표시를 막는다.
+    return fallback || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
   }
   /* 글별 소제목 라벨: 첫 번째 태그 이름을 쓰고, 없으면 카테고리 라벨 */
   function getPostLabel(post) {
@@ -674,12 +694,13 @@
     document.getElementById('oc-hero-title').textContent = meta.label;
     document.getElementById('oc-hero-tagline').textContent = meta.tagline;
     document.getElementById('oc-hero-desc').innerHTML = KO ? meta.desc : (meta.desc_en || meta.desc);
-    var order = ['etf', 'patents', 'biotech', 'trend'];
+    var order = ['etf', 'trend', 'patents', 'biotech', 'energy', 'society'];
+    // 탭은 6개라 짧은 이름을 쓴다(긴 이름은 히어로 제목에만 표시).
+    var TAB_LABELS = { etf: 'ETF', trend: 'Trend', patents: 'Tech', biotech: 'Biotech', energy: 'Energy', society: 'Society' };
     var html = '';
     order.forEach(function (slug) {
-      var m = CATEGORY_META[slug];
       var cls = 'oc-tab' + (slug === CATEGORY ? ' is-active' : '');
-      html += '<a class="' + cls + '" data-slug="' + slug + '" href="' + PAGE_LINKS[slug] + '">' + escapeHtml(m.label) + '</a>';
+      html += '<a class="' + cls + '" data-slug="' + slug + '" href="' + PAGE_LINKS[slug] + '">' + escapeHtml(TAB_LABELS[slug]) + '</a>';
     });
     document.getElementById('oc-tabs').innerHTML = html;
   })();
@@ -688,9 +709,11 @@
   try {
     var TAB_TITLE_MAP = {
       etf: ['etf'],
-      patents: ['patents', 'patent'],
+      patents: ['patents', 'patent', 'tech & patents', 'tech'],
       biotech: ['bio', 'biotech', 'biotech/new drugs'],
-      trend: ['trend']
+      trend: ['trend'],
+      energy: ['energy', 'energy & climate'],
+      society: ['society']
     };
     fetch(SITE_API + '/pages?per_page=100&_fields=link,title')
       .then(function (r) { return r.json(); })
