@@ -1,0 +1,33 @@
+=================================================================
+ ondo 블로그 자동화 — 수정 기록 (최신이 맨 위)
+ 전체 진행 상황은 PROJECT_STATUS.txt 참고
+=================================================================
+
+[2026-10-29]
+- 저장소 교체: 옛 티스토리 이메일 봇(tech.py, bio.py, patent.py,
+  history.json, .github/workflows/daily_post.yml) 삭제.
+  새 ondo 워드프레스 시스템으로 교체: blog_engine.py, etf_auto.py,
+  news_engine.py, tech_auto.py, bio_auto.py, patent_auto.py,
+  publish.yml, publish_news.yml, .env.example, .gitignore,
+  GITHUB_ACTIONS_GUIDE.md, requirements.txt
+  (출처: auto-blog-refactor.zip)
+  이유: 옛 봇은 글을 직접 발행하지 않고 Gmail로 HTML만 보냈고,
+  저자/사이트도 옛날 것(스포, spo26.tistory.com)이었음.
+- .env 정리 (파일은 저장소에 없음, 사용자에게 따로 전달):
+  티스토리 키 3개(TISTORY_ID, TISTORY_PW, BLOG_NAME) 제거,
+  PLATFORM=wordpress / CHART_MODE=script 명시.
+  텔레그램 2개는 아직 비어있음.
+- 진행 상황 문서(PROJECT_STATUS.txt)와 이 수정 기록 파일을 저장소에
+  추가. 앞으로 수정할 때마다 여기에 기록함.
+- 주의: 이 변경은 claude/priority-check-z0uw9b 브랜치에만 있음.
+  main에 합치기 전까지 옛 봇이 계속 돌아감.
+
+[이전 작업 요약 — 날짜 기록 없음]
+- 7,002줄짜리 tistory_auto.py를 공용 엔진(blog_engine.py) +
+  ETF(etf_auto.py) + 뉴스(news_engine.py) + 카테고리 wrapper로 분리.
+- 깃허브 시크릿을 DOTENV_CONTENTS 하나로 통합.
+- 고친 버그: f-string 따옴표 중첩, _load_json_file 중복 정의,
+  chart_js 미삽입, 튜플 언패킹 누락 2건, PROMPT_LOGIC_VERSION 위치,
+  etf_data= 옛 키워드 6곳, BLOG_CATEGORY 기본값 누락.
+- 워드프레스 디자인(허브, 카테고리 4종, 글 다크테마 CSS, 저자 소개
+  페이지)은 따로 전달함. 이 저장소에는 없음.
