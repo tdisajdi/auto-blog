@@ -8,5 +8,15 @@
     "model_switch_events": {
       "gemini-3.5-flash-lite": 1
     }
+  },
+  {
+    "timestamp": "2026-10-29T08:11:50.946575",
+    "total_calls": 4,
+    "by_model": {
+      "gemini-3.1-flash-lite": 4
+    },
+    "model_switch_events": {
+      "gemini-3.5-flash-lite": 1
+    }
   }
 ]
