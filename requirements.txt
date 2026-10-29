@@ -1,7 +1,7 @@
 requests
 pandas
 yfinance
-FinanceDataReader
+finance-datareader
 selenium
 webdriver-manager
 python-dotenv
