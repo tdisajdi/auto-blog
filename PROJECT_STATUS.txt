@@ -242,7 +242,7 @@
 
 [다음 단계 — 아직 안 함]
 - 검색량: 구글 트렌드(trend_engine.py)로 결정. 네이버는 보류(나중에 한국 독자 반응
-  분석이 필요하면 추가). 깃허브 check_trends로 실제 작동 여부 확인 필요. 막히면
+  분석이 필요하면 추가). (2026-10-29 깃허브 check_trends: trendspy·pytrends 관심도, 급상승 RSS 모두 정상 작동) 막히면
   SerpApi 무료 플랜 가입 → SERPAPI_KEY를 .env에 추가하면 자동으로 그쪽 사용.
 - (완료 2026-10-29) check_universe 점검: 41/41개 정상, 국내 ETF 이름도 일치
 
