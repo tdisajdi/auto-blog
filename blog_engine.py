@@ -1836,7 +1836,7 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     교체했다 - 요금제 무관, Free 요금제에서도 작동한다.
 
     필요한 .env 값: WP_OAUTH_TOKEN(OAuth2 access token), WP_SITE_ID(숫자형
-    사이트 ID). 발급 방법은 자동화_변경사항.txt 참고.
+    사이트 ID). 발급 방법은 PROJECT_STATUS.txt 3-1절 참고.
 
     [신규] slug 파라미터: AI가 Part1 팩트시트에서 만든 recommended_url(영문
     소문자-하이픈 슬러그)을 여기로 넘기면, 워드프레스가 제목 기반으로 자동
