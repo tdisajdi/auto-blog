@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2026-10-29T07:50:42.154086",
+    "total_calls": 4,
+    "by_model": {
+      "gemini-3.1-flash-lite": 4
+    },
+    "model_switch_events": {
+      "gemini-3.5-flash-lite": 1
+    }
+  }
+]
