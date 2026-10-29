@@ -1,20 +1,20 @@
 """blog_engine.py — 카테고리 무관 공용 발행 엔진.
 
-ETF/테크/바이오/특허 등 여러 카테고리 스크립트가 공유하는 "방식"들을 모아둔
+ETF와 두 번째 슬롯(트렌드/기술·특허/바이오/에너지/인구·사회) 스크립트가 공유하는 "방식"들을 모아둔
 모듈이다. 원래 tistory_auto.py(ETF 전용 8천줄 스크립트) 안에 있던 기능 중
 도메인에 상관없이 재사용 가능한 부분(Gemini API 호출/키·모델 로테이션,
 Part 단위 품질검수+타깃수정, 애드센스 정책 필터, 워드프레스 발행,
 텔레그램 알림, IndexNow, Threads 카드뉴스, 상태/중복관리, SEO 제목 최적화)
 만 뽑아서 여기로 옮겼다.
 
-카테고리별 스크립트(etf_auto.py/tech_auto.py/bio_auto.py/patent_auto.py)는
+카테고리별 스크립트(etf_auto.py, topic_engine.py)는
 `from blog_engine import ...`로 이 함수들을 가져다 쓰고, 자기 도메인 고유
 로직(주제 발굴, Part1~5 프롬프트, 팩트시트 스키마)만 각자 파일에 둔다.
 
 [카테고리별 상태 파일 격리] 여러 카테고리가 같은 article_state.json 등을
 공유하면 한 카테고리의 중복검사/발행간격 체크가 다른 카테고리 글에 영향을
-주는 문제가 생긴다. 이를 막기 위해 환경변수 BLOG_CATEGORY(예: etf/tech/bio/
-patent)로 모든 상태 파일 이름 앞에 접두어를 붙여 자동으로 격리한다.
+주는 문제가 생긴다. 이를 막기 위해 환경변수 BLOG_CATEGORY(예: etf/trend/tech/
+bio/energy/society)로 모든 상태 파일 이름 앞에 접두어를 붙여 자동으로 격리한다.
 IndexNow 인증키만 예외로 카테고리 구분 없이 사이트 전체가 공유한다(같은
 사이트는 어떤 카테고리로 글을 올리든 검색엔진에 알리는 인증키는 하나면
 충분하기 때문).
@@ -23,6 +23,7 @@ IndexNow 인증키만 예외로 카테고리 구분 없이 사이트 전체가 �
 import time
 import requests
 import re
+import html
 import os
 import json
 import hashlib
@@ -2269,18 +2270,37 @@ def _telegram_send_message(text, with_approve_button=False):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
     if with_approve_button:
+        # True면 ETF 추천용 "approve", 문자열이면 그 값을 버튼 신호로 쓴다(두 번째 글은 "approve_topic").
+        callback = with_approve_button if isinstance(with_approve_button, str) else "approve"
         payload["reply_markup"] = json.dumps({
-            "inline_keyboard": [[{"text": "✅ 승인", "callback_data": "approve"}]]
+            "inline_keyboard": [[{"text": "✅ 승인", "callback_data": callback}]]
         })
     try:
         resp = requests.post(url, data=payload, timeout=15)
         if resp.status_code == 200:
-            return True
+            # 보낸 메시지 번호를 돌려준다(답장으로 어느 추천에 대한 메모인지 구분할 때 사용). 참/거짓 판단에도 그대로 쓸 수 있음.
+            return (resp.json().get("result") or {}).get("message_id") or True
         print(f"⚠️ 텔레그램 전송 실패: {resp.status_code} {resp.text[:200]}")
         return False
     except Exception as e:
         print(f"⚠️ 텔레그램 전송 중 오류: {e}")
         return False
+
+
+def _insert_operator_memo(body_html, memo):
+    """운영자가 텔레그램으로 보낸 한 줄 메모를 서론 다음(첫 대제목 앞)에 넣는다.
+    AI가 고쳐 쓰지 않도록 코드가 그대로 넣고, HTML로 해석되지 않게 이스케이프한다."""
+    block = (
+        '<div class="ondo-operator-memo" style="margin:24px 0;padding:14px 18px;'
+        'border-left:3px solid #e8b944;background:#f8f9fa;border-radius:4px;">'
+        '<p style="margin:0 0 6px 0;font-weight:bold;font-size:14px;">✍️ 운영자 메모</p>'
+        f'<p style="margin:0;font-size:15px;line-height:1.7;">{html.escape(memo)}</p>'
+        '</div>'
+    )
+    m = re.search(r'<h3[\s>]', body_html)
+    if not m:
+        return body_html + block
+    return body_html[:m.start()] + block + body_html[m.start():]
 
 
 def _telegram_update_is_authorized(update):

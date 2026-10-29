@@ -56,7 +56,7 @@ from blog_engine import (
     _upload_image_to_wordpress, _check_publish_interval, _clean_stale_sessions,
     ping_indexnow,
     _render_html_to_image, _threads_post_carousel, _threads_post,
-    _telegram_send_message, _telegram_get_updates, _telegram_update_is_authorized,
+    _telegram_send_message, _telegram_get_updates, _telegram_update_is_authorized, _insert_operator_memo,
     _check_duplicate, _save_published_article_file, _register_article,
     _load_state,
     generate_optimized_title,
@@ -5442,6 +5442,15 @@ def _save_pending(data):
     _save_json_file(PENDING_RECOMMENDATION_FILE, data)
 
 
+def _record_pending_message(msg_id):
+    """방금 보낸 ETF 추천 메시지 번호를 저장한다(답장 메모가 어느 추천 것인지 구분할 때 사용)."""
+    pending = _load_pending()
+    if pending and msg_id:
+        pending["message_id"] = msg_id if msg_id is not True else None
+        pending["sent_at"] = datetime.now().isoformat()
+        _save_pending(pending)
+
+
 def _clear_pending():
     if os.path.exists(PENDING_RECOMMENDATION_FILE):
         os.remove(PENDING_RECOMMENDATION_FILE)
@@ -5483,7 +5492,7 @@ def run_discover_and_notify():
             pending["reminder_count"] = pending.get("reminder_count", 0) + 1
             pending["last_reminded_at"] = datetime.now().isoformat()
             _save_pending(pending)
-            _telegram_send_message(
+            _record_pending_message(_telegram_send_message(
                 f"⏰ 아직 승인 안 하신 추천이 있어요 ({age_days}일째)\n\n"
                 f"글 종류: {pending.get('article_type', '단일 분석')}\n"
                 f"주제: {pending.get('label') or _topic_label(pending['ticker'])}\n"
@@ -5491,7 +5500,7 @@ def run_discover_and_notify():
                 f"{REPLY_HELP_TEXT}\n"
                 f"(이 알림은 {REMINDER_MAX_DAYS}일까지 반복되고, 넘기면 새로 추천해드려요)",
                 with_approve_button=True,
-            )
+            ))
             print(f"ℹ️ 기존 추천({pending['ticker']})이 아직 {REMINDER_MAX_DAYS}일 안이라 리마인드만 보냈습니다.")
             return
         else:
@@ -5510,11 +5519,11 @@ def run_discover_and_notify():
             "created_at": datetime.now().isoformat(),
             "reminder_count": 0,
         })
-        _telegram_send_message(
+        _record_pending_message(_telegram_send_message(
             f"📌 오늘의 추천 주제\n\n글 종류: {article_type}\n주제: {_topic_label(topic)}\n이유: {why}\n\n"
             f"{REPLY_HELP_TEXT}\n({REMINDER_MAX_DAYS}일간 리마인드되고, 그 안에 응답 없으면 자동으로 새로 추천해드려요)",
             with_approve_button=True,
-        )
+        ))
         print(f"✅ 새 추천을 알림으로 보냈습니다: {topic} ({article_type})")
         return
 
@@ -5522,13 +5531,6 @@ def run_discover_and_notify():
     if not candidates:
         # 발굴에서 아무 후보도 못 찾았을 때(전부 쿨다운에 걸림) - 재포스팅으로 폴백
         fallback = pick_next_topic()
-        _telegram_send_message(
-            f"ℹ️ 오늘은 새로 다룰 만한 신호가 있는 종목이 없어서, 재포스팅(업데이트) 후보를 추천드려요.\n\n"
-            f"주제: {_topic_label(fallback['ticker'])}\n"
-            f"사유: {fallback['reason']}\n\n"
-            f"{REPLY_HELP_TEXT}",
-            with_approve_button=True,
-        )
         _save_pending({
             "ticker": fallback["ticker"],
             "article_type": "단일 분석",
@@ -5537,6 +5539,13 @@ def run_discover_and_notify():
             "created_at": datetime.now().isoformat(),
             "reminder_count": 0,
         })
+        _record_pending_message(_telegram_send_message(
+            f"ℹ️ 오늘은 새로 다룰 만한 신호가 있는 종목이 없어서, 재포스팅(업데이트) 후보를 추천드려요.\n\n"
+            f"주제: {_topic_label(fallback['ticker'])}\n"
+            f"사유: {fallback['reason']}\n\n"
+            f"{REPLY_HELP_TEXT}",
+            with_approve_button=True,
+        ))
         return
 
     decision = debate_and_select(candidates)
@@ -5559,7 +5568,7 @@ def run_discover_and_notify():
     })
 
     candidate_summary = ", ".join(f"{c['ticker']}({c['signal_score']}점)" for c in candidates)
-    _telegram_send_message(
+    _record_pending_message(_telegram_send_message(
         f"📌 오늘의 추천 주제\n\n"
         f"글 종류: {article_type}\n"
         f"주제: {_topic_label(topic)}\n"
@@ -5568,7 +5577,7 @@ def run_discover_and_notify():
         f"{REPLY_HELP_TEXT}\n"
         f"({REMINDER_MAX_DAYS}일간 리마인드되고, 그 안에 응답 없으면 자동으로 새로 추천해드려요)",
         with_approve_button=True,
-    )
+    ))
     print(f"✅ 새 추천을 알림으로 보냈습니다: {topic} ({article_type})")
 
 
@@ -5648,20 +5657,37 @@ def run_check_universe():
           + (f", 실패: {', '.join(failed)}" if failed else ""))
 
 
+PENDING_TOPIC_FILE = "pending_topic.json"            # 두 번째 글(ETF 외 분야) 추천 - topic_engine.py
+CONFIRMED_TOPIC2_FILE = "confirmed_topic2_context.json"
+
+
+def _memo_target(update, pending, pending2):
+    """메모가 어느 추천 것인지: 그 추천 메시지에 답장했으면 그 추천, 아니면 가장 최근에 보낸 추천."""
+    reply_id = (((update.get("message") or {}).get("reply_to_message")) or {}).get("message_id")
+    if pending2 and reply_id and reply_id == pending2.get("message_id"):
+        return "topic"
+    if pending and reply_id and reply_id == pending.get("message_id"):
+        return "etf"
+    if pending and pending2:
+        return "topic" if (pending2.get("sent_at") or "") > (pending.get("sent_at") or "") else "etf"
+    return "topic" if pending2 else "etf"
+
+
 def run_check_approval():
     """
     [자주 실행되는(예: 10분마다) 진입점] 텔레그램 응답을 확인해서:
-    - [✅ 승인] 버튼 -> 대기 중이던 추천 그대로 승인
-    - 종목 답장(예: "SPY" 또는 "SPY,360750") -> 그 종목으로 바꿔서 진행
+    - ETF 추천의 [✅ 승인] → APPROVED_TICKER:{주제}
+    - 두 번째 글(ETF 외 분야) 추천의 [✅ 승인] → APPROVED_TOPIC:{분야}
+    - 종목 답장(예: "SPY" 또는 "SPY,360750") → ETF 추천을 그 종목으로 바꿔서 진행
       (단, 7일 안에 같은 지수 글이 있으면 거절. "강제 SPY"면 그래도 진행)
-    - "메모: 내용" -> 운영자 메모로 저장(승인 전에 보내도 됨), 글에 그대로 실린다
+    - "메모: 내용" → 운영자 메모로 저장. 추천 메시지에 답장으로 보내면 그 추천에,
+      그냥 보내면 가장 최근 추천에 붙는다. 글에 그대로 실린다.
     - 운영자 채팅방이 아닌 곳에서 온 메시지는 모두 무시
-
-    확정되면 표준출력에 APPROVED_TICKER:{주제} 한 줄을 출력한다
-    (GitHub Actions가 grep해서 --topic으로 글쓰기 파이프라인을 실행).
+    GitHub Actions가 위 두 줄을 grep해서 각각의 글쓰기를 실행한다.
     """
     pending = _load_pending()
-    if not pending:
+    pending2 = _load_json_file(PENDING_TOPIC_FILE, None)
+    if not pending and not pending2:
         print("ℹ️ 대기 중인 추천이 없습니다. 확인할 것이 없어 종료합니다.")
         return
 
@@ -5671,10 +5697,9 @@ def run_check_approval():
         print("ℹ️ 새로운 텔레그램 응답이 없습니다.")
         return
 
-    confirmed_topic = None
-    override = False
+    confirmed_topic, override, topic2_ok = None, False, False
     max_update_id = offset or 0
-    pending_changed = False
+    changed, changed2 = False, False
 
     for update in updates:
         max_update_id = max(max_update_id, update.get("update_id", 0))
@@ -5683,8 +5708,11 @@ def run_check_approval():
             continue
 
         callback = update.get("callback_query")
-        if callback and callback.get("data") == "approve":
-            confirmed_topic, override = pending["ticker"], False
+        if callback:
+            if callback.get("data") == "approve" and pending:
+                confirmed_topic, override = pending["ticker"], False
+            elif callback.get("data") == "approve_topic" and pending2:
+                topic2_ok = True
             continue
 
         text = ((update.get("message") or {}).get("text") or "").strip()
@@ -5693,12 +5721,16 @@ def run_check_approval():
 
         memo = _parse_memo_reply(text)
         if memo:
-            pending["memo"] = memo
-            pending_changed = True
-            _telegram_send_message(f"📝 운영자 메모를 저장했어요. 이 글에 그대로 실립니다:\n\"{memo}\"")
+            if _memo_target(update, pending, pending2) == "topic":
+                pending2["memo"], changed2 = memo, True
+                where = "두 번째 글"
+            else:
+                pending["memo"], changed = memo, True
+                where = "ETF 글"
+            _telegram_send_message(f"📝 운영자 메모를 저장했어요({where}). 이 글에 그대로 실립니다:\n\"{memo}\"")
             continue
 
-        parsed = _parse_topic_reply(text)
+        parsed = _parse_topic_reply(text) if pending else None
         if not parsed:
             continue
         topic, force = parsed
@@ -5713,11 +5745,21 @@ def run_check_approval():
         confirmed_topic, override = topic, True
 
     _save_telegram_offset(max_update_id + 1)
-    if pending_changed and not confirmed_topic:
+    if changed and not confirmed_topic:
         _save_pending(pending)
+    if changed2 and not topic2_ok:
+        _save_json_file(PENDING_TOPIC_FILE, pending2)
+
+    if topic2_ok:
+        print(f"APPROVED_TOPIC:{pending2['category']}")
+        _save_json_file(CONFIRMED_TOPIC2_FILE, pending2)
+        os.remove(PENDING_TOPIC_FILE)
+        memo_note = "\n📝 운영자 메모도 함께 실려요." if pending2.get("memo") else ""
+        _telegram_send_message(f"✅ 두 번째 글 '{pending2['title_seed']}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
 
     if not confirmed_topic:
-        print("ℹ️ 응답은 있었지만 승인/종목 지정으로 해석되지 않았습니다. 계속 대기합니다.")
+        if not topic2_ok:
+            print("ℹ️ 응답은 있었지만 승인/종목 지정으로 해석되지 않았습니다. 계속 대기합니다.")
         return
 
     print(f"✅ 확정된 주제: {confirmed_topic}")
@@ -5734,23 +5776,6 @@ def run_check_approval():
     memo_note = "\n📝 운영자 메모도 함께 실려요." if pending.get("memo") else ""
     label = pending.get('label') if confirmed_topic == pending.get('ticker') else None
     _telegram_send_message(f"✅ '{label or _topic_label(confirmed_topic)}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
-
-
-def _insert_operator_memo(body_html, memo):
-    """운영자가 텔레그램으로 보낸 한 줄 메모를 서론 다음(첫 대제목 앞)에 넣는다.
-    AI가 고쳐 쓰지 않도록 코드가 그대로 넣고, HTML로 해석되지 않게 이스케이프한다."""
-    import html as _html
-    block = (
-        '<div class="ondo-operator-memo" style="margin:24px 0;padding:14px 18px;'
-        'border-left:3px solid #e8b944;background:#f8f9fa;border-radius:4px;">'
-        '<p style="margin:0 0 6px 0;font-weight:bold;font-size:14px;">✍️ 운영자 메모</p>'
-        f'<p style="margin:0;font-size:15px;line-height:1.7;">{_html.escape(memo)}</p>'
-        '</div>'
-    )
-    m = re.search(r'<h3[\s>]', body_html)
-    if not m:
-        return body_html + block
-    return body_html[:m.start()] + block + body_html[m.start():]
 
 
 def _ask_yn(prompt, default_when_noninteractive='n'):
