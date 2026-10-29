@@ -1331,12 +1331,21 @@ def _get_previous_analysis(etf_list, today_str, rss_posts=None):
                     resolved_url = rss_item.get('url', resolved_url)
                     break
 
+            prev_day = str(latest_article.get('timestamp', ''))[:10]
+            try:
+                prev_day = datetime.strptime(prev_day, "%Y-%m-%d").strftime("%Y년 %m월 %d일")
+            except ValueError:
+                pass
             previous = {
                 'title': latest_article['title'],
                 'date': latest_article['timestamp'],
+                'date_display': prev_day,
                 'url': resolved_url,
                 'version': latest_article.get('version', 1),
-                'etf_data': latest_article.get('etf_data', {}),  # 과거 데이터 로드
+                # 7월까지의 기록은 'etf_data', 공용 엔진(blog_engine._register_article)으로
+                # 바뀐 뒤 저장되는 기록은 'topic_data'에 들어간다. 둘 다 읽어야 시리즈
+                # 비교가 두 번째 글 이후에도 끊기지 않는다.
+                'etf_data': latest_article.get('etf_data') or latest_article.get('topic_data') or {},
                 'content': latest_article.get('content', ''),  # 섹션 구성 비교(차별화 지시)에 사용
             }
         if all_matching:
@@ -1401,9 +1410,9 @@ def _build_revision_history_section(previous_analyses, etf_data_cache, today_str
 
         revision_blocks.append(f"""
 <div style="margin-bottom:16px;padding:14px;background:#fff;border:1px solid #e0e0e0;border-radius:6px;">
-<p style="margin:0 0 8px 0;font-weight:bold;color:#2c3e50;">{ticker_clean} — {prev['date']} 분석 대비 변화</p>
+<p style="margin:0 0 8px 0;font-weight:bold;color:#2c3e50;">{ticker_clean} — {prev['date_display']} 분석 대비 변화</p>
 <table style="width:100%;border-collapse:collapse;font-size:13px;">
-<tr style="background:#f1f5f9;"><th style="border:1px solid #ddd;padding:6px;">지표</th><th style="border:1px solid #ddd;padding:6px;">{prev['date']} (v{prev['version']})</th><th style="border:1px solid #ddd;padding:6px;">{today_str} (현재)</th></tr>
+<tr style="background:#f1f5f9;"><th style="border:1px solid #ddd;padding:6px;">지표</th><th style="border:1px solid #ddd;padding:6px;">{prev['date_display']} (v{prev['version']})</th><th style="border:1px solid #ddd;padding:6px;">{today_str} (현재)</th></tr>
 <tr><td style="border:1px solid #ddd;padding:6px;">배당수익률</td><td style="border:1px solid #ddd;padding:6px;">{past_yield}</td><td style="border:1px solid #ddd;padding:6px;">{cur_yield}</td></tr>
 <tr><td style="border:1px solid #ddd;padding:6px;">최대낙폭(MDD)</td><td style="border:1px solid #ddd;padding:6px;">{past_mdd}</td><td style="border:1px solid #ddd;padding:6px;">{cur_mdd}</td></tr>
 <tr><td style="border:1px solid #ddd;padding:6px;">1년 수익률</td><td style="border:1px solid #ddd;padding:6px;">{past_1y_ret}</td><td style="border:1px solid #ddd;padding:6px;">{cur_1y_ret_str}</td></tr>
@@ -5347,11 +5356,7 @@ def run_automation():
         if analysis['previous']:
             prev = analysis['previous']
             series_context += f"[{ticker_clean} 시리즈 이전(v{prev['version']}) 분석 데이터]\n"
-            prev_day = str(prev['date'])[:10]
-            try:
-                prev_day = datetime.strptime(prev_day, "%Y-%m-%d").strftime("%Y년 %m월 %d일")
-            except ValueError:
-                pass
+            prev_day = prev['date_display']
             series_context += f"- 이전 분석일: {prev_day} (오늘은 {today_str}. 두 날짜를 혼동하지 마세요)\n"
             
             # 이전 팩트 데이터 추출
