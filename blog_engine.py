@@ -1860,7 +1860,37 @@ def publish_to_wordpress_selenium(driver, title, html_content, wp_email, wp_pass
         return False, f"예상치 못한 오류: {type(e).__name__}: {e}"
 
 
-def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=None):
+# 자동화 카테고리(BLOG_CATEGORY) → 워드프레스 카테고리 주소(slug).
+# 기존 주소(etf/patents/biotech/trend)는 이미 걸린 링크가 깨지지 않게 그대로 두고,
+# 화면에 보이는 이름만 워드프레스 관리자에서 바꾼다.
+WP_CATEGORY_SLUGS = {
+    "etf": "etf", "trend": "trend", "tech": "patents", "patent": "patents",
+    "bio": "biotech", "energy": "energy", "society": "society",
+}
+_wp_category_id_cache = {}
+
+
+def _wp_category_id(category_slug):
+    """워드프레스 카테고리 주소로 ID를 찾는다. 없으면 None(그 카테고리를 관리자에서 먼저 만들어야 함)."""
+    if category_slug in _wp_category_id_cache:
+        return _wp_category_id_cache[category_slug]
+    cat_id = None
+    try:
+        r = requests.get(
+            f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/categories/slug:{category_slug}",
+            headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"}, timeout=20)
+        if r.status_code == 200:
+            cat_id = r.json().get("ID")
+        else:
+            print(f"⚠️ 워드프레스 카테고리 '{category_slug}'를 찾지 못했습니다(HTTP {r.status_code}). "
+                  f"관리자 화면에서 이 주소(slug)로 카테고리를 만들어주세요. 이번 글은 카테고리 없이 올라갑니다.")
+    except Exception as e:
+        print(f"⚠️ 워드프레스 카테고리 조회 실패: {type(e).__name__}: {e}")
+    _wp_category_id_cache[category_slug] = cat_id
+    return cat_id
+
+
+def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=None, category_slug=None):
     """[수정] 워드프레스 발행 함수.
 
     [중요/버그수정 이력] 예전 버전은 자체호스팅용 코어 REST API
@@ -1897,6 +1927,13 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     }
     if slug:
         payload["slug"] = slug
+    # 예전엔 카테고리를 지정하지 않아 모든 글이 "미분류"로 올라갔고, 허브/카테고리
+    # 페이지(카테고리 주소로 글을 불러옴)에 글이 하나도 안 보이는 문제가 있었다.
+    category_slug = category_slug or WP_CATEGORY_SLUGS.get(BLOG_CATEGORY)
+    if category_slug:
+        cat_id = _wp_category_id(category_slug)
+        if cat_id:
+            payload["categories"] = str(cat_id)
     tags_param = _wp_tags_param(tags)
     if tags_param:
         payload["tags"] = tags_param  # v1.1 API는 태그 "이름"의 콤마구분 문자열을 받고, 없는 태그는 자동 생성함

@@ -102,6 +102,16 @@
   풀어냄 + "AI 도구로 초안, 본인이 직접 확인 후 발행" 투명하게 명시
   + 금융전문가 아니라는 면책 + totokwh@gmail.com 연락처)
 
+[카테고리 6개 - 2026-10-29 결정]
+- 워드프레스 주소(slug): etf, trend, patents(=신기술·특허), biotech, energy, society
+- 사용자가 워드프레스에서 할 일: energy·society 카테고리 만들기, patents 이름을
+  "Tech & Patents"로 바꾸기, 허브/카테고리 페이지에 design/ 새 HTML 붙여넣기,
+  에너지·인구사회 카테고리 페이지 새로 만들기
+- 발행: 하루 2개(ETF 1 + 다른 분야 1). 다른 분야는 순서대로가 아니라 그날 실제 소식이
+  있는 분야 우선 + 오래 안 쓴 분야 가산점, 마땅한 소식 없으면 건너뜀, 발행 시각 분산.
+- 남은 개발: 비ETF 공용 엔진, 분야별 자료 연결(에너지=EIA 키, 인구사회=KOSIS 키 필요),
+  하루 2회 승인 흐름
+
 [디자인 파일 위치] 저장소 design/ 폴더
 - hub.html, category-etf/patents/biotech/trend.html, post-dark-theme.css
 - 저자 소개 페이지(about-ondo.html)는 파일이 남아있지 않음. 확정 문구는
