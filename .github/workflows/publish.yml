@@ -5,6 +5,7 @@ on:
   # 아래 cron은 UTC 기준 22:30 = 한국시간(KST) 07:30. 원하는 시간으로 조정 가능.
   schedule:
     - cron: '30 22 * * *'   # 매일 아침 발굴+토론+알림
+    - cron: '7 3 * * *'     # 매일 낮(KST 12:07) - ETF 외 분야 두 번째 글 발굴+알림 (topic_engine.py)
     - cron: '*/10 * * * *'  # 10분마다 승인 여부 확인
     - cron: '0 20 * * 1'    # 매주 월요일 - Search Console 성과 동기화
     - cron: '0 21 * * 0'    # 매주 일요일 - 주간 상태 점검 리포트
@@ -26,6 +27,11 @@ on:
         required: false
         type: boolean
         default: false
+      topic_discover:
+        description: '두 번째 글(ETF 외 분야) 추천을 지금 한 번 만들어 텔레그램으로 받기'
+        required: false
+        type: boolean
+        default: false
       check_trends:
         description: '구글 트렌드 조회가 되는지 점검 (발행 안 함)'
         required: false
@@ -37,9 +43,9 @@ permissions:
 
 # [수정] discover-and-notify(매일 22:30 UTC)와 check-approval-and-publish(10분마다)는
 # 22:30이 10분 간격 위에 정확히 걸려서 매일 동시에 트리거된다. 주간 잡(월 20:00, 일 21:00 UTC)도
-# 마찬가지로 10분 그리드와 겹친다. 게다가 이제 publish_news.yml(테크/바이오/특허)도 같은
-# 저장소의 같은 브랜치에 상태 파일을 커밋+푸시하므로, 그룹 이름을 레포 전체 공용으로
-# 맞춰서(blog-publish-state) 두 워크플로우 사이의 푸시 경합까지 함께 막는다.
+# 마찬가지로 10분 그리드와 겹친다. 두 번째 슬롯(topic_engine.py)도 같은
+# 브랜치에 상태 파일을 커밋+푸시하므로, 그룹 이름을 레포 전체 공용으로
+# 맞춰서(blog-publish-state) 잡 사이의 푸시 경합까지 함께 막는다.
 # cancel-in-progress:false로 서로 취소시키지 않고 순서대로(큐잉) 실행되게 한다.
 concurrency:
   group: blog-publish-state
@@ -52,7 +58,7 @@ env:
   CHART_MODE: script
   MIN_PUBLISH_INTERVAL_HOURS: "20"
   # blog_engine.py가 이 값으로 상태 파일 이름을 접두어(etf_)로 구분한다.
-  # 뉴스 카테고리(publish_news.yml)와 상태 파일이 섞이지 않게 하는 용도.
+  # 두 번째 슬롯 카테고리(잡에서 BLOG_CATEGORY를 덮어씀)와 상태 파일이 섞이지 않게 하는 용도.
   BLOG_CATEGORY: etf
 
 jobs:
@@ -94,10 +100,38 @@ jobs:
   # 3~5번(기획->글쓰기->검수->발행)까지 같은 잡 안에서 진행.
   # cron '*/10 * * * *' 에 의해서만 실행되도록 조건을 건다.
   # ============================================================
+  discover-topic:
+    if: github.event.schedule == '7 3 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: 통합 키 파일(.env) 복원
+        env:
+          DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
+        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+      - name: ETF 외 분야 발굴 + 텔레그램 알림
+        run: python topic_engine.py --discover
+      - name: 대기 상태 파일 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pending_topic.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git commit -m "chore: 두 번째 글 추천 갱신 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
   check-approval-and-publish:
     if: github.event.schedule == '*/10 * * * *'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -118,12 +152,15 @@ jobs:
           echo "$OUTPUT"
           TICKER=$(echo "$OUTPUT" | grep -oP 'APPROVED_TICKER:\K.*' || true)
           echo "ticker=$TICKER" >> "$GITHUB_OUTPUT"
+          TOPIC2=$(echo "$OUTPUT" | grep -oP 'APPROVED_TOPIC:\K[a-z]+' || true)
+          echo "topic2=$TOPIC2" >> "$GITHUB_OUTPUT"
 
       - name: 승인 상태 파일 커밋 (pending 해제/offset 갱신)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pending_recommendation.json 2>/dev/null || true
+          git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
@@ -150,6 +187,28 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
+
+      - name: 승인된 두 번째 글(ETF 외 분야) 발행
+        if: steps.check.outputs.topic2 != ''
+        env:
+          BLOG_CATEGORY: ${{ steps.check.outputs.topic2 }}
+        run: python topic_engine.py --run
+
+      - name: 두 번째 글 상태 파일 커밋
+        if: steps.check.outputs.topic2 != ''
+        run: |
+          T="${{ steps.check.outputs.topic2 }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${T}_article_state.json" "${T}_generation_state.json" "${T}_api_usage_log.json" 2>/dev/null || true
+          git add "${T}/published_articles" 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 변경 없음"
+          else
+            git pull --rebase --autostash || true
+            git commit -m "chore: 두 번째 글 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
             git push
           fi
 
@@ -228,6 +287,10 @@ jobs:
 
       - name: 수동 실행
         run: |
+          if [ "${{ github.event.inputs.topic_discover }}" = "true" ]; then
+            python topic_engine.py --discover
+            exit 0
+          fi
           ARGS=""
           if [ "${{ github.event.inputs.check_trends }}" = "true" ]; then
             ARGS="--check-trends"
@@ -250,6 +313,7 @@ jobs:
           git add indexnow_key.json 2>/dev/null || true
           git add etf/published_articles 2>/dev/null || true
           git add pending_recommendation.json 2>/dev/null || true
+          git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"

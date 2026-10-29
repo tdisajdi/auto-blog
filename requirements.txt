@@ -9,7 +9,7 @@ pyperclip
 google-api-python-client
 google-auth
 
-# 테크/바이오/특허(news_engine.py)의 RSS 발굴 + 기사 스크래핑에 사용
+# 두 번째 슬롯(topic_engine.py)의 RSS 발굴 + 기사 스크래핑에 사용
 feedparser
 beautifulsoup4
 

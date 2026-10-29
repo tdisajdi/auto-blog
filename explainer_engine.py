@@ -11,17 +11,11 @@ ETF 분석 글(etf_auto.py의 5단 고정 구조)과 달리, 개념 설명(가�
 
 진입점: run_explainer(topic) - topic은 "GUIDE:<id>" 또는 "ISSUE:<id>".
 """
-import json
 import os
 import re
 from datetime import datetime
 
-from blog_engine import (
-    get_gemini_response, _generate_part_with_check, _extract_facts_from_response,
-    _post_process_blog_content, _inject_table_of_contents, _llm_quality_check,
-    _check_duplicate, _load_state, _register_article, publish_to_wordpress,
-    _telegram_send_message, _load_json_file, get_wordpress_recent_posts,
-)
+from blog_engine import _load_state, _load_json_file
 
 # 실행 중인 etf_auto 모듈. `python etf_auto.py`로 실행하면 그 모듈 이름이 __main__이라
 # 여기서 import etf_auto를 하면 같은 코드가 한 벌 더 올라가므로, run_explainer가 넘겨받는다.
@@ -69,25 +63,12 @@ ISSUE_KINDS = {
                   "tickers": ["SPY", "QQQ", "SCHD", "TLT"]},
 }
 
+# 공통 글쓰기 규칙은 topic_engine.BASE_RULES에 있고, 여기에는 ETF 글 전용 규칙만 둔다.
 _SECTION_RULES = (
-    "- 글쓴이는 블로그 'ondo'입니다. 금융 전문가인 척하지 말고, 공개 데이터를 정리해 알기 쉽게 "
-    "전달하는 사람의 목소리로 쓰세요. 인사말·자기소개·가짜 경험담('제가 투자해보니')은 금지합니다.\n"
-    "- 문단은 2~3문장 단위로 짧게. 대제목은 `<h3>`, 소제목은 `<h4>🔸 소제목</h4>` 형식만 쓰세요.\n"
-    "- 표는 `<table><tr><th><td>` HTML로만 작성하세요(마크다운 표 금지).\n"
-    "- [숫자 원칙] 아래 [사실 자료]에 있는 숫자만 쓰세요. 자료에 없는 수익률·세율·한도를 만들어내지 마세요.\n"
-    "- [출처 원칙] 뉴스는 [최근 뉴스]에 있는 기사만, 매체명에 `<a href=\"주소\" target=\"_blank\" rel=\"noopener\">` "
-    "링크를 달아 인용하세요. '외신 보도', '전문가들은' 같은 확인할 수 없는 출처는 금지합니다.\n"
     "- [계좌 원칙] 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP로 직접 살 수 없습니다. 이 계좌를 언급할 때는 "
     "같은 지수의 국내 상장 ETF로만 설명하세요.\n"
     "- [투자 권유 금지] '지금 사세요', '확실한 수익' 같은 표현은 금지. 판단 기준을 알려주는 글로 쓰세요.\n"
-    "- [중복 금지] 앞 파트에서 쓴 사실·문장을 반복하지 마세요. 목차·3줄 요약·면책 문구·출처 목록은 "
-    "시스템이 넣으므로 만들지 마세요.\n"
 )
-
-_OUTLINE_ANGLES = [
-    "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 실제 숫자로 답을 쌓아가는 구성",
-    "흔한 오해 하나를 먼저 짚고, 데이터로 그 오해가 어디서 틀렸는지 보여주는 구성",
-]
 
 
 # ------------------------------------------------------------
@@ -232,106 +213,6 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     return text, data_cache, news
 
 
-# ------------------------------------------------------------
-# 기획(목차) → 5개 파트 글쓰기
-# ------------------------------------------------------------
-
-def _parse_outline(res):
-    data = json.loads(re.sub(r"```[a-zA-Z]*\n?|```", "", res or "").strip())
-    outline = data.get("outline")
-    if not isinstance(outline, list) or sorted(int(p.get("part")) for p in outline) != [1, 2, 3, 4, 5]:
-        raise ValueError("outline must have parts 1..5")
-    if any(not p.get("heading") or not p.get("focus") for p in outline):
-        raise ValueError("empty heading/focus")
-    outline.sort(key=lambda p: int(p["part"]))
-    data["outline"] = outline
-    return data
-
-
-def _plan(kind_label, title_seed, facts_text):
-    base = (f"당신은 ETF 정보 블로그의 기획자입니다. 오늘 쓸 글은 [{kind_label}]이고, 주제는 '{title_seed}'입니다.\n"
-            f"아래 사실 자료를 바탕으로 이 주제만을 위한 5단계 목차를 설계하세요.\n\n{facts_text}\n"
-            "[제약] Part1은 독자의 질문을 던지는 도입, Part5는 자주 묻는 질문(FAQ)과 정리여야 합니다. "
-            "Part2~4는 자유롭게 설계하되, 반드시 사실 자료의 숫자를 근거로 쓸 수 있는 내용이어야 합니다.\n")
-    fmt = ('응답은 JSON으로만: {"outline": [{"part": 1, "heading": "15자 내외", "focus": "1~2문장"}, ... part 5까지], '
-           '"key_message": "핵심 메시지 한 문장"}')
-    drafts = []
-    for angle in _OUTLINE_ANGLES:
-        try:
-            drafts.append(_parse_outline(get_gemini_response(base + f"[이번 기획 관점] {angle}\n" + fmt, thinking_budget=0)))
-        except (json.JSONDecodeError, ValueError, TypeError, AttributeError) as e:
-            print(f"⚠️ 목차 초안 실패({type(e).__name__})")
-    if not drafts:
-        return {"outline": [
-            {"part": 1, "heading": "왜 이 질문이 중요할까", "focus": "독자의 질문과 오늘 다룰 범위를 소개"},
-            {"part": 2, "heading": "개념 정리", "focus": "핵심 개념을 쉬운 말로 설명"},
-            {"part": 3, "heading": "실제 숫자로 보기", "focus": "예시 ETF 데이터를 표로 비교"},
-            {"part": 4, "heading": "놓치기 쉬운 점", "focus": "주의할 점과 흔한 오해"},
-            {"part": 5, "heading": "자주 묻는 질문", "focus": "FAQ와 정리"},
-        ], "key_message": ""}
-    if len(drafts) == 1:
-        return drafts[0]
-    listing = "\n\n".join(
-        f"[기획안 {i + 1}]\n" + "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in d["outline"])
-        for i, d in enumerate(drafts))
-    judge = (f"당신은 편집장입니다. 주제 '{title_seed}'에 대한 기획안들입니다. 독자에게 가장 유익하고 파트끼리 "
-             f"겹치지 않는 최종 목차를 확정하세요(조합 가능).\n\n{listing}\n\n" + fmt)
-    try:
-        return _parse_outline(get_gemini_response(judge, thinking_budget=24576))
-    except (json.JSONDecodeError, ValueError, TypeError, AttributeError):
-        return drafts[0]
-
-
-def _write_parts(kind_label, title_seed, plan, facts_text, session_key):
-    today_str = datetime.now().strftime("%Y년 %m월 %d일")
-    outline_lines = "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan["outline"])
-    posts = get_wordpress_recent_posts() or []
-    link_rule = ("[필수 - 내부 링크] 아래 글 중 주제와 맞는 것이 있으면 1개를 골라 "
-                 "`<a href=\"주소\">제목</a>`로 자연스럽게 소개하세요. 맞는 글이 없으면 생략하세요.\n"
-                 + "\n".join(f"- {p['title']} ({p.get('url') or p.get('link', '')})" for p in posts[:15])) if posts else ""
-    shared = (f"[{kind_label}] 주제: {title_seed}\n이 글은 {today_str} 기준입니다.\n{_SECTION_RULES}"
-              f"[전체 목차 - 반드시 따르세요]\n{outline_lines}\n"
-              + (f"[핵심 메시지] {plan['key_message']}\n" if plan.get("key_message") else "")
-              + f"\n{facts_text}\n")
-    extras = {
-        1: "<h1>로 제목을 쓰세요. 제목은 주제를 바탕으로 하되 검색하는 사람이 이해하기 쉬운 문장으로 다듬으세요. "
-           "제목 뒤에 120~160자 메타 설명을 HTML 주석(<!-- -->)으로 넣으세요.",
-        3: "[필수] 사실 자료의 예시 ETF 숫자를 비교하는 <table>을 1개 넣으세요.",
-        5: (f"{link_rule}\n[필수] FAQ 3~4개(독자가 실제로 물을 질문). "
-            "[필수] 맨 마지막 줄에 '태그: 태그1 태그2 태그3 태그4 태그5' 형식으로 정확히 5개."),
-    }
-    parts, confirmed = {}, []
-    for n in range(1, 6):
-        p = plan["outline"][n - 1]
-        prompt = (f"{shared}\n[Part {n}/5 - {p['heading']}]\n지금 작성할 내용: {p['focus']}\n{extras.get(n, '')}\n\n"
-                  '[출력] JSON으로만: {"html": "생성된 HTML", "facts": {"recommended_url": "영문-소문자-하이픈-슬러그"}}')
-        text, _info = _generate_part_with_check(prompt, n, f"Part{n}({p['heading']})", "\n".join(confirmed),
-                                                session_key=session_key, label="etf", category_label="ETF 가이드")
-        if not text:
-            return None, {}
-        ex = _extract_facts_from_response(text, n)
-        parts[n] = ex["html"]
-        confirmed.append(ex["html"])
-        if n == 1:
-            parts["_slug"] = (ex.get("facts") or {}).get("recommended_url", "")
-    return parts, plan
-
-
-def _assemble(parts):
-    body = "\n".join(parts[i] for i in range(1, 6))
-    body = re.sub(r"```[a-zA-Z]*\n?|```", "", body).strip()
-    tags = []
-    m = re.search(r"태그:\s*([^\n<]+)", body)
-    if m:
-        tags = [re.sub(r"[#,.]", "", t).strip() for t in m.group(1).split() if t.strip()][:5]
-        body = body[:m.start()] + body[m.end():]
-    title_m = re.search(r"<h1[^>]*>(.*?)</h1>", body, flags=re.S)
-    title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
-    body = _post_process_blog_content(body)
-    body = _inject_table_of_contents(body)
-    return title, body, tags
-
-
 def _closing_block(news, include_tax):
     news_items = "".join(
         f'<li><a href="{n["url"]}" target="_blank" rel="noopener">{n["source"]}</a> - {n["title"]}</li>' for n in news)
@@ -378,47 +259,11 @@ def run_explainer(topic, etf_module):
     if ctx and os.path.exists("confirmed_topic_context.json"):
         os.remove("confirmed_topic_context.json")
 
-    print(f"📋 [{kind_label}] {title_seed} - 기획 중...")
-    plan = _plan(kind_label, title_seed, facts_text)
-    print("   목차: " + " / ".join(p["heading"] for p in plan["outline"]))
-    session_key = f"{article_type}_{topic_id}_{datetime.now().strftime('%Y%m%d')}"
-    parts, plan = _write_parts(kind_label, title_seed, plan, facts_text, session_key)
-    if not parts:
-        _telegram_send_message(f"⚠️ [{kind_label}] '{title_seed}' 글 생성에 실패했어요. 다음 추천을 기다려주세요.")
-        return
-    title, body, tags = _assemble(parts)
-    title = title or title_seed
-    body = re.sub(r"<h1[^>]*>.*?</h1>", "", body, count=1, flags=re.S)  # 제목은 워드프레스 제목 칸으로
-    if memo:
-        body = ea._insert_operator_memo(body, memo)
-    body += _closing_block(news, include_tax)
-
-    if _check_duplicate(title, body, _load_state()):
-        _telegram_send_message(f"⚠️ 발행 중단: '{title}'이(가) 이미 올린 글과 너무 비슷해서 올리지 않았어요.")
-        return
-
-    review = _llm_quality_check(body, facts_json_str=facts_text, category_label=f"ETF/{kind_label}",
-                                part_descriptions="\n".join(f"- Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan["outline"]))
-    score = review.get("quality_score") if review else None
-    issues = (review or {}).get("issues", [])
-    min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
-    status = "publish" if (score is not None and score >= min_q) else "draft"
-    slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(parts.get("_slug", "")).lower().replace(" ", "-"))).strip("-") or None
-
-    ok, result = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug)
-    score_text = "검수 실패" if score is None else f"{score:.2f}"
-    if not ok:
-        _telegram_send_message(f"⚠️ [{kind_label}] '{title}' 업로드 실패: {str(result)[:200]}")
-        return
-
-    # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
-    extra = {"_meta": {"article_type": article_type, "topic_id": topic_id,
-                       "example_tickers": list(data_cache.keys())}}
-    _register_article(title, body, status="published" if status == "publish" else "draft",
-                      notes=f"{article_type} ({score_text})", version=1, extra_data=extra, url=result)
-    if status == "publish":
-        _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{result}\n품질 점수: {score_text}")
-    else:
-        issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
-        _telegram_send_message(f"📝 [{kind_label}] 임시글로만 올렸어요 (공개 안 됨)\n제목: {title}\n"
-                               f"품질 점수: {score_text} (기준 {min_q})\n지적된 문제:\n{issues_text}")
+    from topic_engine import produce_article
+    produce_article(
+        kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=_SECTION_RULES,
+        category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
+        closing_html=_closing_block(news, include_tax),
+        # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
+        meta={"example_tickers": list(data_cache.keys())},
+    )

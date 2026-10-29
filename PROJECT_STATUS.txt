@@ -8,8 +8,9 @@
 - 사이트명: DATA-DRIVEN INSIGHTS (워드프레스, 주소 예: ondo99.com)
 - 저자명: ondo (실명 아님, 정직한 "데이터 큐레이터" 포지셔닝으로 확정)
 - 저자 이메일: totokwh@gmail.com
-- 카테고리 4개: ETF / Patents / Biotech·New Drugs / Trend
-  → 지금은 ETF만 실제로 시작, 나머지는 천천히 확장 예정 (바로 안 함)
+- 카테고리 6개: ETF / 트렌드 / 신기술·특허 / 바이오·신약 / 에너지·자원·기후 / 인구·사회
+  → 하루 2개: 아침 ETF 1개 + 낮에 다른 분야 1개(소식이 있을 때만, 순번 아님)
+  → 2~3달 글을 채운 뒤 애드센스 신청 예정. 나중에 영어/일본어/번체 중국어 확장
 - 목적: 부업/수입 창출. 사용자는 금융 전문가 아님 → 자격 사칭 절대 금지,
   정직한 "정보 큐레이터" 포지셔닝 유지하기로 함
 - 장기 목표: 나중에 외국(영어권) 독자도 받을 계획 있음
@@ -19,22 +20,19 @@
 =================================================================
 
 [파일 구성 — "공용 엔진 + 카테고리별 파일" 구조]
-- blog_engine.py   : ETF/뉴스 공용 엔진 (Gemini API 키 로테이션, 품질검사,
+- blog_engine.py   : 모든 카테고리 공용 엔진 (Gemini API 키 로테이션, 품질검사,
                       사후교정(targeted-fix), 워드프레스 발행, 텔레그램,
                       IndexNow, Threads 카드뉴스 등)
 - etf_auto.py      : ETF 전용 로직 (예전 이름: tistory_auto.py).
                       발굴→토론→기획→5단분할 글쓰기→검수→발행
-- news_engine.py   : 테크/바이오/특허 3개 카테고리 공용 뉴스 파이프라인.
-                      발굴→토론(후보 2개 선정)→진짜 기획(목차 3안 작성 후
-                      토론으로 확정, 메뉴고정식 아님)→5단분할 글쓰기→
-                      품질검사→사후교정→발행까지 완전자동(승인 대기 없음)
-- tech_auto.py / bio_auto.py / patent_auto.py
-                   : 카테고리별 RSS 주소 등 설정만 담은 얇은 wrapper.
-                     각 파일 상단에 os.environ.setdefault("BLOG_CATEGORY", ...)
-                     있음 — 로컬 실행 시 상태파일 이름 꼬임 방지용 (실제로
-                     빠져있던 버그였고 나중에 발견해서 고침)
-- .github/workflows/publish.yml       : ETF 발행 스케줄
-- .github/workflows/publish_news.yml  : 테크/바이오/특허 발행 스케줄
+- explainer_engine.py : ETF 기초 가이드 / 이슈 해설 글 (글쓰기는 topic_engine 공용부 사용)
+- topic_engine.py  : 두 번째 글(트렌드/신기술·특허/바이오/에너지/인구·사회) 발굴+고르기+글쓰기.
+                      분야마다 발굴기(어댑터) 1개씩. 소식 강도+오래 안 쓴 분야 가산점+
+                      무작위로 1개만 추천, 기준 미만이면 그날은 쉼. 텔레그램 승인 후 발행.
+                      (예전 news_engine.py/tech_auto.py/bio_auto.py/patent_auto.py/
+                      publish_news.yml은 너무 빈약해서 2026-10-29 삭제하고 이걸로 대체)
+- trend_engine.py  : 구글 트렌드 (검색 관심도, 급상승 검색어)
+- .github/workflows/publish.yml       : 모든 발행 스케줄 (ETF 07:30, 두 번째 글 12:07 KST)
 - .env.example     : 통합키 템플릿
 - GITHUB_ACTIONS_GUIDE.md : 설치부터 운영까지 전체 가이드 문서
 - requirements.txt, .gitignore
@@ -50,8 +48,8 @@
 - "사후교정(targeted-fix)": 품질검사에서 걸린 부분만 그 부분만 다시
   쓰게 하는 기능. 원래 ETF 코드에 이미 있었는데 안 쓰이고 있었음 →
   뉴스 파이프라인에도 연결해서 실제로 작동하게 만듦.
-- GitHub Actions 완전자동화: ETF는 텔레그램 승인 거쳐서 발행(투자
-  리스크 있어서), 뉴스 3종은 승인 없이 완전자동(시의성 때문에).
+- GitHub Actions 자동화: ETF와 두 번째 글 모두 텔레그램 승인 후 발행.
+  품질 점수 0.7 미만이면 공개하지 않고 임시글로만 올림.
 - 통합키(DOTENV_CONTENTS): API 키 10개+ 를 깃허브 시크릿에 하나하나
   등록하지 않고, .env 파일 전체 내용을 시크릿 하나로 등록 →
   워크플로우가 실행될 때 그 내용을 .env로 복원해서 사용.
@@ -295,7 +293,9 @@
     (깃허브 시크릿은 값을 다시 보여주지 않음).
 
 [저장소에 추가로 반영한 것]
-- 뉴스 3종 자동 스케줄 꺼둠 (publish_news.yml, 수동 실행만 가능)
+- 옛 뉴스 3종(publish_news.yml 등) 삭제 → topic_engine.py 두 번째 글로 대체
+- 두 번째 글 남은 준비: 워드프레스에 energy, society 카테고리 만들기,
+  EIA_API_KEY(원유 재고, 선택) / KOSIS_API_KEY(통계, 나중에 연결) 발급해 .env에 추가
 - 시크릿 → .env 복원을 환경변수 방식으로 변경 (특수문자 안전)
 - etf_article_state.json: 7월 ondo99.com QQQ 글 4개 기록 이전
   (사이트에서 이 글들을 지웠다면 이 파일도 정리 필요)
@@ -329,7 +329,7 @@
   상태도 같이 갱신함.
 - 예전 tistory_bot_2.zip / tistory_bot.zip (이메일 백업분)은 둘 다
   리팩터링 "이전" 버전의 구버전 코드 — 지금 쓰는 blog_engine.py /
-  etf_auto.py / news_engine.py 구조가 압도적으로 최신이고 맞는 버전.
+  etf_auto.py / topic_engine.py 구조가 압도적으로 최신이고 맞는 버전.
   혼동해서 예전 tistory_auto.py(7,002줄 통짜 파일)로 되돌아가면 안 됨.
 
 =================================================================

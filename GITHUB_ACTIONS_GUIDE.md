@@ -11,27 +11,23 @@
 한 저장소 안에 "엔진"과 "카테고리별 스크립트"가 나뉘어 있습니다.
 
 ```
-blog_engine.py   ← 4개 카테고리가 전부 공유하는 엔진(발행/검수/API 호출/텔레그램/IndexNow 등)
-news_engine.py   ← 테크/바이오/특허 3개가 공유하는 뉴스 전용 엔진(발굴→기획→글쓰기→발행)
+blog_engine.py     ← 모든 카테고리가 공유하는 엔진(발행/검수/API 호출/텔레그램/IndexNow 등)
+etf_auto.py        ← ETF 카테고리 고유 로직 (예전 이름: tistory_auto.py)
+explainer_engine.py← ETF 기초 가이드/이슈 해설 글
+topic_engine.py    ← 두 번째 글(트렌드/신기술·특허/바이오/에너지/인구·사회) 발굴+글쓰기
+trend_engine.py    ← 구글 트렌드(검색 관심도·급상승 검색어)
 
-etf_auto.py      ← ETF 카테고리 고유 로직 (예전 이름: tistory_auto.py)
-tech_auto.py     ← 테크 카테고리 설정(RSS 주소 등)만 담은 얇은 파일
-bio_auto.py      ← 바이오 카테고리 설정
-patent_auto.py   ← 특허 카테고리 설정
-
-.github/workflows/publish.yml       ← ETF 발행 스케줄
-.github/workflows/publish_news.yml  ← 테크/바이오/특허 발행 스케줄
+.github/workflows/publish.yml       ← 모든 발행 스케줄 (ETF + 두 번째 글)
 ```
 
 각 카테고리는 상태 파일(발행 이력, 세션 캐시 등)이 서로 섞이지 않도록
 `etf_article_state.json`, `tech_article_state.json`처럼 이름 앞에 카테고리가
 자동으로 붙습니다(워크플로우가 `BLOG_CATEGORY` 환경변수로 지정 — 직접 손댈 필요 없음).
 
-**ETF와 뉴스 카테고리의 결정적 차이 하나**: ETF는 매일 아침 후보를 추천하고
-**텔레그램으로 사람 승인을 받은 뒤에만** 실제로 글을 씁니다(투자 추천이라 리스크가
-있어서). 반면 테크/바이오/특허는 뉴스가 며칠 지나면 낡아버리는 시의성 문제 때문에,
-승인 대기 없이 발굴부터 발행까지 **완전 자동**으로 한 번에 끝냅니다(발행 후
-텔레그램으로 "발행됐어요" 알림만 보냄).
+**하루 두 편**: 아침(KST 07:30)에 ETF 글 1개, 낮(KST 12:07)에 ETF 외 분야 글 1개를
+추천합니다. 두 번째 글은 정해진 순서로 돌지 않고, 그날 실제 소식의 강도와 그 분야를
+얼마나 오래 안 썼는지를 따져서 고르며, 쓸 만한 소식이 없으면 그날은 쉽니다.
+둘 다 **텔레그램으로 사람 승인을 받은 뒤에만** 실제로 글을 씁니다.
 
 ---
 
@@ -71,15 +67,13 @@ patent_auto.py   ← 특허 카테고리 설정
 
    ```
    blog_engine.py
-   news_engine.py
    etf_auto.py
-   tech_auto.py
-   bio_auto.py
-   patent_auto.py
+   explainer_engine.py
+   topic_engine.py
+   trend_engine.py
    requirements.txt
    .gitignore
    .github/workflows/publish.yml
-   .github/workflows/publish_news.yml
    ```
 
    > 브라우저 업로드로 `.github` 폴더가 잘 안 올라가는 경우가 있습니다. 그럴 땐
@@ -98,8 +92,7 @@ patent_auto.py   ← 특허 카테고리 설정
 1. [desktop.github.com](https://desktop.github.com) 에서 GitHub Desktop 설치.
 2. 로그인 후 **File → Clone repository**로 방금 만든 리포지토리를 로컬에 복제.
 3. 복제된 폴더 안에, 받은 파일들을 그대로 복사해 넣습니다 (폴더 구조 그대로:
-   `.github/workflows/publish.yml`, `.github/workflows/publish_news.yml` 경로가
-   유지되도록).
+   `.github/workflows/publish.yml` 경로가 유지되도록).
 4. GitHub Desktop 왼쪽에 변경된 파일 목록이 뜨면, 아래 커밋 메시지 칸에 아무 내용이나
    적고 **Commit to main** 클릭.
 5. 오른쪽 위 **Push origin** 버튼 클릭.
@@ -172,7 +165,7 @@ API 키/토큰이 10개가 넘다 보니, 예전처럼 하나하나 따로 등�
 
 ## 5단계. 실행 스케줄 확인/조정 (선택)
 
-두 워크플로우 파일에 이미 스케줄이 짜여 있어서 별도 설정 없이 바로 동작합니다.
+워크플로우 파일에 이미 스케줄이 짜여 있어서 별도 설정 없이 바로 동작합니다.
 바꾸고 싶을 때만 아래를 참고해서 `cron:` 줄을 고치면 됩니다(모두 UTC 기준).
 
 **`.github/workflows/publish.yml` (ETF)**
@@ -180,17 +173,10 @@ API 키/토큰이 10개가 넘다 보니, 예전처럼 하나하나 따로 등�
 | cron | 의미 |
 |---|---|
 | `30 22 * * *` | 매일 아침(KST 07:30) — 발굴+토론 후 텔레그램 추천 알림 |
+| `7 3 * * *` | 매일 낮(KST 12:07) — ETF 외 분야 두 번째 글 추천 알림 (없으면 쉼) |
 | `*/10 * * * *` | 10분마다 — 텔레그램 승인 확인, 승인되면 그 자리에서 기획→글쓰기→검수→발행까지 진행 |
 | `0 20 * * 1` | 매주 월요일 — Search Console 성과 동기화 |
 | `0 21 * * 0` | 매주 일요일 — 주간 상태점검 리포트 |
-
-**`.github/workflows/publish_news.yml` (테크/바이오/특허)**
-
-| cron | 카테고리 |
-|---|---|
-| `0 21 * * 1` | 테크 (매주 월요일, KST 06:00) |
-| `0 6 * * 2,3,4,5,6,0` | 바이오 (화~일, KST 15:00) |
-| `30 6 * * 2,3,4,5,6,0` | 특허 (화~일, KST 15:30) |
 
 파일 수정은 GitHub 웹에서 해당 파일 열고 오른쪽 위 연필(✏️) 아이콘을 눌러 바로
 편집 → 아래 **Commit changes**로 저장하면 됩니다.
@@ -215,15 +201,12 @@ API 키/토큰이 10개가 넘다 보니, 예전처럼 하나하나 따로 등�
 7. 실행이 끝나면 리포지토리 루트에 `etf_article_state.json`이 자동으로 갱신되어
    커밋된 걸 확인할 수 있습니다.
 
-### 테크/바이오/특허 테스트
+### 두 번째 글 테스트
 
-1. **Actions** → **뉴스 블로그 자동 발행 (테크/바이오/특허)** 워크플로우 클릭.
-2. **Run workflow** → **category** 드롭다운에서 테스트할 카테고리 하나(예: `tech`)를
-   선택하고 Run workflow 클릭. (3개를 한꺼번에 고를 수는 없습니다 — Gemini 호출량이
-   3배로 낭비되는 걸 막기 위한 안전장치입니다.)
-3. **주의**: 이 워크플로우는 detect_only 옵션이 없습니다. 실행하면 조건을 만족하는 한
-   실제로 발행까지 진행됩니다. 처음엔 로그를 보면서 지켜보시는 걸 권장합니다.
-4. 실행이 끝나면 `tech_article_state.json`(또는 bio_/patent_)이 갱신되어 커밋됩니다.
+1. **Actions** → **Run workflow** → **topic_discover**에 체크하고 실행.
+2. 텔레그램으로 "📌 오늘의 두 번째 글 추천"이 오면 [✅ 승인]을 누르세요.
+   10분 안에 글쓰기가 시작됩니다. (쓸 만한 소식이 없으면 추천이 오지 않는 게 정상)
+3. 끝나면 `trend_article_state.json`처럼 그 분야 이름이 붙은 기록 파일이 커밋됩니다.
 
 ---
 
@@ -271,25 +254,21 @@ API 키/토큰이 10개가 넘다 보니, 예전처럼 하나하나 따로 등�
 ```
 your-repo/
 ├── blog_engine.py
-├── news_engine.py
 ├── etf_auto.py
-├── tech_auto.py
-├── bio_auto.py
-├── patent_auto.py
+├── explainer_engine.py
+├── topic_engine.py
+├── trend_engine.py
 ├── requirements.txt
 ├── .env.example                 ← 통합키 템플릿 (실제 값 채운 사본은 절대 커밋 금지)
 ├── .gitignore
 ├── etf_article_state.json       ← 첫 ETF 실행 후 자동 생성
-├── tech_article_state.json      ← 첫 테크 실행 후 자동 생성
-├── bio_article_state.json       ← 첫 바이오 실행 후 자동 생성
-├── patent_article_state.json    ← 첫 특허 실행 후 자동 생성
+├── trend_article_state.json     ← 분야별 기록 (tech_/bio_/energy_/society_도 같은 방식, 첫 글 후 생성)
 ├── indexnow_key.json            ← 카테고리 공용, 첫 실행 후 자동 생성
 ├── etf/published_articles/      ← ETF 완성본 백업 (자동 생성)
-├── tech/published_articles/     ← 테크 완성본 백업 (자동 생성)
+
 └── .github/
     └── workflows/
-        ├── publish.yml
-        └── publish_news.yml
+        └── publish.yml
 ```
 
 ---
@@ -314,30 +293,18 @@ your-repo/
 
 ---
 
-# 추가) 테크/바이오/특허 5부서 자동 판단 흐름 - 완전 자동(승인 없음)
+# 추가) 두 번째 글(ETF 외 분야) 흐름 - 승인 후 발행
 
-뉴스는 며칠만 지나도 낡아버리는 시의성 문제 때문에, ETF처럼 사람 승인을 기다리지
-않고 발굴부터 발행까지 한 번의 워크플로우 실행 안에서 전부 끝납니다.
+1. **낮 KST 12:07**: 5개 분야(트렌드/신기술·특허/바이오/에너지·자원·기후/인구·사회)에서
+   각각 오늘의 소식을 모읍니다. (구글 급상승 검색어, 기술·바이오 RSS, 원자재 가격 등)
+2. **고르기**: 분야마다 "소식 강도 + 오래 안 쓴 분야 가산점 + 약간의 무작위"로 점수를 매겨
+   1개만 추천합니다. 기준 점수(1.0) 미만이면 그날은 쉽니다 → 공장식 순번 발행 방지.
+3. **승인**: 텔레그램 [✅ 승인] 버튼. 추천 메시지에 '메모: 내용'으로 답장하면 글에 실립니다.
+4. **글쓰기**: 목차 기획 → 5파트 생성(파트마다 검수) → 중복 검사 → 최종 품질 검사.
+   점수가 0.7 미만이면 공개하지 않고 임시글로만 올린 뒤 텔레그램으로 알려줍니다.
 
-1. **발굴**: 설정된 RSS(테크: The Verge/TechCrunch, 바이오/특허: 구글뉴스 검색)에서
-   최근 3일 이내 소식을 모음
-2. **토론**: 후보마다(최대 6개) "왜 오늘 이걸 다뤄야 하는지" 논거를 독립적으로 생성 →
-   편집장 역할이 심사해서 최종 2건 선정 + 선정 이유 확정
-3. **기획**: 이 2건 소재만을 위한 목차(5개 파트의 제목+내용)를 서로 다른 관점 3개로
-   독립적으로 초안 작성 → 심사로 최종 목차 확정 (매번 다른 구성이 나오도록, 정해진
-   형식에 끼워맞추지 않음)
-4. **글쓰기**: 확정된 목차를 그대로 따라 Part1~5를 순서대로 생성, 파트마다 즉시 검수 →
-   실패 시 그 파트만 재생성
-5. **검수 → 발행**: 최종 검수에서 점수가 낮으면 문제 파트만 콕 집어 사후교정(전체
-   재생성 대신 그 부분만 고침) → 통과하면 이미지 삽입 + 면책조항 삽입 → 워드프레스
-   발행 → IndexNow 알림 → 텔레그램으로 "발행됐어요" 알림(승인 요청 아님, 보고용)
-
-발행 간격(`MIN_PUBLISH_INTERVAL_HOURS`, 기본 20시간)은 ETF와 마찬가지로 카테고리별
-상태파일 기준으로 각자 독립적으로 체크됩니다.
-
-**컴플라이언스 참고**: 바이오는 "의학적 조언이 아님", 나머지는 "투자 권유 아님"이라는
-면책조항이 AI 자유생성이 아니라 코드로 고정 삽입됩니다(`news_engine.py`의
-`build_source_and_disclaimer_block`).
+출처 목록과 "정보 제공용, 권유 아님"(바이오는 "의료진과 상의") 문구는 AI가 아니라
+코드로 고정 삽입됩니다(`topic_engine.py`의 `closing_block`).
 
 ---
 
