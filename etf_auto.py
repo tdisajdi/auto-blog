@@ -5449,8 +5449,16 @@ def _record_pending_message(msg_id):
     pending = _load_pending()
     if pending and msg_id:
         pending["message_id"] = msg_id if msg_id is not True else None
+        if msg_id is not True:
+            pending["message_ids"] = (pending.get("message_ids") or []) + [msg_id]   # 첫 추천 + 리마인드 전부
         pending["sent_at"] = datetime.now().isoformat()
         _save_pending(pending)
+
+
+def _is_current_message(rec, message_id):
+    """눌린 버튼의 메시지가 이 추천을 보낸 메시지(첫 추천 또는 리마인드)인지. 기록이 없으면 그냥 인정."""
+    known = set(rec.get("message_ids") or []) | ({rec.get("message_id")} - {None, True})
+    return not known or message_id in known
 
 
 def _mark_recommendation_approved(message_id, label):
@@ -5726,9 +5734,12 @@ def run_check_approval():
         if callback:
             # 누른 사람 화면의 '로딩 중' 표시 끄기 (10분 뒤라 만료됐을 수 있음 - 실패해도 무시)
             _telegram_answer_callback(callback.get("id"), "승인 받았어요")
-            if callback.get("data") == "approve" and pending:
+            # 버튼 신호만으로는 어느 추천 것인지 몰라서, 눌린 메시지가 지금 기다리는 추천(또는 그 리마인드)인지 확인한다.
+            # 안 그러면 어제 지나간 추천의 버튼을 눌러도 오늘 추천이 승인돼 버린다.
+            cb_mid = (callback.get("message") or {}).get("message_id")
+            if callback.get("data") == "approve" and pending and _is_current_message(pending, cb_mid):
                 confirmed_topic, override = pending["ticker"], False
-            elif callback.get("data") == "approve_topic" and pending2:
+            elif callback.get("data") == "approve_topic" and pending2 and _is_current_message(pending2, cb_mid):
                 topic2_ok = True
             elif callback.get("data") in ("approve", "approve_topic"):
                 # 이미 처리했거나 시간이 지나 사라진 추천의 버튼
