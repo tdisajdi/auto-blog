@@ -60,6 +60,7 @@ from blog_engine import (
     _check_duplicate, _save_published_article_file, _register_article,
     _load_state,
     generate_optimized_title,
+    _discover_due, _mark_discovered,
 )
 
 TISTORY_ID = os.environ.get("TISTORY_ID")
@@ -5836,6 +5837,8 @@ def run_automation():
                          help="이 티커로 바로 진행 (자동 감지/사람 확인 단계 생략)")
     parser.add_argument("--discover-and-notify", action="store_true",
                          help="1번(발굴)->2번(토론) 진행 후 텔레그램 알림만 보내고 종료")
+    parser.add_argument("--if-due", action="store_true",
+                         help="--discover-and-notify와 함께: 오늘 추천을 아직 안 보냈고 07:30(KST)이 지났을 때만 실행")
     parser.add_argument("--check-approval", action="store_true",
                          help="텔레그램 승인/override 응답을 확인하고 결과를 출력")
     parser.add_argument("--sync-performance", action="store_true",
@@ -5866,6 +5869,10 @@ def run_automation():
         return
 
     if cli_args.discover_and_notify:
+        if cli_args.if_due and not _discover_due("etf", 7, 30):
+            print("ℹ️ 오늘 ETF 추천은 이미 보냈거나 아직 시간이 안 됐습니다.")
+            return
+        _mark_discovered("etf")
         run_discover_and_notify()
         return
 

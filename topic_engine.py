@@ -30,7 +30,7 @@ from blog_engine import (
     _post_process_blog_content, _inject_table_of_contents, _llm_quality_check,
     _check_duplicate, _load_state, _register_article, publish_to_wordpress,
     _telegram_send_message, _load_json_file, _save_json_file, get_wordpress_recent_posts,
-    _insert_operator_memo,
+    _insert_operator_memo, _discover_due, _mark_discovered,
 )
 
 PENDING_TOPIC_FILE = "pending_topic.json"
@@ -614,8 +614,13 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--discover", action="store_true")
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--if-due", action="store_true", help="오늘 추천을 아직 안 보냈고 12:07(KST)이 지났을 때만")
     args = ap.parse_args()
     if args.discover:
-        run_discover_and_notify()
+        if args.if_due and not _discover_due("topic", 12, 7):
+            print("ℹ️ 오늘 두 번째 글 추천은 이미 보냈거나 아직 시간이 안 됐습니다.")
+        else:
+            _mark_discovered("topic")
+            run_discover_and_notify()
     elif args.run:
         run_confirmed()

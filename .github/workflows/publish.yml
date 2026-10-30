@@ -10,6 +10,11 @@ on:
     - cron: '0 20 * * 1'    # 매주 월요일 - Search Console 성과 동기화
     - cron: '0 21 * * 0'    # 매주 일요일 - 주간 상태 점검 리포트
 
+  # 외부 알람(cron-job.org 등)이 깃허브 API로 'tick'을 보내면 10분 점검 잡과 똑같이 실행.
+  # 깃허브 예약 실행이 자주 밀리거나 빠지기 때문에 시간을 지키기 위한 보조 수단.
+  repository_dispatch:
+    types: [tick]
+
   # 수동 실행(테스트/디버깅용) - 예전처럼 topic/detect_only로 즉시 발행도 가능
   workflow_dispatch:
     inputs:
@@ -24,6 +29,11 @@ on:
         default: false
       check_universe:
         description: '발굴 대상 ETF 목록이 데이터를 받아오는지 점검 (발행 안 함)'
+        required: false
+        type: boolean
+        default: false
+      etf_discover:
+        description: 'ETF 추천을 지금 한 번 만들어 텔레그램으로 받기 (아침 추천이 안 왔을 때)'
         required: false
         type: boolean
         default: false
@@ -80,14 +90,15 @@ jobs:
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
-      - name: 발굴 + 토론 + 텔레그램 알림
-        run: python etf_auto.py --discover-and-notify
+      - name: 발굴 + 토론 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
+        run: python etf_auto.py --discover-and-notify --if-due
       - name: 대기 상태 파일 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pending_recommendation.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
+          git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -114,13 +125,14 @@ jobs:
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
-      - name: ETF 외 분야 발굴 + 텔레그램 알림
-        run: python topic_engine.py --discover
+      - name: ETF 외 분야 발굴 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
+        run: python topic_engine.py --discover --if-due
       - name: 대기 상태 파일 커밋
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add pending_topic.json 2>/dev/null || true
+          git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -129,7 +141,7 @@ jobs:
           fi
 
   check-approval-and-publish:
-    if: github.event.schedule == '*/10 * * * *'
+    if: github.event.schedule == '*/10 * * * *' || github.event_name == 'repository_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -144,6 +156,12 @@ jobs:
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+
+      # 아침/낮 예약 실행이 빠졌으면 여기서 대신 보낸다 (이미 보냈으면 바로 넘어감)
+      - name: 놓친 추천 보충
+        run: |
+          python etf_auto.py --discover-and-notify --if-due || echo "⚠️ ETF 추천 보충 실패 - 승인 확인은 계속 진행"
+          python topic_engine.py --discover --if-due || echo "⚠️ 두 번째 글 추천 보충 실패 - 승인 확인은 계속 진행"
 
       - name: 텔레그램 응답 확인
         id: check
@@ -162,6 +180,7 @@ jobs:
           git add pending_recommendation.json 2>/dev/null || true
           git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
+          git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -291,6 +310,10 @@ jobs:
             python topic_engine.py --discover
             exit 0
           fi
+          if [ "${{ github.event.inputs.etf_discover }}" = "true" ]; then
+            python etf_auto.py --discover-and-notify
+            exit 0
+          fi
           ARGS=""
           if [ "${{ github.event.inputs.check_trends }}" = "true" ]; then
             ARGS="--check-trends"
@@ -315,6 +338,7 @@ jobs:
           git add pending_recommendation.json 2>/dev/null || true
           git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
+          git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
