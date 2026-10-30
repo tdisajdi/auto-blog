@@ -486,7 +486,7 @@
   </div>
 </div>
 
-<script>
+<script type="text/plain" id="ondo-page-code">
 (function () {
   var SITE_API = 'https://ondo99.com/wp-json/wp/v2';
 
@@ -924,5 +924,17 @@
       box.innerHTML = '<div class="oc-loading">' + T.loadError + '</div>';
     }
   }, 10000);
+})();
+</script>
+<script>
+/* 워드프레스가 저장할 때 코드 속 '그리고' 기호(앰퍼샌드)를 다른 글자로 바꿔버려서 코드가 멈추는 문제가 있다.
+   그래서 실제 코드는 위의 text/plain 상자에 넣어두고, 여기서 원래 기호로 되돌린 뒤 실행한다.
+   (이 실행부에는 일부러 그 기호를 쓰지 않는다) */
+(function () {
+  var box = document.getElementById('ondo-page-code');
+  if (!box) return;
+  var A = String.fromCharCode(38);
+  var code = box.textContent.split(A + '#038;').join(A).split(A + '#38;').join(A);
+  (new Function(code))();
 })();
 </script>
