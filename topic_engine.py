@@ -633,6 +633,9 @@ def _kosis_table_for(text):
 
 def run_check_sources():
     """깃허브에서 EIA·KOSIS 키가 실제로 작동하는지, 통계표가 어떤 항목을 주는지 점검 (발행 안 함)."""
+    print("=== 텔레그램 ===")
+    from blog_engine import telegram_diagnose
+    telegram_diagnose()
     print("=== EIA (미국 원유 재고) ===")
     print(_eia_crude_inventory() or "결과 없음 (키 없음 또는 조회 실패)")
     print("=== KOSIS 통계표 ===")

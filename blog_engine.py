@@ -2522,10 +2522,46 @@ def _telegram_get_updates(offset=None):
         resp = requests.get(url, params=params, timeout=15)
         if resp.status_code == 200:
             return resp.json().get("result", [])
+        # 예전엔 실패해도 조용히 "응답 없음"으로 보였다. 이유를 남긴다(토큰이 든 주소는 출력하지 않음).
+        try:
+            desc = resp.json().get("description", "")
+        except ValueError:
+            desc = ""
+        print(f"⚠️ 텔레그램 응답 읽기 실패: HTTP {resp.status_code} {desc}")
         return []
     except Exception as e:
-        print(f"⚠️ 텔레그램 업데이트 조회 실패: {e}")
+        print(f"⚠️ 텔레그램 업데이트 조회 실패: {type(e).__name__}")
         return []
+
+
+def telegram_diagnose():
+    """버튼을 눌러도 반응이 없을 때 원인 점검: 웹후크가 걸려 있는지, 쌓인 메시지가 몇 개인지, 최근 오류."""
+    if not TELEGRAM_BOT_TOKEN:
+        print("TELEGRAM_BOT_TOKEN 없음")
+        return
+    base = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+    try:
+        me = requests.get(f"{base}/getMe", timeout=15).json().get("result", {})
+        print(f"봇 이름: @{me.get('username')}")
+        info = requests.get(f"{base}/getWebhookInfo", timeout=15).json().get("result", {})
+        print(f"웹후크 설정: {'있음 → ' + info['url'].split('/')[2] if info.get('url') else '없음(정상)'}")
+        print(f"쌓여 있는 메시지 수: {info.get('pending_update_count')}")
+        if info.get("last_error_message"):
+            print(f"웹후크 최근 오류: {info.get('last_error_message')}")
+        r = requests.get(f"{base}/getUpdates", params={"timeout": 0, "limit": 100}, timeout=15)
+        data = r.json()
+        if r.status_code != 200:
+            print(f"getUpdates 실패: HTTP {r.status_code} {data.get('description')}")
+            return
+        ups = data.get("result", [])
+        print(f"getUpdates로 읽힌 메시지: {len(ups)}개 (가장 최근 번호: {ups[-1]['update_id'] if ups else '-'})")
+        for u in ups[-8:]:
+            kind = "버튼" if u.get("callback_query") else ("사진" if (u.get("message") or {}).get("photo") else "글")
+            src = u.get("callback_query") or u.get("message") or {}
+            chat = ((src.get("message") or src).get("chat") or {}).get("id")
+            print(f"  #{u['update_id']} {kind} / 운영자 채팅방: {str(chat) == str(TELEGRAM_CHAT_ID).strip()}")
+    except Exception as e:
+        print(f"텔레그램 점검 실패: {type(e).__name__}")
 
 
 atexit.register(_flush_api_usage_stats)
