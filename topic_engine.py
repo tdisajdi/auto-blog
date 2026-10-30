@@ -438,10 +438,17 @@ KOSIS_DATA_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 KOSIS_SEARCH_URL = "https://kosis.kr/openapi/statisticsSearch.do"
 
 KOSIS_TABLES = [
-    {"key": "vital", "name": "인구동향(출생·사망·혼인·이혼)", "org": "101", "tbl": "DT_1B8000F", "prd": "M", "n": 13,
-     "keywords": ["출생", "출산", "신생아", "사망", "혼인", "결혼", "이혼", "인구동향", "자연감소"]},
+    # 표마다 생김새가 다르다: 이 표는 분류1(C1)이 '출생아수(명)', '합계출산율(명)' 같은 지표이고 연 단위.
+    {"key": "vital", "name": "인구동태건수 및 동태율 추이", "org": "101", "tbl": "DT_1B8000F", "prd": "Y", "n": 5,
+     "keywords": ["출생", "출산", "신생아", "사망", "자연감소", "자연증가", "인구동향"]},
     {"key": "population", "name": "주민등록인구", "org": "101", "tbl": "DT_1B040A3", "prd": "M", "n": 13,
      "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
+    {"key": "aged", "name": "고령인구비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 5,
+     "keywords": ["고령", "노인", "65세", "초고령"]},
+    {"key": "single", "name": "1인가구비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 5,
+     "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
+    {"key": "projection", "name": "주요 연령계층별 추계인구", "org": "101", "tbl": "DT_1BPA003", "prd": "Y", "n": 60,
+     "keywords": ["장래인구", "추계", "생산연령", "인구 전망"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
 
@@ -488,7 +495,11 @@ def _num(v):
 
 
 def _fmt_val(v, unit):
-    txt = f"{v:,.0f}" if float(v).is_integer() else f"{v:,.1f}"
+    # 합계출산율(0.75)처럼 작은 값은 반올림하면 뜻이 달라지므로 원래 자릿수(최대 3자리)를 살린다.
+    if float(v).is_integer():
+        txt = f"{v:,.0f}"
+    else:
+        txt = (f"{v:,.3f}" if abs(v) < 100 else f"{v:,.1f}").rstrip("0").rstrip(".")
     return f"{txt}{unit}"
 
 
@@ -502,18 +513,28 @@ def _fmt_period(p, prd):
 
 
 def _kosis_series(rows):
-    """전국 값만 골라 항목별 시계열 {(항목, 단위): [(기간, 값)...]}로 정리."""
+    """항목별 시계열 {(이름, 단위): [(기간, 값)...]}.
+    지역 분류가 있는 표는 전국 값만 쓰고, 분류1이 지역이 아니라 지표인 표(예: 출생아수·합계출산율)는
+    분류1 이름을 항목 이름으로 쓴다."""
     nat = [r for r in rows if str(r.get("C1_NM", "")).strip() in _KOSIS_NATIONAL or str(r.get("C1", "")) in ("00", "0")]
+    use = nat or rows
+    one_item = len({r.get("ITM_NM") for r in use}) == 1
     out = {}
-    for r in (nat or rows):
+    for r in use:
         v = _num(r.get("DT"))
         if v is None:
             continue
-        out.setdefault((r.get("ITM_NM", ""), r.get("UNIT_NM", "")), {})[str(r.get("PRD_DE"))] = v
+        if nat:
+            name = r.get("ITM_NM", "")
+        elif one_item:
+            name = r.get("C1_NM", "")
+        else:
+            name = f"{r.get('C1_NM', '')} - {r.get('ITM_NM', '')}"
+        out.setdefault((name, r.get("UNIT_NM", "") or ""), {})[str(r.get("PRD_DE"))] = v
     return {k: sorted(v.items()) for k, v in out.items()}
 
 
-def kosis_fact_block(table, max_items=6):
+def kosis_fact_block(table, max_items=8):
     """그 통계표의 최신값·전월·전년 같은 달 비교를 [공식 통계] 블록 글로 만든다. 실패하면 ''."""
     rows, err = kosis_data(table["org"], table["tbl"], table["prd"], table["n"])
     if not rows:
@@ -530,18 +551,19 @@ def kosis_fact_block(table, max_items=6):
         if len(pts) >= 2:
             pp, pv = pts[-2]
             line += f" (직전 {_fmt_period(pp, table['prd'])} {_fmt_val(pv, unit)})"
-        if table["prd"] == "M" and len(pts) >= 13:
-            yp, yv = pts[-13]
+        back = {"M": 12, "Q": 4, "Y": 1}.get(table["prd"], 0)
+        if back and len(pts) > back:
+            yp, yv = pts[-1 - back]
             if yv:
                 yoy = (lv / yv - 1) * 100
-                line += f", 1년 전 같은 달 대비 {yoy:+.1f}%"
+                line += f", 1년 전({_fmt_period(yp, table['prd'])}) 대비 {yoy:+.1f}%"
                 if summary is None:
                     summary = {"item": item, "period": lp, "value": lv, "unit": unit, "yoy": yoy}
         lines.append(line)
     if not lines:
         return "", None
     tbl_nm = rows[0].get("TBL_NM", table["name"])
-    head = f"[공식 통계 - 국가통계포털(KOSIS) '{tbl_nm}', 전국 기준. 숫자는 이 자료 그대로만 쓰세요]"
+    head = f"[공식 통계 - 국가통계포털(KOSIS) '{tbl_nm}', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]"
     return head + "\n" + "\n".join(lines) + "\n", summary
 
 
@@ -572,7 +594,7 @@ def run_check_sources():
         print(block or "(사실 블록 만들기 실패)")
         print("요약:", summary)
     print("\n=== KOSIS 통계표 검색 (다음 연결 후보) ===")
-    for word in ["합계출산율", "고령인구비율", "1인가구", "외국인주민", "장래인구추계"]:
+    for word in ["월별 출생아수", "인구동향 월", "시도별 출생아수", "혼인건수", "외국인주민 현황"]:
         res = kosis_search(word)
         print(f"[{word}]", [(r.get("ORG_ID"), r.get("TBL_ID"), r.get("TBL_NM")) for r in res] or "결과 없음")
 
