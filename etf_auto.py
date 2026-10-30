@@ -57,6 +57,7 @@ from blog_engine import (
     ping_indexnow,
     _render_html_to_image, _threads_post_carousel, _threads_post,
     _telegram_send_message, _telegram_get_updates, _telegram_update_is_authorized, _insert_operator_memo,
+    _telegram_answer_callback, _telegram_edit_text,
     _check_duplicate, _save_published_article_file, _register_article,
     _load_state,
     generate_optimized_title,
@@ -5452,6 +5453,14 @@ def _record_pending_message(msg_id):
         _save_pending(pending)
 
 
+def _mark_recommendation_approved(message_id, label):
+    """승인한 추천 메시지의 버튼을 없애고 '승인됨'으로 바꿔서, 된 건지 한눈에 보이고 두 번 누르지 않게 한다."""
+    if not message_id or message_id is True:
+        return
+    from blog_engine import _kst_now
+    _telegram_edit_text(message_id, f"📌 {label}\n\n✅ 승인됨 ({_kst_now():%m/%d %H:%M}) - 글쓰기를 시작했어요.")
+
+
 def _clear_pending():
     if os.path.exists(PENDING_RECOMMENDATION_FILE):
         os.remove(PENDING_RECOMMENDATION_FILE)
@@ -5467,7 +5476,7 @@ def _save_telegram_offset(offset):
 
 
 REPLY_HELP_TEXT = (
-    "• 승인: [✅ 승인] 버튼\n"
+    "• 승인: [✅ 승인] 버튼 (누르면 10분 안에 '승인 확인' 답장이 와요)\n"
     "• 다른 종목으로: 티커를 답장 (예: SPY 또는 SPY,360750)\n"
     "• 운영자 메모(선택): '메모: 내용'으로 답장하면 글에 그대로 들어가요"
 )
@@ -5715,10 +5724,16 @@ def run_check_approval():
 
         callback = update.get("callback_query")
         if callback:
+            # 누른 사람 화면의 '로딩 중' 표시 끄기 (10분 뒤라 만료됐을 수 있음 - 실패해도 무시)
+            _telegram_answer_callback(callback.get("id"), "승인 받았어요")
             if callback.get("data") == "approve" and pending:
                 confirmed_topic, override = pending["ticker"], False
             elif callback.get("data") == "approve_topic" and pending2:
                 topic2_ok = True
+            elif callback.get("data") in ("approve", "approve_topic"):
+                # 이미 처리했거나 시간이 지나 사라진 추천의 버튼
+                _telegram_edit_text((callback.get("message") or {}).get("message_id"),
+                                    "이 추천은 이미 처리했거나 기간이 지났어요. 새 추천을 기다려주세요.")
             continue
 
         text = ((update.get("message") or {}).get("text") or "").strip()
@@ -5765,7 +5780,10 @@ def run_check_approval():
         _save_json_file(CONFIRMED_TOPIC2_FILE, pending2)
         os.remove(PENDING_TOPIC_FILE)
         memo_note = "\n📝 운영자 메모도 함께 실려요." if pending2.get("memo") else ""
-        _telegram_send_message(f"✅ 두 번째 글 '{pending2['title_seed']}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
+        _mark_recommendation_approved(pending2.get("message_id"), f"두 번째 글 - {pending2['title_seed']}")
+        _telegram_send_message(f"✅ 승인 확인! 두 번째 글 '{pending2['title_seed']}' 글쓰기를 시작해요.\n"
+                               f"보통 15~30분 뒤에 '발행 완료' 메시지와 글 링크가 와요.{memo_note}",
+                               reply_to=pending2.get("message_id"))
 
     if not confirmed_topic:
         if not topic2_ok:
@@ -5785,7 +5803,11 @@ def run_check_approval():
     _clear_pending()
     memo_note = "\n📝 운영자 메모도 함께 실려요." if pending.get("memo") else ""
     label = pending.get('label') if confirmed_topic == pending.get('ticker') else None
-    _telegram_send_message(f"✅ '{label or _topic_label(confirmed_topic)}'로 진행합니다. 잠시 후 발행 파이프라인이 시작돼요.{memo_note}")
+    shown = label or _topic_label(confirmed_topic)
+    _mark_recommendation_approved(pending.get("message_id"), f"ETF - {shown}")
+    _telegram_send_message(f"✅ 승인 확인! '{shown}' 글쓰기를 시작해요.\n"
+                           f"보통 15~30분 뒤에 '발행 완료' 메시지와 글 링크가 와요.{memo_note}",
+                           reply_to=pending.get("message_id"))
 
 
 def _ask_yn(prompt, default_when_noninteractive='n'):
