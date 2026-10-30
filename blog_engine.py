@@ -2020,6 +2020,36 @@ def wp_set_featured_image(post_id, media_id):
     return False
 
 
+def wp_get_post_content(post_id):
+    """글 본문(저장된 원본 HTML)을 가져온다. 실패하면 None."""
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID and post_id):
+        return None
+    try:
+        r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/{post_id}",
+                         headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                         params={"context": "edit", "fields": "content"}, timeout=30)
+        return r.json().get("content") if r.status_code == 200 else None
+    except Exception as e:
+        print(f"⚠️ 글 본문 가져오기 실패: {type(e).__name__}")
+        return None
+
+
+def wp_update_post_content(post_id, content):
+    """글 본문을 바꾼다(본문 그림을 나중에 넣을 때). 성공하면 True."""
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID and post_id):
+        return False
+    try:
+        r = requests.post(f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/{post_id}",
+                          headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                          data={"content": content}, timeout=60)
+        if r.status_code in (200, 201):
+            return True
+        print(f"⚠️ 글 본문 바꾸기 실패: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        print(f"⚠️ 글 본문 바꾸기 중 오류: {type(e).__name__}")
+    return False
+
+
 def wp_find_post_by_url(url):
     """글 주소로 (글 번호, 제목, 분야 코드)를 찾는다. 못 찾으면 None.
     텔레그램으로 그림을 보낼 때 설명에 글 주소를 붙이면 아무 글이나 썸네일을 바꿀 수 있게 하는 용도."""
@@ -2355,12 +2385,14 @@ def _threads_post(text):
         return False
 
 
-def _telegram_send_message(text, with_approve_button=False):
+def _telegram_send_message(text, with_approve_button=False, parse_mode=None):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("⚠️ TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID가 설정되지 않아 텔레그램 알림을 건너뜁니다.")
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
+    if parse_mode:
+        payload["parse_mode"] = parse_mode   # "HTML"이면 <pre> 상자 → 텔레그램에서 눌러서 바로 복사
     if with_approve_button:
         # True면 ETF 추천용 "approve", 문자열이면 그 값을 버튼 신호로 쓴다(두 번째 글은 "approve_topic").
         callback = with_approve_button if isinstance(with_approve_button, str) else "approve"

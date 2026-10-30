@@ -274,7 +274,8 @@ def _add_media(body, title, category_label, chart):
             'JSON으로만: {"query_en": "영어 검색어", "alt_ko": "사진 설명 한 문장(한국어)"}') or {}
         photo = media_engine.unsplash_photo(q.get("query_en", ""))
         photo_block = media_engine.photo_html(photo, q.get("alt_ko", ""))
-    return media_engine.place_media(body, photo_block, chart_block)
+    # 본문 그림 자리(최대 2개)도 함께 정한다 - 사용자가 ComfyUI로 그림을 보내면 그 자리가 채워진다.
+    return media_engine.plan_layout(body, photo_block, chart_block, n_slots=media_engine.MAX_BODY_IMAGES)
 
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
@@ -293,7 +294,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     title = title or title_seed
     if memo:
         body = _insert_operator_memo(body, memo)
-    body = _add_media(body, title, category_label, chart)
+    body, slots = _add_media(body, title, category_label, chart)
     body += closing_html
 
     if _check_duplicate(title, body, _load_state()):
@@ -322,7 +323,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{result}\n품질 점수: {score_text}")
         import blog_engine
         media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, title,
-                                       os.environ.get("BLOG_CATEGORY", "etf"), result)
+                                       os.environ.get("BLOG_CATEGORY", "etf"), result, slots=slots)
     else:
         issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
         _telegram_send_message(f"📝 [{kind_label}] 임시글로만 올렸어요 (공개 안 됨)\n제목: {title}\n"

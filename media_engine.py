@@ -304,34 +304,102 @@ def photo_html(photo, alt_ko=""):
 
 
 # ------------------------------------------------------------
-# 배치 규칙 - 이미지가 중구난방으로 들어가지 않게
-#  - 한 글에 사진 최대 1장, 차트 최대 1개 (표는 글쓰기 규칙에서 Part3에 1개로 제한)
-#  - 사진은 도입부 끝(첫 번째 대제목 바로 앞): 글 분위기를 잡는 자리
-#  - 차트는 숫자를 다루는 본문 중간(세 번째 대제목 앞, 대제목이 적으면 두 번째 앞)
-#  - 둘이 같은 자리에 붙지 않게, 그리고 표 바로 뒤에 차트가 붙지 않게 한 칸 뒤로 미룬다
+# 배치 규칙 - 이미지가 중구난방으로 들어가지 않게 (사용자 요청)
+#  - 이미지가 들어갈 수 있는 곳은 "대제목(<h3>) 바로 앞", 즉 앞 구간의 글이 완전히 끝난 자리뿐.
+#    문단 중간·표 안·목록 안에는 절대 안 들어간다.
+#  - 바로 앞이 표나 다른 이미지로 끝나는 자리는 건너뛴다(표 → 이미지가 연달아 붙지 않게).
+#  - 앞 구간의 글이 충분히 긴(약 250자 이상) 자리만 쓴다.
+#  - 한 자리에 하나씩. 사진은 도입부 끝, 차트는 본문 중간, 본문 그림(최대 2장)은 중간·후반에 흩어서.
+#    가능하면 이미지끼리 사이에 구간이 하나 이상 있게 한다.
 # ------------------------------------------------------------
-def place_media(body, photo_block="", chart_block=""):
+MAX_BODY_IMAGES = 2
+MIN_SECTION_TEXT = 250
+
+
+def _plain(html_text):
+    import re
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html_text)).strip()
+
+
+def plan_layout(body, photo_block="", chart_block="", n_slots=0):
+    """이미지 자리를 정해서 넣는다. 반환: (새 본문, 본문 그림 자리 목록[{slot, heading, text}]).
+    본문 그림 자리는 빈 표시(<div id="ondo-slot-N">)만 넣어 두고, 사용자가 그림을 보내면 그 자리를 채운다."""
     import re
     heads = [m.start() for m in re.finditer(r"<h3[\s>]", body)]
-    inserts = []
-    if photo_block and heads:
-        inserts.append((heads[0], photo_block))
-    if chart_block and heads:
-        idx = 2 if len(heads) >= 3 else min(1, len(heads) - 1)
-        if photo_block and idx == 0:
-            idx = 1 if len(heads) > 1 else None
-        # 바로 앞 구간이 표로 끝나면(표 → 차트가 연달아 보이면 답답함) 다음 대제목 앞으로
-        while idx is not None and idx < len(heads) and body[:heads[idx]].rstrip().endswith("</table>"):
-            idx = idx + 1 if idx + 1 < len(heads) else None
-        if idx is not None:
-            inserts.append((heads[idx], chart_block))
+    if not heads:
+        return (body + ("\n" + chart_block if chart_block else "")), []
+
+    def section(i):          # i번 자리(대제목 i 앞)의 바로 앞 구간
+        return body[(heads[i - 1] if i > 0 else 0):heads[i]]
+
+    def heading(i):
+        if i <= 0:
+            return ""
+        m = re.match(r"<h3[^>]*>(.*?)</h3>", body[heads[i - 1]:], re.S)
+        return _plain(m.group(1)) if m else ""
+
+    def good(i):
+        before = body[:heads[i]].rstrip()
+        if re.search(r"</(table|figure)>$", before, re.I):
+            return False
+        return i == 0 or len(_plain(section(i))) >= MIN_SECTION_TEXT
+
+    used = {}
+    if photo_block and good(0):
+        used[0] = photo_block
+
+    def pick(prefer, strict=False):
+        cands = [i for i in range(len(heads)) if i not in used and good(i)]
+        far = [i for i in cands if all(abs(i - u) >= 2 for u in used)]
+        # 본문 그림(strict)은 다른 이미지와 사이에 구간이 하나 이상 있을 때만. 차트는 자리가 없으면 붙여서라도.
+        pool = far if strict else (far or cands)
+        return min(pool, key=lambda i: (abs(i - prefer), i)) if pool else None
+
+    if chart_block:
+        idx = pick(2 if len(heads) >= 3 else 1)
+        if idx is None:
+            body = body + "\n" + chart_block
         else:
-            inserts.append((len(body), chart_block))
-    if chart_block and not heads:
-        inserts.append((len(body), chart_block))
-    for pos, block in sorted(inserts, key=lambda x: x[0], reverse=True):
+            used[idx] = chart_block
+
+    slots = []
+    for k, frac in enumerate([0.45, 0.8][:min(n_slots, MAX_BODY_IMAGES)], start=1):
+        idx = pick(max(1, round(len(heads) * frac)), strict=True)
+        if idx is None or idx == 0:
+            break
+        used[idx] = f'<div id="ondo-slot-{k}" class="ondo-slot"></div>'
+        slots.append({"slot": k, "heading": heading(idx), "text": _plain(section(idx))[:400]})
+
+    for pos, block in sorted(((heads[i], b) for i, b in used.items()), key=lambda x: x[0], reverse=True):
         body = body[:pos] + block + "\n" + body[pos:]
-    return body
+    return body, slots
+
+
+def place_media(body, photo_block="", chart_block=""):
+    """(예전 이름 유지) 사진·차트만 배치."""
+    return plan_layout(body, photo_block, chart_block, 0)[0]
+
+
+def body_image_html(img_url, slot, alt):
+    return (f'<figure id="ondo-slot-{slot}" class="ondo-illust" style="margin:28px 0;">'
+            f'<img src="{html.escape(img_url)}" alt="{html.escape(alt)}" style="width:100%;height:auto;border-radius:10px;" '
+            f'loading="lazy" /><figcaption style="font-size:12px;color:#8a96b0;margin-top:6px;">AI로 만든 일러스트</figcaption>'
+            f'</figure>')
+
+
+def shrink_for_web(src, max_side=1200):
+    """본문 그림은 휴대폰에서도 빨리 열리게 긴 변 1200px, JPEG로 줄인다. 반환: 새 파일 경로 또는 None."""
+    try:
+        from PIL import Image
+        img = Image.open(src).convert("RGB")
+        img.thumbnail((max_side, max_side))
+        fd, out = tempfile.mkstemp(prefix="illust_", suffix=".jpg")
+        os.close(fd)
+        img.save(out, "JPEG", quality=85, optimize=True, progressive=True)
+        return out
+    except Exception as e:
+        print(f"ℹ️ 그림 줄이기 실패: {type(e).__name__}")
+        return None
 
 
 def upload_png(path):
@@ -371,6 +439,31 @@ IMAGE_STYLE = ("Editorial illustration for a data-focused blog, cinematic soft l
                "no recognizable real people.")
 
 
+# 본문 그림: 같은 색감, 글씨를 얹지 않으므로 주제를 가운데 둬도 된다.
+IMAGE_STYLE_BODY = ("Editorial illustration for a data-focused blog article, cinematic soft lighting, deep navy blue "
+                    "and warm gold color palette, clean minimal composition, no text, no letters, no numbers, "
+                    "no logos, no watermark, no recognizable real people.")
+
+
+def _ask_scene(instruction):
+    try:
+        import json as _json
+        import re as _re
+        from blog_engine import get_gemini_response
+        res = get_gemini_response(
+            instruction + " 실제 인물·유명인·회사 로고·제품 상표·의료 시술 장면·글자는 넣지 말고, 사실처럼 보이는 "
+            "뉴스 사진 장면도 피하세요.\n" + 'JSON으로만: {"scene": "영어 한 문장(25단어 이내)"}')
+        return str((_json.loads(_re.sub(r"```[a-zA-Z]*\n?|```", "", res or "").strip()) or {}).get("scene", "")).strip().rstrip(".")
+    except Exception:
+        return ""
+
+
+def body_image_prompt(title, heading, text):
+    scene = _ask_scene(f"블로그 글 '{title}'의 한 단락입니다.\n단락 제목: {heading}\n단락 내용: {text}\n"
+                       "이 단락 내용을 상징하는 일러스트 장면을 영어 한 문장으로 묘사하세요.")
+    return f"{scene or 'an abstract illustration that symbolizes ' + (heading or title)}. {IMAGE_STYLE_BODY}"
+
+
 def image_prompt(title, category_code):
     """글 제목으로 ComfyUI용 영어 프롬프트를 만든다. AI가 실패하면 분야별 기본 장면을 쓴다."""
     fallback = {"etf": "abstract stock market chart lines glowing over a calm city skyline at dusk",
@@ -396,31 +489,40 @@ def image_prompt(title, category_code):
     return f"{scene}. {IMAGE_STYLE}"
 
 
-def send_image_prompt(post_id, title, category_code, url):
-    """발행 직후 텔레그램으로 프롬프트를 보내고, 답장을 기다리는 목록에 저장한다."""
+def send_image_prompt(post_id, title, category_code, url, slots=None):
+    """발행 직후 텔레그램으로 썸네일 + 본문 그림(최대 2장) 프롬프트를 보내고, 답장을 기다리는 목록에 저장한다."""
     if not post_id:
         return
     from datetime import datetime
     from blog_engine import _telegram_send_message, _load_json_file, _save_json_file
-    prompt = image_prompt(title, category_code)
+    slots = (slots or [])[:MAX_BODY_IMAGES]
+    body_note = (f"• 본문 그림 {len(slots)}장 자리도 비워 뒀어요(단락이 끝나는 곳). 각 프롬프트 메시지에 답장하면 그 자리에 들어가요.\n"
+                 if slots else "")
     head_id = _telegram_send_message(
-        f"🎨 썸네일 이미지를 만들어 주세요 (선택)\n글: {title}\n{url}\n\n"
-        f"• ComfyUI 모델: FLUX.2 [klein] 4B\n• 크기: {IMAGE_SIZE_TEXT}\n"
-        "• 다음 메시지(프롬프트)를 복사해서 쓰고, 만든 그림을 그 메시지나 이 메시지에 '답장'으로 보내주세요.\n"
-        "• 그림 위에 제목·분야·사이트 이름은 자동으로 얹어요. 안 보내면 지금 썸네일(제목 카드)이 그대로 남아요.\n"
-        f"• 나중에 보내도 돼요({IMAGE_REQUEST_KEEP_DAYS}일 안, 여러 번 바꾸기 가능). 기간이 지났거나 다른 글이면 "
-        "그림 설명(캡션)에 글 주소를 붙여 보내주세요.")
-    prompt_id = _telegram_send_message(prompt)
-    if not (head_id or prompt_id):
-        return
+        f"🎨 그림을 만들어 주세요 (모두 선택)\n글: {title}\n{url}\n\n"
+        f"• ComfyUI 모델: FLUX.2 [klein] 4B · 크기: {IMAGE_SIZE_TEXT}\n"
+        "• 아래 프롬프트 상자를 눌러 복사해서 쓰고, 만든 그림을 그 프롬프트 메시지에 '답장'으로 보내주세요.\n"
+        "• 썸네일은 그림 위에 제목·분야·사이트 이름을 자동으로 얹어요. 본문 그림은 그대로 들어가요.\n"
+        + body_note +
+        f"• 안 보낸 건 그냥 비어 있어요(글은 그대로). {IMAGE_REQUEST_KEEP_DAYS}일 안에는 나중에 보내도, 여러 번 바꿔도 돼요.\n"
+        "• 다른 글 썸네일은 그림 설명(캡션)에 글 주소를 붙여 보내면 돼요.")
+    msgs = [("thumb", 0, "🖼️ 썸네일용", image_prompt(title, category_code))]
+    for sl in slots:
+        msgs.append(("slot", sl["slot"], f"🖼️ 본문 그림 {sl['slot']} ('{sl['heading'] or '단락'}' 단락 뒤)",
+                     body_image_prompt(title, sl["heading"], sl["text"])))
     reqs = _load_json_file(IMAGE_REQUESTS_FILE, {}) or {}
     now = datetime.now()
-    # 오래된 요청은 정리
     for k in [k for k, v in reqs.items() if (now - datetime.fromisoformat(v["created_at"])).days > IMAGE_REQUEST_KEEP_DAYS]:
         reqs.pop(k)
-    entry = {"post_id": post_id, "title": title, "category": category_code, "url": url, "created_at": now.isoformat()}
-    for mid in (head_id, prompt_id):
+    base = {"post_id": post_id, "title": title, "category": category_code, "url": url, "created_at": now.isoformat()}
+    if head_id and head_id is not True:
+        reqs[str(head_id)] = dict(base, kind="thumb")
+    for kind, slot, label, prompt in msgs:
+        mid = _telegram_send_message(f"{label} — 이 메시지에 답장\n<pre>{html.escape(prompt)}</pre>", parse_mode="HTML")
         if mid and mid is not True:
+            entry = dict(base, kind=kind)
+            if kind == "slot":
+                entry.update(slot=slot, heading=next((x["heading"] for x in slots if x["slot"] == slot), ""))
             reqs[str(mid)] = entry
     _save_json_file(IMAGE_REQUESTS_FILE, reqs)
 
@@ -445,7 +547,7 @@ def handle_image_reply(update):
         return False
     from datetime import datetime
     from blog_engine import (_telegram_send_message, _telegram_download_file, _save_json_file,
-                             wp_set_featured_image, wp_find_post_by_url)
+                             wp_set_featured_image, wp_find_post_by_url, wp_get_post_content, wp_update_post_content)
     reqs = pending_image_requests()
     entry = None
     m = re.search(r"https?://\S+", msg.get("caption") or "")
@@ -458,7 +560,8 @@ def handle_image_reply(update):
     if not entry:
         entry = reqs.get(str(((msg.get("reply_to_message") or {}).get("message_id")) or ""))
     if not entry:
-        waiting = {v["post_id"]: v for v in reqs.values() if not v.get("replaced_at")}
+        waiting = {v["post_id"]: v for v in reqs.values()
+                   if v.get("kind", "thumb") == "thumb" and not v.get("replaced_at")}
         if len(waiting) == 1:
             entry = next(iter(waiting.values()))
         else:
@@ -470,6 +573,10 @@ def handle_image_reply(update):
     if not _telegram_download_file(file_id, src):
         _telegram_send_message("⚠️ 그림을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.")
         return True
+    if entry.get("kind") == "slot":
+        _fill_body_slot(entry, src, reqs, _telegram_send_message, _save_json_file, wp_get_post_content,
+                        wp_update_post_content)
+        return True
     card = make_title_card(entry["title"], entry["category"], background=src)
     try:
         os.remove(src)
@@ -480,10 +587,57 @@ def handle_image_reply(update):
         # 지우지 않고 "바꿈" 표시만 → 기간 안에는 같은 메시지에 다시 답장해서 또 바꿀 수 있다
         stamp = datetime.now().isoformat()
         for v in reqs.values():
-            if v["post_id"] == entry["post_id"]:
+            if v["post_id"] == entry["post_id"] and v.get("kind", "thumb") == "thumb":
                 v["replaced_at"] = stamp
         _save_json_file(IMAGE_REQUESTS_FILE, reqs)
         _telegram_send_message(f"✅ 썸네일을 바꿨어요: {entry['title']}\n{entry['url']}\n(다시 바꾸고 싶으면 그림을 또 보내면 돼요)")
     else:
         _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 보내주세요.")
     return True
+
+
+def _fill_body_slot(entry, src, reqs, send, save, get_content, update_content):
+    """본문 그림 자리(<div id="ondo-slot-N">, 이미 넣은 그림이면 <figure id="ondo-slot-N">)를 받은 그림으로 채운다."""
+    import re
+    from datetime import datetime
+    small = shrink_for_web(src)
+    try:
+        os.remove(src)
+    except OSError:
+        pass
+    media_id, url = (None, None)
+    if small:
+        try:
+            from blog_engine import _upload_media
+            media_id, url = _upload_media(small, "image/jpeg")
+        finally:
+            try:
+                os.remove(small)
+            except OSError:
+                pass
+    content = get_content(entry["post_id"]) if url else None
+    slot = entry.get("slot")
+    pattern = re.compile(r'<(div|figure)[^>]*id="ondo-slot-%s"[^>]*>.*?</\1>' % slot, re.S)
+    if not url or content is None:
+        send("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 답장으로 보내주세요.")
+        return
+    alt = f"{entry['title']} - {entry.get('heading') or '본문'} 일러스트"
+    block = body_image_html(url, slot, alt)
+    if pattern.search(content):
+        new_content = pattern.sub(lambda m: block, content, count=1)
+    else:
+        # 자리 표시가 사라졌으면(워드프레스가 빈 칸을 지웠거나 글을 고친 경우) 같은 단락이 끝나는 곳,
+        # 즉 그 단락 제목 다음에 오는 대제목 바로 앞에 넣는다.
+        heads = [(m.start(), _plain(m.group(1))) for m in re.finditer(r"<h3[^>]*>(.*?)</h3>", content, re.S)]
+        idx = next((i for i, (_, t) in enumerate(heads) if entry.get("heading") and t == entry["heading"]), None)
+        if idx is None or idx + 1 >= len(heads):
+            send("⚠️ 이 글에서 본문 그림 자리를 찾지 못했어요(글을 직접 고치면서 단락 제목이 바뀌었을 수 있어요).")
+            return
+        pos = heads[idx + 1][0]
+        new_content = content[:pos] + block + "\n" + content[pos:]
+    if update_content(entry["post_id"], new_content):
+        entry["replaced_at"] = datetime.now().isoformat()
+        save(IMAGE_REQUESTS_FILE, reqs)
+        send(f"✅ 본문 그림 {slot}을 넣었어요: {entry['title']}\n{entry['url']}\n(다시 바꾸고 싶으면 같은 메시지에 또 답장하면 돼요)")
+    else:
+        send("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 답장으로 보내주세요.")
