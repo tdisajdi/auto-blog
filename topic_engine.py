@@ -865,7 +865,7 @@ def run_discover_and_notify():
         if age < REMINDER_MAX_DAYS:
             msg_id = _telegram_send_message(
                 f"⏰ 아직 승인 안 하신 두 번째 글 추천이 있어요 ({age}일째)\n\n주제: {topic_label(pending)}\n이유: {pending['reason']}\n\n"
-                "• 승인: [✅ 승인] 버튼\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'",
+                "• 승인: [✅ 승인] 버튼 (누르면 10분 안에 '승인 확인' 답장이 와요)\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'",
                 with_approve_button="approve_topic")
             pending["message_id"], pending["sent_at"] = msg_id, datetime.now().isoformat()
             _save_json_file(PENDING_TOPIC_FILE, pending)
@@ -879,7 +879,7 @@ def run_discover_and_notify():
         return
     msg_id = _telegram_send_message(
         f"📌 오늘의 두 번째 글 추천\n\n분야: {CATEGORIES[best['category']]['label']}\n주제: {best['title_seed']}\n"
-        f"이유: {best['reason']}\n\n• 승인: [✅ 승인] 버튼\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'\n"
+        f"이유: {best['reason']}\n\n• 승인: [✅ 승인] 버튼 (누르면 10분 안에 '승인 확인' 답장이 와요)\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'\n"
         f"({REMINDER_MAX_DAYS}일간 리마인드되고, 응답 없으면 새로 추천해드려요)",
         with_approve_button="approve_topic")
     if not msg_id:
