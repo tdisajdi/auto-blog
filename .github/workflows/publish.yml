@@ -10,6 +10,9 @@ on:
     - cron: '0 20 * * 1'    # 매주 월요일 - Search Console 성과 동기화
     - cron: '0 21 * * 0'    # 매주 일요일 - 주간 상태 점검 리포트
 
+  # 외부 알람(cron-job.org)은 아래 수동 실행(workflow_dispatch)을 tick=true로 부른다.
+  # 그 토큰에는 "Actions 실행" 권한만 주면 되고 코드 수정 권한(Contents)이 필요 없어서 더 안전하다.
+  # (repository_dispatch 방식도 남겨두지만 그쪽은 Contents 쓰기 권한이 필요해 권장하지 않음)
   # 외부 알람(cron-job.org 등)이 깃허브 API로 'tick'을 보내면 10분 점검 잡과 똑같이 실행.
   # 깃허브 예약 실행이 자주 밀리거나 빠지기 때문에 시간을 지키기 위한 보조 수단.
   repository_dispatch:
@@ -29,6 +32,11 @@ on:
         default: false
       check_universe:
         description: '발굴 대상 ETF 목록이 데이터를 받아오는지 점검 (발행 안 함)'
+        required: false
+        type: boolean
+        default: false
+      tick:
+        description: '10분 점검 1회 (외부 알람 cron-job.org가 쓰는 옵션 - 직접 켤 일은 거의 없음)'
         required: false
         type: boolean
         default: false
@@ -148,7 +156,7 @@ jobs:
           fi
 
   check-approval-and-publish:
-    if: github.event.schedule == '*/10 * * * *' || github.event_name == 'repository_dispatch'
+    if: github.event.schedule == '*/10 * * * *' || github.event_name == 'repository_dispatch' || (github.event_name == 'workflow_dispatch' && github.event.inputs.tick == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -301,7 +309,7 @@ jobs:
   # 예전처럼 즉시 topic/detect_only로 테스트하고 싶을 때 사용.
   # ============================================================
   manual-run:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.tick != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
