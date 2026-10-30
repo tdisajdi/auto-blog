@@ -868,6 +868,8 @@ def run_discover_and_notify():
                 "• 승인: [✅ 승인] 버튼 (누르면 10분 안에 '승인 확인' 답장이 와요)\n• 메모(선택): 이 메시지에 답장으로 '메모: 내용'",
                 with_approve_button="approve_topic")
             pending["message_id"], pending["sent_at"] = msg_id, datetime.now().isoformat()
+            if msg_id and msg_id is not True:
+                pending["message_ids"] = (pending.get("message_ids") or []) + [msg_id]   # 첫 추천 + 리마인드 전부
             _save_json_file(PENDING_TOPIC_FILE, pending)
             return
         os.remove(PENDING_TOPIC_FILE)
@@ -886,7 +888,8 @@ def run_discover_and_notify():
         # 못 보낸 추천을 저장하면 다음 날 '아직 승인 안 하신…'으로 엉뚱하게 리마인드되므로 버린다.
         print("❌ 텔레그램 전송에 실패해 추천을 저장하지 않았습니다. TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID를 확인하세요.")
         return
-    best.update({"created_at": datetime.now().isoformat(), "sent_at": datetime.now().isoformat(), "message_id": msg_id})
+    best.update({"created_at": datetime.now().isoformat(), "sent_at": datetime.now().isoformat(), "message_id": msg_id,
+                 "message_ids": [msg_id] if msg_id is not True else []})
     _save_json_file(PENDING_TOPIC_FILE, best)
     print(f"✅ 두 번째 글 추천을 보냈습니다: {topic_label(best)}")
 
