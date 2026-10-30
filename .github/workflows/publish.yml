@@ -42,6 +42,11 @@ on:
         required: false
         type: boolean
         default: false
+      check_sources:
+        description: 'EIA·KOSIS(공식 통계) 키가 작동하는지 점검 (발행 안 함)'
+        required: false
+        type: boolean
+        default: false
       check_trends:
         description: '구글 트렌드 조회가 되는지 점검 (발행 안 함)'
         required: false
@@ -308,6 +313,10 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.topic_discover }}" = "true" ]; then
             python topic_engine.py --discover
+            exit 0
+          fi
+          if [ "${{ github.event.inputs.check_sources }}" = "true" ]; then
+            python topic_engine.py --check-sources
             exit 0
           fi
           if [ "${{ github.event.inputs.etf_discover }}" = "true" ]; then

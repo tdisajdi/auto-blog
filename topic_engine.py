@@ -429,6 +429,154 @@ def _eia_crude_inventory():
     return ""
 
 
+# ------------------------------------------------------------
+# 국가통계포털(KOSIS) 공식 통계 - 인구·사회 글의 숫자를 뉴스 제목이 아니라 공식 통계에서 가져온다.
+# 키(KOSIS_API_KEY)가 없거나 조회가 실패하면 조용히 건너뛰고 예전처럼 뉴스만으로 진행.
+# 표 코드는 --check-sources로 깃허브에서 실제 응답을 확인한 것만 쓴다.
+# ------------------------------------------------------------
+KOSIS_DATA_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+KOSIS_SEARCH_URL = "https://kosis.kr/openapi/statisticsSearch.do"
+
+KOSIS_TABLES = [
+    {"key": "vital", "name": "인구동향(출생·사망·혼인·이혼)", "org": "101", "tbl": "DT_1B8000F", "prd": "M", "n": 13,
+     "keywords": ["출생", "출산", "신생아", "사망", "혼인", "결혼", "이혼", "인구동향", "자연감소"]},
+    {"key": "population", "name": "주민등록인구", "org": "101", "tbl": "DT_1B040A3", "prd": "M", "n": 13,
+     "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
+]
+_KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
+
+
+def _kosis_key():
+    return os.environ.get("KOSIS_API_KEY", "").strip()
+
+
+def kosis_data(org, tbl, prd, n, itm="ALL", objs=None):
+    """KOSIS 통계표 조회. 반환: (행 목록 또는 None, 오류 메시지). 키가 든 주소는 절대 출력하지 않는다."""
+    key = _kosis_key()
+    if not key:
+        return None, "KOSIS_API_KEY 없음"
+    params = {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y", "orgId": org, "tblId": tbl,
+              "prdSe": prd, "newEstPrdCnt": n, "itmId": itm}
+    params.update(objs or {"objL1": "ALL"})
+    try:
+        data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=25).json()
+    except Exception as e:
+        return None, f"요청 실패({type(e).__name__})"
+    if isinstance(data, dict):
+        return None, f"KOSIS 오류 {data.get('err')}: {data.get('errMsg')}"
+    return data if isinstance(data, list) else None, ""
+
+
+def kosis_search(word, count=5):
+    key = _kosis_key()
+    if not key:
+        return []
+    try:
+        data = requests.get(KOSIS_SEARCH_URL, headers=UA, timeout=20, params={
+            "method": "getList", "apiKey": key, "searchNm": word, "format": "json", "jsonVD": "Y",
+            "startCount": 1, "resultCount": count, "sort": "RANK"}).json()
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+def _num(v):
+    try:
+        return float(str(v).replace(",", ""))
+    except (TypeError, ValueError):
+        return None
+
+
+def _fmt_val(v, unit):
+    txt = f"{v:,.0f}" if float(v).is_integer() else f"{v:,.1f}"
+    return f"{txt}{unit}"
+
+
+def _fmt_period(p, prd):
+    p = str(p)
+    if prd == "M" and len(p) == 6:
+        return f"{p[:4]}년 {int(p[4:])}월"
+    if prd == "Q" and len(p) >= 5:
+        return f"{p[:4]}년 {p[-1]}분기"
+    return f"{p[:4]}년" if prd == "Y" else p
+
+
+def _kosis_series(rows):
+    """전국 값만 골라 항목별 시계열 {(항목, 단위): [(기간, 값)...]}로 정리."""
+    nat = [r for r in rows if str(r.get("C1_NM", "")).strip() in _KOSIS_NATIONAL or str(r.get("C1", "")) in ("00", "0")]
+    out = {}
+    for r in (nat or rows):
+        v = _num(r.get("DT"))
+        if v is None:
+            continue
+        out.setdefault((r.get("ITM_NM", ""), r.get("UNIT_NM", "")), {})[str(r.get("PRD_DE"))] = v
+    return {k: sorted(v.items()) for k, v in out.items()}
+
+
+def kosis_fact_block(table, max_items=6):
+    """그 통계표의 최신값·전월·전년 같은 달 비교를 [공식 통계] 블록 글로 만든다. 실패하면 ''."""
+    rows, err = kosis_data(table["org"], table["tbl"], table["prd"], table["n"])
+    if not rows:
+        if err != "KOSIS_API_KEY 없음":
+            print(f"ℹ️ KOSIS 조회 실패({table['name']}): {err}")
+        return "", None
+    series = _kosis_series(rows)
+    lines, summary = [], None
+    for (item, unit), pts in list(series.items())[:max_items]:
+        if not pts:
+            continue
+        (lp, lv) = pts[-1]
+        line = f"- {item}: {_fmt_period(lp, table['prd'])} {_fmt_val(lv, unit)}"
+        if len(pts) >= 2:
+            pp, pv = pts[-2]
+            line += f" (직전 {_fmt_period(pp, table['prd'])} {_fmt_val(pv, unit)})"
+        if table["prd"] == "M" and len(pts) >= 13:
+            yp, yv = pts[-13]
+            if yv:
+                yoy = (lv / yv - 1) * 100
+                line += f", 1년 전 같은 달 대비 {yoy:+.1f}%"
+                if summary is None:
+                    summary = {"item": item, "period": lp, "value": lv, "unit": unit, "yoy": yoy}
+        lines.append(line)
+    if not lines:
+        return "", None
+    tbl_nm = rows[0].get("TBL_NM", table["name"])
+    head = f"[공식 통계 - 국가통계포털(KOSIS) '{tbl_nm}', 전국 기준. 숫자는 이 자료 그대로만 쓰세요]"
+    return head + "\n" + "\n".join(lines) + "\n", summary
+
+
+def _kosis_table_for(text):
+    t = str(text)
+    return next((tb for tb in KOSIS_TABLES if any(k in t for k in tb["keywords"])), None)
+
+
+def run_check_sources():
+    """깃허브에서 EIA·KOSIS 키가 실제로 작동하는지, 통계표가 어떤 항목을 주는지 점검 (발행 안 함)."""
+    print("=== EIA (미국 원유 재고) ===")
+    print(_eia_crude_inventory() or "결과 없음 (키 없음 또는 조회 실패)")
+    print("=== KOSIS 통계표 ===")
+    if not _kosis_key():
+        print("KOSIS_API_KEY가 없습니다.")
+        return
+    for tb in KOSIS_TABLES:
+        rows, err = kosis_data(tb["org"], tb["tbl"], tb["prd"], tb["n"])
+        print(f"\n--- {tb['name']} ({tb['org']}/{tb['tbl']}) ---")
+        if not rows:
+            print("실패:", err)
+            continue
+        print("표 이름:", rows[0].get("TBL_NM"), "| 행 수:", len(rows))
+        print("항목:", sorted({(r.get("ITM_ID"), r.get("ITM_NM")) for r in rows})[:15])
+        print("분류1 예시:", sorted({(r.get("C1"), r.get("C1_NM")) for r in rows})[:8])
+        print("기간:", sorted({r.get("PRD_DE") for r in rows})[-3:])
+        block, summary = kosis_fact_block(tb)
+        print(block or "(사실 블록 만들기 실패)")
+        print("요약:", summary)
+    print("\n=== KOSIS 통계표 검색 (다음 연결 후보) ===")
+    for word in ["합계출산율", "고령인구비율", "1인가구", "외국인주민", "장래인구추계"]:
+        res = kosis_search(word)
+        print(f"[{word}]", [(r.get("ORG_ID"), r.get("TBL_ID"), r.get("TBL_NM")) for r in res] or "결과 없음")
+
+
 def discover_energy():
     import yfinance as yf
     rows = []
@@ -614,9 +762,12 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--discover", action="store_true")
     ap.add_argument("--run", action="store_true")
+    ap.add_argument("--check-sources", action="store_true", help="EIA·KOSIS 키와 통계표 점검 (발행 안 함)")
     ap.add_argument("--if-due", action="store_true", help="오늘 추천을 아직 안 보냈고 12:07(KST)이 지났을 때만")
     args = ap.parse_args()
-    if args.discover:
+    if args.check_sources:
+        run_check_sources()
+    elif args.discover:
         if args.if_due and not _discover_due("topic", 12, 7):
             print("ℹ️ 오늘 두 번째 글 추천은 이미 보냈거나 아직 시간이 안 됐습니다.")
         else:
