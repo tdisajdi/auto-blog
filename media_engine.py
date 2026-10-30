@@ -362,7 +362,7 @@ def featured_card_id(title, category_code):
 #  - 안 보내면 제목 카드가 그대로 남는다(아무것도 멈추지 않음).
 # ------------------------------------------------------------
 IMAGE_REQUESTS_FILE = "pending_images.json"
-IMAGE_REQUEST_KEEP_DAYS = 14
+IMAGE_REQUEST_KEEP_DAYS = 90   # 이 기간 안에는 요청 메시지에 답장하면 언제든(여러 번) 썸네일을 바꿀 수 있음
 IMAGE_SIZE_TEXT = "1216 x 640 (가로형, 안 되면 1024 x 544)"
 # FLUX 계열은 부정 프롬프트를 거의 안 쓰므로 하지 말아야 할 것도 문장 안에 넣는다.
 IMAGE_STYLE = ("Editorial illustration for a data-focused blog, cinematic soft lighting, deep navy blue and warm "
@@ -407,7 +407,9 @@ def send_image_prompt(post_id, title, category_code, url):
         f"🎨 썸네일 이미지를 만들어 주세요 (선택)\n글: {title}\n{url}\n\n"
         f"• ComfyUI 모델: FLUX.2 [klein] 4B\n• 크기: {IMAGE_SIZE_TEXT}\n"
         "• 다음 메시지(프롬프트)를 복사해서 쓰고, 만든 그림을 그 메시지나 이 메시지에 '답장'으로 보내주세요.\n"
-        "• 그림 위에 제목·분야·사이트 이름은 자동으로 얹어요. 안 보내면 지금 썸네일(제목 카드)이 그대로 남아요.")
+        "• 그림 위에 제목·분야·사이트 이름은 자동으로 얹어요. 안 보내면 지금 썸네일(제목 카드)이 그대로 남아요.\n"
+        f"• 나중에 보내도 돼요({IMAGE_REQUEST_KEEP_DAYS}일 안, 여러 번 바꾸기 가능). 기간이 지났거나 다른 글이면 "
+        "그림 설명(캡션)에 글 주소를 붙여 보내주세요.")
     prompt_id = _telegram_send_message(prompt)
     if not (head_id or prompt_id):
         return
@@ -429,8 +431,10 @@ def pending_image_requests():
 
 
 def handle_image_reply(update):
-    """텔레그램 메시지가 썸네일 이미지 답장이면 처리하고 True. 아니면 False.
-    답장이 아니어도 기다리는 글이 하나뿐이면 그 글로 처리한다."""
+    """텔레그램 메시지가 썸네일 그림이면 처리하고 True. 아니면 False.
+    어느 글인지 찾는 순서: ① 그림 설명(캡션)에 들어 있는 글 주소 → ② 썸네일 요청 메시지에 대한 답장 →
+    ③ 아직 그림을 안 받은 요청이 딱 하나면 그 글. 셋 다 아니면 다시 보내 달라고 안내한다."""
+    import re
     msg = update.get("message") or {}
     file_id = None
     if msg.get("photo"):
@@ -439,22 +443,32 @@ def handle_image_reply(update):
         file_id = msg["document"].get("file_id")
     if not file_id:
         return False
+    from datetime import datetime
     from blog_engine import (_telegram_send_message, _telegram_download_file, _save_json_file,
-                             wp_set_featured_image)
+                             wp_set_featured_image, wp_find_post_by_url)
     reqs = pending_image_requests()
-    reply_id = str(((msg.get("reply_to_message") or {}).get("message_id")) or "")
-    entry = reqs.get(reply_id)
+    entry = None
+    m = re.search(r"https?://\S+", msg.get("caption") or "")
+    if m:
+        found = wp_find_post_by_url(m.group(0))
+        if not found:
+            _telegram_send_message("🖼️ 그림 설명에 있는 주소로 글을 찾지 못했어요. 글 주소를 다시 확인해 주세요.")
+            return True
+        entry = {"post_id": found[0], "title": found[1], "category": found[2], "url": m.group(0)}
     if not entry:
-        posts = {v["post_id"]: v for v in reqs.values()}
-        if len(posts) == 1:
-            entry = next(iter(posts.values()))
+        entry = reqs.get(str(((msg.get("reply_to_message") or {}).get("message_id")) or ""))
+    if not entry:
+        waiting = {v["post_id"]: v for v in reqs.values() if not v.get("replaced_at")}
+        if len(waiting) == 1:
+            entry = next(iter(waiting.values()))
         else:
-            _telegram_send_message("🖼️ 사진을 받았는데 어느 글 썸네일인지 모르겠어요. 썸네일 요청 메시지에 '답장'으로 다시 보내주세요."
-                                   if posts else "🖼️ 사진을 받았는데 지금 썸네일을 기다리는 글이 없어요.")
+            _telegram_send_message(
+                "🖼️ 그림을 받았는데 어느 글 썸네일인지 모르겠어요. 썸네일 요청 메시지에 '답장'으로 보내거나, "
+                "그림 설명(캡션)에 글 주소를 붙여서 다시 보내주세요.")
             return True
     src = _tmp_png("tg_")
     if not _telegram_download_file(file_id, src):
-        _telegram_send_message("⚠️ 사진을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.")
+        _telegram_send_message("⚠️ 그림을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.")
         return True
     card = make_title_card(entry["title"], entry["category"], background=src)
     try:
@@ -463,10 +477,13 @@ def handle_image_reply(update):
         pass
     media_id, _ = upload_png(card)
     if media_id and wp_set_featured_image(entry["post_id"], media_id):
-        for k in [k for k, v in reqs.items() if v["post_id"] == entry["post_id"]]:
-            reqs.pop(k)
+        # 지우지 않고 "바꿈" 표시만 → 기간 안에는 같은 메시지에 다시 답장해서 또 바꿀 수 있다
+        stamp = datetime.now().isoformat()
+        for v in reqs.values():
+            if v["post_id"] == entry["post_id"]:
+                v["replaced_at"] = stamp
         _save_json_file(IMAGE_REQUESTS_FILE, reqs)
-        _telegram_send_message(f"✅ 썸네일을 바꿨어요: {entry['title']}\n{entry['url']}")
+        _telegram_send_message(f"✅ 썸네일을 바꿨어요: {entry['title']}\n{entry['url']}\n(다시 바꾸고 싶으면 그림을 또 보내면 돼요)")
     else:
-        _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 답장으로 보내주세요.")
+        _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 보내주세요.")
     return True

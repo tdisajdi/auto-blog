@@ -2020,6 +2020,39 @@ def wp_set_featured_image(post_id, media_id):
     return False
 
 
+def wp_find_post_by_url(url):
+    """글 주소로 (글 번호, 제목, 분야 코드)를 찾는다. 못 찾으면 None.
+    텔레그램으로 그림을 보낼 때 설명에 글 주소를 붙이면 아무 글이나 썸네일을 바꿀 수 있게 하는 용도."""
+    import urllib.parse as _up
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID and url):
+        return None
+    parsed = _up.urlparse(url.strip())
+    q = _up.parse_qs(parsed.query)
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/"
+    if q.get("p"):
+        target = base + q["p"][0]
+    else:
+        slug = _up.unquote([seg for seg in parsed.path.split("/") if seg][-1]) if parsed.path.strip("/") else ""
+        if not slug:
+            return None
+        target = base + "slug:" + _up.quote(slug)
+    try:
+        r = requests.get(target, headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                         params={"fields": "ID,title,categories"}, timeout=20)
+        if r.status_code != 200:
+            return None
+        data = r.json()
+        cat_slugs = [c.get("slug") for c in (data.get("categories") or {}).values()]
+        code_by_slug = {"etf": "etf", "trend": "trend", "patents": "tech", "biotech": "bio",
+                        "energy": "energy", "society": "society"}
+        code = next((code_by_slug[c] for c in cat_slugs if c in code_by_slug), "etf")
+        title = html.unescape(data.get("title", ""))
+        return data.get("ID"), title, code
+    except Exception as e:
+        print(f"ℹ️ 글 주소로 글 찾기 실패: {type(e).__name__}")
+        return None
+
+
 def get_wordpress_recent_posts(count=15):
     """[신규] 워드프레스에 이미 발행된 글 목록(제목/URL)을 최신순으로 가져온다.
     내부 링크(다른 카테고리 글도 포함해서 서로 연결) 재료로 쓰인다.
