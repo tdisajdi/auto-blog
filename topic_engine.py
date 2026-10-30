@@ -439,16 +439,16 @@ KOSIS_SEARCH_URL = "https://kosis.kr/openapi/statisticsSearch.do"
 
 KOSIS_TABLES = [
     # 표마다 생김새가 다르다: 이 표는 분류1(C1)이 '출생아수(명)', '합계출산율(명)' 같은 지표이고 연 단위.
-    {"key": "vital", "name": "인구동태건수 및 동태율 추이", "org": "101", "tbl": "DT_1B8000F", "prd": "Y", "n": 5,
+    {"key": "vital", "name": "출생·사망 통계", "org": "101", "tbl": "DT_1B8000F", "prd": "Y", "n": 5, "main": "출생아수",
      "keywords": ["출생", "출산", "신생아", "사망", "자연감소", "자연증가", "인구동향"]},
-    {"key": "population", "name": "주민등록인구", "org": "101", "tbl": "DT_1B040A3", "prd": "M", "n": 13,
+    # 월별 인구는 매달 조금씩만 변해서 "새 자료" 주제로는 안 쓰고(반복 글 방지) 근거 자료로만 쓴다.
+    {"key": "population", "name": "주민등록인구", "org": "101", "tbl": "DT_1B040A3", "prd": "M", "n": 13, "main": "총인구수",
+     "candidate": False,
      "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
-    {"key": "aged", "name": "고령인구비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 5,
+    {"key": "aged", "name": "고령인구 비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 5, "main": "고령인구비율",
      "keywords": ["고령", "노인", "65세", "초고령"]},
-    {"key": "single", "name": "1인가구비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 5,
+    {"key": "single", "name": "1인가구 비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 5, "main": "1인가구비율",
      "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
-    {"key": "projection", "name": "주요 연령계층별 추계인구", "org": "101", "tbl": "DT_1BPA003", "prd": "Y", "n": 60,
-     "keywords": ["장래인구", "추계", "생산연령", "인구 전망"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
 
@@ -535,6 +535,7 @@ def _kosis_series(rows):
             name = r.get("C1_NM", "")
         else:
             name = f"{r.get('C1_NM', '')} - {r.get('ITM_NM', '')}"
+        name = re.sub(r"\s+", " ", re.sub(r"＜br＞|<br\s*/?>", " ", str(name))).strip()
         out.setdefault((name, r.get("UNIT_NM", "") or ""), {})[str(r.get("PRD_DE"))] = v
     return {k: sorted(v.items()) for k, v in out.items()}
 
@@ -559,11 +560,19 @@ def kosis_fact_block(table, max_items=8):
         back = {"M": 12, "Q": 4, "Y": 1}.get(table["prd"], 0)
         if back and len(pts) > back:
             yp, yv = pts[-1 - back]
-            if yv:
-                yoy = (lv / yv - 1) * 100
-                line += f", 1년 전({_fmt_period(yp, table['prd'])}) 대비 {yoy:+.1f}%"
-                if summary is None:
-                    summary = {"item": item, "period": lp, "value": lv, "unit": unit, "yoy": yoy}
+            # 비율·율(%, 천명당, 합계출산율 등)은 "몇 % 늘었다"가 아니라 "몇 포인트 올랐다"로 비교해야 뜻이 맞다.
+            is_rate = unit == "%" or any(k in item for k in ("율", "비율", "천명당", "성비"))
+            rel = None
+            if is_rate:
+                diff = lv - yv
+                change = f"{diff:+.3f}".rstrip("0").rstrip(".") + ("%p" if unit == "%" else "")
+                line += f", 1년 전({_fmt_period(yp, table['prd'])})보다 {change}"
+            elif yv:
+                rel = (lv / yv - 1) * 100
+                line += f", 1년 전({_fmt_period(yp, table['prd'])}) 대비 {rel:+.1f}%"
+            if table.get("main", "") in item and summary is None:
+                summary = {"item": item, "period": lp, "value": lv, "unit": unit, "prev": yv,
+                           "prev_period": yp, "rel": rel, "is_rate": is_rate}
         lines.append(line)
     if not lines:
         return "", None
@@ -598,6 +607,9 @@ def run_check_sources():
         block, summary = kosis_fact_block(tb)
         print(block or "(사실 블록 만들기 실패)")
         print("요약:", summary)
+    print("\n=== 새 통계 자료로 만든 주제 후보 ===")
+    for c in _kosis_candidates():
+        print(f"{c['title_seed']} | 점수 {c['score']:.2f} | {c['topic_key']}")
     print("\n=== KOSIS 통계표 검색 (다음 연결 후보) ===")
     for word in ["월별 출생아수", "인구동향 월", "시도별 출생아수", "혼인건수", "외국인주민 현황"]:
         res = kosis_search(word)
@@ -650,8 +662,9 @@ def discover_society():
         if n["title"] not in seen:
             seen.add(n["title"])
             uniq.append(n)
+    out = _kosis_candidates()
     if len(uniq) < 3:
-        return []
+        return out
     listing = "\n".join(f"{i}. {n['title']} ({n['source']})" for i, n in enumerate(uniq[:25]))
     pick = _ask_json(
         "아래 뉴스 중 '통계로 보는 사회' 글로 쓸 만한 공식 통계 발표 1개를 고르세요(인구·가구·출생·고령화·이주 등). "
@@ -664,12 +677,61 @@ def discover_society():
     except (TypeError, ValueError, IndexError):
         it = None
     if not it:
-        return []
+        return out
     related = google_news(pick.get("keywords_ko") or it["title"], 6)
     facts = (f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n")
-    return [{"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
-             "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
-             "score": 1.1, "reason": pick.get("why", ""), "source_note": "통계 발표 관련 보도(구글 뉴스)"}]
+    note = "통계 발표 관련 보도(구글 뉴스)"
+    tb = _kosis_table_for(f"{pick.get('title_ko', '')} {pick.get('keywords_ko', '')} {it['title']}")
+    if tb:
+        block, _ = kosis_fact_block(tb)
+        if block:
+            facts = block + "\n" + facts
+            note = "국가통계포털(KOSIS) 공식 통계, " + note
+    out.append({"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
+                "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
+                "score": 1.1, "reason": pick.get("why", ""), "source_note": note})
+    return out
+
+
+def _kosis_candidates():
+    """KOSIS에 아직 글로 안 쓴 새 기간 자료가 있으면 그 자체를 주제 후보로 (예: 2025년 출생아 수).
+    같은 표·같은 기간은 한 번만 쓴다(기간이 바뀌어 새 자료가 나오면 다시 후보)."""
+    if not _kosis_key():
+        return []
+    _, written = _category_history("society")
+    cands = []
+    for tb in KOSIS_TABLES:
+        if tb.get("candidate") is False:
+            continue
+        block, sm = kosis_fact_block(tb)
+        if not block or not sm:
+            continue
+        key = f"society:kosis:{tb['key']}:{sm['period']}"
+        if key in written:
+            continue
+        period = _fmt_period(sm["period"], tb["prd"])
+        # 제목용 이름: "출생아수(명)" → "출생아수" + 값 뒤에 "명", "고령인구비율 (A÷B×100)" → "고령인구비율"
+        name, unit = sm["item"], sm["unit"]
+        m = re.match(r"(.+?)\s*\(([^)]*)\)\s*$", name)
+        if m:
+            name = m.group(1)
+            if not unit and m.group(2) in ("명", "건", "가구", "%"):
+                unit = m.group(2)
+        value = _fmt_val(sm["value"], unit)
+        if sm["is_rate"]:
+            move = abs(sm["value"] - (sm["prev"] or 0))
+            strength = min(move / 2, 0.6)
+        else:
+            strength = min(abs(sm["rel"] or 0) / 10, 0.6)
+        news = google_news(f"{tb['name']} 통계", 5)
+        facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
+        cands.append({"category": "society", "topic_key": key, "news": news,
+                      "title_seed": f"{period} {name} {value}, 숫자로 본 우리 사회의 변화",
+                      "facts_text": facts, "score": 1.2 + strength,
+                      "reason": f"국가통계포털 {tb['name']} 새 자료 ({period} {name} {value})",
+                      "source_note": f"국가통계포털(KOSIS) '{tb['name']}'"})
+    cands.sort(key=lambda c: c["score"], reverse=True)
+    return cands[:1]
 
 
 ADAPTERS = {"trend": discover_trend, "tech": discover_tech, "bio": discover_bio,
