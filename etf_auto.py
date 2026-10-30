@@ -5689,9 +5689,9 @@ def run_check_approval():
     pending = _load_pending()
     pending2 = _load_json_file(PENDING_TOPIC_FILE, None)
     import media_engine
-    if not pending and not pending2 and not media_engine.pending_image_requests():
-        print("ℹ️ 대기 중인 추천도, 썸네일을 기다리는 글도 없습니다. 확인할 것이 없어 종료합니다.")
-        return
+    if not pending and not pending2:
+        # 추천이 없어도 텔레그램은 확인한다 - 썸네일 그림(설명에 글 주소를 붙이면 아무 글이나)이 올 수 있음
+        print("ℹ️ 대기 중인 추천은 없습니다. 썸네일 그림이 왔는지만 확인합니다.")
 
     offset = _load_telegram_offset()
     updates = _telegram_get_updates(offset)
