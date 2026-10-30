@@ -496,16 +496,19 @@ def send_image_prompt(post_id, title, category_code, url, slots=None):
     from datetime import datetime
     from blog_engine import _telegram_send_message, _load_json_file, _save_json_file
     slots = (slots or [])[:MAX_BODY_IMAGES]
-    body_note = (f"• 본문 그림 {len(slots)}장 자리도 비워 뒀어요(단락이 끝나는 곳). 각 프롬프트 메시지에 답장하면 그 자리에 들어가요.\n"
-                 if slots else "")
+    body_note = (f"• 본문 그림 {len(slots)}장 자리도 비워 뒀어요(단락이 끝나는 곳).\n" if slots else "")
     head_id = _telegram_send_message(
         f"🎨 그림을 만들어 주세요 (모두 선택)\n글: {title}\n{url}\n\n"
         f"• ComfyUI 모델: FLUX.2 [klein] 4B · 크기: {IMAGE_SIZE_TEXT}\n"
-        "• 아래 프롬프트 상자를 눌러 복사해서 쓰고, 만든 그림을 그 프롬프트 메시지에 '답장'으로 보내주세요.\n"
+        "• 아래 프롬프트 상자를 눌러 복사해서 쓰세요.\n"
+        "• 만든 그림 보내는 법 (편한 것 아무거나):\n"
+        "  ① 그 프롬프트 메시지에 '답장'으로 → 그 자리에 바로\n"
+        "  ② 그냥 보내기 → 봇이 '어디에 넣을까요?' 버튼으로 물어봐요\n"
+        "  ③ 그림 설명에 '썸네일' 또는 '본문 그림 1'이라고 쓰기 → 그 자리에 바로\n"
         "• 썸네일은 그림 위에 제목·분야·사이트 이름을 자동으로 얹어요. 본문 그림은 그대로 들어가요.\n"
         + body_note +
-        f"• 안 보낸 건 그냥 비어 있어요(글은 그대로). {IMAGE_REQUEST_KEEP_DAYS}일 안에는 나중에 보내도, 여러 번 바꿔도 돼요.\n"
-        "• 다른 글 썸네일은 그림 설명(캡션)에 글 주소를 붙여 보내면 돼요.")
+        "• 넣고 나면 결과 그림을 보여드려요. 안 보낸 건 그냥 비어 있어요(글은 그대로).\n"
+        f"• {IMAGE_REQUEST_KEEP_DAYS}일 안에는 나중에 보내도, 여러 번 바꿔도 돼요.")
     msgs = [("thumb", 0, "🖼️ 썸네일용", image_prompt(title, category_code))]
     for sl in slots:
         msgs.append(("slot", sl["slot"], f"🖼️ 본문 그림 {sl['slot']} ('{sl['heading'] or '단락'}' 단락 뒤)",
@@ -532,112 +535,253 @@ def pending_image_requests():
     return _load_json_file(IMAGE_REQUESTS_FILE, {}) or {}
 
 
-def handle_image_reply(update):
-    """텔레그램 메시지가 썸네일 그림이면 처리하고 True. 아니면 False.
-    어느 글인지 찾는 순서: ① 그림 설명(캡션)에 들어 있는 글 주소 → ② 썸네일 요청 메시지에 대한 답장 →
-    ③ 아직 그림을 안 받은 요청이 딱 하나면 그 글. 셋 다 아니면 다시 보내 달라고 안내한다."""
-    import re
-    msg = update.get("message") or {}
-    file_id = None
+# ------------------------------------------------------------
+# 그림 받기 - 사용자가 2장을 보내도 "어느 그림이 어디로 가는지" 헷갈리지 않게 (사용자 요청)
+#  ① 프롬프트 메시지에 답장 → 그 자리로 바로
+#  ② 그림 설명에 "썸네일" / "본문 그림 1" (+글 주소) → 그 자리로 바로
+#  ③ 그냥 보낸 그림 → 봇이 그 그림에 답장으로 "어디에 넣을까요?" 버튼을 보냄 → 누르면 그 자리로
+#  처리되면 들어간 결과 그림을 다시 보내서 눈으로 확인할 수 있게 한다.
+# ------------------------------------------------------------
+IMAGE_INBOX_FILE = "image_inbox.json"   # 버튼 선택을 기다리는 그림
+IMAGE_INBOX_KEEP_DAYS = 7
+
+
+def _posts_index(reqs):
+    """요청 목록을 글 단위로 정리: {글번호: {title, category, url, created_at, thumb_done, slots{n: {heading, done}}}}"""
+    posts = {}
+    for v in reqs.values():
+        p = posts.setdefault(v["post_id"], {"post_id": v["post_id"], "title": v["title"], "category": v["category"],
+                                            "url": v["url"], "created_at": v["created_at"], "thumb_done": False,
+                                            "slots": {}})
+        p["created_at"] = max(p["created_at"], v["created_at"])
+        if v.get("kind", "thumb") == "thumb":
+            p["thumb_done"] = p["thumb_done"] or bool(v.get("replaced_at"))
+        else:
+            sl = p["slots"].setdefault(v["slot"], {"heading": v.get("heading", ""), "done": False})
+            sl["done"] = sl["done"] or bool(v.get("replaced_at"))
+    return posts
+
+
+def _latest_post(posts):
+    return max(posts.values(), key=lambda p: p["created_at"]) if posts else None
+
+
+def _file_id(msg):
     if msg.get("photo"):
-        file_id = max(msg["photo"], key=lambda p: p.get("file_size", 0) or p.get("width", 0)).get("file_id")
-    elif (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
-        file_id = msg["document"].get("file_id")
+        return max(msg["photo"], key=lambda p: p.get("file_size", 0) or p.get("width", 0)).get("file_id")
+    if (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
+        return msg["document"].get("file_id")
+    return None
+
+
+def _caption_target(caption):
+    import re
+    c = caption or ""
+    m = re.search(r"본문\s*(?:그림)?\s*([12])", c)
+    if m:
+        return "slot", int(m.group(1))
+    if "썸네일" in c:
+        return "thumb", None
+    return None, None
+
+
+def _target_label(kind, slot):
+    return "썸네일" if kind == "thumb" else f"본문 그림 {slot}"
+
+
+def handle_image_reply(update):
+    """그림 메시지나 그림 위치 버튼이면 처리하고 True. 아니면 False."""
+    import re
+    cb = update.get("callback_query")
+    if cb and str(cb.get("data", "")).startswith("img:"):
+        _handle_image_callback(cb)
+        return True
+    msg = update.get("message") or {}
+    file_id = _file_id(msg)
     if not file_id:
         return False
-    from datetime import datetime
-    from blog_engine import (_telegram_send_message, _telegram_download_file, _save_json_file,
-                             wp_set_featured_image, wp_find_post_by_url, wp_get_post_content, wp_update_post_content)
+    from blog_engine import _telegram_send_message, wp_find_post_by_url
     reqs = pending_image_requests()
-    entry = None
+    posts = _posts_index(reqs)
+    post, kind, slot = None, None, None
     m = re.search(r"https?://\S+", msg.get("caption") or "")
     if m:
         found = wp_find_post_by_url(m.group(0))
         if not found:
-            _telegram_send_message("🖼️ 그림 설명에 있는 주소로 글을 찾지 못했어요. 글 주소를 다시 확인해 주세요.")
+            _telegram_send_message("🖼️ 그림 설명에 있는 주소로 글을 찾지 못했어요. 글 주소를 다시 확인해 주세요.",
+                                   reply_to=msg.get("message_id"))
             return True
-        entry = {"post_id": found[0], "title": found[1], "category": found[2], "url": m.group(0)}
-    if not entry:
-        entry = reqs.get(str(((msg.get("reply_to_message") or {}).get("message_id")) or ""))
-    if not entry:
-        waiting = {v["post_id"]: v for v in reqs.values()
-                   if v.get("kind", "thumb") == "thumb" and not v.get("replaced_at")}
-        if len(waiting) == 1:
-            entry = next(iter(waiting.values()))
-        else:
-            _telegram_send_message(
-                "🖼️ 그림을 받았는데 어느 글 썸네일인지 모르겠어요. 썸네일 요청 메시지에 '답장'으로 보내거나, "
-                "그림 설명(캡션)에 글 주소를 붙여서 다시 보내주세요.")
-            return True
-    src = _tmp_png("tg_")
-    if not _telegram_download_file(file_id, src):
-        _telegram_send_message("⚠️ 그림을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.")
+        post = posts.get(found[0]) or {"post_id": found[0], "title": found[1], "category": found[2],
+                                       "url": m.group(0), "thumb_done": False, "slots": {}}
+    entry = reqs.get(str(((msg.get("reply_to_message") or {}).get("message_id")) or ""))
+    if entry:
+        post = post or posts.get(entry["post_id"])
+        kind, slot = entry.get("kind", "thumb"), entry.get("slot")
+    ck, cs = _caption_target(msg.get("caption"))
+    if ck:
+        kind, slot = ck, cs
+        post = post or _latest_post(posts)
+    if kind and post:
+        _apply_image(file_id, post, kind, slot, reply_to=msg.get("message_id"))
         return True
-    if entry.get("kind") == "slot":
-        _fill_body_slot(entry, src, reqs, _telegram_send_message, _save_json_file, wp_get_post_content,
-                        wp_update_post_content)
-        return True
-    card = make_title_card(entry["title"], entry["category"], background=src)
-    try:
-        os.remove(src)
-    except OSError:
-        pass
-    media_id, _ = upload_png(card)
-    if media_id and wp_set_featured_image(entry["post_id"], media_id):
-        # 지우지 않고 "바꿈" 표시만 → 기간 안에는 같은 메시지에 다시 답장해서 또 바꿀 수 있다
-        stamp = datetime.now().isoformat()
-        for v in reqs.values():
-            if v["post_id"] == entry["post_id"] and v.get("kind", "thumb") == "thumb":
-                v["replaced_at"] = stamp
-        _save_json_file(IMAGE_REQUESTS_FILE, reqs)
-        _telegram_send_message(f"✅ 썸네일을 바꿨어요: {entry['title']}\n{entry['url']}\n(다시 바꾸고 싶으면 그림을 또 보내면 돼요)")
-    else:
-        _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 보내주세요.")
+    _ask_where(file_id, msg.get("message_id"), post or _latest_post(posts))
     return True
 
 
-def _fill_body_slot(entry, src, reqs, send, save, get_content, update_content):
-    """본문 그림 자리(<div id="ondo-slot-N">, 이미 넣은 그림이면 <figure id="ondo-slot-N">)를 받은 그림으로 채운다."""
-    import re
+def _where_buttons(iid, post):
+    rows = [[("썸네일" + (" ✅넣음·바꾸기" if post.get("thumb_done") else ""), f"img:{iid}:t")]]
+    for n, sl in sorted(post.get("slots", {}).items()):
+        head = (sl.get("heading") or "단락")[:14]
+        rows.append([(f"본문 그림 {n} ('{head}' 뒤)" + (" ✅넣음·바꾸기" if sl.get("done") else ""), f"img:{iid}:s{n}")])
+    rows.append([("다른 글", f"img:{iid}:o"), ("취소", f"img:{iid}:x")])
+    return rows
+
+
+def _ask_where(file_id, photo_msg_id, post):
     from datetime import datetime
-    small = shrink_for_web(src)
+    from blog_engine import _telegram_send_message, _load_json_file, _save_json_file
+    if not post:
+        _telegram_send_message("🖼️ 그림을 받았는데 지금 그림을 기다리는 글이 없어요. 넣을 글이 있으면 그림 설명(캡션)에 "
+                               "글 주소를 붙여서 다시 보내주세요.", reply_to=photo_msg_id)
+        return
+    inbox = _load_json_file(IMAGE_INBOX_FILE, {}) or {}
+    now = datetime.now()
+    for k in [k for k, v in inbox.items() if (now - datetime.fromisoformat(v["created_at"])).days > IMAGE_INBOX_KEEP_DAYS]:
+        inbox.pop(k)
+    iid = str(photo_msg_id)
+    ask_id = _telegram_send_message(f"🖼️ 이 그림은 어디에 넣을까요?\n글: {post['title']}",
+                                    buttons=_where_buttons(iid, post), reply_to=photo_msg_id)
+    inbox[iid] = {"file_id": file_id, "post": post, "ask_id": ask_id, "created_at": now.isoformat()}
+    _save_json_file(IMAGE_INBOX_FILE, inbox)
+
+
+def _handle_image_callback(cb):
+    from blog_engine import (_telegram_send_message, _telegram_edit_text, _telegram_answer_callback,
+                             _load_json_file, _save_json_file)
+    _telegram_answer_callback(cb.get("id"), "처리 중이에요")
     try:
-        os.remove(src)
-    except OSError:
-        pass
-    media_id, url = (None, None)
-    if small:
-        try:
-            from blog_engine import _upload_media
-            media_id, url = _upload_media(small, "image/jpeg")
-        finally:
+        _, iid, act = str(cb["data"]).split(":", 2)
+    except ValueError:
+        return
+    ask_id = (cb.get("message") or {}).get("message_id")
+    inbox = _load_json_file(IMAGE_INBOX_FILE, {}) or {}
+    item = inbox.get(iid)
+    if not item:
+        _telegram_edit_text(ask_id, "이미 처리했거나 오래된 버튼이에요. 그림을 다시 보내주세요.")
+        return
+    posts = _posts_index(pending_image_requests())
+    if act == "x":
+        inbox.pop(iid)
+        _save_json_file(IMAGE_INBOX_FILE, inbox)
+        _telegram_edit_text(ask_id, "취소했어요. 이 그림은 넣지 않았어요.")
+        return
+    if act == "o":
+        others = sorted(posts.values(), key=lambda p: p["created_at"], reverse=True)[:6]
+        if not others:
+            _telegram_edit_text(ask_id, "고를 수 있는 다른 글이 없어요. 그림 설명에 글 주소를 붙여 다시 보내주세요.")
+            return
+        _telegram_edit_text(ask_id, "어느 글에 넣을까요? (아래 새 메시지에서 골라주세요)")
+        item["ask_id"] = _telegram_send_message(
+            "🗂️ 글을 골라주세요 (최근 순)",
+            buttons=[[(p["title"][:30], f"img:{iid}:p{p['post_id']}")] for p in others] + [[("취소", f"img:{iid}:x")]],
+            reply_to=int(iid))
+        _save_json_file(IMAGE_INBOX_FILE, inbox)
+        return
+    if act.startswith("p"):
+        post = posts.get(int(act[1:])) if act[1:].isdigit() else None
+        if not post:
+            _telegram_edit_text(ask_id, "그 글을 찾지 못했어요. 그림 설명에 글 주소를 붙여 다시 보내주세요.")
+            return
+        item["post"] = post
+        _telegram_edit_text(ask_id, f"글을 골랐어요: {post['title']}")
+        item["ask_id"] = _telegram_send_message(f"🖼️ 이 그림은 어디에 넣을까요?\n글: {post['title']}",
+                                                buttons=_where_buttons(iid, post), reply_to=int(iid))
+        _save_json_file(IMAGE_INBOX_FILE, inbox)
+        return
+    post = posts.get(item["post"]["post_id"]) or item["post"]
+    kind, slot = ("thumb", None) if act == "t" else ("slot", int(act[1:]) if act[1:].isdigit() else None)
+    if kind == "slot" and not slot:
+        return
+    if _apply_image(item["file_id"], post, kind, slot, reply_to=int(iid)):
+        inbox.pop(iid)
+        _save_json_file(IMAGE_INBOX_FILE, inbox)
+        _telegram_edit_text(ask_id, f"✅ {_target_label(kind, slot)}에 넣었어요: {post['title']}")
+
+
+def _mark_done(post_id, kind, slot):
+    from datetime import datetime
+    from blog_engine import _save_json_file
+    reqs = pending_image_requests()
+    stamp = datetime.now().isoformat()
+    for v in reqs.values():
+        if v["post_id"] == post_id and v.get("kind", "thumb") == kind and (kind == "thumb" or v.get("slot") == slot):
+            v["replaced_at"] = stamp
+    _save_json_file(IMAGE_REQUESTS_FILE, reqs)
+
+
+def _cleanup(*paths):
+    for p in paths:
+        if p:
             try:
-                os.remove(small)
+                os.remove(p)
             except OSError:
                 pass
-    content = get_content(entry["post_id"]) if url else None
-    slot = entry.get("slot")
-    pattern = re.compile(r'<(div|figure)[^>]*id="ondo-slot-%s"[^>]*>.*?</\1>' % slot, re.S)
+
+
+def _apply_image(file_id, post, kind, slot, reply_to=None):
+    """받은 그림을 썸네일 또는 본문 그림 자리에 넣고, 결과를 텔레그램으로 보여준다. 성공하면 True."""
+    import re
+    from blog_engine import (_telegram_send_message, _telegram_send_photo, _telegram_download_file, _upload_media,
+                             wp_set_featured_image, wp_get_post_content, wp_update_post_content)
+    src = _tmp_png("tg_")
+    if not _telegram_download_file(file_id, src):
+        _cleanup(src)
+        _telegram_send_message("⚠️ 그림을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.", reply_to=reply_to)
+        return False
+    if kind == "thumb":
+        card = make_title_card(post["title"], post["category"], background=src)
+        media_id = _upload_media(card, "image/png")[0] if card else None
+        ok = bool(media_id) and wp_set_featured_image(post["post_id"], media_id)
+        if ok:
+            _mark_done(post["post_id"], "thumb", None)
+            _telegram_send_photo(path=card, caption=f"✅ 썸네일을 바꿨어요: {post['title']}\n{post['url']}",
+                                 reply_to=reply_to)
+        else:
+            _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 보내주세요.", reply_to=reply_to)
+        _cleanup(src, card)
+        return ok
+    # 본문 그림
+    small = shrink_for_web(src)
+    url = _upload_media(small, "image/jpeg")[1] if small else None
+    content = wp_get_post_content(post["post_id"]) if url else None
     if not url or content is None:
-        send("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 답장으로 보내주세요.")
-        return
-    alt = f"{entry['title']} - {entry.get('heading') or '본문'} 일러스트"
-    block = body_image_html(url, slot, alt)
+        _cleanup(src, small)
+        _telegram_send_message("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 보내주세요.", reply_to=reply_to)
+        return False
+    heading = (post.get("slots", {}).get(slot) or {}).get("heading", "")
+    block = body_image_html(url, slot, f"{post['title']} - {heading or '본문'} 일러스트")
+    pattern = re.compile(r'<(div|figure)[^>]*id="ondo-slot-%s"[^>]*>.*?</\1>' % slot, re.S)
     if pattern.search(content):
         new_content = pattern.sub(lambda m: block, content, count=1)
     else:
         # 자리 표시가 사라졌으면(워드프레스가 빈 칸을 지웠거나 글을 고친 경우) 같은 단락이 끝나는 곳,
         # 즉 그 단락 제목 다음에 오는 대제목 바로 앞에 넣는다.
         heads = [(m.start(), _plain(m.group(1))) for m in re.finditer(r"<h3[^>]*>(.*?)</h3>", content, re.S)]
-        idx = next((i for i, (_, t) in enumerate(heads) if entry.get("heading") and t == entry["heading"]), None)
+        idx = next((i for i, (_, t) in enumerate(heads) if heading and t == heading), None)
         if idx is None or idx + 1 >= len(heads):
-            send("⚠️ 이 글에서 본문 그림 자리를 찾지 못했어요(글을 직접 고치면서 단락 제목이 바뀌었을 수 있어요).")
-            return
+            _cleanup(src, small)
+            _telegram_send_message("⚠️ 이 글에서 본문 그림 자리를 찾지 못했어요(글을 직접 고치면서 단락 제목이 "
+                                   "바뀌었을 수 있어요).", reply_to=reply_to)
+            return False
         pos = heads[idx + 1][0]
         new_content = content[:pos] + block + "\n" + content[pos:]
-    if update_content(entry["post_id"], new_content):
-        entry["replaced_at"] = datetime.now().isoformat()
-        save(IMAGE_REQUESTS_FILE, reqs)
-        send(f"✅ 본문 그림 {slot}을 넣었어요: {entry['title']}\n{entry['url']}\n(다시 바꾸고 싶으면 같은 메시지에 또 답장하면 돼요)")
+    ok = wp_update_post_content(post["post_id"], new_content)
+    if ok:
+        _mark_done(post["post_id"], "slot", slot)
+        where = f" ('{heading}' 단락 뒤)" if heading else ""
+        _telegram_send_photo(path=small, caption=f"✅ 본문 그림 {slot}을 넣었어요{where}: {post['title']}\n{post['url']}",
+                             reply_to=reply_to)
     else:
-        send("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 답장으로 보내주세요.")
+        _telegram_send_message("⚠️ 본문 그림을 넣지 못했어요. 잠시 뒤 다시 보내주세요.", reply_to=reply_to)
+    _cleanup(src, small)
+    return ok
