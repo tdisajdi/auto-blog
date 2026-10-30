@@ -339,6 +339,36 @@ def _save_json_file(file_path, data):
         print(f"⚠️ JSON 파일 저장 실패 ({file_path}): {type(e).__name__}: {e}")
 
 
+# ------------------------------------------------------------
+# 예약 실행 보충 - 깃허브 예약 실행은 몇 시간씩 밀리거나 아예 빠지는 일이 잦다
+# (실제로 2026-10-29~30에 10분마다 돌아야 할 잡이 11시간 동안 3번만 돌았고,
+# 아침 7:30 추천은 아예 안 돌았다). 그래서 "오늘 이미 보냈는지"를 파일에 남기고,
+# 10분 점검 잡이 돌 때마다 놓친 추천이 있으면 대신 보낸다.
+# ------------------------------------------------------------
+SCHEDULE_STATE_FILE = "schedule_state.json"
+CATCHUP_LAST_HOUR_KST = 22   # 이 시각(KST) 이후엔 늦은 밤이라 보충하지 않고 다음 날로 넘김
+
+
+def _kst_now():
+    from datetime import timezone, timedelta
+    return datetime.now(timezone(timedelta(hours=9))).replace(tzinfo=None)
+
+
+def _discover_due(kind, hour, minute):
+    """kind(etf/topic)의 오늘 추천이 아직이고, 정해진 시각(KST)이 지났으면 True."""
+    now = _kst_now()
+    state = _load_json_file(SCHEDULE_STATE_FILE, {}) or {}
+    if state.get(kind) == now.strftime("%Y-%m-%d"):
+        return False
+    return (now.hour, now.minute) >= (hour, minute) and now.hour < CATCHUP_LAST_HOUR_KST
+
+
+def _mark_discovered(kind):
+    state = _load_json_file(SCHEDULE_STATE_FILE, {}) or {}
+    state[kind] = _kst_now().strftime("%Y-%m-%d")
+    _save_json_file(SCHEDULE_STATE_FILE, state)
+
+
 def _load_generation_state():
     return _load_json_file(GENERATION_STATE_FILE, default={'sessions': {}})
 
