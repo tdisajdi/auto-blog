@@ -2385,7 +2385,9 @@ def _threads_post(text):
         return False
 
 
-def _telegram_send_message(text, with_approve_button=False, parse_mode=None):
+def _telegram_send_message(text, with_approve_button=False, parse_mode=None, buttons=None, reply_to=None):
+    """buttons: [[("글자", "신호"), ...], ...] 줄 단위 버튼. reply_to: 이 메시지 번호에 답장 형태로 보냄
+    (예: 사용자가 보낸 그림에 답장 → 질문 위에 그 그림이 작게 같이 보인다)."""
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("⚠️ TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID가 설정되지 않아 텔레그램 알림을 건너뜁니다.")
         return False
@@ -2393,6 +2395,11 @@ def _telegram_send_message(text, with_approve_button=False, parse_mode=None):
     payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
     if parse_mode:
         payload["parse_mode"] = parse_mode   # "HTML"이면 <pre> 상자 → 텔레그램에서 눌러서 바로 복사
+    if reply_to:
+        payload["reply_parameters"] = json.dumps({"message_id": int(reply_to), "allow_sending_without_reply": True})
+    if buttons:
+        payload["reply_markup"] = json.dumps({"inline_keyboard": [
+            [{"text": t, "callback_data": d} for t, d in row] for row in buttons]})
     if with_approve_button:
         # True면 ETF 추천용 "approve", 문자열이면 그 값을 버튼 신호로 쓴다(두 번째 글은 "approve_topic").
         callback = with_approve_button if isinstance(with_approve_button, str) else "approve"
@@ -2425,6 +2432,49 @@ def _insert_operator_memo(body_html, memo):
     if not m:
         return body_html + block
     return body_html[:m.start()] + block + body_html[m.start():]
+
+
+def _telegram_send_photo(path=None, photo_url=None, caption="", reply_to=None):
+    """사진 보내기(처리 결과를 보여줄 때). 실패해도 그냥 넘어간다."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID or not (path or photo_url):
+        return False
+    data = {"chat_id": TELEGRAM_CHAT_ID, "caption": caption[:1000]}
+    if reply_to:
+        data["reply_parameters"] = json.dumps({"message_id": int(reply_to), "allow_sending_without_reply": True})
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendPhoto"
+        if path:
+            with open(path, "rb") as f:
+                r = requests.post(url, data=data, files={"photo": f}, timeout=60)
+        else:
+            r = requests.post(url, data=dict(data, photo=photo_url), timeout=60)
+        return r.status_code == 200
+    except Exception as e:
+        print(f"⚠️ 텔레그램 사진 보내기 실패: {type(e).__name__}")
+        return False
+
+
+def _telegram_edit_text(message_id, text):
+    """보낸 메시지 글을 바꾸고 버튼을 없앤다(버튼을 이미 눌렀다는 표시). 실패해도 그냥 넘어간다."""
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID or not message_id:
+        return False
+    try:
+        r = requests.post(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/editMessageText",
+                          data={"chat_id": TELEGRAM_CHAT_ID, "message_id": int(message_id), "text": text}, timeout=15)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def _telegram_answer_callback(callback_id, text=""):
+    """버튼을 누른 사람 화면의 '로딩 중' 표시를 끈다(10분 뒤라 이미 만료됐을 수 있음 - 실패해도 무시)."""
+    if not TELEGRAM_BOT_TOKEN or not callback_id:
+        return
+    try:
+        requests.post(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/answerCallbackQuery",
+                      data={"callback_query_id": callback_id, "text": text[:180]}, timeout=10)
+    except Exception:
+        pass
 
 
 def _telegram_download_file(file_id, dest_path):

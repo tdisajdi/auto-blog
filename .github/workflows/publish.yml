@@ -104,6 +104,7 @@ jobs:
           git add pending_recommendation.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
+          git add image_inbox.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
@@ -187,6 +188,7 @@ jobs:
           git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
+          git add image_inbox.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
@@ -210,6 +212,7 @@ jobs:
           git add indexnow_key.json 2>/dev/null || true
           git add etf/published_articles 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
+          git add image_inbox.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -232,6 +235,7 @@ jobs:
           git add "${T}_article_state.json" "${T}_generation_state.json" "${T}_api_usage_log.json" 2>/dev/null || true
           git add "${T}/published_articles" 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
+          git add image_inbox.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -352,6 +356,7 @@ jobs:
           git add pending_topic.json 2>/dev/null || true
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
+          git add image_inbox.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
