@@ -5688,8 +5688,9 @@ def run_check_approval():
     """
     pending = _load_pending()
     pending2 = _load_json_file(PENDING_TOPIC_FILE, None)
-    if not pending and not pending2:
-        print("ℹ️ 대기 중인 추천이 없습니다. 확인할 것이 없어 종료합니다.")
+    import media_engine
+    if not pending and not pending2 and not media_engine.pending_image_requests():
+        print("ℹ️ 대기 중인 추천도, 썸네일을 기다리는 글도 없습니다. 확인할 것이 없어 종료합니다.")
         return
 
     offset = _load_telegram_offset()
@@ -5708,6 +5709,10 @@ def run_check_approval():
             print("⚠️ 운영자 채팅방이 아닌 곳에서 온 텔레그램 메시지를 무시했습니다.")
             continue
 
+        # 썸네일 그림 답장(ComfyUI로 만든 이미지) → 그 글의 대표 이미지 교체
+        if media_engine.handle_image_reply(update):
+            continue
+
         callback = update.get("callback_query")
         if callback:
             if callback.get("data") == "approve" and pending:
@@ -5722,6 +5727,10 @@ def run_check_approval():
 
         memo = _parse_memo_reply(text)
         if memo:
+            if not pending and not pending2:
+                # 썸네일만 기다리는 중이라 메모를 붙일 추천이 없다
+                _telegram_send_message("📝 메모를 받았는데 지금 승인을 기다리는 추천이 없어서 저장하지 못했어요.")
+                continue
             if _memo_target(update, pending, pending2) == "topic":
                 pending2["memo"], changed2 = memo, True
                 where = "두 번째 글"
@@ -6910,6 +6919,9 @@ def run_automation():
                 promote_published_article(driver, etf_list, plan, wp_result)
                 print("✅ 글 정보 및 팩트 데이터가 저장되었습니다. 다음 실행 시 과거 수치 비교가 작동합니다.")
                 _clear_generation_state(session_label=session_label)
+                # 썸네일용 ComfyUI 프롬프트를 텔레그램으로 (사용자가 그림을 답장하면 썸네일 교체)
+                import blog_engine
+                media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, final_title, "etf", wp_result)
             elif WP_EMAIL and WP_PASSWORD:
                 # [신규] API가 실패했지만(무료/개인/프리미엄 요금제는 항상
                 # 이 경로) 로그인 정보(WP_EMAIL/WP_PASSWORD)가 있으면, API 대신

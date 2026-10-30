@@ -320,6 +320,9 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
                       notes=f"{article_type} ({score_text})", version=1, extra_data={"_meta": meta}, url=result)
     if status == "publish":
         _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{result}\n품질 점수: {score_text}")
+        import blog_engine
+        media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, title,
+                                       os.environ.get("BLOG_CATEGORY", "etf"), result)
     else:
         issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
         _telegram_send_message(f"📝 [{kind_label}] 임시글로만 올렸어요 (공개 안 됨)\n제목: {title}\n"

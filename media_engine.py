@@ -88,8 +88,10 @@ def _wrap(draw, text, font, max_width, max_lines):
     return lines
 
 
-def make_title_card(title, category_code, out_path=None):
-    """제목 카드 PNG 경로를 돌려준다. 실패하면 None."""
+def make_title_card(title, category_code, out_path=None, background=None):
+    """제목 카드 PNG 경로를 돌려준다. 실패하면 None.
+    background(이미지 파일 경로)를 주면 그 그림을 배경으로 깔고 왼쪽을 어둡게 덮어 글씨가 잘 보이게 한다
+    (ComfyUI로 만든 이미지를 텔레그램으로 받았을 때)."""
     try:
         from PIL import Image, ImageDraw, ImageFont
         bold, xbold = _font_path("Bold"), _font_path("ExtraBold")
@@ -104,15 +106,19 @@ def make_title_card(title, category_code, out_path=None):
         for y in range(H):
             t = y / H
             d.line([(0, y), (W, y)], fill=tuple(int(top[i] + (bottom[i] - top[i]) * t) for i in range(3)))
-        # 오른쪽 아래 얇은 금색 격자선(데이터 느낌, 과하지 않게)
-        for i in range(6):
-            x = 760 + i * 80
-            d.line([(x, 360), (x, H)], fill=(40, 56, 96), width=1)
-        for i in range(4):
-            y = 400 + i * 70
-            d.line([(760, y), (W, y)], fill=(40, 56, 96), width=1)
-        pts = [(760, 590), (840, 560), (920, 575), (1000, 500), (1080, 520), (1160, 440)]
-        d.line(pts, fill=(232, 185, 68), width=4)
+        if background:
+            img = _background_with_shade(background, W, H, Image)
+            d = ImageDraw.Draw(img)
+        else:
+            # 오른쪽 아래 얇은 금색 격자선(데이터 느낌, 과하지 않게)
+            for i in range(6):
+                x = 760 + i * 80
+                d.line([(x, 360), (x, H)], fill=(40, 56, 96), width=1)
+            for i in range(4):
+                y = 400 + i * 70
+                d.line([(760, y), (W, y)], fill=(40, 56, 96), width=1)
+            pts = [(760, 590), (840, 560), (920, 575), (1000, 500), (1080, 520), (1160, 440)]
+            d.line(pts, fill=(232, 185, 68), width=4)
 
         pad = 80
         d.rectangle([pad, 92, pad + 64, 98], fill=GOLD)
@@ -139,6 +145,22 @@ def make_title_card(title, category_code, out_path=None):
     except Exception as e:
         print(f"ℹ️ 대표 이미지 카드 만들기 실패: {type(e).__name__}: {e}")
         return None
+
+
+def _background_with_shade(path, W, H, Image):
+    """배경 그림을 1200x630에 꽉 차게 자르고, 왼쪽부터 남색으로 덮어 제목이 잘 읽히게 한다."""
+    bg = Image.open(path).convert("RGB")
+    scale = max(W / bg.width, H / bg.height)
+    bg = bg.resize((int(bg.width * scale + 0.5), int(bg.height * scale + 0.5)), Image.LANCZOS)
+    left, top = (bg.width - W) // 2, (bg.height - H) // 2
+    bg = bg.crop((left, top, left + W, top + H))
+    # 왼쪽 0~45%는 진하게(글씨 자리), 오른쪽으로 갈수록 그림이 드러나게. 한 줄짜리 투명도를 만들어 늘린다.
+    alpha_row = [int(235 if x / W < 0.45 else max(40, 235 - (x / W - 0.45) * 350)) for x in range(W)]
+    mask = Image.new("L", (W, 1))
+    mask.putdata(alpha_row)
+    shade = Image.new("RGBA", (W, H), (11, 20, 40, 255))
+    shade.putalpha(mask.resize((W, H)))
+    return Image.alpha_composite(bg.convert("RGBA"), shade).convert("RGB")
 
 
 # ------------------------------------------------------------
@@ -330,3 +352,121 @@ def featured_card_id(title, category_code):
     """제목 카드를 만들어 올리고 첨부파일 ID를 돌려준다(대표 이미지용). 실패하면 None."""
     media_id, _ = upload_png(make_title_card(title, category_code))
     return media_id
+
+
+# ------------------------------------------------------------
+# 4) ComfyUI 썸네일 (사용자 PC의 ComfyUI + FLUX.2 [klein] 4B, Apache 2.0 → 상업적 이용 가능)
+#  - 글을 발행하면 텔레그램으로 이미지 프롬프트를 보낸다.
+#  - 사용자가 ComfyUI로 만든 그림을 그 메시지에 "답장"으로 보내면, 10분 점검 때
+#    그 그림에 제목·분야·사이트 이름을 얹어서 그 글의 대표 이미지로 바꾼다.
+#  - 안 보내면 제목 카드가 그대로 남는다(아무것도 멈추지 않음).
+# ------------------------------------------------------------
+IMAGE_REQUESTS_FILE = "pending_images.json"
+IMAGE_REQUEST_KEEP_DAYS = 14
+IMAGE_SIZE_TEXT = "1216 x 640 (가로형, 안 되면 1024 x 544)"
+# FLUX 계열은 부정 프롬프트를 거의 안 쓰므로 하지 말아야 할 것도 문장 안에 넣는다.
+IMAGE_STYLE = ("Editorial illustration for a data-focused blog, cinematic soft lighting, deep navy blue and warm "
+               "gold color palette, clean minimal composition, the main subject placed on the right side with calm "
+               "empty dark space on the left, no text, no letters, no numbers, no logos, no watermark, "
+               "no recognizable real people.")
+
+
+def image_prompt(title, category_code):
+    """글 제목으로 ComfyUI용 영어 프롬프트를 만든다. AI가 실패하면 분야별 기본 장면을 쓴다."""
+    fallback = {"etf": "abstract stock market chart lines glowing over a calm city skyline at dusk",
+                "trend": "a cozy everyday scene with objects related to a popular new lifestyle trend",
+                "tech": "a sleek futuristic technology lab with glowing circuit patterns",
+                "bio": "abstract molecules and a laboratory glass flask with soft light",
+                "energy": "industrial energy landscape with pipelines, wind turbines and power lines at dusk",
+                "society": "an aerial view of a modern city neighborhood with small houses and parks"}
+    scene = ""
+    try:
+        import json as _json
+        import re as _re
+        from blog_engine import get_gemini_response
+        res = get_gemini_response(
+            f"블로그 글 제목: {title}\n이 글의 썸네일 그림을 그릴 장면을 영어 한 문장(25단어 이내)으로 묘사하세요. "
+            "글의 주제를 상징하는 사물·풍경·추상적 장면으로만 표현하고, 실제 인물·유명인·회사 로고·제품 상표·"
+            "의료 시술 장면·글자는 넣지 마세요. 사실처럼 보이는 뉴스 사진 장면도 피하세요.\n"
+            'JSON으로만: {"scene": "영어 한 문장"}')
+        scene = (_json.loads(_re.sub(r"```[a-zA-Z]*\n?|```", "", res or "").strip()) or {}).get("scene", "")
+    except Exception:
+        scene = ""
+    scene = str(scene).strip().rstrip(".") or fallback.get(category_code, fallback["trend"])
+    return f"{scene}. {IMAGE_STYLE}"
+
+
+def send_image_prompt(post_id, title, category_code, url):
+    """발행 직후 텔레그램으로 프롬프트를 보내고, 답장을 기다리는 목록에 저장한다."""
+    if not post_id:
+        return
+    from datetime import datetime
+    from blog_engine import _telegram_send_message, _load_json_file, _save_json_file
+    prompt = image_prompt(title, category_code)
+    head_id = _telegram_send_message(
+        f"🎨 썸네일 이미지를 만들어 주세요 (선택)\n글: {title}\n{url}\n\n"
+        f"• ComfyUI 모델: FLUX.2 [klein] 4B\n• 크기: {IMAGE_SIZE_TEXT}\n"
+        "• 다음 메시지(프롬프트)를 복사해서 쓰고, 만든 그림을 그 메시지나 이 메시지에 '답장'으로 보내주세요.\n"
+        "• 그림 위에 제목·분야·사이트 이름은 자동으로 얹어요. 안 보내면 지금 썸네일(제목 카드)이 그대로 남아요.")
+    prompt_id = _telegram_send_message(prompt)
+    if not (head_id or prompt_id):
+        return
+    reqs = _load_json_file(IMAGE_REQUESTS_FILE, {}) or {}
+    now = datetime.now()
+    # 오래된 요청은 정리
+    for k in [k for k, v in reqs.items() if (now - datetime.fromisoformat(v["created_at"])).days > IMAGE_REQUEST_KEEP_DAYS]:
+        reqs.pop(k)
+    entry = {"post_id": post_id, "title": title, "category": category_code, "url": url, "created_at": now.isoformat()}
+    for mid in (head_id, prompt_id):
+        if mid and mid is not True:
+            reqs[str(mid)] = entry
+    _save_json_file(IMAGE_REQUESTS_FILE, reqs)
+
+
+def pending_image_requests():
+    from blog_engine import _load_json_file
+    return _load_json_file(IMAGE_REQUESTS_FILE, {}) or {}
+
+
+def handle_image_reply(update):
+    """텔레그램 메시지가 썸네일 이미지 답장이면 처리하고 True. 아니면 False.
+    답장이 아니어도 기다리는 글이 하나뿐이면 그 글로 처리한다."""
+    msg = update.get("message") or {}
+    file_id = None
+    if msg.get("photo"):
+        file_id = max(msg["photo"], key=lambda p: p.get("file_size", 0) or p.get("width", 0)).get("file_id")
+    elif (msg.get("document") or {}).get("mime_type", "").startswith("image/"):
+        file_id = msg["document"].get("file_id")
+    if not file_id:
+        return False
+    from blog_engine import (_telegram_send_message, _telegram_download_file, _save_json_file,
+                             wp_set_featured_image)
+    reqs = pending_image_requests()
+    reply_id = str(((msg.get("reply_to_message") or {}).get("message_id")) or "")
+    entry = reqs.get(reply_id)
+    if not entry:
+        posts = {v["post_id"]: v for v in reqs.values()}
+        if len(posts) == 1:
+            entry = next(iter(posts.values()))
+        else:
+            _telegram_send_message("🖼️ 사진을 받았는데 어느 글 썸네일인지 모르겠어요. 썸네일 요청 메시지에 '답장'으로 다시 보내주세요."
+                                   if posts else "🖼️ 사진을 받았는데 지금 썸네일을 기다리는 글이 없어요.")
+            return True
+    src = _tmp_png("tg_")
+    if not _telegram_download_file(file_id, src):
+        _telegram_send_message("⚠️ 사진을 내려받지 못했어요. 잠시 뒤 다시 보내주세요.")
+        return True
+    card = make_title_card(entry["title"], entry["category"], background=src)
+    try:
+        os.remove(src)
+    except OSError:
+        pass
+    media_id, _ = upload_png(card)
+    if media_id and wp_set_featured_image(entry["post_id"], media_id):
+        for k in [k for k, v in reqs.items() if v["post_id"] == entry["post_id"]]:
+            reqs.pop(k)
+        _save_json_file(IMAGE_REQUESTS_FILE, reqs)
+        _telegram_send_message(f"✅ 썸네일을 바꿨어요: {entry['title']}\n{entry['url']}")
+    else:
+        _telegram_send_message("⚠️ 썸네일 바꾸기에 실패했어요. 잠시 뒤 다시 답장으로 보내주세요.")
+    return True
