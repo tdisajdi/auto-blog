@@ -32,6 +32,7 @@ from blog_engine import (
     _telegram_send_message, _load_json_file, _save_json_file, get_wordpress_recent_posts,
     _insert_operator_memo, _discover_due, _mark_discovered,
 )
+import media_engine
 
 PENDING_TOPIC_FILE = "pending_topic.json"
 CONFIRMED_TOPIC_FILE = "confirmed_topic2_context.json"
@@ -64,7 +65,8 @@ BASE_RULES = (
     "- 글쓴이는 블로그 'ondo'입니다. 전문가인 척하지 말고, 공개 자료를 정리해 알기 쉽게 전달하는 사람의 "
     "목소리로 쓰세요. 인사말·자기소개·가짜 경험담은 금지합니다.\n"
     "- 문단은 2~3문장 단위로 짧게. 대제목은 `<h3>`, 소제목은 `<h4>🔸 소제목</h4>` 형식만 쓰세요.\n"
-    "- 표는 `<table><tr><th><td>` HTML로만 작성하세요(마크다운 표 금지).\n"
+    "- 표는 `<table><tr><th><td>` HTML로만 작성하세요(마크다운 표 금지). [표 절제] 표는 Part3에 1개만 넣고, "
+    "다른 파트에서는 표를 만들지 말고 문장으로 설명하세요. 이미지·차트는 시스템이 넣으므로 <img>를 쓰지 마세요.\n"
     "- [숫자 원칙] [사실 자료]에 있는 숫자만 쓰세요. 자료에 없는 수치·날짜·인용을 만들어내지 마세요.\n"
     "- [출처 원칙] 뉴스는 [사실 자료]·[관련 뉴스]·[최근 뉴스]에 있는 기사만, 매체명에 `<a href=\"주소\" target=\"_blank\" rel=\"noopener\">` "
     "링크를 달아 인용하세요. '외신 보도', '전문가들은' 같은 확인할 수 없는 출처는 금지합니다.\n"
@@ -257,8 +259,26 @@ def closing_block(source_note, news, extra_note=""):
     )
 
 
+def _add_media(body, title, category_label, chart):
+    """본문에 차트 최대 1개 + 사진 최대 1장. 실패하면 그냥 넘어간다(글은 그대로 발행)."""
+    chart_block = photo_block = ""
+    if chart:
+        _, url = media_engine.upload_png(media_engine.make_chart(chart))
+        if url:
+            chart_block = media_engine.chart_html(url, chart)
+    # ETF 글은 자체 차트가 있고 돈·주식 사진은 의미가 없어 사진을 넣지 않는다.
+    if os.environ.get("UNSPLASH_ACCESS_KEY") and not str(category_label).startswith("ETF"):
+        q = _ask_json(
+            f"블로그 글 제목: {title}\n이 글 도입부에 넣을 사진을 Unsplash에서 찾으려 합니다. 글 내용을 상징하는 "
+            "사물·풍경 위주의 영어 검색어(2~4단어)를 정하세요. 특정 인물·브랜드 로고·의료 시술 장면은 피하세요.\n"
+            'JSON으로만: {"query_en": "영어 검색어", "alt_ko": "사진 설명 한 문장(한국어)"}') or {}
+        photo = media_engine.unsplash_photo(q.get("query_en", ""))
+        photo_block = media_engine.photo_html(photo, q.get("alt_ko", ""))
+    return media_engine.place_media(body, photo_block, chart_block)
+
+
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
-                    memo="", closing_html="", meta=None):
+                    memo="", closing_html="", meta=None, chart=None):
     """목차 기획 → 5파트 → 조립 → 중복 검사 → 품질 검사 → 발행/임시글 → 기록 → 텔레그램.
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
     print(f"📋 [{kind_label}] {title_seed} - 기획 중...")
@@ -273,6 +293,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     title = title or title_seed
     if memo:
         body = _insert_operator_memo(body, memo)
+    body = _add_media(body, title, category_label, chart)
     body += closing_html
 
     if _check_duplicate(title, body, _load_state()):
@@ -286,7 +307,8 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
     status = "publish" if (score is not None and score >= min_q) else "draft"
     slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(parts.get("_slug", "")).lower().replace(" ", "-"))).strip("-") or None
-    ok, result = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug)
+    featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"))
+    ok, result = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
     score_text = "검수 실패" if score is None else f"{score:.2f}"
     if not ok:
         _telegram_send_message(f"⚠️ [{kind_label}] '{title}' 업로드 실패: {str(result)[:200]}")
@@ -336,7 +358,12 @@ def discover_trend():
         facts = (f"[사실 자료]\n- 구글 급상승 검색어(한국, {datetime.now():%Y-%m-%d})에 '{kw}'가 올랐습니다.\n"
                  + (f"- 구글 검색 관심도: 최근 7일 평균이 3개월 평균 대비 {momentum:+.1f}% (최근값 {interest['latest']}, 0~100 상대지수)\n" if interest else "")
                  + f"[관련 뉴스 - 제목만 확인됨, 제목에 없는 내용은 단정하지 마세요]\n{_news_block(news)}\n")
-        out.append({"category": "trend", "topic_key": f"trend:{_slug(kw)}", "title_seed": f"요즘 '{kw}'에 관심이 몰리는 이유",
+        series = (interest or {}).get("series") or []
+        chart = ({"title": f"'{kw}' 구글 검색 관심도 (최근 3개월)", "unit": "", "kind": "line",
+                  "source": "Google Trends (기간 내 최고점 = 100인 상대지수)", "values": series,
+                  "labels": ["3개월 전"] + [""] * (len(series) - 2) + ["최근"]} if len(series) >= 10 else None)
+        out.append({"category": "trend", "topic_key": f"trend:{_slug(kw)}", "chart": chart,
+                    "title_seed": f"요즘 '{kw}'에 관심이 몰리는 이유",
                     "facts_text": facts, "news": news, "score": 1.0 + min(max(momentum, 0) / 100, 1.0),
                     "reason": f"구글 급상승 검색어 '{kw}' - {p.get('why', '')}", "source_note": "구글 트렌드, 구글 뉴스"})
     return out
@@ -572,13 +599,27 @@ def kosis_fact_block(table, max_items=8):
                 line += f", 1년 전({_fmt_period(yp, table['prd'])}) 대비 {rel:+.1f}%"
             if table.get("main", "") in item and summary is None:
                 summary = {"item": item, "period": lp, "value": lv, "unit": unit, "prev": yv,
-                           "prev_period": yp, "rel": rel, "is_rate": is_rate}
+                           "prev_period": yp, "rel": rel, "is_rate": is_rate, "series": pts,
+                           "table_name": rows[0].get("TBL_NM", table["name"])}
         lines.append(line)
     if not lines:
         return "", None
     tbl_nm = rows[0].get("TBL_NM", table["name"])
     head = f"[공식 통계 - 국가통계포털(KOSIS) '{tbl_nm}', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]"
     return head + "\n" + "\n".join(lines) + "\n", summary
+
+
+def _kosis_chart(table, sm):
+    """KOSIS 요약의 주요 항목 시계열로 차트 설명을 만든다. 점이 2개 미만이면 None."""
+    if not sm or len(sm.get("series") or []) < 2:
+        return None
+    pts = sm["series"][-12:]
+    name = re.sub(r"\s*\([^)]*\)\s*$", "", sm["item"])
+    unit = sm["unit"] or (re.search(r"\(([^)]*)\)\s*$", sm["item"]) or [None, ""])[1]
+    return {"title": f"{name} 추이 (전국)", "unit": unit if unit in ("%", "명", "가구", "건") else "",
+            "labels": [_fmt_period(p, table["prd"]) for p, _ in pts], "values": [v for _, v in pts],
+            "kind": "bar" if len(pts) <= 6 else "line",
+            "source": f"국가통계포털(KOSIS) '{sm.get('table_name', table['name'])}'"}
 
 
 def _kosis_table_for(text):
@@ -607,6 +648,15 @@ def run_check_sources():
         block, summary = kosis_fact_block(tb)
         print(block or "(사실 블록 만들기 실패)")
         print("요약:", summary)
+    print("\n=== 이미지 (만들기만 하고 올리지 않음) ===")
+    for label, path in [("대표 이미지 카드", media_engine.make_title_card("점검용 제목: 숫자로 본 우리 사회의 변화", "society")),
+                        ("차트", media_engine.make_chart({"title": "점검용 차트", "labels": ["2023년", "2024년", "2025년"],
+                                                         "values": [1, 2, 3], "unit": "", "source": "점검"}))]:
+        print(f"{label}: {'성공 (' + str(os.path.getsize(path)) + ' bytes)' if path else '실패'}")
+        if path:
+            os.remove(path)
+    photo = media_engine.unsplash_photo("city skyline at night")
+    print("Unsplash 사진:", "성공 - " + photo["author"] if photo else "키 없음 또는 실패")
     print("\n=== 새 통계 자료로 만든 주제 후보 ===")
     for c in _kosis_candidates():
         print(f"{c['title_seed']} | 점수 {c['score']:.2f} | {c['topic_key']}")
@@ -625,7 +675,14 @@ def discover_energy():
             if len(h) < 30:
                 continue
             last = float(h.iloc[-1])
-            rows.append({"ticker": t, "name": name, "last": last,
+            try:   # 차트 자료는 덤 - 만들다 실패해도 가격 자료는 그대로 쓴다
+                weekly = h.iloc[::5].iloc[-52:]
+                chart = {"labels": [f"{d.month}월" if i == 0 or d.month != weekly.index[i - 1].month else ""
+                                    for i, d in enumerate(weekly.index)],
+                         "values": [round(float(v), 2) for v in weekly]}
+            except Exception:
+                chart = {"labels": [], "values": []}
+            rows.append({"ticker": t, "name": name, "last": last, "chart": chart,
                          "d1": (last / float(h.iloc[-2]) - 1) * 100, "m1": (last / float(h.iloc[-22]) - 1) * 100,
                          "y1": (last / float(h.iloc[0]) - 1) * 100})
         except Exception:
@@ -650,7 +707,9 @@ def discover_energy():
              "title_seed": f"{best['name']} 가격이 {move} 이유와 생활에 미치는 영향",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
-             "source_note": "원자재 가격: Yahoo Finance" + (", 원유 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") else "")}]
+             "source_note": "원자재 가격: Yahoo Finance" + (", 원유 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") else ""),
+             "chart": {"title": f"{best['name']} 선물 가격 1년 흐름 (주간)", "unit": "", "kind": "line",
+                       "source": f"Yahoo Finance ({best['ticker']})", **best["chart"]}}]
 
 
 def discover_society():
@@ -682,14 +741,16 @@ def discover_society():
     facts = (f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n")
     note = "통계 발표 관련 보도(구글 뉴스)"
     tb = _kosis_table_for(f"{pick.get('title_ko', '')} {pick.get('keywords_ko', '')} {it['title']}")
+    chart = None
     if tb:
-        block, _ = kosis_fact_block(tb)
+        block, sm = kosis_fact_block(tb)
         if block:
             facts = block + "\n" + facts
             note = "국가통계포털(KOSIS) 공식 통계, " + note
+            chart = _kosis_chart(tb, sm)
     out.append({"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
                 "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
-                "score": 1.1, "reason": pick.get("why", ""), "source_note": note})
+                "score": 1.1, "reason": pick.get("why", ""), "source_note": note, "chart": chart})
     return out
 
 
@@ -725,7 +786,7 @@ def _kosis_candidates():
             strength = min(abs(sm["rel"] or 0) / 10, 0.6)
         news = google_news(f"{tb['name']} 통계", 5)
         facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
-        cands.append({"category": "society", "topic_key": key, "news": news,
+        cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm),
                       "title_seed": f"{period} {name} {value}, 숫자로 본 우리 사회의 변화",
                       "facts_text": facts, "score": 1.2 + strength,
                       "reason": f"국가통계포털 {tb['name']} 새 자료 ({period} {name} {value})",
@@ -844,6 +905,7 @@ def run_confirmed():
         closing_html=closing_block(ctx.get("source_note", ""), ctx.get("news", []),
                                    "<br/>건강·치료에 관한 결정은 반드시 의료진과 상의하세요." if ctx["category"] == "bio" else ""),
         meta={"topic_key": ctx["topic_key"]},
+        chart=ctx.get("chart"),
     )
 
 

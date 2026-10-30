@@ -21,3 +21,8 @@ pytrends
 # (CHART_MODE=script를 쓰는 동안에는 필요 없습니다)
 # plotly
 # kaleido
+
+# 글 이미지(media_engine.py): 대표 이미지 카드·데이터 차트. koreanize-matplotlib에 나눔고딕 글꼴이 들어 있어 따로 글꼴 설치가 필요 없음
+matplotlib
+pillow
+koreanize-matplotlib
