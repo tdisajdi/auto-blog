@@ -149,7 +149,8 @@ def make_title_card(title, category_code, out_path=None):
 def make_chart(spec, out_path=None):
     try:
         labels, values = list(spec.get("labels") or []), list(spec.get("values") or [])
-        if len(values) < 2 or len(labels) != len(values):
+        # 점이 2개뿐이면 차트가 주는 정보가 거의 없어서(본문 문장으로 충분) 그리지 않는다.
+        if len(values) < 3 or len(labels) != len(values):
             return None
         import matplotlib
         matplotlib.use("Agg")
@@ -216,9 +217,9 @@ def _short(v, unit):
         return str(v)
     a = abs(v)
     if a >= 1e8:
-        txt = f"{v / 1e8:,.1f}억"
+        txt = f"{v / 1e8:,.1f}".rstrip("0").rstrip(".") + "억"
     elif a >= 1e4:
-        txt = f"{v / 1e4:,.1f}만" if a < 1e6 else f"{v / 1e4:,.0f}만"
+        txt = (f"{v / 1e4:,.1f}".rstrip("0").rstrip(".") if a < 1e6 else f"{v / 1e4:,.0f}") + "만"
     elif a >= 100 or float(v).is_integer():
         txt = f"{v:,.0f}"
     else:
@@ -278,3 +279,54 @@ def photo_html(photo, alt_ko=""):
             f'<figcaption style="font-size:12px;color:#8a96b0;margin-top:6px;">사진: '
             f'<a href="{html.escape(photo["author_url"])}" target="_blank" rel="noopener">{html.escape(photo["author"])}</a>'
             f' / <a href="{html.escape(photo["unsplash_url"])}" target="_blank" rel="noopener">Unsplash</a></figcaption></figure>')
+
+
+# ------------------------------------------------------------
+# 배치 규칙 - 이미지가 중구난방으로 들어가지 않게
+#  - 한 글에 사진 최대 1장, 차트 최대 1개 (표는 글쓰기 규칙에서 Part3에 1개로 제한)
+#  - 사진은 도입부 끝(첫 번째 대제목 바로 앞): 글 분위기를 잡는 자리
+#  - 차트는 숫자를 다루는 본문 중간(세 번째 대제목 앞, 대제목이 적으면 두 번째 앞)
+#  - 둘이 같은 자리에 붙지 않게, 그리고 표 바로 뒤에 차트가 붙지 않게 한 칸 뒤로 미룬다
+# ------------------------------------------------------------
+def place_media(body, photo_block="", chart_block=""):
+    import re
+    heads = [m.start() for m in re.finditer(r"<h3[\s>]", body)]
+    inserts = []
+    if photo_block and heads:
+        inserts.append((heads[0], photo_block))
+    if chart_block and heads:
+        idx = 2 if len(heads) >= 3 else min(1, len(heads) - 1)
+        if photo_block and idx == 0:
+            idx = 1 if len(heads) > 1 else None
+        # 바로 앞 구간이 표로 끝나면(표 → 차트가 연달아 보이면 답답함) 다음 대제목 앞으로
+        while idx is not None and idx < len(heads) and body[:heads[idx]].rstrip().endswith("</table>"):
+            idx = idx + 1 if idx + 1 < len(heads) else None
+        if idx is not None:
+            inserts.append((heads[idx], chart_block))
+        else:
+            inserts.append((len(body), chart_block))
+    if chart_block and not heads:
+        inserts.append((len(body), chart_block))
+    for pos, block in sorted(inserts, key=lambda x: x[0], reverse=True):
+        body = body[:pos] + block + "\n" + body[pos:]
+    return body
+
+
+def upload_png(path):
+    """만든 PNG를 워드프레스 미디어에 올리고 (ID, URL). 임시 파일은 지운다."""
+    if not path:
+        return None, None
+    try:
+        from blog_engine import _upload_media
+        return _upload_media(path, "image/png")
+    finally:
+        try:
+            os.remove(path)
+        except OSError:
+            pass
+
+
+def featured_card_id(title, category_code):
+    """제목 카드를 만들어 올리고 첨부파일 ID를 돌려준다(대표 이미지용). 실패하면 None."""
+    media_id, _ = upload_png(make_title_card(title, category_code))
+    return media_id

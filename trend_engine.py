@@ -66,7 +66,8 @@ def _summarize(values):
     recent = vals[-7:]
     recent_avg = sum(recent) / len(recent)
     return {"latest": round(vals[-1], 1), "avg": round(avg, 1),
-            "momentum_pct": round((recent_avg / avg - 1) * 100, 1) if avg > 0 else 0.0}
+            "momentum_pct": round((recent_avg / avg - 1) * 100, 1) if avg > 0 else 0.0,
+            "series": [round(v, 1) for v in vals]}   # 글 속 검색 관심도 차트용
 
 
 # ---------------- 관심도 제공자 ----------------

@@ -1925,7 +1925,8 @@ def _wp_category_id(category_slug):
     return cat_id
 
 
-def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=None, category_slug=None):
+def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=None, category_slug=None,
+                         featured_image=None):
     """[수정] 워드프레스 발행 함수.
 
     [중요/버그수정 이력] 예전 버전은 자체호스팅용 코어 REST API
@@ -1962,6 +1963,9 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     }
     if slug:
         payload["slug"] = slug
+    if featured_image:
+        # 대표 이미지(썸네일) - 미디어 라이브러리 첨부파일 ID. 허브·카테고리 페이지 카드에 보인다.
+        payload["featured_image"] = str(featured_image)
     # 예전엔 카테고리를 지정하지 않아 모든 글이 "미분류"로 올라갔고, 허브/카테고리
     # 페이지(카테고리 주소로 글을 불러옴)에 글이 하나도 안 보이는 문제가 있었다.
     category_slug = category_slug or WP_CATEGORY_SLUGS.get(BLOG_CATEGORY)
@@ -2111,33 +2115,32 @@ def _render_html_to_image(driver, html_str, output_path):
             pass
 
 
-def _upload_file_to_wordpress(file_path, mime_type):
-    """
-    파일을 워드프레스 미디어 라이브러리에 업로드하고 공개 URL을 돌려주는
-    범용 함수. 카드뉴스 이미지(png)뿐 아니라 IndexNow 키 파일(txt) 업로드에도
-    재사용한다 - 새 호스팅 서비스 없이 이미 있는 미디어 라이브러리를 계속 활용.
-
-    실패하면(요금제 제한 등으로 API 자체가 막혀있을 수 있음) None을 돌려준다.
-    """
+def _upload_media(file_path, mime_type):
+    """미디어 라이브러리에 올리고 (첨부파일 ID, 공개 URL)을 돌려준다. 실패하면 (None, None).
+    ID는 글의 대표 이미지(featured_image) 지정에 쓴다."""
     if not (WP_OAUTH_TOKEN and WP_SITE_ID):
-        return None
+        return None, None
     try:
         with open(file_path, "rb") as f:
             resp = requests.post(
                 f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/media/new",
                 headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
                 files={"media[]": (os.path.basename(file_path), f, mime_type)},
-                timeout=30,
+                timeout=60,
             )
-        data = resp.json()
-        media_list = data.get("media", [])
+        media_list = resp.json().get("media", [])
         if media_list:
-            return media_list[0].get("URL")
+            return media_list[0].get("ID"), media_list[0].get("URL")
         print(f"⚠️ 워드프레스 파일 업로드 실패: {resp.status_code} {resp.text[:200]}")
-        return None
     except Exception as e:
         print(f"⚠️ 워드프레스 파일 업로드 중 오류: {type(e).__name__}: {e}")
-        return None
+    return None, None
+
+
+def _upload_file_to_wordpress(file_path, mime_type):
+    """파일을 워드프레스 미디어 라이브러리에 올리고 공개 URL을 돌려준다(카드뉴스 이미지, IndexNow
+    키 파일 등). 실패하면(요금제 제한 등으로 API가 막혀 있을 수 있음) None."""
+    return _upload_media(file_path, mime_type)[1]
 
 
 def _upload_image_to_wordpress(image_path):

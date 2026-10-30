@@ -6829,11 +6829,15 @@ def run_automation():
             # 알린다. 예전에는 0.3만 넘으면 자동 공개 발행돼서, 검수가 "위험 신호"라고
             # 판단한 글(0.3~0.6)도 그대로 사이트에 올라갔다.
             publish_min_quality = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
+            # 대표 이미지(썸네일) 카드 - 허브·카테고리 페이지 글 카드에 보인다. 실패하면 없이 발행.
+            import media_engine
+            featured_id = media_engine.featured_card_id(final_title, "etf")
             if final_quality_score is None or final_quality_score < publish_min_quality:
                 score_text = "검수 실패" if final_quality_score is None else f"{final_quality_score:.2f}"
                 print(f"🛑 품질 점수({score_text})가 기준({publish_min_quality}) 미만이라 임시글로만 올립니다.")
                 _print_final_quality_summary(final_quality_score, final_quality_issues, policy_issues_overall)
-                draft_ok, draft_result = publish_to_wordpress(final_title, blog_content, tags=tags, status="draft")
+                draft_ok, draft_result = publish_to_wordpress(final_title, blog_content, tags=tags, status="draft",
+                                                               featured_image=featured_id)
                 issues_text = "\n".join(f"- {i}" for i in (final_quality_issues or [])[:6]) or "- (지적 내용 없음)"
                 if draft_ok:
                     _register_article(final_title, generated_body, status='draft',
@@ -6879,7 +6883,8 @@ def run_automation():
             print("🚀 워드프레스로 발행을 시도합니다...")
             if publish_slug:
                 print(f"   슬러그(URL): {publish_slug}")
-            wp_success, wp_result = publish_to_wordpress(final_title, blog_content, tags=tags, status="publish", slug=publish_slug)
+            wp_success, wp_result = publish_to_wordpress(final_title, blog_content, tags=tags, status="publish", slug=publish_slug,
+                                                         featured_image=featured_id)
 
             print("\n📋 발행 전 최종 품질 검수 요약")
             if final_quality_score is None:
