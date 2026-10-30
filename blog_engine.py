@@ -1993,9 +1993,31 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     try:
         data = response.json()
         published_url = data.get("URL", "") or data.get("link", "")
+        # 발행한 글 번호 - 나중에 텔레그램으로 받은 이미지로 썸네일을 바꿀 때 쓴다.
+        global LAST_PUBLISHED_POST_ID
+        LAST_PUBLISHED_POST_ID = data.get("ID")
         return True, published_url
     except (ValueError, KeyError) as e:
         return False, f"응답 파싱 실패: {type(e).__name__}: {e}"
+
+
+LAST_PUBLISHED_POST_ID = None
+
+
+def wp_set_featured_image(post_id, media_id):
+    """이미 올라간 글의 대표 이미지(썸네일)를 바꾼다. 성공하면 True."""
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID and post_id and media_id):
+        return False
+    try:
+        r = requests.post(f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/{post_id}",
+                          headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                          data={"featured_image": str(media_id)}, timeout=30)
+        if r.status_code in (200, 201):
+            return True
+        print(f"⚠️ 대표 이미지 바꾸기 실패: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        print(f"⚠️ 대표 이미지 바꾸기 중 오류: {type(e).__name__}")
+    return False
 
 
 def get_wordpress_recent_posts(count=15):
@@ -2338,6 +2360,28 @@ def _insert_operator_memo(body_html, memo):
     if not m:
         return body_html + block
     return body_html[:m.start()] + block + body_html[m.start():]
+
+
+def _telegram_download_file(file_id, dest_path):
+    """텔레그램으로 받은 사진/파일을 내려받는다. 성공하면 dest_path, 실패하면 None.
+    (봇 토큰이 들어간 주소라 절대 출력하지 않는다)"""
+    if not TELEGRAM_BOT_TOKEN or not file_id:
+        return None
+    try:
+        info = requests.get(f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getFile",
+                            params={"file_id": file_id}, timeout=15).json()
+        path = (info.get("result") or {}).get("file_path")
+        if not path:
+            return None
+        r = requests.get(f"https://api.telegram.org/file/bot{TELEGRAM_BOT_TOKEN}/{path}", timeout=60)
+        if r.status_code != 200:
+            return None
+        with open(dest_path, "wb") as f:
+            f.write(r.content)
+        return dest_path
+    except Exception as e:
+        print(f"⚠️ 텔레그램 파일 받기 실패: {type(e).__name__}")
+        return None
 
 
 def _telegram_update_is_authorized(update):

@@ -41,6 +41,9 @@
 - 대표 이미지 카드(1200x630): 남색 그라데이션 배경, 금색 짧은 선 + 분야 영문명(금색),
   제목(흰색 큰 글씨), 아래 "DATA-DRIVEN INSIGHTS · ondo99.com", 오른쪽 아래 흐린 선 그래프 장식.
   이모지 없음.
+- ComfyUI 그림 썸네일: 사용자가 텔레그램으로 보낸 그림을 배경으로, 왼쪽 45%를 남색으로 진하게 덮고
+  오른쪽으로 갈수록 그림이 드러나게 한 뒤 같은 글씨 배치를 얹음. 프롬프트도 "남색·금색 톤, 주제는
+  오른쪽, 왼쪽은 비워두기, 글씨·로고·실제 인물 없음"으로 고정(media_engine.IMAGE_STYLE).
 - 데이터 차트: 남색 배경, 금색 선/막대(최신 값만 금색 강조), 아래에 자료 출처 + ondo99.com.
 - 사진: Unsplash. 사진 아래 사진가 이름·Unsplash 링크 필수(규칙).
 - 절제 규칙 (사용자 요청: "중구난방으로 들어가면 정신없으니 필요할 때만"):
@@ -52,7 +55,8 @@
 - 대표색·글꼴이 바뀌면 아래도 전부 같이 바꿀 것. 안 바꾸면 썸네일·차트만 옛 색으로 남는다.
   1) media_engine.py 맨 위 색 상수 (NAVY, NAVY_DEEP, NAVY_LIGHT, GOLD, TEXT, MUTED),
      사이트 이름(SITE_NAME), 카드 안 그라데이션 숫자(make_title_card의 top/bottom),
-     차트 격자·축 색(make_chart 안 "#2a3a60", "#1f2e52")
+     차트 격자·축 색(make_chart 안 "#2a3a60", "#1f2e52"), 그림 썸네일 덮개 색(_background_with_shade),
+     ComfyUI 프롬프트의 색 표현(IMAGE_STYLE의 "deep navy blue and warm gold")
   2) design/hub.html, design/category-*.html의 색
   3) 추가 CSS(post-dark-theme.css)
   4) 이미 올라간 글의 대표 이미지는 자동으로 안 바뀜 → 필요하면 다시 만들어 교체하는 작업 따로 필요
