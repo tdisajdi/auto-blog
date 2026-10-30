@@ -465,10 +465,15 @@ def kosis_data(org, tbl, prd, n, itm="ALL", objs=None):
     params = {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y", "orgId": org, "tblId": tbl,
               "prdSe": prd, "newEstPrdCnt": n, "itmId": itm}
     params.update(objs or {"objL1": "ALL"})
-    try:
-        data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=25).json()
-    except Exception as e:
-        return None, f"요청 실패({type(e).__name__})"
+    data = None
+    for attempt in range(2):   # KOSIS 서버가 가끔 연결을 안 받아서 한 번만 다시 시도
+        try:
+            data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=(8, 25)).json()
+            break
+        except Exception as e:
+            if attempt == 1:
+                return None, f"요청 실패({type(e).__name__})"
+            time.sleep(5)
     if isinstance(data, dict):
         return None, f"KOSIS 오류 {data.get('err')}: {data.get('errMsg')}"
     return data if isinstance(data, list) else None, ""
@@ -479,7 +484,7 @@ def kosis_search(word, count=5):
     if not key:
         return []
     try:
-        data = requests.get(KOSIS_SEARCH_URL, headers=UA, timeout=20, params={
+        data = requests.get(KOSIS_SEARCH_URL, headers=UA, timeout=(8, 20), params={
             "method": "getList", "apiKey": key, "searchNm": word, "format": "json", "jsonVD": "Y",
             "startCount": 1, "resultCount": count, "sort": "RANK"}).json()
         return data if isinstance(data, list) else []
