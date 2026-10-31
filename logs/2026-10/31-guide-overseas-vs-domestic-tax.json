@@ -1,0 +1,148 @@
+{
+ "article_type": "guide",
+ "topic_id": "overseas-vs-domestic-tax",
+ "title_seed": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+ "category": "etf",
+ "started_at": "2026-10-31T09:49:15",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 2065
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.9,
+   "chars": 4167
+  },
+  {
+   "step": "편집장 검토 1",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 157
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.7,
+   "chars": 4740
+  },
+  {
+   "step": "편집장 검토 2",
+   "model": "gemini-3.5-flash-lite",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "편집장 검토 2",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 188
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 41.9,
+   "chars": 5310
+  },
+  {
+   "step": "편집장 검토 3",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 201
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "09:49:29",
+   "title": "해외 vs 국내 상장 ETF, 세금과 수익률까지 완벽 비교",
+   "sections": [
+    "해외·국내 상장 ETF 스펙 비교",
+    "미국 상장 ETF의 양도세와 배당세",
+    "국내 일반계좌에서의 ETF 세금",
+    "ISA와 연금계좌 활용의 한계"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "09:49:45",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "09:49:49",
+   "score": 1.0,
+   "lint": [
+    "N/A 언급: 자료에 값이 없는 항목은 아예 쓰지 말 것",
+    "분량 부족: 본문 3505자 (최소 4500자) - 사실 자료로 설명을 더 채울 것"
+   ]
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "09:50:06",
+   "model": "gemini-3.6-flash",
+   "todo": 2
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "09:50:12",
+   "score": 0.95,
+   "lint": [
+    "분량 부족: 본문 4072자 (최소 4500자) - 사실 자료로 설명을 더 채울 것"
+   ]
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "09:50:57",
+   "model": "gemini-3.6-flash",
+   "todo": 1
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "09:51:00",
+   "score": 0.95
+  }
+ ],
+ "result": {
+  "status": "publish",
+  "title": "해외 vs 국내 상장 ETF, 세금과 수익률까지 완벽 비교",
+  "url": "https://ondo99.com/2026/10/31/overseas-vs-domestic-etf-tax-guide/",
+  "score": 1.0,
+  "issues": [
+   "N/A 언급: 자료에 값이 없는 항목은 아예 쓰지 말 것",
+   "분량 부족: 본문 3505자 (최소 4500자) - 사실 자료로 설명을 더 채울 것"
+  ]
+ },
+ "minutes": 1.8
+}
