@@ -5229,6 +5229,13 @@ def send_weekly_health_report():
             most_exhausted = max(switch_agg.items(), key=lambda x: x[1])
             lines.append(f"⚠️ 가장 자주 소진되어 전환된 모델: {most_exhausted[0]} ({most_exhausted[1]}회) - 우선순위를 낮추는 걸 고려해보세요")
 
+    # 편집 기록부(logs/) 주간 요약: 쓰기 방식, 점수 변화, 막힌 모델, 거부된 키 번호, 자주 나온 지적
+    try:
+        from ondo.checks.editlog import weekly_summary
+        lines += weekly_summary()
+    except Exception as e:
+        lines.append(f"(편집 기록 요약 실패: {type(e).__name__})")
+
     message = "\n".join(lines)
     _telegram_send_message(message)
     print("✅ 주간 상태 점검 리포트 전송 완료")

@@ -1,0 +1,253 @@
+"""편집국: 기획 회의 → 쓰기 → 교열(코드) → 편집장 검토 → 고쳐쓰기(최대 2번).
+
+write_article(...)이 글 한 편의 HTML을 만든다. 발행은 하지 않는다(topic_engine.produce_article이 함).
+
+쓰기 방식
+- 기본은 "한 번에 쓰기": 좋은 모델 한 번 호출로 글 전체를 쓴다(앞뒤 흐름이 이어지고 반복이 적다).
+- 좋은 모델이 한도(429)에 막히거나 답이 길이 한도에서 잘리면 "섹션별 나눠 쓰기"로 자동 전환:
+  섹션마다 다른 키로 쓰되, 매번 설계도 전체 + 그 섹션에 배정된 사실 + 앞까지 쓴 글을 같이 준다.
+  다 쓰면 한 번 더 불러 이음새를 다듬는다. 전환 이유는 편집 기록부에 남는다.
+- 모든 호출의 모델·키 번호·실패 이유는 편집 기록부(ondo/checks/editlog.py)에 남는다.
+"""
+import os
+import random
+import re
+from pathlib import Path
+
+from ondo.checks import lint, numbers
+from ondo.config import kst_now
+from ondo.writing import llm
+
+PROMPTS = Path(__file__).resolve().parent / "prompts"
+MAX_REWRITES = 2
+ANGLES = [
+    "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료의 사실로 답을 쌓아가는 구성",
+    "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정확한 그림을 보여주는 구성",
+]
+
+
+def prompt(name, **values):
+    text = (PROMPTS / f"{name}.txt").read_text(encoding="utf-8")
+    for k, v in values.items():
+        text = text.replace("{{" + k + "}}", str(v or ""))
+    return text
+
+
+def _today():
+    return f"{kst_now():%Y년 %m월 %d일}"
+
+
+# ------------------------------------------------------------
+# 기획 회의
+# ------------------------------------------------------------
+
+def _clean_heading(h):
+    return re.sub(r"^\s*(part\s*\d+|\d+\s*부|\d+[.)])\s*[:.\-)]?\s*", "", str(h), flags=re.I).strip() or str(h)
+
+
+def _valid_plan(p):
+    if not isinstance(p, dict):
+        return None
+    secs = p.get("sections")
+    if not isinstance(secs, list) or not 3 <= len(secs) <= 5:
+        return None
+    clean = []
+    for s in secs:
+        if not isinstance(s, dict) or not s.get("heading") or not s.get("goal"):
+            return None
+        facts = s.get("facts") if isinstance(s.get("facts"), list) else []
+        try:
+            chars = max(600, min(1600, int(s.get("chars") or 1000)))
+        except (TypeError, ValueError):
+            chars = 1000
+        clean.append({"heading": _clean_heading(s["heading"]), "goal": str(s["goal"]),
+                      "facts": [str(f) for f in facts][:10], "table": bool(s.get("table")), "chars": chars})
+    if sum(s["table"] for s in clean) > 1:          # 표는 1개만 - 첫 번째 것만 남긴다
+        first = next(i for i, s in enumerate(clean) if s["table"])
+        for i, s in enumerate(clean):
+            s["table"] = i == first
+    intro = p.get("intro") if isinstance(p.get("intro"), dict) else {}
+    faq = [str(q) for q in (p.get("faq") or []) if q][:4]
+    return {"title": str(p.get("title") or ""), "key_message": str(p.get("key_message") or ""),
+            "slug": str(p.get("slug") or ""),
+            "intro": {"goal": str(intro.get("goal") or "독자의 질문과 이 글의 범위"),
+                      "facts": [str(f) for f in (intro.get("facts") or [])][:6]},
+            "sections": clean, "faq": faq or ["자주 묻는 질문 3개를 자료로 답할 수 있는 것으로 고르세요"]}
+
+
+DEFAULT_PLAN = {
+    "title": "", "key_message": "", "slug": "",
+    "intro": {"goal": "독자의 질문과 오늘 다룰 범위를 소개", "facts": []},
+    "sections": [
+        {"heading": "무슨 일이 있었나", "goal": "자료에 있는 사실을 정리", "facts": [], "table": False, "chars": 1100},
+        {"heading": "숫자로 보기", "goal": "자료의 숫자를 표로 정리하고 뜻을 설명", "facts": [], "table": True, "chars": 1100},
+        {"heading": "아직 모르는 것", "goal": "확인되지 않은 점과 주의할 점", "facts": [], "table": False, "chars": 1000},
+    ],
+    "faq": ["자료로 답할 수 있는 질문 3개를 고르세요"],
+}
+
+
+def make_plan(kind_label, title_seed, facts_text, memo, log):
+    angles = random.sample(ANGLES, len(ANGLES))
+    for attempt, angle in enumerate(angles):
+        r = llm.call(prompt("plan", kind_label=kind_label, title_seed=title_seed, today=_today(), angle=angle,
+                            facts=facts_text, memo=f"[운영자 메모 - 이 관점을 반영하세요] {memo}" if memo else ""),
+                     step="기획", log=log, tier="fast", json_out=True, thinking=8192, start_key=attempt * 3)
+        plan = _valid_plan(llm.parse_json(r.text))
+        if plan:
+            log.step("기획", title=plan["title"], sections=[s["heading"] for s in plan["sections"]],
+                     model=r.model, angle=angle[:30])
+            return plan
+        log.step("기획 실패", attempt=attempt + 1,
+                 reason="답이 없음(한도·오류)" if r.text is None else "설계도 형식이 맞지 않음")
+    log.step("기획", sections=[s["heading"] for s in DEFAULT_PLAN["sections"]], reason="기본 설계도 사용")
+    return DEFAULT_PLAN
+
+
+def plan_text(plan):
+    lines = []
+    if plan.get("title"):
+        lines.append(f"제목(안): {plan['title']}")
+    if plan.get("key_message"):
+        lines.append(f"핵심 메시지: {plan['key_message']}")
+    lines.append(f"도입: {plan['intro']['goal']}" + "".join(f"\n   - {f}" for f in plan["intro"]["facts"]))
+    for i, s in enumerate(plan["sections"], 1):
+        lines.append(f"섹션 {i}. <h3>{s['heading']}</h3> (약 {s['chars']}자{', 표 1개 포함' if s['table'] else ', 표 없음'})"
+                     f" - {s['goal']}" + "".join(f"\n   - 배정된 사실: {f}" for f in s["facts"]))
+    lines.append("자주 묻는 질문: " + " / ".join(plan["faq"]))
+    lines.append("정리: 핵심 메시지를 2~3문단으로 마무리")
+    return "\n".join(lines)
+
+
+# ------------------------------------------------------------
+# 쓰기
+# ------------------------------------------------------------
+
+def _clean_html(text):
+    t = re.sub(r"```[a-zA-Z]*\n?|```", "", text or "").strip()
+    i = t.find("<")
+    return t[i:] if i > 0 else t
+
+
+def _write_single(ctx, log):
+    r = llm.call(prompt("write", plan=plan_text(ctx["plan"]), **ctx["common"]),
+                 step="쓰기(한 번에)", log=log, tier="strong_only")
+    return r
+
+
+def _section_units(plan):
+    units = [("도입", "도입: 맨 위에 <h1>제목</h1>, 다음 줄에 <!-- 120~160자 메타 설명 -->, 그다음 도입 문단"
+                      f"(400~600자, 대제목 없이). 다룰 것: {plan['intro']['goal']}",
+              "<h1>로 시작하세요.")]
+    for i, s in enumerate(plan["sections"], 1):
+        units.append((f"섹션 {i}", f"섹션 {i}. <h3>{s['heading']}</h3> - {s['goal']} (약 {s['chars']}자"
+                                   f"{', 표 1개 포함' if s['table'] else ', 표 만들지 말 것'})\n배정된 사실:\n"
+                                   + "\n".join(f"- {f}" for f in s["facts"]),
+                      f"<h3>{s['heading']}</h3>로 시작하세요."))
+    units.append(("마무리", "<h3>자주 묻는 질문</h3>(질문은 <h4>🔸 질문</h4>, 답 2~3문장) 질문: "
+                            + " / ".join(plan["faq"]) + "\n그다음 <h3>정리</h3> + 300~500자 정리"
+                            " (+ 맞는 내부 링크가 있으면 그 문단)\n맨 마지막 줄: 태그: 태그1 태그2 태그3 태그4 태그5",
+                  "<h3>자주 묻는 질문</h3>으로 시작하고 '태그:' 줄로 끝내세요."))
+    return units
+
+
+def _write_sections(ctx, log):
+    pieces = []
+    for i, (name, target, fmt) in enumerate(_section_units(ctx["plan"])):
+        common = dict(ctx["common"])
+        if name != "마무리":
+            common["link_rule"] = ""
+        r = llm.call(prompt("section", plan=plan_text(ctx["plan"]), previous="\n".join(pieces) or "(아직 없음 - 첫 부분입니다)",
+                            target=target, target_format=fmt, **common),
+                     step=f"쓰기({name})", log=log, tier="strong", start_key=i)   # 섹션마다 다른 키에서 시작
+        if not r.text:
+            log.step("쓰기 실패", part=name, reason="모든 모델·키가 한도 초과" if r.limited else "답이 없음")
+            return None
+        pieces.append(_clean_html(r.text))
+    draft = "\n".join(pieces)
+    r = llm.call(prompt("unify", draft=draft), step="이음새 다듬기", log=log, tier="strong",
+                 start_key=len(pieces))
+    unified = _clean_html(r.text) if r.text else ""
+    if unified and len(lint.text_of(unified)) >= 0.85 * len(lint.text_of(draft)):
+        return unified
+    log.step("이음새 다듬기 건너뜀", reason="답이 없음" if not unified else "다듬은 글이 너무 짧아져서 원래 글 사용")
+    return draft
+
+
+# ------------------------------------------------------------
+# 검토와 고쳐쓰기
+# ------------------------------------------------------------
+
+def review(html, facts_text, category_label, log, round_no):
+    text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
+    r = llm.call(prompt("review", category_label=category_label, today=_today(), facts=facts_text, text=text),
+                 step=f"편집장 검토 {round_no}", log=log, tier="fast", json_out=True, thinking=8192,
+                 start_key=5 + round_no)
+    data = llm.parse_json(r.text)
+    if not isinstance(data, dict):
+        return None, ["편집장 검토 실패(답이 없거나 형식 오류) - 사람이 확인 필요"]
+    try:
+        score = max(0.0, min(1.0, float(data.get("score", data.get("quality_score")))))
+    except (TypeError, ValueError):
+        return None, ["편집장 점수 형식 오류 - 사람이 확인 필요"]
+    issues = [str(i) for i in (data.get("issues") or []) if i][:10]
+    return score, issues
+
+
+def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None):
+    """반환: {"html", "plan", "score", "issues"} 또는 None(실패 - 이유는 log에 있음)."""
+    plan = make_plan(kind_label, title_seed, facts_text, memo, log)
+    posts = recent_posts or []
+    link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
+                 "별도 문장으로 `<p>👉 함께 보면 좋은 글: <a href=\"주소\">제목</a></p>` 형식으로 넣으세요. "
+                 "문장 중간에 다른 글 제목을 끼워 넣지 마세요. 맞는 글이 없으면 생략하세요.\n"
+                 + "\n".join(f"- {p['title']} ({p.get('link', '')})" for p in posts[:15])) if posts else ""
+    ctx = {"plan": plan, "common": {
+        "kind_label": kind_label, "title_seed": title_seed, "today": _today(),
+        "rules": prompt("rules"), "category_rules": rules, "facts": facts_text, "link_rule": link_rule}}
+
+    r = _write_single(ctx, log)
+    html = _clean_html(r.text) if r.text else ""
+    if html and len(lint.text_of(html)) >= 1500:
+        log.set_mode("single", f"모델 {r.model}")
+    else:
+        why = ("좋은 모델이 모든 키에서 한도 초과(429)" if r.limited else
+               "답이 길이 한도에서 잘림" if r.truncated else
+               "답이 너무 짧음" if html else "답이 없음")
+        log.set_mode("sections", f"한 번에 쓰기 실패: {why}")
+        html = _write_sections(ctx, log)
+        if not html:
+            log.data["result"]["reason"] = "섹션별 쓰기도 실패(모든 키·모델 한도 초과 또는 오류)"
+            return None
+
+    min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
+    best = None
+    for round_no in range(1, MAX_REWRITES + 2):
+        html, lint_issues, fixes = lint.fix_and_check(html)
+        nums = numbers.unverified(lint.text_of(html), facts_text)
+        score, issues = review(html, facts_text, category_label, log, round_no)
+        log.step(f"편집장 검토 {round_no}", score=score, issues=issues, lint=lint_issues, numbers=nums, fixes=fixes)
+        if best is None or (score or 0) > (best["score"] or 0):
+            best = {"html": html, "plan": plan, "score": score, "issues": issues + lint_issues}
+        if score is not None and score >= min_q and not lint_issues:
+            break
+        if round_no > MAX_REWRITES:
+            break
+        todo = (issues if score is not None else []) + lint_issues   # 검토 자체가 실패한 메모는 고칠 거리가 아님
+        if nums:
+            todo.append("자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
+                        "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요.")
+        if not todo:
+            break                                     # 점수만 낮고 지적이 없으면 고칠 방향이 없다
+        r = llm.call(prompt("rewrite", issues="\n".join(f"- {t}" for t in todo), draft=html, **ctx["common"]),
+                     step=f"고쳐쓰기 {round_no}", log=log, tier="strong", start_key=round_no * 2)
+        new = _clean_html(r.text) if r.text else ""
+        if not new:
+            log.step(f"고쳐쓰기 {round_no} 실패", reason="모든 키·모델 한도 초과" if r.limited else "답이 없음")
+            break
+        if len(lint.text_of(new)) < 0.7 * len(lint.text_of(html)):
+            log.step(f"고쳐쓰기 {round_no} 버림", reason="고친 글이 원래보다 30% 넘게 짧아짐")
+            break
+        log.step(f"고쳐쓰기 {round_no}", model=r.model, todo=len(todo))
+        html = new
+    return best
