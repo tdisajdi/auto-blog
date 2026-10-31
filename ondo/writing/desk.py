@@ -20,6 +20,7 @@ from ondo.writing import llm
 
 PROMPTS = Path(__file__).resolve().parent / "prompts"
 MAX_REWRITES = 2
+MAX_TODO = 5          # 고쳐쓰기 한 번에 주는 지적 수
 ANGLES = [
     "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료의 사실로 답을 쌓아가는 구성",
     "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정확한 그림을 보여주는 구성",
@@ -244,6 +245,7 @@ def _issue_text(f):
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
+    log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
     plan = make_plan(kind_label, title_seed, facts_text, memo, log)
     posts = recent_posts or []
     link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
@@ -290,10 +292,13 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         if passed or round_no > MAX_REWRITES:
             break
         order = {"치명": 0, "중요": 1, "사소": 2}
-        todo = [_issue_text(f) for f in sorted(found, key=lambda f: order[f["severity"]])] + lint_issues
-        if nums:
-            todo.append("자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
-                        "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요.")
+        # 한 번에 가장 중요한 5개만(2026-10-31: 8개를 한꺼번에 줬더니 엉뚱한 곳까지 건드리고 숫자가 빠졌다)
+        ranked = sorted(found, key=lambda f: order[f["severity"]])
+        todo = ([_issue_text(f) for f in ranked if f["severity"] != "사소"] + hard_lint
+                + (["자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
+                    "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요."] if nums else [])
+                + [_issue_text(f) for f in ranked if f["severity"] == "사소"]
+                + [i for i in lint_issues if i not in hard_lint])[:MAX_TODO]
         if not todo:
             break                                     # 고칠 방향이 없다(검토 실패 등)
         r = llm.call(prompt("rewrite", issues="\n".join(f"- {t}" for t in todo), draft=html, **ctx["common"]),

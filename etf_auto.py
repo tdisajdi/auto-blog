@@ -223,6 +223,21 @@ def _classify_kr_etf(name, category=None):
     return _KR_CATEGORY_THEME.get(str(category), "기타"), name
 
 
+_KR_ETF_NAMES = {}
+
+
+def _kr_etf_name(code):
+    """국내 ETF 코드 → 이름(KRX ETF 목록). 실패하면 None."""
+    if not _KR_ETF_NAMES:
+        try:
+            df = fdr.StockListing('ETF/KR')
+            _KR_ETF_NAMES.update({str(r.get('Symbol', '')).zfill(6): str(r.get('Name', '')) for _, r in df.iterrows()})
+        except Exception as e:
+            print(f"ℹ️ 국내 ETF 이름 목록 못 받음: {type(e).__name__}")
+            return None
+    return _KR_ETF_NAMES.get(str(code).replace('.KS', '').zfill(6)) or None
+
+
 def load_dynamic_kr_etfs(top_n=KR_DYNAMIC_TOP_N):
     """거래대금 상위 국내 ETF를 불러와 _DYNAMIC_UNIVERSE에 채운다. 실패해도 고정 목록만으로 진행."""
     if _DYNAMIC_UNIVERSE:
@@ -2674,6 +2689,9 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                 short_name = driver.find_element(By.XPATH, "//div[@class='wrap_company']/h2/a").text
             except Exception:
                 short_name = raw_code
+            if not short_name or short_name == raw_code:
+                # 네이버 화면을 못 읽으면 이름이 숫자 코드만 남아 환율 영향 판단(_fx_exposure_label)이 빠졌다(2026-10-31)
+                short_name = _kr_etf_name(raw_code) or raw_code
             
             # AUM (시가총액으로 대체)
             try:
@@ -2714,7 +2732,8 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         try:
             ticker = yf.Ticker(raw_code)
             info = ticker.info
-            short_name = info.get('shortName', raw_code)
+            # shortName은 "…S&P 500 ETF T"처럼 잘려서 글에 그대로 나갔다 → 정식 이름 우선
+            short_name = info.get('longName') or info.get('shortName') or raw_code
             
             try:
                 raw_inc = info.get('fundInceptionDate')

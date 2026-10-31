@@ -209,3 +209,13 @@ assert found[0]["severity"] == "사소" and score == 0.97, (score, found)
 _, li, _ = lint.fix_and_check(body10)
 assert li and not lint.blocking(li), li
 print("role guard ok")
+
+# 11) 글자까지 같은 문장이 도입과 FAQ에 반복되면 코드가 하나만 남긴다(FAQ 답은 비우지 않음 - 실제 사례)
+A = "해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다."
+B = "이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다."
+html11 = (f"<h1>t</h1><p>두 상품은 같은 지수를 따라도 세금 차이가 큽니다. {A} {B} 본인 상황에 맞춘 계산이 필요합니다.</p>"
+          f"<h3>자주 묻는 질문</h3><h4>🔸 직접 살 수 있나요?</h4><p>{A} {B}</p>")
+h11, iss11, fx11 = lint.fix_and_check(html11)
+assert h11.count(A) == 1 and h11.count(B) == 1 and f"<p>{A} {B}</p>" in h11, h11
+assert not any("같은 문장 반복" in i for i in iss11) and any("반복 문장 삭제" in f for f in fx11), (iss11, fx11)
+print("dup sentence fix ok")
