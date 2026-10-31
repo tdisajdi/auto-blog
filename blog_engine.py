@@ -353,8 +353,8 @@ CATCHUP_LAST_HOUR_KST = 22   # 이 시각(KST) 이후엔 늦은 밤이라 보충
 
 
 def _kst_now():
-    from datetime import timezone, timedelta
-    return datetime.now(timezone(timedelta(hours=9))).replace(tzinfo=None)
+    from ondo.config import kst_now
+    return kst_now()
 
 
 def _discover_due(kind, hour, minute):
@@ -1916,10 +1916,7 @@ def publish_to_wordpress_selenium(driver, title, html_content, wp_email, wp_pass
 # 자동화 카테고리(BLOG_CATEGORY) → 워드프레스 카테고리 주소(slug).
 # 기존 주소(etf/patents/biotech/trend)는 이미 걸린 링크가 깨지지 않게 그대로 두고,
 # 화면에 보이는 이름만 워드프레스 관리자에서 바꾼다.
-WP_CATEGORY_SLUGS = {
-    "etf": "etf", "trend": "trend", "tech": "patents", "patent": "patents",
-    "bio": "biotech", "energy": "energy", "society": "society",
-}
+from ondo.config import CATEGORY_SLUGS as WP_CATEGORY_SLUGS  # noqa: E402  (분야 → 카테고리 주소, 설정 한 곳에서)
 _wp_category_id_cache = {}
 
 

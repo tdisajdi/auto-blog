@@ -57,8 +57,9 @@
 
 [⚠️ 사이트 디자인을 갈아엎을 때 같이 바꿔야 하는 것 - 사용자 요청]
 - 대표색·글꼴이 바뀌면 아래도 전부 같이 바꿀 것. 안 바꾸면 썸네일·차트만 옛 색으로 남는다.
-  1) media_engine.py 맨 위 색 상수 (NAVY, NAVY_DEEP, NAVY_LIGHT, GOLD, TEXT, MUTED),
-     사이트 이름(SITE_NAME), 카드 안 그라데이션 숫자(make_title_card의 top/bottom),
+  1) ondo/config.py의 색 상수 (NAVY, NAVY_DEEP, NAVY_LIGHT, GOLD, TEXT, MUTED)와 사이트 이름(SITE_NAME)
+     - 2026-10-31부터 설정 한 곳으로 모음. media_engine.py는 여기서 가져다 씀.
+     media_engine.py 안의 카드 안 그라데이션 숫자(make_title_card의 top/bottom),
      차트 격자·축 색(make_chart 안 "#2a3a60", "#1f2e52"), 그림 썸네일 덮개 색(_background_with_shade),
      ComfyUI 프롬프트의 색 표현(IMAGE_STYLE의 "deep navy blue and warm gold")
   2) design/hub.html, design/category-*.html의 색
