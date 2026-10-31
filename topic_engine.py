@@ -212,7 +212,7 @@ def _link_candidates(title_seed):
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
                     memo="", closing_html="", meta=None, chart=None, visual_html="",
-                    drawer=None, drawer_html=None, top_html="", extra_data=None):
+                    drawer=None, drawer_html=None, top_html="", extra_data=None, must_answer=None):
     """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
     단계마다 무슨 일이 있었는지는 편집 기록부(logs/)에 남는다.
     drawer/drawer_html: 시각 자료 서랍(ETF 종목 분석) - 기획이 고른 것만 정해진 섹션 뒤에 넣는다.
@@ -224,7 +224,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
                                category_label=category_label, log=log, memo=memo,
                                recent_posts=_link_candidates(title_seed), drawer=drawer,
-                               avoid_visuals=_recent_visuals() if drawer else ())
+                               avoid_visuals=_recent_visuals() if drawer else (), must_answer=must_answer)
     except Exception as e:      # 글쓰기 도중 예상 못 한 오류도 기록부와 텔레그램에 이유를 남긴다
         log.data["result"]["reason"] = f"글쓰기 중 오류: {type(e).__name__}: {str(e)[:200]}"
         result = None

@@ -129,12 +129,26 @@ def choose_visuals(raw, drawer, n_sections, avoid=()):
     return picks
 
 
-def make_plan(kind_label, title_seed, facts_text, memo, log, drawer=None, avoid=()):
+def _must_plan(must):
+    if not must:
+        return ""
+    return ("[이 글이 꼭 답해야 할 질문 - 섹션에 나눠 담으세요(순서·제목·관점은 자유)]\n"
+            + "\n".join(f"- {q}" for q in must) + "\n")
+
+
+def _must_review(must):
+    if not must:
+        return ""
+    return ("- 아래 질문 중 본문이 답하지 않은 것이 있으면 '중요'로 지적하세요(quote는 빈 문자열, problem에 '[누락] 질문'):\n"
+            + "\n".join(f"  · {q}" for q in must) + "\n")
+
+
+def make_plan(kind_label, title_seed, facts_text, memo, log, drawer=None, avoid=(), must=None):
     angles = random.sample(ANGLES, len(ANGLES))
     for attempt, angle in enumerate(angles):
         r = llm.call(prompt("plan", kind_label=kind_label, title_seed=title_seed, today=_today(), angle=angle,
                             facts=facts_text, memo=f"[운영자 메모 - 이 관점을 반영하세요] {memo}" if memo else "",
-                            drawer=drawer_text(drawer)),
+                            drawer=drawer_text(drawer), must=_must_plan(must)),
                      step="기획", log=log, tier="fast", json_out=True, thinking=8192, start_key=attempt * 3)
         raw = llm.parse_json(r.text)
         plan = _valid_plan(raw)
@@ -253,14 +267,14 @@ def _quote_found(quote, text_norm):
     return not q or q[:15] in text_norm
 
 
-def review(html, facts_text, category_label, log, round_no):
+def review(html, facts_text, category_label, log, round_no, must=None):
     """반환: (점수, 문제 목록[{severity, quote, problem, fix, by}]). 담당 전원이 실패하면 (None, [])."""
     text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
     text_norm = _norm(text)
     common = prompt("review_common", today=_today(), text=text)
     found, answered, dropped = [], 0, 0
     for i, (role, name, tier) in enumerate(REVIEWERS):
-        r = llm.call(prompt(name, category_label=category_label, facts=facts_text) + common,
+        r = llm.call(prompt(name, category_label=category_label, facts=facts_text, must=_must_review(must)) + common,
                      step=f"검토 {round_no}({role})", log=log, tier=tier, json_out=True, thinking=8192,
                      start_key=4 + round_no * 3 + i)
         data = llm.parse_json(r.text)
@@ -296,11 +310,11 @@ def _issue_text(f):
 
 
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
-                  drawer=None, avoid_visuals=()):
+                  drawer=None, avoid_visuals=(), must_answer=None):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
     log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
-    plan = make_plan(kind_label, title_seed, facts_text, memo, log, drawer=drawer, avoid=avoid_visuals)
+    plan = make_plan(kind_label, title_seed, facts_text, memo, log, drawer=drawer, avoid=avoid_visuals, must=must_answer)
     plan["_drawer"] = drawer or []
     posts = recent_posts or []
     link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
@@ -330,7 +344,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
     for round_no in range(1, MAX_REWRITES + 2):
         html, lint_issues, fixes = lint.fix_and_check(html)
         nums = numbers.unverified(lint.text_of(html), facts_text)
-        score, found = review(html, facts_text, category_label, log, round_no)
+        score, found = review(html, facts_text, category_label, log, round_no, must=must_answer)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
         hard_lint = lint.blocking(lint_issues)
         passed = score is not None and score >= min_q and not serious and not hard_lint

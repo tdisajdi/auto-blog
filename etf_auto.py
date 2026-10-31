@@ -6590,7 +6590,9 @@ def run_automation():
             produce_article(
                 kind_label="ETF 비교" if kind == "comparison" else "ETF 분석",
                 title_seed=forced_title or f"{title_tickers} ETF, 데이터로 보는 핵심 포인트",
-                facts_text=_analysis.strip_advice(collected_context), rules=_analysis.ANALYSIS_RULES,
+                facts_text=_analysis.fact_sheet(etf_list, etf_data_cache, sys.modules[__name__], macro_data, recent_news,
+                                                drawer_html, now.strftime("%Y년 %m월 %d일"), previous_analyses),
+                rules=_analysis.ANALYSIS_RULES, must_answer=_analysis.MUST_ANSWER[kind],
                 category_label=f"ETF/{'비교' if kind == 'comparison' else '종목 분석'}", article_type=kind,
                 topic_id=",".join(t.replace(".KS", "") for t in etf_list), memo=operator_memo,
                 closing_html=_analysis.closing_html(recent_news), drawer=drawer, drawer_html=drawer_html,
