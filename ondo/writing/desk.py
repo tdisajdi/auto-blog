@@ -186,6 +186,7 @@ REVIEWERS = [
     ("정책·신뢰", "review_policy", "fast"),
 ]
 SEVERITY_WEIGHT = {"치명": 0.35, "중요": 0.12, "사소": 0.03}
+POLICY_WORDS = re.compile(r"권유|보장|확정|단정|과장|전문가|경험|출처|매수|매도|의료|치료")
 
 
 def _norm(t):
@@ -216,6 +217,10 @@ def review(html, facts_text, category_label, log, round_no):
             if not isinstance(it, dict) or not it.get("problem"):
                 continue
             sev = it.get("severity") if it.get("severity") in SEVERITY_WEIGHT else "사소"
+            # 사실 판단은 사실 검증 담당만(자료를 보고 대조함). 2026-10-31: 정책 담당(약한 모델)이 자료와 반대로
+            # "손익 통산이 된다"고 치명 지적 → 고쳐쓰기가 따라서 맞던 글이 틀려졌다.
+            if role != "사실 검증" and sev == "치명" and not POLICY_WORDS.search(str(it.get("problem", ""))):
+                sev = "사소"
             if not _quote_found(it.get("quote", ""), text_norm):
                 dropped += 1
                 continue
@@ -270,14 +275,16 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         nums = numbers.unverified(lint.text_of(html), facts_text)
         score, found = review(html, facts_text, category_label, log, round_no)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
-        passed = score is not None and score >= min_q and not serious and not lint_issues
+        hard_lint = lint.blocking(lint_issues)
+        passed = score is not None and score >= min_q and not serious and not hard_lint
+        log.data.setdefault("drafts", {})[str(round_no)] = html      # 판마다 원문 보관(사람이 읽고 평가할 수 있게)
         log.step(f"편집장 검토 {round_no}", score=score, passed=passed,
                  issues=[_issue_text(f) for f in found], lint=lint_issues, numbers=nums, fixes=fixes,
                  chars=len(lint.text_of(html)))
         # 통과한 판 > 교열 지적 없는 판 > 점수 순. (2026-10-31: 1.0점 초안에 N/A·분량 문제가 남았는데 발행됨)
-        rank = (passed, not lint_issues, -len(serious), score or 0)
+        rank = (passed, not hard_lint, -len(serious), score or 0)
         if best is None or rank > best["_rank"]:
-            best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank,
+            best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank, "round": round_no,
                     "issues": [_issue_text(f) for f in serious] + lint_issues
                               + [_issue_text(f) for f in found if f not in serious]}
         if passed or round_no > MAX_REWRITES:

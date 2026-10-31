@@ -191,3 +191,21 @@ log = editlog.EditLog("guide", "pick", "시험")
 res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules="", category_label="c", log=log)
 assert res["clean"] and "고친 " in res["html"] and calls["rewrite"] == 1, (res["score"], res["clean"], calls)
 print("pick clean ok")
+
+# 10) 사실 판단은 사실 검증 담당만: 정책 담당의 "사실 오류" 치명 지적은 사소로 낮춘다(실제 사고 재현).
+#     같은 숫자 반복은 참고만(발행을 막지 않음)
+body10 = long_html("", 60).replace("</h1>", "</h1><p>손익 통산은 되지 않습니다. 2,000만원 2,000만원 2,000만원 2,000만원 2,000만원.</p>", 1)
+def post_guard(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "심각도 기준" in p and "정책·신뢰 담당" in p:
+        return R(200, json.dumps({"issues": [{"severity": "치명", "quote": "손익 통산은 되지 않습니다", "problem": "손익 통산이 가능하므로 사실 오류"}]}))
+    if "심각도 기준" in p:
+        return R(200, json.dumps({"issues": []}))
+    raise AssertionError("고쳐쓰기로 가면 안 됨: " + p[:40])
+llm._post = post_guard
+log = editlog.EditLog("guide", "guard", "시험")
+score, found = desk.review(body10, facts, "c", log, 1)
+assert found[0]["severity"] == "사소" and score == 0.97, (score, found)
+_, li, _ = lint.fix_and_check(body10)
+assert li and not lint.blocking(li), li
+print("role guard ok")

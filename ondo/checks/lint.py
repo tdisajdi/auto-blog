@@ -79,13 +79,22 @@ def fix_and_check(html):
         issues.append(f"같은 문장 반복: '{dup[0][:30]}…'")
     pairs = similar_sentences(text)
     if pairs:
-        issues.append(f"비슷한 문장 반복 {len(pairs)}쌍 - 한 번만 남기고 지울 것. 예: '{pairs[0][0][:40]}…' / '{pairs[0][1][:40]}…'")
+        tag = "" if len(pairs) >= 2 else SOFT
+        issues.append(f"{tag}비슷한 문장 반복 {len(pairs)}쌍 - 한 번만 남기고 지울 것. 예: '{pairs[0][0][:40]}…' / '{pairs[0][1][:40]}…'")
+    # 같은 숫자가 서로 다른 사실일 수 있다(2,000만 원 = ISA 납입 한도이자 금융소득종합과세 기준) → 참고만
     for raw, n in repeated_numbers(text):
-        issues.append(f"같은 숫자 '{raw}'를 {n}번 씀 - 처음 설명할 때 한 번, 정리에서 한 번이면 충분")
+        issues.append(f"{SOFT}같은 숫자 '{raw}'를 {n}번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)")
     cells = [c for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", h, flags=re.S) if text_of(c) in EMPTY_CELLS]
     if cells:
         issues.append(f"표에 빈칸 표시('{text_of(cells[0])}') {len(cells)}곳 - 값이 없는 줄·칸은 표에서 빼거나 표 구성을 바꿀 것")
     return h, issues, fixes
+
+
+SOFT = "[참고] "     # 이 표시가 붙은 지적은 고쳐쓰기에 전달만 하고 발행을 막지는 않는다
+
+
+def blocking(issues):
+    return [i for i in issues if not i.startswith(SOFT)]
 
 
 EMPTY_CELLS = {"확인 필요", "제공 안 됨", "정보 없음", "N/A", "-", "–", "없음(자료 없음)", "자료 없음", "미제공"}

@@ -54,7 +54,7 @@ def name_of(key):
 ADVICE = {
     "forbidden": "이 키는 거부당하고 있어요(403). 그 계정에서 AI Studio 키를 새로 발급받아 바꿔주세요.",
     "free_tier": "이 키의 프로젝트는 무료 등급을 못 쓴다고 해요(403). 그 계정에서 새 프로젝트로 키를 다시 받아주세요.",
-    "invalid": "키 값이 잘못됐다고 해요(400 API key not valid). 복사가 덜 됐는지 확인하거나 새로 발급해주세요.",
+    "invalid": "키 값이 잘못됐거나 인증이 안 된다고 해요(400/401). 복사가 덜 됐는지 확인하거나 새로 발급해주세요.",
 }
 
 
@@ -93,6 +93,6 @@ def classify_error(status, text):
     t = (text or "").lower()
     if status == 403:
         return "free_tier" if "free tier" in t else "forbidden"
-    if status == 400 and "api key not valid" in t:
+    if status == 401 or status == 400 and "api key not valid" in t:
         return "invalid"
     return None
