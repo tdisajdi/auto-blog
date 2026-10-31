@@ -188,6 +188,23 @@ def _add_media(body, title, category_label, chart):
     return media_engine.plan_layout(body, photo_block, chart_block, n_slots=media_engine.MAX_BODY_IMAGES)
 
 
+def _link_candidates(title_seed):
+    """'함께 보면 좋은 글' 후보. 이 글 자신(다시 쓰기 대상, 제목이 거의 같은 글)은 뺀다.
+    2026-10-31: 다시 쓴 글이 바뀌기 전 자기 자신을 추천했다."""
+    from ondo.checks.lint import _grams
+    replace_url = os.environ.get("REPLACE_URL", "").strip().rstrip("/")
+    seed = _grams(title_seed)
+    out = []
+    for p in get_wordpress_recent_posts() or []:
+        if replace_url and str(p.get("link", "")).rstrip("/") == replace_url:
+            continue
+        g = _grams(p.get("title", ""))
+        if seed and g and len(seed & g) / len(seed | g) >= 0.35:
+            continue
+        out.append(p)
+    return out
+
+
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
                     memo="", closing_html="", meta=None, chart=None):
     """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
@@ -198,7 +215,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     try:
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
                                category_label=category_label, log=log, memo=memo,
-                               recent_posts=get_wordpress_recent_posts() or [])
+                               recent_posts=_link_candidates(title_seed))
     except Exception as e:      # 글쓰기 도중 예상 못 한 오류도 기록부와 텔레그램에 이유를 남긴다
         log.data["result"]["reason"] = f"글쓰기 중 오류: {type(e).__name__}: {str(e)[:200]}"
         result = None
@@ -230,11 +247,12 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
 
     score, issues = result.get("score"), result.get("issues") or []
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
-    status = "publish" if (score is not None and score >= min_q and result.get("clean", True)) else "draft"
+    passed = score is not None and score >= min_q and result.get("clean", True)
+    status = "publish" if passed else "draft"
     slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(plan.get("slug", "")).lower().replace(" ", "-"))).strip("-") or None
     score_text = "검수 실패" if score is None else f"{score:.2f}"
     featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"))
-    if target and status == "draft":     # 다시 쓴 판이 기준 미달이면 원래 글은 건드리지 않는다
+    if target and not passed:     # 다시 쓴 판이 기준 미달이면 원래 글은 건드리지 않는다
         log.finish(status="failed", reason="다시 쓴 판이 기준 미달 - 원래 글 유지", title=title, score=score,
                    issues=issues[:8])
         issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
@@ -258,12 +276,18 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
 
     meta = dict(meta or {})
     meta.update({"article_type": article_type, "topic_id": topic_id})
-    _register_article(title, body, status="published" if status == "publish" else "draft",
+    import blog_engine as _be
+    _register_article(title, body, status="published" if status == "publish" and not _be.LAST_FORCED_DRAFT else "draft",
                       notes=f"{article_type} ({score_text})", version=1, extra_data={"_meta": meta}, url=url)
     log.finish(status=status, title=title, url=url, score=score, issues=issues[:8])
-    if status == "publish":
+    import blog_engine
+    if status == "publish" and blog_engine.LAST_FORCED_DRAFT:
+        _telegram_send_message(f"🟢 [{kind_label}] 검토 통과 - 자동 발행이 꺼져 있어서 임시글로 올렸어요\n{title}\n{url}\n"
+                               f"품질 점수: {score_text}\n워드프레스에서 읽어보고 괜찮으면 공개해주세요.\n{log.summary_line()}")
+        media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, title,
+                                       os.environ.get("BLOG_CATEGORY", "etf"), url, slots=slots)
+    elif status == "publish":
         _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{url}\n품질 점수: {score_text}\n{log.summary_line()}")
-        import blog_engine
         media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, title,
                                        os.environ.get("BLOG_CATEGORY", "etf"), url, slots=slots)
     else:

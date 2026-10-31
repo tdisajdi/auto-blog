@@ -29,6 +29,10 @@ on:
         description: '다시 쓰기: 이 글 주소를 새로 쓴 글로 바꿈 (topic과 같이 사용, 예: GUIDE:... + 글 주소)'
         required: false
         default: ''
+      unpublish_url:
+        description: '이 글을 비공개(임시글)로 내림 (글 주소 또는 ondo99.com/?p=번호)'
+        required: false
+        default: ''
       detect_only:
         description: '실제 발행 없이 다음 후보 티커만 확인'
         required: false
@@ -390,7 +394,12 @@ jobs:
       - name: 수동 실행
         env:
           REPLACE_URL: ${{ github.event.inputs.replace_url }}
+          UNPUBLISH_URL: ${{ github.event.inputs.unpublish_url }}
         run: |
+          if [ -n "$UNPUBLISH_URL" ]; then
+            python -c "import sys, blog_engine as b; t = b.wp_find_post_by_url(sys.argv[1]); print('대상:', t); ok = bool(t) and b.wp_update_post(t[0], status='draft'); print('비공개 처리:', ok); sys.exit(0 if ok else 1)" "$UNPUBLISH_URL"
+            exit $?
+          fi
           if [ "${{ github.event.inputs.topic_discover }}" = "true" ]; then
             python topic_engine.py --discover
             exit 0

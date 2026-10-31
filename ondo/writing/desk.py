@@ -178,25 +178,67 @@ def _write_sections(ctx, log):
 # 검토와 고쳐쓰기
 # ------------------------------------------------------------
 
+# 검토 담당 3명: 같은 질문을 3번 하는 대신 보는 것이 다른 사람을 둔다(서로 다른 문제를 찾게).
+# 점수는 AI가 매기지 않고, 문제의 심각도 개수로 코드가 계산한다(AI 점수가 너무 후했다 - 2026-10-31).
+REVIEWERS = [
+    ("사실 검증", "review_fact", "strong"),
+    ("독자 편집", "review_reader", "fast"),
+    ("정책·신뢰", "review_policy", "fast"),
+]
+SEVERITY_WEIGHT = {"치명": 0.35, "중요": 0.12, "사소": 0.03}
+
+
+def _norm(t):
+    return re.sub(r"[\s\W_]+", "", str(t))
+
+
+def _quote_found(quote, text_norm):
+    """AI가 인용한 문장이 실제 본문에 있는지(앞 15글자 기준). 없는 문장을 지적하면 버린다."""
+    q = _norm(quote)
+    return not q or q[:15] in text_norm
+
+
 def review(html, facts_text, category_label, log, round_no):
+    """반환: (점수, 문제 목록[{severity, quote, problem, fix, by}]). 담당 전원이 실패하면 (None, [])."""
     text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
-    r = llm.call(prompt("review", category_label=category_label, today=_today(), facts=facts_text, text=text),
-                 step=f"편집장 검토 {round_no}", log=log, tier="fast", json_out=True, thinking=8192,
-                 start_key=5 + round_no)
-    data = llm.parse_json(r.text)
-    if not isinstance(data, dict):
-        return None, ["편집장 검토 실패(답이 없거나 형식 오류) - 사람이 확인 필요"]
-    try:
-        score = max(0.0, min(1.0, float(data.get("score", data.get("quality_score")))))
-    except (TypeError, ValueError):
-        return None, ["편집장 점수 형식 오류 - 사람이 확인 필요"]
-    issues = [str(i) for i in (data.get("issues") or []) if i][:10]
-    return score, issues
+    text_norm = _norm(text)
+    common = prompt("review_common", today=_today(), text=text)
+    found, answered, dropped = [], 0, 0
+    for i, (role, name, tier) in enumerate(REVIEWERS):
+        r = llm.call(prompt(name, category_label=category_label, facts=facts_text) + common,
+                     step=f"검토 {round_no}({role})", log=log, tier=tier, json_out=True, thinking=8192,
+                     start_key=4 + round_no * 3 + i)
+        data = llm.parse_json(r.text)
+        if not isinstance(data, dict):
+            continue
+        answered += 1
+        for it in data.get("issues") or []:
+            if not isinstance(it, dict) or not it.get("problem"):
+                continue
+            sev = it.get("severity") if it.get("severity") in SEVERITY_WEIGHT else "사소"
+            if not _quote_found(it.get("quote", ""), text_norm):
+                dropped += 1
+                continue
+            found.append({"severity": sev, "quote": str(it.get("quote", ""))[:120], "problem": str(it["problem"])[:200],
+                          "fix": str(it.get("fix", ""))[:200], "by": role})
+    if not answered:
+        return None, []
+    score = max(0.0, 1.0 - sum(SEVERITY_WEIGHT[f["severity"]] for f in found))
+    if dropped:
+        log.step(f"검토 {round_no} 정리", dropped=dropped, reason="본문에 없는 문장을 인용한 지적은 버림")
+    if answered < len(REVIEWERS):
+        log.step(f"검토 {round_no} 일부 실패", answered=answered, total=len(REVIEWERS))
+    return round(score, 2), found
+
+
+def _issue_text(f):
+    q = f" '{f['quote'][:60]}'" if f.get("quote") else ""
+    return f"[{f['severity']}·{f['by']}]{q} → {f['problem']}" + (f" / 고칠 방법: {f['fix']}" if f.get("fix") else "")
 
 
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
-    clean=False면 교열 지적이 남은 판이라 발행하지 말고 임시글로."""
+    clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
     plan = make_plan(kind_label, title_seed, facts_text, memo, log)
     posts = recent_posts or []
     link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
@@ -226,33 +268,36 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
     for round_no in range(1, MAX_REWRITES + 2):
         html, lint_issues, fixes = lint.fix_and_check(html)
         nums = numbers.unverified(lint.text_of(html), facts_text)
-        score, issues = review(html, facts_text, category_label, log, round_no)
-        log.step(f"편집장 검토 {round_no}", score=score, issues=issues, lint=lint_issues, numbers=nums, fixes=fixes,
+        score, found = review(html, facts_text, category_label, log, round_no)
+        serious = [f for f in found if f["severity"] in ("치명", "중요")]
+        passed = score is not None and score >= min_q and not serious and not lint_issues
+        log.step(f"편집장 검토 {round_no}", score=score, passed=passed,
+                 issues=[_issue_text(f) for f in found], lint=lint_issues, numbers=nums, fixes=fixes,
                  chars=len(lint.text_of(html)))
-        # 교열 지적이 없는 판이 점수만 높은 판보다 우선(2026-10-31 실제: 1.0점 초안에 N/A·분량 부족이 남아 있었는데
-        # 그 판이 발행됨 → 고쳐쓴 0.95점 판이 맞았다)
-        rank = (not lint_issues, score or 0)
+        # 통과한 판 > 교열 지적 없는 판 > 점수 순. (2026-10-31: 1.0점 초안에 N/A·분량 문제가 남았는데 발행됨)
+        rank = (passed, not lint_issues, -len(serious), score or 0)
         if best is None or rank > best["_rank"]:
-            best = {"html": html, "plan": plan, "score": score, "issues": issues + lint_issues,
-                    "clean": not lint_issues, "_rank": rank}
-        if score is not None and score >= min_q and not lint_issues:
+            best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank,
+                    "issues": [_issue_text(f) for f in serious] + lint_issues
+                              + [_issue_text(f) for f in found if f not in serious]}
+        if passed or round_no > MAX_REWRITES:
             break
-        if round_no > MAX_REWRITES:
-            break
-        todo = (issues if score is not None else []) + lint_issues   # 검토 자체가 실패한 메모는 고칠 거리가 아님
+        order = {"치명": 0, "중요": 1, "사소": 2}
+        todo = [_issue_text(f) for f in sorted(found, key=lambda f: order[f["severity"]])] + lint_issues
         if nums:
             todo.append("자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
                         "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요.")
         if not todo:
-            break                                     # 점수만 낮고 지적이 없으면 고칠 방향이 없다
+            break                                     # 고칠 방향이 없다(검토 실패 등)
         r = llm.call(prompt("rewrite", issues="\n".join(f"- {t}" for t in todo), draft=html, **ctx["common"]),
                      step=f"고쳐쓰기 {round_no}", log=log, tier="strong", start_key=round_no * 2)
         new = _clean_html(r.text) if r.text else ""
         if not new:
             log.step(f"고쳐쓰기 {round_no} 실패", reason="모든 키·모델 한도 초과" if r.limited else "답이 없음")
             break
-        if len(lint.text_of(new)) < 0.7 * len(lint.text_of(html)):
-            log.step(f"고쳐쓰기 {round_no} 버림", reason="고친 글이 원래보다 30% 넘게 짧아짐")
+        # 반복을 지우면 짧아지는 게 정상이라, 절반 넘게 사라졌을 때만 이상한 답으로 본다
+        if len(lint.text_of(new)) < 0.5 * len(lint.text_of(html)):
+            log.step(f"고쳐쓰기 {round_no} 버림", reason="고친 글이 원래의 절반도 안 됨")
             break
         log.step(f"고쳐쓰기 {round_no}", model=r.model, todo=len(todo))
         html = new

@@ -160,16 +160,32 @@ def topic_label(topic):
 # 사실 자료 만들기
 # ------------------------------------------------------------
 
+_EMPTY = ("정보 없음", "N/A", "확인 필요", "", None, "-")
+
+
 def _ticker_fact_line(ticker, d):
+    """종목 한 줄 자료. 값이 없거나 믿기 어려운 항목은 아예 넣지 않는다(글에 '확인 필요'·N/A가 새지 않게)."""
     r = d.get("returns", {}) or {}
     one_year = r.get("1년")
-    one_year = f"{one_year:.2f}%" if isinstance(one_year, (int, float)) else "정보 없음"
     cagr = d.get("cagr")
-    cagr = f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else "정보 없음"
-    return (f"- {ticker.replace('.KS', '')} ({d.get('name', '')}): 운용보수 {d.get('expense_ratio', '정보 없음')}, "
-            f"배당수익률 {d.get('yield', '정보 없음')}, 배당성장률 {d.get('dividend_growth_rate', '정보 없음')}, "
-            f"1년 수익률 {one_year}, 상장 이후 연평균(CAGR) {cagr}, 최대 낙폭(5년) {d.get('mdd', '정보 없음')}, "
-            f"환노출 {d.get('fx_exposure', '정보 없음')}")
+    yld = d.get("yield")
+    # 국내 ETF 배당수익률은 수집이 안 되면 0.00%로 찍힌다(360750도 실제로는 분배금을 줌) → 0이면 뺀다
+    if ticker.endswith(".KS") and str(yld).strip() in ("0.00%", "0%", "0.0%"):
+        yld = None
+    items = [
+        ("상장", d.get("listing")),
+        ("운용보수", d.get("expense_ratio")),
+        ("배당수익률", yld),
+        ("배당성장률", d.get("dividend_growth_rate")),
+        ("1년 수익률", f"{one_year:.2f}%" if isinstance(one_year, (int, float)) else None),
+        # CAGR은 상장일이 종목마다 달라 기간이 다르다 → 비교할 때 오해가 없도록 기간 기준을 같이 적는다
+        ("상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨)",
+         f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
+        ("최대 낙폭(5년)", d.get("mdd")),
+        ("환율 영향", d.get("fx_exposure")),
+    ]
+    body = ", ".join(f"{k} {v}" for k, v in items if v not in _EMPTY)
+    return f"- {ticker.replace('.KS', '')} ({d.get('name', '')}): {body}"
 
 
 def _tax_fact_block():
@@ -180,6 +196,9 @@ def _tax_fact_block():
         f"{ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% 양도소득세(다음 해 5월 직접 신고)\n"
         f"- ISA: {ea.ISA_TAX_FREE_LIMIT // 10000}만 원(서민형 400만 원)까지 비과세, 초과분 {ea.ISA_SEPARATE_TAX * 100:.1f}% 분리과세, 3년 의무가입, 연 2,000만 원 납입 한도\n"
         f"- 연금저축/IRP: 인출 전까지 과세 이연, 연금 수령 시 3.3~5.5%\n"
+        "- 금융소득종합과세: 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 넘는 부분은 다른 소득과 합쳐 과세(해외 ETF 배당도 포함)\n"
+        "- 국내 상장 해외지수 ETF는 매도할 때 보유기간 동안의 이익에 과세되며, 다른 상품의 손실과 합산(손익 통산)되지 않음\n"
+        "- ISA 제도는 2027년 시행을 목표로 한 개편안이 국회 심의 중(확정 전이므로 바뀐다고 단정하지 말 것)\n"
         f"- {ea.OVERSEAS_ACCOUNT_NOTE}\n"
     )
 
@@ -207,8 +226,10 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     news_block = "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news) or "- 수집된 뉴스 없음"
     macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')} (전일 대비 {macro_data.get('usd_krw_diff_pct')}% {macro_data.get('usd_krw_direction', '')})\n"
                    f"- 미국 10년물 금리: {macro_data.get('us_10y')}\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}")
+    # 오늘의 시장 수치(환율·금리·공포지수)는 이슈 글에만. 기초 가이드는 오래 읽히는 글이라 도입에 넣으면 어색했다.
+    market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
-            f"[오늘의 시장 수치]\n{macro_block}\n\n[최근 뉴스]\n{news_block}\n\n"
+            f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))
     return text, data_cache, news
 
