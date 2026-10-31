@@ -72,3 +72,22 @@ assert calls["reg"]["extra_data"]["_meta"]["topic_key"]=="fda1"
 assert "임시글" in sent[-1][0]
 assert not os.path.exists("confirmed_topic2_context.json")
 print("run_confirmed ok")
+
+# 5) 다시 쓰기: REPLACE_URL이면 새로 올리지 않고 그 글을 바꾼다, 지적 남은 판(clean=False)은 임시글
+upd = {}
+te.wp_find_post_by_url = lambda u: (242, "옛 제목", "etf")
+te.wp_update_post = lambda pid, **f: upd.update(pid=pid, **f) or True
+te.publish_to_wordpress = lambda *a, **k: (_ for _ in ()).throw(AssertionError("새 글을 올리면 안 됨"))
+te.write_article = lambda **k: {"html": "<h1>새 제목</h1><p>본문</p>\n태그: a b", "plan": {"slug": "s"}, "score": 0.9,
+                                "issues": [], "clean": True}
+os.environ["REPLACE_URL"] = "https://ondo99.com/2026/10/31/x/"
+st, t, u = te.produce_article(kind_label="기초 가이드", title_seed="s", facts_text="f", rules="", category_label="ETF",
+                              article_type="guide", topic_id="g")
+assert st == "publish" and upd["pid"] == 242 and upd["title"] == "새 제목" and u == os.environ["REPLACE_URL"], (st, upd)
+upd.clear()
+te.write_article = lambda **k: {"html": "<h1>새 제목</h1><p>본문</p>", "plan": {}, "score": 0.95, "issues": ["분량 부족"], "clean": False}
+st, _, _ = te.produce_article(kind_label="k", title_seed="s", facts_text="f", rules="", category_label="ETF",
+                              article_type="guide", topic_id="g")
+assert st == "failed" and "pid" not in upd and "원래 글은 그대로" in sent[-1][0], (st, upd)
+del os.environ["REPLACE_URL"]
+print("replace ok")

@@ -5860,6 +5860,9 @@ def run_automation():
     min_interval_hours = float(os.environ.get("MIN_PUBLISH_INTERVAL_HOURS", "20"))
     can_proceed, interval_msg = _check_publish_interval(min_interval_hours)
     print(interval_msg)
+    if not can_proceed and os.environ.get("REPLACE_URL", "").strip():
+        print("ℹ️ 다시 쓰기(REPLACE_URL)는 새 글이 아니라서 발행 간격과 상관없이 진행합니다.")
+        can_proceed = True
     if not can_proceed:
         force = _ask_yn("❓ 그래도 지금 진행하시겠습니까? (y/n): ", default_when_noninteractive='n')
         if force not in ['y', 'yes', '네', 'ㅇ']:

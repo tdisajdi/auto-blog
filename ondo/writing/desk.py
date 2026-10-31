@@ -195,7 +195,8 @@ def review(html, facts_text, category_label, log, round_no):
 
 
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None):
-    """반환: {"html", "plan", "score", "issues"} 또는 None(실패 - 이유는 log에 있음)."""
+    """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
+    clean=False면 교열 지적이 남은 판이라 발행하지 말고 임시글로."""
     plan = make_plan(kind_label, title_seed, facts_text, memo, log)
     posts = recent_posts or []
     link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
@@ -226,9 +227,14 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         html, lint_issues, fixes = lint.fix_and_check(html)
         nums = numbers.unverified(lint.text_of(html), facts_text)
         score, issues = review(html, facts_text, category_label, log, round_no)
-        log.step(f"편집장 검토 {round_no}", score=score, issues=issues, lint=lint_issues, numbers=nums, fixes=fixes)
-        if best is None or (score or 0) > (best["score"] or 0):
-            best = {"html": html, "plan": plan, "score": score, "issues": issues + lint_issues}
+        log.step(f"편집장 검토 {round_no}", score=score, issues=issues, lint=lint_issues, numbers=nums, fixes=fixes,
+                 chars=len(lint.text_of(html)))
+        # 교열 지적이 없는 판이 점수만 높은 판보다 우선(2026-10-31 실제: 1.0점 초안에 N/A·분량 부족이 남아 있었는데
+        # 그 판이 발행됨 → 고쳐쓴 0.95점 판이 맞았다)
+        rank = (not lint_issues, score or 0)
+        if best is None or rank > best["_rank"]:
+            best = {"html": html, "plan": plan, "score": score, "issues": issues + lint_issues,
+                    "clean": not lint_issues, "_rank": rank}
         if score is not None and score >= min_q and not lint_issues:
             break
         if round_no > MAX_REWRITES:

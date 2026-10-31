@@ -155,3 +155,22 @@ res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules
 assert res and log.data["mode"] == "sections" and calls["section"] == 5
 assert any("429" in s.get("reason", "") for s in log.data["steps"] if s["step"] == "쓰기 방식")
 print("limit -> sections ok")
+
+# 9) 점수는 높아도 교열 지적이 남은 판보다, 고쳐서 깨끗해진 판을 고른다(실제 사고 재현)
+calls.update(review=0, rewrite=0)
+def post_pick(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "편집장입니다" in p:
+        calls["review"] += 1
+        return R(200, json.dumps({"score": 1.0 if calls["review"] == 1 else 0.95, "issues": []}))
+    if "지적된 문제만 고치고" in p:
+        calls["rewrite"] += 1
+        return R(200, long_html("고친 "))
+    if "글 전체를 한 번에" in p:
+        return R(200, long_html("", 40).replace("내용", "수익률 N/A"))
+    return post_desk(url, payload, key)
+llm._post = post_pick
+log = editlog.EditLog("guide", "pick", "시험")
+res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules="", category_label="c", log=log)
+assert res["clean"] and res["score"] == 0.95 and "고친 " in res["html"], (res["score"], res["clean"])
+print("pick clean ok")

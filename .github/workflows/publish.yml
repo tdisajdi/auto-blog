@@ -25,6 +25,10 @@ on:
         description: '특정 티커로 강제 지정 (비워두면 자동 선정 로직 사용)'
         required: false
         default: ''
+      replace_url:
+        description: '다시 쓰기: 이 글 주소를 새로 쓴 글로 바꿈 (topic과 같이 사용, 예: GUIDE:... + 글 주소)'
+        required: false
+        default: ''
       detect_only:
         description: '실제 발행 없이 다음 후보 티커만 확인'
         required: false
@@ -384,6 +388,8 @@ jobs:
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
 
       - name: 수동 실행
+        env:
+          REPLACE_URL: ${{ github.event.inputs.replace_url }}
         run: |
           if [ "${{ github.event.inputs.topic_discover }}" = "true" ]; then
             python topic_engine.py --discover
