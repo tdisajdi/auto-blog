@@ -88,21 +88,68 @@ DEFAULT_PLAN = {
 }
 
 
-def make_plan(kind_label, title_seed, facts_text, memo, log):
+# ------------------------------------------------------------
+# 시각 자료 서랍: 코드가 만든 그래프·표 목록에서 기획이 글마다 2~3개를 골라 섹션 뒤에 배치한다(2026-10-31 사용자 결정)
+# drawer = [{"id", "name", "desc", "fits"}]  (실제 HTML은 발행 쪽이 가지고 있다)
+# ------------------------------------------------------------
+MAX_VISUALS = 3
+
+
+def drawer_text(drawer):
+    if not drawer:
+        return ""
+    return ("[시각 자료 서랍 - 코드가 정확한 숫자로 만든 그래프·표입니다. 이 글의 방향에 꼭 맞는 것만 2~3개 골라,"
+            " 어느 섹션 뒤에 둘지 visuals에 적으세요. 서로 비슷한 것을 같이 고르지 마세요]\n"
+            + "\n".join(f"- {d['id']}: {d['name']} - {d['desc']} (어울리는 글: {d['fits']})" for d in drawer) + "\n")
+
+
+def choose_visuals(raw, drawer, n_sections, avoid=()):
+    """기획이 고른 시각 자료를 검사한다: 서랍에 있는 것만, 최대 3개, 중복 없이, 섹션 번호는 1~n.
+    고른 게 없으면 서랍 앞쪽 2개. 최근 글과 똑같은 조합이면 하나를 다른 것으로 바꾼다(매번 같은 구성 방지)."""
+    ids = [d["id"] for d in drawer or []]
+    picks, used = [], set()
+    for v in raw if isinstance(raw, list) else []:
+        if not isinstance(v, dict) or v.get("id") not in ids or v["id"] in used:
+            continue
+        try:
+            after = max(1, min(n_sections, int(v.get("after_section") or 1)))
+        except (TypeError, ValueError):
+            after = 1
+        picks.append({"id": v["id"], "after_section": after})
+        used.add(v["id"])
+        if len(picks) >= MAX_VISUALS:
+            break
+    if not picks and ids:
+        picks = [{"id": i, "after_section": min(n_sections, k + 1)} for k, i in enumerate(ids[:2])]
+    combo = frozenset(p["id"] for p in picks)
+    if picks and combo in {frozenset(a) for a in avoid}:
+        spare = [i for i in ids if i not in combo]
+        if spare:
+            picks[-1] = {"id": spare[0], "after_section": picks[-1]["after_section"]}
+    return picks
+
+
+def make_plan(kind_label, title_seed, facts_text, memo, log, drawer=None, avoid=()):
     angles = random.sample(ANGLES, len(ANGLES))
     for attempt, angle in enumerate(angles):
         r = llm.call(prompt("plan", kind_label=kind_label, title_seed=title_seed, today=_today(), angle=angle,
-                            facts=facts_text, memo=f"[운영자 메모 - 이 관점을 반영하세요] {memo}" if memo else ""),
+                            facts=facts_text, memo=f"[운영자 메모 - 이 관점을 반영하세요] {memo}" if memo else "",
+                            drawer=drawer_text(drawer)),
                      step="기획", log=log, tier="fast", json_out=True, thinking=8192, start_key=attempt * 3)
-        plan = _valid_plan(llm.parse_json(r.text))
+        raw = llm.parse_json(r.text)
+        plan = _valid_plan(raw)
         if plan:
+            plan["visuals"] = choose_visuals(raw.get("visuals"), drawer, len(plan["sections"]), avoid) if drawer else []
             log.step("기획", title=plan["title"], sections=[s["heading"] for s in plan["sections"]],
+                     visuals=[f"{v['id']}→섹션{v['after_section']}" for v in plan["visuals"]],
                      model=r.model, angle=angle[:30])
             return plan
         log.step("기획 실패", attempt=attempt + 1,
                  reason="답이 없음(한도·오류)" if r.text is None else "설계도 형식이 맞지 않음")
-    log.step("기획", sections=[s["heading"] for s in DEFAULT_PLAN["sections"]], reason="기본 설계도 사용")
-    return DEFAULT_PLAN
+    plan = dict(DEFAULT_PLAN)
+    plan["visuals"] = choose_visuals([], drawer, len(plan["sections"]), avoid) if drawer else []
+    log.step("기획", sections=[s["heading"] for s in plan["sections"]], reason="기본 설계도 사용")
+    return plan
 
 
 def plan_text(plan):
@@ -112,9 +159,15 @@ def plan_text(plan):
     if plan.get("key_message"):
         lines.append(f"핵심 메시지: {plan['key_message']}")
     lines.append(f"도입: {plan['intro']['goal']}" + "".join(f"\n   - {f}" for f in plan["intro"]["facts"]))
+    names = {d["id"]: d for d in plan.get("_drawer") or []}
     for i, s in enumerate(plan["sections"], 1):
         lines.append(f"섹션 {i}. <h3>{s['heading']}</h3> (약 {s['chars']}자{', 표 1개 포함' if s['table'] else ', 표 없음'})"
                      f" - {s['goal']}" + "".join(f"\n   - 배정된 사실: {f}" for f in s["facts"]))
+        for v in plan.get("visuals") or []:
+            if v["after_section"] == i and v["id"] in names:
+                d = names[v["id"]]
+                lines.append(f"   ↳ 이 섹션 끝에 [{d['name']}]이(가) 들어갑니다(시스템이 넣음): {d['desc']}. "
+                             "섹션 마지막 문단에서 이 자료를 어떻게 읽으면 되는지 한두 문장으로 이어주세요. 표로 다시 만들지 마세요.")
     lines.append("자주 묻는 질문: " + " / ".join(plan["faq"]))
     lines.append("정리: 핵심 메시지를 2~3문단으로 마무리")
     return "\n".join(lines)
@@ -242,11 +295,13 @@ def _issue_text(f):
     return f"[{f['severity']}·{f['by']}]{q} → {f['problem']}" + (f" / 고칠 방법: {f['fix']}" if f.get("fix") else "")
 
 
-def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None):
+def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
+                  drawer=None, avoid_visuals=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
     log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
-    plan = make_plan(kind_label, title_seed, facts_text, memo, log)
+    plan = make_plan(kind_label, title_seed, facts_text, memo, log, drawer=drawer, avoid=avoid_visuals)
+    plan["_drawer"] = drawer or []
     posts = recent_posts or []
     link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
                  "별도 문장으로 `<p>👉 함께 보면 좋은 글: <a href=\"주소\">제목</a></p>` 형식으로 넣으세요. "

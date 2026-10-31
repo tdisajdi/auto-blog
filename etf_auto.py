@@ -6574,6 +6574,36 @@ def run_automation():
         print(f"🏷️ 제목 최적화 완료 - 확정된 제목: {forced_title}")
         print(f"   선정 이유: {title_optimization.get('reason', '')}")
 
+    # [4단계 2026-10-31] 종목 분석 글도 새 편집국으로: 글은 편집국이 쓰고, 위에서 코드가 만든 그래프·표는
+    # "시각 자료 서랍"에 넣어 기획이 2~3개를 골라 배치한다. 예전 5조각 방식은 ANALYSIS_WRITER=legacy일 때만.
+    if os.environ.get("ANALYSIS_WRITER", "desk").strip().lower() != "legacy":
+        from ondo.writing import analysis as _analysis
+        from ondo.media import charts as _charts
+        from topic_engine import produce_article
+        try:
+            drawer, drawer_html = _analysis.build_drawer({
+                "basic": widgets_html_block, "backtest": backtest_sim_html, "competition": comparison_html,
+                "risk": risk_scenario_html, "fees": fee_comparison_html, "calendar": calendar_html,
+                "sector": sector_analysis_html, "scenario": scenario_html, "macro": macro_thermo_html,
+            })
+            kind = "comparison" if len(etf_list) >= 2 else "analysis"
+            produce_article(
+                kind_label="ETF 비교" if kind == "comparison" else "ETF 분석",
+                title_seed=forced_title or f"{title_tickers} ETF, 데이터로 보는 핵심 포인트",
+                facts_text=_analysis.strip_advice(collected_context), rules=_analysis.ANALYSIS_RULES,
+                category_label=f"ETF/{'비교' if kind == 'comparison' else '종목 분석'}", article_type=kind,
+                topic_id=",".join(t.replace(".KS", "") for t in etf_list), memo=operator_memo,
+                closing_html=_analysis.closing_html(recent_news), drawer=drawer, drawer_html=drawer_html,
+                top_html=_charts.thermo_strip(macro_thermo_indicators, now.strftime("%m월 %d일")),
+                extra_data=etf_data_cache, meta={"tickers": list(etf_list)},
+            )
+        finally:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+        return
+
     print("🤖 AI 원고 생성 중... (5단 분할 생성 방식 적용)")
     policy_issues_overall = []
     generated_body = None

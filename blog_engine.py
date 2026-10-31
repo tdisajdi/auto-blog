@@ -127,8 +127,10 @@ _current_model_index = 0
 _gemini_model_priority_cache = None
 
 
-def _post_process_blog_content(html):
-    """AI 감지 리스크를 줄이기 위한 간단한 후처리 및 버그 픽스"""
+def _post_process_blog_content(html, rewrite_words=True):
+    """AI 감지 리스크를 줄이기 위한 간단한 후처리 및 버그 픽스.
+    rewrite_words=False: 단어 바꾸기("또한"→"그리고" 등)를 하지 않는다. 새 편집국은 검토를 통과한 문장을
+    검토 뒤에 기계적으로 바꾸면 안 되므로(예: "이 또한"→"이 그리고") 끈다(2026-10-31)."""
     # 1. 흉측한 리터럴 \n, \t 텍스트 화면 노출 버그 강제 제거
     html = html.replace('\\n', ' ')  # 공백으로 치환
     html = html.replace('\\t', ' ')  # 공백으로 치환
@@ -139,6 +141,8 @@ def _post_process_blog_content(html):
     html = re.sub(r'<hr[^>]*>', '', html)
     html = re.sub(r'(<(?:h2|h3)[^>]*>)', r'<div style="width:100%; height:1px; background-color:#ddd; margin:40px 0;"></div>\1', html, flags=re.IGNORECASE)
 
+    if not rewrite_words:
+        return _post_process_structure(html)
     replacements = {
         '하는 것이 좋습니다': '하면 좋겠습니다',
         '또한': '그리고',
@@ -169,6 +173,11 @@ def _post_process_blog_content(html):
     tail = re.sub(r'<p>[^<]*(?:안녕하세요|반갑습니다).*?온도\(ondo\).*?</p>', '', tail, flags=re.IGNORECASE | re.DOTALL)
     html = head + tail
 
+    return _post_process_structure(html)
+
+
+def _post_process_structure(html):
+    """단어는 건드리지 않고 깨진 태그·반복된 고정 문구만 정리한다."""
     # 3. [안전장치] AI가 `<h4>🔸 소제목</h4>`를 쓰려다 태그를 깨뜨려
     # `<h4 h4="" 소제목="" 단어="" 순서가="" 뒤죽박죽="" 🔸="">` 형태로 나오는 경우가 있었음.
     # 프롬프트에서 명확한 예시를 주도록 고쳐서 재발 가능성은 낮췄지만, 혹시 남아있다면
