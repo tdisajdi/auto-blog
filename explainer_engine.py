@@ -203,6 +203,88 @@ def _tax_fact_block():
     )
 
 
+# ------------------------------------------------------------
+# 시각 자료 (코드가 정확한 숫자로 만든다 - 글마다 꼭 필요한 것 1개, 2026-10-31 사용자 선택)
+# ------------------------------------------------------------
+
+TAX_EXAMPLE_GAINS = [2_000_000, 5_000_000, 10_000_000, 20_000_000]
+
+
+def _won(v):
+    return f"{round(v / 10000):,}만 원" if v >= 10000 else f"{round(v):,}원"
+
+
+def tax_scenarios():
+    """이익 규모별·계좌별 세금 계산. 반환: (사실 자료 글, 표+그래프 HTML).
+    가정은 표 아래와 자료에 함께 적는다(글이 조건 없이 단정하지 않게)."""
+    from ondo.media import charts
+    names = ["해외 상장 ETF (일반계좌)", "국내 상장 해외지수 ETF (일반계좌)", "ISA 일반형 (3년 유지)", "연금저축 (연금 수령)"]
+
+    def taxes(g):
+        return [max(0, g - ea.OVERSEAS_CG_DEDUCTION) * ea.TAX_OVERSEAS_CAPITAL_GAINS,
+                g * ea.TAX_DOMESTIC_DIVIDEND,
+                max(0, g - ea.ISA_TAX_FREE_LIMIT) * ea.ISA_SEPARATE_TAX,
+                g * ea.PENSION_TAX]
+    rows = [[_won(g)] + [_won(t) for t in taxes(g)] for g in TAX_EXAMPLE_GAINS]
+    note = ("가정: 한 해에 이 ETF에서만 이익이 난 경우, 분배금·환율 변동·거래 비용 제외. 해외 상장 ETF는 연 250만 원 공제는 "
+            "해외 주식 전체 합산 기준. 연금저축은 55세 이후 연금으로 받을 때 3.3~5.5% 중 5.5%로 계산(중도 인출은 16.5%). "
+            "국내 일반계좌는 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 종합과세로 더 낼 수 있음. "
+            f"{ea.TAX_RULES_BASIS}, ondo가 직접 계산.")
+    table = charts.table_html("이익 규모별 예상 세금 (계좌별)", ["한 해 이익"] + names, rows, note)
+    chart = charts.plotly_html({
+        "title": "이익 규모별 예상 세금 비교", "kind": "bar", "unit": "만 원",
+        "labels": [_won(g) for g in TAX_EXAMPLE_GAINS],
+        "series": [{"name": n, "values": [round(taxes(g)[i] / 10000, 1) for g in TAX_EXAMPLE_GAINS]}
+                   for i, n in enumerate(names)],
+        "source": f"{ea.TAX_RULES_BASIS} 세율로 ondo 계산"})
+    facts = ("[계산 예시 - 코드가 세율로 직접 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고, "
+             "숫자를 인용해 '어떤 경우에 어느 쪽이 유리한지' 문장으로 해석하세요]\n"
+             + "\n".join(f"- 한 해 이익 {r[0]}: " + ", ".join(f"{n} {t}" for n, t in zip(names, r[1:])) for r in rows)
+             + f"\n- {note}\n")
+    return facts, table + chart
+
+
+def price_chart(tickers, data_cache):
+    """예시 ETF 1년 흐름(시작=100으로 맞춘 월말 값). 2개 이상 받아오면 그래프 HTML, 아니면 빈 문자열."""
+    from ondo.media import charts
+    try:
+        import yfinance as yf
+    except ImportError:
+        return ""
+    series, labels = [], None
+    for t in tickers:
+        if t not in data_cache:
+            continue
+        try:
+            close = yf.Ticker(t).history(period="1y", interval="1mo")["Close"].dropna()
+        except Exception as e:
+            print(f"ℹ️ {t} 1년 가격 못 받음: {type(e).__name__}")
+            continue
+        if len(close) < 6:
+            continue
+        lab = [d.strftime("%y.%m") for d in close.index]
+        if labels is None:
+            labels = lab
+        if lab != labels:
+            continue      # 거래소마다 날짜가 다르면 섞지 않는다
+        name = (data_cache[t].get("name") or t.replace(".KS", ""))[:20]
+        series.append({"name": name, "values": [round(v / close.iloc[0] * 100, 1) for v in close]})
+    if len(series) < 2:
+        return ""
+    return charts.plotly_html({"title": "예시 ETF 최근 1년 흐름 (시작=100)", "kind": "line", "labels": labels,
+                               "series": series, "unit": "", "source": "Yahoo Finance 월말 종가, ondo 계산(환율 반영 전 각 통화 기준)"})
+
+
+def market_thermometers():
+    """이슈 글용 4대 거시 온도계(변동성·밸류에이션·환율·인플레이션). '매수 위험' 같은 판단 문구 배너는 넣지 않는다."""
+    try:
+        h = ea._build_macro_thermometers_chart(ea.get_macro_thermometer_indicators())
+    except Exception as e:
+        print(f"ℹ️ 온도계 만들기 실패: {type(e).__name__}")
+        return ""
+    return f'<figure class="ondo-chart" style="margin:28px 0;">{h}</figure>' if h else ""
+
+
 def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     facts_lines, data_cache = [], {}
     driver = None
@@ -266,11 +348,17 @@ def run_explainer(topic, etf_module):
         kind_label, title_seed, article_type = "기초 가이드", t["title"], "guide"
         facts_text, data_cache, news = _collect_facts(t["tickers"], macro_data, include_tax=t.get("tax", False))
         include_tax = t.get("tax", False)
+        if include_tax:
+            calc_facts, visual = tax_scenarios()
+            facts_text += "\n" + calc_facts
+        else:
+            visual = price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
         k = ISSUE_KINDS[topic_id]
         kind_label, title_seed, article_type = "이슈 해설", k["title_hint"], "issue"
         facts_text, data_cache, news = _collect_facts(k["tickers"], macro_data, news_query=k["query"], include_tax=False)
         include_tax = False
+        visual = market_thermometers()
     else:
         print(f"❌ 알 수 없는 주제 형식: {topic}")
         return
@@ -284,7 +372,7 @@ def run_explainer(topic, etf_module):
     produce_article(
         kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=_SECTION_RULES,
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
-        closing_html=_closing_block(news, include_tax),
+        closing_html=_closing_block(news, include_tax), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
         meta={"example_tickers": list(data_cache.keys())},
     )

@@ -169,13 +169,13 @@ def closing_block(source_note, news, extra_note=""):
     )
 
 
-def _add_media(body, title, category_label, chart):
-    """본문에 차트 최대 1개 + 사진 최대 1장. 실패하면 그냥 넘어간다(글은 그대로 발행)."""
-    chart_block = photo_block = ""
-    if chart:
-        _, url = media_engine.upload_png(media_engine.make_chart(chart))
-        if url:
-            chart_block = media_engine.chart_html(url, chart)
+def _add_media(body, title, category_label, chart, visual_html=""):
+    """본문에 시각 자료 최대 1개 + 사진 최대 1장. 실패하면 그냥 넘어간다(글은 그대로 발행).
+    시각 자료는 움직이는 그래프(ondo/media/charts.py) - 그림 업로드가 필요 없다(2026-10-31 사용자 선택).
+    visual_html이 있으면(세금 계산표·온도계 등 코드가 만든 것) 그것을, 없으면 chart 자료로 그래프를 그린다."""
+    from ondo.media import charts
+    photo_block = ""
+    chart_block = visual_html or (charts.plotly_html(chart) if chart else "")
     # ETF 글은 자체 차트가 있고 돈·주식 사진은 의미가 없어 사진을 넣지 않는다.
     if os.environ.get("UNSPLASH_ACCESS_KEY") and not str(category_label).startswith("ETF"):
         q = _ask_json(
@@ -206,7 +206,7 @@ def _link_candidates(title_seed):
 
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
-                    memo="", closing_html="", meta=None, chart=None):
+                    memo="", closing_html="", meta=None, chart=None, visual_html=""):
     """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
     단계마다 무슨 일이 있었는지는 편집 기록부(logs/)에 남는다.
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
@@ -230,7 +230,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     title = title or plan.get("title") or title_seed
     if memo:
         body = _insert_operator_memo(body, memo)
-    body, slots = _add_media(body, title, category_label, chart)
+    body, slots = _add_media(body, title, category_label, chart, visual_html)
     body += closing_html
 
     # 다시 쓰기: REPLACE_URL이 있으면 새 글 대신 그 글을 바꾼다(중복 검사 건너뜀 - 자기 자신과 비슷한 게 당연)
@@ -262,7 +262,10 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     if target:
         import blog_engine
         post_id = target[0]
-        ok = wp_update_post(post_id, title=title, content=body, tags=tags, featured_image=featured)
+        # 자동 발행이 꺼져 있으면 다시 쓴 글도 임시글로 둔다(기록부에 "발행됨"으로 잘못 남던 문제도 함께 해결)
+        blog_engine.LAST_FORCED_DRAFT = not blog_engine.auto_publish_enabled()
+        ok = wp_update_post(post_id, title=title, content=body, tags=tags, featured_image=featured,
+                            status="draft" if blog_engine.LAST_FORCED_DRAFT else None)
         url = replace_url if ok else "글 바꾸기 실패(위 로그 참고)"
         blog_engine.LAST_PUBLISHED_POST_ID = post_id
         log.step("다시 쓰기", post_id=post_id, url=replace_url, ok=ok)
