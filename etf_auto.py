@@ -2914,7 +2914,8 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         "dividend_stability_desc": dividend_stability_desc,
         # [수정] "환헤지 비용"이라는 실제로 계산한 적 없는 값을 계산한 것처럼
         # 보여주던 필드를 "환노출 여부"라는 사실 그대로의 라벨로 변경.
-        "fx_exposure": "있음 (해외 상장, 환노출형)" if is_fx_exposed else "없음 (국내 상장)",
+        "fx_exposure": _fx_exposure_label(is_kr, short_name),
+        "listing": "국내 상장" if is_kr else "해외 상장",
         "hedge_cost": f"{hedge_cost:.2f}%",  # 하위 호환용으로 유지 (내부 채점/세금계산 참조)
         "custom_attractiveness_score": custom_score,
         "custom_attractiveness_notes": custom_rationale,
@@ -2942,7 +2943,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     return result
 
 # 세법 기준값. 세법이 바뀌면 여기만 고치면 된다. (확인 시점: TAX_RULES_BASIS)
-TAX_RULES_BASIS = "2025년 세법 기준"
+TAX_RULES_BASIS = "2026년 10월 기준 세법"   # 2026-10-31 확인: ISA 한도는 2025년과 같음. 2027년 개편안은 국회 심의 중
 TAX_DOMESTIC_DIVIDEND = 0.154          # 국내 일반계좌 배당소득세(해외지수·채권형 국내 ETF 매매차익 포함)
 TAX_US_DIVIDEND_WITHHOLDING = 0.15     # 미국 상장 ETF 배당 원천징수(한미 조세조약)
 TAX_OVERSEAS_CAPITAL_GAINS = 0.22      # 해외 상장 주식/ETF 양도소득세(지방세 포함)
@@ -2957,7 +2958,29 @@ OVERSEAS_ACCOUNT_NOTE = (
 
 
 def _is_overseas_listed(d):
-    return str((d or {}).get('fx_exposure', '')).startswith('있음')
+    """해외 상장인가(ISA·연금계좌로 직접 못 사는가). 환노출 여부와는 다른 질문이라 상장 위치로 판단한다."""
+    d = d or {}
+    if d.get('listing'):
+        return d['listing'] == "해외 상장"
+    return str(d.get('fx_exposure', '')).startswith('있음 (해외 상장')   # 예전 기록 호환
+
+
+# 국내 상장이라도 해외 자산을 담으면 환율 영향을 받는다(예: 360750 TIGER 미국S&P500은 환노출형).
+# 예전에는 "국내 상장 = 환노출 없음"으로 처리해서 글에 사실 오류가 나갔다(2026-10-31).
+_FOREIGN_ASSET_WORDS = ("미국", "S&P", "나스닥", "NASDAQ", "다우", "글로벌", "선진국", "신흥국", "차이나", "중국",
+                        "일본", "인도", "베트남", "유럽", "독일", "필라델피아", "반도체TOP", "빅테크", "MSCI",
+                        "달러", "국채", "TLT", "금현물", "골드", "원유", "WTI")
+
+
+def _fx_exposure_label(is_kr, name):
+    if not is_kr:
+        return "있음 (해외 상장, 달러로 거래)"
+    n = str(name or "")
+    if "(H)" in n or "헤지" in n:
+        return "환헤지형 (국내 상장, 환율 영향을 줄인 상품)"
+    if any(w.lower() in n.lower() for w in _FOREIGN_ASSET_WORDS):
+        return "있음 (국내 상장이지만 해외 자산, 환헤지 안 함)"
+    return "확인 필요"
 
 
 def _estimate_account_tax_impact(yield_str, d=None, overseas=False):
@@ -6959,7 +6982,11 @@ def run_automation():
             if wp_success:
                 print(f"✅ 워드프레스 발행 성공! URL: {wp_result}")
                 _register_article(final_title, generated_body, status='published', notes='autosaved with AI risk filter', version=current_version, extra_data=etf_data_cache, url=wp_result)
-                promote_published_article(driver, etf_list, plan, wp_result)
+                import blog_engine as _be
+                if _be.LAST_FORCED_DRAFT:
+                    _telegram_send_message(f"📝 [ETF 분석] 임시글로 올렸어요 (자동 발행 꺼짐 - 확인 후 공개해주세요)\n{final_title}\n{wp_result}")
+                else:
+                    promote_published_article(driver, etf_list, plan, wp_result)
                 print("✅ 글 정보 및 팩트 데이터가 저장되었습니다. 다음 실행 시 과거 수치 비교가 작동합니다.")
                 _clear_generation_state(session_label=session_label)
                 # 썸네일용 ComfyUI 프롬프트를 텔레그램으로 (사용자가 그림을 답장하면 썸네일 교체)

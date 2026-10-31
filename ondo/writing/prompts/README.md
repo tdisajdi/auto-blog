@@ -10,7 +10,8 @@ AI에게 주는 글쓰기 규칙을 코드가 아니라 글 파일로 보관하�
 | write.txt | 한 번에 쓰기(기본) | 좋은 모델 |
 | section.txt | 섹션별 나눠 쓰기(좋은 모델이 막혔을 때만) | 섹션마다 다른 키 |
 | unify.txt | 나눠 쓴 글 이음새 다듬기 | 좋은 모델 → 넉넉한 모델 |
-| review.txt | 편집장 검토(점수·지적) | 넉넉한 모델(생각 켬) |
+| review_fact.txt / review_reader.txt / review_policy.txt | 검토 담당 3명(사실 검증 / 독자 편집 / 정책·신뢰). 문제마다 심각도와 인용 → 점수는 코드가 계산 | 사실 검증은 좋은 모델, 나머지는 넉넉한 모델 |
+| review_common.txt | 검토 담당 공통: 심각도 기준, 답 형식 | - |
 | rewrite.txt | 고쳐쓰기(최대 2번) | 좋은 모델 |
 
 분야별 규칙(의학 정보, 계좌 원칙 등)은 topic_engine.py CATEGORIES와 explainer_engine.py에 있다.

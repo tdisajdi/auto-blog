@@ -1973,6 +1973,13 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     if not (WP_OAUTH_TOKEN and WP_SITE_ID):
         return False, "WP_OAUTH_TOKEN/WP_SITE_ID가 .env에 설정되지 않았습니다."
 
+    # 품질이 안정될 때까지 모든 글은 임시글로(2026-10-31 결정). 공개 발행은 .env에 AUTO_PUBLISH=1을 넣었을 때만.
+    global LAST_FORCED_DRAFT
+    LAST_FORCED_DRAFT = status == "publish" and not auto_publish_enabled()
+    if LAST_FORCED_DRAFT:
+        print("ℹ️ 자동 발행이 꺼져 있어(AUTO_PUBLISH) 임시글로 올립니다.")
+        status = "draft"
+
     headers = {"Authorization": f"Bearer {WP_OAUTH_TOKEN}"}
 
     payload = {
@@ -2021,6 +2028,11 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
 
 
 LAST_PUBLISHED_POST_ID = None
+LAST_FORCED_DRAFT = False
+
+
+def auto_publish_enabled():
+    return os.environ.get("AUTO_PUBLISH", "").strip() == "1"
 
 
 def wp_set_featured_image(post_id, media_id):
