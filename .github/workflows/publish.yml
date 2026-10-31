@@ -121,6 +121,16 @@ jobs:
             git push
           fi
 
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "아침 ETF 추천" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+
+
   # ============================================================
   # 잡 2: 10분마다 - 승인/override 응답 확인. 확정되면 바로 이어서
   # 3~5번(기획->글쓰기->검수->발행)까지 같은 잡 안에서 진행.
@@ -154,6 +164,16 @@ jobs:
             git commit -m "chore: 두 번째 글 추천 갱신 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
             git push
           fi
+
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "낮 두 번째 글 추천" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+
 
   check-approval-and-publish:
     if: github.event.schedule == '*/10 * * * *' || github.event_name == 'repository_dispatch' || (github.event_name == 'workflow_dispatch' && github.event.inputs.tick == 'true')
@@ -252,6 +272,16 @@ jobs:
             git push
           fi
 
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "10분 점검(승인·글쓰기·그림)" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+
+
   # ============================================================
   # 잡 3: 매주 - Search Console 성과 데이터 동기화 (성과 분석 부서용).
   # GSC 연동 설정을 아직 안 했으면 코드가 알아서 건너뛰고 조용히 끝난다.
@@ -284,6 +314,16 @@ jobs:
             git push
           fi
 
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "주간 검색 성과 동기화" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+
+
   # ============================================================
   # 잡 4: 매주 - 상태 점검 리포트 (완전 무료, API 호출 없음).
   # ============================================================
@@ -303,6 +343,16 @@ jobs:
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 주간 상태 점검 리포트 전송
         run: python etf_auto.py --health-report
+
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "주간 상태 점검" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+
 
   # ============================================================
   # 잡 5: 수동 실행 전용 (workflow_dispatch로 사람이 직접 눌렀을 때만).
@@ -372,3 +422,13 @@ jobs:
             git commit -m "chore: 수동 실행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
             git push
           fi
+
+      - name: 멈추면 텔레그램으로 알림
+        if: failure()
+        run: |
+          python notify_failure.py "수동 실행" || true
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+

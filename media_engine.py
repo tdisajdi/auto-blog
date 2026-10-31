@@ -17,20 +17,11 @@ import tempfile
 
 import requests
 
-# 사이트 색 (design/hub.html, post-dark-theme.css와 같은 값)
-NAVY = "#0e1a30"
-NAVY_DEEP = "#0b1428"
-NAVY_LIGHT = "#16244a"
-GOLD = "#e8b944"
-TEXT = "#e8ecf4"
-MUTED = "#8a96b0"
-
-SITE_NAME = "DATA-DRIVEN INSIGHTS"
-SITE_HOST = "ondo99.com"
+# 사이트 색·이름·분야 영문명은 설정 한 곳(ondo/config.py)에서 가져온다
+from ondo.config import NAVY, NAVY_LIGHT, GOLD, TEXT, MUTED, SITE_NAME, SITE_HOST
+from ondo.config import CATEGORY_EN
 UNSPLASH_APP_NAME = "ondo_blog"   # Unsplash 출처 링크의 utm_source (규칙상 필요)
 
-CATEGORY_EN = {"etf": "ETF", "trend": "TREND", "tech": "TECH & PATENTS", "bio": "BIOTECH",
-               "energy": "ENERGY & CLIMATE", "society": "POPULATION & SOCIETY"}
 
 
 # ------------------------------------------------------------
