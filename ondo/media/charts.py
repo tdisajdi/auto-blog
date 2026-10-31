@@ -88,3 +88,24 @@ def table_html(title, header, rows, note=""):
             f'<p style="font-weight:700;margin:0 0 8px;">{esc(title)}</p>'
             f'<table style="width:100%;border-collapse:collapse;font-size:14px;"><tr>{th}</tr>{body}</table>'
             + (f'<p style="font-size:12px;color:#8a96b0;margin-top:6px;">{esc(note)}</p>' if note else "") + "</div>")
+
+
+THERMO_PARTS = [("volatility", "변동성", 0.3), ("valuation", "밸류에이션", 0.3), ("fx", "환율", 0.2), ("inflation", "인플레이션", 0.2)]
+
+
+def thermo_strip(indicators, date_label=""):
+    """글 맨 위 '온도' 서명 띠: 숫자만 보여주고 매수·매도 판단 문구는 넣지 않는다(2026-10-31 사용자와 결정).
+    종합 온도 = 변동성 30% + 밸류에이션 30% + 환율 20% + 인플레이션 20% (있는 지표만으로 다시 나눔, etf_auto와 같은 식).
+    브랜드 글자는 영어(사용자 결정: 콘셉트 요소에 들어가는 글자는 영어)."""
+    vals = [(name, w, indicators.get(key)) for key, name, w in THERMO_PARTS
+            if isinstance((indicators or {}).get(key), (int, float))]
+    if not vals:
+        return ""
+    composite = sum(v * w for _, w, v in vals) / sum(w for _, w, _ in vals)
+    parts = " · ".join(f"{html.escape(n)} {round(v)}°" for n, _, v in vals)
+    return (f'<div class="ondo-thermo" style="margin:0 0 22px;padding:10px 14px;border-radius:8px;'
+            f'background:{NAVY};color:#e8ecf4;font-size:13px;line-height:1.7;">'
+            f'<span style="font-weight:800;letter-spacing:1.5px;color:{GOLD};">ONDO MARKET TEMP</span> '
+            f'<strong style="font-size:15px;">{round(composite)}°</strong> '
+            f'<span style="opacity:.9;">({parts})</span> '
+            f'<span style="opacity:.6;">· 자체 지표, 참고용{(" · " + html.escape(date_label) + " 기준") if date_label else ""}</span></div>')

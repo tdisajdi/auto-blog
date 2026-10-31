@@ -151,7 +151,7 @@ def _assemble(html_text):
     title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
     body = re.sub(r"<h1[^>]*>.*?</h1>", "", body, count=1, flags=re.S)
     body = re.sub(r"(<h[2-4][^>]*>\s*(?:🔸\s*)?)part\s*\d+\s*[:.\-)]?\s*", r"\1", body, flags=re.I)
-    body = _inject_table_of_contents(_post_process_blog_content(body))
+    body = _inject_table_of_contents(_post_process_blog_content(body, rewrite_words=False))
     return title, body, tags
 
 
@@ -188,6 +188,11 @@ def _add_media(body, title, category_label, chart, visual_html=""):
     return media_engine.plan_layout(body, photo_block, chart_block, n_slots=media_engine.MAX_BODY_IMAGES)
 
 
+def _recent_visuals():
+    from ondo.writing.analysis import recent_visual_combos
+    return recent_visual_combos(_load_state())
+
+
 def _link_candidates(title_seed):
     """'함께 보면 좋은 글' 후보. 이 글 자신(다시 쓰기 대상, 제목이 거의 같은 글)은 뺀다.
     2026-10-31: 다시 쓴 글이 바뀌기 전 자기 자신을 추천했다."""
@@ -206,16 +211,20 @@ def _link_candidates(title_seed):
 
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
-                    memo="", closing_html="", meta=None, chart=None, visual_html=""):
+                    memo="", closing_html="", meta=None, chart=None, visual_html="",
+                    drawer=None, drawer_html=None, top_html="", extra_data=None):
     """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
     단계마다 무슨 일이 있었는지는 편집 기록부(logs/)에 남는다.
+    drawer/drawer_html: 시각 자료 서랍(ETF 종목 분석) - 기획이 고른 것만 정해진 섹션 뒤에 넣는다.
+    top_html: 글 맨 위 띠(온도 서명). extra_data: 기록부에 같이 남길 자료(종목 분석의 시리즈 추적용 숫자).
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
     print(f"📋 [{kind_label}] {title_seed} - 편집국 시작")
     log = EditLog(article_type, topic_id, title_seed, category=os.environ.get("BLOG_CATEGORY", ""))
     try:
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
                                category_label=category_label, log=log, memo=memo,
-                               recent_posts=_link_candidates(title_seed))
+                               recent_posts=_link_candidates(title_seed), drawer=drawer,
+                               avoid_visuals=_recent_visuals() if drawer else ())
     except Exception as e:      # 글쓰기 도중 예상 못 한 오류도 기록부와 텔레그램에 이유를 남긴다
         log.data["result"]["reason"] = f"글쓰기 중 오류: {type(e).__name__}: {str(e)[:200]}"
         result = None
@@ -228,6 +237,12 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     plan = result["plan"]
     title, body, tags = _assemble(result["html"])
     title = title or plan.get("title") or title_seed
+    picks = plan.get("visuals") or []
+    if picks and drawer_html:
+        from ondo.writing.analysis import insert_visuals
+        body = insert_visuals(body, picks, drawer_html)
+    if top_html:
+        body = top_html + body
     if memo:
         body = _insert_operator_memo(body, memo)
     body, slots = _add_media(body, title, category_label, chart, visual_html)
@@ -279,9 +294,11 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
 
     meta = dict(meta or {})
     meta.update({"article_type": article_type, "topic_id": topic_id})
+    if picks:
+        meta["visuals"] = [p["id"] for p in picks]
     import blog_engine as _be
     _register_article(title, body, status="published" if status == "publish" and not _be.LAST_FORCED_DRAFT else "draft",
-                      notes=f"{article_type} ({score_text})", version=1, extra_data={"_meta": meta}, url=url)
+                      notes=f"{article_type} ({score_text})", version=1, extra_data={**(extra_data or {}), "_meta": meta}, url=url)
     log.finish(status=status, title=title, url=url, score=score, issues=issues[:8])
     import blog_engine
     if status == "publish" and blog_engine.LAST_FORCED_DRAFT:

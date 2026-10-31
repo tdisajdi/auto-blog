@@ -369,7 +369,13 @@ def run_explainer(topic, etf_module):
         os.remove("confirmed_topic_context.json")
 
     from topic_engine import produce_article
-    produce_article(
+    from ondo.media import charts
+    try:     # 글 맨 위 온도 서명 띠(숫자만). ETF·시장 글에만 들어간다.
+        top = charts.thermo_strip(ea.get_macro_thermometer_indicators(), datetime.now().strftime("%m월 %d일"))
+    except Exception as e:
+        print(f"ℹ️ 온도 띠 실패: {type(e).__name__}")
+        top = ""
+    produce_article(top_html=top,
         kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=_SECTION_RULES,
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax), visual_html=visual,
