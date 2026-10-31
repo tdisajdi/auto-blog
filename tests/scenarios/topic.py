@@ -58,11 +58,10 @@ print("approval ok")
 
 # 4) run_confirmed -> produce_article with mocks
 calls={}
-te.plan_outline=lambda *a: {"outline":[{"part":i,"heading":f"h{i}","focus":"f"} for i in range(1,6)]}
-te._write_parts=lambda *a: {"_slug":"bio test"}
-te._assemble=lambda parts: ("바이오 제목","<p>intro</p><h3>h</h3><p>x</p>",["태그"])
+te.get_wordpress_recent_posts=lambda *a, **k: []
+te.write_article=lambda **k: {"html":"<h1>바이오 제목</h1><p>intro</p><h3>h</h3><p>x</p><p>태그: 태그</p>",
+    "plan":{"slug":"bio test","title":"t"},"score":0.65,"issues":["근거 부족"]}
 te._check_duplicate=lambda *a: False
-te._llm_quality_check=lambda *a, **k: {"quality_score":0.65,"issues":["근거 부족"]}
 def fake_pub(title, body, tags=None, status="publish", slug=None, category_slug=None, featured_image=None):
     calls.update(title=title, body=body, status=status, slug=slug); return True, "https://ondo99.com/?p=1"
 te.publish_to_wordpress=fake_pub

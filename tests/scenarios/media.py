@@ -8,11 +8,10 @@ up=iter([(11,"https://ondo99.com/chart.png"),(22,"https://ondo99.com/card.png")]
 me.upload_png=lambda p: next(up)
 me.unsplash_photo=lambda q, used=None: calls.update(q=q) or {"url":"https://images.unsplash.com/p","author":"A","author_url":"u","unsplash_url":"v","alt":"x"}
 te._ask_json=lambda *a,**k: {"query_en":"emergency food supplies","alt_ko":"비상식량 사진"}
-te.plan_outline=lambda *a: {"outline":[{"part":i,"heading":f"h{i}","focus":"f"} for i in range(1,6)]}
-te._write_parts=lambda *a: {"_slug":"x"}
-te._assemble=lambda parts: ("제목","<p>intro</p><h3>A</h3><p>a</p><h3>B</h3><p>b</p><h3>C</h3><table></table><h3>D</h3><p>d</p>",["t"])
+te.get_wordpress_recent_posts=lambda *a, **k: []
+te.write_article=lambda **k: {"html":"<h1>제목</h1><p>intro</p><h3>A</h3><p>a</p><h3>B</h3><p>b</p><h3>C</h3><table></table><h3>D</h3><p>d</p>\n태그: t",
+    "plan":{"slug":"x"},"score":0.9,"issues":[]}
 te._check_duplicate=lambda *a: False
-te._llm_quality_check=lambda *a, **k: {"quality_score":0.9,"issues":[]}
 def pub(title, body, tags=None, status="publish", slug=None, category_slug=None, featured_image=None):
     calls.update(body=body, featured=featured_image); return True,"https://ondo99.com/p"
 te.publish_to_wordpress=pub
@@ -25,7 +24,7 @@ te.run_confirmed()
 b=calls["body"]
 assert calls["featured"]==22 and calls["card"]==("제목","trend")
 assert b.count("ondo-photo")==1 and b.count("ondo-chart")==1
-assert b.index("ondo-photo")<b.index("<h3>A") and b.index("ondo-chart")>b.index("<h3>B")
+assert b.index("ondo-photo")<b.index(">A</h3>") and b.index("ondo-chart")>b.index(">B</h3>")
 assert "</table><figure" not in b.replace("\n","")
 print("trend ok")
 # ETF explainer: no photo, card yes

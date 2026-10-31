@@ -113,6 +113,8 @@ jobs:
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
           git add image_inbox.json 2>/dev/null || true
+          git add logs 2>/dev/null || true
+          git add key_alerts.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
@@ -217,6 +219,8 @@ jobs:
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
           git add image_inbox.json 2>/dev/null || true
+          git add logs 2>/dev/null || true
+          git add key_alerts.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
@@ -241,6 +245,8 @@ jobs:
           git add etf/published_articles 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
           git add image_inbox.json 2>/dev/null || true
+          git add logs 2>/dev/null || true
+          git add key_alerts.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -264,6 +270,8 @@ jobs:
           git add "${T}/published_articles" 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
           git add image_inbox.json 2>/dev/null || true
+          git add logs 2>/dev/null || true
+          git add key_alerts.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
@@ -361,7 +369,7 @@ jobs:
   manual-run:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.tick != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -415,6 +423,8 @@ jobs:
           git add telegram_offset.json 2>/dev/null || true
           git add pending_images.json 2>/dev/null || true
           git add image_inbox.json 2>/dev/null || true
+          git add logs 2>/dev/null || true
+          git add key_alerts.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"

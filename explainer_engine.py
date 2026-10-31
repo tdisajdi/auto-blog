@@ -63,7 +63,7 @@ ISSUE_KINDS = {
                   "tickers": ["SPY", "QQQ", "SCHD", "TLT"]},
 }
 
-# 공통 글쓰기 규칙은 topic_engine.BASE_RULES에 있고, 여기에는 ETF 글 전용 규칙만 둔다.
+# 공통 글쓰기 규칙은 ondo/writing/prompts/rules.txt에 있고, 여기에는 ETF 글 전용 규칙만 둔다.
 _SECTION_RULES = (
     "- [계좌 원칙] 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP로 직접 살 수 없습니다. 이 계좌를 언급할 때는 "
     "같은 지수의 국내 상장 ETF로만 설명하세요.\n"

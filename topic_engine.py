@@ -11,6 +11,7 @@ ETF 외 분야(트렌드 / 신기술·특허 / 바이오·신약 / 에너지·�
   --run      : 승인된 후보로 글쓰기 → 품질 검사 → 발행 또는 임시글 (BLOG_CATEGORY=<분야>로 실행)
 
 글쓰기 핵심부(produce_article)는 ETF 기초 가이드/이슈 해설(explainer_engine.py)도 같이 쓴다.
+실제 글쓰기는 편집국 ondo/writing/desk.py(기획 → 한 번에 쓰기 → 교열 → 편집장 검토 → 고쳐쓰기)가 한다.
 """
 import argparse
 import html
@@ -26,13 +27,14 @@ from datetime import datetime
 import requests
 
 from blog_engine import (
-    get_gemini_response, _generate_part_with_check, _extract_facts_from_response,
-    _post_process_blog_content, _inject_table_of_contents, _llm_quality_check,
+    get_gemini_response, _post_process_blog_content, _inject_table_of_contents,
     _check_duplicate, _load_state, _register_article, publish_to_wordpress,
     _telegram_send_message, _load_json_file, _save_json_file, get_wordpress_recent_posts,
     _insert_operator_memo, _discover_due, _mark_discovered,
 )
 import media_engine
+from ondo.checks.editlog import EditLog
+from ondo.writing.desk import write_article
 
 PENDING_TOPIC_FILE = "pending_topic.json"
 CONFIRMED_TOPIC_FILE = "confirmed_topic2_context.json"
@@ -60,26 +62,6 @@ CATEGORIES = {
     "society": {"label": "인구·사회", "kind": "통계로 보는 사회", "repeat_days": 30, "rules": (
         "- [사회 원칙] 통계 숫자와 발표 기관을 정확히 쓰세요. 특정 정당·정책에 대한 찬반 의견은 쓰지 마세요.\n")},
 }
-
-BASE_RULES = (
-    "- 글쓴이는 블로그 'ondo'입니다. 전문가인 척하지 말고, 공개 자료를 정리해 알기 쉽게 전달하는 사람의 "
-    "목소리로 쓰세요. 인사말·자기소개·가짜 경험담은 금지합니다.\n"
-    "- 문단은 2~3문장 단위로 짧게. 대제목은 `<h3>`, 소제목은 `<h4>🔸 소제목</h4>` 형식만 쓰세요.\n"
-    "- 표는 `<table><tr><th><td>` HTML로만 작성하세요(마크다운 표 금지). [표 절제] 표는 Part3에 1개만 넣고, "
-    "다른 파트에서는 표를 만들지 말고 문장으로 설명하세요. 이미지·차트는 시스템이 넣으므로 <img>를 쓰지 마세요.\n"
-    "- [숫자 원칙] [사실 자료]에 있는 숫자만 쓰세요. 자료에 없는 수치·날짜·인용을 만들어내지 마세요. "
-    "자료에서 값이 'N/A'·'없음'·'-'인 항목은 아예 언급하지 마세요('N/A로 기재' 같은 문장 금지).\n"
-    "- [제목 표기] 대제목·소제목에 'Part 1', 'Part2:' 같은 파트 번호를 쓰지 마세요(내부 구분용일 뿐입니다).\n"
-    "- [출처 원칙] 뉴스는 [사실 자료]·[관련 뉴스]·[최근 뉴스]에 있는 기사만, 매체명에 `<a href=\"주소\" target=\"_blank\" rel=\"noopener\">` "
-    "링크를 달아 인용하세요. '외신 보도', '전문가들은' 같은 확인할 수 없는 출처는 금지합니다.\n"
-    "- [중복 금지] 앞 파트에서 쓴 사실·문장을 반복하지 마세요. 목차·3줄 요약·면책 문구·출처 목록은 "
-    "시스템이 넣으므로 만들지 마세요.\n"
-)
-
-OUTLINE_ANGLES = [
-    "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료의 사실로 답을 쌓아가는 구성",
-    "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정확한 그림을 보여주는 구성",
-]
 
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"}
 
@@ -155,109 +137,18 @@ def _slug(text):
 # 글쓰기 핵심부 (ETF 가이드/이슈도 사용)
 # ============================================================
 
-def _parse_outline(res_obj):
-    outline = (res_obj or {}).get("outline")
-    if not isinstance(outline, list) or sorted(int(p.get("part")) for p in outline) != [1, 2, 3, 4, 5]:
-        raise ValueError("outline must have parts 1..5")
-    if any(not p.get("heading") or not p.get("focus") for p in outline):
-        raise ValueError("empty heading/focus")
-    outline.sort(key=lambda p: int(p["part"]))
-    for p in outline:   # 기획안 제목에 붙은 "Part 3:" 같은 번호는 빼서 글에 그대로 옮겨지지 않게
-        p["heading"] = re.sub(r"^\s*part\s*\d+\s*[:.\-)]?\s*", "", str(p["heading"]), flags=re.I) or p["heading"]
-    return {"outline": outline, "key_message": res_obj.get("key_message", "")}
-
-
-def plan_outline(kind_label, title_seed, facts_text):
-    base = (f"당신은 정보 블로그의 기획자입니다. 오늘 쓸 글은 [{kind_label}]이고, 주제는 '{title_seed}'입니다.\n"
-            f"아래 사실 자료를 바탕으로 이 주제만을 위한 5단계 목차를 설계하세요.\n\n{facts_text}\n"
-            "[제약] Part1은 독자의 질문을 던지는 도입, Part5는 자주 묻는 질문(FAQ)과 정리여야 합니다. "
-            "Part2~4는 자유롭게 설계하되, 반드시 사실 자료로 쓸 수 있는 내용이어야 합니다.\n")
-    fmt = ('응답은 JSON으로만: {"outline": [{"part": 1, "heading": "15자 내외", "focus": "1~2문장"}, ... part 5까지], '
-           '"key_message": "핵심 메시지 한 문장"}')
-    drafts = []
-    for angle in OUTLINE_ANGLES:
-        try:
-            drafts.append(_parse_outline(_ask_json(base + f"[이번 기획 관점] {angle}\n" + fmt)))
-        except (ValueError, TypeError, AttributeError):
-            pass
-    if not drafts:
-        return {"outline": [
-            {"part": 1, "heading": "왜 지금 이 이야기일까", "focus": "독자의 질문과 오늘 다룰 범위를 소개"},
-            {"part": 2, "heading": "무슨 일이 있었나", "focus": "자료에 있는 사실을 정리"},
-            {"part": 3, "heading": "숫자로 보기", "focus": "자료의 숫자를 표로 정리"},
-            {"part": 4, "heading": "아직 모르는 것", "focus": "확인되지 않은 점과 주의할 점"},
-            {"part": 5, "heading": "자주 묻는 질문", "focus": "FAQ와 정리"},
-        ], "key_message": ""}
-    if len(drafts) == 1:
-        return drafts[0]
-    listing = "\n\n".join(f"[기획안 {i + 1}]\n" + "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in d["outline"])
-                          for i, d in enumerate(drafts))
-    try:
-        return _parse_outline(_ask_json(
-            f"당신은 편집장입니다. 주제 '{title_seed}'에 대한 기획안들입니다. 독자에게 가장 유익하고 파트끼리 "
-            f"겹치지 않는 최종 목차를 확정하세요(조합 가능).\n\n{listing}\n\n" + fmt, thinking_budget=24576))
-    except (ValueError, TypeError, AttributeError):
-        return drafts[0]
-
-
-# 첫 실제 글(2026-10-31, 기초 가이드)이 약 5,700자로 너무 짧았다(파트마다 2~3문단) → 파트별 분량 안내.
-PART_LENGTH = {
-    1: "[분량] 제목·메타 설명 다음 도입 본문 400~600자. 이 글에서 무엇을 알게 되는지 독자의 질문으로 시작하세요.",
-    2: "[분량] 본문 900~1,300자(소제목 2개 안팎). 자료의 사실을 하나씩 풀어 설명하세요.",
-    3: "[분량] 본문 900~1,300자 + 표 1개. 표 앞뒤로 표가 무엇을 뜻하는지 문장으로 설명하세요.",
-    4: "[분량] 본문 900~1,300자(소제목 2개 안팎). 주의할 점·한계·조건을 구체적으로.",
-    5: "[분량] 정리 300~500자 + FAQ 3~4개(각 답 2~3문장).",
-}
-
-
-def _write_parts(kind_label, title_seed, plan, facts_text, rules, session_key, category_label):
-    today_str = datetime.now().strftime("%Y년 %m월 %d일")
-    outline_lines = "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan["outline"])
-    posts = get_wordpress_recent_posts() or []
-    link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
-                 "별도 문장으로 `<p>👉 함께 보면 좋은 글: <a href=\"주소\">제목</a></p>` 형식으로 넣으세요. "
-                 "문장 중간에 다른 글 제목을 끼워 넣지 마세요. 맞는 글이 없으면 생략하세요.\n"
-                 + "\n".join(f"- {p['title']} ({p.get('link', '')})" for p in posts[:15])) if posts else ""
-    shared = (f"[{kind_label}] 주제: {title_seed}\n이 글은 {today_str} 기준입니다.\n{BASE_RULES}{rules}"
-              f"[전체 목차 - 반드시 따르세요]\n{outline_lines}\n"
-              + (f"[핵심 메시지] {plan['key_message']}\n" if plan.get("key_message") else "")
-              + f"\n{facts_text}\n")
-    extras = {
-        1: "<h1>로 제목을 쓰세요. 검색하는 사람이 이해하기 쉬운 문장으로 다듬고, 제목 뒤에 120~160자 메타 설명을 "
-           "HTML 주석(<!-- -->)으로 넣으세요.",
-        3: "[필수] 자료의 숫자나 사실을 정리한 <table>을 1개 넣으세요.",
-        5: f"{link_rule}\n[필수] FAQ 3~4개. [필수] 맨 마지막 줄에 '태그: 태그1 태그2 태그3 태그4 태그5' 형식으로 정확히 5개.",
-    }
-    parts, confirmed = {}, []
-    for n in range(1, 6):
-        p = plan["outline"][n - 1]
-        prompt = (f"{shared}\n[Part {n}/5 - {p['heading']}]\n지금 작성할 내용: {p['focus']}\n{extras.get(n, '')}\n"
-                  f"{PART_LENGTH.get(n, '')}\n\n"
-                  '[출력] JSON으로만: {"html": "생성된 HTML", "facts": {"recommended_url": "영문-소문자-하이픈-슬러그"}}')
-        text, _info = _generate_part_with_check(prompt, n, f"Part{n}({p['heading']})", "\n".join(confirmed),
-                                                session_key=session_key, label=session_key.split("_")[0],
-                                                category_label=category_label)
-        if not text:
-            return None
-        ex = _extract_facts_from_response(text, n)
-        parts[n] = ex["html"]
-        confirmed.append(ex["html"])
-        if n == 1:
-            parts["_slug"] = (ex.get("facts") or {}).get("recommended_url", "")
-    return parts
-
-
-def _assemble(parts):
-    body = re.sub(r"```[a-zA-Z]*\n?|```", "", "\n".join(parts[i] for i in range(1, 6))).strip()
+def _assemble(html_text):
+    """완성 HTML → (제목, 본문, 태그). 제목은 워드프레스 제목 칸으로, 태그 줄은 태그 칸으로 옮긴다."""
+    body = re.sub(r"```[a-zA-Z]*\n?|```", "", html_text or "").strip()
     tags = []
     m = re.search(r"태그:\s*([^\n<]+)", body)
     if m:
         tags = [re.sub(r"[#,.]", "", t).strip() for t in m.group(1).split() if t.strip()][:5]
         body = body[:m.start()] + body[m.end():]
+        body = re.sub(r"<p>\s*</p>", "", body)
     title_m = re.search(r"<h1[^>]*>(.*?)</h1>", body, flags=re.S)
     title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
-    body = re.sub(r"<h1[^>]*>.*?</h1>", "", body, count=1, flags=re.S)  # 제목은 워드프레스 제목 칸으로
-    # AI가 대제목·소제목에 붙인 "Part 3:", "Part2 -" 같은 내부 번호 제거
+    body = re.sub(r"<h1[^>]*>.*?</h1>", "", body, count=1, flags=re.S)
     body = re.sub(r"(<h[2-4][^>]*>\s*(?:🔸\s*)?)part\s*\d+\s*[:.\-)]?\s*", r"\1", body, flags=re.I)
     body = _inject_table_of_contents(_post_process_blog_content(body))
     return title, body, tags
@@ -298,55 +189,64 @@ def _add_media(body, title, category_label, chart):
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
                     memo="", closing_html="", meta=None, chart=None):
-    """목차 기획 → 5파트 → 조립 → 중복 검사 → 품질 검사 → 발행/임시글 → 기록 → 텔레그램.
+    """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
+    단계마다 무슨 일이 있었는지는 편집 기록부(logs/)에 남는다.
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
-    print(f"📋 [{kind_label}] {title_seed} - 기획 중...")
-    plan = plan_outline(kind_label, title_seed, facts_text)
-    print("   목차: " + " / ".join(p["heading"] for p in plan["outline"]))
-    session_key = f"{article_type}_{_slug(topic_id)}_{datetime.now().strftime('%Y%m%d')}"
-    parts = _write_parts(kind_label, title_seed, plan, facts_text, rules, session_key, category_label)
-    if not parts:
-        _telegram_send_message(f"⚠️ [{kind_label}] '{title_seed}' 글 생성에 실패했어요. 다음 추천을 기다려주세요.")
+    print(f"📋 [{kind_label}] {title_seed} - 편집국 시작")
+    log = EditLog(article_type, topic_id, title_seed, category=os.environ.get("BLOG_CATEGORY", ""))
+    try:
+        result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
+                               category_label=category_label, log=log, memo=memo,
+                               recent_posts=get_wordpress_recent_posts() or [])
+    except Exception as e:      # 글쓰기 도중 예상 못 한 오류도 기록부와 텔레그램에 이유를 남긴다
+        log.data["result"]["reason"] = f"글쓰기 중 오류: {type(e).__name__}: {str(e)[:200]}"
+        result = None
+    if not result:
+        reason = log.data["result"].get("reason", "알 수 없음")
+        log.finish(status="failed")
+        _telegram_send_message(f"⚠️ [{kind_label}] '{title_seed}' 글쓰기 실패\n이유: {reason}\n{log.summary_line()}\n"
+                               f"자세한 기록: {log.path}")
         return "failed", title_seed, ""
-    title, body, tags = _assemble(parts)
-    title = title or title_seed
+    plan = result["plan"]
+    title, body, tags = _assemble(result["html"])
+    title = title or plan.get("title") or title_seed
     if memo:
         body = _insert_operator_memo(body, memo)
     body, slots = _add_media(body, title, category_label, chart)
     body += closing_html
 
     if _check_duplicate(title, body, _load_state()):
+        log.finish(status="failed", reason="이미 올린 글과 너무 비슷함", title=title)
         _telegram_send_message(f"⚠️ 발행 중단: '{title}'이(가) 이미 올린 글과 너무 비슷해서 올리지 않았어요.")
         return "failed", title, ""
 
-    review = _llm_quality_check(body, facts_json_str=facts_text, category_label=category_label,
-                                part_descriptions="\n".join(f"- Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan["outline"]))
-    score = review.get("quality_score") if review else None
-    issues = (review or {}).get("issues", [])
+    score, issues = result.get("score"), result.get("issues") or []
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
     status = "publish" if (score is not None and score >= min_q) else "draft"
-    slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(parts.get("_slug", "")).lower().replace(" ", "-"))).strip("-") or None
+    slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(plan.get("slug", "")).lower().replace(" ", "-"))).strip("-") or None
     featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"))
-    ok, result = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
+    ok, url = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
     score_text = "검수 실패" if score is None else f"{score:.2f}"
     if not ok:
-        _telegram_send_message(f"⚠️ [{kind_label}] '{title}' 업로드 실패: {str(result)[:200]}")
+        log.finish(status="failed", reason=f"워드프레스 업로드 실패: {str(url)[:200]}", title=title, score=score)
+        _telegram_send_message(f"⚠️ [{kind_label}] '{title}' 업로드 실패: {str(url)[:200]}")
         return "failed", title, ""
 
     meta = dict(meta or {})
     meta.update({"article_type": article_type, "topic_id": topic_id})
     _register_article(title, body, status="published" if status == "publish" else "draft",
-                      notes=f"{article_type} ({score_text})", version=1, extra_data={"_meta": meta}, url=result)
+                      notes=f"{article_type} ({score_text})", version=1, extra_data={"_meta": meta}, url=url)
+    log.finish(status=status, title=title, url=url, score=score, issues=issues[:8])
     if status == "publish":
-        _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{result}\n품질 점수: {score_text}")
+        _telegram_send_message(f"✅ [{kind_label}] 발행 완료\n{title}\n{url}\n품질 점수: {score_text}\n{log.summary_line()}")
         import blog_engine
         media_engine.send_image_prompt(blog_engine.LAST_PUBLISHED_POST_ID, title,
-                                       os.environ.get("BLOG_CATEGORY", "etf"), result, slots=slots)
+                                       os.environ.get("BLOG_CATEGORY", "etf"), url, slots=slots)
     else:
         issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
         _telegram_send_message(f"📝 [{kind_label}] 임시글로만 올렸어요 (공개 안 됨)\n제목: {title}\n"
-                               f"품질 점수: {score_text} (기준 {min_q})\n지적된 문제:\n{issues_text}")
-    return status, title, result
+                               f"품질 점수: {score_text} (기준 {min_q})\n남은 지적:\n{issues_text}\n{log.summary_line()}")
+    return status, title, url
 
 
 # ============================================================

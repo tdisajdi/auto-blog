@@ -67,8 +67,9 @@ WP_PASSWORD = os.environ.get("WP_PASSWORD")
 # ============================================================
 # Gemini API 키 로테이션
 # ============================================================
-_raw_gemini_keys = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_API_KEYS = [k.strip() for k in _raw_gemini_keys.split(",") if k.strip()]
+# 키 앞에 "이름표:"를 붙일 수 있다(예: aa@gmail.com:AIza...) - 문제 생기면 텔레그램에 이름표로 알림. ondo/keys.py
+from ondo import keys as _ondo_keys
+GEMINI_API_KEYS = [k for _no, _label, k in _ondo_keys.parse(os.environ.get("GEMINI_API_KEY", ""))]
 GEMINI_API_KEY = GEMINI_API_KEYS[0] if GEMINI_API_KEYS else None  # 하위 호환용
 
 # ============================================================
@@ -1453,6 +1454,9 @@ def get_gemini_response(prompt, thinking_budget=0):
                 # 모델을 못 쓰는 경우)는 키가 아니라 모델 쪽 문제일 가능성이
                 # 높지만, 다른 키에서는 될 수도 있으므로 일단은 기존과 동일하게
                 # 다음 조합으로 넘어가는 것으로 처리한다(별도 영구 제외 없음).
+                key_problem = _ondo_keys.classify_error(response.status_code, response.text)
+                if key_problem:
+                    _ondo_keys.alert_key_problem(current_key, key_problem, response.text[:150])
                 if response.status_code == 403:
                     global _permanently_excluded_keys
                     _permanently_excluded_keys.add(current_key)
