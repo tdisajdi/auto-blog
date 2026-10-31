@@ -6,7 +6,9 @@ etf_auto가 이미 계산해 둔 자료(collected_context)와 코드가 만든 �
   2) 글은 편집국(한 번에 쓰기 + 검토 3명 + 고쳐쓰기)이 씀
   3) 맨 위에 온도 서명 띠(숫자만)
 서랍에 넣지 않는 것: 연령별 포트폴리오, 경제 사이클, 매매 타이밍, 가상 포트폴리오, 반박 섹션, 투자 매력도 점수
-(다른 ETF에도 그대로 들어가는 일반론이거나, 점수·타이밍이 투자 권유처럼 읽혀서).
+(다른 ETF에도 그대로 들어가는 일반론이거나, 점수·타이밍이 투자 권유처럼 읽혀서),
+계좌별 실수료 비교표(etf_auto._add_fee_comparison_table - 1억 원을 ISA·연금저축에 한 번에 넣는다고 가정(연 납입 한도 초과),
+국내 대체 ETF 보수를 같은 값으로 가정, 10년 이익에 한 번에 과세 → 오해 소지. 대신 "tax" 계좌별 세금 계산표).
 """
 import html as _html
 import re
@@ -18,7 +20,8 @@ DRAWER_SPEC = [
      "장기 투자, 투자 방법"),
     ("competition", "비슷한 ETF 비교표", "같은 지수·비슷한 ETF와 보수·규모·수익률 비교", "비교, 상품 선택"),
     ("risk", "위기 시나리오 표", "과거 하락장 기준으로 계좌가 얼마나 줄 수 있는지", "위험, 하락장"),
-    ("fees", "실제 비용 비교표", "보수와 세금을 포함한 실제 비용 비교", "비용, 세금, 계좌"),
+    ("tax", "계좌별 세금 계산표", "한 해 이익 200만~2,000만 원일 때 해외 직접투자·국내 상장(일반계좌·ISA·연금저축)의 예상 세금(표+그래프)",
+     "세금, 계좌, 한국 투자자 비용"),
     ("calendar", "손익 캘린더", "최근 몇 달 동안 날짜별로 오르고 내린 정도", "최근 흐름, 변동성"),
     ("sector", "섹터 구성", "어떤 산업에 얼마나 투자하는지", "구성, 경기 민감도"),
     ("scenario", "투자 시나리오 표", "상승·횡보·하락 시나리오별 결과", "전망, 시나리오"),
@@ -48,7 +51,8 @@ def build_drawer(blocks):
         h = (blocks or {}).get(sid) or ""
         if len(re.sub(r"<[^>]+>", "", h).strip()) < 10 and "<script" not in h:
             continue
-        drawer.append({"id": sid, "name": name, "desc": desc, "fits": fits})
+        plain = re.sub(r"\s+", " ", re.sub(r"<(script|style)[^>]*>.*?</\1>|<[^>]+>", " ", h, flags=re.S)).strip()
+        drawer.append({"id": sid, "name": name, "desc": desc, "fits": fits, "text": plain[:3000]})
         html_by_id[sid] = f'<div class="ondo-visual" data-visual="{sid}" style="margin:26px 0;">{demote_headings(h)}</div>'
     return drawer, html_by_id
 

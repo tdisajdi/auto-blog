@@ -6576,6 +6576,15 @@ def run_automation():
 
     # [4단계 2026-10-31] 종목 분석 글도 새 편집국으로: 글은 편집국이 쓰고, 위에서 코드가 만든 그래프·표는
     # "시각 자료 서랍"에 넣어 기획이 2~3개를 골라 배치한다. 예전 5조각 방식은 ANALYSIS_WRITER=legacy일 때만.
+    def _tax_visual():
+        import explainer_engine as _xe
+        _xe.ea = sys.modules[__name__]
+        try:
+            return _xe.tax_scenarios()[1]
+        except Exception as e:
+            print(f"ℹ️ 세금 계산표 실패: {type(e).__name__}")
+            return ""
+
     if os.environ.get("ANALYSIS_WRITER", "desk").strip().lower() != "legacy":
         from ondo.writing import analysis as _analysis
         from ondo.media import charts as _charts
@@ -6583,7 +6592,7 @@ def run_automation():
         try:
             drawer, drawer_html = _analysis.build_drawer({
                 "basic": widgets_html_block, "backtest": backtest_sim_html, "competition": comparison_html,
-                "risk": risk_scenario_html, "fees": fee_comparison_html, "calendar": calendar_html,
+                "risk": risk_scenario_html, "tax": _tax_visual(), "calendar": calendar_html,
                 "sector": sector_analysis_html, "scenario": scenario_html, "macro": macro_thermo_html,
             })
             kind = "comparison" if len(etf_list) >= 2 else "analysis"

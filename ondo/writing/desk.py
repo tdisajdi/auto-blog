@@ -343,6 +343,8 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
     best = None
     for round_no in range(1, MAX_REWRITES + 2):
         html, lint_issues, fixes = lint.fix_and_check(html)
+        picked = {v["id"] for v in plan.get("visuals") or []}
+        html = lint.drop_copied_tables(html, [d.get("text", "") for d in drawer or [] if d["id"] in picked], fixes)
         nums = numbers.unverified(lint.text_of(html), facts_text)
         score, found = review(html, facts_text, category_label, log, round_no, must=must_answer)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
