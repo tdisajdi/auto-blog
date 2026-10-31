@@ -1,0 +1,419 @@
+{
+ "article_type": "analysis",
+ "topic_id": "VOO",
+ "title_seed": "VOO ETF 분석: S&P 500 추종 수익률과 연 배당금 현황 정리",
+ "category": "etf",
+ "started_at": "2026-10-31T14:26:01",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.9,
+   "chars": 2610
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 50.7,
+   "chars": 3623
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 27.1,
+   "chars": 450
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.5,
+   "chars": 613
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.3,
+   "chars": 146
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 40.4,
+   "chars": 3402
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 41.2,
+   "chars": 401
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.9,
+   "chars": 163
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.1,
+   "chars": 161
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "400",
+   "reason": "{   \"error\": {     \"code\": 400,     \"message\": \"Request contains an invalid argument.\",     \"status\": \"INVALID_ARGUMENT\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.1-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "14:26:14",
+   "title": "VOO ETF 분석: S&P 500 수익률과 연 배당금 현황 정리",
+   "sections": [
+    "VOO 수익률과 S&P 500 흐름",
+    "배당금 현황과 배당 성장성",
+    "보수 비용과 투자 매력도 분석",
+    "한국 투자자 주의사항과 세금"
+   ],
+   "visuals": [
+    "basic→섹션1",
+    "fees→섹션3"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "14:27:07",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "14:28:05",
+   "score": 0.5,
+   "passed": false,
+   "issues": [
+    "[치명·사실 검증] '과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 160,500원 수' → 자료 확인 필요 (배당 1억 원에 15% 원천징수 세율을 적용하면 1,500만 원이어야 하나 160,500원으로 표기되어 상식과 크게 어긋남) / 고칠 방법: 세금 시뮬레이션 계산액과 기준 금액 원본 데이터가 올바른지 재확인 후 수정하세요.",
+    "[중요·독자 편집] '과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 160,500원 수' → 연 배당금 1억 원에 대한 15% 원천징수 세금 계산 결과가 160,500원으로 터무니없이 잘못 산출되었습니다. / 고칠 방법: 배당금 1억 원의 15%인 1,500만 원으로 올바른 세금 금액을 수정해야 합니다.",
+    "[사소·독자 편집] '지급일 배당금(USD) 직전 대비 변동률 2025-12-22 1.7710 +1.78%' → 본문 문장에서 이미 배당금 내역을 상세히 설명했음에도 표로 내용을 그대로 다시 반복하고 있습니다. / 고칠 방법: 표를 삭제하거나 텍스트 설명을 간소화하여 중복을 피해야 합니다."
+   ],
+   "chars": 2908
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "14:28:49",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "14:29:56",
+   "score": 0.65,
+   "passed": false,
+   "issues": [
+    "[치명·사실 검증] '과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 1,500만 원 수' → 자료 확인 필요 / 고칠 방법: 제시된 자료의 세금 산출액(160,500원)과 본문의 계산 방식(1,500만 원)이 불일치하므로 사실 자료 확인 및 수정을 요청하세요."
+   ],
+   "numbers": [
+    "1,500만"
+   ],
+   "chars": 2688
+  },
+  {
+   "step": "고쳐쓰기 2 실패",
+   "at": "14:30:23",
+   "reason": "모든 키·모델 한도 초과"
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "VOO ETF 분석: S&P 500 수익률과 연 배당금 현황 정리",
+  "url": "https://ondo99.com/?p=249",
+  "score": 0.65,
+  "issues": [
+   "[치명·사실 검증] '과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 1,500만 원 수' → 자료 확인 필요 / 고칠 방법: 제시된 자료의 세금 산출액(160,500원)과 본문의 계산 방식(1,500만 원)이 불일치하므로 사실 자료 확인 및 수정을 요청하세요."
+  ]
+ },
+ "facts": "[내 블로그 기존 글 목록(내부 링크용)]\n- 제목: 나스닥 100 대장주 QQQ, 고금리·고환율 파고 속 성장 엔진은 유효할까? (URL: https://ondo99.com/2026/07/21/qqq-2026-performance-review-dividend-exchange-rate-impact/)\n- 제목: 나스닥 100 대장주 QQQ, 고금리 파도 넘어설 성장 동력은? 최신 수익률과 배당 점검 (URL: https://ondo99.com/2026/07/21/nasdaq-100-qqq-growth-dividend-analysis/)\n- 제목: 나스닥 100의 빛과 그림자: QQQ, 환율 압박 속 배당 매력은? (URL: https://ondo99.com/2026/07/17/%eb%82%98%ec%8a%a4%eb%8b%a5-100%ec%9d%98-%eb%b9%9b%ea%b3%bc-%ea%b7%b8%eb%a6%bc%ec%9e%90-qqq-%ed%99%98%ec%9c%a8-%ec%95%95%eb%b0%95-%ec%86%8d-%eb%b0%b0%eb%8b%b9-%eb%a7%a4%eb%a0%a5%ec%9d%80/)\n- 제목: hello (URL: https://ondo99.com/2026/07/11/hello/)\n\n[오늘의 거시경제 지표]\n- 미국 10년물 국채 금리: 4.929%\n- 공포/탐욕 지수(Fear & Greed): 26점 (공포)\n\n[거시 원시 신호 - 그대로 복사 금지, 이 ETF 특성과 연결해 직접 해석할 것]\n- 환율=1,335.10원(환율 안정 국면) / 미10년물=4.929%(고금리 국면)\n\n[VOO 핵심 데이터]\n- 종목명: Vanguard S&P 500 ETF / 운용사: Vanguard / 지수: Large Blend\n- 분류: 정보 없음 (산업: 정보 없음)\n- 보수: 0.03% / 배당: 수익률(1.07%), 주기(분기 배당)\n- 상장일: 2010-09-07\n- [수익률 데이터(필수사용)]:\n1개월: -0.86%\n3개월: 1.45%\n6개월: 5.76%\n1년: 12.08%\n- [최근 배당내역(필수사용)]:\n- 2026-09-28: 1.8230 USD (이전 대비: -7.08%)\n- 2026-06-26: 1.9620 USD (이전 대비: +4.81%)\n- 2026-03-27: 1.8720 USD (이전 대비: +5.70%)\n- 2025-12-22: 1.7710 USD (이전 대비: +1.78%)\n- [배당 안정성 결론(반드시 이 문장을 그대로 인용, 스스로 다시 판단하지 마세요)]: 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다.\n- [최대 낙폭(MDD, 5년 기준)]: -24.52%\n- [배당성장률]: 5.57% / [환노출 여부]: 있음 (해외 상장, 달러로 거래) (주의: 이 ETF가 실제로 환헤지 상품인지는 별도로 확인된 사실이 아니므로, '환헤지 비용'이라는 표현은 쓰지 말고 '환노출 리스크'로만 서술하세요)\n- [투자 매력도 점수]: 6.9 (사유: 운용보수 낮음(+1.5), MDD 보통(0), 배당성장률 강세(+1.0), 환헤지 비용 높음(-0.6))\n- [세금 시뮬레이션(배당 1억 기준)]: 과세계좌 160,500원(미국 원천징수 15%), ISA 절세 해당 없음(해외 상장 ETF는 이 계좌로 매수 불가), IRP/연금저축 절세 해당 없음(해외 상장 ETF는 이 계좌로 매수 불가) (기준: 2026년 10월 기준 세법. 배당은 미국에서 15% 원천징수, 매매차익은 연 250만 원 공제 후 22% 양도소득세(다음 해 5월 직접 신고).)\n- [계좌 안내(필수 반영)]: 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n- [운용보수 1억 10년 영향]: 약 998,204원 (0.1% 포인트 차이로 10년 후 잠재 손실)\n- [1,000만 원 투자 시뮬레이션]: 5년 전 1,000만 원 투자 시 현재 가치 약 1,761만 원\n- 공식 홈페이지 URL: 공식 홈페이지 정보 없음\n- 인베스팅닷컴 실시간 데이터 URL: https://kr.investing.com/etfs/vanguard-s-p-500\n- 통화: USD / 요약: The fund manager employs an indexing investment approach designed to track the performance of the Standard & Poor's 500 Index, a widely recognized benchmark of U.S. stock market performance that is dominated by the stocks of large U.S. companies. The advisor attempts to replicate the target index by\n[최근 주요 뉴스]\n- S&P 500 ETF 자산 사상 처음으로 1조 달러 돌파, 뱅가드 VOO 글로벌 기록 수립 - TradingKey (TradingKey) https://news.google.com/rss/articles/CBMioAFBVV95cUxQTmlfNkNmSnc5eHlIaG55Mzlkd2dmR1dyZUxiWFZEV2xBZl9sQ2VKN2VhaUIxNHlBdjJmX1B1Q3daRm9HcFNqRjdMd3JnNGtKRkwwUGd3VnVhb1UxNjZDcWp6NHpjR1ZOQ2RjaWJWaVRzZXk3QllBZUlGbnBFblNXNXZyNGxCQU90ZUtjMkctZTZrUnpKSVhEQ1VDbkIyRFZm?oc=5\n- \"연평균 수익률 15.36% 달성\"...뱅가드 S&P 500 ETF, 스페이스X 상대 '판정승' - 코인리더스 (코인리더스) https://news.google.com/rss/articles/CBMiSkFVX3lxTE1uTXB4YzJPNjNrVTdCM1JOVXlRZGZ1SkNvejZEbjdlSTQzYmF2dzRqR19IaVdQQXRrRzRUR0tnQU12ZGxqSDhSRnBn?oc=5\n- Vanguard ETF의 실적은 최고 중 하나인데, 그 이유는 무엇일까요? - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMi4AJBVV95cUxQMC1lZFRjanZpREFFUXhad0pPOVh4UUFHQlFQY1hTWUFrRjFPVzA3WUVJRW9JOUgzTk1YLVM1NnpncmFsR0xTWEh0UEVaNHNTRThIc1hNUmVWWUZlRnRPR1F6MzI4cUtYUXg0cUlCZVpJa3gyYVJZb3dSQjkxUjRNdVQzQ0xCX2x3V3RvNEQtOVRrY2NDWl9GQWNlaEVhdldlbW1BMi1lc1hQS0JNbGQ5OVZ2cEk0UW5HM0liazREWkl4eVM0ck1McjduVHNTdXl1YlVWRnh4azRUU3owb1U4alpMc2xXcVh0TG1aMS1lOXdWbUVlWDB1LVpNYmZiR1h4QWdoMERSOFRrT0tCd2VpZmtuN1hwM0hJR0ppSFVRM3dDNlNTZk5fWkNhUlo4RXpvMDkxMHhIZTVfZ2xiNDVVYjIxWEc1ZU5Hbi1LX3I0VF8ycGQ1Vm5odDE3Wm5pTTEt?oc=5\n- [주린이를 위한 썰] “SPY·VOO·SPYM 뭐가 달라”… S&P 500 ETF 고르는 법 - 자본시장뉴스 (자본시장뉴스) https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5ckVtVEM5c1dTaU94ZmZEaFRlamh5ZDBjaXk1YUJrNXAzUUhPUHhYZDdaUDktajFXRFk1Rmx6OE1DdVdfRnlrRmhpanNveFI0MGg2REhIQU1PRkhjNU81aGtvbUVxb2c?oc=5\n- [ETF 특징주] JP모간 연말 S&P500 전망 상향에 SPY·VOO 조명 - 뉴스핌 (뉴스핌) https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5\n- 원화 강세에 美 ETF 수익률 희비…'이것' 붙으니 수익률 10%P↑ - 머니투데이 - 머니투데이 (머니투데이) https://news.google.com/rss/articles/CBMibkFVX3lxTE5YcHdIMy0yMXZMR1htQ0NNOU9nQUpyQWgzQUFiN0ZIUDRibFlobzh0RGYzUVFtWDZfc1ZHMTBIcHk3R0M1a2h3cmdDa0w3VlFpZUxWeDJrd1Z2dFg5NTV6dDUzajBKdm1ZNWxzVUtn0gFuQVVfeXFMTlhwd0gzLTIxdkxHWG1DQ005T2dBSnJBaDNBQWI3RkhQNGJsWWhvOHREZjNRUW1YNl9zVkcxMEhweTdHQzVraHdyZ0NrTDdWUWllTFZ4Mmt3VnZ0WDk1NXp0NTNqMEp2bVk1bHNVS2c?oc=5\n\n[미국 ETF 감지]\n- 미국 ETF 티커: VOO\n- 한국 투자자 관점 필수 포함: 환율 변동 영향, 국내 상장 동일 지수 ETF와 비교(수수료·세금 등)\n- [상장 위치(사실)]: VOO는 미국 거래소에 상장된 ETF입니다. 한국 투자자 입장에서는 '해외 상장 ETF'라고만 쓰고, '미국 외 국가에 상장' 같은 표현이나 이중 부정 문장('~가 아닌 해외 상장')은 쓰지 마세요.\n[시장환경 4대 온도계]\n  - 변동성 온도: 63.6°\n  - 밸류에이션 온도: 60.0°\n  - 환율 온도: 1.7°\n  - 인플레이션 온도: 70.3°\n\n[기획 방향 - 3번 부서가 미리 정한 이번 글의 방향]\n- 핵심 메시지: S&P 500 지수를 추종하는 VOO는 미국 시장의 성장을 가장 효율적이고 저렴한 비용으로 향유할 수 있는 장기 투자자의 핵심 자산입니다.\n- 강조할 포인트:\n  - S&P 500 지수의 역사적 수익률과 우상향 가능성\n  - 경쟁 ETF(IVV, SPY) 대비 압도적인 운용보수 경쟁력\n  - 포트폴리오의 기초 체력을 다지는 코어(Core) 전략으로서의 활용법\n- 지난 글과 차별화: 해당 없음\n-> [지시] 위 기획 방향을 본문 전개에 실제로 반영하세요.\n\n",
+ "drafts": {
+  "1": "<h1>VOO ETF 분석: S&P 500 수익률과 연 배당금 현황 정리</h1>\n<!-- Vanguard에서 운용하는 VOO ETF의 최근 수익률, 배당금 현황, 운용보수 비용 및 한국 투자자를 위한 세금 체계를 객관적 지표를 통해 알기 쉽게 정리합니다. -->\n\n미국 주식 시장 전체의 성장을 공유하는 방법으로 S&P 500 지수 투자를 선택하는 경우가 많습니다. 그중에서도 Vanguard에서 2010년 9월 7일에 상장한 Vanguard S&P 500 ETF(VOO)는 글로벌 투자자들에게 대표적인 선택지로 꼽힙니다.\n\n현재 미국 10년물 국채 금리가 4.929%인 고금리 국면과 공포/탐욕 지수 26점의 공포 심리가 지속되는 시장 환경에서 VOO의 최근 성과를 점검할 필요가 있습니다. 달러 환율이 1,335.10원으로 비교적 안정된 흐름을 보이는 가운데 VOO의 기간별 수익률과 배당 구조, 비용 효과를 파악해 봅니다.\n\n<h3>VOO 수익률과 S&P 500 흐름</h3>\n\nVOO는 미국 대형주 중심의 S&P 500 지수를 정직하게 추종하는 구조를 갖추고 있습니다. 최근 단기 성과를 보면 1개월 수익률은 -0.86%를 기록하며 다소 주춤했지만, 3개월 수익률은 1.45%, 6개월 수익률은 5.76%로 반등하는 모습을 보여줍니다.\n\n중장기 성과 측면에서는 1년 수익률이 12.08%에 달해 미국 대형주 시장의 건재함을 나타내고 있습니다. 변동성 위험을 측정하는 5년 기준 최대 낙폭(MDD)은 -24.52%로 집계되었습니다.\n\n시뮬레이션 결과에 따르면 5년 전 1,000만 원을 VOO에 투자했을 때 현재 가치는 약 1,761만 원에 달합니다. 시장의 일시적 변동성에도 불구하고 장기 우상향하는 지수의 성격이 반영된 결과입니다.\n\n수익률과 최대 낙폭 데이터는 하락장에서 자산이 얼마나 감소했는지를 파악하고 자신의 위험 성향과 장기 투자 계획을 점검하는 기준으로 활용할 수 있습니다.\n\n<h3>배당금 현황과 배당 성장성</h3>\n\nVOO는 분기별로 배당금을 지급하며 연 환산 배당수익률은 1.07% 수준입니다. 최근 지급된 분기별 배당금을 보면 2025년 12월 22일에 1.7710 USD(이전 대비 +1.78%), 2026년 3월 27일에 1.8720 USD(이전 대비 +5.70%), 2026년 6월 26일에 1.9620 USD(이전 대비 +4.81%)로 꾸준한 증가세를 나타냈습니다.\n\n그러나 가장 최근인 2026년 9월 28일 지급액은 1.8230 USD로 이전 대비 -7.08% 줄어들었습니다. 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다.\n\n<table>\n<tr><th>지급일</th><th>배당금(USD)</th><th>직전 대비 변동률</th></tr>\n<tr><td>2025-12-22</td><td>1.7710</td><td>+1.78%</td></tr>\n<tr><td>2026-03-27</td><td>1.8720</td><td>+5.70%</td></tr>\n<tr><td>2026-06-26</td><td>1.9620</td><td>+4.81%</td></tr>\n<tr><td>2026-09-28</td><td>1.8230</td><td>-7.08%</td></tr>\n</table>\n\n단기적인 분기 배당금의 변동에도 불구하고 VOO의 장기 배당성장률은 5.57%를 기록하고 있습니다. 이는 지수 구성 종목들의 이익 성장과 배당 확대가 시차를 두고 반영되는 구조적 특징에 기반합니다.\n\n<h3>보수 비용과 투자 매력도 분석</h3>\n\nVOO의 운용보수는 연 0.03%로 글로벌 ETF 중 최저 수준입니다. 보수 비용의 차이는 장기 투자 시 수익률에 직접적인 영향을 미칩니다. 0.1%포인트의 보수 차이라도 1억 원을 10년간 투자할 경우 약 998,204원의 잠재적 손실 차이를 발생시킵니다.\n\n투자 매력도 점수는 총 6.9점으로 평가됩니다. 항목별로는 낮은 운용보수로 +1.5점, 보통 수준의 MDD로 0점, 강세인 배당성장률로 +1.0점을 얻었으나 높은 환노출 리스크 영향으로 -0.6점이 반영된 결과입니다.\n\n<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQTmlfNkNmSnc5eHlIaG55Mzlkd2dmR1dyZUxiWFZEV2xBZl9sQ2VKN2VhaUIxNHlBdjJmX1B1Q3daRm9HcFNqRjdMd3JnNGtKRkwwUGd3VnVhb1UxNjZDcWp6NHpjR1ZOQ2RjaWJWaVRzZXk3QllBZUlGbnBFblNXNXZyNGxCQU90ZUtjMkctZTZrUnpKSVhEQ1VDbkIyRFZm?oc=5\" target=\"_blank\" rel=\"noopener\">TradingKey</a>에 따르면 S&P 500 ETF 자산이 사상 처음으로 1조 달러를 돌파하는 과정에서 뱅가드 VOO가 글로벌 기록을 수립하기도 했습니다.\n\n실제 비용 비교 자료를 볼 때는 단순 운용보수뿐만 아니라 기타 수수료와 매매 비용까지 합산된 총비용을 고려하여 비용 효율성을 판단해야 합니다.\n\n<h3>한국 투자자 주의사항과 세금</h3>\n\nVOO는 미국 거래소에 상장된 해외 상장 ETF입니다. 원화로 직접 매수할 수 없으며 달러로 거래되므로 환노출 위험을 항상 수반합니다. 환율 변동에 따라 주가 상승분 상쇄되거나 추가 손익이 발생할 수 있습니다.\n\n세금 제도에서도 국내 상장 상품과 명확한 차이가 존재합니다. 과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 160,500원 수준의 세금이 발생합니다. 매매차익은 연 250만 원 기본공제 후 22%의 양도소득세가 부과되며 다음 해 5월에 직접 신고해야 합니다.\n\n해외 상장 ETF는 ISA, 연금저축, IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 VOO ETF의 운용보수는 얼마인가요?</h4>\nVOO의 연간 운용보수는 0.03%입니다. 동일한 S&P 500 지수를 추종하는 다른 경쟁 ETF들과 비교해서도 매우 저렴한 수준입니다.\n\n<h4>🔸 VOO 배당금은 얼마나 자주 나오나요?</h4>\nVOO는 분기 배당을 실시하며 3월, 6월, 9월, 12월 연 4회 지급됩니다. 지급 시기별로 상장기업들의 배당 일정에 따라 분기별 지급액에는 차이가 발생할 수 있습니다.\n\n<h4>🔸 국내 계좌로 VOO를 직접 매수할 수 있나요?</h4>\n일반 증권사 해외주식 거래 계좌를 통해서는 달러로 매수할 수 있습니다. 하지만 ISA, 연금저축, IRP 같은 절세 계좌 내에서는 해외 상장 ETF인 VOO를 직접 매수할 수 없습니다.\n\n<h3>정리</h3>\n\nS&P 500 지수를 추종하는 VOO는 미국 시장의 성장을 가장 효율적이고 저렴한 비용으로 향유할 수 있는 장기 투자자의 핵심 자산입니다. 연 0.03%의 저렴한 운용보수와 오랜 기간 검증된 지수 추종 능력은 포트폴리오의 기초 체력을 다지는 주력 자산으로 적합합니다.\n\n다만 해외 상장 ETF 특성상 달러 환율 변동에 따른 환노출 위험과 22%의 양도소득세 과세 체계를 정확히 이해해야 합니다. 개인연금이나 ISA 계좌를 활용해 세제 혜택을 받고자 하는 경우라면 국내 상장된 동일 지수 ETF를 대안으로 검토하는 것이 바람직합니다.\n\n태그: VOO S&P500 미국ETF 뱅가드 해외주식",
+  "2": "<h1>VOO ETF 분석: S&P 500 수익률과 연 배당금 현황 정리</h1>\n<!-- Vanguard에서 운용하는 VOO ETF의 최근 수익률, 배당금 현황, 운용보수 비용 및 한국 투자자를 위한 세금 체계를 객관적 지표를 통해 알기 쉽게 정리합니다. -->\n\n미국 주식 시장 전체의 성장을 공유하는 방법으로 S&P 500 지수 투자를 선택하는 경우가 많습니다. 그중에서도 Vanguard에서 2010년 9월 7일에 상장한 Vanguard S&P 500 ETF(VOO)는 글로벌 투자자들에게 대표적인 선택지로 꼽힙니다.\n\n현재 미국 10년물 국채 금리가 4.929%인 고금리 국면과 공포/탐욕 지수 26점의 공포 심리가 지속되는 시장 환경에서 VOO의 최근 성과를 점검할 필요가 있습니다. 달러 환율이 1,335.10원으로 비교적 안정된 흐름을 보이는 가운데 VOO의 기간별 수익률과 배당 구조, 비용 효과를 파악해 봅니다.\n\n<h3>VOO 수익률과 S&P 500 흐름</h3>\n\nVOO는 미국 대형주 중심의 S&P 500 지수를 정직하게 추종하는 구조를 갖추고 있습니다. 최근 단기 성과를 보면 1개월 수익률은 -0.86%를 기록하며 다소 주춤했지만, 3개월 수익률은 1.45%, 6개월 수익률은 5.76%로 반등하는 모습을 보여줍니다.\n\n중장기 성과 측면에서는 1년 수익률이 12.08%에 달해 미국 대형주 시장의 건재함을 나타내고 있습니다. 변동성 위험을 측정하는 5년 기준 최대 낙폭(MDD)은 -24.52%로 집계되었습니다.\n\n시뮬레이션 결과에 따르면 5년 전 1,000만 원을 VOO에 투자했을 때 현재 가치는 약 1,761만 원에 달합니다. 시장의 일시적 변동성에도 불구하고 장기 우상향하는 지수의 성격이 반영된 결과입니다.\n\n수익률과 최대 낙폭 데이터는 하락장에서 자산이 얼마나 감소했는지를 파악하고 자신의 위험 성향과 장기 투자 계획을 점검하는 기준으로 활용할 수 있습니다.\n\n<h3>배당금 현황과 배당 성장성</h3>\n\nVOO는 분기별로 배당금을 지급하며 연 환산 배당수익률은 1.07% 수준입니다. 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다.\n\n<table>\n<tr><th>지급일</th><th>배당금(USD)</th><th>직전 대비 변동률</th></tr>\n<tr><td>2025-12-22</td><td>1.7710</td><td>+1.78%</td></tr>\n<tr><td>2026-03-27</td><td>1.8720</td><td>+5.70%</td></tr>\n<tr><td>2026-06-26</td><td>1.9620</td><td>+4.81%</td></tr>\n<tr><td>2026-09-28</td><td>1.8230</td><td>-7.08%</td></tr>\n</table>\n\n단기적인 분기 배당금의 변동에도 불구하고 VOO의 장기 배당성장률은 5.57%를 기록하고 있습니다. 이는 지수 구성 종목들의 이익 성장과 배당 확대가 시차를 두고 반영되는 구조적 특징에 기반합니다.\n\n<h3>보수 비용과 투자 매력도 분석</h3>\n\nVOO의 운용보수는 연 0.03%로 글로벌 ETF 중 최저 수준입니다. 보수 비용의 차이는 장기 투자 시 수익률에 직접적인 영향을 미칩니다. 0.1%포인트의 보수 차이라도 1억 원을 10년간 투자할 경우 약 998,204원의 잠재적 손실 차이를 발생시킵니다.\n\n투자 매력도 점수는 총 6.9점으로 평가됩니다. 항목별로는 낮은 운용보수로 +1.5점, 보통 수준의 MDD로 0점, 강세인 배당성장률로 +1.0점을 얻었으나 높은 환노출 리스크 영향으로 -0.6점이 반영된 결과입니다.\n\n<a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQTmlfNkNmSnc5eHlIaG55Mzlkd2dmR1dyZUxiWFZEV2xBZl9sQ2VKN2VhaUIxNHlBdjJmX1B1Q3daRm9HcFNqRjdMd3JnNGtKRkwwUGd3VnVhb1UxNjZDcWp6NHpjR1ZOQ2RjaWJWaVRzZXk3QllBZUlGbnBFblNXNXZyNGxCQU90ZUtjMkctZTZrUnpKSVhEQ1VDbkIyRFZm?oc=5\" target=\"_blank\" rel=\"noopener\">TradingKey</a>에 따르면 S&P 500 ETF 자산이 사상 처음으로 1조 달러를 돌파하는 과정에서 뱅가드 VOO가 글로벌 기록을 수립하기도 했습니다.\n\n실제 비용 비교 자료를 볼 때는 단순 운용보수뿐만 아니라 기타 수수료와 매매 비용까지 합산된 총비용을 고려하여 비용 효율성을 판단해야 합니다.\n\n<h3>한국 투자자 주의사항과 세금</h3>\n\nVOO는 미국 거래소에 상장된 해외 상장 ETF입니다. 원화로 직접 매수할 수 없으며 달러로 거래되므로 환노출 위험을 항상 수반합니다. 환율 변동에 따라 주가 상승분 상쇄되거나 추가 손익이 발생할 수 있습니다.\n\n세금 제도에서도 국내 상장 상품과 명확한 차이가 존재합니다. 과세계좌에서 연 배당금 1억 원을 산정할 경우 미국 현지 원천징수 세율 15%가 적용되어 1,500만 원 수준의 세금이 발생합니다. 매매차익은 연 250만 원 기본공제 후 22%의 양도소득세가 부과되며 다음 해 5월에 직접 신고해야 합니다.\n\n해외 상장 ETF는 ISA, 연금저축, IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 VOO ETF의 운용보수는 얼마인가요?</h4>\nVOO의 연간 운용보수는 0.03%입니다. 동일한 S&P 500 지수를 추종하는 다른 경쟁 ETF들과 비교해서도 매우 저렴한 수준입니다.\n\n<h4>🔸 VOO 배당금은 얼마나 자주 나오나요?</h4>\nVOO는 분기 배당을 실시하며 3월, 6월, 9월, 12월 연 4회 지급됩니다. 지급 시기별로 상장기업들의 배당 일정에 따라 분기별 지급액에는 차이가 발생할 수 있습니다.\n\n<h4>🔸 국내 계좌로 VOO를 직접 매수할 수 있나요?</h4>\n일반 증권사 해외주식 거래 계좌를 통해서는 달러로 매수할 수 있습니다. 하지만 ISA, 연금저축, IRP 같은 절세 계좌 내에서는 해외 상장 ETF인 VOO를 직접 매수할 수 없습니다.\n\n<h3>정리</h3>\n\nS&P 500 지수를 추종하는 VOO는 미국 시장의 성장을 가장 효율적이고 저렴한 비용으로 향유할 수 있는 장기 투자자의 핵심 자산입니다. 연 0.03%의 저렴한 운용보수와 오랜 기간 검증된 지수 추종 능력은 포트폴리오의 기초 체력을 다지는 주력 자산으로 적합합니다.\n\n다만 해외 상장 ETF 특성상 달러 환율 변동에 따른 환노출 위험과 22%의 양도소득세 과세 체계를 정확히 이해해야 합니다. 개인연금이나 ISA 계좌를 활용해 세제 혜택을 받고자 하는 경우라면 국내 상장된 동일 지수 ETF를 대안으로 검토하는 것이 바람직합니다.\n\n태그: VOO S&P500 미국ETF 뱅가드 해외주식"
+ },
+ "minutes": 4.4
+}
