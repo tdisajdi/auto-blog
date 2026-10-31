@@ -1,0 +1,266 @@
+{
+ "article_type": "guide",
+ "topic_id": "overseas-vs-domestic-tax",
+ "title_seed": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+ "category": "etf",
+ "started_at": "2026-10-31T11:15:45",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.0,
+   "chars": 2040
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.8,
+   "chars": 3392
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.0,
+   "chars": 217
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.5,
+   "chars": 385
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 134
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.9,
+   "chars": 3253
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 20.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 23.2,
+   "chars": 573
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.4,
+   "chars": 383
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.4,
+   "chars": 461
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.5,
+   "chars": 3106
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.5,
+   "chars": 460
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.9,
+   "chars": 332
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.0,
+   "chars": 313
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "11:15:52",
+   "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까?",
+   "sections": [
+    "해외 상장 ETF 세금 구조",
+    "국내 상장 ETF 일반계좌 세금",
+    "절세 계좌 활용 가이드"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "11:16:07",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "11:16:30",
+   "score": 0.97,
+   "passed": false,
+   "issues": [
+    "[사소·독자 편집] '해외 상장 ETF와 국내 상장 ETF의 선택은 단순 수익률 비교를 넘어 매매 차익 규모와 활용할 계좌 종류에' → 정리 섹션에서 본문의 내용을 다시 장황하게 반복하여 설명하고 있습니다. / 고칠 방법: 결론부는 핵심 결론만 간결하게 요약하여 전달하는 것이 좋습니다."
+   ],
+   "lint": [
+    "같은 숫자 '2,000만원'를 5번 씀 - 처음 설명할 때 한 번, 정리에서 한 번이면 충분",
+    "같은 숫자 '250만원'를 4번 씀 - 처음 설명할 때 한 번, 정리에서 한 번이면 충분"
+   ],
+   "chars": 3006
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "11:16:43",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "11:17:55",
+   "score": 0.5,
+   "passed": false,
+   "issues": [
+    "[중요·사실 검증] 'ISA(개인종합자산관리계좌)는 연간 납입 한도가 정해져 있으며 3년의 의무가입 기간을 채워야 합니다. ISA' → ISA 계좌의 중요한 핵심 한도 정보인 비과세 한도(일반형 200만 원, 서민형 400만 원) 및 연간 납입 한도(2,000만 원)의 구체적 금액 수치가 빠져 있습니다. / 고칠 방법: 비과세 한도(200만 원, 서민형 400만 원)와 연간 납입 한도(2,000만 원) 구체 수치를 문장에 명시해 주세요.",
+    "[사소·독자 편집] '미국 상장 ETF에서 나오는 배당금은 현지에서 15%의 세율로 원천징수된 후 지급됩니다.' → 본문에서 이미 상세히 설명한 배당금 과세 내용을 FAQ 섹션에서 유사하게 되풀이함 / 고칠 방법: FAQ에서는 긴 설명 대신 핵심 답변만 간결하게 요약하도록 수정",
+    "[치명·정책·신뢰] '즉, A 해외지수 ETF에서 손실을 보고 B 해외지수 ETF에서 이익을 보았더라도, B ETF의 이익 전체에' → 국내 상장 해외지수 ETF는 동일 계좌 내 다른 국내 상장 ETF 간 손익 통산이 가능함에도 불가능하다고 잘못 서술하여 사실 오류가 있습니다. / 고칠 방법: 국내 상장 ETF는 동일 계좌 내에서 동종 상품 간 손익 통산이 적용된다는 내용으로 수정해야 합니다."
+   ],
+   "chars": 2868
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "11:18:18",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "11:18:43",
+   "score": 0.41,
+   "passed": false,
+   "issues": [
+    "[치명·사실 검증] '국내 상장 ETF는 동일 계좌 내에서 동종 상품 간 손익 통산이 적용됩니다.' → 사실 자료에 의하면 국내 상장 해외지수 ETF는 매도 시 다른 상품의 손실과 합산(손익 통산)되지 않으나, 손익 통산이 적용된다고 잘못 기재되었습니다. / 고칠 방법: 문장을 '국내 상장 해외지수 ETF는 매도 시 보유기간 이익에 과세되며, 다른 상품과의 손익 통산이 적용되지 않습니다.'로 수정해야 합니다.",
+    "[중요·독자 편집] '다른 상품과의 손익 통산은 지원되지 않습니다.' → 본문의 '동일 계좌 내 동종 상품 간 손익 통산 적용' 내용과 FAQ의 '손익 통산 지원 안 됨' 설명이 서로 모순됩니다. / 고칠 방법: FAQ의 손익 통산 관련 내용을 본문의 설명과 일치하도록 수정해야 합니다.",
+    "[중요·정책·신뢰] '다른 상품과의 손익 통산은 지원되지 않습니다.' → 앞서 본문에서 언급한 '동일 계좌 내 동종 상품 간 손익 통산 적용' 내용과 모순됩니다. / 고칠 방법: 동일 계좌 내 동종 상품 간에는 손익 통산이 적용된다고 수정해야 합니다."
+   ],
+   "lint": [
+    "같은 숫자 '2,000만원'를 4번 씀 - 처음 설명할 때 한 번, 정리에서 한 번이면 충분"
+   ],
+   "chars": 2721
+  }
+ ],
+ "result": {
+  "status": "failed",
+  "reason": "다시 쓴 판이 기준 미달 - 원래 글 유지",
+  "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까?",
+  "score": 0.5,
+  "issues": [
+   "[중요·사실 검증] 'ISA(개인종합자산관리계좌)는 연간 납입 한도가 정해져 있으며 3년의 의무가입 기간을 채워야 합니다. ISA' → ISA 계좌의 중요한 핵심 한도 정보인 비과세 한도(일반형 200만 원, 서민형 400만 원) 및 연간 납입 한도(2,000만 원)의 구체적 금액 수치가 빠져 있습니다. / 고칠 방법: 비과세 한도(200만 원, 서민형 400만 원)와 연간 납입 한도(2,000만 원) 구체 수치를 문장에 명시해 주세요.",
+   "[치명·정책·신뢰] '즉, A 해외지수 ETF에서 손실을 보고 B 해외지수 ETF에서 이익을 보았더라도, B ETF의 이익 전체에' → 국내 상장 해외지수 ETF는 동일 계좌 내 다른 국내 상장 ETF 간 손익 통산이 가능함에도 불가능하다고 잘못 서술하여 사실 오류가 있습니다. / 고칠 방법: 국내 상장 ETF는 동일 계좌 내에서 동종 상품 간 손익 통산이 적용된다는 내용으로 수정해야 합니다.",
+   "[사소·독자 편집] '미국 상장 ETF에서 나오는 배당금은 현지에서 15%의 세율로 원천징수된 후 지급됩니다.' → 본문에서 이미 상세히 설명한 배당금 과세 내용을 FAQ 섹션에서 유사하게 되풀이함 / 고칠 방법: FAQ에서는 긴 설명 대신 핵심 답변만 간결하게 요약하도록 수정"
+  ]
+ },
+ "minutes": 3.0
+}
