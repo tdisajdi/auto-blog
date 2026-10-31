@@ -30,6 +30,7 @@ from blog_engine import (
     get_gemini_response, _post_process_blog_content, _inject_table_of_contents,
     _check_duplicate, _load_state, _register_article, publish_to_wordpress,
     _telegram_send_message, _load_json_file, _save_json_file, get_wordpress_recent_posts,
+    wp_find_post_by_url, wp_update_post,
     _insert_operator_memo, _discover_due, _mark_discovered,
 )
 import media_engine
@@ -215,17 +216,40 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     body, slots = _add_media(body, title, category_label, chart)
     body += closing_html
 
-    if _check_duplicate(title, body, _load_state()):
+    # 다시 쓰기: REPLACE_URL이 있으면 새 글 대신 그 글을 바꾼다(중복 검사 건너뜀 - 자기 자신과 비슷한 게 당연)
+    replace_url = os.environ.get("REPLACE_URL", "").strip()
+    target = wp_find_post_by_url(replace_url) if replace_url else None
+    if replace_url and not target:
+        log.finish(status="failed", reason=f"바꿀 글을 못 찾음: {replace_url}", title=title)
+        _telegram_send_message(f"⚠️ 다시 쓰기 실패: 바꿀 글을 못 찾았어요\n{replace_url}")
+        return "failed", title, ""
+    if not target and _check_duplicate(title, body, _load_state()):
         log.finish(status="failed", reason="이미 올린 글과 너무 비슷함", title=title)
         _telegram_send_message(f"⚠️ 발행 중단: '{title}'이(가) 이미 올린 글과 너무 비슷해서 올리지 않았어요.")
         return "failed", title, ""
 
     score, issues = result.get("score"), result.get("issues") or []
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
-    status = "publish" if (score is not None and score >= min_q) else "draft"
+    status = "publish" if (score is not None and score >= min_q and result.get("clean", True)) else "draft"
     slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(plan.get("slug", "")).lower().replace(" ", "-"))).strip("-") or None
+    score_text = "검수 실패" if score is None else f"{score:.2f}"
     featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"))
-    ok, url = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
+    if target and status == "draft":     # 다시 쓴 판이 기준 미달이면 원래 글은 건드리지 않는다
+        log.finish(status="failed", reason="다시 쓴 판이 기준 미달 - 원래 글 유지", title=title, score=score,
+                   issues=issues[:8])
+        issues_text = "\n".join(f"- {i}" for i in issues[:6]) or "- (지적 내용 없음)"
+        _telegram_send_message(f"📝 다시 쓰기 결과가 기준에 못 미쳐서 원래 글은 그대로 뒀어요\n{replace_url}\n"
+                               f"품질 점수: {score_text} (기준 {min_q})\n남은 지적:\n{issues_text}\n{log.summary_line()}")
+        return "failed", title, ""
+    if target:
+        import blog_engine
+        post_id = target[0]
+        ok = wp_update_post(post_id, title=title, content=body, tags=tags, featured_image=featured)
+        url = replace_url if ok else "글 바꾸기 실패(위 로그 참고)"
+        blog_engine.LAST_PUBLISHED_POST_ID = post_id
+        log.step("다시 쓰기", post_id=post_id, url=replace_url, ok=ok)
+    else:
+        ok, url = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
     score_text = "검수 실패" if score is None else f"{score:.2f}"
     if not ok:
         log.finish(status="failed", reason=f"워드프레스 업로드 실패: {str(url)[:200]}", title=title, score=score)

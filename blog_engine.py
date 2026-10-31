@@ -2069,6 +2069,22 @@ def wp_update_post_content(post_id, content):
     return False
 
 
+def wp_update_post(post_id, **fields):
+    """이미 올라간 글의 제목·본문·태그·대표 이미지 등을 한꺼번에 바꾼다(글 다시 쓰기용). 성공하면 True."""
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID and post_id):
+        return False
+    data = {k: (",".join(v) if isinstance(v, (list, tuple)) else str(v)) for k, v in fields.items() if v is not None}
+    try:
+        r = requests.post(f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/{post_id}",
+                          headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"}, data=data, timeout=60)
+        if r.status_code in (200, 201):
+            return True
+        print(f"⚠️ 글 바꾸기 실패: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        print(f"⚠️ 글 바꾸기 중 오류: {type(e).__name__}")
+    return False
+
+
 def wp_find_post_by_url(url):
     """글 주소로 (글 번호, 제목, 분야 코드)를 찾는다. 못 찾으면 None.
     텔레그램으로 그림을 보낼 때 설명에 글 주소를 붙이면 아무 글이나 썸네일을 바꿀 수 있게 하는 용도."""

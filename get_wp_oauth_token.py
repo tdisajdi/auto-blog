@@ -33,13 +33,16 @@ def main():
     client_id = input("Client ID를 입력하세요: ").strip()
     client_secret = input("Client Secret을 입력하세요: ").strip()
 
-    # scope=posts로 글/태그 작성 권한만 요청 (필요시 posts,media로 늘려도 됨)
+    # 권한 범위: 예전엔 scope=posts(글만)였는데, 그러면 그림 올리기(media)와 카테고리 찾기가 403으로 막혔다
+    # (2026-10-31 실제 확인). 기본값은 scope를 비워서 "승인 화면에서 고른 블로그 1개"의 전체 권한을 받는 방식.
+    # 다른 블로그에는 접근 못 한다. 안 되면 "posts media"를 입력해 다시 시도.
+    scope = input("권한 범위 (그냥 Enter = 블로그 1개 전체 권한 / 예: posts media): ").strip()
     auth_url = (
         f"{AUTHORIZE_URL}?"
         f"client_id={urllib.parse.quote(client_id)}"
         f"&redirect_uri={urllib.parse.quote(REDIRECT_URI)}"
         f"&response_type=code"
-        f"&scope=posts"
+        + (f"&scope={urllib.parse.quote(scope)}" if scope else "")
     )
 
     print("\n1) 아래 URL을 브라우저에 붙여넣어 열고, 로그인 후 Approve(승인)를 누르세요:\n")
