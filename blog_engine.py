@@ -550,6 +550,10 @@ def _is_similar_title(a, b, threshold=0.85):
 def _check_duplicate(title, content, state):
     h = _get_text_hash(content)
     for item in state.get('articles', []):
+        # 임시글(품질 미달로 공개 안 된 글)은 독자에게 안 보이므로 중복 비교에서 뺀다.
+        # 안 그러면 같은 주제를 고친 코드로 다시 쓸 때 자기 임시글 때문에 막힌다.
+        if item.get('status') == 'draft':
+            continue
         if item.get('hash') == h or item.get('title') == title:
             return True
         if _is_similar_title(item.get('title', ''), title):
