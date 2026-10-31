@@ -1,0 +1,14 @@
+{
+  "ticker": "ISSUE:rates",
+  "label": "이슈 해설 - 금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
+  "article_type": "이슈 해설",
+  "reason": "미국 10년물 금리 4.929%",
+  "candidates": [],
+  "created_at": "2026-10-31T22:31:16.792358",
+  "reminder_count": 0,
+  "message_id": 44,
+  "message_ids": [
+    44
+  ],
+  "sent_at": "2026-10-31T22:31:17.463208"
+}
