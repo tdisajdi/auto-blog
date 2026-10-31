@@ -5886,6 +5886,10 @@ def run_automation():
     if not can_proceed and os.environ.get("REPLACE_URL", "").strip():
         print("ℹ️ 다시 쓰기(REPLACE_URL)는 새 글이 아니라서 발행 간격과 상관없이 진행합니다.")
         can_proceed = True
+    import blog_engine as _be
+    if not can_proceed and not _be.auto_publish_enabled():
+        print("ℹ️ 자동 발행이 꺼져 있어 임시글로만 올라가므로 발행 간격과 상관없이 진행합니다.")
+        can_proceed = True
     if not can_proceed:
         force = _ask_yn("❓ 그래도 지금 진행하시겠습니까? (y/n): ", default_when_noninteractive='n')
         if force not in ['y', 'yes', '네', 'ㅇ']:
