@@ -20,6 +20,7 @@ BANNED = [
     (r"월등히|압도적|최고의|업계\s*최저|(최저|최고)\s*수준", "근거 없는 순위·과장 - 비교 대상과 숫자로"),
     (r"무조건|반드시\s*(오른|상승|수익)|확실한\s*수익", "단정·수익 보장 표현"),
 ]
+PUFFERY = ["막대한", "공고히", "정교하게", "견조한", "탄탄한", "놀라운", "엄청난", "최선의", "가장 대표적인"]
 VAGUE_SOURCES = ["외신 보도", "외신에 따르면", "전문가들은", "업계에 따르면", "관계자에 따르면", "알려졌다"]
 
 
@@ -75,6 +76,9 @@ def fix_and_check(html):
         m = re.search(pat, text)
         if m:
             issues.append(f"금지 표현 '{m.group(0)}': {why}")
+    puff = [w for w in PUFFERY if w in text]
+    if puff:
+        issues.append(f"{SOFT}꾸밈말 {', '.join(puff[:4])} - 숫자나 사실로 바꿀 수 있으면 바꿀 것")
     for v in VAGUE_SOURCES:
         if v in text:
             issues.append(f"확인할 수 없는 출처 표현: '{v}' - 링크 있는 기사로 바꾸거나 삭제")
@@ -137,6 +141,29 @@ def _drop_repeated_sentences(h, fixes):
         last = b.end()
     out.append(h[last:])
     return "".join(out)
+
+
+def _nums(t):
+    return set(re.findall(r"\d[\d,]*\.?\d*", t or ""))
+
+
+def drop_copied_tables(h, visual_texts, fixes):
+    """작가가 시각 자료(코드가 넣는 표·그래프)의 숫자를 베껴 표를 또 만들면 그 표를 지운다(2026-10-31 VOO: 비용 비교표를
+    손으로 다시 만들어 칸이 뒤섞임). 표의 숫자 중 절반 이상, 3개 이상이 시각 자료 숫자와 같으면 베낀 표로 본다."""
+    pool = set()
+    for t in visual_texts or []:
+        pool |= {n for n in _nums(t) if len(n.replace(",", "").replace(".", "")) >= 3}
+    if not pool:
+        return h
+
+    def _check(m):
+        ns = {n for n in _nums(text_of(m.group(0))) if len(n.replace(",", "").replace(".", "")) >= 3}
+        same = ns & pool
+        if len(same) >= 3 and len(same) >= len(ns) / 2:
+            fixes.append(f"시각 자료를 베낀 표 삭제(같은 숫자 {len(same)}개)")
+            return ""
+        return m.group(0)
+    return re.sub(r"<table.*?</table>", _check, h, flags=re.S | re.I)
 
 
 SOFT = "[참고] "     # 이 표시가 붙은 지적은 고쳐쓰기에 전달만 하고 발행을 막지는 않는다

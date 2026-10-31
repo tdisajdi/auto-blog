@@ -79,3 +79,14 @@ assert "투자금 1억 원 × 배당수익률 1.07% = 연 배당 약 107만 원 
 assert "양도소득세 약 165만 원" in fs and "6.9" not in fs and "정보 없음" not in fs and "basic: 보수 0.03%" in fs
 assert "운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 약 998,204원" in fs
 print("fact sheet + banned ok")
+
+# 7) 작가가 시각 자료 숫자를 베껴 만든 표는 코드가 지운다(직접 쓴 다른 표는 남김). 꾸밈말은 참고만.
+fx = []
+vis = "해외 직접투자 524,983원 45,949,339원 10.2% 국내 32,707,032원 21,015,443원"
+copied = "<p>a</p><table><tr><td>524,983원</td><td>45,949,339원</td><td>32,707,032원</td></tr></table><p>b</p>"
+own = "<table><tr><td>2025-12-22</td><td>1.7710</td></tr></table>"
+assert "<table" not in lint.drop_copied_tables(copied, [vis], fx) and fx
+assert lint.drop_copied_tables(own, [vis], []) == own
+_, iss7, _ = lint.fix_and_check("<h1>t</h1><p>막대한 자금을 정교하게 추종합니다.</p>\n태그: a")
+assert any("꾸밈말" in i for i in iss7) and not any("꾸밈말" in i for i in lint.blocking(iss7))
+print("copied table + puffery ok")
