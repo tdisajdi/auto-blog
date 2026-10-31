@@ -34,5 +34,41 @@
     "kind": "slot",
     "slot": 2,
     "heading": "자주 묻는 질문"
+  },
+  "19": {
+    "post_id": 243,
+    "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+    "category": "etf",
+    "url": "https://ondo99.com/2026/10/31/overseas-vs-domestic-etf-tax-guide/",
+    "created_at": "2026-10-31T01:03:25.710087",
+    "kind": "thumb"
+  },
+  "20": {
+    "post_id": 243,
+    "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+    "category": "etf",
+    "url": "https://ondo99.com/2026/10/31/overseas-vs-domestic-etf-tax-guide/",
+    "created_at": "2026-10-31T01:03:25.710087",
+    "kind": "thumb"
+  },
+  "21": {
+    "post_id": 243,
+    "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+    "category": "etf",
+    "url": "https://ondo99.com/2026/10/31/overseas-vs-domestic-etf-tax-guide/",
+    "created_at": "2026-10-31T01:03:25.710087",
+    "kind": "slot",
+    "slot": 1,
+    "heading": "국내 상장 ETF 일반계좌 과세 기준"
+  },
+  "22": {
+    "post_id": 243,
+    "title": "해외 상장 ETF vs 국내 상장 ETF, 세금까지 따지면 뭐가 유리할까",
+    "category": "etf",
+    "url": "https://ondo99.com/2026/10/31/overseas-vs-domestic-etf-tax-guide/",
+    "created_at": "2026-10-31T01:03:25.710087",
+    "kind": "slot",
+    "slot": 2,
+    "heading": "자주 묻는 질문"
   }
 }
