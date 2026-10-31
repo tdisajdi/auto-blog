@@ -1548,7 +1548,14 @@ def _extract_facts_from_response(response_text, part_num):
         print(f"⚠️ 팩트 추출 오류 (Part {part_num}): {e}")
         return {"html": response_text, "facts": {}}
 
+    # AI가 {"html": ...} 대신 목록([...])이나 다른 모양으로 답하는 경우가 있다(2026-10-31 실제로 멈춤).
+    if isinstance(response_data, list):
+        response_data = next((x for x in response_data if isinstance(x, dict)), {})
+    if not isinstance(response_data, dict):
+        return {"html": response_text, "facts": {}}
     facts = response_data.get('facts', {})
+    if not isinstance(facts, dict):
+        facts = {}
     html = response_data.get('html', response_data.get('content', response_text))
     print(f"✅ Part {part_num} 팩트 추출 완료")
     return {"html": html, "facts": facts}
