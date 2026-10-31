@@ -62,3 +62,20 @@ assert 'data-visual="basic"' not in b
 reg = calls["reg"]["extra_data"]
 assert reg["VOO"]["yield"] == "1.07%" and reg["_meta"]["visuals"] == ["backtest"] and reg["_meta"]["article_type"] == "analysis"
 print("analysis article ok")
+
+# 6) 금지 표현은 코드가 막는다(발행 막는 지적), 자료표는 이름표에 기준을 붙이고 빈 값은 뺀다
+from ondo.checks import lint
+_, iss, _ = lint.fix_and_check("<h1>t</h1><p>VOO는 장기 투자자의 핵심 자산으로 적합합니다. 보수는 업계 최저 수준입니다.</p>\n태그: a")
+bad = [i for i in iss if i.startswith("금지 표현")]
+assert len(bad) == 3 and lint.blocking(bad) == bad, iss
+import types
+ea = types.SimpleNamespace(_is_overseas_listed=lambda d: d.get("listing") == "해외 상장", OVERSEAS_ACCOUNT_NOTE="직접 못 삼",
+                           TAX_US_DIVIDEND_WITHHOLDING=0.15, TAX_DOMESTIC_DIVIDEND=0.154, OVERSEAS_CG_DEDUCTION=2_500_000,
+                           TAX_OVERSEAS_CAPITAL_GAINS=0.22, ISA_TAX_FREE_LIMIT=2_000_000, ISA_SEPARATE_TAX=0.099)
+d = {"name": "Vanguard S&P 500 ETF", "listing": "해외 상장", "yield": "1.07%", "expense_ratio": "0.03%", "website": "정보 없음",
+     "returns": {"1년": 12.08}, "custom_attractiveness_score": 6.9, "fee_impact_100m_10y": "약 998,204원 (0.1% 포인트 차이로)"}
+fs = an.fact_sheet(["VOO"], {"VOO": d}, ea, {"usd_krw": "1,335원"}, [], {"basic": "<p>보수 0.03%</p>"}, "10월 31일")
+assert "투자금 1억 원 × 배당수익률 1.07% = 연 배당 약 107만 원 → 세금 약 16만 원" in fs, fs
+assert "양도소득세 약 165만 원" in fs and "6.9" not in fs and "정보 없음" not in fs and "basic: 보수 0.03%" in fs
+assert "운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 약 998,204원" in fs
+print("fact sheet + banned ok")
