@@ -67,7 +67,9 @@ BASE_RULES = (
     "- 문단은 2~3문장 단위로 짧게. 대제목은 `<h3>`, 소제목은 `<h4>🔸 소제목</h4>` 형식만 쓰세요.\n"
     "- 표는 `<table><tr><th><td>` HTML로만 작성하세요(마크다운 표 금지). [표 절제] 표는 Part3에 1개만 넣고, "
     "다른 파트에서는 표를 만들지 말고 문장으로 설명하세요. 이미지·차트는 시스템이 넣으므로 <img>를 쓰지 마세요.\n"
-    "- [숫자 원칙] [사실 자료]에 있는 숫자만 쓰세요. 자료에 없는 수치·날짜·인용을 만들어내지 마세요.\n"
+    "- [숫자 원칙] [사실 자료]에 있는 숫자만 쓰세요. 자료에 없는 수치·날짜·인용을 만들어내지 마세요. "
+    "자료에서 값이 'N/A'·'없음'·'-'인 항목은 아예 언급하지 마세요('N/A로 기재' 같은 문장 금지).\n"
+    "- [제목 표기] 대제목·소제목에 'Part 1', 'Part2:' 같은 파트 번호를 쓰지 마세요(내부 구분용일 뿐입니다).\n"
     "- [출처 원칙] 뉴스는 [사실 자료]·[관련 뉴스]·[최근 뉴스]에 있는 기사만, 매체명에 `<a href=\"주소\" target=\"_blank\" rel=\"noopener\">` "
     "링크를 달아 인용하세요. '외신 보도', '전문가들은' 같은 확인할 수 없는 출처는 금지합니다.\n"
     "- [중복 금지] 앞 파트에서 쓴 사실·문장을 반복하지 마세요. 목차·3줄 요약·면책 문구·출처 목록은 "
@@ -160,6 +162,8 @@ def _parse_outline(res_obj):
     if any(not p.get("heading") or not p.get("focus") for p in outline):
         raise ValueError("empty heading/focus")
     outline.sort(key=lambda p: int(p["part"]))
+    for p in outline:   # 기획안 제목에 붙은 "Part 3:" 같은 번호는 빼서 글에 그대로 옮겨지지 않게
+        p["heading"] = re.sub(r"^\s*part\s*\d+\s*[:.\-)]?\s*", "", str(p["heading"]), flags=re.I) or p["heading"]
     return {"outline": outline, "key_message": res_obj.get("key_message", "")}
 
 
@@ -196,12 +200,23 @@ def plan_outline(kind_label, title_seed, facts_text):
         return drafts[0]
 
 
+# 첫 실제 글(2026-10-31, 기초 가이드)이 약 5,700자로 너무 짧았다(파트마다 2~3문단) → 파트별 분량 안내.
+PART_LENGTH = {
+    1: "[분량] 제목·메타 설명 다음 도입 본문 400~600자. 이 글에서 무엇을 알게 되는지 독자의 질문으로 시작하세요.",
+    2: "[분량] 본문 900~1,300자(소제목 2개 안팎). 자료의 사실을 하나씩 풀어 설명하세요.",
+    3: "[분량] 본문 900~1,300자 + 표 1개. 표 앞뒤로 표가 무엇을 뜻하는지 문장으로 설명하세요.",
+    4: "[분량] 본문 900~1,300자(소제목 2개 안팎). 주의할 점·한계·조건을 구체적으로.",
+    5: "[분량] 정리 300~500자 + FAQ 3~4개(각 답 2~3문장).",
+}
+
+
 def _write_parts(kind_label, title_seed, plan, facts_text, rules, session_key, category_label):
     today_str = datetime.now().strftime("%Y년 %m월 %d일")
     outline_lines = "\n".join(f"  Part{p['part']}: {p['heading']} - {p['focus']}" for p in plan["outline"])
     posts = get_wordpress_recent_posts() or []
-    link_rule = ("[내부 링크] 아래 글 중 주제와 맞는 것이 있으면 1개를 골라 `<a href=\"주소\">제목</a>`로 자연스럽게 "
-                 "소개하세요. 맞는 글이 없으면 생략하세요.\n"
+    link_rule = ("[내부 링크] 아래 글 중 이 글과 주제가 직접 이어지는 것이 있을 때만 1개를 골라, 정리 문단 끝에 "
+                 "별도 문장으로 `<p>👉 함께 보면 좋은 글: <a href=\"주소\">제목</a></p>` 형식으로 넣으세요. "
+                 "문장 중간에 다른 글 제목을 끼워 넣지 마세요. 맞는 글이 없으면 생략하세요.\n"
                  + "\n".join(f"- {p['title']} ({p.get('link', '')})" for p in posts[:15])) if posts else ""
     shared = (f"[{kind_label}] 주제: {title_seed}\n이 글은 {today_str} 기준입니다.\n{BASE_RULES}{rules}"
               f"[전체 목차 - 반드시 따르세요]\n{outline_lines}\n"
@@ -216,7 +231,8 @@ def _write_parts(kind_label, title_seed, plan, facts_text, rules, session_key, c
     parts, confirmed = {}, []
     for n in range(1, 6):
         p = plan["outline"][n - 1]
-        prompt = (f"{shared}\n[Part {n}/5 - {p['heading']}]\n지금 작성할 내용: {p['focus']}\n{extras.get(n, '')}\n\n"
+        prompt = (f"{shared}\n[Part {n}/5 - {p['heading']}]\n지금 작성할 내용: {p['focus']}\n{extras.get(n, '')}\n"
+                  f"{PART_LENGTH.get(n, '')}\n\n"
                   '[출력] JSON으로만: {"html": "생성된 HTML", "facts": {"recommended_url": "영문-소문자-하이픈-슬러그"}}')
         text, _info = _generate_part_with_check(prompt, n, f"Part{n}({p['heading']})", "\n".join(confirmed),
                                                 session_key=session_key, label=session_key.split("_")[0],
@@ -241,6 +257,8 @@ def _assemble(parts):
     title_m = re.search(r"<h1[^>]*>(.*?)</h1>", body, flags=re.S)
     title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else ""
     body = re.sub(r"<h1[^>]*>.*?</h1>", "", body, count=1, flags=re.S)  # 제목은 워드프레스 제목 칸으로
+    # AI가 대제목·소제목에 붙인 "Part 3:", "Part2 -" 같은 내부 번호 제거
+    body = re.sub(r"(<h[2-4][^>]*>\s*(?:🔸\s*)?)part\s*\d+\s*[:.\-)]?\s*", r"\1", body, flags=re.I)
     body = _inject_table_of_contents(_post_process_blog_content(body))
     return title, body, tags
 

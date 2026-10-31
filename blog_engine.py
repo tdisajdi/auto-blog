@@ -248,6 +248,7 @@ def _inject_table_of_contents(html):
         stripped_text = re.sub(r'<[^>]+>', '', inner_text).strip()
         # AI가 제목 앞에 임의로 붙인 숫자, 온점, 괄호 등 제거 (예: "1. ", "2) ")
         clean_text = re.sub(r'^\d+[\.\-\)]?\s*', '', stripped_text)
+        clean_text = re.sub(r'^part\s*\d+\s*[:.\-)]?\s*', '', clean_text, flags=re.IGNORECASE)
         
         headings.append((heading_id, clean_text))
         return open_tag + inner_text + close_tag
@@ -274,8 +275,10 @@ def _inject_table_of_contents(html):
                 if len(selected_headings) >= 5:
                     break
                     
-    # 3. 최종적으로 최대 5개까지만 자르기
-    selected_headings = selected_headings[:5]
+    # 3. 최종적으로 최대 5개까지만 자르고, 목차는 글에 나오는 순서대로 보여준다
+    #    (예전엔 '배당'·'수익' 같은 단어가 든 제목을 앞으로 당겨서 목차 순서가 뒤죽박죽이 됐다)
+    order = {hid: i for i, (hid, _) in enumerate(headings)}
+    selected_headings = sorted(selected_headings[:5], key=lambda h: order[h[0]])
 
     # 목차 아이템 생성 시 코드상의 숫자({idx}) 제거
     toc_items = ''
@@ -889,6 +892,10 @@ def _llm_quality_check(content, facts_json_str=None, max_retries=2, category_lab
         f"아래는 자동 생성된 {category_label} 블로그 글의 전체 본문(HTML 태그와 차트 스크립트는 제거된 텍스트)입니다.\n"
         "글 전체가 빠짐없이 제공되므로, 서로 다른 섹션 사이의 반복이나 모순도 함께 판단할 수 있습니다.\n"
         "이 글이 애드센스 심사와 실제 독자 관점에서 문제가 없는지 엄격하게 평가하세요.\n"
+        f"[오늘 날짜] {_kst_now():%Y년 %m월 %d일}. 오늘이나 그 이전 날짜는 미래가 아니므로 날짜 오류로 지적하지 마세요"
+        "(당신이 아는 최신 시점보다 뒤라도 실제 오늘 날짜가 기준입니다).\n"
+        "[내부 링크] 같은 블로그의 다른 글을 소개하는 링크(함께 보면 좋은 글)는 정상이니 문제로 보지 마세요. "
+        "다만 문장 중간에 다른 글 제목이 어색하게 끼어 있으면 unnatural_language로 지적하세요.\n"
         f"{facts_block}\n"
         "체크리스트:\n"
         "1. unnatural_language: 어색하거나 기계적으로 치환된 흔적이 있는 문장, 반복되는 표현이 있는가?\n"
