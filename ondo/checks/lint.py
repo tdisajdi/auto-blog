@@ -2,7 +2,7 @@
 
 fix_and_check(html) → (고친 html, 남은 문제 목록, 고친 것 목록)
 - 고치는 것: 제목의 "Part 3:" 번호, 마크다운 흔적(**굵게**, ## 제목, ``` 울타리), AI가 넣은 <img>,
-  똑같은 문장이 두 번 나온 것
+  똑같은 문단·똑같은 문장이 두 번 나온 것(하나만 남김)
 - 지적만 하는 것(고쳐쓰기 때 AI에게 전달): N/A 언급, 표 빈칸('확인 필요' 등), 확인할 수 없는 출처,
   표 2개 이상, 너무 얇은 글, 비슷한 문장 반복, 같은 숫자를 너무 여러 번 씀, 제목(<h1>)·태그 줄 없음
 - 분량은 "최소 몇 자"로 몰아붙이지 않는다. 2026-10-31 첫 글에서 4,500자 기준을 채우려고 같은 말을
@@ -57,6 +57,7 @@ def fix_and_check(html):
         seen.add(key)
         return m.group(0)
     h = re.sub(r"<p[^>]*>.*?</p>", _dedupe, h, flags=re.S)
+    h = _drop_repeated_sentences(h, fixes)
 
     text = text_of(h)
     if re.search(r"(?<![A-Za-z])N/A(?![A-Za-z])|해당 없음으로 (기재|표시)", text):
@@ -88,6 +89,41 @@ def fix_and_check(html):
     if cells:
         issues.append(f"표에 빈칸 표시('{text_of(cells[0])}') {len(cells)}곳 - 값이 없는 줄·칸은 표에서 빼거나 표 구성을 바꿀 것")
     return h, issues, fixes
+
+
+def _drop_repeated_sentences(h, fixes):
+    """글자까지 똑같은 문장이 여러 문단에 있으면 하나만 남긴다(2026-10-31: 도입 문장이 FAQ에 그대로 반복돼
+    고쳐쓰기 2번으로도 안 없어짐). 지우면 문단이 거의 빈칸이 되는 자리(예: FAQ 답)는 남기고 다른 쪽을 지운다."""
+    blocks = list(re.finditer(r"<(p|li)[^>]*>.*?</\1>", h, flags=re.S))
+    texts = [text_of(b.group(0)) for b in blocks]
+    seen = {}
+    for i, t in enumerate(texts):
+        for s in _sentences(t):
+            seen.setdefault(s, []).append(i)
+    remove = {}                                   # 문단 번호 → 지울 문장들
+    for s, where in seen.items():
+        where = sorted(set(where))
+        if len(where) < 2:
+            continue
+        left = {i: len(texts[i].replace(s, "").strip()) for i in where}
+        keep = min(where, key=lambda i: (left[i], i))          # 그 문장이 가장 꼭 필요한 문단에 남긴다
+        for i in where:
+            if i != keep and left[i] >= 20:
+                remove.setdefault(i, []).append(s)
+    if not remove:
+        return h
+    out, last = [], 0
+    for i, b in enumerate(blocks):
+        out.append(h[last:b.start()])
+        seg = b.group(0)
+        for s in remove.get(i, []):
+            if s in seg:
+                seg = seg.replace(s, "", 1)
+                fixes.append(f"반복 문장 삭제: {s[:30]}…")
+        out.append(seg)
+        last = b.end()
+    out.append(h[last:])
+    return "".join(out)
 
 
 SOFT = "[참고] "     # 이 표시가 붙은 지적은 고쳐쓰기에 전달만 하고 발행을 막지는 않는다
