@@ -5,10 +5,12 @@
   "reason": "미국 10년물 금리 4.929%",
   "candidates": [],
   "created_at": "2026-10-31T22:31:16.792358",
-  "reminder_count": 0,
-  "message_id": 44,
+  "reminder_count": 1,
+  "message_id": 46,
   "message_ids": [
-    44
+    44,
+    46
   ],
-  "sent_at": "2026-10-31T22:31:17.463208"
+  "sent_at": "2026-11-01T22:31:05.591405",
+  "last_reminded_at": "2026-11-01T22:31:04.751967"
 }
