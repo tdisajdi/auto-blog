@@ -215,7 +215,8 @@ def _section_units(plan):
                                    f"{', 표 1개 포함' if s['table'] else ', 표 만들지 말 것'})\n배정된 사실:\n"
                                    + "\n".join(f"- {f}" for f in s["facts"]),
                       f"<h3>{s['heading']}</h3>로 시작하세요."))
-    units.append(("마무리", "<h3>자주 묻는 질문</h3>(질문은 <h4>🔸 질문</h4>, 답 2~3문장) 질문: "
+    units.append(("마무리", "<h3>자주 묻는 질문</h3>(질문은 <h4>🔸 질문</h4>, 답 2~3문장, 본문 숫자 다시 나열 금지 - "
+                            "용어 뜻·자주 하는 오해·자료의 한계처럼 본문에서 안 다룬 것) 질문: "
                             + " / ".join(plan["faq"]) + "\n그다음 <h3>정리</h3> + 300~500자 정리"
                             " (+ 맞는 내부 링크가 있으면 그 문단)\n맨 마지막 줄: 태그: 태그1 태그2 태그3 태그4 태그5",
                   "<h3>자주 묻는 질문</h3>으로 시작하고 '태그:' 줄로 끝내세요."))
@@ -315,10 +316,12 @@ VALUE_KEYS = [("answers_title", "제목 질문에 답함"), ("unique_info", "이
 VALUE_MIN = 0.6
 
 
-def value_review(html, title, category_label, log, round_no):
-    """반환: (가치 점수 0~1 또는 None, {key: bool}, 개선 한 가지)."""
+def value_review(html, title, category_label, log, round_no, facts_text=""):
+    """반환: (가치 점수 0~1 또는 None, {key: bool}, 개선 한 가지).
+    참고용이라 고쳐쓰기에는 넘기지 않는다(2026-11-03: 자료를 모르는 담당이 "청약·주거 정책을 넣으라"고 제안 →
+    고쳐쓰기가 자료에 없는 내용을 지어냄). 자료도 같이 보여줘서, 개선 제안은 자료 안에서만 하게 한다."""
     text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
-    r = llm.call(prompt("review_value", category_label=category_label, title=title, text=text),
+    r = llm.call(prompt("review_value", category_label=category_label, title=title, text=text, facts=facts_text),
                  step=f"검토 {round_no}(독자 가치)", log=log, tier="fast", json_out=True, thinking=8192,
                  start_key=2 + round_no * 3)
     data = llm.parse_json(r.text)
@@ -382,7 +385,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         score, found = review(html, facts_text, category_label, log, round_no, must=must_answer)
         title_m = re.search(r"<h1[^>]*>(.*?)</h1>", html, flags=re.S)
         value, marks, improve = value_review(html, lint.text_of(title_m.group(1)) if title_m else title_seed,
-                                             category_label, log, round_no)
+                                             category_label, log, round_no, facts_text)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
         hard_lint = lint.blocking(lint_issues)
         passed = score is not None and score >= min_q and not serious and not hard_lint
@@ -408,7 +411,6 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         todo = ([_issue_text(f) for f in ranked if f["severity"] != "사소"] + hard_lint
                 + (["자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
                     "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요."] if nums else [])
-                + ([f"[독자 가치] {improve}"] if improve and value is not None and value < 1 else [])
                 + [_issue_text(f) for f in ranked if f["severity"] == "사소"]
                 + [i for i in lint_issues if i not in hard_lint])[:MAX_TODO]
         if not todo:

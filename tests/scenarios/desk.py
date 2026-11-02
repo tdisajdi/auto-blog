@@ -86,7 +86,7 @@ def long_html(tag="", n=80):
     return f"<h1>시험 제목</h1><!-- 메타 -->{paras}<h3>섹션1</h3><p>내용</p>\n태그: 가 나 다 라 마"
 
 calls = {"review": 0, "rewrite": 0, "section": 0, "unify": 0}
-VALUE_ANSWER = {k: {"yes": True, "quote": ""} for k in ["answers_title", "unique_info", "decision_rule", "plain_words", "numbers_explained"]}
+VALUE_ANSWER = {"best_improvement": "청약 정책을 넣으세요", **{k: {"yes": True, "quote": ""} for k in ["answers_title", "unique_info", "decision_rule", "plain_words", "numbers_explained"]}}
 def post_desk(url, payload, key):
     p = payload["contents"][0]["parts"][0]["text"]
     if "독자 가치 담당" in p:
@@ -103,6 +103,7 @@ def post_desk(url, payload, key):
     if "지적된 문제만 고치고" in p:
         calls["rewrite"] += 1
         assert "섹션1이 얇음" in p
+        assert "[독자 가치]" not in p, "참고용 독자 가치 제안은 고쳐쓰기에 넣지 않음(자료에 없는 내용이 들어감)"
         return R(200, long_html("고친 "))
     if "글 전체를 한 번에" in p:
         return R(200, long_html())
