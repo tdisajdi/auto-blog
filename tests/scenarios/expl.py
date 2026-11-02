@@ -54,3 +54,16 @@ tlt = float(f.split("TLT: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
 shy = float(f.split("SHY: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
 assert -1.8 < tlt < -1.4 and -0.25 < shy < -0.12 and "360750" not in f and "<table" in v, f
 print("rates effect ok", tlt, shy)
+
+# 2026-11-03: 투자심리 이슈 - VIX 구간별 그 뒤 SPY 성과(과거 통계), 지금 구간 표시
+n = 2600
+idx2 = pd.date_range("2016-01-04", periods=n, freq="B").tz_localize("America/Chicago")
+vixv = np.where(np.arange(n) % 4 == 0, 32.0, np.where(np.arange(n) % 4 == 1, 22.0, np.where(np.arange(n) % 4 == 2, 17.0, 12.0)))
+vixv[-1] = 22.0
+spyv = 100 * np.cumprod(np.full(n, 1.0003))
+sv = {"^VIX": vixv, "SPY": spyv}
+yf.Ticker = lambda t: type("T", (), {"history": lambda s, period: pd.DataFrame({"Close": sv[t]}, index=idx2)})()
+f, v = xe.sentiment_effect()
+assert "VIX 20~30(불안) ← 지금" in f and "VIX 30 이상(공포)" in f and "1개월 뒤 평균 +0.6%" in f and "<table" in v, f
+assert "매수·매도 시점 신호가 아님" in f
+print("sentiment effect ok")

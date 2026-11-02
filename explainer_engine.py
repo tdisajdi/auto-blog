@@ -370,7 +370,8 @@ def rates_effect(data_cache):
     n_up = int((dy > 0).sum()); n_down = int((dy < 0).sum())
     note = (f"미국 10년물 금리 {y0:.2f}% → {y1:.2f}%({y1 - y0:+.2f}%p, 최근 1년, Yahoo Finance ^TNX). 주간 종가 기준, 배당 제외 가격 변화. "
             f"'0.1%p당 평균 반응'은 금리 변화와 가격 변화의 회귀 기울기 × 0.1, ondo 계산. 금리가 오른 주 {n_up}번, 내린 주 {n_down}번. "
-            "지난 1년의 평균일 뿐 앞으로도 같다는 보장은 없음.")
+            "지난 1년의 평균일 뿐 앞으로도 같다는 보장은 없음. 여기 '1년 가격 변화'는 주간 종가로 다시 계산한 배당 제외 값이라 "
+            "위 종목 자료의 '1년 수익률'과 조금 다를 수 있음 - 둘을 같은 숫자처럼 나란히 쓰지 말 것.")
     table = charts.table_html("최근 1년, 금리가 움직인 주에 ETF 가격은 어떻게 움직였나",
                               ["ETF", "금리 0.1%p 오를 때 평균", "금리 오른 주 평균", "금리 내린 주 평균", "1년 가격 변화", "같이 움직인 정도"],
                               [r[:5] + [r[5]] for r in rows], note + " '같이 움직인 정도'는 상관계수(-1~+1, 음수면 반대로 움직임).")
@@ -379,6 +380,63 @@ def rates_effect(data_cache):
     facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
              + "\n".join(f"- {r[0]}: 금리 0.1%p 오를 때 평균 {r[1]}, 금리 오른 주 평균 {r[2]}, 내린 주 평균 {r[3]}, "
                          f"1년 가격 변화 {r[4]}, 상관계수 {r[5]}" for r in rows)
+             + f"\n- {note}\n")
+    return facts, table + chart
+
+
+VIX_BANDS = [(0, 15, "15 미만(차분)"), (15, 20, "15~20"), (20, 30, "20~30(불안)"), (30, 999, "30 이상(공포)")]
+
+
+def sentiment_effect():
+    """투자심리 이슈 글용(2026-11-03): 최근 10년 실제 자료로 'VIX(변동성 지수)가 어느 구간이었던 날 이후 S&P 500(SPY)이
+    1개월·3개월 동안 평균 얼마나, 몇 % 확률로 올랐나'를 코드가 계산한다. 금리 글처럼 일반론만으로는 통과를 못 해서
+    미리 계산 예시를 준다. 매수 시점 판단이 아니라 '과거에 이랬다'는 통계로만 쓰게 한다.
+    반환: (사실 자료 글, 표+그래프 HTML). 자료가 부족하면 ("", "")."""
+    from ondo.media import charts
+    try:
+        import yfinance as yf
+        vix = yf.Ticker("^VIX").history(period="10y")["Close"].dropna()
+        spy = yf.Ticker("SPY").history(period="10y")["Close"].dropna()
+        for c in (vix, spy):
+            if getattr(c.index, "tz", None) is not None:
+                c.index = c.index.tz_localize(None)
+            c.index = c.index.normalize()
+    except Exception as e:
+        print(f"ℹ️ VIX·SPY 10년 자료 못 받음: {type(e).__name__}")
+        return "", ""
+    import pandas as pd
+    df = pd.DataFrame({"vix": vix, "spy": spy}).dropna()
+    if len(df) < 500:
+        print(f"ℹ️ 투자심리 계산: 겹치는 날 {len(df)}일뿐이라 건너뜀")
+        return "", ""
+    df["f1"] = (df["spy"].shift(-21) / df["spy"] - 1) * 100       # 약 1개월(거래일 21일) 뒤
+    df["f3"] = (df["spy"].shift(-63) / df["spy"] - 1) * 100       # 약 3개월(거래일 63일) 뒤
+    cur = float(df["vix"].iloc[-1])
+    rows, labels, avg3 = [], [], []
+    for lo, hi, name in VIX_BANDS:
+        b = df[(df["vix"] >= lo) & (df["vix"] < hi)]
+        f1, f3 = b["f1"].dropna(), b["f3"].dropna()
+        if len(f3) < 20:
+            continue
+        mark = " ← 지금" if lo <= cur < hi else ""
+        rows.append([name + mark, f"{len(b):,}일", f"{f1.mean():+.1f}%", f"{(f1 > 0).mean() * 100:.0f}%",
+                     f"{f3.mean():+.1f}%", f"{(f3 > 0).mean() * 100:.0f}%", f"{f3.min():+.1f}%"])
+        labels.append(name); avg3.append(round(float(f3.mean()), 1))
+    if len(rows) < 2:
+        return "", ""
+    start = df.index[0]
+    note = (f"{start:%Y년 %m월}~최근 거래일 자료(Yahoo Finance ^VIX, SPY 종가, 배당 제외). 오늘 VIX {cur:.1f}. 각 구간의 '그날'에 샀다고 "
+            "가정했을 때 약 1개월(21거래일)·3개월(63거래일) 뒤 가격 변화의 평균과 오른 비율, 3개월 뒤 가장 나빴던 경우. ondo 계산. "
+            "과거 통계일 뿐 앞으로도 같다는 보장은 없고, 매수·매도 시점 신호가 아님.")
+    table = charts.table_html("VIX 구간별, 그 뒤 S&P 500(SPY)은 어떻게 움직였나",
+                              ["VIX 구간", "해당 날짜 수", "1개월 뒤 평균", "1개월 뒤 오른 비율", "3개월 뒤 평균",
+                               "3개월 뒤 오른 비율", "3개월 뒤 가장 나빴던 경우"], rows, note)
+    chart = charts.plotly_html({"title": "VIX 구간별 3개월 뒤 SPY 평균 가격 변화", "kind": "bar", "unit": "%",
+                                "labels": labels, "values": avg3, "source": "Yahoo Finance, ondo 계산"})
+    facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
+             "- VIX는 S&P 500 옵션 가격으로 계산한 '앞으로 30일 동안 예상되는 변동 폭' 지수(시카고옵션거래소 발표). 높을수록 시장이 불안해한다는 뜻\n"
+             + "\n".join(f"- VIX {r[0]}: {r[1]}, 1개월 뒤 평균 {r[2]}(오른 비율 {r[3]}), 3개월 뒤 평균 {r[4]}(오른 비율 {r[5]}), "
+                         f"3개월 뒤 가장 나빴던 경우 {r[6]}" for r in rows)
              + f"\n- {note}\n")
     return facts, table + chart
 
@@ -483,6 +541,9 @@ def run_explainer(topic, etf_module):
         visual = ""
         if topic_id == "fx":       # 환율 글: "환율이 실제로 수익률을 얼마나 바꿨나"를 코드가 계산해서 제목 질문에 답하게
             calc_facts, visual = fx_effect(data_cache)
+            facts_text += ("\n" + calc_facts) if calc_facts else ""
+        elif topic_id == "sentiment":  # 투자심리 글: VIX 구간별 그 뒤 SPY 성과(과거 통계)
+            calc_facts, visual = sentiment_effect()
             facts_text += ("\n" + calc_facts) if calc_facts else ""
         elif topic_id == "rates":  # 금리 글: "금리가 움직일 때 실제로 얼마나 움직였나"를 코드가 계산(2026-11-03)
             calc_facts, visual = rates_effect(data_cache)
