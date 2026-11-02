@@ -78,3 +78,7 @@ print("year list / kosis title ok")
 h2, iss, fx = lint.fix_and_check('<h1>2025년 1인가구비율 역대 최고</h1><p><a href="x">세무사신문</a> 의 보도처럼</p><p>태그: a</p>')
 assert [i for i in iss if "역대/사상" in i] and '</a>의 보도' in h2, (iss, h2)
 print("overclaim / particle ok")
+assert lint.text_of('<p><a href="x">코인리더스</a>에 따르면 <strong>3%</strong>다</p><p>다음</p>') == "코인리더스에 따르면 3%다 다음"
+import explainer_engine as xe2
+assert "코인" in xe2._OFF_TOPIC_NEWS
+print("inline tags ok")
