@@ -82,6 +82,9 @@ def fix_and_check(html):
     puff = [w for w in PUFFERY if w in text]
     if puff:
         issues.append(f"{SOFT}꾸밈말 {', '.join(puff[:4])} - 숫자나 사실로 바꿀 수 있으면 바꿀 것")
+    broken = re.search(r"[가-힣][a-z]{3,}", re.sub(r"https?://\S+", " ", text))
+    if broken:
+        issues.append(f"깨진 단어 '{broken.group(0)}': 한글과 영어가 한 단어에 섞임 - 올바른 한국어 단어로 고칠 것")
     eng = english_phrases(h)
     if eng:
         issues.append(f"영어 문구 '{eng[0]}' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)")

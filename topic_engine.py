@@ -795,7 +795,10 @@ def discover_energy():
              + f"{_eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))}\n[관련 뉴스]\n{_news_block(news)}\n")
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news,
              # 제목은 자료로 답할 수 있는 것만 약속한다(국내 기름값 자료가 없어 '생활에 미치는 영향'에 답을 못 했음, 2026-11-03)
-             "title_seed": f"{best['name']} 가격이 {move} 배경: 수급 숫자와 전망 정리",
+             # '배경'·'전망'도 약속하지 않는다: 원인 자료가 없어 독자 가치 검토가 '제목 질문에 답 못함'으로 지적(2026-11-03 ?p=257)
+             "title_seed": f"{best['name']} 가격 {move} 지금 위치: 1년 범위·재고·해외 가격으로 보기"
+                           if _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES or _COMPARE.get(best["ticker"])
+                           else f"{best['name']} 가격 {move} 지금 위치: 1년 범위로 보기",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
              "source_note": "원자재 가격: Yahoo Finance" + (", 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") and _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES else ""),
