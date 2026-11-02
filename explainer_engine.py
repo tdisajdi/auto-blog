@@ -316,6 +316,16 @@ def fx_effect(data_cache):
     return facts, table + chart
 
 
+def _weekly(close):
+    """주간(금요일) 종가. 시간대를 떼고 날짜로 맞춘다: ^TNX는 시카고, ETF는 뉴욕 시간이라 그대로 합치면
+    같은 주인데도 하나도 안 겹쳤다(2026-11-03 금리 글 첫 시험에서 계산표가 조용히 빠짐)."""
+    c = close.dropna()
+    if getattr(c.index, "tz", None) is not None:
+        c.index = c.index.tz_localize(None)
+    c.index = c.index.normalize()
+    return c.resample("W-FRI").last().dropna()
+
+
 def rates_effect(data_cache):
     """금리 이슈 글용(2026-11-03): 최근 1년 주간 자료로 '미국 10년물 금리가 0.1%p 오른 주에 각 ETF가 평균 몇 % 움직였나'를
     코드가 계산한다(회귀 기울기). 일반 이론(금리↑→채권↓)만 쓰면 사실 검증이 '자료에 없는 통념'으로 지적해서, 실제 숫자로 보여준다.
@@ -323,8 +333,7 @@ def rates_effect(data_cache):
     from ondo.media import charts
     try:
         import yfinance as yf
-        tnx = yf.Ticker("^TNX").history(period="1y")["Close"].dropna()
-        tnx_w = tnx.resample("W-FRI").last().dropna()
+        tnx_w = _weekly(yf.Ticker("^TNX").history(period="1y")["Close"])
     except Exception as e:
         print(f"ℹ️ 금리 1년 자료 못 받음: {type(e).__name__}")
         return "", ""
@@ -337,23 +346,26 @@ def rates_effect(data_cache):
         if t.endswith(".KS"):
             continue
         try:
-            px = yf.Ticker(t).history(period="1y")["Close"].dropna().resample("W-FRI").last().dropna()
+            px = _weekly(yf.Ticker(t).history(period="1y")["Close"])
             ret = (px.pct_change() * 100).dropna()  # 주간 가격 변화(%)
             both = ret.to_frame("r").join(dy.to_frame("dy"), how="inner").dropna()
             if len(both) < 30 or float(both["dy"].var()) == 0:
+                print(f"ℹ️ 금리 반응 계산 건너뜀({t}): 겹치는 주 {len(both)}개")
                 continue
             beta = float(both["r"].cov(both["dy"]) / both["dy"].var())   # 금리 1%p당 % 변화
             corr = float(both["r"].corr(both["dy"]))
             up = both[both["dy"] > 0]["r"].mean()
             down = both[both["dy"] < 0]["r"].mean()
             p_chg = (float(px.iloc[-1]) / float(px.iloc[0]) - 1) * 100
-        except Exception:
+        except Exception as e:
+            print(f"ℹ️ 금리 반응 계산 실패({t}): {type(e).__name__}: {e}")
             continue
         per = beta * 0.1
         rows.append([t, f"{per:+.2f}%", f"{up:+.2f}%", f"{down:+.2f}%", f"{p_chg:+.1f}%"])
         labels.append(t); sens.append(round(per, 2))
         rows[-1].append(f"{corr:+.2f}")
     if not rows:
+        print("ℹ️ 금리 반응 계산: 쓸 수 있는 종목 없음")
         return "", ""
     n_up = int((dy > 0).sum()); n_down = int((dy < 0).sum())
     note = (f"미국 10년물 금리 {y0:.2f}% → {y1:.2f}%({y1 - y0:+.2f}%p, 최근 1년, Yahoo Finance ^TNX). 주간 종가 기준, 배당 제외 가격 변화. "
