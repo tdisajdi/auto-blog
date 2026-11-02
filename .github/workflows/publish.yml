@@ -138,7 +138,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 오늘의 추천 후보 갱신 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 멈추면 텔레그램으로 알림
@@ -148,7 +148,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
 
   # ============================================================
@@ -182,7 +182,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 두 번째 글 추천 갱신 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 멈추면 텔레그램으로 알림
@@ -192,7 +192,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
 
   check-approval-and-publish:
@@ -222,7 +222,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 감시 알림 기록" -q && git pull --rebase --autostash -q && git push -q) || true
+          git diff --staged --quiet || (git commit -m "chore: 감시 알림 기록" -q && bash git_push_retry.sh) || true
 
       # 아침/낮 예약 실행이 빠졌으면 여기서 대신 보낸다 (이미 보냈으면 바로 넘어감)
       - name: 놓친 추천 보충
@@ -256,7 +256,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 텔레그램 응답 반영 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 승인된 티커로 발행 파이프라인 실행
@@ -281,7 +281,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 자동 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 승인된 두 번째 글(ETF 외 분야) 발행
@@ -307,7 +307,7 @@ jobs:
           else
             git pull --rebase --autostash || true
             git commit -m "chore: 두 번째 글 발행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 멈추면 텔레그램으로 알림
@@ -317,7 +317,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
 
   # ============================================================
@@ -349,7 +349,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 검색 성과 데이터 동기화 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 멈추면 텔레그램으로 알림
@@ -359,7 +359,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
 
   # ============================================================
@@ -391,7 +391,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
 
   # ============================================================
@@ -481,7 +481,7 @@ jobs:
             echo "ℹ️ 변경 없음"
           else
             git commit -m "chore: 수동 실행 상태 업데이트 ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push
+            bash git_push_retry.sh
           fi
 
       - name: 멈추면 텔레그램으로 알림
@@ -491,5 +491,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
-          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && git pull --rebase --autostash -q && git push) || true
+          git diff --staged --quiet || (git commit -m "chore: 실패 알림 기록" && bash git_push_retry.sh) || true
 
