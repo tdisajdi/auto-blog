@@ -342,7 +342,7 @@ def _issue_text(f):
 
 
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
-                  drawer=None, avoid_visuals=(), must_answer=None):
+                  drawer=None, avoid_visuals=(), must_answer=None, visual_texts=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
     log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
@@ -380,7 +380,10 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
     for round_no in range(1, MAX_REWRITES + 2):
         html, lint_issues, fixes = lint.fix_and_check(html)
         picked = {v["id"] for v in plan.get("visuals") or []}
-        html = lint.drop_copied_tables(html, [d.get("text", "") for d in drawer or [] if d["id"] in picked], fixes)
+        # 코드가 넣는 시각 자료(서랍에서 고른 것 + 가이드·이슈의 계산표)를 베낀 표는 지운다(2026-11-03 환율 글: 계산표를 손으로
+        # 다시 만들었고, 고쳐쓰기가 반복을 지우면서 표 대신 숫자 해석 문장을 지워 제목 질문에 답을 못 하게 됨)
+        html = lint.drop_copied_tables(html, [d.get("text", "") for d in drawer or [] if d["id"] in picked]
+                                       + list(visual_texts or ()), fixes)
         nums = numbers.unverified(lint.text_of(html), facts_text)
         score, found = review(html, facts_text, category_label, log, round_no, must=must_answer)
         title_m = re.search(r"<h1[^>]*>(.*?)</h1>", html, flags=re.S)

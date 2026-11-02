@@ -35,6 +35,7 @@ from blog_engine import (
 )
 import media_engine
 from ondo.checks.editlog import EditLog
+from ondo.checks.lint import text_of as lint_text
 from ondo.writing.desk import write_article
 
 PENDING_TOPIC_FILE = "pending_topic.json"
@@ -224,7 +225,8 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
                                category_label=category_label, log=log, memo=memo,
                                recent_posts=_link_candidates(title_seed), drawer=drawer,
-                               avoid_visuals=_recent_visuals() if drawer else (), must_answer=must_answer)
+                               avoid_visuals=_recent_visuals() if drawer else (), must_answer=must_answer,
+                               visual_texts=[lint_text(visual_html)] if visual_html else [])
     except Exception as e:      # 글쓰기 도중 예상 못 한 오류도 기록부와 텔레그램에 이유를 남긴다
         log.data["result"]["reason"] = f"글쓰기 중 오류: {type(e).__name__}: {str(e)[:200]}"
         result = None
