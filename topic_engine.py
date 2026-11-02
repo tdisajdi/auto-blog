@@ -430,6 +430,12 @@ def discover_bio():
 
 _COMMODITIES = {"CL=F": "WTI 원유", "BZ=F": "브렌트유", "NG=F": "천연가스", "HG=F": "구리",
                 "KC=F": "커피", "CC=F": "코코아", "ZW=F": "밀", "ZC=F": "옥수수", "SB=F": "설탕"}
+# 선물 가격 단위(야후 파이낸스 기준). 숫자만 주면 "105.28"이 무엇의 가격인지 작가가 알 수 없었다.
+_COMMODITY_UNIT = {"CL=F": "달러/배럴", "BZ=F": "달러/배럴", "NG=F": "달러/MMBtu(열량 단위)", "HG=F": "달러/파운드",
+                   "KC=F": "센트/파운드", "CC=F": "달러/톤", "ZW=F": "센트/부셸", "ZC=F": "센트/부셸", "SB=F": "센트/파운드"}
+# 같이 보여줄 묶음: 원유 글에 커피·코코아까지 9개를 다 주면 글이 산만해졌다(2026-11-02 에너지 시험)
+_COMMODITY_GROUP = {"CL=F": "oil", "BZ=F": "oil", "NG=F": "gas", "HG=F": "metal",
+                    "KC=F": "soft", "CC=F": "soft", "SB=F": "soft", "ZW=F": "grain", "ZC=F": "grain"}
 
 
 def _eia_crude_inventory():
@@ -678,25 +684,30 @@ def discover_energy():
             except Exception:
                 chart = {"labels": [], "values": []}
             rows.append({"ticker": t, "name": name, "last": last, "chart": chart,
-                         "d1": (last / float(h.iloc[-2]) - 1) * 100, "m1": (last / float(h.iloc[-22]) - 1) * 100,
-                         "y1": (last / float(h.iloc[0]) - 1) * 100})
+                         "d1": (last / float(h.iloc[-2]) - 1) * 100, "w1": (last / float(h.iloc[-6]) - 1) * 100,
+                         "m1": (last / float(h.iloc[-22]) - 1) * 100, "y1": (last / float(h.iloc[0]) - 1) * 100})
         except Exception:
             continue
     if not rows:
         return []
-    best = max(rows, key=lambda x: abs(x["m1"]) / 10 + abs(x["d1"]) / 3)
-    strength = abs(best["m1"]) / 10 + abs(best["d1"]) / 3
+    # 주제 고르기·제목은 1주·1개월 변화로(2026-11-02). 하루 변화는 선물 만기 교체(롤오버)·시차 때문에 크게 튀는 일이 있어
+    # (브렌트유 '하루 -10.5%'인데 같은 날 뉴스는 '-5.8%') 그것만으로 주제를 고르거나 제목을 달지 않는다.
+    best = max(rows, key=lambda x: abs(x["m1"]) / 10 + abs(x["w1"]) / 5)
+    strength = abs(best["m1"]) / 10 + abs(best["w1"]) / 5
     if strength < 0.6:
         return []
-    table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f}, 하루 {x['d1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}%"
-                      for x in rows)
+    group = [x for x in rows if _COMMODITY_GROUP.get(x["ticker"]) == _COMMODITY_GROUP.get(best["ticker"])]
+    table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f} {_COMMODITY_UNIT.get(x['ticker'], '')}, "
+                      f"1주 {x['w1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}% (하루 {x['d1']:+.1f}%)"
+                      for x in group)
     news = google_news(f"{best['name']} 가격", 6)
-    # 한 달 변화가 작고 하루 변화가 큰 경우(급등락)는 하루 기준으로 제목을 단다.
-    if abs(best["m1"]) >= 3:
+    if abs(best["m1"]) >= abs(best["w1"]) or abs(best["m1"]) >= 3:
         move = f"한 달 새 {abs(best['m1']):.0f}% {'오른' if best['m1'] > 0 else '내린'}"
     else:
-        move = f"하루 만에 {abs(best['d1']):.1f}% {'뛴' if best['d1'] > 0 else '떨어진'}"
-    facts = (f"[사실 자료 - 원자재 선물 가격, 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
+        move = f"일주일 새 {abs(best['w1']):.0f}% {'오른' if best['w1'] > 0 else '내린'}"
+    facts = (f"[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
+             "- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, "
+             "뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n"
              f"{_eia_crude_inventory() if best['ticker'] in ('CL=F', 'BZ=F') else ''}\n[관련 뉴스]\n{_news_block(news)}\n")
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news,
              "title_seed": f"{best['name']} 가격이 {move} 이유와 생활에 미치는 영향",
