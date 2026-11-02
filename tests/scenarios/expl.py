@@ -29,3 +29,10 @@ f, v = xe.fx_effect({"SPY": {"returns": {"1년": 12.0}}, "GLD": {"returns": {"1�
 assert "SPY: 달러 기준 1년 +12.0%, 원화 기준 +17.6%, 환율이 반대로 같은 폭 움직였다면 +6.4%" in f, f
 assert "360750" not in f.split("[계산")[1].split("- 원/달러")[0] and "<table" in v and "cdn.plot.ly" in v
 print("fx effect ok")
+
+# 2026-11-02: 환율 변화 0.0%는 사실 자료에서 빠지고, 본문 영어 구절은 교열이 잡는다
+assert xe._day_move({"usd_krw_diff_pct": 0.0}) == ""
+assert "-0.42%" in xe._day_move({"usd_krw_diff_pct": -0.42, "usd_krw_direction": "하락"})
+from ondo.checks import lint
+assert lint.english_phrases("<p>환율 효과(calculated by ondo), VOO와 S&P 500</p><p>태그: etf, fx rate check</p>") == ["calculated by ondo"]
+print("fx filler/english ok")

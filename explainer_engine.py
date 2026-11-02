@@ -347,7 +347,7 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
 
     news = ea._get_recent_news_for_query(news_query, max_results=4) if news_query else []
     news_block = "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news) or "- 수집된 뉴스 없음"
-    macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')} (전일 대비 {macro_data.get('usd_krw_diff_pct')}% {macro_data.get('usd_krw_direction', '')})\n"
+    macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')}{_day_move(macro_data)}\n"
                    f"- 미국 10년물 금리: {macro_data.get('us_10y')}\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}")
     # 오늘의 시장 수치(환율·금리·공포지수)는 이슈 글에만. 기초 가이드는 오래 읽히는 글이라 도입에 넣으면 어색했다.
     market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
@@ -355,6 +355,17 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
             f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))
     return text, data_cache, news
+
+
+def _day_move(macro_data):
+    """전일 대비 변화가 0.0%처럼 의미 없으면 아예 빼서 글에 '전일 대비 0.0%' 같은 군더더기가 안 들어가게 한다."""
+    try:
+        pct = float(macro_data.get("usd_krw_diff_pct"))
+    except (TypeError, ValueError):
+        return ""
+    if abs(pct) < 0.05:
+        return ""
+    return f" (전일 대비 {pct}% {macro_data.get('usd_krw_direction', '')})".rstrip(" )") + ")"
 
 
 def _closing_block(news, include_tax):
