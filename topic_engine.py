@@ -440,20 +440,63 @@ _COMMODITY_GROUP = {"CL=F": "oil", "BZ=F": "oil", "NG=F": "gas", "HG=F": "metal"
                     "KC=F": "soft", "CC=F": "soft", "SB=F": "soft", "ZW=F": "grain", "ZC=F": "grain"}
 
 
-def _eia_crude_inventory():
+# 함께 보여줄 비교 가격(2026-11-03): 천연가스 글이 숫자 한 줄뿐이라 같은 숫자를 되풀이했다.
+# 미국 가스 글이면 유럽 가스(뉴스에 자주 나옴)를 비교 자료로 준다. 못 가져오면 조용히 건너뜀.
+_COMPARE = {"NG=F": [("TTF=F", "유럽 천연가스(네덜란드 TTF)", "유로/MWh")]}
+
+# EIA 주간 재고: (경로, 시리즈, 이름, 단위). 키(EIA_API_KEY)가 없거나 실패하면 빈 문자열.
+_EIA_SERIES = {
+    "oil": ("petroleum/stoc/wstk", "WCESTUS1", "미국 상업용 원유 재고", "천 배럴"),
+    "gas": ("natural-gas/stor/wkly", "NW2_EPG0_SWO_R48_BCF", "미국 천연가스 저장량(본토 48개 주)", "십억 입방피트(Bcf)"),
+}
+
+
+def _eia_weekly(kind):
+    """최근 5주 재고와 1년 전 같은 주 값을 계산해 준다(작가가 '재고가 많다/적다'를 숫자로 말할 수 있게)."""
     key = os.environ.get("EIA_API_KEY", "").strip()
-    if not key:
+    spec = _EIA_SERIES.get(kind)
+    if not (key and spec):
         return ""
+    route, series, name, unit = spec
     try:
-        r = requests.get("https://api.eia.gov/v2/petroleum/stoc/wstk/data/", timeout=20, params={
-            "api_key": key, "frequency": "weekly", "data[0]": "value", "facets[series][]": "WCESTUS1",
-            "sort[0][column]": "period", "sort[0][direction]": "desc", "length": 5})
+        r = requests.get(f"https://api.eia.gov/v2/{route}/data/", timeout=20, params={
+            "api_key": key, "frequency": "weekly", "data[0]": "value", "facets[series][]": series,
+            "sort[0][column]": "period", "sort[0][direction]": "desc", "length": 53})
         rows = r.json().get("response", {}).get("data", [])
-        if rows:
-            return "- 미국 상업용 원유 재고(EIA, 천 배럴): " + ", ".join(f"{x['period']} {x['value']}" for x in rows) + "\n"
+        if not rows:
+            return ""
+        vals = [(x["period"], float(x["value"])) for x in rows if x.get("value") not in (None, "")]
+        recent = vals[:5]
+        line = f"- {name}(EIA, {unit}): " + ", ".join(f"{p} {v:,.0f}" for p, v in recent)
+        if len(recent) >= 2:
+            line += f" → 최근 1주 변화 {recent[0][1] - recent[1][1]:+,.0f}"
+        if len(vals) >= 53:
+            p0, v0 = vals[52]
+            line += f", 1년 전({p0}) {v0:,.0f} 대비 {(recent[0][1] / v0 - 1) * 100:+.1f}%"
+        return line + "\n"
     except Exception as e:
-        print(f"ℹ️ EIA 조회 실패: {type(e).__name__}")
+        print(f"ℹ️ EIA 조회 실패({kind}): {type(e).__name__}")
     return ""
+
+
+def _eia_crude_inventory():
+    return _eia_weekly("oil")
+
+
+def _price_stats(h):
+    """1년 가격으로 '지금이 1년 범위의 어디쯤인지'를 코드가 계산한다(최고·최저와 그 날짜, 3개월 변화, 1년 평균 대비)."""
+    last = float(h.iloc[-1])
+    hi, lo = float(h.max()), float(h.min())
+    hi_d, lo_d = h.idxmax(), h.idxmin()
+    pos = (last - lo) / (hi - lo) * 100 if hi > lo else 50
+    m3 = (last / float(h.iloc[-64]) - 1) * 100 if len(h) > 64 else None
+    avg = float(h.mean())
+    day = lambda d: f"({d:%Y-%m-%d})" if hasattr(d, "strftime") else ""
+    out = (f"1년 최고 {hi:,.2f}{day(hi_d)}, 1년 최저 {lo:,.2f}{day(lo_d)}, "
+           f"지금은 1년 범위(최저=0%, 최고=100%) 중 {pos:.0f}% 지점, 1년 평균 {avg:,.2f} 대비 {(last / avg - 1) * 100:+.1f}%")
+    if m3 is not None:
+        out += f", 3개월 {m3:+.1f}%"
+    return out
 
 
 # ------------------------------------------------------------
@@ -633,7 +676,8 @@ def run_check_sources():
     from blog_engine import telegram_diagnose
     telegram_diagnose()
     print("=== EIA (미국 원유 재고) ===")
-    print(_eia_crude_inventory() or "결과 없음 (키 없음 또는 조회 실패)")
+    print(_eia_weekly("oil") or "원유: 결과 없음 (키 없음 또는 조회 실패)")
+    print(_eia_weekly("gas") or "가스: 결과 없음 (키 없음 또는 조회 실패)")
     print("=== KOSIS 통계표 ===")
     if not _kosis_key():
         print("KOSIS_API_KEY가 없습니다.")
@@ -669,6 +713,23 @@ def run_check_sources():
         print(f"[{word}]", [(r.get("ORG_ID"), r.get("TBL_ID"), r.get("TBL_NM")) for r in res] or "결과 없음")
 
 
+def _compare_lines(ticker):
+    import yfinance as yf
+    out = []
+    for t, name, unit in _COMPARE.get(ticker, []):
+        try:
+            h = yf.Ticker(t).history(period="1y")["Close"].dropna()
+            if len(h) < 30:
+                continue
+            last = float(h.iloc[-1])
+            out.append(f"- {name}({t}): 최근가 {last:,.2f} {unit}, 1주 {(last / float(h.iloc[-6]) - 1) * 100:+.1f}%, "
+                       f"한 달 {(last / float(h.iloc[-22]) - 1) * 100:+.1f}%, 1년 {(last / float(h.iloc[0]) - 1) * 100:+.1f}%\n"
+                       f"  · {_price_stats(h)}")
+        except Exception:
+            continue
+    return "\n".join(out) + "\n" if out else ""
+
+
 def discover_energy():
     import yfinance as yf
     rows = []
@@ -685,7 +746,11 @@ def discover_energy():
                          "values": [round(float(v), 2) for v in weekly]}
             except Exception:
                 chart = {"labels": [], "values": []}
-            rows.append({"ticker": t, "name": name, "last": last, "chart": chart,
+            try:
+                stats = _price_stats(h)
+            except Exception:
+                stats = ""
+            rows.append({"ticker": t, "name": name, "last": last, "chart": chart, "stats": stats,
                          "d1": (last / float(h.iloc[-2]) - 1) * 100, "w1": (last / float(h.iloc[-6]) - 1) * 100,
                          "m1": (last / float(h.iloc[-22]) - 1) * 100, "y1": (last / float(h.iloc[0]) - 1) * 100})
         except Exception:
@@ -700,8 +765,10 @@ def discover_energy():
         return []
     group = [x for x in rows if _COMMODITY_GROUP.get(x["ticker"]) == _COMMODITY_GROUP.get(best["ticker"])]
     table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f} {_COMMODITY_UNIT.get(x['ticker'], '')}, "
-                      f"1주 {x['w1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}% (하루 {x['d1']:+.1f}%)"
-                      for x in group)
+                      f"1주 {x['w1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}%"
+                      + (f" (하루 {x['d1']:+.1f}%)" if abs(x["d1"]) >= 0.05 else "")
+                      + (f"\n  · {x['stats']}" if x.get("stats") else "") for x in group)
+    compare = _compare_lines(best["ticker"])
     news = google_news(f"{best['name']} 가격", 6)
     if abs(best["m1"]) >= abs(best["w1"]) or abs(best["m1"]) >= 3:
         move = f"한 달 새 {abs(best['m1']):.0f}% {'오른' if best['m1'] > 0 else '내린'}"
@@ -710,13 +777,14 @@ def discover_energy():
     facts = (f"[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
              "- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, "
              "뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n"
-             f"{_eia_crude_inventory() if best['ticker'] in ('CL=F', 'BZ=F') else ''}\n[관련 뉴스]\n{_news_block(news)}\n")
+             + (f"\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n{compare}" if compare else "")
+             + f"{_eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))}\n[관련 뉴스]\n{_news_block(news)}\n")
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news,
              # 제목은 자료로 답할 수 있는 것만 약속한다(국내 기름값 자료가 없어 '생활에 미치는 영향'에 답을 못 했음, 2026-11-03)
              "title_seed": f"{best['name']} 가격이 {move} 배경: 수급 숫자와 전망 정리",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
-             "source_note": "원자재 가격: Yahoo Finance" + (", 원유 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") else ""),
+             "source_note": "원자재 가격: Yahoo Finance" + (", 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") and _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES else ""),
              "chart": {"title": f"{best['name']} 선물 가격 1년 흐름 (주간)", "unit": "", "kind": "line",
                        "source": f"Yahoo Finance ({best['ticker']})", **best["chart"]}}]
 

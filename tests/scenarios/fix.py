@@ -16,6 +16,20 @@ assert te.discover_energy() == [], "하루만 튄 것으로는 주제를 만들�
 MODE = "week"
 e=te.discover_energy(); print(e[0]["title_seed"]); assert "일주일 새 8% 오른" in e[0]["title_seed"], e[0]["title_seed"]
 assert "옥수수" in e[0]["facts_text"] and "커피" not in e[0]["facts_text"] and "센트/부셸" in e[0]["facts_text"]
+# 2026-11-03: 가스 글은 1년 범위·3개월 변화와 유럽 가스 비교 가격까지 받는다(숫자 한 줄뿐이라 되풀이했음)
+class G:
+    def __init__(s,t): s.t=t
+    def history(s, period):
+        idx=pd.date_range("2025-11-03", periods=250, freq="B")
+        c=[100.0]*250
+        if s.t=="NG=F": c=[4.0]*200+[3.0]*44+[2.6,2.6,2.7,2.8,2.9,2.9]   # 1주 +11.5%
+        if s.t=="TTF=F": c=[30.0]*240+[40.0]*10
+        return pd.DataFrame({"Close":c}, index=idx)
+yf.Ticker=G
+g=te.discover_energy()[0]
+assert g["topic_key"]=="energy:NG=F" and "1년 최고 4.00(2025-11-03)" in g["facts_text"] and "3개월" in g["facts_text"], g["facts_text"]
+assert "유럽 천연가스(네덜란드 TTF)" in g["facts_text"] and "유로/MWh" in g["facts_text"], g["facts_text"]
+yf.Ticker=T
 # failed send -> no pending
 te.choose_topic=lambda: e[0]; te._telegram_send_message=lambda *a, **k: False
 te.run_discover_and_notify(); assert not os.path.exists("pending_topic.json")

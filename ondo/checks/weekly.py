@@ -61,8 +61,8 @@ def check_wordpress():
 def check_sources():
     out = []
     try:
-        from topic_engine import KOSIS_TABLES, _eia_crude_inventory, _kosis_key, kosis_data
-        out.append("EIA " + ("✅" if _eia_crude_inventory() else "❌"))
+        from topic_engine import KOSIS_TABLES, _eia_weekly, _kosis_key, kosis_data
+        out.append("EIA 원유 " + ("✅" if _eia_weekly("oil") else "❌") + " / EIA 가스 " + ("✅" if _eia_weekly("gas") else "❌"))
         if _kosis_key():
             rows, err = kosis_data(**{k: KOSIS_TABLES[0][k] for k in ("org", "tbl", "prd", "n")})
             out.append("KOSIS " + ("✅" if rows else f"❌ {str(err)[:60]}"))
