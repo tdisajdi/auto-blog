@@ -516,6 +516,9 @@ KOSIS_TABLES = [
      "candidate": False,
      "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
     {"key": "aged", "name": "고령인구 비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 10, "main": "고령인구비율",
+     # 국제연합(UN) 분류(통계청 설명 자료에서 쓰는 기준): 글에 '판단 기준'이 없다는 지적(2026-11-03)에 답하는 기준선
+     "thresholds": [(7, "고령화사회"), (14, "고령사회"), (20, "초고령사회")],
+     "threshold_note": "국제연합(UN) 분류로 65세 이상 인구 비율이 7% 이상이면 고령화사회, 14% 이상이면 고령사회, 20% 이상이면 초고령사회",
      "keywords": ["고령", "노인", "65세", "초고령"]},
     {"key": "single", "name": "1인가구 비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 10, "main": "1인가구비율",
      "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
@@ -656,8 +659,24 @@ def kosis_fact_block(table, max_items=8):
         flow = ", ".join(f"{_fmt_period(p, table['prd'])} {_fmt_val(v, unit)}" for p, v in pts[-10:])
         hp, hv = max(pts[-10:], key=lambda x: x[1])
         lp_, lv_ = min(pts[-10:], key=lambda x: x[1])
+        seg = pts[-10:]
+        steps = [(seg[i][0], seg[i][1] - seg[i - 1][1]) for i in range(1, len(seg))]
+        big = max(steps, key=lambda x: abs(x[1]))
+        is_rate = unit == "%" or any(k in item for k in ("율", "비율", "천명당", "성비"))
+        big_txt = (f"{big[1]:+.2f}".rstrip("0").rstrip(".") + ("%p" if unit == "%" or "비율" in item else "")) if is_rate \
+            else f"{big[1]:+,.0f}"
         trend.append(f"- {item} 흐름: {flow} → 이 기간 최고 {_fmt_period(hp, table['prd'])} {_fmt_val(hv, unit)}, "
-                     f"최저 {_fmt_period(lp_, table['prd'])} {_fmt_val(lv_, unit)}")
+                     f"최저 {_fmt_period(lp_, table['prd'])} {_fmt_val(lv_, unit)}, "
+                     f"직전 기간 대비 변화가 가장 컸던 때 {_fmt_period(big[0], table['prd'])}({big_txt})")
+        # 판단 기준선(예: 고령화사회 7%·고령사회 14%·초고령사회 20%)을 처음 넘은 해를 코드가 계산
+        for line_v, label in table.get("thresholds", []) if table.get("main", "") in item else []:
+            crossed = next((p for p, v in seg if v >= line_v), None)
+            if crossed and seg[0][1] < line_v:
+                trend.append(f"  · {label} 기준({line_v}%)을 처음 넘은 해: {_fmt_period(crossed, table['prd'])}")
+            elif crossed:
+                trend.append(f"  · {label} 기준({line_v}%)은 이 자료 기간 시작({_fmt_period(seg[0][0], table['prd'])}) 전에 이미 넘음")
+    if table.get("threshold_note"):
+        trend.append(f"- 판단 기준: {table['threshold_note']}")
     if trend:
         lines.append("[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]")
         lines += trend

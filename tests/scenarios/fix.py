@@ -59,3 +59,13 @@ from ondo.checks import lint
 _, iss, _ = lint.fix_and_check("<h1>t</h1><p>지polit적 변수와 MMBtu는 단위, ondo의 기준</p><p>태그: a</p>")
 assert [i for i in iss if "깨진 단어 '지polit'" in i] and not [i for i in iss if "ondo의" in i or "MMBtu" in i], iss
 print("broken word ok")
+
+# 2026-11-03: 고령 비율 글은 판단 기준선(7/14/20%)과 처음 넘은 해, 가장 크게 변한 해를 받는다
+aged = {"2016": 13.5, "2017": 14.2, "2018": 14.8, "2019": 15.5, "2020": 16.4, "2021": 17.1, "2022": 18.0,
+        "2023": 19.0, "2024": 20.0, "2025": 21.2}
+te.kosis_data = lambda *a, **k: ([{"C1": "00", "C1_NM": "전국", "ITM_NM": "고령인구비율", "UNIT_NM": "%",
+                                   "PRD_DE": p, "DT": str(v), "TBL_NM": "고령인구비율"} for p, v in aged.items()], None)
+blk, _ = te.kosis_fact_block(next(t for t in te.KOSIS_TABLES if t["key"] == "aged"))
+assert "고령사회 기준(14%)을 처음 넘은 해: 2017년" in blk and "초고령사회 기준(20%)을 처음 넘은 해: 2024년" in blk, blk
+assert "고령화사회 기준(7%)은 이 자료 기간 시작(2016년) 전에 이미 넘음" in blk and "가장 컸던 때 2025년(+1.2%p)" in blk, blk
+print("aged thresholds ok")
