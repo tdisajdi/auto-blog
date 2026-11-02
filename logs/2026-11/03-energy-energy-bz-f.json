@@ -1,0 +1,305 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:BZ=F",
+ "title_seed": "브렌트유 가격이 하루 만에 10.5% 떨어진 이유와 생활에 미치는 영향",
+ "category": "energy",
+ "started_at": "2026-11-03T01:35:37",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.9,
+   "chars": 2764
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 21.0,
+   "chars": 6332
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 213
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.3,
+   "chars": 984
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 170
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.6,
+   "chars": 888
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.5,
+   "chars": 5967
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.0,
+   "chars": 204
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.5,
+   "chars": 399
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.2,
+   "chars": 182
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.0,
+   "chars": 890
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.2,
+   "chars": 5843
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.7,
+   "chars": 120
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 787
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.2,
+   "chars": 136
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.5,
+   "chars": 834
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "01:35:50",
+   "title": "브렌트유 10.5% 급락의 진실과 원자재 시장 영향 총정리",
+   "sections": [
+    "주요 원자재 선물 가격 동향",
+    "미국 상업용 원유 재고 추이",
+    "글로벌 투자은행의 유가 전망",
+    "국내 물가와 경제 파급 효과"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "01:36:14",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "01:36:46",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "처음 등장하는 티커나 전문 용어를 쉽게 풀이해주고, 독자가 자신의 생활비(기름값 등) 변화를 가늠해볼 수 있는 구체적인 판단 기준을 추가하세요.",
+   "issues": [
+    "[중요·독자 편집] '브렌트유(BZ=F)는 최근가 105.28달러로 하루 만에 10.5% 하락했으나 한 달 전 대비 3.0%, 1' → 본문에서 표에 있는 수치를 문장으로 그대로 줄줄이 나열하여 가독성을 떨어뜨리고 내용을 반복하고 있습니다. / 고칠 방법: 표가 있으므로 본문에서는 핵심 품목의 흐름만 간략히 언급하고 세부 수치는 표를 참조하도록 수정합니다.",
+    "[사소·독자 편집] '2026년 9월 25일 기준 미국 상업용 원유 재고는 4억 2,732만 배럴(427,320천 배럴)이었습니다' → 날짜별 재고 숫자가 과도하게 나열되어 있어 한눈에 들어오지 않고 분량만 늘어납니다. / 고칠 방법: 주요 시점의 증감 추이 위주로 간결하게 요약합니다."
+   ],
+   "lint": [
+    "확인할 수 없는 출처 표현: '전문가들은' - 링크 있는 기사로 바꾸거나 삭제",
+    "[참고] 같은 숫자 '10.5%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '62.2%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "2,732만",
+    "2,413만",
+    "1,557만",
+    "1,251만",
+    "1,062만",
+    "1,600만"
+   ],
+   "chars": 3602
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "01:37:06",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "01:37:40",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "판단 기준 제시"
+   ],
+   "value_tip": "제목에 언급된 '생활에 미치는 영향'을 일반적인 설명 대신 주유소 가격이나 장바구니 물가에 미치는 시차와 구체적인 수치로 직접 계산해 보여주어야 합니다.",
+   "issues": [
+    "[중요·독자 편집] '이처럼 에너지 선물 가격이 단기적으로 큰 폭의 하락을 나타냈지만, 장기적 기준인 1년 전 변동률을 함께 고려' → 표 바로 아랫단락에서 이미 언급한 내용과 숫자를 반복하며 분량을 채우고 있습니다. / 고칠 방법: 표 내용과 중복되는 해당 문단을 삭제하거나 간결한 요약으로 대체해주세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '10.5%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "2,732만",
+    "1,062만",
+    "1,669만"
+   ],
+   "chars": 3242
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "01:37:59",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "01:38:32",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "판단 기준 제시"
+   ],
+   "value_tip": "유가 하락폭이 실제 주유소 가격에 적용될 때 예상되는 체감 시차와 금액을 독자 맞춤형 예시로 계산해 주는 것",
+   "issues": [
+    "[중요·독자 편집] '2026년 9월 25일 재고량(427,320천 배럴)에서 10월 23일 재고량(410,625천 배럴)을 뺀 ' → 바로 앞 문단에서 이미 언급한 미국 상업용 원유 재고 수치와 감소량을 그대로 다시 반복하여 분량을 채우고 있습니다. / 고칠 방법: 재고량 수치와 뺄셈 계산 과정을 반복하는 문장을 삭제하고 분석 내용만 간결하게 남깁니다.",
+    "[사소·독자 편집] '국제 유가가 단기간에 급등하거나 급락할 때 많은 소비자는 주유소 기름값이나 장바구니 물가가 즉각 안정될 것이' → 에너지·자원·기후 블로그의 도입부로 자주 쓰이는 일반론적 문단으로, 다른 주제의 글에도 쉽게 들어갈 수 있습니다. / 고칠 방법: 이번 브렌트유 10.5% 하락이라는 구체적 사건과 독자의 궁금증을 바로 연결하는 문장으로 수정합니다."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '62.2%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 3118
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "브렌트유 하루 만에 10.5% 하락, 원자재 시장 변동이 생활에 미치는 영향",
+  "url": "https://ondo99.com/?p=252",
+  "score": 0.88,
+  "issues": [
+   "[중요·독자 편집] '이처럼 에너지 선물 가격이 단기적으로 큰 폭의 하락을 나타냈지만, 장기적 기준인 1년 전 변동률을 함께 고려' → 표 바로 아랫단락에서 이미 언급한 내용과 숫자를 반복하며 분량을 채우고 있습니다. / 고칠 방법: 표 내용과 중복되는 해당 문단을 삭제하거나 간결한 요약으로 대체해주세요.",
+   "[참고] 같은 숫자 '10.5%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+  ]
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격, 야후 파이낸스 2026-11-02 기준]\n- WTI 원유(CL=F): 최근가 97.01, 하루 -6.8%, 한 달 +6.5%, 1년 +58.9%\n- 브렌트유(BZ=F): 최근가 105.28, 하루 -10.5%, 한 달 +3.0%, 1년 +62.2%\n- 천연가스(NG=F): 최근가 2.91, 하루 +0.3%, 한 달 -4.2%, 1년 -31.8%\n- 구리(HG=F): 최근가 6.57, 하루 +1.7%, 한 달 +1.2%, 1년 +30.2%\n- 커피(KC=F): 최근가 294.45, 하루 +2.5%, 한 달 +2.0%, 1년 -27.6%\n- 코코아(CC=F): 최근가 5,462.00, 하루 +0.2%, 한 달 -3.7%, 1년 -16.7%\n- 밀(ZW=F): 최근가 606.00, 하루 +0.4%, 한 달 -11.3%, 1년 +11.5%\n- 옥수수(ZC=F): 최근가 448.00, 하루 +0.1%, 한 달 -10.0%, 1년 +3.2%\n- 설탕(SB=F): 최근가 19.10, 하루 -1.3%, 한 달 -4.2%, 1년 +30.4%\n- 미국 상업용 원유 재고(EIA, 천 배럴): 2026-10-23 410625, 2026-10-16 412517, 2026-10-09 415577, 2026-10-02 424134, 2026-09-25 427320\n\n[관련 뉴스]\n- 국제 유가 하락, 브렌트유 배럴당 US$111.84로 하락 - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMiqgJBVV95cUxOemRtUW5fLXpsRHExQ2Z0VklFY3V4LUNrZlkwVWdnX25NR1BQZ1pCNWxucnRGTUozXzd4anNWZWpUVkd4d3RMNWtBb2FrMU54a1BpdmthSzA3RU1nYlBNc1JfSVQ3aXpNdHV5UlI2OXlxaXJOZ3FrSUZvWE9Tc2xCREVoTFdSaERxNG1RQ2FFRjM5a0ZDN2VrZThLOGFwMEV2NGNoQVhaSUE3MU54WldTZXptWDlZazZvdkViM0d4azd3dDBRN1Ficmh6UWRVc0lyb3N6ZElRUHJjVmpaSUZjeUxGY2x5ZXlheHprVS11d08zQWRFRW1lSExvV3YwXzM0X0tTY2RxZkhJWS1zSHNWUS1MNjZDMlhMNHM2MzhZbjZZQnJGc01KczVn?oc=5\n- 브렌트유, 배럴당 110달러선 하락…전장 대비 5.8%↓ - 블루밍비트 (블루밍비트) https://news.google.com/rss/articles/CBMiUEFVX3lxTFBvY2o0TEVQX3N0Y3R4QmxmOVRZTkF5MU5GYlIxZTZWZURScTZYamVRSEJmRFh5RDloRFFGWlFXbXJYVGZKeU03NWFBQ0ttVEMt?oc=5\n- 골드만삭스, 국제유가 전망 상향…연말 브렌트유 105달러 - 아시아경제 (아시아경제) https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\n- 골드만삭스는 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망했다. - Vietnam.vn (Vietnam.vn) https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\n- UBS, 중동 공급 리스크 속 브렌트유 가격 전망 상향 - Investing.com 한국어 (Investing.com 한국어) https://news.google.com/rss/articles/CBMib0FVX3lxTE9FSWVXRl9XZGtYcHUxOW5wRnVzSVhDZnlBYUR0bGRod25ieno5eHl2WjU2bVA5Y0NoVk1HTmd6WTIyMk51WHpRb0h2QS1EVkVOY194aGFvMXVMbFh1bGRqNU43c0tYclloUDNDYjhocw?oc=5\n- [경제 포커스] 브렌트유 급등에 한은 ‘비관 시나리오’ 진입... “내년 물가 2.7% 상승” 전망 - Chosunbiz (Chosunbiz) https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\n",
+ "drafts": {
+  "1": "<h1>브렌트유 하루 만에 10.5% 하락, 원자재 시장 변동이 생활에 미치는 영향</h1>\n<!-- 유가가 급락하면 곧바로 물가가 안정될 것이라 기대하기 쉽습니다. 2026년 11월 2일 원자재 시장 지표와 실제 데이터를 통해 이번 변동의 실태를 살펴봅니다. -->\n\n국제 유가가 단기간에 급등하거나 급락할 때 많은 소비자는 주유소 기름값이나 장바구니 물가가 즉각 안정될 것이라는 기대를 갖습니다. 하지만 원자재 시장의 수치 변동이 실제 소비자 물가에 전달되기까지는 일정한 시차가 존재하며, 세부 원자재 품목별로도 상이한 움직임을 보입니다.\n\n2026년 11월 2일 기준 집계된 주요 원자재 선물 가격 데이터와 관련 지표를 살펴보면 에너지와 농산물, 금속 시장이 각기 다른 방향으로 움직이고 있음을 확인할 수 있습니다. 이번 급락이 일시적인 가격 조정인지 혹은 시장 흐름의 전환점인지 공개된 수치와 사실을 바탕으로 점검합니다.\n\n<h3>주요 원자재 선물 가격 동향</h3>\n\n2026년 11월 2일 야후 파이낸스 기준으로 집계된 원자재 선물 시장 수치를 보면 에너지 품목의 단기 하락세가 두드러집니다. 브렌트유(BZ=F)는 최근가 105.28달러로 하루 만에 10.5% 하락했으나 한 달 전 대비 3.0%, 1년 전 대비 62.2% 상승한 상태입니다. WTI 원유(CL=F) 역시 최근가 97.01달러로 하루 동안 6.8% 하락했지만 1년 전과 비교하면 58.9% 높습니다.\n\n농산물 및 기타 원자재는 품목별로 대비되는 흐름을 보입니다. 천연가스(NG=F)는 2.91달러로 하루 0.3% 상승했으나 1년 전 대비 31.8% 하락했습니다. 커피(KC=F)는 최근가 294.45달러로 하루 2.5% 올랐지만 1년 전 대비 27.6% 하락한 반면, 구리(HG=F)는 최근가 6.57달러로 하루 1.7%, 1년 전 대비 30.2% 상승했습니다. 설탕(SB=F)은 최근가 19.10달러로 하루 1.3% 하락했으나 1년 전과 비교하면 30.4% 오른 수치를 기록 중입니다.\n\n<table>\n<tr><th>원자재 품목</th><th>티커</th><th>최근가</th><th>하루 변동률</th><th>한 달 변동률</th><th>1년 변동률</th></tr>\n<tr><td>WTI 원유</td><td>CL=F</td><td>97.01</td><td>-6.8%</td><td>+6.5%</td><td>+58.9%</td></tr>\n<tr><td>브렌트유</td><td>BZ=F</td><td>105.28</td><td>-10.5%</td><td>+3.0%</td><td>+62.2%</td></tr>\n<tr><td>천연가스</td><td>NG=F</td><td>2.91</td><td>+0.3%</td><td>-4.2%</td><td>-31.8%</td></tr>\n<tr><td>구리</td><td>HG=F</td><td>6.57</td><td>+1.7%</td><td>+1.2%</td><td>+30.2%</td></tr>\n<tr><td>커피</td><td>KC=F</td><td>294.45</td><td>+2.5%</td><td>+2.0%</td><td>-27.6%</td></tr>\n<tr><td>코코아</td><td>CC=F</td><td>5,462.00</td><td>+0.2%</td><td>-3.7%</td><td>-16.7%</td></tr>\n<tr><td>밀</td><td>ZW=F</td><td>606.00</td><td>+0.4%</td><td>-11.3%</td><td>+11.5%</td></tr>\n<tr><td>옥수수</td><td>ZC=F</td><td>448.00</td><td>+0.1%</td><td>-10.0%</td><td>+3.2%</td></tr>\n<tr><td>설탕</td><td>SB=F</td><td>19.10</td><td>-1.3%</td><td>-4.2%</td><td>+30.4%</td></tr>\n</table>\n\n이처럼 에너지 선물 가격이 단기적으로 큰 폭의 하락을 나타냈지만, 장기적 기준인 1년 전 변동률을 함께 고려하면 여전히 높은 수준을 유지하고 있습니다. 식량 자원인 밀(ZW=F)과 옥수수(ZC=F)는 한 달 전 대비 각각 11.3%, 10.0% 하락하며 안정세를 보이고 있습니다.\n\n<h3>미국 상업용 원유 재고 추이</h3>\n\n유가의 수급 상황을 파악하기 위해 미국 에너지정보청(EIA)이 집계한 주간 상업용 원유 재고 데이터를 확인해보면 꾸준한 감소 흐름이 나타납니다. 2026년 9월 25일 기준 미국 상업용 원유 재고는 4억 2,732만 배럴(427,320천 배럴)이었습니다.\n\n이후 재고량은 계속 줄어들어 2026년 10월 2일에는 4억 2,413만 4천 배럴, 10월 9일에는 4억 1,557만 7천 배럴을 기록했습니다. 10월 16일에는 4억 1,251만 7천 배럴로 집계되었으며 가장 최신 수치인 2026년 10월 23일 기준으로는 4억 1,062만 5천 배럴까지 감소했습니다.\n\n5주 연속으로 재고가 줄어들면서 9월 말 4억 2,732만 배럴 수준에서 10월 말 4억 1,062만 5천 배럴까지 1,600만 배럴 이상 감소한 점은 현물 공급 측면의 여유가 점차 줄어들고 있음을 지표로 보여줍니다.\n\n<h3>글로벌 투자은행의 유가 전망</h3>\n\n국제 금융 시장에서는 주요 원유 공급국의 위험 요소와 수급 환경을 반영해 유가 전망치를 수정하고 있습니다. 투자은행 골드만삭스는 국제유가 전망을 상향 조정하며 연말 브렌트유 목표 가격을 배럴당 105달러로 제시했다고 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>가 보도했습니다.\n\n또한, 향후 중동 지역 등 공급망 차질이 심화할 경우 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망했다는 소식을 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>이 전했습니다.\n\n또 다른 금융기관인 UBS 역시 중동 공급 리스크가 지속되는 상황을 반영하여 브렌트유 가격 전망을 상향했다고 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE9FSWVXRl9XZGtYcHUxOW5wRnVzSVhDZnlBYUR0bGRod25ieno5eHl2WjU2bVA5Y0NoVk1HTmd6WTIyMk51WHpRb0h2QS1EVkVOY194aGFvMXVMbFh1bGRqNU43c0tYclloUDNDYjhocw?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>가 보도했습니다. 금융 시장 전문가들은 공급 불확실성이 해소되지 않는 한 변동성이 지속될 수 있다고 판단하고 있습니다.\n\n<h3>국내 물가와 경제 파급 효과</h3>\n\n언론에 보도된 거래 가격을 보면 시점과 시장 상황에 따라 상이한 수치가 확인됩니다. 브렌트유가 배럴당 US$111.84로 하락했다는 내용이 <a href=\"https://news.google.com/rss/articles/CBMiqgJBVV95cUxOemRtUW5fLXpsRHExQ2Z0VklFY3V4LUNrZlkwVWdnX25NR1BQZ1pCNWxucnRGTUozXzd4anNWZWpUVkd4d3RMNWtBb2FrMU54a1BpdmthSzA3RU1nYlBNc1JfSVQ3aXpNdHV5UlI2OXlxaXJOZ3FrSUZvWE9Tc2xCREVoTFdSaERxNG1RQ2FFRjM5a0ZDN2VrZThLOGFwMEV2NGNoQVhaSUE3MU54WldTZXptWDlZazZvdkViM0d4azd3dDBRN1Ficmh6UWRVc0lyb3N6ZElRUHJjVmpaSUZjeUxGY2x5ZXlheHprVS11d08zQWRFRW1lSExvV3YwXzM0X0tTY2RxZkhJWS1zSHNWUS1MNjZDMlhMNHM2MzhZbjZZQnJGc01KczVn?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>를 통해 전해진 바 있으며, 블루밍비트는 브렌트유가 전장 대비 5.8% 하락하며 배럴당 110달러선으로 내려왔다고 <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTFBvY2o0TEVQX3N0Y3R4QmxmOVRZTkF5MU5GYlIxZTZWZURScTZYamVRSEJmRFh5RDloRFFGWlFXbXJYVGZKeU03NWFBQ0ttVEMt?oc=5\" target=\"_blank\" rel=\"noopener\">블루밍비트</a>에서 인용했습니다.\n\n한편 거시경제 차원에서는 고유가 압력이 국내 물가 전망에 유의미한 부담으로 작용하고 있습니다. 브렌트유 급등에 따라 한국은행이 '비관 시나리오'에 진입했으며, 이에 따라 내년 물가 상승률을 2.7%로 전망했다고 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>가 전했습니다.\n\n단기 선물 가격의 10.5% 하락에도 불구하고 1년 전 대비 60% 이상 높은 수준을 유지하고 있는 유가는 통화 당국의 물가 관리 및 국내 경제 파급 효과에 지속적인 영향을 미치고 있습니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 브렌트유 가격이 하루 만에 10.5%나 떨어진 구체적인 원인은 무엇인가요?</h4>\n선물 시장에서 특정 거래일에 발생한 대규모 매도세와 단기 시세 조정이 가격에 반영되었기 때문입니다. 다만 통계상 1년 전 변동률이 여전히 +62.2%에 달하며 골드만삭스, UBS 등 금융기관이 공급 위험을 이유로 가격 전망을 상향하고 있어 장기적 수급 안정으로 판단하기는 이릅니다.\n\n<h4>🔸 미국 상업용 원유 재고 감소세가 유가 변동에 어떤 신호를 주나요?</h4>\n미국 EIA 재고 데이터 기준 9월 25일 4억 2,732만 배럴에서 10월 23일 4억 1,062만 5천 배럴로 5주 연속 재고가 감소했습니다. 재고 감소는 시장 내 원유 공급 여유분이 줄어들고 있음을 뜻하므로 유가의 하방 압력을 제한하는 수급 요인으로 작동합니다.\n\n<h4>🔸 국제 유가가 하락했다고 해서 국내 주유소 기름값도 당장 떨어지나요?</h4>\n국제 원유 선물 가격이 국내 정제유 및 주유소 판매가에 반영되기까지는 통상 2~3주의 정제·유통 시차가 발생합니다. 또한 하루 만의 단기 급락이 발생하더라도 1년 전 대비 60% 이상 높아진 원유 도입 단가 기준이 유지되면 소비자 가격 하락 폭은 제한적일 수 있습니다.\n\n<h3>정리</h3>\n\n2026년 11월 2일 집계된 브렌트유의 하루 10.5% 급락은 단기적인 선물 시장의 가격 조정을 보여줍니다. 그러나 브렌트유의 1년 변동률은 여전히 +62.2%를 기록하고 있으며, 미국 상업용 원유 재고는 4억 1,062만 5천 배럴까지 지속적으로 감소하여 공급 여력이 축소되는 양상입니다.\n\n골드만삭스와 UBS 등 투자은행이 유가 전망을 상향하고 한국은행 역시 내년 물가 상승률을 2.7%로 고쳐 잡는 비관 시나리오를 검토하는 만큼, 하루 동안의 유가 하락이 즉각적인 물가 안정이나 생활비 부담 완화로 이어지기는 어렵습니다. 지표의 단기 변동과 장기 추세를 구분해서 살필 필요가 있습니다.\n\n태그: 브렌트유 원자재가격 유가전망 원유재고 물가상승",
+  "2": "<h1>브렌트유 하루 만에 10.5% 하락, 원자재 시장 변동이 생활에 미치는 영향</h1>\n<!-- 유가가 급락하면 곧바로 물가가 안정될 것이라 기대하기 쉽습니다. 2026년 11월 2일 원자재 시장 지표와 실제 데이터를 통해 이번 변동의 실태를 살펴봅니다. -->\n\n국제 유가가 단기간에 급등하거나 급락할 때 많은 소비자는 주유소 기름값이나 장바구니 물가가 즉각 안정될 것이라는 기대를 갖습니다. 하지만 원자재 시장의 수치 변동이 실제 소비자 물가에 전달되기까지는 일정한 시차가 존재하며, 세부 원자재 품목별로도 상이한 움직임을 보입니다.\n\n2026년 11월 2일 기준 집계된 주요 원자재 선물 가격 데이터와 관련 지표를 살펴보면 에너지와 농산물, 금속 시장이 각기 다른 방향으로 움직이고 있음을 확인할 수 있습니다. 이번 급락이 일시적인 가격 조정인지 혹은 시장 흐름의 전환점인지 공개된 수치와 사실을 바탕으로 점검합니다.\n\n<h3>주요 원자재 선물 가격 동향</h3>\n\n2026년 11월 2일 야후 파이낸스 기준으로 집계된 원자재 선물 시장 수치를 보면 에너지 품목의 단기 하락세가 두드러집니다. 금융 시장에서 티커는 자산을 식별하는 고유 코드이며, 브렌트유(BZ=F)와 WTI 원유(CL=F) 등 핵심 품목은 단기적 하락에도 불구하고 1년 전과 비교하면 여전히 높은 수준을 유지하고 있습니다.\n\n농산물 및 기타 원자재는 품목별로 대비되는 흐름을 보입니다. 세부적인 품목별 가격과 기간별 변동률은 아래 표에서 확인할 수 있습니다.\n\n<table>\n<tr><th>원자재 품목</th><th>티커</th><th>최근가</th><th>하루 변동률</th><th>한 달 변동률</th><th>1년 변동률</th></tr>\n<tr><td>WTI 원유</td><td>CL=F</td><td>97.01</td><td>-6.8%</td><td>+6.5%</td><td>+58.9%</td></tr>\n<tr><td>브렌트유</td><td>BZ=F</td><td>105.28</td><td>-10.5%</td><td>+3.0%</td><td>+62.2%</td></tr>\n<tr><td>천연가스</td><td>NG=F</td><td>2.91</td><td>+0.3%</td><td>-4.2%</td><td>-31.8%</td></tr>\n<tr><td>구리</td><td>HG=F</td><td>6.57</td><td>+1.7%</td><td>+1.2%</td><td>+30.2%</td></tr>\n<tr><td>커피</td><td>KC=F</td><td>294.45</td><td>+2.5%</td><td>+2.0%</td><td>-27.6%</td></tr>\n<tr><td>코코아</td><td>CC=F</td><td>5,462.00</td><td>+0.2%</td><td>-3.7%</td><td>-16.7%</td></tr>\n<tr><td>밀</td><td>ZW=F</td><td>606.00</td><td>+0.4%</td><td>-11.3%</td><td>+11.5%</td></tr>\n<tr><td>옥수수</td><td>ZC=F</td><td>448.00</td><td>+0.1%</td><td>-10.0%</td><td>+3.2%</td></tr>\n<tr><td>설탕</td><td>SB=F</td><td>19.10</td><td>-1.3%</td><td>-4.2%</td><td>+30.4%</td></tr>\n</table>\n\n이처럼 에너지 선물 가격이 단기적으로 큰 폭의 하락을 나타냈지만, 장기적 기준인 1년 전 변동률을 함께 고려하면 여전히 높은 수준을 유지하고 있습니다. 국제 유가가 주유소 기름값에 반영되기까지는 보통 2~3주의 시차가 발생하므로, 주유 시 소비자가 체감하는 생활비 변화는 선물 시장 변동이 지난 후에 나타납니다. 식량 자원인 밀(ZW=F)과 옥수수(ZC=F)는 한 달 전 대비 각각 11.3%, 10.0% 하락하며 안정세를 보이고 있습니다.\n\n<h3>미국 상업용 원유 재고 추이</h3>\n\n유가의 수급 상황을 파악하기 위해 미국 에너지정보청(EIA)이 집계한 주간 상업용 원유 재고 데이터를 확인해보면 감소 흐름이 나타납니다. 2026년 9월 25일 4억 2,732만 배럴(427,320천 배럴)이었던 재고는 감소세를 지속하여 가장 최신 수치인 2026년 10월 23일 기준 4억 1,062만 5천 배럴(410,625천 배럴)로 집계되었습니다.\n\n9월 25일 재고량에서 10월 23일 재고량을 뺀 감소량은 1,669만 5천 배럴로, 한 달 남짓한 기간 동안 재고가 줄어든 점은 현물 공급 측면의 여유가 줄어들고 있음을 지표로 보여줍니다.\n\n<h3>글로벌 투자은행의 유가 전망</h3>\n\n국제 금융 시장에서는 주요 원유 공급국의 위험 요소와 수급 환경을 반영해 유가 전망치를 수정하고 있습니다. 투자은행 골드만삭스는 국제유가 전망을 상향 조정하며 연말 브렌트유 목표 가격을 배럴당 105달러로 제시했다고 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>가 보도했습니다.\n\n또한, 향후 중동 지역 등 공급망 차질이 심화할 경우 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망했다는 소식을 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>이 전했습니다.\n\n또 다른 금융기관인 UBS 역시 중동 공급 리스크가 지속되는 상황을 반영하여 브렌트유 가격 전망을 상향했다고 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE9FSWVXRl9XZGtYcHUxOW5wRnVzSVhDZnlBYUR0bGRod25ieno5eHl2WjU2bVA5Y0NoVk1HTmd6WTIyMk51WHpRb0h2QS1EVkVOY194aGFvMXVMbFh1bGRqNU43c0tYclloUDNDYjhocw?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>가 보도했습니다.\n\n<h3>국내 물가와 경제 파급 효과</h3>\n\n언론에 보도된 거래 가격을 보면 시점과 시장 상황에 따라 상이한 수치가 확인됩니다. 브렌트유가 배럴당 US$111.84로 하락했다는 내용이 <a href=\"https://news.google.com/rss/articles/CBMiqgJBVV95cUxOemRtUW5fLXpsRHExQ2Z0VklFY3V4LUNrZlkwVWdnX25NR1BQZ1pCNWxucnRGTUozXzd4anNWZWpUVkd4d3RMNWtBb2FrMU54a1BpdmthSzA3RU1nYlBNc1JfSVQ3aXpNdHV5UlI2OXlxaXJOZ3FrSUZvWE9Tc2xCREVoTFdSaERxNG1RQ2FFRjM5a0ZDN2VrZThLOGFwMEV2NGNoQVhaSUE3MU54WldTZXptWDlZazZvdkViM0d4azd3dDBRN1Ficmh6UWRVc0lyb3N6ZElRUHJjVmpaSUZjeUxGY2x5ZXlheHprVS11w0ZFRW1lSExvV3YwXzM0X0tTY2RxZkhJWS1zSHNWUS1MNjZDMlhMNHM2MzhZbjZZQnJGc01KczVn?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>를 통해 전해진 바 있으며, 브렌트유가 전장 대비 5.8% 하락하며 배럴당 110달러선으로 내려왔다고 <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTFBvY2o0TEVQX3N0Y3R4QmxmOVRZTkF5MU5GYlIxZTZWZURScTZYamVRSEJmRFh5RDloRFFGWlFXbXJYVGZKeU03NWFBQ0ttVEMt?oc=5\" target=\"_blank\" rel=\"noopener\">블루밍비트</a>에서 인용했습니다.\n\n한편 거시경제 차원에서는 고유가 압력이 국내 물가 전망에 유의미한 부담으로 작용하고 있습니다. 브렌트유 급등에 따라 한국은행이 '비관 시나리오'에 진입했으며, 이에 따라 내년 물가 상승률을 2.7%로 전망했다고 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyN0BxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>가 전했습니다.\n\n단기 선물 가격의 10.5% 하락에도 불구하고 1년 전 대비 60% 이상 높은 수준을 유지하고 있는 유가는 통화 당국의 물가 관리 및 국내 경제 파급 효과에 지속적인 영향을 미치고 있습니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 브렌트유 가격이 하루 만에 10.5%나 떨어진 구체적인 원인은 무엇인가요?</h4>\n선물 시장에서 특정 거래일에 발생한 대규모 매도세와 단기 시세 조정이 가격에 반영되었기 때문입니다. 다만 통계상 1년 전 변동률이 여전히 +62.2%에 달하며 주요 금융기관이 공급 위험을 이유로 가격 전망을 상향하고 있어 장기적 수급 안정으로 판단하기는 이릅니다.\n\n<h4>🔸 미국 상업용 원유 재고 감소세가 유가 변동에 어떤 신호를 주나요?</h4>\n미국 EIA 재고 데이터 기준 9월 25일 4억 2,732만 배럴에서 10월 23일 4억 1,062만 5천 배럴로 재고가 감소했습니다. 재고 감소는 시장 내 원유 공급 여유분이 줄어들고 있음을 뜻하므로 유가의 하방 압력을 제한하는 수급 요인으로 작동합니다.\n\n<h4>🔸 국제 유가가 하락했다고 해서 국내 주유소 기름값도 당장 떨어지나요?</h4>\n국제 원유 선물 가격이 국내 정제유 및 주유소 판매가에 반영되기까지는 통상 2~3주의 정제·유통 시차가 발생합니다. 또한 하루 만의 단기 급락이 발생하더라도 1년 전 대비 60% 이상 높아진 원유 도입 단가 기준이 유지되면 소비자 가격 하락 폭은 제한적일 수 있습니다.\n\n<h3>정리</h3>\n\n2026년 11월 2일 집계된 브렌트유의 하루 10.5% 급락은 단기적인 선물 시장의 가격 조정을 보여줍니다. 그러나 브렌트유의 1년 변동률은 여전히 +62.2%를 기록하고 있으며, 미국 상업용 원유 재고는 4억 1,062만 5천 배럴까지 지속적으로 감소하여 공급 여력이 축소되는 양상입니다.\n\n골드만삭스와 UBS 등 투자은행이 유가 전망을 상향하고 한국은행 역시 내년 물가 상승률을 2.7%로 고쳐 잡는 비관 시나리오를 검토하는 만큼, 하루 동안의 유가 하락이 즉각적인 물가 안정이나 생활비 부담 완화로 이어지기는 어렵습니다. 지표의 단기 변동과 장기 추세를 구분해서 살필 필요가 있습니다.\n\n태그: 브렌트유 원자재가격 유가전망 원유재고 물가상승",
+  "3": "<h1>브렌트유 하루 만에 10.5% 하락, 원자재 시장 변동이 생활에 미치는 영향</h1>\n<!-- 유가가 급락하면 곧바로 물가가 안정될 것이라 기대하기 쉽습니다. 2026년 11월 2일 원자재 시장 지표와 실제 데이터를 통해 이번 변동의 실태를 살펴봅니다. -->\n\n국제 유가가 단기간에 급등하거나 급락할 때 많은 소비자는 주유소 기름값이나 장바구니 물가가 즉각 안정될 것이라는 기대를 갖습니다. 하지만 원자재 시장의 수치 변동이 실제 소비자 물가에 전달되기까지는 일정한 시차가 존재하며, 세부 원자재 품목별로도 상이한 움직임을 보입니다.\n\n2026년 11월 2일 기준 집계된 주요 원자재 선물 가격 데이터와 관련 지표를 살펴보면 에너지와 농산물, 금속 시장이 각기 다른 방향으로 움직이고 있음을 확인할 수 있습니다. 이번 급락이 일시적인 가격 조정인지 혹은 시장 흐름의 전환점인지 공개된 수치와 사실을 바탕으로 점검합니다.\n\n<h3>주요 원자재 선물 가격 동향</h3>\n\n2026년 11월 2일 야후 파이낸스 기준으로 집계된 원자재 선물 시장 수치를 보면 에너지 품목의 단기 하락세가 두드러집니다. 금융 시장에서 티커는 자산을 식별하는 고유 코드이며, 브렌트유(BZ=F)와 WTI 원유(CL=F) 등 핵심 품목은 단기적 하락에도 불구하고 1년 전과 비교하면 여전히 높은 수준을 유지하고 있습니다.\n\n농산물 및 기타 원자재는 품목별로 대비되는 흐름을 보입니다. 세부적인 품목별 가격과 기간별 변동률은 아래 표에서 확인할 수 있습니다.\n\n<table>\n<tr><th>원자재 품목</th><th>티커</th><th>최근가</th><th>하루 변동률</th><th>한 달 변동률</th><th>1년 변동률</th></tr>\n<tr><td>WTI 원유</td><td>CL=F</td><td>97.01</td><td>-6.8%</td><td>+6.5%</td><td>+58.9%</td></tr>\n<tr><td>브렌트유</td><td>BZ=F</td><td>105.28</td><td>-10.5%</td><td>+3.0%</td><td>+62.2%</td></tr>\n<tr><td>천연가스</td><td>NG=F</td><td>2.91</td><td>+0.3%</td><td>-4.2%</td><td>-31.8%</td></tr>\n<tr><td>구리</td><td>HG=F</td><td>6.57</td><td>+1.7%</td><td>+1.2%</td><td>+30.2%</td></tr>\n<tr><td>커피</td><td>KC=F</td><td>294.45</td><td>+2.5%</td><td>+2.0%</td><td>-27.6%</td></tr>\n<tr><td>코코아</td><td>CC=F</td><td>5,462.00</td><td>+0.2%</td><td>-3.7%</td><td>-16.7%</td></tr>\n<tr><td>밀</td><td>ZW=F</td><td>606.00</td><td>+0.4%</td><td>-11.3%</td><td>+11.5%</td></tr>\n<tr><td>옥수수</td><td>ZC=F</td><td>448.00</td><td>+0.1%</td><td>-10.0%</td><td>+3.2%</td></tr>\n<tr><td>설탕</td><td>SB=F</td><td>19.10</td><td>-1.3%</td><td>-4.2%</td><td>+30.4%</td></tr>\n</table>\n\n국제 유가가 주유소 기름값에 반영되기까지는 보통 2~3주의 시차가 발생하므로, 주유 시 소비자가 체감하는 생활비 변화는 선물 시장 변동이 지난 후에 나타납니다. 식량 자원인 밀(ZW=F)과 옥수수(ZC=F)는 한 달 전 대비 각각 11.3%, 10.0% 하락하며 안정세를 보이고 있습니다.\n\n<h3>미국 상업용 원유 재고 추이</h3>\n\n유가의 수급 상황을 파악하기 위해 미국 에너지정보청(EIA)이 집계한 주간 상업용 원유 재고 데이터를 확인해보면 감소 흐름이 나타납니다. 2026년 9월 25일 427,320천 배럴이었던 재고는 감소세를 지속하여 가장 최신 수치인 2026년 10월 23일 기준 410,625천 배럴로 집계되었습니다.\n\n2026년 9월 25일 재고량(427,320천 배럴)에서 10월 23일 재고량(410,625천 배럴)을 뺀 감소량은 16,695천 배럴로, 한 달 남짓한 기간 동안 재고가 줄어든 점은 현물 공급 측면의 여유가 줄어들고 있음을 지표로 보여줍니다.\n\n<h3>글로벌 투자은행의 유가 전망</h3>\n\n국제 금융 시장에서는 주요 원유 공급국의 위험 요소와 수급 환경을 반영해 유가 전망치를 수정하고 있습니다. 투자은행 골드만삭스는 국제유가 전망을 상향 조정하며 연말 브렌트유 목표 가격을 배럴당 105달러로 제시했다고 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>가 보도했습니다.\n\n또한, 향후 중동 지역 등 공급망 차질이 심화할 경우 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망했다는 소식을 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0HkRmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>이 전했습니다.\n\n또 다른 금융기관인 UBS 역시 중동 공급 리스크가 지속되는 상황을 반영하여 브렌트유 가격 전망을 상향했다고 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE9FSWVXRl9XZGtYcHUxOW5wRnVzSVhDZnlBYUR0bGRod25ieno5eHl2WjU2bVA5Y0NoVk1HTmd6WTIyMk51WHpRb0h2QS1EVkVOY194aGFvMXVMbFh1bGRqNU43c0tYclloUDNDYjhocw?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>가 보도했습니다.\n\n<h3>국내 물가와 경제 파급 효과</h3>\n\n언론에 보도된 거래 가격을 보면 시점과 시장 상황에 따라 상이한 수치가 확인됩니다. 브렌트유가 배럴당 US$111.84로 하락했다는 내용이 <a href=\"https://news.google.com/rss/articles/CBMiqgJBVV95cUxOemRtUW5fLXpsRHExQ2Z0VklFY3V4LUNrZlkwVWdnX25NR1BQZ1pCNWxucnRGTUozXzd4anNWZWpUVkd4d3RMNWtBb2FrMU54a1BpdmthSzA3RU1nYlBNc1JfSVQ3aXpNdHV5UlI2OXlxaXJOZ3FrSUZvWE9Tc2xCREVoTFdSaERxNG1RQ2FFRjM5a0ZDN2VrZThLOGFwMEV2NGNoQVhaSUE3MU54WldTZXptWDlZazZvdkViM0d4azd3dDBRN1Ficmh6UWRVc0lyb3N6ZElRUHJjVmpaSUZjeUxGY2x5ZXlheHprVS11w0ZFRW1lSExvV3YwXzM0X0tTY2RxZkhJWS1zSHNWUS1MNjZDMlhMNHM2MzhZbjZZQnJGc01KczVn?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>를 통해 전해진 바 있으며, 브렌트유가 전장 대비 5.8% 하락하며 배럴당 110달러선으로 내려왔다고 <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTFBvY2o0TEVQX3N0Y3R4QmxmOVRZTkF5MU5GYlIxZTZWZURScTZYamVRSEJmRFh5RDloRFFGWlFXbXJYVGZKeU03NWFBQ0ttVEMt?oc=5\" target=\"_blank\" rel=\"noopener\">블루밍비트</a>에서 인용했습니다.\n\n한편 거시경제 차원에서는 고유가 압력이 국내 물가 전망에 유의미한 부담으로 작용하고 있습니다. 브렌트유 급등에 따라 한국은행이 '비관 시나리오'에 진입했으며, 이에 따라 내년 물가 상승률을 2.7%로 전망했다고 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyN0BxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>가 전했습니다.\n\n하루 동안의 하락에도 불구하고 1년 전 대비 62.2% 높은 수준을 유지하고 있는 브렌트유는 통화 당국의 물가 관리 및 국내 경제 파급 효과에 지속적인 영향을 미치고 있습니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 브렌트유 가격이 떨어졌는데 왜 주유소 가격에는 바로 반영되지 않나요?</h4>\n국제 원유 선물 가격이 국내 정제유 및 주유소 판매가에 반영되기까지는 통상 2~3주의 정제·유통 시차가 발생합니다. 또한 하루 동안 급락하더라도 1년 전 대비 62.2% 높아진 원유 도입 단가 기준이 유지되면 소비자 가격 하락 폭은 제한적일 수 있습니다.\n\n<h4>🔸 미국 상업용 원유 재고 감소세가 유가 변동에 어떤 신호를 주나요?</h4>\n미국 EIA 재고 데이터 기준 9월 25일 427,320천 배럴에서 10월 23일 410,625천 배럴로 재고가 감소했습니다. 재고 감소는 시장 내 원유 공급 여유분이 줄어들고 있음을 뜻하므로 유가의 하방 압력을 제한하는 수급 요인으로 작동합니다.\n\n<h4>🔸 곡물 원자재 가격 하락은 장바구니 물가에 어떻게 작용하나요?</h4>\n밀(ZW=F)과 옥수수(ZC=F)가 한 달 전 대비 각각 11.3%, 10.0% 하락세를 보임에 따라 수입 원재료 부담이 일부 완화될 수 있습니다. 다만 곡물 역시 가공, 유통, 수송 시차를 거치기 때문에 실제 장바구니 물가 안정 효과는 시차를 두고 단계적으로 나타납니다.\n\n<h3>정리</h3>\n\n2026년 11월 2일 집계된 브렌트유 가격 하락은 단기적인 선물 시장의 가격 조정을 보여줍니다. 그러나 브렌트유의 1년 변동률은 여전히 +62.2%를 기록하고 있으며, 미국 상업용 원유 재고는 410,625천 배럴까지 지속적으로 감소하여 공급 여력이 축소되는 양상입니다.\n\n골드만삭스와 UBS 등 투자은행이 유가 전망을 상향하고 한국은행 역시 내년 물가 상승률을 2.7%로 고쳐 잡는 비관 시나리오를 검토하는 만큼, 단기 유가 하락이 즉각적인 물가 안정이나 생활비 부담 완화로 이어지기는 어렵습니다. 지표의 단기 변동과 장기 추세를 구분해서 살필 필요가 있습니다.\n\n태그: 브렌트유 원자재가격 유가전망 원유재고 물가상승"
+ },
+ "minutes": 3.0
+}
