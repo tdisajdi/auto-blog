@@ -1,0 +1,229 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:NG=F",
+ "title_seed": "천연가스 가격이 한 달 새 5% 내린 배경: 수급 숫자와 전망 정리",
+ "category": "energy",
+ "started_at": "2026-11-03T02:29:36",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 47.2,
+   "chars": 2143
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 15.3,
+   "chars": 4355
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.1,
+   "chars": 426
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 37.6,
+   "chars": 176
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 41.7,
+   "chars": 145
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 35.3,
+   "chars": 883
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.8,
+   "chars": 4368
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.3,
+   "chars": 202
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 46.9,
+   "chars": 165
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 25.8,
+   "chars": 169
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 37.4,
+   "chars": 752
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "02:30:28",
+   "title": "천연가스 가격이 한 달 새 5% 내린 배경과 수급 숫자 정리",
+   "sections": [
+    "미국 천연가스 가격 변화율",
+    "미국 천연가스 저장량 추이",
+    "유럽 가스 시장의 상반된 흐름",
+    "숫자 해석 시 주의할 점"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "02:30:46",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "02:33:03",
+   "score": 0.65,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "용어 풀이"
+   ],
+   "value_tip": "본문 초반에 MMBtu나 Bcf 같은 전문 용어가 처음 등장할 때 즉시 짧은 설명을 덧붙여 독자의 이해를 돕기",
+   "issues": [
+    "[치명·사실 검증] '블로그 ondo에서 공개된 수급 숫자를 바탕으로 시장의 실제 배경을 정리해 드립니다.' → 자료에 없는 '블로그 ondo'라는 무관한 출처를 지어내어 작성했습니다. / 고칠 방법: '블로그 ondo에서 공개된'을 삭제하거나 실제 출처인 '야후 파이낸스 및 미국 에너지정보청(EIA) 등의'로 변경하세요."
+   ],
+   "lint": [
+    "[참고] 어려운 말: '기인한다' 대신 '~때문이다'"
+   ],
+   "chars": 3394
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "02:33:21",
+   "model": "gemini-3.6-flash",
+   "todo": 2
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "02:35:29",
+   "score": 1.0,
+   "passed": true,
+   "value": 0.4,
+   "value_missing": [
+    "제목 질문에 답함",
+    "판단 기준 제시",
+    "용어 풀이"
+   ],
+   "value_tip": "전문 용어(MMBtu, Bcf 등)가 본문에 처음 등장할 때 그 즉시 쉬운 설명을 덧붙여 주세요.",
+   "lint": [
+    "[참고] 어려운 말: '기인한다' 대신 '~때문이다'"
+   ],
+   "chars": 3407
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "02:35:33",
+   "post_id": 257,
+   "url": "https://ondo99.com/?p=257",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "천연가스 가격이 한 달 새 5% 내린 배경과 수급 숫자 정리",
+  "url": "https://ondo99.com/?p=257",
+  "score": 1.0,
+  "issues": [
+   "[참고] 어려운 말: '기인한다' 대신 '~때문이다'"
+  ]
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 2026-11-02 기준]\n- 천연가스(NG=F): 최근가 2.89 달러/MMBtu(열량 단위), 1주 +11.0%, 한 달 -4.9%, 1년 -32.3% (하루 -0.4%)\n  · 1년 최고 7.46(2026-01-28), 1년 최저 2.52(2026-04-24), 지금은 1년 범위(최저=0%, 최고=100%) 중 7% 지점, 1년 평균 3.30 대비 -12.6%, 3개월 +7.6%\n- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, 뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n- 유럽 천연가스(네덜란드 TTF)(TTF=F): 최근가 95.03 유로/MWh, 1주 -1.7%, 한 달 +27.1%, 1년 +199.4%\n  · 1년 최고 103.94(2026-10-30), 1년 최저 26.60(2025-12-10), 지금은 1년 범위(최저=0%, 최고=100%) 중 88% 지점, 1년 평균 50.14 대비 +89.5%, 3개월 +69.9%\n- 미국 천연가스 저장량(본토 48개 주)(EIA, 십억 입방피트(Bcf)): 2026-10-23 3,724, 2026-10-16 3,644, 2026-10-09 3,567, 2026-10-02 3,500, 2026-09-25 3,415 → 최근 1주 변화 +80, 1년 전(2025-10-24) 3,872 대비 -3.8%\n\n[관련 뉴스]\n- 유럽 가스 가격, 10월 30% 급등 후 2022년 고점에서 하락 - Investing.com 한국어 (Investing.com 한국어) https://news.google.com/rss/articles/CBMib0FVX3lxTE1QajdadDRZMjlxZG1LMTNjc080cjR5RGw2dTlZRllVa3N1MklOWW84OF9aSnVKbTV0ejNuOTY3Q21sRHA1azBpTjhHaHk4T0IyUDJIaWo1RWFzdWxOeFJFcjAxd0VVQTZtTzF5QzNhYw?oc=5\n- 가스값 급등했는데 한파까지…겨울철 에너지 비용 ‘비상’ - 기후에너지데이터뱅크 (기후에너지데이터뱅크) https://news.google.com/rss/articles/CBMiXkFVX3lxTFBuM1VvSTVTdnhLQ3ZYd0E3N09YekFNWGdhU3JJNVhIYlhIQTZpZ083UHU3Y3ZsVXNHOVBoVnFXdTVHel9PZi1WSHZpdXpGbWl5dld2M0NaZ1JHY2QzTEE?oc=5\n- 유럽 가스값 4년 만에 최고…추운 겨울 땐 아시아와 ‘LNG 쟁탈전’ - 에너지데일리 (에너지데일리) https://news.google.com/rss/articles/CBMickFVX3lxTE1UZ3hpczZFSmlRWWlXanNrX2JaYWI1am1pX2xkSXZLdy1qelZwZHV1R3dkLXhtRDFSWWo0Ri1nLWFHSWk2amhrRmp5T0o1SFJKQUFBeE5rRG8zSWdpdTVNRmJIODlFRWJ6OXZLMElrSWV0QQ?oc=5\n- 천연 가스(NATGAS) 종목이 11월1일에 2.12% 상승했습니다. 수요 전망이 바뀌고 있는 걸까요? - TradingKey (TradingKey) https://news.google.com/rss/articles/CBMikgFBVV95cUxPUHE1VC12RWhxQ3dxczIzNGZLbDdNZ3g5Q2RYY2dKSEpPTWd2dnJvNm8yWmkzb0QxSDBNdzBkQ2tUQVVjNTJtQUJrTmlnSDZ6UHFPdWkzMElhVnRxN1U2ODBKdk8tc0NtX3JfQzBhZDRKcTB1TzlWU2hNcE9Pem15X0hCRVY5bjZacVd2cWVadkdPdw?oc=5\n- [美특징주]벤처글로벌, 플라크마인스 LNG 상업운전 돌입…셸에 첫 공급 - 이데일리 (이데일리) https://news.google.com/rss/articles/CBMigAFBVV95cUxQUlJKVHVQRm1namtrZ2JEMG9rckJBRTF3ZW1RR2FPdUNYSXF0RWFidE5NdTZtQmE0ZkR6bFJvaUZPYjdTWGJKeXpYZHJSbDl1a00tb1FGeEpIQmxoMHpObnd2MTJEaUNNY0lEN3VDR1M3X3F3UEVjOEhWcklwUElaNw?oc=5\n- 유럽 천연가스 가격 4년 만에 최고… 이란 전쟁 후 3배 폭등\" - 위키리크스한국 (위키리크스한국) https://news.google.com/rss/articles/CBMicEFVX3lxTE53NjczQ182MVM0YlpXcHRwSG03Z08zbWJ0TDBQb3JqYUttbDZVRE1lSmw4YXRFbGx4R1MzemJIckNHNHZRN3RpUHpIb1MyOWdWM3lWOGRvQURhSlFSVGhYbThFVHEyUmJ0cWNKMGRnVEI?oc=5\n",
+ "drafts": {
+  "1": "<h1>천연가스 가격이 한 달 새 5% 내린 배경과 수급 숫자 정리</h1>\n<!-- 최근 천연가스 시장은 미국 천연가스 가격이 한 달 전보다 4.9% 내린 반면 유럽 네덜란드 TTF 가스는 급등세를 보이는 등 지역별 수급 환경에 따라 서로 다른 가격 흐름을 나타내고 있습니다. 공개된 가격과 미국 저장량 숫자를 바탕으로 객관적인 시장 흐름을 살펴봅니다. -->\n\n전 세계 천연가스 가격이 모두 폭등하고 있다는 소식이 전해지고 있지만, 실제 시장을 들여다보면 지역에 따라 상황이 다릅니다. 미국 시장에서는 최근 가스 가격이 한 달 전보다 오히려 하락세를 보인 반면, 유럽 시장에서는 큰 폭으로 상승하는 등 극명한 온도 차이가 나타나고 있습니다.\n\n야후 파이낸스에 따르면 2026년 11월 02일 기준 미국 천연가스 선물(NG=F) 가격은 2.89 달러/MMBtu를 기록했습니다. 반면 유럽 천연가스 지표인 네덜란드 TTF(TTF=F) 가격은 95.03 유로/MWh로 집계되어 두 시장의 수급 여건이 서로 다른 방향으로 움직이고 있음을 알 수 있습니다. 블로그 ondo에서 공개된 수급 숫자를 바탕으로 시장의 실제 배경을 정리해 드립니다.\n\n<h3>미국 천연가스 가격 변화율</h3>\n\n미국 천연가스 선물 가격의 단기 및 장기 변동 폭을 살펴보면 전반적인 약세 흐름이 확인됩니다. 천연가스(NG=F) 가격은 최근 1주 동안 11.0% 상승하며 단기 반등세를 보였으나, 한 달 전과 비교하면 4.9% 하락한 상태입니다. 1년 전과 비교한 장기 변동률은 -32.3%로, 최근 1년 사이 가격 수준이 크게 낮아졌음을 알 수 있습니다.\n\n지난 1년간의 가격 범위를 보면 최저점과 최고점 사이의 격차가 컸습니다. 1년 최고가는 2026년 1월 28일에 기록한 7.46 달러/MMBtu였으며, 1년 최저가는 2026년 4월 24일에 집계된 2.52 달러/MMBtu입니다. 현재 가격인 2.89 달러/MMBtu는 1년 최저가를 0%, 최고가를 100%로 보았을 때 7% 지점에 해당하는 상대적으로 낮은 수준입니다. \n\n또한 3개월 전 대비 가격은 7.6% 오른 상태이지만, 1년 평균 가격인 3.30 달러/MMBtu와 비교하면 12.6% 낮은 지점에 머물러 있습니다. 단기적인 주간 반등에도 불구하고 한 달 및 1년 단위의 지표는 미국 시장 내 가스 공급이 비교적 안정적으로 유지되고 있음을 보여줍니다.\n\n<h3>미국 천연가스 저장량 추이</h3>\n\n미국 본토 48개 주를 기준으로 한 천연가스 재고 현황은 지속적인 주간 주입세를 나타내고 있습니다. 미국 에너지정보청(EIA)에서 발표한 주간 저장량 수치를 살펴보면 저장고가 꾸준히 채워지고 있음을 확인할 수 있습니다.\n\n<table>\n<tr><th>측정 기준일</th><th>천연가스 저장량 (십억 입방피트, Bcf)</th></tr>\n<tr><td>2026년 10월 23일</td><td>3,724</td></tr>\n<tr><td>2026년 10월 16일</td><td>3,644</td></tr>\n<tr><td>2026년 10월 09일</td><td>3,567</td></tr>\n<tr><td>2026년 10월 02일</td><td>3,500</td></tr>\n<tr><td>2026년 09월 25일</td><td>3,415</td></tr>\n</table>\n\n2026년 10월 23일 기준 저장량은 3,724 Bcf로 직전 주 대비 80 Bcf 증가했습니다. 다만 1년 전 같은 시기인 2025년 10월 24일의 3,872 Bcf와 비교하면 3.8% 적은 수준입니다. 최근 한 달간 주간 저장량이 매주 수십 Bcf씩 꾸준히 늘어나면서 겨울철을 앞두고 미국 내 재고 축적이 순조롭게 진행되었습니다.\n\n<h3>유럽 가스 시장의 상반된 흐름</h3>\n\n미국과 달리 유럽 가스 시장은 큰 폭의 상승세를 겪으며 전혀 다른 경로를 걷고 있습니다. 유럽의 대표적 가스 가격 지표인 네덜란드 TTF(TTF=F) 선물 가격은 95.03 유로/MWh를 나타내고 있습니다.\n\n네덜란드 TTF 가격은 최근 1주 동안 1.7% 소폭 하락했으나, 한 달 전과 비교하면 27.1%나 상승했습니다. 1년 전 대비 변동률은 +199.4%에 달해 가격이 대폭 오른 상황입니다. 최근 1년간 최저가는 2025년 12월 10일에 기록한 26.60 유로/MWh였고, 최고가는 2026년 10월 30일에 기록한 103.94 유로/MWh였습니다. \n\n현재 유럽 가스 가격은 1년 가격 범위 중 88% 지점에 위치하여 최고점 부근에 형성되어 있습니다. 이는 1년 평균가인 50.14 유로/MWh보다 89.5% 높은 수치이며, 3개월 전과 비교해도 69.9% 상승한 수준입니다. 이러한 유럽 시장의 가격 급등세는 아시아 지역과의 겨울철 물량 확보 경쟁 가능성까지 불러일으키고 있다는 소식이 <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE1UZ3hpczZFSmlRWWlXanNrX2JaYWI1am1pX2xkSXZLdy1qelZwZHV1R3dkLXhtRDFSWYo4Ri1nLWFHSWk2amhrRmp5T0o1SFJKQUFBeE5rRG8zSWdpdTVNRmJIODlFRWJ6OXZLMElrSWV0QQ?oc=5\" target=\"_blank\" rel=\"noopener\">에너지데일리</a> 보도를 통해 전해진 바 있습니다.\n\n<h3>숫자 해석 시 주의할 점</h3>\n\n천연가스 시세를 살펴볼 때는 선물 가격 집계의 특성과 수급 변수를 함께 파악해야 합니다. 하루 단위의 가격 변동률은 선물 계약의 만기 교체나 시차 집계 과정에서 오차가 발생해 실제 시장 상황보다 왜곡되어 나타날 수 있으므로, 단기 수치보다는 1주, 한 달, 1년 단위의 흐름을 중심으로 확인하는 것이 적절합니다.\n\n또한 미국 내 가스 생산 및 수출 시설의 가동 현황도 중요한 수급 변수입니다. 예를 들어 <a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxQUlJKVHVQRm1namtrZ2JEMG9rckJBRTF3ZW1RR2FPdUNYSXF0RWFidE5NdTZtQmE0ZkR6bFJvaUZPYjdTWGJKeXpYZHJSbDl1a00tb1FGeEpIQmxoMHpObnd2MTJEaUNNY0lEN3VDR1M3X3F3UEVjOEhWcklwUElaNw?oc=5\" target=\"_blank\" rel=\"noopener\">이데일리</a>의 보도에 따르면 벤처글로벌의 플라크마인스 액화천연가스(LNG) 시설이 상업운전에 돌입하여 셸에 첫 물량을 공급하기 시작했다는 사실이 전해지기도 했습니다. 이처럼 미 대륙 내 공급 능력 변화와 해외 수출 물량 흐름은 향후 수급을 결정짓는 주요 요소로 작동합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 MMBtu와 Bcf는 에너지 시장에서 각각 어떤 의미를 가진 단위인가요?</h4>\nMMBtu는 열량 단위로, 약 100만 Btu의 열량을 뜻하며 주로 미국 천연가스 거래 시 가격을 산정하는 기준으로 사용됩니다. 반면 Bcf는 십억 입방피트(Billion Cubic Feet)를 의미하는 부피 단위로, EIA에서 미국 전역의 천연가스 저장량을 측정할 때 사용합니다.\n\n<h4>🔸 미국 천연가스 가격과 유럽 네덜란드 TTF 가격의 단위를 다르게 표시하는 이유는 무엇인가요?</h4>\n미국 시장은 열량 단위인 달러/MMBtu 기준을 사용하는 반면, 유럽 시장은 전력 및 에너지 관념에 맞춘 유로/MWh(메가와트시) 단위를 주로 사용하기 때문입니다. 단위와 통화가 서로 다르므로 가격 수치 자체를 직접 비교하기보다는 각각의 기간별 변동률을 통해 수급 동향을 비교해야 합니다.\n\n<h4>🔸 이 수급 숫자를 통해 다가오는 겨울철 전 세계 LNG 수급 결과를 미리 예측할 수 있나요?</h4>\n과거와 현재의 재고 수치 및 변동률 데이터만으로는 다가올 겨울철의 기상 변화나 지polit적 변수, 갑작스러운 난방 수요 증가를 미리 판단할 수 없습니다. 수급 숫자는 현재 지점의 재고 축적 상태와 가격 위치를 객관적으로 파악하는 자료로 활용하는 것이 바람직합니다.\n\n<h3>정리</h3>\n\n미국 천연가스 시장은 최근 한 달간 4.9% 하락세를 나타내며 1년 범위 기준 7% 지점의 상대적으로 낮은 가격대를 형성하고 있으며, 주간 저장량도 지속해서 증가하는 흐름을 보였습니다. 반면 유럽 네덜란드 TTF 시장은 한 달 새 27.1% 상승하며 1년 범주의 88% 지점까지 올라서는 등 전 세계 가스 시장이 지역별로 극명한 수급 차이를 보이고 있습니다.\n\n따라서 '가스 가격 폭등'이라는 일률적인 뉴스 보도를 접할 때에도 미국 시장의 달러/MMBtu 지표와 유럽 시장의 유로/MWh 지표를 분리하여 볼 필요가 있습니다. 제시된 통계와 재고 숫자를 정확히 구별해서 바라보는 것이 시장 상황을 이해하는 올바른 기준이 됩니다.\n\n태그: 천연가스 미국천연가스 네덜란드TTF EIA저장량 에너지시장",
+  "2": "<h1>천연가스 가격이 한 달 새 5% 내린 배경과 수급 숫자 정리</h1>\n<!-- 최근 천연가스 시장은 미국 천연가스 가격이 한 달 전보다 4.9% 내린 반면 유럽 네덜란드 TTF 가스는 급등세를 보이는 등 지역별 수급 환경에 따라 서로 다른 가격 흐름을 나타내고 있습니다. 공개된 가격과 미국 저장량 숫자를 바탕으로 객관적인 시장 흐름을 살펴봅니다. -->\n\n전 세계 천연가스 가격이 모두 폭등하고 있다는 소식이 전해지고 있지만, 실제 시장을 들여다보면 지역에 따라 상황이 다릅니다. 미국 시장에서는 최근 가스 가격이 한 달 전보다 오히려 하락세를 보인 반면, 유럽 시장에서는 큰 폭으로 상승하는 등 극명한 온도 차이가 나타나고 있습니다.\n\n야후 파이낸스에 따르면 2026년 11월 02일 기준 미국 천연가스 선물(NG=F) 가격은 2.89 달러/MMBtu를 기록했습니다. 반면 유럽 천연가스 지표인 네덜란드 TTF(TTF=F) 가격은 95.03 유로/MWh로 집계되어 두 시장의 수급 여건이 서로 다른 방향으로 움직이고 있음을 알 수 있습니다. 야후 파이낸스 및 미국 에너지정보청(EIA) 등의 수급 숫자를 바탕으로 시장의 실제 배경을 정리해 드립니다.\n\n<h3>미국 천연가스 가격 변화율</h3>\n\n미국 천연가스 선물 가격의 단기 및 장기 변동 폭을 살펴보면 전반적인 약세 흐름이 확인됩니다. 천연가스(NG=F) 가격은 최근 1주 동안 11.0% 상승하며 단기 반등세를 보였으나, 한 달 전과 비교하면 4.9% 하락한 상태입니다. 1년 전과 비교한 장기 변동률은 -32.3%로, 최근 1년 사이 가격 수준이 크게 낮아졌음을 알 수 있습니다.\n\n지난 1년간의 가격 범위를 보면 최저점과 최고점 사이의 격차가 컸습니다. 1년 최고가는 2026년 1월 28일에 기록한 7.46 달러/MMBtu였으며, 1년 최저가는 2026년 4월 24일에 집계된 2.52 달러/MMBtu입니다. 현재 가격인 2.89 달러/MMBtu는 1년 최저가를 0%, 최고가를 100%로 보았을 때 7% 지점에 해당하는 상대적으로 낮은 수준입니다. \n\n또한 3개월 전 대비 가격은 7.6% 오른 상태이지만, 1년 평균 가격인 3.30 달러/MMBtu와 비교하면 12.6% 낮은 지점에 머물러 있습니다. 단기적인 주간 반등에도 불구하고 한 달 및 1년 단위의 지표는 미국 시장 내 가스 공급이 비교적 안정적으로 유지되고 있음을 보여줍니다.\n\n<h3>미국 천연가스 저장량 추이</h3>\n\n미국 본토 48개 주를 기준으로 한 천연가스 재고 현황은 지속적인 주간 주입세를 나타내고 있습니다. 미국 에너지정보청(EIA)에서 발표한 주간 저장량 수치를 살펴보면 저장고가 꾸준히 채워지고 있음을 확인할 수 있습니다.\n\n<table>\n<tr><th>측정 기준일</th><th>천연가스 저장량 (십억 입방피트, Bcf)</th></tr>\n<tr><td>2026년 10월 23일</td><td>3,724</td></tr>\n<tr><td>2026년 10월 16일</td><td>3,644</td></tr>\n<tr><td>2026년 10월 09일</td><td>3,567</td></tr>\n<tr><td>2026년 10월 02일</td><td>3,500</td></tr>\n<tr><td>2026년 09월 25일</td><td>3,415</td></tr>\n</table>\n\n2026년 10월 23일 기준 저장량은 3,724 Bcf로 직전 주 대비 80 Bcf 증가했습니다. 다만 1년 전 같은 시기인 2025년 10월 24일의 3,872 Bcf와 비교하면 3.8% 적은 수준입니다. 최근 한 달간 주간 저장량이 매주 수십 Bcf씩 꾸준히 늘어나면서 겨울철을 앞두고 미국 내 재고 축적이 순조롭게 진행되었습니다.\n\n<h3>유럽 가스 시장의 상반된 흐름</h3>\n\n미국과 달리 유럽 가스 시장은 큰 폭의 상승세를 겪으며 전혀 다른 경로를 걷고 있습니다. 유럽의 대표적 가스 가격 지표인 네덜란드 TTF(TTF=F) 선물 가격은 95.03 유로/MWh를 나타내고 있습니다.\n\n네덜란드 TTF 가격은 최근 1주 동안 1.7% 소폭 하락했으나, 한 달 전과 비교하면 27.1%나 상승했습니다. 1년 전 대비 변동률은 +199.4%에 달해 가격이 대폭 오른 상황입니다. 최근 1년간 최저가는 2025년 12월 10일에 기록한 26.60 유로/MWh였고, 최고가는 2026년 10월 30일에 기록한 103.94 유로/MWh였습니다. \n\n현재 유럽 가스 가격은 1년 가격 범위 중 88% 지점에 위치하여 최고점 부근에 형성되어 있습니다. 이는 1년 평균가인 50.14 유로/MWh보다 89.5% 높은 수치이며, 3개월 전과 비교해도 69.9% 상승한 수준입니다. 이러한 유럽 시장의 가격 급등세는 아시아 지역과의 겨울철 물량 확보 경쟁 가능성까지 불러일으키고 있다는 소식이 <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE1UZ3hpczZFSmlRWWlXanNrX2JaYWI1am1pX2xkSXZLdy1qelZwZHV1R3dkLXhtRDFSWYo4Ri1nLWFHSWk2amhrRmp5T0o1SFJKQUFBeE5rRG8zSWdpdTVNRmJIODlFRWJ6OXZLMElrSWV0QQ?oc=5\" target=\"_blank\" rel=\"noopener\">에너지데일리</a> 보도를 통해 전해진 바 있습니다.\n\n<h3>숫자 해석 시 주의할 점</h3>\n\n천연가스 시세를 살펴볼 때는 선물 가격 집계의 특성과 수급 변수를 함께 파악해야 합니다. 하루 단위의 가격 변동률은 선물 계약의 만기 교체나 시차 집계 과정에서 오차가 발생해 실제 시장 상황보다 왜곡되어 나타날 수 있으므로, 단기 수치보다는 1주, 한 달, 1년 단위의 흐름을 중심으로 확인하는 것이 적절합니다.\n\n또한 미국 내 가스 생산 및 수출 시설의 가동 현황도 중요한 수급 변수입니다. 예를 들어 <a href=\"https://news.google.com/rss/articles/CBMigAFBVV95cUxQUlJKVHVQRm1namtrZ2JEMG9rckJBRTF3ZW1RR2FPdUNYSXF0RWFidE5NdTZtQmE0ZkR6bFJvaUZPYjdTWGJKeXpYZHJSbDl1a00tb1FGeEpIQmxoMHpObnd2MTJEaUNNY0lEN3VDR1M3X3F3UEVjOEhWcklwUElaNw?oc=5\" target=\"_blank\" rel=\"noopener\">이데일리</a>의 보도에 따르면 벤처글로벌의 플라크마인스 액화천연가스(LNG) 시설이 상업운전에 돌입하여 셸에 첫 물량을 공급하기 시작했다는 사실이 전해지기도 했습니다. 이처럼 미 대륙 내 공급 능력 변화와 해외 수출 물량 흐름은 향후 수급을 결정짓는 주요 요소로 작동합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 MMBtu와 Bcf는 에너지 시장에서 각각 어떤 의미를 가진 단위인가요?</h4>\nMMBtu는 열량 단위로, 약 100만 Btu의 열량을 뜻하며 주로 미국 천연가스 거래 시 가격을 산정하는 기준으로 사용됩니다. 반면 Bcf는 십억 입방피트(Billion Cubic Feet)를 의미하는 부피 단위로, EIA에서 미국 전역의 천연가스 저장량을 측정할 때 사용합니다.\n\n<h4>🔸 미국 천연가스 가격과 유럽 네덜란드 TTF 가격의 단위를 다르게 표시하는 이유는 무엇인가요?</h4>\n미국 시장은 열량 단위인 달러/MMBtu 기준을 사용하는 반면, 유럽 시장은 전력 및 에너지 관념에 맞춘 유로/MWh(메가와트시) 단위를 주로 사용하기 때문입니다. 단위와 통화가 서로 다르므로 가격 수치 자체를 직접 비교하기보다는 각각의 기간별 변동률을 통해 수급 동향을 비교해야 합니다.\n\n<h4>🔸 이 수급 숫자를 통해 다가오는 겨울철 전 세계 LNG 수급 결과를 미리 예측할 수 있나요?</h4>\n과거와 현재의 재고 수치 및 변동률 데이터만으로는 다가올 겨울철의 기상 변화나 지polit적 변수, 갑작스러운 난방 수요 증가를 미리 판단할 수 없습니다. 수급 숫자는 현재 지점의 재고 축적 상태와 가격 위치를 객관적으로 파악하는 자료로 활용하는 것이 바람직합니다.\n\n<h3>정리</h3>\n\n미국 천연가스 시장은 최근 한 달간 4.9% 하락세를 나타내며 1년 범위 기준 7% 지점의 상대적으로 낮은 가격대를 형성하고 있으며, 주간 저장량도 지속해서 증가하는 흐름을 보였습니다. 반면 유럽 네덜란드 TTF 시장은 한 달 새 27.1% 상승하며 1년 범주의 88% 지점까지 올라서는 등 전 세계 가스 시장이 지역별로 극명한 수급 차이를 보이고 있습니다.\n\n따라서 '가스 가격 폭등'이라는 일률적인 뉴스 보도를 접할 때에도 미국 시장의 달러/MMBtu 지표와 유럽 시장의 유로/MWh 지표를 분리하여 볼 필요가 있습니다. 제시된 통계와 재고 숫자를 정확히 구별해서 바라보는 것이 시장 상황을 이해하는 올바른 기준이 됩니다.\n\n태그: 천연가스 미국천연가스 네덜란드TTF EIA저장량 에너지시장"
+ },
+ "minutes": 5.9
+}
