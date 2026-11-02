@@ -5278,6 +5278,16 @@ def send_weekly_health_report():
     except Exception as e:
         lines.append(f"(편집 기록 요약 실패: {type(e).__name__})")
 
+    # 주간 점검(키·워드프레스 토큰·자료원·사이트 화면 캡처) - ondo/checks/weekly.py
+    try:
+        from ondo.checks import weekly
+        from blog_engine import _telegram_send_photo
+        from blog_engine import get_wordpress_recent_posts
+        posts = get_wordpress_recent_posts() or []
+        lines += weekly.run_all(send_photo=_telegram_send_photo, latest_url=posts[0].get("link") if posts else None)
+    except Exception as e:
+        lines.append(f"(주간 점검 실패: {type(e).__name__})")
+
     message = "\n".join(lines)
     _telegram_send_message(message)
     print("✅ 주간 상태 점검 리포트 전송 완료")

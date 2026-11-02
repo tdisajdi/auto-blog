@@ -905,14 +905,33 @@ def run_confirmed():
     )
 
 
+def run_test(category):
+    """시험용: 승인 없이 그 분야 후보 중 가장 강한 것으로 바로 글을 쓴다(공개 안 됨 - 자동 발행이 꺼져 있으면 임시글).
+    두 번째 글(에너지·사회 등)을 텔레그램 승인을 기다리지 않고 시험하려고 만들었다(2026-11-02)."""
+    if category not in ADAPTERS:
+        print(f"❌ 알 수 없는 분야: {category} (가능: {', '.join(ADAPTERS)})")
+        return
+    cands = [c for c in (ADAPTERS[category]() or []) if c.get("facts_text")]
+    if not cands:
+        print(f"ℹ️ {category} 분야에 지금 쓸 만한 후보가 없습니다.")
+        return
+    best = max(cands, key=lambda c: c.get("score", 0))
+    print(f"🧪 시험 글: [{category}] {best['title_seed']} (소식 강도 {best.get('score', 0):.2f})")
+    _save_json_file(CONFIRMED_TOPIC_FILE, dict(best, category=category, memo=""))
+    run_confirmed()
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
+    ap.add_argument("--test", metavar="분야", help="시험 글 1편(승인 없이, 임시글): trend/tech/bio/energy/society")
     ap.add_argument("--discover", action="store_true")
     ap.add_argument("--run", action="store_true")
     ap.add_argument("--check-sources", action="store_true", help="EIA·KOSIS 키와 통계표 점검 (발행 안 함)")
     ap.add_argument("--if-due", action="store_true", help="오늘 추천을 아직 안 보냈고 12:07(KST)이 지났을 때만")
     args = ap.parse_args()
-    if args.check_sources:
+    if args.test:
+        run_test(args.test)
+    elif args.check_sources:
         run_check_sources()
     elif args.discover:
         if args.if_due and not _discover_due("topic", 12, 7):

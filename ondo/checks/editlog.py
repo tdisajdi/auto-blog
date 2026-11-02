@@ -75,8 +75,14 @@ class EditLog:
         mode = {"single": "한 번에 쓰기", "sections": "섹션별 나눠 쓰기"}.get(self.data["mode"], "-")
         rewrites = sum(1 for s in self.data["steps"] if re.fullmatch(r"고쳐쓰기 \d+", s["step"]))
         fails = sum(1 for c in self.data["calls"] if c["status"] != "ok")
+        last = next((st for st in reversed(self.data["steps"]) if st["step"].startswith("편집장") and "value" in st), None)
+        value = ""
+        if last:
+            got = round(last["value"] * 5)
+            miss = last.get("value_missing") or []
+            value = f"\n독자 가치 {got}/5" + (f" (부족: {', '.join(miss)})" if miss else "")
         return (f"글쓰기: {mode} / 모델: {', '.join(self.models_used()) or '-'} / 고쳐쓰기 {rewrites}번"
-                + (f" / 실패한 호출 {fails}번(자동 전환됨)" if fails else ""))
+                + (f" / 실패한 호출 {fails}번(자동 전환됨)" if fails else "") + value)
 
     def save(self):
         try:
@@ -123,6 +129,11 @@ def weekly_summary(days=7):
             final.append(d.get("result", {}).get("score", scores[-1]) or scores[-1])
     if first:
         lines.append(f"  편집장 점수: 처음 평균 {sum(first) / len(first):.2f} → 최종 평균 {sum(final) / len(final):.2f}")
+    vals = [[st["value"] for st in d.get("steps", []) if st["step"].startswith("편집장") and st.get("value") is not None]
+            for d in logs]
+    vals = [v[-1] for v in vals if v]
+    if vals:
+        lines.append(f"  독자 가치(질문 5개 중 '예' 비율) 평균 {sum(vals) / len(vals):.2f}")
     calls = [c for d in logs for c in d.get("calls", [])]
     ok = Counter(c["model"] for c in calls if c["status"] == "ok")
     if ok:

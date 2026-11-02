@@ -91,3 +91,12 @@ st, _, _ = te.produce_article(kind_label="k", title_seed="s", facts_text="f", ru
 assert st == "failed" and "pid" not in upd and "원래 글은 그대로" in sent[-1][0], (st, upd)
 del os.environ["REPLACE_URL"]
 print("replace ok")
+
+# 6) 시험 글: 승인 없이 그 분야의 가장 강한 후보로 바로 쓴다
+got = {}
+te.ADAPTERS = {"energy": lambda: [cand("energy", 0.5, "brent"), cand("energy", 1.4, "wti")]}
+te.produce_article = lambda **k: got.update(k) or ("draft", "t", "u")
+te.run_test("energy")
+assert got["topic_id"] == "wti" and got["article_type"] == "energy" and not os.path.exists("confirmed_topic2_context.json"), got
+te.run_test("nope")
+print("test run ok")
