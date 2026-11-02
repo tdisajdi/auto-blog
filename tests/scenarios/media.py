@@ -49,3 +49,11 @@ f, v = xe.tax_scenarios()
 assert "1,000만 원: 해외 상장 ETF (일반계좌) 165만 원, 국내 상장 해외지수 ETF (일반계좌) 154만 원, ISA 일반형 (3년 유지) 79만 원, 연금저축 (연금 수령) 55만 원" in f, f
 assert v.count("<table") == 1 and "cdn.plot.ly" in v
 print("tax calc ok")
+
+# 가이드·이슈의 계산표 글자는 편집국으로 넘어가서, 작가가 베낀 표를 지울 때 쓰인다
+seen = {}
+te.write_article = lambda **k: seen.update(k) or {"html": "<h1>제목</h1><p>a</p>\n태그: t", "plan": {}, "score": 0.9, "issues": [], "clean": True}
+te.produce_article(kind_label="이슈 해설", title_seed="s", facts_text="f", rules="", category_label="ETF/이슈 해설",
+                   article_type="issue", topic_id="fx", visual_html="<div><table><tr><td>524,983원</td></tr></table></div>")
+assert seen["visual_texts"] == ["524,983원"], seen.get("visual_texts")
+print("visual texts ok")
