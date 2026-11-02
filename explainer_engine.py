@@ -451,6 +451,9 @@ def market_thermometers():
     return f'<figure class="ondo-chart" style="margin:28px 0;">{h}</figure>' if h else ""
 
 
+_OFF_TOPIC_NEWS = ("비트코인", "이더리움", "가상자산", "암호화폐", "코인", "지캐시", "리플", "솔라나", "도지")
+
+
 def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     facts_lines, data_cache = [], {}
     driver = None
@@ -470,7 +473,9 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
         if driver:
             driver.quit()
 
-    news = ea._get_recent_news_for_query(news_query, max_results=4) if news_query else []
+    # 검색어 뒤에 'ETF'가 붙어서 '공포 탐욕 지수 ETF'에 비트코인·코인 ETF 기사가 섞였다(2026-11-03 투자심리 글) → 넉넉히 받고 걸러냄
+    news = [n for n in (ea._get_recent_news_for_query(news_query, max_results=10) if news_query else [])
+            if not any(w in n.get("title", "") for w in _OFF_TOPIC_NEWS)][:4]
     news_block = "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news) or "- 수집된 뉴스 없음"
     macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')}{_day_move(macro_data)}\n"
                    f"- 미국 10년물 금리: {macro_data.get('us_10y')}\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}")

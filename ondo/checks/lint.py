@@ -32,6 +32,9 @@ VAGUE_SOURCES = ["외신 보도", "외신에 따르면", "전문가들은", "업
 def text_of(html):
     t = re.sub(r"<!--.*?-->", " ", html or "", flags=re.S)
     t = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", t, flags=re.S)
+    # 글자 안의 꾸밈 태그(링크·굵게)는 공백 없이 떼어야 '코인리더스</a>에'가 '코인리더스 에'로 바뀌지 않는다
+    # (2026-11-03: 검토 담당이 없는 띄어쓰기 오류를 지적함). 문단·표 칸 같은 구역 태그만 공백으로.
+    t = re.sub(r"</?(a|strong|b|em|i|span|sup|sub|mark|u)(\s[^>]*)?>", "", t, flags=re.I)
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)).strip()
 
 
