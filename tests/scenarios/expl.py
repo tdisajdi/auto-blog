@@ -46,7 +46,9 @@ yld = 4.2 + np.cumsum(dy)
 def _px(beta):   # 금리 1%p당 beta% 움직이는 가격
     return 100 * np.cumprod(1 + (beta * dy) / 100)
 series = {"^TNX": yld, "TLT": _px(-16.0), "SHY": _px(-1.8)}
-yf.Ticker = lambda t: type("T", (), {"history": lambda s, period: pd.DataFrame({"Close": series[t]}, index=idx)})()
+tz = {"^TNX": "America/Chicago"}   # 실제처럼 금리는 시카고, ETF는 뉴욕 시간
+yf.Ticker = lambda t: type("T", (), {"history": lambda s, period: pd.DataFrame(
+    {"Close": series[t]}, index=idx.tz_localize(tz.get(t, "America/New_York")))})()
 f, v = xe.rates_effect({"TLT": {}, "SHY": {}, "360750.KS": {}})
 tlt = float(f.split("TLT: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
 shy = float(f.split("SHY: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
