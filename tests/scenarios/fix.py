@@ -69,3 +69,9 @@ blk, _ = te.kosis_fact_block(next(t for t in te.KOSIS_TABLES if t["key"] == "age
 assert "고령사회 기준(14%)을 처음 넘은 해: 2017년" in blk and "초고령사회 기준(20%)을 처음 넘은 해: 2024년" in blk, blk
 assert "고령화사회 기준(7%)은 이 자료 기간 시작(2016년) 전에 이미 넘음" in blk and "가장 컸던 때 2025년(+1.2%p)" in blk, blk
 print("aged thresholds ok")
+_, iss, _ = lint.fix_and_check("<h1>t</h1><p>2016년 6,995,652명에서 2017년 7,356,106명, 2018년 7,650,408명, 2019년 8,026,915명, "
+                               "2020년 8,496,077명으로 늘었다.</p><p>2016년 13.5%에서 2025년 21.2%로 올랐다.</p><p>태그: a</p>")
+assert [i for i in iss if "연도별 숫자 줄글 나열(5개" in i] and lint.blocking([i for i in iss if "연도별" in i]), iss
+assert te._kosis_position({"series": [("2016", 13.5), ("2024", 20.0), ("2025", 21.2)], "value": 21.2, "prev": 20.0}) == "최근 3년 중 가장 높음"
+assert te._kosis_position({"series": [("2023", 5), ("2024", 3), ("2025", 4)], "value": 4, "prev": 3}) == "전년보다 늘어"
+print("year list / kosis title ok")

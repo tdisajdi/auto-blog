@@ -867,6 +867,20 @@ def discover_society():
     return out
 
 
+def _kosis_position(sm):
+    """최근 값이 기간 중 최고/최저인지, 아니면 전년보다 늘었는지 줄었는지 - 제목에 쓸 짧은 사실."""
+    vals = [v for _, v in (sm.get("series") or [])[-10:]]
+    n = len(vals)
+    if n >= 3 and vals[-1] == max(vals) and vals.count(vals[-1]) == 1:
+        return f"최근 {n}년 중 가장 높음"
+    if n >= 3 and vals[-1] == min(vals) and vals.count(vals[-1]) == 1:
+        return f"최근 {n}년 중 가장 낮음"
+    prev = sm.get("prev")
+    if prev is None or sm["value"] == prev:
+        return "전년과 같음"
+    return "전년보다 늘어" if sm["value"] > prev else "전년보다 줄어"
+
+
 def _kosis_candidates():
     """KOSIS에 아직 글로 안 쓴 새 기간 자료가 있으면 그 자체를 주제 후보로 (예: 2025년 출생아 수).
     같은 표·같은 기간은 한 번만 쓴다(기간이 바뀌어 새 자료가 나오면 다시 후보)."""
@@ -900,7 +914,8 @@ def _kosis_candidates():
         news = google_news(f"{tb['name']} 통계", 5)
         facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
         cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm),
-                      "title_seed": f"{period} {name} {value}, 숫자로 본 우리 사회의 변화",
+                      # 어느 글에나 붙는 꼬리('숫자로 본 우리 사회의 변화') 대신 자료가 답하는 사실을 제목에(2026-11-03)
+                      "title_seed": f"{period} {name} {value}, {_kosis_position(sm)}, 흐름과 의미 정리",
                       "facts_text": facts, "score": 1.2 + strength,
                       "reason": f"국가통계포털 {tb['name']} 새 자료 ({period} {name} {value})",
                       "source_note": f"국가통계포털(KOSIS) '{tb['name']}'"})
