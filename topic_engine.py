@@ -516,11 +516,15 @@ KOSIS_TABLES = [
      "candidate": False,
      "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
     {"key": "aged", "name": "고령인구 비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 10, "main": "고령인구비율",
+     "terms": "고령인구 = 만 65세 이상 인구. 고령인구비율 = 65세 이상 인구 ÷ 전체 인구 × 100",
      # 국제연합(UN) 분류(통계청 설명 자료에서 쓰는 기준): 글에 '판단 기준'이 없다는 지적(2026-11-03)에 답하는 기준선
      "thresholds": [(7, "고령화사회"), (14, "고령사회"), (20, "초고령사회")],
      "threshold_note": "국제연합(UN) 분류로 65세 이상 인구 비율이 7% 이상이면 고령화사회, 14% 이상이면 고령사회, 20% 이상이면 초고령사회",
      "keywords": ["고령", "노인", "65세", "초고령"]},
     {"key": "single", "name": "1인가구 비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 10, "main": "1인가구비율",
+     # 용어 정의를 자료로 준다: 없으면 작가가 기억으로 풀어 써서 확인할 수 없는 문장이 생김(2026-11-03)
+     "terms": "통계청 인구주택총조사 기준 '일반가구'는 전체 가구에서 집단가구(기숙사·사회시설 등)와 외국인가구를 뺀 가구, "
+              "'1인가구'는 혼자서 살림하는 가구. 1인가구비율 = 1인가구 ÷ 일반가구 × 100",
      "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
@@ -675,6 +679,8 @@ def kosis_fact_block(table, max_items=8):
                 trend.append(f"  · {label} 기준({line_v}%)을 처음 넘은 해: {_fmt_period(crossed, table['prd'])}")
             elif crossed:
                 trend.append(f"  · {label} 기준({line_v}%)은 이 자료 기간 시작({_fmt_period(seg[0][0], table['prd'])}) 전에 이미 넘음")
+    if table.get("terms"):
+        trend.append(f"- 용어: {table['terms']}")
     if table.get("threshold_note"):
         trend.append(f"- 판단 기준: {table['threshold_note']}")
     if trend:
