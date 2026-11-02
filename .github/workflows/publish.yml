@@ -29,6 +29,15 @@ on:
         description: '다시 쓰기: 이 글 주소를 새로 쓴 글로 바꿈 (topic과 같이 사용, 예: GUIDE:... + 글 주소)'
         required: false
         default: ''
+      health_report:
+        description: '주간 상태 점검 리포트를 지금 보내기(키·워드프레스·자료원·사이트 화면 캡처)'
+        required: false
+        type: boolean
+        default: false
+      topic2_test:
+        description: '두 번째 글 시험 1편(승인 없이, 임시글): trend / tech / bio / energy / society 중 하나'
+        required: false
+        default: ''
       unpublish_url:
         description: '이 글을 비공개(임시글)로 내림 (글 주소 또는 ondo99.com/?p=번호)'
         required: false
@@ -71,6 +80,7 @@ on:
 
 permissions:
   contents: write
+  actions: read     # watchdog.py가 실행 기록을 읽는 데 필요(읽기만)
 
 # [수정] discover-and-notify(매일 22:30 UTC)와 check-approval-and-publish(10분마다)는
 # 22:30이 10분 간격 위에 정확히 걸려서 매일 동시에 트리거된다. 주간 잡(월 20:00, 일 21:00 UTC)도
@@ -201,6 +211,18 @@ jobs:
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+
+      # 깃허브 자체 예약으로 돌 때만: 외부 알람(cron-job.org)이 1시간 넘게 안 불렀으면 텔레그램 알림 (watchdog.py)
+      - name: 외부 알람 멈춤 감시
+        if: github.event_name == 'schedule'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python watchdog.py || echo "⚠️ 감시 실패 - 점검은 계속 진행"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add failure_alerts.json 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 감시 알림 기록" -q && git pull --rebase --autostash -q && git push -q) || true
 
       # 아침/낮 예약 실행이 빠졌으면 여기서 대신 보낸다 (이미 보냈으면 바로 넘어감)
       - name: 놓친 추천 보충
@@ -346,7 +368,7 @@ jobs:
   health-report:
     if: github.event.schedule == '0 21 * * 0'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -357,6 +379,8 @@ jobs:
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+      - name: 화면 캡처 도구 설치 (주간 점검용)
+        run: pip install playwright && python -m playwright install --with-deps chromium || echo "⚠️ 캡처 도구 설치 실패 - 캡처만 건너뜀"
       - name: 주간 상태 점검 리포트 전송
         run: python etf_auto.py --health-report
 
@@ -395,7 +419,18 @@ jobs:
         env:
           REPLACE_URL: ${{ github.event.inputs.replace_url }}
           UNPUBLISH_URL: ${{ github.event.inputs.unpublish_url }}
+          TOPIC2_TEST: ${{ github.event.inputs.topic2_test }}
         run: |
+          if [ "${{ github.event.inputs.health_report }}" = "true" ]; then
+            pip install -q playwright && python -m playwright install --with-deps chromium || echo "⚠️ 캡처 도구 설치 실패"
+            python etf_auto.py --health-report
+            exit $?
+          fi
+          if [ -n "$TOPIC2_TEST" ]; then
+            case "$TOPIC2_TEST" in trend|tech|bio|energy|society) ;; *) echo "❌ 분야 이름 확인: $TOPIC2_TEST"; exit 1;; esac
+            BLOG_CATEGORY="$TOPIC2_TEST" python topic_engine.py --test "$TOPIC2_TEST"
+            exit $?
+          fi
           if [ -n "$UNPUBLISH_URL" ]; then
             python -c "import sys, blog_engine as b; t = b.wp_find_post_by_url(sys.argv[1]); print('대상:', t); ok = bool(t) and b.wp_update_post(t[0], status='draft'); print('비공개 처리:', ok); sys.exit(0 if ok else 1)" "$UNPUBLISH_URL"
             exit $?
@@ -428,6 +463,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in *_article_state.json *_generation_state.json *_api_usage_log.json; do git add "$f" 2>/dev/null || true; done
           git add etf_article_state.json 2>/dev/null || true
           git add etf_generation_state.json 2>/dev/null || true
           git add etf_api_usage_log.json 2>/dev/null || true

@@ -21,6 +21,9 @@ from ondo.writing import llm
 PROMPTS = Path(__file__).resolve().parent / "prompts"
 MAX_REWRITES = 2
 MAX_TODO = 5          # 고쳐쓰기 한 번에 주는 지적 수
+# 글을 쓰고 고치는 단계는 좋은 모델만(2026-11-02). 예전엔 좋은 모델이 한도에 걸리면 섹션 쓰기·고쳐쓰기가 조용히
+# 약한 모델로 내려갔다. 비공개로 다듬는 지금은 약한 글보다 "오늘은 건너뛰기"가 낫다. ALLOW_WEAK_WRITER=1이면 예전처럼.
+WRITE_TIER = "strong" if os.environ.get("ALLOW_WEAK_WRITER") == "1" else "strong_only"
 ANGLES = [
     "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료의 사실로 답을 쌓아가는 구성",
     "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정확한 그림을 보여주는 구성",
@@ -227,13 +230,13 @@ def _write_sections(ctx, log):
             common["link_rule"] = ""
         r = llm.call(prompt("section", plan=plan_text(ctx["plan"]), previous="\n".join(pieces) or "(아직 없음 - 첫 부분입니다)",
                             target=target, target_format=fmt, **common),
-                     step=f"쓰기({name})", log=log, tier="strong", start_key=i)   # 섹션마다 다른 키에서 시작
+                     step=f"쓰기({name})", log=log, tier=WRITE_TIER, start_key=i)   # 섹션마다 다른 키에서 시작
         if not r.text:
-            log.step("쓰기 실패", part=name, reason="모든 모델·키가 한도 초과" if r.limited else "답이 없음")
+            log.step("쓰기 실패", part=name, reason="좋은 모델이 모든 키에서 한도 초과" if r.limited else "답이 없음")
             return None
         pieces.append(_clean_html(r.text))
     draft = "\n".join(pieces)
-    r = llm.call(prompt("unify", draft=draft), step="이음새 다듬기", log=log, tier="strong",
+    r = llm.call(prompt("unify", draft=draft), step="이음새 다듬기", log=log, tier=WRITE_TIER,
                  start_key=len(pieces))
     unified = _clean_html(r.text) if r.text else ""
     if unified and len(lint.text_of(unified)) >= 0.85 * len(lint.text_of(draft)):
@@ -362,7 +365,11 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         log.set_mode("sections", f"한 번에 쓰기 실패: {why}")
         html = _write_sections(ctx, log)
         if not html:
-            log.data["result"]["reason"] = "섹션별 쓰기도 실패(모든 키·모델 한도 초과 또는 오류)"
+            fail = next((st for st in reversed(log.data["steps"]) if st["step"] == "쓰기 실패"), {})
+            limited = "한도" in str(fail.get("reason", "")) or r.limited
+            log.data["result"]["reason"] = ("좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 4시쯤 "
+                                            "한도가 풀린 뒤 다시 시도해 주세요" if limited
+                                            else f"섹션별 쓰기 실패({fail.get('part', '?')}: {fail.get('reason', '답이 없음')})")
             return None
 
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
@@ -407,7 +414,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         if not todo:
             break                                     # 고칠 방향이 없다(검토 실패 등)
         r = llm.call(prompt("rewrite", issues="\n".join(f"- {t}" for t in todo), draft=html, **ctx["common"]),
-                     step=f"고쳐쓰기 {round_no}", log=log, tier="strong", start_key=round_no * 2)
+                     step=f"고쳐쓰기 {round_no}", log=log, tier=WRITE_TIER, start_key=round_no * 2)
         new = _clean_html(r.text) if r.text else ""
         if not new:
             log.step(f"고쳐쓰기 {round_no} 실패", reason="모든 키·모델 한도 초과" if r.limited else "답이 없음")
