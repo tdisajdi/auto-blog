@@ -299,7 +299,9 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     import blog_engine as _be
     _register_article(title, body, status="published" if status == "publish" and not _be.LAST_FORCED_DRAFT else "draft",
                       notes=f"{article_type} ({score_text})", version=1, extra_data={**(extra_data or {}), "_meta": meta}, url=url)
-    log.finish(status=status, title=title, url=url, score=score, issues=issues[:8])
+    # 기록부 결과: 검토는 통과했지만 자동 발행이 꺼져 임시글로 간 것은 "passed_draft"(주간 리포트가 '발행'으로 세지 않게)
+    log.finish(status="passed_draft" if status == "publish" and _be.LAST_FORCED_DRAFT else status,
+               title=title, url=url, score=score, issues=issues[:8])
     import blog_engine
     if status == "publish" and blog_engine.LAST_FORCED_DRAFT:
         _telegram_send_message(f"🟢 [{kind_label}] 검토 통과 - 자동 발행이 꺼져 있어서 임시글로 올렸어요\n{title}\n{url}\n"

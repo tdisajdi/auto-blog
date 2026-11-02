@@ -5236,19 +5236,21 @@ def send_weekly_health_report():
         if ts_dt >= week_ago:
             recent.append(a)
 
+    drafts_n = sum(1 for a in recent if a.get('status') == 'draft')
+    recent = [a for a in recent if a.get('status') != 'draft']   # 임시글은 '발행'으로 세지 않는다(2026-11-02)
     total = len(recent)
     fallback_count = sum(1 for a in recent if 'selenium' in a.get('notes', '') or 'manual paste' in a.get('notes', ''))
     low_quality_count = sum(1 for a in recent if 'low quality override' in a.get('notes', ''))
 
     lines = [f"📊 이번 주 발행 현황 ({week_ago.date()} ~ {now.date()})", ""]
-    lines.append(f"총 발행: {total}편")
+    lines.append(f"공개 발행: {total}편 / 임시글: {drafts_n}편")
     if total > 0:
         lines.append(f"API 완전자동 발행: {total - fallback_count}편")
         lines.append(f"반자동(Selenium/수동 붙여넣기) 폴백: {fallback_count}편")
         if low_quality_count:
             lines.append(f"⚠️ 품질 낮음에도 강제 발행된 글: {low_quality_count}편 - 한 번 확인해보시는 걸 추천해요")
-    else:
-        lines.append("이번 주 발행된 글이 없습니다 - 워크플로우가 정상 실행되고 있는지 확인해보세요.")
+    elif not drafts_n:
+        lines.append("이번 주 쓴 글이 없습니다 - 워크플로우가 정상 실행되고 있는지 확인해보세요.")
 
     # [신규] 예산/한도 감시 부서 - 이번 주 API 호출 통계 집계
     usage_log = _load_json_file(API_USAGE_LOG_FILE, [])
