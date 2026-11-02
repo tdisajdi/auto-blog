@@ -75,3 +75,6 @@ assert [i for i in iss if "연도별 숫자 줄글 나열(5개" in i] and lint.b
 assert te._kosis_position({"series": [("2016", 13.5), ("2024", 20.0), ("2025", 21.2)], "value": 21.2, "prev": 20.0}) == "최근 3년 중 가장 높음"
 assert te._kosis_position({"series": [("2023", 5), ("2024", 3), ("2025", 4)], "value": 4, "prev": 3}) == "전년보다 늘어"
 print("year list / kosis title ok")
+h2, iss, fx = lint.fix_and_check('<h1>2025년 1인가구비율 역대 최고</h1><p><a href="x">세무사신문</a> 의 보도처럼</p><p>태그: a</p>')
+assert [i for i in iss if "역대/사상" in i] and '</a>의 보도' in h2, (iss, h2)
+print("overclaim / particle ok")
