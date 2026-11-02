@@ -316,6 +316,61 @@ def fx_effect(data_cache):
     return facts, table + chart
 
 
+def rates_effect(data_cache):
+    """금리 이슈 글용(2026-11-03): 최근 1년 주간 자료로 '미국 10년물 금리가 0.1%p 오른 주에 각 ETF가 평균 몇 % 움직였나'를
+    코드가 계산한다(회귀 기울기). 일반 이론(금리↑→채권↓)만 쓰면 사실 검증이 '자료에 없는 통념'으로 지적해서, 실제 숫자로 보여준다.
+    반환: (사실 자료 글, 표+그래프 HTML). 자료가 부족하면 ("", "")."""
+    from ondo.media import charts
+    try:
+        import yfinance as yf
+        tnx = yf.Ticker("^TNX").history(period="1y")["Close"].dropna()
+        tnx_w = tnx.resample("W-FRI").last().dropna()
+    except Exception as e:
+        print(f"ℹ️ 금리 1년 자료 못 받음: {type(e).__name__}")
+        return "", ""
+    if len(tnx_w) < 30:
+        return "", ""
+    y0, y1 = float(tnx_w.iloc[0]), float(tnx_w.iloc[-1])
+    dy = tnx_w.diff().dropna()                      # 주간 금리 변화(%p)
+    rows, labels, sens = [], [], []
+    for t in data_cache:
+        if t.endswith(".KS"):
+            continue
+        try:
+            px = yf.Ticker(t).history(period="1y")["Close"].dropna().resample("W-FRI").last().dropna()
+            ret = (px.pct_change() * 100).dropna()  # 주간 가격 변화(%)
+            both = ret.to_frame("r").join(dy.to_frame("dy"), how="inner").dropna()
+            if len(both) < 30 or float(both["dy"].var()) == 0:
+                continue
+            beta = float(both["r"].cov(both["dy"]) / both["dy"].var())   # 금리 1%p당 % 변화
+            corr = float(both["r"].corr(both["dy"]))
+            up = both[both["dy"] > 0]["r"].mean()
+            down = both[both["dy"] < 0]["r"].mean()
+            p_chg = (float(px.iloc[-1]) / float(px.iloc[0]) - 1) * 100
+        except Exception:
+            continue
+        per = beta * 0.1
+        rows.append([t, f"{per:+.2f}%", f"{up:+.2f}%", f"{down:+.2f}%", f"{p_chg:+.1f}%"])
+        labels.append(t); sens.append(round(per, 2))
+        rows[-1].append(f"{corr:+.2f}")
+    if not rows:
+        return "", ""
+    n_up = int((dy > 0).sum()); n_down = int((dy < 0).sum())
+    note = (f"미국 10년물 금리 {y0:.2f}% → {y1:.2f}%({y1 - y0:+.2f}%p, 최근 1년, Yahoo Finance ^TNX). 주간 종가 기준, 배당 제외 가격 변화. "
+            f"'0.1%p당 평균 반응'은 금리 변화와 가격 변화의 회귀 기울기 × 0.1, ondo 계산. 금리가 오른 주 {n_up}번, 내린 주 {n_down}번. "
+            "지난 1년의 평균일 뿐 앞으로도 같다는 보장은 없음.")
+    table = charts.table_html("최근 1년, 금리가 움직인 주에 ETF 가격은 어떻게 움직였나",
+                              ["ETF", "금리 0.1%p 오를 때 평균", "금리 오른 주 평균", "금리 내린 주 평균", "1년 가격 변화", "같이 움직인 정도"],
+                              [r[:5] + [r[5]] for r in rows], note + " '같이 움직인 정도'는 상관계수(-1~+1, 음수면 반대로 움직임).")
+    chart = charts.plotly_html({"title": "금리 0.1%p 오를 때 평균 가격 반응(최근 1년, 주간)", "kind": "bar", "unit": "%",
+                                "labels": labels, "values": sens, "source": "Yahoo Finance, ondo 계산"})
+    facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
+             + "\n".join(f"- {r[0]}: 금리 0.1%p 오를 때 평균 {r[1]}, 금리 오른 주 평균 {r[2]}, 내린 주 평균 {r[3]}, "
+                         f"1년 가격 변화 {r[4]}, 상관계수 {r[5]}" for r in rows)
+             + f"\n- {note}\n")
+    return facts, table + chart
+
+
 def market_thermometers():
     """이슈 글용 4대 거시 온도계(변동성·밸류에이션·환율·인플레이션). '매수 위험' 같은 판단 문구 배너는 넣지 않는다."""
     try:
@@ -351,6 +406,9 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
                    f"- 미국 10년물 금리: {macro_data.get('us_10y')}\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}")
     # 오늘의 시장 수치(환율·금리·공포지수)는 이슈 글에만. 기초 가이드는 오래 읽히는 글이라 도입에 넣으면 어색했다.
     market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
+    # 계좌 규칙은 글쓰기 규칙에만 있고 사실 자료엔 없어서, 맞는 문장인데도 사실 검증이 '지어냄'으로 지적했다(2026-11-03 금리 글)
+    if not include_tax and any(not t.endswith(".KS") for t in data_cache):
+        market += f"[계좌 사실]\n- {ea.OVERSEAS_ACCOUNT_NOTE}\n\n"
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
             f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))
@@ -413,6 +471,9 @@ def run_explainer(topic, etf_module):
         visual = ""
         if topic_id == "fx":       # 환율 글: "환율이 실제로 수익률을 얼마나 바꿨나"를 코드가 계산해서 제목 질문에 답하게
             calc_facts, visual = fx_effect(data_cache)
+            facts_text += ("\n" + calc_facts) if calc_facts else ""
+        elif topic_id == "rates":  # 금리 글: "금리가 움직일 때 실제로 얼마나 움직였나"를 코드가 계산(2026-11-03)
+            calc_facts, visual = rates_effect(data_cache)
             facts_text += ("\n" + calc_facts) if calc_facts else ""
         visual = visual or market_thermometers()
     else:

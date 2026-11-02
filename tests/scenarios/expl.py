@@ -36,3 +36,19 @@ assert "-0.42%" in xe._day_move({"usd_krw_diff_pct": -0.42, "usd_krw_direction":
 from ondo.checks import lint
 assert lint.english_phrases("<p>환율 효과(calculated by ondo), VOO와 S&P 500</p><p>태그: etf, fx rate check</p>") == ["calculated by ondo"]
 print("fx filler/english ok")
+
+# 2026-11-03: 금리 이슈 - 금리가 0.1%p 오를 때 평균 반응을 실제 주간 자료로 계산(장기채는 음수, 단기채는 0에 가까움)
+import numpy as np
+idx = pd.date_range("2025-11-07", periods=260, freq="B")
+rng = np.random.default_rng(0)
+dy = rng.normal(0, 0.03, 260); dy[0] = 0
+yld = 4.2 + np.cumsum(dy)
+def _px(beta):   # 금리 1%p당 beta% 움직이는 가격
+    return 100 * np.cumprod(1 + (beta * dy) / 100)
+series = {"^TNX": yld, "TLT": _px(-16.0), "SHY": _px(-1.8)}
+yf.Ticker = lambda t: type("T", (), {"history": lambda s, period: pd.DataFrame({"Close": series[t]}, index=idx)})()
+f, v = xe.rates_effect({"TLT": {}, "SHY": {}, "360750.KS": {}})
+tlt = float(f.split("TLT: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
+shy = float(f.split("SHY: 금리 0.1%p 오를 때 평균 ")[1].split("%")[0])
+assert -1.8 < tlt < -1.4 and -0.25 < shy < -0.12 and "360750" not in f and "<table" in v, f
+print("rates effect ok", tlt, shy)
