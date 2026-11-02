@@ -34,8 +34,9 @@ def _series(spec):
 def valid(spec):
     labels = list((spec or {}).get("labels") or [])
     series = _series(spec or {})
-    # 점이 2개뿐이면 그래프가 주는 정보가 거의 없다(문장으로 충분)
-    return bool(series) and len(labels) >= 3 and all(len(s["values"]) == len(labels) for s in series)
+    # 줄 하나에 점이 2개뿐이면 그래프가 주는 정보가 거의 없다(문장으로 충분). 여러 줄을 나란히 비교하면 항목 2개도 의미 있음.
+    need = 2 if len(series) >= 2 else 3
+    return bool(series) and len(labels) >= need and all(len(s["values"]) == len(labels) for s in series)
 
 
 def plotly_html(spec):

@@ -21,3 +21,11 @@ if plain:
     got.clear(); xe.run_explainer("GUIDE:" + plain["id"], ea); assert "가격" in got["visual_html"]
 got.clear(); xe.run_explainer("ISSUE:fx", ea); assert got["article_type"]=="issue" and got["memo"]=="" and "온도계" in got["visual_html"]
 print("explainer ok")
+
+# 환율 이슈: 원화 수익률 = (1+달러 수익률)×(1+환율 변화)-1, 국내 상장은 제외
+import pandas as pd, yfinance as yf
+yf.Ticker = lambda t: type("T", (), {"history": lambda s, period: pd.DataFrame({"Close": [1300.0] * 200 + [1365.0]})})()
+f, v = xe.fx_effect({"SPY": {"returns": {"1년": 12.0}}, "GLD": {"returns": {"1년": 30.0}}, "360750.KS": {"returns": {"1년": 6.8}}})
+assert "SPY: 달러 기준 1년 +12.0%, 원화 기준 +17.6%, 환율이 반대로 같은 폭 움직였다면 +6.4%" in f, f
+assert "360750" not in f.split("[계산")[1].split("- 원/달러")[0] and "<table" in v and "cdn.plot.ly" in v
+print("fx effect ok")

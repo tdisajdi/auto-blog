@@ -275,6 +275,47 @@ def price_chart(tickers, data_cache):
                                "series": series, "unit": "", "source": "Yahoo Finance 월말 종가, ondo 계산(환율 반영 전 각 통화 기준)"})
 
 
+def fx_effect(data_cache):
+    """환율 이슈 글용: 최근 1년 원/달러 변화가 해외 상장 ETF의 원화 수익률을 얼마나 바꿨는지 코드가 계산(2026-11-03).
+    반환: (사실 자료 글, 표+그래프 HTML). 계산에 필요한 값이 없으면 ("", "")."""
+    from ondo.media import charts
+    try:
+        import yfinance as yf
+        fx = yf.Ticker("KRW=X").history(period="1y")["Close"].dropna()
+        fx0, fx1 = float(fx.iloc[0]), float(fx.iloc[-1])
+    except Exception as e:
+        print(f"ℹ️ 환율 1년 자료 못 받음: {type(e).__name__}")
+        return "", ""
+    fx_chg = fx1 / fx0 - 1
+    rows, labels, usd, krw, rev = [], [], [], [], []
+    for t, d in data_cache.items():
+        r = (d.get("returns") or {}).get("1년")
+        if t.endswith(".KS") or not isinstance(r, (int, float)):
+            continue
+        r = r / 100
+        k = (1 + r) * (1 + fx_chg) - 1          # 원화로 본 수익률
+        k_rev = (1 + r) * (1 - fx_chg) - 1      # 환율이 같은 폭만큼 반대로 움직였다면
+        name = t
+        rows.append([name, f"{r * 100:+.1f}%", f"{k * 100:+.1f}%", f"{k_rev * 100:+.1f}%"])
+        labels.append(name); usd.append(round(r * 100, 1)); krw.append(round(k * 100, 1)); rev.append(round(k_rev * 100, 1))
+    if not rows:
+        return "", ""
+    note = (f"원/달러 환율 {fx0:,.0f}원 → {fx1:,.0f}원({fx_chg * 100:+.1f}%, 최근 1년, Yahoo Finance). 원화 수익률 = "
+            "(1+달러 수익률)×(1+환율 변화)-1, 배당·세금·환전 수수료 제외, ondo 계산. '반대였다면'은 환율이 같은 폭만큼 "
+            "반대로 움직였다고 가정한 값.")
+    table = charts.table_html("최근 1년, 환율이 바꾼 원화 수익률", ["ETF", "달러 기준", "원화 기준(실제 환율)", "환율이 반대였다면"],
+                              rows, note)
+    chart = charts.plotly_html({"title": "달러 기준 vs 원화 기준 1년 수익률", "kind": "bar", "unit": "%", "labels": labels,
+                                "series": [{"name": "달러 기준", "values": usd}, {"name": "원화 기준", "values": krw},
+                                           {"name": "환율이 반대였다면", "values": rev}],
+                                "source": "Yahoo Finance, ondo 계산"})
+    facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
+             + "\n".join(f"- {a}: 달러 기준 1년 {b}, 원화 기준 {c}, 환율이 반대로 같은 폭 움직였다면 {e}" for a, b, c, e in rows)
+             + f"\n- {note}\n- 국내 상장 해외 자산 ETF 중 환헤지 안 한 상품(예: 360750)의 원화 수익률에는 이미 환율 변화가 들어 있고, "
+             "이름에 (H)가 붙은 환헤지 상품은 환율 영향을 줄이는 대신 헤지 비용이 든다.\n")
+    return facts, table + chart
+
+
 def market_thermometers():
     """이슈 글용 4대 거시 온도계(변동성·밸류에이션·환율·인플레이션). '매수 위험' 같은 판단 문구 배너는 넣지 않는다."""
     try:
@@ -358,7 +399,11 @@ def run_explainer(topic, etf_module):
         kind_label, title_seed, article_type = "이슈 해설", k["title_hint"], "issue"
         facts_text, data_cache, news = _collect_facts(k["tickers"], macro_data, news_query=k["query"], include_tax=False)
         include_tax = False
-        visual = market_thermometers()
+        visual = ""
+        if topic_id == "fx":       # 환율 글: "환율이 실제로 수익률을 얼마나 바꿨나"를 코드가 계산해서 제목 질문에 답하게
+            calc_facts, visual = fx_effect(data_cache)
+            facts_text += ("\n" + calc_facts) if calc_facts else ""
+        visual = visual or market_thermometers()
     else:
         print(f"❌ 알 수 없는 주제 형식: {topic}")
         return
