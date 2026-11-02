@@ -86,8 +86,11 @@ def long_html(tag="", n=80):
     return f"<h1>시험 제목</h1><!-- 메타 -->{paras}<h3>섹션1</h3><p>내용</p>\n태그: 가 나 다 라 마"
 
 calls = {"review": 0, "rewrite": 0, "section": 0, "unify": 0}
+VALUE_ANSWER = {k: {"yes": True, "quote": ""} for k in ["answers_title", "unique_info", "decision_rule", "plain_words", "numbers_explained"]}
 def post_desk(url, payload, key):
     p = payload["contents"][0]["parts"][0]["text"]
+    if "독자 가치 담당" in p:
+        return R(200, json.dumps(VALUE_ANSWER))
     if "기획 회의" in p:
         return R(200, json.dumps(PLAN))
     if "심각도 기준" in p:
@@ -197,6 +200,8 @@ print("pick clean ok")
 body10 = long_html("", 60).replace("</h1>", "</h1><p>손익 통산은 되지 않습니다. 2,000만원 2,000만원 2,000만원 2,000만원 2,000만원.</p>", 1)
 def post_guard(url, payload, key):
     p = payload["contents"][0]["parts"][0]["text"]
+    if "독자 가치 담당" in p:
+        return R(200, json.dumps(VALUE_ANSWER))
     if "심각도 기준" in p and "정책·신뢰 담당" in p:
         return R(200, json.dumps({"issues": [{"severity": "치명", "quote": "손익 통산은 되지 않습니다", "problem": "손익 통산이 가능하므로 사실 오류"}]}))
     if "심각도 기준" in p:
@@ -219,3 +224,14 @@ h11, iss11, fx11 = lint.fix_and_check(html11)
 assert h11.count(A) == 1 and h11.count(B) == 1 and f"<p>{A} {B}</p>" in h11, h11
 assert not any("같은 문장 반복" in i for i in iss11) and any("반복 문장 삭제" in f for f in fx11), (iss11, fx11)
 print("dup sentence fix ok")
+
+# 12) 독자 가치: '예'라도 본문에 없는 인용이면 '아니오'. 참고용이라 통과 여부는 바꾸지 않음(VALUE_BLOCKING 없을 때)
+body12 = long_html("", 50)
+real = desk.lint.text_of(body12)[40:90]
+ans = {k: {"yes": True, "quote": real if k in ("answers_title", "unique_info") else "본문에 없는 문장입니다 아무렇게나"}
+       for k in ["answers_title", "unique_info", "decision_rule", "plain_words", "numbers_explained"]}
+ans["best_improvement"] = "계산 예시를 하나 더"
+llm._post = lambda url, payload, key: R(200, json.dumps(ans))
+v, marks, tip = desk.value_review(body12, "제목", "c", editlog.EditLog("g", "v", "s"), 1)
+assert v == 0.4 and marks["answers_title"] and not marks["plain_words"] and tip, (v, marks)
+print("value review ok")

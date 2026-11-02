@@ -304,6 +304,32 @@ def review(html, facts_text, category_label, log, round_no, must=None):
     return round(score, 2), found
 
 
+# 독자 가치 담당(2026-10-31 추가): 감점 점수는 "문제가 적은가"만 본다. "독자에게 쓸모 있는가"는 따로 본다.
+# 느낌 점수 대신 질문 5개 예/아니오 + 근거 인용(본문에 없으면 아니오). 처음에는 참고용(발행 조건 아님) -
+# 실제 글로 기준이 너무 후하거나 짠지 맞춰본 뒤 통과 조건에 넣는다. VALUE_BLOCKING으로 켤 수 있다.
+VALUE_KEYS = [("answers_title", "제목 질문에 답함"), ("unique_info", "이 글만의 정보"),
+              ("decision_rule", "판단 기준 제시"), ("plain_words", "용어 풀이"), ("numbers_explained", "숫자 해석")]
+VALUE_MIN = 0.6
+
+
+def value_review(html, title, category_label, log, round_no):
+    """반환: (가치 점수 0~1 또는 None, {key: bool}, 개선 한 가지)."""
+    text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
+    r = llm.call(prompt("review_value", category_label=category_label, title=title, text=text),
+                 step=f"검토 {round_no}(독자 가치)", log=log, tier="fast", json_out=True, thinking=8192,
+                 start_key=2 + round_no * 3)
+    data = llm.parse_json(r.text)
+    if not isinstance(data, dict):
+        return None, {}, ""
+    norm = _norm(text)
+    marks = {}
+    for key, _name in VALUE_KEYS:
+        it = data.get(key) if isinstance(data.get(key), dict) else {}
+        q = it.get("quote", "")
+        marks[key] = bool(it.get("yes")) and bool(_norm(q)) and _quote_found(q, norm)
+    return round(sum(marks.values()) / len(VALUE_KEYS), 2), marks, str(data.get("best_improvement") or "")[:200]
+
+
 def _issue_text(f):
     q = f" '{f['quote'][:60]}'" if f.get("quote") else ""
     return f"[{f['severity']}·{f['by']}]{q} → {f['problem']}" + (f" / 고칠 방법: {f['fix']}" if f.get("fix") else "")
@@ -347,17 +373,24 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         html = lint.drop_copied_tables(html, [d.get("text", "") for d in drawer or [] if d["id"] in picked], fixes)
         nums = numbers.unverified(lint.text_of(html), facts_text)
         score, found = review(html, facts_text, category_label, log, round_no, must=must_answer)
+        title_m = re.search(r"<h1[^>]*>(.*?)</h1>", html, flags=re.S)
+        value, marks, improve = value_review(html, lint.text_of(title_m.group(1)) if title_m else title_seed,
+                                             category_label, log, round_no)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
         hard_lint = lint.blocking(lint_issues)
         passed = score is not None and score >= min_q and not serious and not hard_lint
+        if os.environ.get("VALUE_BLOCKING") == "1" and value is not None and value < VALUE_MIN:
+            passed = False
         log.data.setdefault("drafts", {})[str(round_no)] = html      # 판마다 원문 보관(사람이 읽고 평가할 수 있게)
-        log.step(f"편집장 검토 {round_no}", score=score, passed=passed,
-                 issues=[_issue_text(f) for f in found], lint=lint_issues, numbers=nums, fixes=fixes,
-                 chars=len(lint.text_of(html)))
+        missing = [name for key, name in VALUE_KEYS if marks and not marks.get(key)]
+        log.step(f"편집장 검토 {round_no}", score=score, passed=passed, value=value, value_missing=missing,
+                 value_tip=improve, issues=[_issue_text(f) for f in found], lint=lint_issues, numbers=nums,
+                 fixes=fixes, chars=len(lint.text_of(html)))
         # 통과한 판 > 교열 지적 없는 판 > 점수 순. (2026-10-31: 1.0점 초안에 N/A·분량 문제가 남았는데 발행됨)
-        rank = (passed, not hard_lint, -len(serious), score or 0)
+        rank = (passed, not hard_lint, -len(serious), score or 0, value or 0)
         if best is None or rank > best["_rank"]:
             best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank, "round": round_no,
+                    "value": value, "value_missing": missing,
                     "issues": [_issue_text(f) for f in serious] + lint_issues
                               + [_issue_text(f) for f in found if f not in serious]}
         if passed or round_no > MAX_REWRITES:
@@ -368,6 +401,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         todo = ([_issue_text(f) for f in ranked if f["severity"] != "사소"] + hard_lint
                 + (["자료에서 확인되지 않는 숫자: " + ", ".join(nums) + " → 자료에 있는 값으로 바꾸거나 빼세요. "
                     "자료의 두 숫자로 계산한 값이면 무엇으로 계산했는지 문장에 밝히세요."] if nums else [])
+                + ([f"[독자 가치] {improve}"] if improve and value is not None and value < 1 else [])
                 + [_issue_text(f) for f in ranked if f["severity"] == "사소"]
                 + [i for i in lint_issues if i not in hard_lint])[:MAX_TODO]
         if not todo:
