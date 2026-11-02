@@ -116,7 +116,7 @@ def weekly_summary(days=7):
         return []
     lines = ["", f"📒 편집 기록 ({len(logs)}편)"]
     status = Counter(d.get("result", {}).get("status", "?") for d in logs)
-    lines.append("  결과: " + ", ".join(f"{ {'publish': '발행', 'draft': '임시글', 'failed': '실패'}.get(k, k)} {v}편"
+    lines.append("  결과: " + ", ".join(f"{ {'publish': '공개 발행', 'passed_draft': '통과(임시글)', 'draft': '미통과(임시글)', 'failed': '실패'}.get(k, k)} {v}편"
                                        for k, v in status.items()))
     modes = Counter(d.get("mode") or "-" for d in logs)
     if modes.get("sections"):
