@@ -46,3 +46,12 @@ be.GEMINI_API_KEYS[:]=[f"k{i}" for i in range(5)]
 r=be.get_gemini_response("hi"); print(calls, r)
 assert calls.count("gemini-3.5-flash-lite")==1 and r
 print("fix ok")
+
+# 2026-11-03: 사회 글은 2년치만이 아니라 긴 흐름과 그 기간 최고·최저를 받는다
+births = {"2016": 406243, "2017": 357771, "2018": 326822, "2019": 302676, "2020": 272337,
+          "2021": 260562, "2022": 249186, "2023": 230028, "2024": 238317, "2025": 254341}
+te.kosis_data = lambda *a, **k: ([{"C1": "T1", "C1_NM": "출생아수(명)", "ITM_NM": "건수", "UNIT_NM": "",
+                                   "PRD_DE": p, "DT": str(v), "TBL_NM": "인구동태"} for p, v in births.items()], None)
+blk, sm = te.kosis_fact_block(te.KOSIS_TABLES[0])
+assert "출생아수(명) 흐름: 2016년 406,243" in blk and "최고 2016년 406,243" in blk and "최저 2023년 230,028" in blk, blk
+print("kosis trend ok")

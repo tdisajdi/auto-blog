@@ -509,15 +509,15 @@ KOSIS_SEARCH_URL = "https://kosis.kr/openapi/statisticsSearch.do"
 
 KOSIS_TABLES = [
     # 표마다 생김새가 다르다: 이 표는 분류1(C1)이 '출생아수(명)', '합계출산율(명)' 같은 지표이고 연 단위.
-    {"key": "vital", "name": "출생·사망 통계", "org": "101", "tbl": "DT_1B8000F", "prd": "Y", "n": 5, "main": "출생아수",
+    {"key": "vital", "name": "출생·사망 통계", "org": "101", "tbl": "DT_1B8000F", "prd": "Y", "n": 10, "main": "출생아수",
      "keywords": ["출생", "출산", "신생아", "사망", "자연감소", "자연증가", "인구동향"]},
     # 월별 인구는 매달 조금씩만 변해서 "새 자료" 주제로는 안 쓰고(반복 글 방지) 근거 자료로만 쓴다.
     {"key": "population", "name": "주민등록인구", "org": "101", "tbl": "DT_1B040A3", "prd": "M", "n": 13, "main": "총인구수",
      "candidate": False,
      "keywords": ["주민등록", "인구 감소", "인구수", "총인구"]},
-    {"key": "aged", "name": "고령인구 비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 5, "main": "고령인구비율",
+    {"key": "aged", "name": "고령인구 비율", "org": "101", "tbl": "DT_1YL20631", "prd": "Y", "n": 10, "main": "고령인구비율",
      "keywords": ["고령", "노인", "65세", "초고령"]},
-    {"key": "single", "name": "1인가구 비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 5, "main": "1인가구비율",
+    {"key": "single", "name": "1인가구 비율", "org": "101", "tbl": "DT_1YL21161", "prd": "Y", "n": 10, "main": "1인가구비율",
      "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
@@ -647,6 +647,20 @@ def kosis_fact_block(table, max_items=8):
         lines.append(line)
     if not lines:
         return "", None
+    # 긴 흐름(2026-11-03): 2년치만 주면 같은 숫자 8개를 본문·표·FAQ에서 되풀이했다(사회 글 ?p=253).
+    # 주요 항목 몇 개는 기간 전체 흐름과 그 기간의 최고·최저(언제였는지)를 코드가 계산해서 준다.
+    trend = []
+    for (item, unit), pts in list(series.items())[:4]:
+        if len(pts) < 3:
+            continue
+        flow = ", ".join(f"{_fmt_period(p, table['prd'])} {_fmt_val(v, unit)}" for p, v in pts[-10:])
+        hp, hv = max(pts[-10:], key=lambda x: x[1])
+        lp_, lv_ = min(pts[-10:], key=lambda x: x[1])
+        trend.append(f"- {item} 흐름: {flow} → 이 기간 최고 {_fmt_period(hp, table['prd'])} {_fmt_val(hv, unit)}, "
+                     f"최저 {_fmt_period(lp_, table['prd'])} {_fmt_val(lv_, unit)}")
+    if trend:
+        lines.append("[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]")
+        lines += trend
     tbl_nm = rows[0].get("TBL_NM", table["name"])
     head = f"[공식 통계 - 국가통계포털(KOSIS) '{tbl_nm}', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]"
     return head + "\n" + "\n".join(lines) + "\n", summary
