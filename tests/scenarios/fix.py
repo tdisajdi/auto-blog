@@ -14,7 +14,7 @@ yf.Ticker=T
 MODE = "day"
 assert te.discover_energy() == [], "하루만 튄 것으로는 주제를 만들지 않음(선물 만기 교체 등 왜곡 가능)"
 MODE = "week"
-e=te.discover_energy(); print(e[0]["title_seed"]); assert "일주일 새 8% 오른" in e[0]["title_seed"], e[0]["title_seed"]
+e=te.discover_energy(); print(e[0]["title_seed"]); assert "일주일 새 8% 오른" in e[0]["title_seed"] and "배경" not in e[0]["title_seed"], e[0]["title_seed"]
 assert "옥수수" in e[0]["facts_text"] and "커피" not in e[0]["facts_text"] and "센트/부셸" in e[0]["facts_text"]
 # 2026-11-03: 가스 글은 1년 범위·3개월 변화와 유럽 가스 비교 가격까지 받는다(숫자 한 줄뿐이라 되풀이했음)
 class G:
@@ -46,3 +46,16 @@ be.GEMINI_API_KEYS[:]=[f"k{i}" for i in range(5)]
 r=be.get_gemini_response("hi"); print(calls, r)
 assert calls.count("gemini-3.5-flash-lite")==1 and r
 print("fix ok")
+
+# 2026-11-03: 사회 글은 2년치만이 아니라 긴 흐름과 그 기간 최고·최저를 받는다
+births = {"2016": 406243, "2017": 357771, "2018": 326822, "2019": 302676, "2020": 272337,
+          "2021": 260562, "2022": 249186, "2023": 230028, "2024": 238317, "2025": 254341}
+te.kosis_data = lambda *a, **k: ([{"C1": "T1", "C1_NM": "출생아수(명)", "ITM_NM": "건수", "UNIT_NM": "",
+                                   "PRD_DE": p, "DT": str(v), "TBL_NM": "인구동태"} for p, v in births.items()], None)
+blk, sm = te.kosis_fact_block(te.KOSIS_TABLES[0])
+assert "출생아수(명) 흐름: 2016년 406,243" in blk and "최고 2016년 406,243" in blk and "최저 2023년 230,028" in blk, blk
+print("kosis trend ok")
+from ondo.checks import lint
+_, iss, _ = lint.fix_and_check("<h1>t</h1><p>지polit적 변수와 MMBtu는 단위, ondo의 기준</p><p>태그: a</p>")
+assert [i for i in iss if "깨진 단어 '지polit'" in i] and not [i for i in iss if "ondo의" in i or "MMBtu" in i], iss
+print("broken word ok")
