@@ -21,6 +21,9 @@ BANNED = [
     (r"무조건|반드시\s*(오른|상승|수익)|확실한\s*수익", "단정·수익 보장 표현"),
 ]
 PUFFERY = ["막대한", "공고히", "정교하게", "견조한", "탄탄한", "놀라운", "엄청난", "최선의", "가장 대표적인"]
+# 한국어 글에 어색하게 섞이는 말(2026-11-02 환율 글 "소구됩니다") → 참고 지적
+AWKWARD = {"소구": "'소구' 대신 '관심을 끈다', '눈에 띈다' 같은 쉬운 말", "제고": "'제고' 대신 '높인다'",
+           "기인": "'기인한다' 대신 '~때문이다'", "상기한": "'상기한' 대신 '앞에서 본'"}
 VAGUE_SOURCES = ["외신 보도", "외신에 따르면", "전문가들은", "업계에 따르면", "관계자에 따르면", "알려졌다"]
 
 
@@ -79,6 +82,12 @@ def fix_and_check(html):
     puff = [w for w in PUFFERY if w in text]
     if puff:
         issues.append(f"{SOFT}꾸밈말 {', '.join(puff[:4])} - 숫자나 사실로 바꿀 수 있으면 바꿀 것")
+    eng = english_phrases(h)
+    if eng:
+        issues.append(f"영어 문구 '{eng[0]}' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)")
+    awk = [why for w, why in AWKWARD.items() if w in text]
+    if awk:
+        issues.append(f"{SOFT}어려운 말: {'; '.join(awk[:3])}")
     for v in VAGUE_SOURCES:
         if v in text:
             issues.append(f"확인할 수 없는 출처 표현: '{v}' - 링크 있는 기사로 바꾸거나 삭제")
@@ -106,6 +115,13 @@ def fix_and_check(html):
     if cells:
         issues.append(f"표에 빈칸 표시('{text_of(cells[0])}') {len(cells)}곳 - 값이 없는 줄·칸은 표에서 빼거나 표 구성을 바꿀 것")
     return h, issues, fixes
+
+
+def english_phrases(html):
+    """본문에 소문자 영어 단어가 3개 이상 이어진 구절(예: 'calculated by ondo'). 링크 주소·태그 줄·코드는 뺀다."""
+    t = re.sub(r"태그:.*", " ", text_of(html))
+    t = re.sub(r"https?://\S+|\S+@\S+", " ", t)
+    return re.findall(r"(?<![A-Za-z&])[a-z]{2,}(?:\s+[a-z]{2,}){2,}(?![A-Za-z])", t)
 
 
 def _drop_repeated_sentences(h, fixes):
