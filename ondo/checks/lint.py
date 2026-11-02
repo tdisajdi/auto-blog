@@ -85,6 +85,13 @@ def fix_and_check(html):
     broken = re.search(r"[가-힣][a-z]{3,}", re.sub(r"https?://\S+", " ", text))
     if broken:
         issues.append(f"깨진 단어 '{broken.group(0)}': 한글과 영어가 한 단어에 섞임 - 올바른 한국어 단어로 고칠 것")
+    # 연도별 숫자 줄글 나열(2026-11-03 사회 글 "2017년 7,356,106명, 2018년 7,650,408명, …"): 흐름은 그래프가 보여준다
+    for para in re.findall(r"<p[^>]*>(.*?)</p>", h, flags=re.S):
+        years = re.findall(r"(?:19|20)\d{2}년\s*(?:에는?\s*)?[-+]?\d[\d,.]*", text_of(para))
+        if len(years) >= 5:
+            issues.append(f"연도별 숫자 줄글 나열({len(years)}개, 예: '{years[0]}…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 "
+                          "쓰고 그 뜻을 설명할 것")
+            break
     eng = english_phrases(h)
     if eng:
         issues.append(f"영어 문구 '{eng[0]}' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)")
