@@ -1,17 +1,14 @@
 {
-  "ticker": "ISSUE:rates",
-  "label": "이슈 해설 - 금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
-  "article_type": "이슈 해설",
-  "reason": "미국 10년물 금리 4.929%",
+  "ticker": "GUIDE:expense-ratio",
+  "label": "기초 가이드 - ETF 총보수 0.1% 차이, 10년 뒤 얼마가 될까",
+  "article_type": "기초 가이드",
+  "reason": "최근 10편 중 가이드 비율 10% (목표 20%)",
   "candidates": [],
-  "created_at": "2026-10-31T22:31:16.792358",
-  "reminder_count": 3,
-  "message_id": 91,
+  "created_at": "2026-11-04T22:31:10.542841",
+  "reminder_count": 0,
+  "message_id": 93,
   "message_ids": [
-    44,
-    46,
-    91
+    93
   ],
-  "sent_at": "2026-11-03T22:31:11.867199",
-  "last_reminded_at": "2026-11-03T22:31:11.121544"
+  "sent_at": "2026-11-04T22:31:11.366157"
 }
