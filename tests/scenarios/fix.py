@@ -86,3 +86,7 @@ _, iss, _ = lint.fix_and_check("<h1>t</h1><p>10월 2일 기준 424,134천 배럴
                                "10월 23일에는 410,625천 배럴이었다.</p><p>태그: a</p>")
 assert [i for i in iss if "날짜별 숫자 줄글 나열(4개" in i], iss
 print("date list ok")
+te.get_wordpress_recent_posts = lambda *a, **k: [{"title": "나스닥 100 대장주 QQQ", "link": "u1", "date": "2026-07-20"},
+                                                {"title": "브렌트유 1년 범위", "link": "u2", "date": "2026-11-05"}]
+assert [p["link"] for p in te._link_candidates("시장 심리")] == ["u2"], "7월 시험 글은 내부 링크로 추천 안 함"
+print("link min date ok")

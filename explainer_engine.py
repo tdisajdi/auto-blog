@@ -437,7 +437,9 @@ def sentiment_effect():
              "- VIX는 S&P 500 옵션 가격으로 계산한 '앞으로 30일 동안 예상되는 변동 폭' 지수(시카고옵션거래소 발표). 높을수록 시장이 불안해한다는 뜻\n"
              + "\n".join(f"- VIX {r[0]}: {r[1]}, 1개월 뒤 평균 {r[2]}(오른 비율 {r[3]}), 3개월 뒤 평균 {r[4]}(오른 비율 {r[5]}), "
                          f"3개월 뒤 가장 나빴던 경우 {r[6]}" for r in rows)
-             + f"\n- {note}\n")
+             + f"\n- {note}\n"
+             "- 이 통계를 독자의 '확인 기준'으로 쓸 때는 '앞으로 얼마나 흔들릴 수 있는지(3개월 뒤 가장 나빴던 경우)'로 쓰고, "
+             "'오를 확률이 높은 구간인지'를 기준으로 제시하지 마세요(매수 시점 판단처럼 읽힘).\n")
     return facts, table + chart
 
 
@@ -451,7 +453,7 @@ def market_thermometers():
     return f'<figure class="ondo-chart" style="margin:28px 0;">{h}</figure>' if h else ""
 
 
-_OFF_TOPIC_NEWS = ("비트코인", "이더리움", "가상자산", "암호화폐", "코인", "지캐시", "리플", "솔라나", "도지")
+_OFF_TOPIC_NEWS = ("비트코인", "이더리움", "가상자산", "암호화폐", "디지털자산", "코인", "지캐시", "리플", "솔라나", "도지", "스테이블")
 
 
 def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):

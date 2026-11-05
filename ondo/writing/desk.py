@@ -349,6 +349,29 @@ COMMON_MUST = [
 ]
 
 
+_TYPO_FIX = re.compile(r"['‘“\"]([^'’”\"]{1,15})['’”\"]\s*[을를]\s*['‘“\"]([^'’”\"]{1,15})['’”\"]\s*(?:으)?로")
+
+
+def apply_typo_fixes(html, found, log=None):
+    """검토가 "'지시장을'을 '시장을'로"처럼 짧은 단어 바꾸기를 콕 집어 준 '사소' 지적은 코드가 바로 고친다(2026-11-05).
+    글이 통과하면 고쳐쓰기가 안 돌아서 오타가 그대로 남았다. AI를 다시 부르지 않고, 본문에 정확히 한 번 나오는 짧은 말만 바꾼다."""
+    done = []
+    for f in found or []:
+        if f.get("severity") != "사소":
+            continue
+        m = _TYPO_FIX.search(f.get("fix") or "")
+        if not m:
+            continue
+        old, new = m.group(1), m.group(2)
+        if old == new or html.count(old) != 1 or "<" in old + new or ">" in old + new:
+            continue
+        html = html.replace(old, new, 1)
+        done.append(f"{old}→{new}")
+    if done and log:
+        log.step("오타 자동 고침", fixes=done)
+    return html
+
+
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
                   drawer=None, avoid_visuals=(), must_answer=None, visual_texts=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
@@ -412,7 +435,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         rank = (passed, not hard_lint, -len(serious), score or 0, value or 0)
         if best is None or rank > best["_rank"]:
             best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank, "round": round_no,
-                    "value": value, "value_missing": missing,
+                    "value": value, "value_missing": missing, "_found": found,
                     "issues": [_issue_text(f) for f in serious] + lint_issues
                               + [_issue_text(f) for f in found if f not in serious]}
         if passed or round_no > MAX_REWRITES:
@@ -439,4 +462,6 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
             break
         log.step(f"고쳐쓰기 {round_no}", model=r.model, todo=len(todo))
         html = new
+    if best:
+        best["html"] = apply_typo_fixes(best["html"], best.pop("_found", []), log)
     return best
