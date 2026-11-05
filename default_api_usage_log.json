@@ -1,0 +1,11 @@
+[
+  {
+    "timestamp": "2026-11-05T01:25:49.974381",
+    "total_calls": 6,
+    "by_model": {
+      "fast-a": 4,
+      "strong-a": 2
+    },
+    "model_switch_events": {}
+  }
+]
