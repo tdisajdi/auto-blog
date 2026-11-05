@@ -97,10 +97,14 @@ def fix_and_check(html):
         issues.append(f"깨진 단어 '{broken.group(0)}': 한글과 영어가 한 단어에 섞임 - 올바른 한국어 단어로 고칠 것")
     # 연도별 숫자 줄글 나열(2026-11-03 사회 글 "2017년 7,356,106명, 2018년 7,650,408명, …"): 흐름은 그래프가 보여준다
     for para in re.findall(r"<p[^>]*>(.*?)</p>", h, flags=re.S):
-        years = re.findall(r"(?:19|20)\d{2}년\s*(?:에는?\s*)?[-+]?\d[\d,.]*", text_of(para))
-        if len(years) >= 5:
-            issues.append(f"연도별 숫자 줄글 나열({len(years)}개, 예: '{years[0]}…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 "
-                          "쓰고 그 뜻을 설명할 것")
+        pt = text_of(para)
+        years = re.findall(r"(?:19|20)\d{2}년\s*(?:에는?\s*)?[-+]?\d[\d,.]*", pt)
+        # 날짜별 나열도 같은 문제(2026-11-05 에너지 글 "10월 2일 424,134천 배럴, 10월 9일 415,577천 배럴, …")
+        days = re.findall(r"\d{1,2}월\s*\d{1,2}일(?:\s*기준)?(?:에는?|은|는)?\s*[-+]?\d[\d,.]*", pt)
+        if len(years) >= 5 or len(days) >= 4:
+            many = years if len(years) >= 5 else days
+            issues.append(f"{'연도' if many is years else '날짜'}별 숫자 줄글 나열({len(many)}개, 예: '{many[0]}…') - 흐름은 그래프가 "
+                          "보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것")
             break
     eng = english_phrases(h)
     if eng:
