@@ -1,0 +1,370 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:BZ=F",
+ "title_seed": "브렌트유 가격 한 달 새 6% 내린 지금 위치: 1년 범위·재고·해외 가격으로 보기",
+ "category": "energy",
+ "started_at": "2026-11-05T10:27:33",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 2175
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 21.6,
+   "chars": 6502
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.9,
+   "chars": 669
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.6,
+   "chars": 533
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.7,
+   "chars": 176
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 994
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.3,
+   "chars": 6122
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.8,
+   "chars": 214
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.4,
+   "chars": 432
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.4,
+   "chars": 145
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.8,
+   "chars": 906
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 72.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 115.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 15.6,
+   "chars": 5884
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.6,
+   "chars": 810
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.5,
+   "chars": 413
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.8,
+   "chars": 141
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 960
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "10:27:46",
+   "title": "브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?",
+   "sections": [
+    "브렌트유·WTI 단기 흐름",
+    "1년 범위로 본 브렌트유 위치",
+    "WTI 1년 범위와 비교하기",
+    "미국 원유 재고와 확인 기준"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "10:28:11",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "10:28:43",
+   "score": 0.64,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "미국 상업용 원유 재고 감소세가 유가(94달러대)에 미치는 의미를 독자가 직관적으로 이해할 수 있도록 한 줄 설명 추가",
+   "issues": [
+    "[중요·사실 검증] '또한 국제 원유 가격이 국내 석유 제품 소비자가격에 반영되기까지는 통상 수주의 시차가 발생합니다.' → 자료에 없는 일반 통념(원유 가격이 소비자가격에 반영되는 시차)을 사실처럼 단정했습니다. / 고칠 방법: 자료에 포함되지 않은 '통상 수주의 시차' 언급을 삭제하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 유가 관련 뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 명확히 제시하지 않았습니다. / 고칠 방법: 정리 문단 등에 독자가 스스로 참고할 기준 2~3개(예: 1년 최고·최저 범위 내 60% 지점, 1년 평균 86.74달러 대비 +8.8%, 1년 전 대비 -2.7% 감소한 EIA 원유 재고 수치 등)를 자료의 숫자와 함께 직접 명시하세요.",
+    "[중요·독자 편집] '구분 브렌트유(BZ=F) 최근가 94.38 달러/배럴 1년 최고(2026-03-31) 118.35 달러/배럴' → 표의 내용이 본문 텍스트에 이미 상세히 서술되어 있으며, 표 자체가 마크다운 형식이나 줄바꿈이 깨진 채로 들어가 있어 독자가 읽기 불편합니다. / 고칠 방법: 중복되는 표를 삭제하거나 본문과 겹치지 않게 깔끔하게 정돈해야 합니다."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '94.38달러'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '60%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '8.8%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "976만",
+    "1,062만",
+    "2,413만",
+    "1,557만",
+    "1,251만",
+    "2,116만"
+   ],
+   "chars": 4093
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "10:29:05",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "10:30:02",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "용어 풀이"
+   ],
+   "value_tip": "정리 부분에 제시된 3가지 기준 수치를 독자가 본인의 관점에 대입해 판단할 수 있도록 체크리스트 형식으로 보완하기",
+   "issues": [
+    "[중요·독자 편집] '브렌트유는 1년 최저가(58.92달러)와 최고가(118.35달러) 사이에서 60% 지점에 자리 잡고 있어' → 앞서 본문에서 상세히 다룬 1년 범위와 수치 데이터를 마지막 정리 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 동일한 숫자의 단순 반복을 피하고, 정리 섹션은 핵심 메시지만 짧게 압축하여 작성해야 합니다."
+   ],
+   "chars": 3874
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "10:33:48",
+   "model": "gemini-3.6-flash",
+   "todo": 1
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "10:34:23",
+   "score": 0.73,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "용어 풀이"
+   ],
+   "value_tip": "본문에 등장하는 EIA 상업용 원유 재고나 선물 계약(BZ=F, CL=F) 같은 용어가 처음 나올 때 독자가 이해하기 쉬운 설명(예: EIA는 미국 에너지정보청의 원유 재고 발표)을 추가하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 제목이 던진 질문('브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?')에 대해 도입부 끝이나 정리 부분에서 자료의 숫자를 넣은 한두 문장의 직접적인 답이 누락되었습니다. / 고칠 방법: 정리 문단 또는 도입부 끝에 브렌트유의 현재 가격(94.38달러)이 1년 범위 중 60% 지점이자 1년 평균(86.74달러) 대비 +8.8% 높은 위치라는 점을 명시하여 직접 답을 작성하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 유가 및 원유 재고 뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 독자가 참고할 수 있는 판단 기준(예: 1년 범주의 위치 60%, 1년 평균 대비 상회율 +8.8%, 최근 EIA 재고 전년 대비 감소율 -2.7% 등)을 자료의 실제 숫자와 함께 명확히 제시하세요.",
+    "[사소·독자 편집] '브렌트유(BZ=F)의 최근 가격은 배럴당 94.38달러로 한 달 전보다 6.2% 내렸습니다.' → 서론에서 언급한 수치가 본문의 단기 흐름 섹션에서 다시 반복되어 중복 느낌을 줍니다. / 고칠 방법: 서론에서는 전체적인 요약만 간단히 하고 세부 수치는 본문 섹션에서 다루도록 분리해 주세요."
+   ],
+   "chars": 3648
+  }
+ ],
+ "result": {
+  "status": "failed",
+  "reason": "다시 쓴 판이 기준 미달 - 원래 글 유지",
+  "title": "브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?",
+  "score": 0.88,
+  "issues": [
+   "[중요·독자 편집] '브렌트유는 1년 최저가(58.92달러)와 최고가(118.35달러) 사이에서 60% 지점에 자리 잡고 있어' → 앞서 본문에서 상세히 다룬 1년 범위와 수치 데이터를 마지막 정리 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 동일한 숫자의 단순 반복을 피하고, 정리 섹션은 핵심 메시지만 짧게 압축하여 작성해야 합니다."
+  ]
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 2026-11-05 기준]\n- WTI 원유(CL=F): 최근가 87.68 달러/배럴, 1주 -14.7%, 한 달 -2.0%, 1년 +44.8% (하루 -8.8%)\n  · 1년 최고 112.95(2026-04-07), 1년 최저 55.27(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 56% 지점, 1년 평균 81.03 대비 +8.2%, 3개월 +13.4%\n- 브렌트유(BZ=F): 최근가 94.38 달러/배럴, 1주 -18.2%, 한 달 -6.2%, 1년 +46.5% (하루 -8.9%)\n  · 1년 최고 118.35(2026-03-31), 1년 최저 58.92(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 60% 지점, 1년 평균 86.74 대비 +8.8%, 3개월 +14.4%\n- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, 뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n- 미국 상업용 원유 재고(EIA, 천 배럴): 2026-10-30 409,760, 2026-10-23 410,625, 2026-10-16 412,517, 2026-10-09 415,577, 2026-10-02 424,134 → 최근 1주 변화 -865, 1년 전(2025-10-31) 421,168 대비 -2.7%\n\n[관련 뉴스]\n- 골드만삭스, 브렌트유 가격 배럴당 140달러 돌파 전망 - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMi0wJBVV95cUxOa0xBR2N5QWVyZF9YSkpkS2FRa3hSUERxVVZzcTV3RHhlUXFXYkxpRk5kNVp4UVd4T21YQjFzWUtpbjRnbjhlblhDN0dQXy15cHJBY2MtRW9vaTkyV2ZaSWFqN1NCSU92Y3J3aWR6Q0hUQkpVYnVsUHJWV0QyWm55azlaS1FTZndJaGpjLUxFU0FmTHRZMmJnNVJmbWllZ1FWd1NtY3psU1ZVTHgyTUl4SGh2MFhXaFhVbnIzVzl1TTd2NjBpbjcwZjRfNzlMMS1vR21LcEJJRzdnX3g0dEJESXEwUEY2OGdSbGhocWl6WGQxbVhGeDl2ZkxhbExTVVRjc2UwTTZiUk54NF80QmFQMTM0TW9NVUl0XzRIcVRYVmJqR1YtQTRtRnJMcnptQnY2c1hIQTZrME5yaXlfdHZhRURsUjV4Wk02SzluWHcyTEk4S0E?oc=5\n- 美 이란 게슘섬 공습에 국제유가 반등…브렌트유 106달러대 - 글로벌이코노믹 (글로벌이코노믹) https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\n- 골드만삭스, 국제유가 전망 상향…연말 브렌트유 105달러 - 아시아경제 (아시아경제) https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\n- [경제 포커스] 브렌트유 급등에 한은 ‘비관 시나리오’ 진입... “내년 물가 2.7% 상승” 전망 - Chosunbiz (Chosunbiz) https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\n- 골드만삭스는 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망했다. - Vietnam.vn (Vietnam.vn) https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\n- 골드만삭스, 브렌트유 전망치 105달러로 '상향'...연말엔 하락? - 코인리더스 (코인리더스) https://news.google.com/rss/articles/CBMiSkFVX3lxTFBJWTlfMGlrZ01qeTc0dEhteUtaT0cwSWV6eG9TQTl1aTljdG8wUTcyZEt4d3NGQnowYTVIcThKZTJiOU5BTXV2OGl3?oc=5\n",
+ "drafts": {
+  "1": "<h1>브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?</h1>\n<!-- 브렌트유 가격이 한 달 전보다 6.2% 내린 94.38달러를 기록했습니다. 1년 최고와 최저 범위의 60% 지점에 위치한 원유 시장의 최근 단기 흐름과 재고 수치를 정리했습니다. -->\n\n뉴스에서 유가가 급등락한다는 소식을 접할 때, 단기적인 변동만 보고 전체적인 위치를 오해하기 쉽습니다. 일간 단위의 큰 폭 흔들림에 집중하다 보면 시장이 장기적인 흐름에서 어디에 놓여 있는지 놓치기 쉽습니다.\n\n2026년 11월 05일 기준 대표적인 국제 유종인 브렌트유(BZ=F)의 최근 가격은 배럴당 94.38달러로 한 달 전보다 6.2% 내렸습니다. 같은 기간 WTI 원유(CL=F) 역시 배럴당 87.68달러를 기록하며 한 달 새 2.0% 하락했습니다. 브렌트유와 WTI의 최근 가격 변화와 1년 범위를 살펴보고 정확한 현재 위치를 짚어봅니다.\n\n<h3>브렌트유·WTI 단기 흐름</h3>\n\n최근 국제 유가는 단기적인 조정세를 보이며 이전의 가파른 상승폭을 일부 반납했습니다. 기간별로 나누어 들여다보면 주간 단위의 하락세와 수개월간의 누적 상승세가 공존하는 모습을 확인할 수 있습니다.\n\n브렌트유는 최근 1주일 동안 18.2% 하락하며 가파른 내림세를 나타냈습니다. 한 달 전과 비교해도 6.2% 떨어진 수치로 최근 들어 유가 상승 압력이 한층 누그러진 흐름입니다. 반면 기간을 늘려 3개월 전과 비교하면 여전히 14.4% 오른 상태이며 1년 전보다는 46.5% 높은 수준을 유지하고 있습니다.\n\nWTI 원유 역시 단기적으로는 비슷한 흐름을 보입니다. WTI는 최근 1주일 동안 14.7% 떨어졌고 한 달 전과 비교하면 2.0% 내렸습니다. 그러나 3개월 전 대비 13.4% 상승했으며 1년 전과 비교하면 44.8% 오른 가격에 거래되고 있습니다.\n\n이처럼 최근 1주일이나 한 달 단위의 가격 변화를 보면 시장의 냉각 흐름이 뚜렷하게 관측됩니다. 하지만 3개월 및 1년 단위의 장기 흐름에서는 여전히 과거보다 높은 가격대를 형성에 두고 있다는 점을 알 수 있습니다.\n\n<h3>1년 범위로 본 브렌트유 위치</h3>\n\n단기적인 가격 변화 외에 전체적인 위치를 파악하기 위해서는 지난 1년 동안 형성된 최고점과 최저점 사이의 범위를 확인해야 합니다. 1년 중 어느 지점에 있는지 숫자로 살펴보면 현재 가격을 객관적으로 가늠할 수 있습니다.\n\n지난 1년간 브렌트유가 가장 높은 가격을 기록한 날은 2026년 3월 31일로 배럴당 118.35달러였습니다. 반대로 가장 낮았던 날은 2025년 12월 16일의 58.92달러였습니다. 현재 가격인 94.38달러는 이 최저점(0%)과 최고점(100%) 범위 사이에서 정확히 60% 지점에 자리 잡고 있습니다.\n\n또한 지난 1년 동안의 브렌트유 평균 가격은 배럴당 86.74달러로 집계됩니다. 현재의 94.38달러는 이 1년 평균 가격보다 8.8% 높은 위치입니다. 최고점에 비하면 한참 내려왔지만 평균선보다는 여전히 높은 지점을 지키고 있는 셈입니다.\n\n<table>\n<tr><th>구분</th><th>브렌트유(BZ=F)</th></tr>\n<tr><td>최근가</td><td>94.38 달러/배럴</td></tr>\n<tr><td>1년 최고(2026-03-31)</td><td>118.35 달러/배럴</td></tr>\n<tr><td>1년 최저(2025-12-16)</td><td>58.92 달러/배럴</td></tr>\n<tr><td>1년 범위 내 위치</td><td>60% 지점</td></tr>\n<tr><td>1년 평균(86.74 달러) 대비</td><td>+8.8%</td></tr>\n</table>\n\n<h3>WTI 1년 범위와 비교하기</h3>\n\n서부 텍사스산 원유인 WTI 역시 브렌트유와 유사한 궤적을 그리며 움직이고 있습니다. 두 유종의 1년 범위와 평균 대비 위치를 나란히 살펴보면 국제 원유 시장의 전체적인 체계를 이해하는 데 도움이 됩니다.\n\nWTI 원유의 지난 1년 최고가는 2026년 4월 07일에 기록한 배럴당 112.95달러입니다. 1년 최저가는 브렌트유와 같은 날인 2025년 12월 16일에 기록한 55.27달러입니다. 최저점을 0%, 최고점을 100%로 설정했을 때 현재 WTI 가격인 87.68달러는 56% 지점에 해당합니다.\n\nWTI의 1년 평균 가격은 배럴당 81.03달러입니다. 최근 가격은 이 1년 평균치보다 8.2% 높은 수준을 형성하고 있습니다. 브렌트유가 1년 범위의 60% 지점이자 평균 대비 +8.8%인 것과 비교하면 WTI가 상대적으로 4%포인트가량 낮게 형성되어 있습니다.\n\n분석 기관들의 전망치 상향 배경에는 다양한 변수가 작용하기도 했습니다. <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\" target=\"_blank\" rel=\"noopener\">글로벌이코노믹</a>은 미국의 이란 게슘섬 공습 여파로 브렌트유가 106달러대로 반등했던 사례를 보도한 바 있습니다. 시장의 변동성에 대해 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>와 <a href=\"https://news.google.com/rss/articles/CBMiSkFVX3lxTFBJWTlfMGlrZ01qeTc0dEhteUtaT0cwSWV6eG9TQTl1aTljdG8wUTcyZEt4d3NGQnowYTVIcThKZTJiOU5BTXV2OGl3?oc=5\" target=\"_blank\" rel=\"noopener\">코인리더스</a>는 골드만삭스가 연말 브렌트유 전망치를 105달러로 상향 조정했던 흐름을 다루었습니다.\n\n한편 극단적인 유가 상승 시나리오에 대한 언급도 나온 바 있습니다. <a href=\"https://news.google.com/rss/articles/CBMi0wJBVV95cUxOa0xBR2N5QWVyZF9YSkpkS2FRa3hSUERxVVZzcTV3RHhlUXFXYkxpRk5kNVp4UVd4T21YQjFzWUtpbjRnbjhlblhDN0dQXy15cHJBY2MtRW9vaTkyV2ZaSWFqN1NCSU92Y3J3aWR6Q0hUQkpVYnVsUHJWV0QyWm55azlaS1FTZndJaGpjLUxFU0FmTHRZMmJnNVJmbWllZ1FWd1NtY3psU1ZVTHgyTUl4SGh2MFhXaFhVbnIzVzl1TTd2NjBpbjcwZjRfNzlMMS1vR21LcEJJRzdnX3g0dEJESXEwUEY2OGdSbGhocWl6WGQxbVhGeDl2ZkxhbExTVVRjc2UwTTZiUk54NF80QmFQMTM0TW9NVUl0XzRIcVRYVmJqR1YtQTRtRnJMcnptQnY2c1hIQTZrME5yaXlfdHZhRURsUjV4Wk02SzluWHcyTEk4S0E?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>와 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>은 골드만삭스가 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망한 내용을 전하기도 했습니다. 국내 물가와 관련해 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>는 브렌트유 급등 시 한국은행이 비관 시나리오에 진입해 내년 물가가 2.7% 상승할 것으로 전망했다고 보도했습니다.\n\n<h3>미국 원유 재고와 확인 기준</h3>\n\n유가의 수급 상황을 파악할 때 필수적으로 확인하는 지표 중 하나가 미국 에너지정보청(EIA)에서 발표하는 상업용 원유 재고 수치입니다. 주간 단위로 집계되는 이 재고 데이터는 공급 과잉이나 부족 여부를 판단하는 주요 기준이 됩니다.\n\n2026년 10월 30일 기준 미국 상업용 원유 재고는 4억 976만 배럴(409,760천 배럴)로 집계되었습니다. 이는 1주일 전인 10월 23일의 4억 1,062만 5천 배럴 대비 86만 5천 배럴(-865천 배럴) 감소한 수치입니다.\n\n이전 추이를 살펴보면 2026년 10월 2일 4억 2,413만 4천 배럴에서 10월 9일 4억 1,557만 7천 배럴, 10월 16일 4억 1,251만 7천 배럴로 지속적인 감소세를 보였습니다. 10월 한 달 동안 미국 내 원유 재고는 전반적으로 감소하는 방향을 그렸습니다.\n\n1년 전 같은 시점과 비교해 보면 재고 수준의 위치를 더 명확히 알 수 있습니다. 2025년 10월 31일의 상업용 원유 재고는 4억 2,116만 8천 배럴이었으며, 현재 재고는 1년 전보다 2.7% 적은 상태입니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 선물 가격(BZ=F, CL=F)과 우리가 주변에서 접하는 실제 주유소 석유 제품 가격은 왜 차이가 나나요?</h4>\n국제 원유 선물 가격은 거래소에서 표준화된 원유 계약이 거래되는 시장 가격입니다. 반면 우리가 주유소에서 이용하는 휘발유나 경유 가격은 원유 정제 비용, 수송비, 유류세, 그리고 유통 업체의 마진이 더해진 최종 정제품 가격입니다. 또한 국제 원유 가격이 국내 석유 제품 소비자가격에 반영되기까지는 통상 수주의 시차가 발생합니다.\n\n<h4>🔸 언론에 보도되는 골드만삭스 등의 극단적인 유가 전망 수치는 투자나 분석에서 어떻게 받아들여야 하나요?</h4>\n금융기관의 유가 전망치는 당시의 지정학적 리스크나 특정 수급 가정을 바탕으로 도출된 시나리오 분석 결과입니다. 시장 상황이나 수급 지표가 변하면 전망치는 언제든지 상향 또는 하향 조정될 수 있습니다. 따라서 특정 목표치에 의존하기보다는 실제 집계되는 주간 재고 지표와 1년 최고·최저 범위 등 실제 데이터를 함께 점검하는 것이 바람직합니다.\n\n<h4>🔸 미국 상업용 원유 재고(EIA) 데이터는 유가 방향성을 판단할 때 어떤 의미를 가지나요?</h4>\nEIA 상업용 원유 재고는 세계 최대 산유국이자 소비국인 미국의 실물 수급 현황을 직접 보여주는 지표입니다. 재고가 계속 줄어들면 시장 공급이 타이트하다는 신호로 해석될 수 있고, 반대로 재고가 누적되면 수요 둔화나 공급 과잉의 신호로 풀이됩니다. 단, 주간 단위 재고 감소나 증가가 당장의 유가 하락이나 상승을 100% 담보하지는 않으므로 전체 범위 및 시장 상황을 종합해서 보아야 합니다.\n\n<h3>정리</h3>\n\n브렌트유 가격은 최근 1주일간 -18.2%, 한 달간 -6.2% 내리며 단기적인 조정 흐름을 나타내고 있습니다. 하지만 이러한 단기 하락에도 불구하고 현재 배럴당 94.38달러는 지난 1년 최고·최저 범위 중 60% 지점에 위치하고 있습니다.\n\n1년 평균 가격인 86.74달러와 비교하더라도 현재 브렌트유는 8.8% 높은 상태를 유지하고 있습니다. 단기적인 냉각세가 나타났으나 지난 1년 전체의 궤적으로 볼 때는 여전히 중간보다 다소 높은 가격대에 머물러 있는 셈입니다.\n\n미국의 상업용 원유 재고는 최근 4억 976만 배럴 수준으로 1년 전 대비 2.7% 감소한 상태입니다. 유가 시장을 관찰할 때는 단순한 일간·주간 등락률에 일희일비하기보다 1년 단위의 최고·최저 범위와 평균치, 그리고 재고 지표를 종합하여 현재의 객관적인 위치를 파악하는 접근이 필요합니다.\n\n태그: 브렌트유 WTI 국제유가 원유재고 유가위치",
+  "2": "<h1>브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?</h1>\n<!-- 브렌트유 가격이 한 달 전보다 6.2% 내린 94.38달러를 기록했습니다. 1년 최고와 최저 범위의 60% 지점에 위치한 원유 시장의 최근 단기 흐름과 재고 수치를 정리했습니다. -->\n\n뉴스에서 유가가 급등락한다는 소식을 접할 때, 단기적인 변동만 보고 전체적인 위치를 오해하기 쉽습니다. 일간 단위의 큰 폭 흔들림에 집중하다 보면 시장이 장기적인 흐름에서 어디에 놓여 있는지 놓치기 쉽습니다.\n\n2026년 11월 05일 기준 대표적인 국제 유종인 브렌트유(BZ=F)의 최근 가격은 배럴당 94.38달러로 한 달 전보다 6.2% 내렸습니다. 같은 기간 WTI 원유(CL=F) 역시 배럴당 87.68달러를 기록하며 한 달 새 2.0% 하락했습니다. 브렌트유와 WTI의 최근 가격 변화와 1년 범위를 살펴보고 정확한 현재 위치를 짚어봅니다.\n\n<h3>브렌트유·WTI 단기 흐름</h3>\n\n최근 국제 유가는 단기적인 조정세를 보이며 이전의 가파른 상승폭을 일부 반납했습니다. 기간별로 나누어 들여다보면 주간 단위의 하락세와 수개월간의 누적 상승세가 공존하는 모습을 확인할 수 있습니다.\n\n브렌트유는 최근 1주일 동안 18.2% 하락하며 가파른 내림세를 나타냈습니다. 한 달 전과 비교해도 6.2% 떨어진 수치로 최근 들어 유가 상승 압력이 한층 누그러진 흐름입니다. 반면 기간을 늘려 3개월 전과 비교하면 여전히 14.4% 오른 상태이며 1년 전보다는 46.5% 높은 수준을 유지하고 있습니다.\n\nWTI 원유 역시 단기적으로는 비슷한 흐름을 보입니다. WTI는 최근 1주일 동안 14.7% 떨어졌고 한 달 전과 비교하면 2.0% 내렸습니다. 그러나 3개월 전 대비 13.4% 상승했으며 1년 전과 비교하면 44.8% 오른 가격에 거래되고 있습니다.\n\n이처럼 최근 1주일이나 한 달 단위의 가격 변화를 보면 시장의 냉각 흐름이 뚜렷하게 관측됩니다. 하지만 3개월 및 1년 단위의 장기 흐름에서는 여전히 과거보다 높은 가격대를 형성에 두고 있다는 점을 알 수 있습니다.\n\n<h3>1년 범위로 본 브렌트유 위치</h3>\n\n단기적인 가격 변화 외에 전체적인 위치를 파악하기 위해서는 지난 1년 동안 형성된 최고점과 최저점 사이의 범위를 확인해야 합니다. 1년 중 어느 지점에 있는지 숫자로 살펴보면 현재 가격을 객관적으로 가늠할 수 있습니다.\n\n지난 1년간 브렌트유가 가장 높은 가격을 기록한 날은 2026년 3월 31일로 배럴당 118.35달러였습니다. 반대로 가장 낮았던 날은 2025년 12월 16일의 58.92달러였습니다. 현재 가격은 이 최저점(0%)과 최고점(100%) 범위 사이에서 정확히 60% 지점에 자리 잡고 있습니다.\n\n또한 지난 1년 동안의 브렌트유 평균 가격은 배럴당 86.74달러로 집계됩니다. 현재 가격은 이 1년 평균 가격보다 8.8% 높은 위치입니다. 최고점에 비하면 한참 내려왔지만 평균선보다는 여전히 높은 지점을 지키고 있는 셈입니다.\n\n<h3>WTI 1년 범위와 비교하기</h3>\n\n서부 텍사스산 원유인 WTI 역시 브렌트유와 유사한 궤적을 그리며 움직이고 있습니다. 두 유종의 1년 범위와 평균 대비 위치를 나란히 살펴보면 국제 원유 시장의 전체적인 체계를 이해하는 데 도움이 됩니다.\n\nWTI 원유의 지난 1년 최고가는 2026년 4월 07일에 기록한 배럴당 112.95달러입니다. 1년 최저가는 브렌트유와 같은 날인 2025년 12월 16일에 기록한 55.27달러입니다. 최저점을 0%, 최고점을 100%로 설정했을 때 현재 WTI 가격인 87.68달러는 56% 지점에 해당합니다.\n\nWTI의 1년 평균 가격은 배럴당 81.03달러입니다. 최근 가격은 이 1년 평균치보다 8.2% 높은 수준을 형성하고 있습니다. 브렌트유가 1년 범위의 60% 지점이자 평균 대비 +8.8%인 것과 비교하면 WTI가 상대적으로 4%포인트가량 낮게 형성되어 있습니다.\n\n분석 기관들의 전망치 상향 배경에는 다양한 변수가 작용하기도 했습니다. <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\" target=\"_blank\" rel=\"noopener\">글로벌이코노믹</a>은 미국의 이란 게슘섬 공습 여파로 브렌트유가 106달러대로 반등했던 사례를 보도한 바 있습니다. 시장의 변동성에 대해 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>와 <a href=\"https://news.google.com/rss/articles/CBMiSkFVX3lxTFBJWTlfMGlrZ01qeTc0dEhteUtaT0cwSWV6eG9TQTl1aTljdG8wUTcyZEt4d3NGQnowYTVIcThKZTJiOU5BTXV2OGl3?oc=5\" target=\"_blank\" rel=\"noopener\">코인리더스</a>는 골드만삭스가 연말 브렌트유 전망치를 105달러로 상향 조정했던 흐름을 다루었습니다.\n\n한편 극단적인 유가 상승 시나리오에 대한 언급도 나온 바 있습니다. <a href=\"https://news.google.com/rss/articles/CBMi0wJBVV95cUxOa0xBR2N5QWVyZF9YSkpkS2FRa3hSUERxVVZzcTV3RHhlUXFXYkxpRk5kNVp4UVd4T21YQjFzWUtpbjRnbjhlblhDN0dQXy15cHJBY2MtRW9vaTkyV2ZaSWFqN1NCSU92Y3J3aWR6Q0hUQkpVYnVsUHJWV0QyWm55azlaS1FTZndJaGpjLUxFU0FmTHRZMmJnNVJmbWllZ1FWd1NtY3psU1ZVTHgyTUl4SGh2MFhXaFhVbnIzVzl1TTd2NjBpbjcwZjRfNzlMMS1vR21LcEJJRzdnX3g0dEJESXEwUEY2OGdSbGhocWl6WGQxbVhGeDl2ZkxhbExTVVRjc2UwTTZiUk54NF80QmFQMTM0TW9NVUl0XzRIcVRYVmJqR1YtQTRtRnJMcnptQnY2c1hIQTZrME5yaXlfdHZhRURsUjV4Wk02SzluWHcyTEk4S0E?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>와 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>은 골드만삭스가 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망한 내용을 전하기도 했습니다. 국내 물가와 관련해 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>는 브렌트유 급등 시 한국은행이 비관 시나리오에 진입해 내년 물가가 2.7% 상승할 것으로 전망했다고 보도했습니다.\n\n<h3>미국 원유 재고와 확인 기준</h3>\n\n유가의 수급 상황을 파악할 때 필수적으로 확인하는 지표 중 하나가 미국 에너지정보청(EIA)에서 발표하는 상업용 원유 재고 수치입니다. 주간 단위로 집계되는 이 재고 데이터는 공급 과잉이나 부족 여부를 판단하는 주요 기준이 됩니다.\n\n2026년 10월 30일 기준 미국 상업용 원유 재고는 409,760천 배럴로 집계되었습니다. 이는 1주일 전인 10월 23일의 410,625천 배럴 대비 865천 배럴 감소한 수치입니다.\n\n이전 추이를 살펴보면 2026년 10월 2일 424,134천 배럴에서 10월 9일 415,577천 배럴, 10월 16일 412,517천 배럴로 지속적인 감소세를 보였습니다. 10월 한 달 동안 미국 내 원유 재고는 전반적으로 감소하는 방향을 그렸습니다.\n\n1년 전 같은 시점과 비교해 보면 재고 수준의 위치를 더 명확히 알 수 있습니다. 2025년 10월 31일의 상업용 원유 재고는 421,168천 배럴이었으며, 현재 재고는 1년 전보다 2.7% 적은 상태입니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 선물 가격(BZ=F, CL=F)과 우리가 주변에서 접하는 실제 주유소 석유 제품 가격은 왜 차이가 나나요?</h4>\n국제 원유 선물 가격은 거래소에서 표준화된 원유 계약이 거래되는 시장 가격입니다. 반면 우리가 주유소에서 이용하는 휘발유나 경유 가격은 원유 정제 비용, 수송비, 유류세, 그리고 유통 업체의 마진이 더해진 최종 정제품 가격입니다.\n\n<h4>🔸 언론에 보도되는 골드만삭스 등의 극단적인 유가 전망 수치는 투자나 분석에서 어떻게 받아들여야 하나요?</h4>\n금융기관의 유가 전망치는 당시의 지정학적 리스크나 특정 수급 가정을 바탕으로 도출된 시나리오 분석 결과입니다. 시장 상황이나 수급 지표가 변하면 전망치는 언제든지 상향 또는 하향 조정될 수 있습니다. 따라서 특정 목표치에 의존하기보다는 실제 집계되는 주간 재고 지표와 1년 최고·최저 범위 등 실제 데이터를 함께 점검하는 것이 바람직합니다.\n\n<h4>🔸 미국 상업용 원유 재고(EIA) 데이터는 유가 방향성을 판단할 때 어떤 의미를 가지나요?</h4>\nEIA 상업용 원유 재고는 세계 최대 산유국이자 소비국인 미국의 실물 수급 현황을 직접 보여주는 지표입니다. 재고가 계속 줄어들면 시장 공급이 타이트하다는 신호로 해석될 수 있고, 반대로 재고가 누적되면 수요 둔화나 공급 과잉의 신호로 풀이됩니다. 단, 주간 단위 재고 감소나 증가가 당장의 유가 하락이나 상승을 100% 담보하지는 않으므로 전체 범위 및 시장 상황을 종합해서 보아야 합니다.\n\n<h3>정리</h3>\n\n독자가 유가 관련 뉴스를 접할 때 현재 가격의 위치를 스스로 판단하기 위해서는 자료의 구체적인 숫자를 기준으로 삼는 것이 유용합니다. 다음과 같은 기준 수치들을 활용해 볼 수 있습니다.\n\n첫째, 1년 최고·최저 범위 내 현재 위치입니다. 브렌트유는 1년 최저가(58.92달러)와 최고가(118.35달러) 사이에서 60% 지점에 자리 잡고 있어 전체 범위 내 중간 수준을 약간 상회하는 위치를 보여줍니다.\n\n둘째, 1년 평균 가격 대비 상승률입니다. 브렌트유의 1년 평균가는 배럴당 86.74달러로, 현재 가격은 이 기준선 대비 +8.8% 높게 형성되어 있습니다.\n\n셋째, 수급을 보여주는 EIA 상업용 원유 재고 변화 수치입니다. 2026년 10월 30일 기준 미국 원유 재고는 409,760천 배럴로, 1년 전(421,168천 배럴) 대비 -2.7% 감소하여 실물 수급 상황을 확인할 수 있는 객관적 지표가 됩니다.\n\n태그: 브렌트유 WTI 국제유가 원유재고 유가위치",
+  "3": "<h1>브렌트유 한 달 새 6% 하락, 지금 어디쯤일까?</h1>\n<!-- 브렌트유 가격이 한 달 전보다 6.2% 내린 94.38달러를 기록했습니다. 1년 최고와 최저 범위의 60% 지점에 위치한 원유 시장의 최근 단기 흐름과 재고 수치를 정리했습니다. -->\n\n뉴스에서 유가가 급등락한다는 소식을 접할 때, 단기적인 변동만 보고 전체적인 위치를 오해하기 쉽습니다. 일간 단위의 큰 폭 흔들림에 집중하다 보면 시장이 장기적인 흐름에서 어디에 놓여 있는지 놓치기 쉽습니다.\n\n2026년 11월 05일 기준 대표적인 국제 유종인 브렌트유(BZ=F)의 최근 가격은 배럴당 94.38달러로 한 달 전보다 6.2% 내렸습니다. 같은 기간 WTI 원유(CL=F) 역시 배럴당 87.68달러를 기록하며 한 달 새 2.0% 하락했습니다. 브렌트유와 WTI의 최근 가격 변화와 1년 범위를 살펴보고 정확한 현재 위치를 짚어봅니다.\n\n<h3>브렌트유·WTI 단기 흐름</h3>\n\n최근 국제 유가는 단기적인 조정세를 보이며 이전의 가파른 상승폭을 일부 반납했습니다. 기간별로 나누어 들여다보면 주간 단위의 하락세와 수개월간의 누적 상승세가 공존하는 모습을 확인할 수 있습니다.\n\n브렌트유는 최근 1주일 동안 18.2% 하락하며 가파른 내림세를 나타냈습니다. 한 달 전과 비교해도 6.2% 떨어진 수치로 최근 들어 유가 상승 압력이 한층 누그러진 흐름입니다. 반면 기간을 늘려 3개월 전과 비교하면 여전히 14.4% 오른 상태이며 1년 전보다는 46.5% 높은 수준을 유지하고 있습니다.\n\nWTI 원유 역시 단기적으로는 비슷한 흐름을 보입니다. WTI는 최근 1주일 동안 14.7% 떨어졌고 한 달 전과 비교하면 2.0% 내렸습니다. 그러나 3개월 전 대비 13.4% 상승했으며 1년 전과 비교하면 44.8% 오른 가격에 거래되고 있습니다.\n\n이처럼 최근 1주일이나 한 달 단위의 가격 변화를 보면 시장의 냉각 흐름이 뚜렷하게 관측됩니다. 하지만 3개월 및 1년 단위의 장기 흐름에서는 여전히 과거보다 높은 가격대를 형성에 두고 있다는 점을 알 수 있습니다.\n\n<h3>1년 범위로 본 브렌트유 위치</h3>\n\n단기적인 가격 변화 외에 전체적인 위치를 파악하기 위해서는 지난 1년 동안 형성된 최고점과 최저점 사이의 범위를 확인해야 합니다. 1년 중 어느 지점에 있는지 숫자로 살펴보면 현재 가격을 객관적으로 가늠할 수 있습니다.\n\n지난 1년간 브렌트유가 가장 높은 가격을 기록한 날은 2026년 3월 31일로 배럴당 118.35달러였습니다. 반대로 가장 낮았던 날은 2025년 12월 16일의 58.92달러였습니다. 현재 가격은 이 최저점(0%)과 최고점(100%) 범위 사이에서 정확히 60% 지점에 자리 잡고 있습니다.\n\n또한 지난 1년 동안의 브렌트유 평균 가격은 배럴당 86.74달러로 집계됩니다. 현재 가격은 이 1년 평균 가격보다 8.8% 높은 위치입니다. 최고점에 비하면 한참 내려왔지만 평균선보다는 여전히 높은 지점을 지키고 있는 셈입니다.\n\n<h3>WTI 1년 범위와 비교하기</h3>\n\n서부 텍사스산 원유인 WTI 역시 브렌트유와 유사한 궤적을 그리며 움직이고 있습니다. 두 유종의 1년 범위와 평균 대비 위치를 나란히 살펴보면 국제 원유 시장의 전체적인 체계를 이해하는 데 도움이 됩니다.\n\nWTI 원유의 지난 1년 최고가는 2026년 4월 07일에 기록한 배럴당 112.95달러입니다. 1년 최저가는 브렌트유와 같은 날인 2025년 12월 16일에 기록한 55.27달러입니다. 최저점을 0%, 최고점을 100%로 설정했을 때 현재 WTI 가격인 87.68달러는 56% 지점에 해당합니다.\n\nWTI의 1년 평균 가격은 배럴당 81.03달러입니다. 최근 가격은 이 1년 평균치보다 8.2% 높은 수준을 형성하고 있습니다. 브렌트유가 1년 범위의 60% 지점이자 평균 대비 +8.8%인 것과 비교하면 WTI가 상대적으로 4%포인트가량 낮게 형성되어 있습니다.\n\n분석 기관들의 전망치 상향 배경에는 다양한 변수가 작용하기도 했습니다. <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\" target=\"_blank\" rel=\"noopener\">글로벌이코노믹</a>은 미국의 이란 게슘섬 공습 여파로 브렌트유가 106달러대로 반등했던 사례를 보도한 바 있습니다. 시장의 변동성에 대해 <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE51WUVuQl9hQW8xZjVTbmxvR1JjcS1vc19MR2hac0ZmTWEwaTVCZDJ5Q3ZKcDRLM1psbS16NUxyUTFEdlI0Wjdwa0dGS1E1M2xhMldrRkx1MDZHNWcxVm1BWg?oc=5\" target=\"_blank\" rel=\"noopener\">아시아경제</a>와 <a href=\"https://news.google.com/rss/articles/CBMiSkFVX3lxTFBJWTlfMGlrZ01qeTc0dEhteUtaT0cwSWV6x9SANA91aTljdG8wUTcyZEt4d3NGQnowYTVIcThKZTJiOU5BTXV2OGl3?oc=5\" target=\"_blank\" rel=\"noopener\">코인리더스</a>는 골드만삭스가 연말 브렌트유 전망치를 105달러로 상향 조정했던 흐름을 다루었습니다.\n\n한편 극단적인 유가 상승 시나리오에 대한 언급도 나온 바 있습니다. <a href=\"https://news.google.com/rss/articles/CBMi0wJBVV95cUxOa0xBR2N5QWVyZF9YSkpkS2FRa3hSUERxVVZzcTV3RHhlUXFXYkxpRk5kNVp4UVd4T21YQjFzWUtpbjRnbjhlblhDN0dQXy15cHJBY2MtRW9vaTkyV2ZaSWFqN1NCSU92Y3J3aWR6Q0hUQkpVYnVsUHJWV0QyWm55azlaS1FTZndJaGpjLUxFU0FmTHRZMmJnNVJmbWllZ1FWd1NtY3psU1ZVTHgyTUl4SGh2MFhXaFhVbnIzVzl1TTd2NjBpbjcwZjRfNzlMMS1vR21LcEJJRzdnX3g0dEJESXEwUEY2OGdSbGhocWl6WGQxbVhGeDl2ZkxhbExTVVRjc2UwTTZiUk54NF80QmFQMTM0TW9NVUl0XzRIcVRYVmJqR1YtQTRtRnJMcnptQnY2c1hIQTZrME5yaXlfdHZhRURsUjV4Wk02SzluWHcyTEk4S0E?oc=5\" target=\"_blank\" rel=\"noopener\">IDNFinancials</a>와 <a href=\"https://news.google.com/rss/articles/CBMijgFBVV95cUxOV3hNZGMtMWt4SkVhbVI0dHNCdUE1WlZ4Mng4blA2d1FpbFhsTzZWRnVLeDlKRG16amVUSDhJVXpBYTdjN0hERmx0bmlINDRNOTlWeFhMbWtMV0Yyam91b0ljbjFobGdWMlJndGVaV0lFZXZsNHVWY2JJM1o1OVZYX25sazJmXzQwek9RNDF3?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>은 골드만삭스가 브렌트유 가격이 배럴당 140달러까지 오를 수 있다고 전망한 내용을 전하기도 했습니다. 국내 물가와 관련해 <a href=\"https://news.google.com/rss/articles/CBMihgFBVV95cUxQRk5KLVhvNDJYNWtsVGhEcFp1ZW5HX0JYZGs3azV3T3VIMGJiU1dQMk1CRW4tWmdXNmphRzBEWU1Nem9iT3FRNDF0V3FRdWkwc0lrMVdpMVhrcmtwdDBqa3RhTWpHOUhaVnFlMkRPTTBNcXc5Y0FJOHNTMHdRdTRQRDF0ZEYwd9IBmgFBVV95cUxNMHIyUDl0a0k4QmtOVTllajRuc2hLQkpYLVNDUzRURDNMTTdBVEhXTXV1S2NlN2NfTW1ra2JpU0IwSEp3blNNTjlkemJvSVYyTjBxYmtnei11VC1kU1VDRkMwWGg0bzJDV2dMZ0FSZ3JBUWpidDNzd3VhTVp0N1NvZXRUVXhLM0VOLUVxNzJvT2NuVjhKOUc4Qk53?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a>는 브렌트유 급등 시 한국은행이 비관 시나리오에 진입해 내년 물가가 2.7% 상승할 것으로 전망했다고 보도했습니다.\n\n<h3>미국 원유 재고와 확인 기준</h3>\n\n유가의 수급 상황을 파악할 때 필수적으로 확인하는 지표 중 하나가 미국 에너지정보청(EIA)에서 발표하는 상업용 원유 재고 수치입니다. 주간 단위로 집계되는 이 재고 데이터는 공급 과잉이나 부족 여부를 판단하는 주요 기준이 됩니다.\n\n2026년 10월 30일 기준 미국 상업용 원유 재고는 409,760천 배럴로 집계되었습니다. 이는 1주일 전인 10월 23일의 410,625천 배럴 대비 865천 배럴 감소한 수치입니다.\n\n이전 추이를 살펴보면 2026년 10월 2일 424,134천 배럴에서 10월 9일 415,577천 배럴, 10월 16일 412,517천 배럴로 지속적인 감소세를 보였습니다. 10월 한 달 동안 미국 내 원유 재고는 전반적으로 감소하는 방향을 그렸습니다.\n\n1년 전 같은 시점과 비교해 보면 재고 수준의 위치를 더 명확히 알 수 있습니다. 2025년 10월 31일의 상업용 원유 재고는 421,168천 배럴이었으며, 현재 재고는 1년 전보다 2.7% 적은 상태입니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 선물 가격(BZ=F, CL=F)과 우리가 주변에서 접하는 실제 주유소 석유 제품 가격은 왜 차이가 나나요?</h4>\n국제 원유 선물 가격은 거래소에서 표준화된 원유 계약이 거래되는 시장 가격입니다. 반면 우리가 주유소에서 이용하는 휘발유나 경유 가격은 원유 정제 비용, 수송비, 유류세, 그리고 유통 업체의 마진이 더해진 최종 정제품 가격입니다.\n\n<h4>🔸 언론에 보도되는 골드만삭스 등의 극단적인 유가 전망 수치는 투자나 분석에서 어떻게 받아들여야 하나요?</h4>\n금융기관의 유가 전망치는 당시의 지정학적 리스크나 특정 수급 가정을 바탕으로 도출된 시나리오 분석 결과입니다. 시장 상황이나 수급 지표가 변하면 전망치는 언제든지 상향 또는 하향 조정될 수 있습니다. 따라서 특정 목표치에 의존하기보다는 실제 집계되는 주간 재고 지표와 1년 최고·최저 범위 등 실제 데이터를 함께 점검하는 것이 바람직합니다.\n\n<h4>🔸 미국 상업용 원유 재고(EIA) 데이터는 유가 방향성을 판단할 때 어떤 의미를 가지나요?</h4>\nEIA 상업용 원유 재고는 세계 최대 산유국이자 소비국인 미국의 실물 수급 현황을 직접 보여주는 지표입니다. 재고가 계속 줄어들면 시장 공급이 타이트하다는 신호로 해석될 수 있고, 반대로 재고가 누적되면 수요 둔화나 공급 과잉의 신호로 풀이됩니다. 단, 주간 단위 재고 감소나 증가가 당장의 유가 하락이나 상승을 100% 담보하지는 않으므로 전체 범위 및 시장 상황을 종합해서 보아야 합니다.\n\n<h3>정리</h3>\n\n유가 관련 소식을 접할 때는 단기적인 가격 등락 외에도 시장의 전체적인 위치와 실물 수급 지표를 함께 점검하는 것이 필요합니다.\n\n우선 1년 중 최고·최저점 대비 현재 위치와 평균 가격 대비 상회 폭을 함께 확인하면 유가의 장기적인 위치를 가늠할 수 있습니다. \n\n또한 미국 EIA 상업용 원유 재고의 주간 추이와 전년 대비 변화율을 점검하면 실물 시장의 공급 상황을 객관적으로 파악하는 데 유용한 기준이 됩니다.\n\n태그: 브렌트유 WTI 국제유가 원유재고 유가위치"
+ },
+ "minutes": 6.9
+}
