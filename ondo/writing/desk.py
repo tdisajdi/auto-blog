@@ -341,11 +341,20 @@ def _issue_text(f):
     return f"[{f['severity']}·{f['by']}]{q} → {f['problem']}" + (f" / 고칠 방법: {f['fix']}" if f.get("fix") else "")
 
 
+# 모든 글이 꼭 답할 질문(2026-11-05): 시험한 글 13편 중 독자 가치 검토에서 '제목 질문에 답함'이 12번, '판단 기준 제시'가
+# 9번 빠졌다. 종목 분석 글처럼 기획이 이 질문을 섹션에 담고, 검토가 빠졌는지 확인하게 한다.
+COMMON_MUST = [
+    "제목이 던진 질문(또는 약속)에 대한 답을, 자료의 숫자를 넣어 한두 문장으로 직접 말하기(도입부 끝이나 정리에서)",
+    "독자가 같은 종류의 숫자·뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하기(매수·매도 권유가 아닌 '무엇을 보면 되는지')",
+]
+
+
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
                   drawer=None, avoid_visuals=(), must_answer=None, visual_texts=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
     log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
+    must_answer = list(must_answer or []) + [q for q in COMMON_MUST if q not in (must_answer or [])]
     plan = make_plan(kind_label, title_seed, facts_text, memo, log, drawer=drawer, avoid=avoid_visuals, must=must_answer)
     plan["_drawer"] = drawer or []
     posts = recent_posts or []

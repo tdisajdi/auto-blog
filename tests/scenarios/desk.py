@@ -92,8 +92,10 @@ def post_desk(url, payload, key):
     if "독자 가치 담당" in p:
         return R(200, json.dumps(VALUE_ANSWER))
     if "기획 회의" in p:
+        assert "제목이 던진 질문" in p and "스스로 확인할 기준" in p, "모든 글 공통 필수 질문이 기획에 들어감"
         return R(200, json.dumps(PLAN))
     if "심각도 기준" in p:
+        assert "글의 사실 검증 담당입니다" not in p or "제목이 던진 질문" in p, "사실 검증 담당이 공통 필수 질문 누락을 확인"
         calls["review"] += 1
         if calls["review"] <= 3 and "독자 편집 담당" in p:
             return R(200, json.dumps({"issues": [{"severity": "중요", "quote": "", "problem": "섹션1이 얇음", "fix": "자료로 보탤 것"}]}))

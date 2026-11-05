@@ -709,11 +709,35 @@ def _kosis_table_for(text):
     return next((tb for tb in KOSIS_TABLES if any(k in t for k in tb["keywords"])), None)
 
 
+def _check_returns(tickers):
+    """1년 수익률을 (가) 지금가 ÷ 1년 기록 첫날 종가, (나) 5년 기록에서 365일 전 종가로 따로 계산해 비교.
+    2026-11-03 투자심리 글의 'SCHD 1년 40.70%'가 맞는지 확인하려고 만든 점검(발행 안 함)."""
+    import pandas as pd
+    import yfinance as yf
+    for t in tickers:
+        try:
+            tk = yf.Ticker(t)
+            last = float(tk.fast_info["last_price"])
+            h1 = tk.history(period="1y")["Close"].dropna()
+            h5 = tk.history(period="5y")["Close"].dropna()
+            a = (last / float(h1.iloc[0]) - 1) * 100
+            cut = h5.index[-1] - pd.Timedelta(days=365)
+            b = (float(h5.iloc[-1]) / float(h5[h5.index <= cut].iloc[-1]) - 1) * 100
+            sp = tk.splits
+            sp = sp[sp.index >= h5.index[-1] - pd.Timedelta(days=730)] if len(sp) else sp
+            print(f"{t}: 지금가 {last:.2f} / 1년 기록 첫날 {h1.index[0]:%Y-%m-%d} {float(h1.iloc[0]):.2f} → (가) {a:+.2f}% / "
+                  f"(나) {b:+.2f}% / 차이 {a - b:+.2f}%p / 최근 2년 분할 {dict((f'{k:%Y-%m-%d}', v) for k, v in sp.items()) or '없음'}")
+        except Exception as e:
+            print(f"{t}: 확인 실패 {type(e).__name__}: {e}")
+
+
 def run_check_sources():
     """깃허브에서 EIA·KOSIS 키가 실제로 작동하는지, 통계표가 어떤 항목을 주는지 점검 (발행 안 함)."""
     print("=== 텔레그램 ===")
     from blog_engine import telegram_diagnose
     telegram_diagnose()
+    print("=== ETF 1년 수익률 교차 확인(같은 값을 두 방법으로) ===")
+    _check_returns(["SCHD", "SPY", "QQQ", "TLT", "VOO"])
     print("=== EIA (미국 원유 재고) ===")
     print(_eia_weekly("oil") or "원유: 결과 없음 (키 없음 또는 조회 실패)")
     print(_eia_weekly("gas") or "가스: 결과 없음 (키 없음 또는 조회 실패)")
