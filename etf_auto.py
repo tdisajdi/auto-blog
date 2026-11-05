@@ -6610,7 +6610,10 @@ def run_automation():
             kind = "comparison" if len(etf_list) >= 2 else "analysis"
             produce_article(
                 kind_label="ETF 비교" if kind == "comparison" else "ETF 분석",
-                title_seed=forced_title or f"{title_tickers} ETF, 데이터로 보는 핵심 포인트",
+                # 검색용 제목 최적화가 "환율과 금리가 S&P500 수익률에 미치는 영향"처럼 자료가 답하지 못하는 것을 약속해서
+                # 필수 질문(제목에 답하기)에서 계속 걸렸다(2026-11-05 VOO). 편집국에는 자료가 답하는 것만 약속하는 제목을 준다.
+                title_seed=(f"{title_tickers} 비교: 수익·낙폭·보수·세금을 같은 기준으로 보기" if kind == "comparison"
+                            else f"{title_tickers} 점검: 수익·낙폭·배당·세금을 숫자로 보기"),
                 facts_text=_analysis.fact_sheet(etf_list, etf_data_cache, sys.modules[__name__], macro_data, recent_news,
                                                 drawer_html, now.strftime("%Y년 %m월 %d일"), previous_analyses),
                 rules=_analysis.ANALYSIS_RULES, must_answer=_analysis.MUST_ANSWER[kind],
