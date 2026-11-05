@@ -1,0 +1,482 @@
+{
+ "article_type": "analysis",
+ "topic_id": "VOO",
+ "title_seed": "VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기",
+ "category": "etf",
+ "started_at": "2026-11-05T11:14:40",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.5,
+   "chars": 2820
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 14.9,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.2,
+   "chars": 5113
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.6,
+   "chars": 729
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.2,
+   "chars": 161
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.5,
+   "chars": 165
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.3,
+   "chars": 1043
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.8,
+   "chars": 5260
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.0,
+   "chars": 1032
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.3,
+   "chars": 700
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.2,
+   "chars": 143
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.6,
+   "chars": 1103
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.9,
+   "chars": 5146
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 17.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 42.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 48.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.5,
+   "chars": 185
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.8,
+   "chars": 191
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 147
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.4,
+   "chars": 962
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "11:14:55",
+   "title": "VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기",
+   "sections": [
+    "VOO의 투자 대상과 기간별 수익률",
+    "최대 낙폭과 과거 5년 투자 성과",
+    "배당 주기, 최근 지급 내역과 성장률",
+    "한국 투자자의 비용, 세금, 계좌 영향"
+   ],
+   "visuals": [
+    "risk→섹션2",
+    "scenario→섹션3",
+    "tax→섹션4"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "11:15:32",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "11:16:05",
+   "score": 0.76,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "배당세와 매매차익 세금뿐만 아니라 실제 자료에 있는 '계좌별 세금 비교표'의 내용(ISA, 연금저축 등과의 세금 차이)을 본문에 좀 더 구체적인 숫자로 녹여내면 독자가 계좌 선택 기준을 세우는 데 더 도움이 될 것입니다.",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 같은 종류의 숫자·뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하기 / 고칠 방법: 독자가 향후 관련 뉴스나 지표를 볼 때 스스로 체크할 수 있는 기준 2~3가지(예: 연 운용보수 0.03%, 미국 10년물 국채 금리 4.894% 대비 일드갭, 장기 배당성장률 5.57% 등)를 자료의 숫자와 함께 정리 부분이나 별도 문단에 명시해 주세요.",
+    "[중요·사실 검증] '한 해 매매이익이 1,000만 원 발생했다면 공제금 250만 원을 뺀 750만 원의 22%인 약 165만 원' → 해외 주식 매매차익 양도소득세 계산 시 한 해 동안 발생한 이익과 손실을 합산(손익통산)하여 계산한다는 자료의 필수 조건이 누락되었습니다. / 고칠 방법: 문장에 '해외 주식의 이익과 손실은 합산하여 계산하며,'라는 단서 조건을 추가해 주세요."
+   ],
+   "lint": [
+    "[참고] 꾸밈말 견조한 - 숫자나 사실로 바꿀 수 있으면 바꿀 것",
+    "[참고] 같은 숫자 '0.03%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '1,000만원'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 4449
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "11:16:22",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "11:17:05",
+   "score": 0.52,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "본문에 언급된 '하단에 제시되는 실제 최대 낙폭 기반 시나리오'나 '계좌별 세금 계산표' 등 표 형태의 핵심 데이터를 본문 안에서 텍스트로 조금 더 구체적으로 요약해주면 독자의 이해도가 높아질 것입니다.",
+   "issues": [
+    "[중요·사실 검증] '뉴스핌에 따르면 주요 IB들의 시장 전망 변화에 따라 관련 대형 ETF들에 대한 관심이 지속되는 흐름을 보이' → 사실 자료의 지침에 따라 뉴스를 인용할 때는 매체명에 하이퍼링크를 포함해야 하나 누락되었습니다. / 고칠 방법: '뉴스핌' 텍스트에 출처 뉴스 링크(https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5)를 연결해 주세요",
+    "[중요·사실 검증] '비즈니스포스트 보도처럼 환율 변동성과 계좌별 제약을 함께 비교해 보는 편이 유리합니다.' → 사실 자료의 지침에 따라 뉴스를 인용할 때는 매체명에 하이퍼링크를 포함해야 하나 누락되었습니다. / 고칠 방법: '비즈니스포스트' 텍스트에 출처 뉴스 링크(https://news.google.com/rss/articles/CBMic0FVX3lxTE9zUjFEMWV6X1pjMU82NUR6LWJKNUpLTXZMZl9xclpnNFdyWUNLNml5VVZybXROVlV3NUhWTHFGZl9PUHBSTUhtN1RLcDlrMHVzZW1jTDVnbTJUanFHOURTS2dOeXJ",
+    "[중요·독자 편집] '하단에 제시되는 실제 최대 낙폭 기반 시나리오를 참고할 때, 고점 대비 -24.52% 하락하는 상황이 발생하' → 텍스트 안에서 표나 하단 자료의 내용을 문장으로 그대로 다시 풀어서 설명하고 있습니다. / 고칠 방법: 중복되는 상세 시나리오 수치 설명을 간소화하세요.",
+    "[중요·독자 편집] '하단에 첨부되는 계좌별 세금 계산표는 이익 규모(200만 원~2,000만 원)에 따라 해외 직접투자 계좌와 ' → 표나 하단 자료에 들어갈 내용을 본문 문장에서 그대로 다시 길게 설명하고 있습니다. / 고칠 방법: 하단 표를 안내하는 문장은 간결하게 줄이세요."
+   ],
+   "lint": [
+    "금지 표현 '추천합니다': 추천·권장 표현 - 조건과 사실로 설명",
+    "[참고] 같은 숫자 '0.03%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 4584
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "11:17:30",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "모델 전환",
+   "at": "11:19:45",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 3(사실 검증)"
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "11:20:09",
+   "score": 1.0,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "환율 변동이 원화 환산 평가액에 미치는 영향을 실제 환율 숫자를 활용해 구체적인 시나리오로 추가하면 더 좋습니다.",
+   "lint": [
+    "[참고] 같은 숫자 '0.03%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 4482
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "11:20:12",
+   "post_id": 251,
+   "url": "https://ondo99.com/?p=251",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기",
+  "url": "https://ondo99.com/?p=251",
+  "score": 1.0,
+  "issues": [
+   "[참고] 같은 숫자 '0.03%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+  ]
+ },
+ "facts": "[사실 자료 - 종목 데이터. 항목 이름표의 기간·단위·기준을 그대로 지켜서 쓰세요]\n\n[VOO - Vanguard S&P 500 ETF]\n- 상장: 해외 상장, 상장일 2010-09-07\n- 운용사: Vanguard\n- 투자 대상 설명(운용사 원문 요약, 영어면 뜻만 옮길 것): The fund manager employs an indexing investment approach designed to track the performance of the Standard & Poor's 500 Index, a widely recognized benchmark of U.S. stock market performance that is dominated by the stock\n- 운용보수(연): 0.03%\n- 순자산(규모): $1743.63B\n- 기간별 가격 수익률(2026년 11월 05일 기준, 배당 제외): 1개월 -1.06%, 3개월 -0.14%, 6개월 +6.52%, 1년 +14.46%\n- 상장 이후 연평균 수익률(CAGR, 2010-09-07부터 - 상장일이 다른 ETF와 직접 비교 금지): 11.9%\n- 최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도): -24.52%\n- 배당 주기: 분기 배당\n- 최근 배당수익률(최근 1년 배당 ÷ 현재 가격): 1.05%\n- 최근 배당 내역(지급일 금액, 직전 대비 증감): 2026-09-28 1.8230 USD (직전 대비 -7.08%); 2026-06-26 1.9620 USD (직전 대비 +4.81%); 2026-03-27 1.8720 USD (직전 대비 +5.70%); 2025-12-22 1.7710 USD (직전 대비 +1.78%)\n- 배당 변화 결론(코드가 위 내역으로 계산 - 이 문장 그대로 인용): 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다.\n- 배당성장률(코드 계산값 - '연평균 배당 증가율'로만 언급): 5.57%\n- 5년 전 1,000만 원을 한 번에 넣었다면(가격 기준 계산): 5년 전 1,000만 원 투자 시 현재 가치 약 1,755만 원\n- 환율 영향: 있음 (해외 상장, 달러로 거래)\n- 계좌: 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n- 배당 세금 예시(코드 계산): 투자금 1억 원 × 배당수익률 1.05% = 연 배당 약 105만 원 → 세금 약 16만 원(미국 원천징수 15%)\n- 매매차익 세금 예시(코드 계산): 한 해 이익 1,000만 원이면 연 250만 원 공제 후 22% → 양도소득세 약 165만 원(다음 해 5월 직접 신고, 해외 주식 이익·손실은 합산해서 계산)\n- 보수 차이 예시(코드 계산): 운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 약 998,204원\n\n[오늘 시장 수치 - 이 ETF 설명과 직접 관련 있을 때만 쓰기]\n- 원/달러 환율 1,341.36원, 미국 10년물 국채 금리 4.894%, 공포·탐욕 지수 27점 (공포)\n\n[관련 뉴스 - 인용할 때 매체명에 링크]\n- SPDR S&P 500 ETF Trust ETF, 오늘 하락하는 이유는? - Investing.com 한국어 (Investing.com 한국어) https://news.google.com/rss/articles/CBMid0FVX3lxTE5FazNCUnFpTllkLXdDVHg4SWJYSHFMZ0JTRFhnNTd3c3FFbU96TG1HWk10dnY2OFpZeVBxZDVDbEVsaFEyN05MNFA3ZUg0OFVVUVlEYUF5ZVFVWnZoUWRNaGYxYmRNVUZMa1RMdWJBUmU1dWg3Wk5B?oc=5\n- S&P 500 ETF 자산 사상 처음으로 1조 달러 돌파, 뱅가드 VOO 글로벌 기록 수립 - TradingKey (TradingKey) https://news.google.com/rss/articles/CBMioAFBVV95cUxQTmlfNkNmSnc5eHlIaG55Mzlkd2dmR1dyZUxiWFZEV2xBZl9sQ2VKN2VhaUIxNHlBdjJmX1B1Q3daRm9HcFNqRjdMd3JnNGtKRkwwUGd3VnVhb1UxNjZDcWp6NHpjR1ZOQ2RjaWJWaVRzZXk3QllBZUlGbnBFblNXNXZyNGxCQU90ZUtjMkctZTZrUnpKSVhEQ1VDbkIyRFZm?oc=5\n- Vanguard ETF의 실적은 최고 중 하나인데, 그 이유는 무엇일까요? - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMi4AJBVV95cUxQMC1lZFRjanZpREFFUXhad0pPOVh4UUFHQlFQY1hTWUFrRjFPVzA3WUVJRW9JOUgzTk1YLVM1NnpncmFsR0xTWEh0UEVaNHNTRThIc1hNUmVWWUZlRnRPR1F6MzI4cUtYUXg0cUlCZVpJa3gyYVJZb3dSQjkxUjRNdVQzQ0xCX2x3V3RvNEQtOVRrY2NDWl9GQWNlaEVhdldlbW1BMi1lc1hQS0JNbGQ5OVZ2cEk0UW5HM0liazREWkl4eVM0ck1McjduVHNTdXl1YlVWRnh4azRUU3owb1U4alpMc2xXcVh0TG1aMS1lOXdWbUVlWDB1LVpNYmZiR1h4QWdoMERSOFRrT0tCd2VpZmtuN1hwM0hJR0ppSFVRM3dDNlNTZk5fWkNhUlo4RXpvMDkxMHhIZTVfZ2xiNDVVYjIxWEc1ZU5Hbi1LX3I0VF8ycGQ1Vm5odDE3Wm5pTTEt?oc=5\n- [주린이를 위한 썰] “SPY·VOO·SPYM 뭐가 달라”… S&P 500 ETF 고르는 법 - 자본시장뉴스 (자본시장뉴스) https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5ckVtVEM5c1dTaU94ZmZEaFRlamh5ZDBjaXk1YUJrNXAzUUhPUHhYZDdaUDktajFXRFk1Rmx6OE1DdVdfRnlrRmhpanNveFI0MGg2REhIQU1PRkhjNU81aGtvbUVxb2c?oc=5\n- [ETF 특징주] JP모간 연말 S&P500 전망 상향에 SPY·VOO 조명 - 뉴스핌 (뉴스핌) https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5\n- 1300원대 환율에 외화투자 관심 쑥, 달러예금 트래블통장 더해 ETF도 눈길 - 비즈니스포스트 (비즈니스포스트) https://news.google.com/rss/articles/CBMic0FVX3lxTE9zUjFEMWV6X1pjMU82NUR6LWJKNUpLTXZMZl9xclpnNFdyWUNLNml5VVZybXROVlV3NUhWTHFGZl9PUHBSTUhtN1RLcDlrMHVzZW1jTDVnbTJUanFHOURTS2dOeXJWdUt4YnhVOF9xWVNkWTg?oc=5\n\n[시각 자료에 담긴 숫자 - 기획이 고른 자료는 본문에 그대로 들어가니, 그 자료를 해석할 때 이 숫자를 쓰세요]\n- basic: 월봉 주봉\n- backtest: 📊 Vanguard S&P 500 ETF (VOO) 투자 시뮬레이션: 거치식 vs 적립식 거치식 적립식(DCA) ※ 최근 5년 실제 가격 데이터를 기반으로, 10,000,000₩을 처음에 한 번에 투자(거치식)했을 때와 매달 나누어 투자(적립식)했을 때의 평가금액 변화를 비교한 시뮬레이션입니다. 배당 재투자, 세금, 환율 변동은 반영되지 않았습니다.\n- risk: ⚠️ 위기 시나리오: 최악의 경우 내 계좌는? 각 ETF의 과거 실제 최대 낙폭(MDD)을 기준으로, 1억 원 투자 시 감내해야 할 최악의 손실 규모입니다. VOO 실제 최대낙폭(MDD) -24.52% 최대 손실 금액 -2,452만원 잔여 자산 7,548만원 💡 시사점: 단순한 시장 하락 가정이 아닌, 해당 ETF가 역사적으로 겪었던 실제 가장 깊은 하락폭(MDD) 을 적용한 팩트 데이터입니다. 투자 전 반드시 위 표의 최대 손실 금액을 감내할 수 있는지 점검하시기 바랍니다.\n- tax: 이익 규모별 예상 세금 (계좌별) 한 해 이익 해외 상장 ETF (일반계좌) 국내 상장 해외지수 ETF (일반계좌) ISA 일반형 (3년 유지) 연금저축 (연금 수령) 200만 원 0원 31만 원 0원 11만 원 500만 원 55만 원 77만 원 30만 원 28만 원 1,000만 원 165만 원 154만 원 79만 원 55만 원 2,000만 원 385만 원 308만 원 178만 원 110만 원 가정: 한 해에 이 ETF에서만 이익이 난 경우, 분배금·환율 변동·거래 비용 제외. 해외 상장 ETF는 연 250만 원 공제는 해외 주식 전체 합산 기준. 연금저축은 55세 이후 연금으로 받을 때 3.3~5.5% 중 5.5%로 계산(중도 인출은 16.5%). 국내 일반계좌는 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 종합과세로 더 낼 수 있음. 2026년 10월 기준 세법, ondo가 직접 계산. 이익 규모별 예상 세금 비교 · 자료: 2026년 10월 기준 세법 세율로 ondo 계산\n- calendar: 📅 Vanguard S&P 500 ETF 최근 3개월 손익 캘린더 보기 (클릭) ※ 실제 과거 종가 기준 일별 등락률입니다(예측 아님). 빨강=상승, 파랑=하락 (국내 증시 표기 관행).\n- sector: 🔍 섹터 분석 및 거시경제 전망 VOO ETF의 투자 영역( 정보 없음 / 정보 없음 )과 거시경제 분석입니다. 🌍 거시경제 연계 대응 전략 현재 환율( 1,341원 )과 금리( 4.89% ) 기준 전망: 보수적 접근 필요 환율 영향: 현재 환율은 환노출(UH) 수익률에 직접적 영향을 미칩니다. 금리 영향: 국채 금리 4.89% 수준은 주식 시장의 밸류에이션에 영향을 줍니다. 💰 배당 안정성: 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다. 📈 기술 분석 (MA200): MA200 상회 (중장기 상승 추세) (현재가 MA200 대비 +5.50% ) 💡 온도(ondo)의 프리미엄 인사이트 ⚖️ 일드 갭 (주식 기대수익률 vs 국채 금리) 현재 일드 갭은 -3.84% 수준입니다. (채권 대비 투자 매력 낮음) *이 ETF의 배당수익률에서 미국 10년물 국채금리를 뺀 수치로, 배당 관점에서 채권 대비 상대적 매력도를 참고하는 지표입니다(주식 전체의 기대수익률과는 다른 개념입니다). 💸 스마트머니 동향 (총 운용자산) 현재 VOO의 총 순자산(AUM) 규모는 $1743.63B 입니다. 시장의 거대한 자금이 머무르는 핵심 투자처임을 보여줍니다.\n- scenario: 💡 투자 시나리오별 수익/손실 분석 VOO - 실제 데이터 기반 연평균성장률(CAGR 11.9%) 기준: 1,000만원 5년 보유 시뮬레이션 ※ 이 CAGR은 상장일부터 지금까지 확보된 전체 기간 을 기준으로 계산한 값으로, 앞서 본 최근 1년 수익률과는 기준 기간이 다릅니다 . 최근 1년 성과가 나빠도 상장 이후 누적으로는 플러스일 수 있고, 그 반대도 가능합니다. 항목 예상 금액 초기 투자 1,000만원 5년 후 유가증권 평가액 약 1,752만원 배당금 합계(세전) 52만원 배당세(미국 원천징수 15%) -7만원 5년 후 총 순수익 약 796만원 ※ 위 시나리오는 이 ETF의 실제 과거 가격 데이터로 계산한 연평균성장률(CAGR)을 그대로 5년간 유지된다고 가정한 예시이며, 미래 수익을 보장하지 않습니다. 실제 데이터 확보 기간이 5년 미만인 경우, 확보된 기간의 CAGR을 사용했습니다. 세금은 배당에 대한 것만 반영했고, 매도 차익 세금(연 250만 원 공제 후 22%)은 빠져 있습니다.\n- macro: ※ 변동성·환율은 최근 실제 데이터 대비 백분위, 인플레이션은 최신 CPI 전년동월대비, 밸류에이션은 참고 밴드 기반 근사치입니다. 종합 온도는 변동성 30%+밸류에이션 30%+환율 20%+인플레이션 20% 가중 평균이며, 자체 산출 방식으로 투자 판단의 근거가 아닌 참고용입니다.",
+ "drafts": {
+  "1": "<h1>VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기</h1>\n<!-- VOO의 순자산 규모와 1년 수익률, 최대 낙폭, 배당수익률, 세금 계산 구조까지 주요 지표를 숫자로 상세히 점검합니다. -->\n\n미국 주식 시장에 투자할 때 가장 널리 활용되는 대표 종목 중 하나가 바로 VOO입니다. 이 ETF는 미국 대형주 흐름을 나타내는 S&P 500 지수를 추종하도록 설계되었으며, 미국 뱅가드(Vanguard)가 운용을 담당하고 있습니다. 2010년 9월 7일 해외 시장에 상장된 이후 지속적으로 자금이 유입되어 현재 순자산 규모는 $1743.63B에 달합니다. \n\n글로벌 시장에서 손꼽히는 거대한 운용 규모를 자랑하는 만큼 많은 투자자가 자산을 배분하는 핵심 수단으로 활용하고 있습니다. 연 운용보수는 0.03%로 매우 낮은 편에 속하여 장기 보유 시 발생하는 비용 부담을 줄여줍니다. 이번 글에서는 2026년 11월 05일 기준 VOO의 성과 지표와 배당, 세금 체계까지 공개된 숫자를 바탕으로 하나씩 확인해 보겠습니다.\n\n<h3>VOO의 투자 대상과 기간별 수익률</h3>\n\nVOO는 미국 주식 시장의 대표적인 벤치마크인 Standard & Poor's 500 Index(S&P 500)의 성과를 그대로 따라가도록 설계된 인덱스 펀드입니다. 투자금 대부분을 미국 시장을 주도하는 대형주 500개 종목에 분산하여 운용합니다. 단일 종목에 직접 투자하는 위험을 줄이면서 미국 시장 전체의 성장 흐름에 참여하는 효과를 기대할 수 있습니다.\n\n2026년 11월 05일 기준으로 집계된 배당 제외 최근 가격 수익률을 살펴보면 단기와 중장기 성과가 엇갈리는 모습을 보입니다. 최근 1개월 수익률은 -1.06%, 3개월 수익률은 -0.14%로 단기적으로는 보합 및 소폭 하락세를 기록했습니다. 반면 최근 6개월 수익률은 +6.52%, 최근 1년 수익률은 +14.46%를 기록하며 중장기적으로는 견조한 상승세를 나타냈습니다.\n\n2010년 9월 7일 상장한 이후 현재까지 집계된 상장 이후 연평균 수익률(CAGR)은 11.9%입니다. 장기 보유 시 시장의 복리 효과를 보여주는 지표로 활용할 수 있습니다. 시장이 지속해서 우상향하더라도 단기적인 등락은 피할 수 없으므로 투자 기간에 따른 수익률 차이를 미리 파악해 두는 것이 좋습니다.\n\n최근 시장 환경을 함께 살피면 투자 맥락을 이해하는 데 도움이 됩니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 주요 IB들의 시장 전망 변화에 따라 관련 대형 ETF들에 대한 관심이 지속되는 흐름을 보이고 있습니다.\n\n<h3>최대 낙폭과 과거 5년 투자 성과</h3>\n\n장기 투자에서 수익률만큼 중요한 지표가 바로 하락장의 깊이를 뜻하는 최대 낙폭(MDD)입니다. 자산이 고점 대비 얼마나 크게 떨어졌는지를 파악해야 위기 시 원금 손실 폭을 미리 대비할 수 있습니다. VOO의 최근 5년 기준 최대 낙폭은 -24.52%를 기록했습니다.\n\n과거 가격 성과를 기준으로 5년 전 1,000만 원을 한 번에 넣었다고 가정했을 때의 변화를 계산해 볼 수 있습니다. 5년 전에 1,000만 원을 거치식으로 투자했다면 현재 가치는 약 1,755만 원으로 계산됩니다. 이는 배당이나 환율 변동을 제외한 시세 차익 중심의 시뮬레이션 결과입니다.\n\n위기 시나리오를 통해 최악의 하락장을 대비하는 것도 필요합니다. 하단에 제시되는 실제 최대 낙폭 기반 시나리오를 참고할 때, 고점 대비 -24.52% 하락하는 상황이 발생하면 1억 원 투자 시 평가금액이 약 7,548만 원까지 감소할 수 있음을 미리 인지해야 합니다. 투자 진입 전 이러한 하락 폭을 감당할 수 있는지 스스로 체크하는 기준으로 활용하는 것이 좋습니다.\n\n<h3>배당 주기, 최근 지급 내역과 성장률</h3>\n\nVOO는 1년에 4번 배당금을 지급하는 분기 배당 ETF입니다. 주식 시장 상승에 따른 시세 차익 외에도 정기적인 현금 흐름을 기대하는 투자자들이 선호하는 구조입니다. 최근 1년 동안 지급된 배당금을 현재 가격으로 나눈 최근 배당수익률은 1.05%입니다.\n\n최근 4회 분기별 지급 내역을 살펴보면 주당 배당금의 변동성을 확인할 수 있습니다. 2025년 12월 22일에는 1.7710 USD(직전 대비 +1.78%), 2026년 3월 27일에는 1.8720 USD(직전 대비 +5.70%), 2026년 6월 26일에는 1.9620 USD(직전 대비 +4.81%)가 각각 지급되었습니다. \n\n그러나 가장 최근인 2026년 9월 28일에는 1.8230 USD가 지급되어 직전 대비 -7.08% 감소했습니다. 분기 배당은 기업들의 지급 시기와 실적에 따라 매번 늘어나지 않으며, 실제로 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다. 다만 장기적인 연평균 배당 증가율은 5.57%를 기록해 전반적으로는 배당금이 성장하는 추세를 유지하고 있습니다.\n\n하단에 제공되는 시나리오 표는 상장 이후 연평균 성장률(CAGR 11.9%)이 향후에도 동일하게 유지된다고 가정한 예시입니다. 1,000만 원을 5년간 보유할 경우 배당금과 가격 변화에 따른 종합적인 성과 범위를 한눈에 파악할 수 있는 자료로 활용할 수 있습니다.\n\n<h3>한국 투자자의 비용, 세금, 계좌 영향</h3>\n\n한국에서 VOO에 투자할 때는 해외 상장 상품의 특성에 따른 세금과 환율 요소를 고려해야 합니다. VOO는 달러로 거래되는 해외 상장 ETF이므로 원/달러 환율 변동에 그대로 노출됩니다. 현재 원/달러 환율이 1,341.36원을 기록하고 미국 10년물 국채 금리가 4.894%를 나타내는 상황에서 환율 흐름에 따라 원화 평가 금액이 달라질 수 있습니다.\n\n해외 상장 ETF는 현행 제도상 절세 계좌인 개인종합자산관리계좌(ISA), 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 이들 계좌의 세제 혜택을 누리려면 S&P 500 지수를 동일하게 추종하는 국내 상장 ETF를 대안으로 선택해야 합니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE9zUjFEMWV6X1pjMU82NUR6LWJKNUpLTXZMZl9xclpnNFdyWUNLNml5VVZybXROVlV3NUhWTHFGZl9PUHBSTUhtN1RLcDlrMHVzZW1jTDVnbTJUanFHOURTS2dOeXJWdUt4YnhVOF9xWVNkWTg?oc=5\" target=\"_blank\" rel=\"noopener\">비즈니스포스트</a> 보도처럼 환율 변동성과 계좌별 제약을 함께 비교해 보는 편이 유리합니다.\n\n세금 계산 구조를 숫자로 산출해 보겠습니다. 1억 원을 투자해 배당수익률 1.05%를 적용받으면 연 배당금은 약 105만 원이 됩니다. 이 중 미국 현지 원천징수 세율 15%가 적용되어 배당 세금으로 약 16만 원이 차감됩니다. 매매차익의 경우 일반 해외주식과 동일하게 연 250만 원 기본공제 후 22% 양도소득세가 적용됩니다. 한 해 매매이익이 1,000만 원 발생했다면 공제금 250만 원을 뺀 750만 원의 22%인 약 165만 원을 다음 해 5월에 신고하고 납부해야 합니다.\n\n운용보수 차이도 장기 성과에 영향을 줍니다. VOO의 보수는 0.03%로 매우 낮은데, 운용보수가 0.1%p 더 높은 다른 ETF와 비교할 경우 1억 원을 10년간 투자해 둘 때 발생하는 보수 차이는 약 998,204원에 달합니다. \n\n하단에 첨부되는 계좌별 세금 계산표는 이익 규모(200만 원~2,000만 원)에 따라 해외 직접투자 계좌와 국내 상장 일반계좌, ISA 일반형, 연금저축 계좌에서 차감되는 예상 세금을 실질적으로 비교할 수 있는 산출 자료입니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 VOO와 SPY는 무슨 차이가 있나요?</h4>\n두 ETF는 모두 미국 S&P 500 지수를 똑같이 추종한다는 점에서 동일한 자산에 투자합니다. 가장 큰 차이는 운용사와 운용보수입니다. VOO는 뱅가드가 운용하며 연 보수가 0.03%로 매우 낮고, SPY는 스테이트 스트리트가 운용하며 보수가 0.09% 수준입니다. 거래량은 SPY가 더 많아 단기 매매에 자주 쓰이고, VOO는 비용이 적어 장기 보유용으로 많이 선호됩니다.\n\n<h4>🔸 해외 상장 ETF의 배당소득세도 국내 종합소득세에 합산되나요?</h4>\n해외 ETF에서 받은 배당금은 미국에서 15% 세금을 먼저 떼고 지급됩니다. 이 배당금 역시 국내에서 금융소득으로 분류됩니다. 따라서 예금 이자나 다른 주식 배당금을 포함한 한 해 총 금융소득이 2,000만 원을 초과할 경우에는 국내 종합소득세 과세 대상에 합산되어 합산 과세될 수 있습니다.\n\n<h4>🔸 환노출형 ETF란 정확히 무엇을 뜻하나요?</h4>\n환노출형은 원화와 달러 간의 환율 변동이 수익률에 그대로 반영되는 구조를 말합니다. VOO는 미국 시장에 상장된 달러 자산이므로 환노출 상품입니다. 주가가 일정하더라도 원/달러 환율이 오르면 원화 환산 평가액이 증가하고, 반대로 환율이 떨어지면 주가가 올라 투자 수익이 나더라도 원화 기준 손실이 발생할 수 있습니다.\n\n<h3>정리</h3>\n\nVOO는 미국 주식 시장의 중심인 S&P 500 지수를 저렴한 비용(연 보수 0.03%)으로 장기 투자할 수 있는 대표적인 해외 ETF입니다. 상장 이후 연평균 수익률 11.9%라는 장기 성과를 기록했지만, 최근 5년 내 최대 -24.52%의 낙폭을 기록했던 하락장 변동성도 보유하고 있습니다.\n\n분기별 배당금을 지급하지만 최근 4회 지급 중 1회는 직전 대비 금액이 줄어드는 등 단기 배당금액은 변동될 수 있습니다. 장기 연평균 배당 증가율은 5.57% 수준을 유지하고 있어 지속적인 성장 여부를 관찰할 필요가 있습니다.\n\n무엇보다 해외 직접 투자 시 발생하는 22%의 양도소득세(연 250만 원 공제)와 ISA·연금저축 등 절세 계좌 직접 매수 불가라는 제도적 제약을 숙지해야 합니다. 자신의 투자 목적과 계좌 형태, 환율 변동성을 종합적으로 고려하여 신중한 판단을 내리는 것이 중요합니다.\n\n태그: VOO ETF분석 SP500 미국주식 배당금",
+  "2": "<h1>VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기</h1>\n<!-- VOO의 순자산 규모와 1년 수익률, 최대 낙폭, 배당수익률, 세금 계산 구조까지 주요 지표를 숫자로 상세히 점검합니다. -->\n\n미국 주식 시장에 투자할 때 가장 널리 활용되는 대표 종목 중 하나가 바로 VOO입니다. 이 ETF는 미국 대형주 흐름을 나타내는 S&P 500 지수를 추종하도록 설계되었으며, 미국 뱅가드(Vanguard)가 운용을 담당하고 있습니다. 2010년 9월 7일 해외 시장에 상장된 이후 지속적으로 자금이 유입되어 현재 순자산 규모는 $1743.63B에 달합니다. \n\n글로벌 시장에서 손꼽히는 거대한 운용 규모를 자랑하는 만큼 많은 투자자가 자산을 배분하는 핵심 수단으로 활용하고 있습니다. 연 운용보수는 0.03%로 매우 낮은 편에 속하여 장기 보유 시 발생하는 비용 부담을 줄여줍니다. 이번 글에서는 2026년 11월 05일 기준 VOO의 성과 지표와 배당, 세금 체계까지 공개된 숫자를 바탕으로 하나씩 확인해 보겠습니다.\n\n<h3>VOO의 투자 대상과 기간별 수익률</h3>\n\nVOO는 미국 주식 시장의 대표적인 벤치마크인 Standard & Poor's 500 Index(S&P 500)의 성과를 그대로 따라가도록 설계된 인덱스 펀드입니다. 투자금 대부분을 미국 시장을 주도하는 대형주 500개 종목에 분산하여 운용합니다. 단일 종목에 직접 투자하는 위험을 줄이면서 미국 시장 전체의 성장 흐름에 참여하는 효과를 기대할 수 있습니다.\n\n2026년 11월 05일 기준으로 집계된 배당 제외 최근 가격 수익률을 살펴보면 단기와 중장기 성과가 엇갈리는 모습을 보입니다. 최근 1개월 수익률은 -1.06%, 3개월 수익률은 -0.14%로 단기적으로는 보합 및 소폭 하락세를 기록했습니다. 반면 최근 6개월 수익률은 +6.52%, 최근 1년 수익률은 +14.46%를 기록하며 중장기적으로는 오름세를 나타냈습니다.\n\n2010년 9월 7일 상장한 이후 현재까지 집계된 상장 이후 연평균 수익률(CAGR)은 11.9%입니다. 장기 보유 시 시장의 복리 효과를 보여주는 지표로 활용할 수 있습니다. 시장이 지속해서 우상향하더라도 단기적인 등락은 피할 수 없으므로 투자 기간에 따른 수익률 차이를 미리 파악해 두는 것이 좋습니다.\n\n최근 시장 환경을 함께 살피면 투자 맥락을 이해하는 데 도움이 됩니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 주요 IB들의 시장 전망 변화에 따라 관련 대형 ETF들에 대한 관심이 지속되는 흐름을 보이고 있습니다.\n\n<h3>최대 낙폭과 과거 5년 투자 성과</h3>\n\n장기 투자에서 수익률만큼 중요한 지표가 바로 하락장의 깊이를 뜻하는 최대 낙폭(MDD)입니다. 자산이 고점 대비 얼마나 크게 떨어졌는지를 파악해야 위기 시 원금 손실 폭을 미리 대비할 수 있습니다. VOO의 최근 5년 기준 최대 낙폭은 -24.52%를 기록했습니다.\n\n과거 가격 성과를 기준으로 5년 전 1,000만 원을 한 번에 넣었다고 가정했을 때의 변화를 계산해 볼 수 있습니다. 5년 전에 거치식으로 투자했다면 현재 가치는 약 1,755만 원으로 계산됩니다. 이는 배당이나 환율 변동을 제외한 시세 차익 중심의 시뮬레이션 결과입니다.\n\n위기 시나리오를 통해 최악의 하락장을 대비하는 것도 필요합니다. 하단에 제시되는 실제 최대 낙폭 기반 시나리오를 참고할 때, 고점 대비 -24.52% 하락하는 상황이 발생하면 1억 원 투자 시 평가금액이 약 7,548만 원까지 감소할 수 있음을 미리 인지해야 합니다. 투자 진입 전 이러한 하락 폭을 감당할 수 있는지 스스로 체크하는 기준으로 활용하는 것이 좋습니다.\n\n<h3>배당 주기, 최근 지급 내역과 성장률</h3>\n\nVOO는 1년에 4번 배당금을 지급하는 분기 배당 ETF입니다. 주식 시장 상승에 따른 시세 차익 외에도 정기적인 현금 흐름을 기대하는 투자자들이 선호하는 구조입니다. 최근 1년 동안 지급된 배당금을 현재 가격으로 나눈 최근 배당수익률은 1.05%입니다.\n\n최근 4회 분기별 지급 내역을 살펴보면 주당 배당금의 변동성을 확인할 수 있습니다. 2025년 12월 22일에는 1.7710 USD(직전 대비 +1.78%), 2026년 3월 27일에는 1.8720 USD(직전 대비 +5.70%), 2026년 6월 26일에는 1.9620 USD(직전 대비 +4.81%)가 각각 지급되었습니다. \n\n그러나 가장 최근인 2026년 9월 28일에는 1.8230 USD가 지급되어 직전 대비 -7.08% 감소했습니다. 분기 배당은 기업들의 지급 시기와 실적에 따라 매번 늘어나지 않으며, 실제로 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다. 다만 장기적인 연평균 배당 증가율은 5.57%를 기록해 전반적으로는 배당금이 성장하는 추세를 유지하고 있습니다.\n\n하단에 제공되는 시나리오 표는 상장 이후 연평균 성장률(CAGR 11.9%)이 향후에도 동일하게 유지된다고 가정한 예시입니다. 보유 기간 5년 시 배당금과 가격 변화에 따른 종합적인 성과 범위를 한눈에 파악할 수 있는 자료로 활용할 수 있습니다.\n\n<h3>한국 투자자의 비용, 세금, 계좌 영향</h3>\n\n한국에서 VOO에 투자할 때는 해외 상장 상품의 특성에 따른 세금과 환율 요소를 고려해야 합니다. VOO는 달러로 거래되는 해외 상장 ETF이므로 원/달러 환율 변동에 그대로 노출됩니다. 현재 원/달러 환율이 1,341.36원을 기록하고 미국 10년물 국채 금리가 4.894%를 나타내는 상황에서 환율 흐름에 따라 원화 평가 금액이 달라질 수 있습니다.\n\n해외 상장 ETF는 현행 제도상 절세 계좌인 개인종합자산관리계좌(ISA), 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 이들 계좌의 세제 혜택을 누리려면 S&P 500 지수를 동일하게 추종하는 국내 상장 ETF를 대안으로 선택해야 합니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE9zUjFEMWV6X1pjMU82NUR6LWJKNUpLTXZMZl9xclpnNFdyWUNLNml5VVZybXROVlV3NUhWTHFGZl9PUHBSTUhtN1RLcDlrMHVzZW1jTDVnbTJUanFHOURTS2dOeXJWdUt4YnhVOF9xWVNkWTg?oc=5\" target=\"_blank\" rel=\"noopener\">비즈니스포스트</a> 보도처럼 환율 변동성과 계좌별 제약을 함께 비교해 보는 편이 유리합니다.\n\n세금 계산 구조를 숫자로 산출해 보겠습니다. 1억 원을 투자해 배당수익률 1.05%를 적용받으면 연 배당금은 약 105만 원이 됩니다. 이 중 미국 현지 원천징수 세율 15%가 적용되어 배당 세금으로 약 16만 원이 차감됩니다. 매매차익의 경우 해외 주식의 이익과 손실은 합산하여 계산하며, 한 해 매매이익이 발생했다면 공제금 250만 원을 뺀 금액의 22%를 양도소득세로 부담합니다. 예를 들어 한 해 매매이익이 1,000만 원 발생했다면 공제금 250만 원을 뺀 750만 원의 22%인 약 165만 원을 다음 해 5월에 신고하고 납부해야 합니다.\n\n운용보수 차이도 장기 성과에 영향을 줍니다. VOO의 보수는 0.03%로 매우 낮은데, 운용보수가 0.1%p 더 높은 다른 ETF와 비교할 경우 1억 원을 10년간 투자해 둘 때 발생하는 보수 차이는 약 998,204원에 달합니다. \n\n하단에 첨부되는 계좌별 세금 계산표는 이익 규모(200만 원~2,000만 원)에 따라 해외 직접투자 계좌와 국내 상장 일반계좌, ISA 일반형, 연금저축 계좌에서 차감되는 예상 세금을 실질적으로 비교할 수 있는 산출 자료입니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 VOO와 SPY는 무슨 차이가 있나요?</h4>\n두 ETF는 모두 미국 S&P 500 지수를 똑같이 추종한다는 점에서 동일한 자산에 투자합니다. 가장 큰 차이는 운용사와 운용보수입니다. VOO는 뱅가드가 운용하며 연 보수가 0.03%로 매우 낮고, SPY는 스테이트 스트리트가 운용하며 보수가 0.09% 수준입니다. 거래량은 SPY가 더 많아 단기 매매에 자주 쓰이고, VOO는 비용이 적어 장기 보유용으로 많이 선호됩니다.\n\n<h4>🔸 해외 상장 ETF의 배당소득세도 국내 종합소득세에 합산되나요?</h4>\n해외 ETF에서 받은 배당금은 미국에서 15% 세금을 먼저 떼고 지급됩니다. 이 배당금 역시 국내에서 금융소득으로 분류됩니다. 따라서 예금 이자나 다른 주식 배당금을 포함한 한 해 총 금융소득이 2,000만 원을 초과할 경우에는 국내 종합소득세 과세 대상에 합산되어 합산 과세될 수 있습니다.\n\n<h4>🔸 환노출형 ETF란 정확히 무엇을 뜻하나요?</h4>\n환노출형은 원화와 달러 간의 환율 변동이 수익률에 그대로 반영되는 구조를 말합니다. VOO는 미국 시장에 상장된 달러 자산이므로 환노출 상품입니다. 주가가 일정하더라도 원/달러 환율이 오르면 원화 환산 평가액이 증가하고, 반대로 환율이 떨어지면 주가가 올라 투자 수익이 나더라도 원화 기준 손실이 발생할 수 있습니다.\n\n<h3>정리</h3>\n\nVOO는 미국 주식 시장의 중심인 S&P 500 지수를 저렴한 비용으로 장기 투자할 수 있는 대표적인 해외 ETF입니다. 상장 이후 연평균 수익률 11.9%라는 장기 성과를 기록했지만, 최근 5년 내 최대 -24.52%의 낙폭을 기록했던 하락장 변동성도 보유하고 있습니다.\n\n분기별 배당금을 지급하지만 최근 4회 지급 중 1회는 직전 대비 금액이 줄어드는 등 단기 배당금액은 변동될 수 있습니다. 장기 연평균 배당 증가율은 5.57% 수준을 유지하고 있어 지속적인 성장 여부를 관찰할 필요가 있습니다.\n\n무엇보다 해외 직접 투자 시 발생하는 22%의 양도소득세(연 250만 원 공제)와 ISA·연금저축 등 절세 계좌 직접 매수 불가라는 제도적 제약을 숙지해야 합니다. 향후 유사한 뉴스나 지표를 점검할 때는 연 운용보수 0.03%, 미국 10년물 국채 금리 4.894% 대비 일드갭(-3.84%), 장기 연평균 배당 증가율 5.57% 등 핵심 숫자를 스스로 판단 기준으로 삼아 파악해 보는 것을 추천합니다. 자신의 투자 목적과 계좌 형태, 환율 변동성을 종합적으로 고려하여 신중한 판단을 내리는 것이 중요합니다.\n\n태그: VOO ETF분석 SP500 미국주식 배당금",
+  "3": "<h1>VOO 점검: 수익·낙폭·배당·세금을 숫자로 보기</h1>\n<!-- VOO의 순자산 규모와 1년 수익률, 최대 낙폭, 배당수익률, 세금 계산 구조까지 주요 지표를 숫자로 상세히 점검합니다. -->\n\n미국 주식 시장에 투자할 때 가장 널리 활용되는 대표 종목 중 하나가 바로 VOO입니다. 이 ETF는 미국 대형주 흐름을 나타내는 S&P 500 지수를 추종하도록 설계되었으며, 미국 뱅가드(Vanguard)가 운용을 담당하고 있습니다. 2010년 9월 7일 해외 시장에 상장된 이후 지속적으로 자금이 유입되어 현재 순자산 규모는 $1743.63B에 달합니다. \n\n글로벌 시장에서 손꼽히는 거대한 운용 규모를 자랑하는 만큼 많은 투자자가 자산을 배분하는 핵심 수단으로 활용하고 있습니다. 연 운용보수는 0.03%로 매우 낮은 편에 속하여 장기 보유 시 발생하는 비용 부담을 줄여줍니다. 이번 글에서는 2026년 11월 05일 기준 VOO의 성과 지표와 배당, 세금 체계까지 공개된 숫자를 바탕으로 하나씩 확인해 보겠습니다.\n\n<h3>VOO의 투자 대상과 기간별 수익률</h3>\n\nVOO는 미국 주식 시장의 대표적인 벤치마크인 Standard & Poor's 500 Index(S&P 500)의 성과를 그대로 따라가도록 설계된 인덱스 펀드입니다. 투자금 대부분을 미국 시장을 주도하는 대형주 500개 종목에 분산하여 운용합니다. 단일 종목에 직접 투자하는 위험을 줄이면서 미국 시장 전체의 성장 흐름에 참여하는 효과를 기대할 수 있습니다.\n\n2026년 11월 05일 기준으로 집계된 배당 제외 최근 가격 수익률을 살펴보면 단기와 중장기 성과가 엇갈리는 모습을 보입니다. 최근 1개월 수익률은 -1.06%, 3개월 수익률은 -0.14%로 단기적으로는 보합 및 소폭 하락세를 기록했습니다. 반면 최근 6개월 수익률은 +6.52%, 최근 1년 수익률은 +14.46%를 기록하며 중장기적으로는 오름세를 나타냈습니다.\n\n2010년 9월 7일 상장한 이후 현재까지 집계된 상장 이후 연평균 수익률(CAGR)은 11.9%입니다. 장기 보유 시 시장의 복리 효과를 보여주는 지표로 활용할 수 있습니다. 시장이 지속해서 우상향하더라도 단기적인 등락은 피할 수 없으므로 투자 기간에 따른 수익률 차이를 미리 파악해 두는 것이 좋습니다.\n\n최근 시장 환경을 함께 살피면 투자 맥락을 이해하는 데 도움이 됩니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5NVEJGSGVvYWpfU1BKeld0eDEzMGNRZlJ5N1VtM3ZWbXgtZ2xSd0VzWmlnRWRHUzNYTEFxUkUzRGt2eGR4Wl9ncDUzdEdPaGVuNk9TVEZzYTVoYVFE?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 주요 IB들의 시장 전망 변화에 따라 관련 대형 ETF들에 대한 관심이 지속되는 흐름을 보이고 있습니다.\n\n<h3>최대 낙폭과 과거 5년 투자 성과</h3>\n\n장기 투자에서 수익률만큼 중요한 지표가 바로 하락장의 깊이를 뜻하는 최대 낙폭(MDD)입니다. 자산이 고점 대비 얼마나 크게 떨어졌는지를 파악해야 위기 시 원금 손실 폭을 미리 대비할 수 있습니다. VOO의 최근 5년 기준 최대 낙폭은 -24.52%를 기록했습니다.\n\n과거 가격 성과를 기준으로 5년 전 1,000만 원을 한 번에 넣었다고 가정했을 때의 변화를 계산해 볼 수 있습니다. 5년 전에 거치식으로 투자했다면 현재 가치는 약 1,755만 원으로 계산됩니다. 이는 배당이나 환율 변동을 제외한 시세 차익 중심의 시뮬레이션 결과입니다.\n\n위기 시나리오를 통해 최악의 하락장을 대비하는 것도 필요합니다. 하단 시나리오를 참고할 때, 1억 원 투자 시 고점 대비 하락으로 평가금액이 약 7,548만 원까지 감소할 수 있음을 미리 인지해야 합니다. 투자 진입 전 이러한 하락 폭을 감당할 수 있는지 스스로 체크하는 기준으로 활용하는 것이 좋습니다.\n\n<h3>배당 주기, 최근 지급 내역과 성장률</h3>\n\nVOO는 1년에 4번 배당금을 지급하는 분기 배당 ETF입니다. 주식 시장 상승에 따른 시세 차익 외에도 정기적인 현금 흐름을 기대하는 투자자들이 선호하는 구조입니다. 최근 1년 동안 지급된 배당금을 현재 가격으로 나눈 최근 배당수익률은 1.05%입니다.\n\n최근 4회 분기별 지급 내역을 살펴보면 주당 배당금의 변동성을 확인할 수 있습니다. 2025년 12월 22일에는 1.7710 USD(직전 대비 +1.78%), 2026년 3월 27일에는 1.8720 USD(직전 대비 +5.70%), 2026년 6월 26일에는 1.9620 USD(직전 대비 +4.81%)가 각각 지급되었습니다. \n\n그러나 가장 최근인 2026년 9월 28일에는 1.8230 USD가 지급되어 직전 대비 -7.08% 감소했습니다. 분기 배당은 기업들의 지급 시기와 실적에 따라 매번 늘어나지 않으며, 실제로 최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다. 다만 장기적인 연평균 배당 증가율은 5.57%를 기록해 전반적으로는 배당금이 성장하는 추세를 유지하고 있습니다.\n\n하단에 제공되는 시나리오 표는 상장 이후 연평균 성장률(CAGR 11.9%)이 향후에도 동일하게 유지된다고 가정한 예시입니다. 보유 기간 5년 시 배당금과 가격 변화에 따른 종합적인 성과 범위를 한눈에 파악할 수 있는 자료로 활용할 수 있습니다.\n\n<h3>한국 투자자의 비용, 세금, 계좌 영향</h3>\n\n한국에서 VOO에 투자할 때는 해외 상장 상품의 특성에 따른 세금과 환율 요소를 고려해야 합니다. VOO는 달러로 거래되는 해외 상장 ETF이므로 원/달러 환율 변동에 그대로 노출됩니다. 현재 원/달러 환율이 1,341.36원을 기록하고 미국 10년물 국채 금리가 4.894%를 나타내는 상황에서 환율 흐름에 따라 원화 평가 금액이 달라질 수 있습니다.\n\n해외 상장 ETF는 현행 제도상 절세 계좌인 개인종합자산관리계좌(ISA), 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 이들 계좌의 세제 혜택을 누리려면 S&P 500 지수를 동일하게 추종하는 국내 상장 ETF를 대안으로 선택해야 합니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE9zUjFEMWV6X1pjMU82NUR6LWJKNUpLTXZMZl9xclpnNFdyWUNLNml5VVZybXROVlV3NUhWTHFGZl_PUHBSTUhtN1RLcDlrMHVzZW1jTDVnbTJUanFHOURTS2dOeXJWdUt4YnhVOF9xWVNkWTg?oc=5\" target=\"_blank\" rel=\"noopener\">비즈니스포스트</a> 보도처럼 환율 변동성과 계좌별 제약을 함께 비교해 보는 편이 유리합니다.\n\n세금 계산 구조를 숫자로 산출해 보겠습니다. 1억 원을 투자해 배당수익률 1.05%를 적용받으면 연 배당금은 약 105만 원이 됩니다. 이 중 미국 현지 원천징수 세율 15%가 적용되어 배당 세금으로 약 16만 원이 차감됩니다. 매매차익의 경우 해외 주식의 이익과 손실은 합산하여 계산하며, 한 해 매매이익이 발생했다면 공제금 250만 원을 뺀 금액의 22%를 양도소득세로 부담합니다. 예를 들어 한 해 매매이익이 1,000만 원 발생했다면 공제금 250만 원을 뺀 750만 원의 22%인 약 165만 원을 다음 해 5월에 신고하고 납부해야 합니다.\n\n운용보수 차이도 장기 성과에 영향을 줍니다. VOO의 보수는 0.03%로 매우 낮은데, 운용보수가 0.1%p 더 높은 다른 ETF와 비교할 경우 1억 원을 10년간 투자해 둘 때 발생하는 보수 차이는 약 998,204원에 달합니다. \n\n하단에 첨부되는 계좌별 세금 계산표를 통해 이익 규모별 계좌에 따른 예상 세금 차이를 실질적으로 비교해 볼 수 있습니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 VOO와 SPY는 무슨 차이가 있나요?</h4>\n두 ETF는 모두 미국 S&P 500 지수를 똑같이 추종한다는 점에서 동일한 자산에 투자합니다. 가장 큰 차이는 운용사와 운용보수입니다. VOO는 뱅가드가 운용하며 연 보수가 0.03%로 매우 낮고, SPY는 스테이트 스트리트가 운용하며 보수가 0.09% 수준입니다. 거래량은 SPY가 더 많아 단기 매매에 자주 쓰이고, VOO는 비용이 적어 장기 보유용으로 많이 선호됩니다.\n\n<h4>🔸 해외 상장 ETF의 배당소득세도 국내 종합소득세에 합산되나요?</h4>\n해외 ETF에서 받은 배당금은 미국에서 15% 세금을 먼저 떼고 지급됩니다. 이 배당금 역시 국내에서 금융소득으로 분류됩니다. 따라서 예금 이자나 다른 주식 배당금을 포함한 한 해 총 금융소득이 2,000만 원을 초과할 경우에는 국내 종합소득세 과세 대상에 합산되어 합산 과세될 수 있습니다.\n\n<h4>🔸 환노출형 ETF란 정확히 무엇을 뜻하나요?</h4>\n환노출형은 원화와 달러 간의 환율 변동이 수익률에 그대로 반영되는 구조를 말합니다. VOO는 미국 시장에 상장된 달러 자산이므로 환노출 상품입니다. 주가가 일정하더라도 원/달러 환율이 오르면 원화 환산 평가액이 증가하고, 반대로 환율이 떨어지면 주가가 올라 투자 수익이 나더라도 원화 기준 손실이 발생할 수 있습니다.\n\n<h3>정리</h3>\n\nVOO는 미국 주식 시장의 중심인 S&P 500 지수를 저렴한 비용으로 장기 투자할 수 있는 대표적인 해외 ETF입니다. 상장 이후 연평균 수익률 11.9%라는 장기 성과를 기록했지만, 최근 5년 내 최대 -24.52%의 낙폭을 기록했던 하락장 변동성도 보유하고 있습니다.\n\n분기별 배당금을 지급하지만 최근 4회 지급 중 1회는 직전 대비 금액이 줄어드는 등 단기 배당금액은 변동될 수 있습니다. 장기 연평균 배당 증가율은 5.57% 수준을 유지하고 있어 지속적인 성장 여부를 관찰할 필요가 있습니다.\n\n무엇보다 해외 직접 투자 시 발생하는 22%의 양도소득세(연 250만 원 공제)와 ISA·연금저축 등 절세 계좌 직접 매수 불가라는 제도적 제약을 숙지해야 합니다. 향후 유사한 뉴스나 지표를 점검할 때는 연 운용보수 0.03%, 미국 10년물 국채 금리 4.894% 대비 일드갭(-3.84%), 장기 연평균 배당 증가율 5.57% 등 핵심 숫자를 스스로 판단 기준으로 삼아 파악해 볼 수 있습니다. 자신의 투자 목적과 계좌 형태, 환율 변동성을 종합적으로 고려하여 판단을 내리는 것이 중요합니다.\n\n태그: VOO ETF분석 SP500 미국주식 배당금"
+ },
+ "minutes": 5.5
+}
