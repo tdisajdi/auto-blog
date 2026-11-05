@@ -90,3 +90,6 @@ te.get_wordpress_recent_posts = lambda *a, **k: [{"title": "나스닥 100 대장
                                                 {"title": "브렌트유 1년 범위", "link": "u2", "date": "2026-11-05"}]
 assert [p["link"] for p in te._link_candidates("시장 심리")] == ["u2"], "7월 시험 글은 내부 링크로 추천 안 함"
 print("link min date ok")
+h3, _, fx3 = lint.fix_and_check("<h1>t</h1><h3>정리</h3>\n기준은 다음과 같습니다.\n\n* 추세: +5.50%\n* 일드갭: -3.84%\n\n<p>끝</p><p>태그: a</p>")
+assert "<ul><li>추세: +5.50%</li><li>일드갭: -3.84%</li></ul>" in h3 and "* " not in h3, h3
+print("md list ok")

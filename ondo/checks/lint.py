@@ -64,6 +64,14 @@ def fix_and_check(html):
     if new != h:
         fixes.append("링크 뒤 조사 띄어쓰기 붙임")
         h = new
+    # 마크다운 목록("* 항목", "- 항목" 줄)이 그대로 남으면 화면에 별표가 보인다(2026-11-05 VOO 정리) → HTML 목록으로
+    def _md_list(m):
+        items = [re.sub(r"^\s*[\*\-•]\s+", "", ln) for ln in m.group(0).strip().splitlines() if ln.strip()]
+        return "\n<ul>" + "".join(f"<li>{it}</li>" for it in items) + "</ul>\n"
+    new = re.sub(r"(?m)(?:^[ \t]*[\*\-•][ \t]+(?!\*)\S.*(?:\n|$)){2,}", _md_list, h)
+    if new != h:
+        fixes.append("마크다운 목록을 HTML 목록으로 변환")
+        h = new
     new = re.sub(r"<img[^>]*>", "", h)
     if new != h:
         fixes.append("AI가 넣은 <img> 제거(그림은 시스템이 넣음)")
