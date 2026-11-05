@@ -82,3 +82,7 @@ assert lint.text_of('<p><a href="x">코인리더스</a>에 따르면 <strong>3%<
 import explainer_engine as xe2
 assert "코인" in xe2._OFF_TOPIC_NEWS
 print("inline tags ok")
+_, iss, _ = lint.fix_and_check("<h1>t</h1><p>10월 2일 기준 424,134천 배럴이었던 재고는 10월 9일 415,577천 배럴, 10월 16일 412,517천 배럴로 줄었고 "
+                               "10월 23일에는 410,625천 배럴이었다.</p><p>태그: a</p>")
+assert [i for i in iss if "날짜별 숫자 줄글 나열(4개" in i], iss
+print("date list ok")
