@@ -243,3 +243,11 @@ print("value review ok")
 assert "반복으로 지적하지 말 것" in desk.prompt("review_reader", category_label="c", facts="", must="")
 assert "직접 답" in open("ondo/writing/prompts/rewrite.txt", encoding="utf-8").read()
 print("must vs repetition ok")
+
+# 2026-11-05: 통과한 글에 남은 짧은 오타는 검토가 집어 준 대로 코드가 고친다(본문에 정확히 한 번 나올 때만)
+h = desk.apply_typo_fixes("<p>지시장을 지지했다. 시장은</p>", [
+    {"severity": "사소", "fix": "'지시장을'을 '시장을'로 수정합니다."},
+    {"severity": "사소", "fix": "'시장'을 '증시'로"},            # 두 번 나오는 말은 안 바꿈
+    {"severity": "중요", "fix": "'지지'를 '방어'로"}])            # 사소만
+assert h == "<p>시장을 지지했다. 시장은</p>", h
+print("typo autofix ok")

@@ -2159,7 +2159,7 @@ def get_wordpress_recent_posts(count=15):
         response.raise_for_status()
         data = response.json()
         return [
-            {"title": p.get("title", ""), "link": p.get("URL", "")}
+            {"title": p.get("title", ""), "link": p.get("URL", ""), "date": str(p.get("date", ""))[:10]}
             for p in data.get("posts", [])
             if p.get("title") and p.get("URL")
         ]

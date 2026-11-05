@@ -201,8 +201,12 @@ def _link_candidates(title_seed):
     replace_url = os.environ.get("REPLACE_URL", "").strip().rstrip("/")
     seed = _grams(title_seed)
     out = []
+    # 7월 QQQ 시험 글(품질 문제로 사용자가 지울 예정)은 추천하지 않는다 - 지우면 끊긴 링크가 됨(2026-11-05)
+    min_date = os.environ.get("LINK_MIN_DATE", "2026-10-01")
     for p in get_wordpress_recent_posts() or []:
         if replace_url and str(p.get("link", "")).rstrip("/") == replace_url:
+            continue
+        if p.get("date") and p["date"] < min_date:
             continue
         g = _grams(p.get("title", ""))
         if seed and g and len(seed & g) / len(seed | g) >= 0.35:
