@@ -67,3 +67,8 @@ f, v = xe.sentiment_effect()
 assert "VIX 20~30(불안) ← 지금" in f and "VIX 30 이상(공포)" in f and "1개월 뒤 평균 +0.6%" in f and "<table" in v, f
 assert "매수·매도 시점 신호가 아님" in f
 print("sentiment effect ok")
+
+# 2026-11-06: 세금 갈림길(일반계좌끼리 세금이 같아지는 이익) - 250만 × 22% ÷ (22% − 15.4%) ≈ 833만 원
+line = xe._tax_breakeven_line()
+assert "약 833만 원" in line and "종합과세" in line, line
+print("tax breakeven ok")

@@ -240,8 +240,22 @@ def tax_scenarios():
     facts = ("[계산 예시 - 코드가 세율로 직접 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고, "
              "숫자를 인용해 '어떤 경우에 어느 쪽이 유리한지' 문장으로 해석하세요]\n"
              + "\n".join(f"- 한 해 이익 {r[0]}: " + ", ".join(f"{n} {t}" for n, t in zip(names, r[1:])) for r in rows)
-             + f"\n- {note}\n")
+             + f"\n- {note}\n" + _tax_breakeven_line())
     return facts, table + chart
+
+
+def _tax_breakeven_line():
+    """일반계좌끼리 세금이 같아지는 한 해 이익(갈림길)을 세율로 계산(2026-11-06). 작가가 '약 835만 원'을 스스로 계산했다가
+    자료에 없는 숫자로 '치명' 지적을 받았는데, 독자에게 가장 쓸모 있는 판단 기준이라 코드가 정확히 계산해서 준다.
+    해외 상장: (이익 − 공제) × 해외세율, 국내 상장: 이익 × 국내세율 → 같아지는 이익 = 공제 × 해외세율 ÷ (해외세율 − 국내세율)"""
+    ro, rd, ded = ea.TAX_OVERSEAS_CAPITAL_GAINS, ea.TAX_DOMESTIC_DIVIDEND, ea.OVERSEAS_CG_DEDUCTION
+    if ro <= rd:
+        return ""
+    be = ded * ro / (ro - rd)
+    return (f"- 갈림길(코드 계산): 일반계좌끼리 비교하면 한 해 이익이 약 {_won(be)}일 때 두 방식의 세금이 같다. 그보다 적으면 해외 상장 ETF "
+            f"쪽 세금이 적고, 많으면 국내 상장 해외지수 ETF 쪽 세금이 적다(해외 {ro * 100:.0f}%·연 {_won(ded)} 공제, 국내 {rd * 100:.1f}% 기준). "
+            "단, 국내 상장 쪽 이익은 배당소득으로 잡혀 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 종합과세로 세금이 더 늘 수 있어 "
+            "이익이 큰 경우엔 이 갈림길이 달라질 수 있다.\n")
 
 
 def price_chart(tickers, data_cache):
