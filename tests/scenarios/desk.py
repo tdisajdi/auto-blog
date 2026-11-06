@@ -245,7 +245,7 @@ assert "직접 답" in open("ondo/writing/prompts/rewrite.txt", encoding="utf-8"
 print("must vs repetition ok")
 
 # 2026-11-05: 통과한 글에 남은 짧은 오타는 검토가 집어 준 대로 코드가 고친다(본문에 정확히 한 번 나올 때만)
-h = desk.apply_typo_fixes("<p>지시장을 지지했다. 시장은</p>", [
+h, _fx = desk.apply_typo_fixes("<p>지시장을 지지했다. 시장은</p>", [
     {"severity": "사소", "fix": "'지시장을'을 '시장을'로 수정합니다."},
     {"severity": "사소", "fix": "'시장'을 '증시'로"},            # 두 번 나오는 말은 안 바꿈
     {"severity": "중요", "fix": "'지지'를 '방어'로"}])            # 사소만
@@ -271,3 +271,22 @@ desk.write_article(kind_label="ETF 분석", title_seed="시험", facts_text=fact
 assert seen_plan and "[용어 풀이" in seen_plan[0] and "최대 낙폭(MDD)" in seen_plan[0], "용어 풀이가 자료와 함께 기획에 들어감"
 llm._post = _old_post
 print("glossary ok")
+
+h2, fx2 = desk.apply_typo_fixes("<p>20세 이상 장기 국채</p>", [{"severity": "치명", "fix": "'20세 이상'을 '20년 이상'으로 수정해야 합니다."}],
+                                severities=("치명", "중요", "사소"))
+assert h2 == "<p>20년 이상 장기 국채</p>" and len(fx2) == 1
+print("typo autofix all severities ok")
+# 계산표가 들어가는 글([표 금지])은 작가 표를 지운다
+seen_html = []
+_old2 = llm._post
+def post_tb(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "글 전체를 한 번에" in p:
+        return R(200, long_html().replace("<h3>섹션1</h3>", "<h3>섹션1</h3><table><tr><td>1</td></tr></table>"))
+    return post_desk(url, payload, key)
+llm._post = post_tb
+r_tb = desk.write_article(kind_label="이슈 해설", title_seed="시험", facts_text=facts, rules="- [표 금지] 시스템이 표를 넣음\n",
+                          category_label="ETF", log=editlog.EditLog("issue", "single", "표"))
+assert r_tb and "<table" not in r_tb["html"], "작가가 만든 표는 지워짐"
+llm._post = _old2
+print("table ban ok")

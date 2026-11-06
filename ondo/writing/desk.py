@@ -353,12 +353,13 @@ COMMON_MUST = [
 _TYPO_FIX = re.compile(r"['‘“\"]([^'’”\"]{1,15})['’”\"]\s*[을를]\s*['‘“\"]([^'’”\"]{1,15})['’”\"]\s*(?:으)?로")
 
 
-def apply_typo_fixes(html, found, log=None):
-    """검토가 "'지시장을'을 '시장을'로"처럼 짧은 단어 바꾸기를 콕 집어 준 '사소' 지적은 코드가 바로 고친다(2026-11-05).
-    글이 통과하면 고쳐쓰기가 안 돌아서 오타가 그대로 남았다. AI를 다시 부르지 않고, 본문에 정확히 한 번 나오는 짧은 말만 바꾼다."""
-    done = []
+def apply_typo_fixes(html, found, log=None, severities=("사소",)):
+    """검토가 "'지시장을'을 '시장을'로"처럼 짧은 단어 바꾸기를 콕 집어 준 지적은 코드가 바로 고친다(2026-11-05).
+    AI를 다시 부르지 않고, 본문에 정확히 한 번 나오는 짧은 말만 바꾼다. 반환: (고친 html, 고친 지적 목록)
+    2026-11-06: '20세 이상'→'20년 이상' 같은 오타가 '치명'으로 지적돼 1.0점짜리 글이 떨어짐 → 검토 직후에는 모든 심각도에 적용."""
+    done, fixed = [], []
     for f in found or []:
-        if f.get("severity") != "사소":
+        if f.get("severity") not in severities:
             continue
         m = _TYPO_FIX.search(f.get("fix") or "")
         if not m:
@@ -368,9 +369,10 @@ def apply_typo_fixes(html, found, log=None):
             continue
         html = html.replace(old, new, 1)
         done.append(f"{old}→{new}")
+        fixed.append(f)
     if done and log:
         log.step("오타 자동 고침", fixes=done)
-    return html
+    return html, fixed
 
 
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
@@ -415,7 +417,12 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
     min_q = float(os.environ.get("PUBLISH_MIN_QUALITY", "0.7"))
     best = None
     for round_no in range(1, MAX_REWRITES + 2):
+        dropped_table = "[표 금지]" in (rules or "") and "<table" in html
+        if dropped_table:
+            html = re.sub(r"<table.*?</table>", "", html, flags=re.S | re.I)
         html, lint_issues, fixes = lint.fix_and_check(html)
+        if dropped_table:
+            fixes.append("계산표가 들어가는 글이라 작가가 만든 표 삭제")
         picked = {v["id"] for v in plan.get("visuals") or []}
         # 코드가 넣는 시각 자료(서랍에서 고른 것 + 가이드·이슈의 계산표)를 베낀 표는 지운다(2026-11-03 환율 글: 계산표를 손으로
         # 다시 만들었고, 고쳐쓰기가 반복을 지우면서 표 대신 숫자 해석 문장을 지워 제목 질문에 답을 못 하게 됨)
@@ -426,6 +433,12 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         title_m = re.search(r"<h1[^>]*>(.*?)</h1>", html, flags=re.S)
         value, marks, improve = value_review(html, lint.text_of(title_m.group(1)) if title_m else title_seed,
                                              category_label, log, round_no, facts_text)
+        # 콕 집어 준 짧은 단어 바꾸기는 바로 고치고 그 감점은 돌려준다(고쳐쓰기 한 번을 아낌)
+        html, fixed = apply_typo_fixes(html, found, log, severities=("치명", "중요", "사소"))
+        if fixed:
+            found = [f for f in found if f not in fixed]
+            if score is not None:
+                score = round(max(0.0, 1.0 - sum(SEVERITY_WEIGHT[f["severity"]] for f in found)), 2)
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
         hard_lint = lint.blocking(lint_issues)
         passed = score is not None and score >= min_q and not serious and not hard_lint
@@ -468,5 +481,5 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         log.step(f"고쳐쓰기 {round_no}", model=r.model, todo=len(todo))
         html = new
     if best:
-        best["html"] = apply_typo_fixes(best["html"], best.pop("_found", []), log)
+        best["html"] = apply_typo_fixes(best["html"], best.pop("_found", []), log)[0]
     return best
