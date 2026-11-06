@@ -90,3 +90,17 @@ assert lint.drop_copied_tables(own, [vis], []) == own
 _, iss7, _ = lint.fix_and_check("<h1>t</h1><p>막대한 자금을 정교하게 추종합니다.</p>\n태그: a")
 assert any("꾸밈말" in i for i in iss7) and not any("꾸밈말" in i for i in lint.blocking(iss7))
 print("copied table + puffery ok")
+
+# 2026-11-06: 최대 낙폭의 경과 - 고점·바닥·회복 날짜와 걸린 기간
+import pandas as _pd
+import etf_auto as _ea
+_long = _pd.Series(list(range(100, 130)) + list(range(130, 90, -2)) + list(range(90, 135, 3)),
+                   index=_pd.date_range("2022-01-03", periods=30 + 20 + 15, freq="7D"), dtype=float)
+m = _ea._drawdown_detail(_long)
+assert m["peak"] == "2022-08-01" and m["recovered"] and m["recover_days"] > 0 and m["pct"] < 0, m
+from ondo.writing import analysis as _an
+st = _an._mdd_story(m)
+assert "고점 가격을 되찾음" in st and "배당 제외" in st, st
+m2 = _ea._drawdown_detail(_pd.Series(list(range(100, 140)) + list(range(140, 110, -1)), index=_pd.date_range("2022-01-03", periods=70, freq="7D"), dtype=float))
+assert m2["recovered"] is None and "되찾지 못함" in _an._mdd_story(m2), m2
+print("mdd recovery ok")

@@ -135,6 +135,20 @@ def _line(label, value):
     return f"- {label}: {value}" if value not in _EMPTY else None
 
 
+def _mdd_story(m):
+    """'고점 → 바닥 → 회복'을 한 줄로. 회복 못 했으면 지금 고점 대비 위치를 말한다."""
+    if not m or not m.get("peak"):
+        return None
+    t = f"{m['peak']} 고점에서 {m['trough']} 바닥까지 {m['pct']:+.2f}%"
+    if m.get("fall_days") is not None:
+        t += f"(약 {m['fall_days']}일 동안 하락)"
+    if m.get("recovered"):
+        t += f", 그 뒤 {m['recovered']}에 고점 가격을 되찾음(바닥에서 약 {m['recover_days']}일 걸림)"
+    else:
+        t += f", 아직 그 고점 가격을 되찾지 못함(지금 고점 대비 {m['now_vs_peak']:+.2f}%)"
+    return t + ". 배당 제외 가격 기준"
+
+
 def ticker_facts(ticker, d, ea, today_label):
     code = ticker.replace(".KS", "")
     overseas = ea._is_overseas_listed(d)
@@ -153,6 +167,7 @@ def ticker_facts(ticker, d, ea, today_label):
              _line(f"상장 이후 연평균 수익률(CAGR, {d.get('inception_date', '상장일')}부터 - 상장일이 다른 ETF와 직접 비교 금지)",
                    f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
              _line("최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
+             _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),
              _line("배당 주기", d.get("div_cycle")),
              _line("최근 배당수익률(최근 1년 배당 ÷ 현재 가격)", d.get("yield") if not (code.isdigit() and _num(d.get("yield")) == 0) else None),
              _line("최근 배당 내역(지급일 금액, 직전 대비 증감)", divs or None),
