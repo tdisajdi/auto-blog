@@ -380,7 +380,12 @@ def rates_effect(data_cache):
     facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
              + "\n".join(f"- {r[0]}: 금리 0.1%p 오를 때 평균 {r[1]}, 금리 오른 주 평균 {r[2]}, 내린 주 평균 {r[3]}, "
                          f"1년 가격 변화 {r[4]}, 상관계수 {r[5]}" for r in rows)
-             + f"\n- {note}\n")
+             + f"\n- {note}\n"
+             # 맞는 일반 원리인데 자료에 없어서 '통념'으로 지적받던 문장을 자료로 준다(2026-11-06)
+             "[일반 원리 - 이 범위 안에서만 설명하고, 실제 크기는 위 계산 숫자로 말하세요]\n"
+             "- 채권 가격은 금리와 반대로 움직이고, 만기(듀레이션)가 길수록 같은 금리 변화에 더 크게 움직인다.\n"
+             "- 성장주는 먼 미래의 이익이 가치에서 차지하는 비중이 커서 금리가 오르면 불리하다고 흔히 설명되지만, 실제 반응은 "
+             "실적 등 다른 요인에 따라 달라질 수 있다(위 계산표의 상관계수가 그 크기를 보여 줌).\n")
     return facts, table + chart
 
 
@@ -573,7 +578,10 @@ def run_explainer(topic, etf_module):
         print(f"ℹ️ 온도 띠 실패: {type(e).__name__}")
         top = ""
     produce_article(top_html=top,
-        kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=_SECTION_RULES,
+        kind_label=kind_label, title_seed=title_seed, facts_text=facts_text,
+        # 코드가 만든 계산표가 들어가는 글은 작가가 표를 또 만들지 않는다(2026-11-06 금리 글: 손으로 만든 표의 칸이 어긋나 '치명')
+        rules=_SECTION_RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, 숫자는 문장으로 "
+                                "해석하세요.\n" if "<table" in (visual or "") else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
