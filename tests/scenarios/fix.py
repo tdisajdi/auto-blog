@@ -93,3 +93,10 @@ print("link min date ok")
 h3, _, fx3 = lint.fix_and_check("<h1>t</h1><h3>정리</h3>\n기준은 다음과 같습니다.\n\n* 추세: +5.50%\n* 일드갭: -3.84%\n\n<p>끝</p><p>태그: a</p>")
 assert "<ul><li>추세: +5.50%</li><li>일드갭: -3.84%</li></ul>" in h3 and "* " not in h3, h3
 print("md list ok")
+# 2026-11-06: 맨 글자 정리 문단도 감싸서, 도입부와 똑같은 문장은 자동 삭제
+dup = "미국 10년물 금리가 4.837%인 상황에서 금리가 0.1%p 상승할 때 TLT는 -1.29%로 크게 하락했습니다."
+h4, iss4, fx4 = lint.fix_and_check(f"<h1>t</h1><p>도입 설명입니다. {dup}</p>\n<h3>정리</h3>\n\n{dup} 확인할 기준은 세 가지로 정리할 수 있습니다.\n<p>태그: a</p>")
+assert "<p>" + dup in h4 or h4.count(dup) == 1, h4
+assert h4.count(dup) == 1 and not [i for i in iss4 if "같은 문장 반복" in i], (h4, iss4)
+assert "<p>확인할 기준은" in h4.replace(dup + " ", "").replace("<p> ", "<p>") or "확인할 기준은" in h4
+print("bare line wrap ok")

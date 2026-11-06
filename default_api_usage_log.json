@@ -16,5 +16,15 @@
       "strong-a": 25
     },
     "model_switch_events": {}
+  },
+  {
+    "timestamp": "2026-11-06T06:58:59.962714",
+    "total_calls": 1,
+    "by_model": {
+      "gemini-3.1-flash-lite": 1
+    },
+    "model_switch_events": {
+      "gemini-3.5-flash-lite": 1
+    }
   }
 ]

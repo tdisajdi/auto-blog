@@ -77,6 +77,12 @@ def fix_and_check(html):
         fixes.append("AI가 넣은 <img> 제거(그림은 시스템이 넣음)")
         h = new
 
+    # <p> 없이 맨 글자로 쓴 줄은 문단으로 감싼다(2026-11-06: 정리 부분이 맨 글자라 반복 문장 자동 삭제가 못 잡음)
+    new = _wrap_bare_lines(h)
+    if new != h:
+        fixes.append("맨 글자 줄을 문단(<p>)으로 감쌈")
+        h = new
+
     # 똑같은 문단(<p>)이 두 번 나오면 뒤엣것 삭제
     seen = set()
 
@@ -154,6 +160,24 @@ def english_phrases(html):
     t = re.sub(r"태그:.*", " ", text_of(html))
     t = re.sub(r"https?://\S+|\S+@\S+", " ", t)
     return re.findall(r"(?<![A-Za-z&])[a-z]{2,}(?:\s+[a-z]{2,}){2,}(?![A-Za-z])", t)
+
+
+_CONTAINERS = ("p", "li", "td", "th", "table", "ul", "ol", "blockquote", "figure", "div", "script", "style", "h1", "h2",
+               "h3", "h4", "a", "strong", "span")
+
+
+def _wrap_bare_lines(h):
+    out, depth = [], 0
+    for line in (h or "").split("\n"):
+        st = line.strip()
+        if depth == 0 and st and not st.startswith("<") and not st.startswith("태그:") and re.search(r"[가-힣]", st):
+            line = f"<p>{st}</p>"
+        else:
+            opens = len(re.findall(r"<(%s)(\s[^>]*)?>" % "|".join(_CONTAINERS), line, flags=re.I))
+            closes = len(re.findall(r"</(%s)>" % "|".join(_CONTAINERS), line, flags=re.I))
+            depth = max(0, depth + opens - closes)
+        out.append(line)
+    return "\n".join(out)
 
 
 def _drop_repeated_sentences(h, fixes):
