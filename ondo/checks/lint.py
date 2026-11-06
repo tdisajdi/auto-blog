@@ -180,6 +180,28 @@ def _wrap_bare_lines(h):
     return "\n".join(out)
 
 
+def link_sources(h, facts_text, fixes=None):
+    """본문에 링크 없이 쓴 매체명에 자료의 기사 주소로 링크를 건다(첫 번째 한 곳만).
+    2026-11-07 VOO: 'TradingKey 보도에서도', '자본시장뉴스에서도'처럼 링크 없이 인용 → 사실 검증이 '중요'로 두 번 지적해 떨어짐.
+    자료의 뉴스 줄 모양: '- 제목 - 매체 (매체) https://...'. 이미 링크가 걸린 매체는 건드리지 않는다."""
+    pairs = re.findall(r"\(([^()\n]{2,30})\)\s+(https?://\S+)", facts_text or "")
+    for name, url in pairs:
+        name = name.strip()
+        if re.search(r"<a\b[^>]*>[^<]*" + re.escape(name), h):
+            continue
+        # 태그 밖 글자 속 첫 번째 매체명만(태그 속성·다른 링크 안은 건너뜀)
+        parts = re.split(r"(<a\b.*?</a>|<[^>]+>)", h, flags=re.S)
+        for i, part in enumerate(parts):
+            if part.startswith("<") or name not in part:
+                continue
+            parts[i] = part.replace(name, f'<a href="{url}" target="_blank" rel="noopener">{name}</a>', 1)
+            h = "".join(parts)
+            if fixes is not None:
+                fixes.append(f"매체명 링크 추가: {name}")
+            break
+    return h
+
+
 def _drop_repeated_sentences(h, fixes):
     """글자까지 똑같은 문장이 여러 문단에 있으면 하나만 남긴다(2026-10-31: 도입 문장이 FAQ에 그대로 반복돼
     고쳐쓰기 2번으로도 안 없어짐). 지우면 문단이 거의 빈칸이 되는 자리(예: FAQ 답)는 남기고 다른 쪽을 지운다."""

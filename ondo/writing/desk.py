@@ -421,6 +421,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         if dropped_table:
             html = re.sub(r"<table.*?</table>", "", html, flags=re.S | re.I)
         html, lint_issues, fixes = lint.fix_and_check(html)
+        html = lint.link_sources(html, facts_text, fixes)
         if dropped_table:
             fixes.append("계산표가 들어가는 글이라 작가가 만든 표 삭제")
         picked = {v["id"] for v in plan.get("visuals") or []}
