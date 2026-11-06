@@ -14,6 +14,7 @@ import random
 import re
 from pathlib import Path
 
+from ondo.writing import glossary
 from ondo.checks import lint, numbers
 from ondo.config import kst_now
 from ondo.writing import llm
@@ -376,6 +377,10 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
                   drawer=None, avoid_visuals=(), must_answer=None, visual_texts=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
     clean=True는 "검토 통과"(점수 기준 이상 + 치명·중요 문제 없음 + 교열 지적 없음). 아니면 임시글로."""
+    # 자료에 나오는 어려운 말의 뜻(코드가 정한 그대로)을 자료 끝에 붙인다 - 작가·사실 검증 모두 같은 뜻을 본다(2026-11-06)
+    gl = glossary.block(facts_text)
+    if gl and "[용어 풀이" not in facts_text:
+        facts_text = facts_text + "\n" + gl
     log.data["facts"] = facts_text[:30000]     # 글쓰기에 넘긴 자료 원문(빠진 사실이 자료 탓인지 작가 탓인지 가리려고)
     must_answer = list(must_answer or []) + [q for q in COMMON_MUST if q not in (must_answer or [])]
     plan = make_plan(kind_label, title_seed, facts_text, memo, log, drawer=drawer, avoid=avoid_visuals, must=must_answer)
