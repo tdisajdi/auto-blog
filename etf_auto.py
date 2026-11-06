@@ -6844,7 +6844,10 @@ def run_automation():
                 print("   이 경우 몇 분을 더 기다려도 풀리지 않으며, 태평양 시간 자정에 리셋됩니다.")
                 print("   지금까지 생성된 원고는 검수 없이 클립보드에 복사되니, 직접 검토 후 판단하세요.")
                 print("=" * 50 + "\n")
-                pyperclip.copy(blog_content)
+                try:      # 서버에는 클립보드가 없을 수 있다(xclip 설치가 실패해도 계속 진행)
+                    pyperclip.copy(blog_content)
+                except Exception:
+                    pass
                 generated_body = _inject_static_sections(blog_content, section_htmls)
                 if include_toc:
                     generated_body = _inject_table_of_contents(generated_body)
