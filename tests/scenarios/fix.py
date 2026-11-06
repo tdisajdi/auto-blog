@@ -100,3 +100,9 @@ assert "<p>" + dup in h4 or h4.count(dup) == 1, h4
 assert h4.count(dup) == 1 and not [i for i in iss4 if "같은 문장 반복" in i], (h4, iss4)
 assert "<p>확인할 기준은" in h4.replace(dup + " ", "").replace("<p> ", "<p>") or "확인할 기준은" in h4
 print("bare line wrap ok")
+# 2026-11-07: 링크 없이 쓴 매체명에 자료의 기사 주소로 링크(첫 번째만, 이미 링크된 건 그대로)
+facts_n = "[관련 뉴스]\n- 제목 - TradingKey (TradingKey) https://news.example/t\n- 다른 제목 - 연합뉴스 (연합뉴스) https://news.example/y"
+fx5 = []
+h5 = lint.link_sources('<p>TradingKey 보도에서도 언급됐다. TradingKey는</p><p><a href="https://news.example/y">연합뉴스</a>에 따르면</p>', facts_n, fx5)
+assert h5.count('href="https://news.example/t"') == 1 and h5.count("news.example/y") == 1 and fx5 == ["매체명 링크 추가: TradingKey"], (h5, fx5)
+print("source autolink ok")
