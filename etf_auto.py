@@ -2604,6 +2604,32 @@ def _build_advanced_sections(etf_data_cache):
     return html
 
 
+def _drawdown_detail(close):
+    """최대 낙폭이 언제 시작(고점)해서 언제 바닥이었고, 고점 가격을 언제 되찾았는지(못 되찾았으면 None) 코드가 계산한다.
+    2026-11-06: '최대 낙폭 -24.52%'만으로는 독자가 판단하기 어렵다 - "떨어지면 회복까지 얼마나 걸렸나"가 장기 보유의 실제 판단 기준.
+    가격 기준(배당 제외). 실패하면 None."""
+    try:
+        c = close.dropna()
+        if len(c) < 30:
+            return None
+        dd = c / c.cummax() - 1.0
+        trough = dd.idxmin()
+        peak = c.loc[:trough].idxmax()
+        peak_px = float(c.loc[peak])
+        after = c.loc[trough:]
+        rec = after[after >= peak_px]
+        recovered = rec.index[0] if len(rec) else None
+        day = lambda d: f"{d:%Y-%m-%d}" if hasattr(d, "strftime") else str(d)
+        out = {"pct": round(float(dd.min()) * 100, 2), "peak": day(peak), "trough": day(trough),
+               "fall_days": int((trough - peak).days) if hasattr(trough - peak, "days") else None,
+               "recovered": day(recovered) if recovered is not None else None,
+               "recover_days": int((recovered - trough).days) if recovered is not None and hasattr(recovered - trough, "days") else None,
+               "now_vs_peak": round((float(c.iloc[-1]) / peak_px - 1) * 100, 2)}
+        return out
+    except Exception:
+        return None
+
+
 def get_etf_real_data(ticker_symbol, driver, macro_data):
     print(f"🔍 {ticker_symbol} 데이터 및 스크래핑 중... (투트랙 방식 적용)")
     cache = _load_cache()
@@ -2619,6 +2645,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     # 공통 기본값 초기화
     returns = {"1개월": 0.0, "3개월": 0.0, "6개월": 0.0, "1년": 0.0}
     mdd_val = "정보 없음"
+    mdd_detail = None   # 최대 낙폭의 고점·바닥·회복 날짜와 회복에 걸린 기간(2026-11-06)
     simulated_result = "정보 없음"
     cagr = None  # 실제 데이터로 계산 성공한 경우에만 값이 채워짐 (임의 기본값 없음)
     current_price = 0.0
@@ -2663,6 +2690,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                 if not df_5y.empty:
                     roll_max = df_5y['Close'].cummax()
                     mdd_val = f"{(df_5y['Close'] / roll_max - 1.0).min() * 100:.2f}%"
+                    mdd_detail = _drawdown_detail(df_5y['Close'])
                     
                     if len(df_5y) > 10:
                         start_price_5y = float(df_5y['Close'].iloc[0])
@@ -2762,6 +2790,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                 h_mdd = ticker.history(period="5y")
                 if not h_mdd.empty:
                     mdd_val = f"{(h_mdd['Close'] / h_mdd['Close'].cummax() - 1.0).min() * 100:.2f}%"
+                    mdd_detail = _drawdown_detail(h_mdd['Close'])
                     if len(h_mdd) > 10:
                         total_return_5y = (current_price - h_mdd['Close'].iloc[0]) / h_mdd['Close'].iloc[0]
                         final_amount = 10000000 * (1 + total_return_5y)
@@ -2913,7 +2942,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     
     result = {
         "name": short_name, "currency": currency,
-        "yield": calculated_yield, "returns": returns, "mdd": mdd_val,
+        "yield": calculated_yield, "returns": returns, "mdd": mdd_val, "mdd_detail": mdd_detail,
         "div_cycle": div_cycle, "expense_ratio": expense_ratio,
         "top_holdings": top_holdings,
         "earnings_info": earnings_info,
