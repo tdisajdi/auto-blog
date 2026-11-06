@@ -7,5 +7,14 @@
       "strong-a": 2
     },
     "model_switch_events": {}
+  },
+  {
+    "timestamp": "2026-11-06T06:53:11.438123",
+    "total_calls": 56,
+    "by_model": {
+      "fast-a": 31,
+      "strong-a": 25
+    },
+    "model_switch_events": {}
   }
 ]

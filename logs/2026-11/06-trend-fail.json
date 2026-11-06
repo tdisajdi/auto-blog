@@ -1,0 +1,160 @@
+{
+ "article_type": "trend",
+ "topic_id": "fail",
+ "title_seed": "시험",
+ "category": "",
+ "started_at": "2026-11-06T15:53:11",
+ "mode": "sections",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 2,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 3,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 4,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 4,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 2,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "fast-a",
+   "key": 3,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "strong-a",
+   "key": 2,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "strong-a",
+   "key": 3,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "strong-a",
+   "key": 4,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "strong-a",
+   "key": 2,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "strong-a",
+   "key": 3,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "strong-a",
+   "key": 4,
+   "status": "429",
+   "reason": "quota",
+   "sec": 0.0,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획 실패",
+   "at": "15:53:11",
+   "attempt": 1,
+   "reason": "답이 없음(한도·오류)"
+  },
+  {
+   "step": "기획 실패",
+   "at": "15:53:11",
+   "attempt": 2,
+   "reason": "답이 없음(한도·오류)"
+  },
+  {
+   "step": "기획",
+   "at": "15:53:11",
+   "sections": [
+    "무슨 일이 있었나",
+    "숫자로 보기",
+    "아직 모르는 것"
+   ],
+   "reason": "기본 설계도 사용"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "15:53:11",
+   "mode": "sections",
+   "reason": "한 번에 쓰기 실패: 좋은 모델이 모든 키에서 한도 초과(429)"
+  },
+  {
+   "step": "쓰기 실패",
+   "at": "15:53:11",
+   "part": "도입",
+   "reason": "좋은 모델이 모든 키에서 한도 초과"
+  }
+ ],
+ "result": {
+  "reason": "좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 4시쯤 한도가 풀린 뒤 다시 시도해 주세요",
+  "status": "failed"
+ },
+ "facts": "f",
+ "minutes": 0.0
+}

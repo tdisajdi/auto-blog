@@ -251,3 +251,23 @@ h = desk.apply_typo_fixes("<p>지시장을 지지했다. 시장은</p>", [
     {"severity": "중요", "fix": "'지지'를 '방어'로"}])            # 사소만
 assert h == "<p>시장을 지지했다. 시장은</p>", h
 print("typo autofix ok")
+
+# 2026-11-06: 용어집 - 자료에 나오는 어려운 말만, 우리 계산식과 같은 뜻으로
+from ondo.writing import glossary
+picked = dict(glossary.pick("VOO 최대 낙폭(5년) -24.52%, 일드갭 -3.84%, 배당수익률 1.05%"))
+assert list(picked) == ["최대 낙폭(MDD)", "일드갭"] and "배당수익률 − 미국 10년물 국채 금리" in picked["일드갭"], picked
+assert glossary.block("숫자 없음 그냥 글") == ""
+seen_plan = []
+_old_post = llm._post
+def post_gl(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "기획 회의" in p:
+        seen_plan.append(p)
+    return post_desk(url, payload, key)
+llm._post = post_gl
+calls.update({"review": 10})
+desk.write_article(kind_label="ETF 분석", title_seed="시험", facts_text=facts + "\n- 최대 낙폭(5년) -24.52%", rules="",
+                   category_label="ETF", log=editlog.EditLog("analysis", "single", "용어"))
+assert seen_plan and "[용어 풀이" in seen_plan[0] and "최대 낙폭(MDD)" in seen_plan[0], "용어 풀이가 자료와 함께 기획에 들어감"
+llm._post = _old_post
+print("glossary ok")
