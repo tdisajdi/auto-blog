@@ -290,3 +290,9 @@ r_tb = desk.write_article(kind_label="이슈 해설", title_seed="시험", facts
 assert r_tb and "<table" not in r_tb["html"], "작가가 만든 표는 지워짐"
 llm._post = _old2
 print("table ban ok")
+# 2026-11-07: 검토 담당이 링크를 볼 수 있게 [링크] 표시
+assert desk.review_text('<p><a href="https://x" target="_blank">TradingKey</a>에 따르면 <strong>3%</strong></p>') == "TradingKey[링크]에 따르면 3%"
+print("review link marker ok")
+tn = desk._norm(desk.review_text('<p><a href="https://x">TradingKey</a>에 따르면 VOO 자산이 늘었다</p>'))
+assert desk._quote_found("TradingKey에 따르면 VOO 자산이 늘었다", tn) and desk._quote_found("TradingKey[링크]에 따르면 VOO", tn)
+print("quote match with link marker ok")

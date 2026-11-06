@@ -263,7 +263,8 @@ POLICY_WORDS = re.compile(r"권유|보장|확정|단정|과장|전문가|경험|
 
 
 def _norm(t):
-    return re.sub(r"[\s\W_]+", "", str(t))
+    # [링크] 표시는 비교에서 뺀다(검토 담당이 인용할 때 빼든 넣든 같은 문장으로 보게)
+    return re.sub(r"[\s\W_]+", "", str(t).replace("[링크]", ""))
 
 
 def _quote_found(quote, text_norm):
@@ -272,9 +273,17 @@ def _quote_found(quote, text_norm):
     return not q or q[:15] in text_norm
 
 
+def review_text(html):
+    """검토 담당에게 보여 줄 글자. 링크가 걸린 말 뒤에 [링크]를 붙인다(2026-11-07: 태그를 빼고 보여 줬더니 링크가 있는데도
+    '매체명에 링크 없음'을 매번 '중요'로 지적 - VOO 글이 이 잘못된 지적으로 세 번 떨어짐)."""
+    h = re.sub(r"<!--.*?-->", "", html, flags=re.S)
+    h = re.sub(r"<a\b[^>]*\bhref=[^>]*>(.*?)</a>", r"\1[링크]", h, flags=re.S | re.I)
+    return lint.text_of(h)[:60000]
+
+
 def review(html, facts_text, category_label, log, round_no, must=None):
     """반환: (점수, 문제 목록[{severity, quote, problem, fix, by}]). 담당 전원이 실패하면 (None, [])."""
-    text = lint.text_of(re.sub(r"<!--.*?-->", "", html, flags=re.S))[:60000]
+    text = review_text(html)
     text_norm = _norm(text)
     common = prompt("review_common", today=_today(), text=text)
     found, answered, dropped = [], 0, 0
