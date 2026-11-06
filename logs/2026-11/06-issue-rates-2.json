@@ -1,0 +1,324 @@
+{
+ "article_type": "issue",
+ "topic_id": "rates",
+ "title_seed": "금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
+ "category": "etf",
+ "started_at": "2026-11-06T16:00:14",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.9,
+   "chars": 3223
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 18.2,
+   "chars": 5913
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.2,
+   "chars": 846
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.1,
+   "chars": 476
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.2,
+   "chars": 171
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.0,
+   "chars": 1011
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.0,
+   "chars": 6027
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.9,
+   "chars": 465
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.8,
+   "chars": 462
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 168
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.2,
+   "chars": 1186
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.8,
+   "chars": 5904
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.9,
+   "chars": 359
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 995
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.3,
+   "chars": 164
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.1,
+   "chars": 988
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "16:00:23",
+   "title": "금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
+   "sections": [
+    "장기채와 단기채의 금리 반응",
+    "성장주 ETF의 금리 상관성",
+    "계좌 종류와 최근 투자 동향"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "16:00:44",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "16:01:26",
+   "score": 0.29,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "해외 상장 ETF와 절세 계좌용 국내 상장 ETF(KODEX 미국10년국채액티브(H))의 차이 및 환헤지 여부에 따른 선택 가이드를 더 구체적으로 연결해 주세요.",
+   "issues": [
+    "[치명·사실 검증] 'SHY (iShares 1-3 Year Treasury Bond ETF) 2.99% -23.49% 1.9% ' → 표의 수치 중 SHY의 1년 수익률(자료상 1.61%) 자리에 상장 이후 연평균(CAGR) 값인 1.9%가 입력되고 항목 열이 누락되었습니다. / 고칠 방법: SHY 항목 수치를 자료대로 배당수익률 2.99%, 배당성장률 -23.49%, 1년 수익률 1.61%, CAGR 1.9%, 최대 낙폭 -5.34%로 올바르게 수정하세요.",
+    "[중요·사실 검증] → [누락] 제목이 던진 질문에 대한 답을 자료의 숫자를 넣어 정리 문단에서 한두 문장으로 직접 답하는 내용이 누락되었습니다. / 고칠 방법: 정리 문단에 금리 0.1%p 상승 시 TLT는 -1.29% 변동하는 반면 QQQ는 -0.05% 변동에 그치는 등 자료의 수치를 포함하여 질문에 대한 답을 한두 문장으로 직접 명시하세요.",
+    "[중요·사실 검증] → [누락] 독자가 유사한 뉴스나 데이터를 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하는 내용이 누락되었습니다. / 고칠 방법: 독자가 향후 관련 지표를 볼 때 참고할 수 있도록 금리 0.1%p당 반응률, 상관계수(-0.93 vs -0.02) 등 기준 2~3개를 자료 숫자와 함께 안내하세요.",
+    "[중요·독자 편집] '상장 이후 연평균 수익률(CAGR: 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 ' → 표에 이미 제시된 연평균 수익률 데이터를 본문 문장에서 그대로 다시 나열하여 불필요한 중복이 발생했습니다. / 고칠 방법: 해당 문장을 삭제하고 표를 참고하도록 안내합니다."
+   ],
+   "numbers": [
+    "1,000만",
+    "563만"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 4230
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "16:01:43",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "16:02:15",
+   "score": 0.85,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "서론의 단순 환율 및 공포탐욕 지수 나열을 줄이고, 채권과 성장주의 금리 민감도 차이를 보여주는 핵심 수치 요약을 더 앞쪽으로 배치하면 독자의 이해를 돕는 데 효과적일 것입니다.",
+   "issues": [
+    "[중요·사실 검증] '이론적으로 고금리 환경은 미래 현금 흐름의 할인율을 높여 성장주 기업 가치에 부정적인 영향을 주지만' → 사실 자료에 포함되어 있지 않은 일반적인 경제 이론 및 통념(고금리와 현금 흐름 할인율 관계)을 사실처럼 서술하였습니다. / 고칠 방법: 자료에 명시된 금리 변화 시 QQQ의 가격 변동률 및 상관계수 수치 중심으로 설명을 수정해 주세요.",
+    "[사소·독자 편집] '각 종목의 연평균 수익률(CAGR: 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 ' → 바로 위에 표가 제시되어 있어 문장에서 다시 표를 확인하라고 안내할 필요가 없습니다. / 고칠 방법: 해당 문장을 생략하여 글의 흐름을 더 간결하게 만드세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '43.70%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '0.1%p'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "1,000만",
+    "563만"
+   ],
+   "chars": 4198
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "16:02:31",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "16:03:06",
+   "score": 0.5,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "최대 낙폭(MDD)의 금액 예시(1억 원 투자 시 평가액 감소 설명)를 본문 설명 구간에 미리 배치하여 리스크를 더 직관적으로 체감하게 만들기",
+   "issues": [
+    "[치명·사실 검증] '20세 이상 장기 국채에 투자하는 TLT는 1년 수익률이 -5.21%이며' → 채권 만기 단위인 '20년 이상'을 '20세 이상'으로 잘못 표기했습니다. / 고칠 방법: '20세 이상'을 '20년 이상'으로 수정해야 합니다.",
+    "[중요·독자 편집] '해외 상장 상품인 QQQ의 배당수익률은 0.48%이며 배당성장률은 8.99%를 나타내고 있습니다. 1년 수익' → 앞 문단에서 QQQ의 수익률과 상관계수를 설명한 후, 직후의 'QQQ의 금리 반응 분석' 박스에서 지난 1년간 상관계수와 금리 반응 내용을 거의 똑같이 되풀이하고 있습니다. / 고칠 방법: 중복되는 QQQ 금리 반응 분석 박스를 삭제하거나 앞 문단의 내용을 통합하여 분량을 줄이세요.",
+    "[사소·독자 편집] '뉴스핌과 매일일보는 'KODEX 미국10년국채액티브(H)' 상품의 순자산이 2,000억 원을 돌파했다고 밝혔' → 서로 다른 언론사를 인용하면서 동일한 2,000억 원 규모의 자금 유입 사실을 연속으로 나열하여 유사한 내용이 반복됩니다. / 고칠 방법: 하나의 문장으로 통합하여 간결하게 정리하세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '43.70%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '0.1%p'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '0.05%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "5,630만"
+   ],
+   "chars": 4075
+  }
+ ],
+ "result": {
+  "status": "failed",
+  "reason": "다시 쓴 판이 기준 미달 - 원래 글 유지",
+  "title": "금리가 변화할 때 채권 ETF와 성장주 ETF의 수익률은 어떻게 움직일까?",
+  "score": 0.85,
+  "issues": [
+   "[중요·사실 검증] '이론적으로 고금리 환경은 미래 현금 흐름의 할인율을 높여 성장주 기업 가치에 부정적인 영향을 주지만' → 사실 자료에 포함되어 있지 않은 일반적인 경제 이론 및 통념(고금리와 현금 흐름 할인율 관계)을 사실처럼 서술하였습니다. / 고칠 방법: 자료에 명시된 금리 변화 시 QQQ의 가격 변동률 및 상관계수 수치 중심으로 설명을 수정해 주세요.",
+   "[참고] 같은 숫자 '43.70%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[참고] 같은 숫자 '0.1%p'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '각 종목의 연평균 수익률(CAGR: 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 ' → 바로 위에 표가 제시되어 있어 문장에서 다시 표를 확인하라고 안내할 필요가 없습니다. / 고칠 방법: 해당 문장을 생략하여 글의 흐름을 더 간결하게 만드세요."
+  ]
+ },
+ "facts": "[사실 자료 - 예시 ETF 실제 데이터]\n- TLT (iShares 20+ Year Treasury Bond ETF): 상장 해외 상장, 배당수익률 3.97%, 배당성장률 -15.98%, 1년 수익률 -5.21%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) -8.1%, 최대 낙폭(5년) -43.70%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- IEF (iShares 7-10 Year Treasury Bond ETF): 상장 해외 상장, 배당수익률 3.37%, 배당성장률 -14.33%, 1년 수익률 -1.69%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) -1.5%, 최대 낙폭(5년) -20.40%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- SHY (iShares 1-3 Year Treasury Bond ETF): 상장 해외 상장, 배당수익률 2.99%, 배당성장률 -23.49%, 1년 수익률 1.61%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 1.9%, 최대 낙폭(5년) -5.34%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- QQQ (Invesco QQQ Trust): 상장 해외 상장, 배당수익률 0.48%, 배당성장률 8.99%, 1년 수익률 6.28%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 10.8%, 최대 낙폭(5년) -35.12%, 환율 영향 있음 (해외 상장, 달러로 거래)\n\n[오늘의 시장 수치]\n- 원/달러 환율: 1,356.24원 (전일 대비 1.206656711471724% 상승)\n- 미국 10년물 금리: 4.837%\n- 공포/탐욕 지수: 19점 (극단적 공포)\n\n[계좌 사실]\n- 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n\n[최근 뉴스]\n- “금리 내리기 전에 담자”…미국 10년물 국채 ETF에 쏠린 눈 - 매일경제 (매일경제) https://news.google.com/rss/articles/CBMiUkFVX3lxTE15M2NJSDNSb0VjY0EzemNRWW1INW8za190OExheFYtY2NiYnkxcnBFOVpVcDdQcmN5QktXNkNYc1Z5Q19uVFpGdUY5Ql9naFUxRmc?oc=5\n- 삼성운용 美10년국채 ETF, 순자산 2000억 돌파 - 뉴스핌 (뉴스핌) https://news.google.com/rss/articles/CBMiXEFVX3lxTE5CQ3IxMENFTzl6eFBOemZfa0NlX2ZnTlpObGFTMDg4RXl3TXFnb0FpOGpZMUVfYU5DeTdwQS1KMm1aZ0Y4Vy1ObXY1SzFCLThBVU5FdHhyOWxfWHU1?oc=5\n- 삼성운용, 'KODEX 미국10년국채액티브(H)' 순자산 2000억원 돌파 - 매일일보 (매일일보) https://news.google.com/rss/articles/CBMiZEFVX3lxTE80dGM2N1RJbVlwdHBJeFItemh0c0ktNkdHRVZzXzdoa2wyMEZLYUlidjQ5UFJFWE1NdXl6U2QwX2tld19tRmFfYklWblU1emNYWlB2Q0xNQjhCUVJQWjVEMXRzcEQ?oc=5\n- 삼성자산운용, ‘KODEX 미국10년국채액티브(H)’ 순자산 2000억 원 돌파 - 포춘코리아 (포춘코리아) https://news.google.com/rss/articles/CBMickFVX3lxTE41X0pQYnVKbHZqYVVWelVxU1hYei1ETXdoVkpDLVFBZGJNbDg2LWNRLVpHQjNhT1NZZlA0RzFoZWFxazRLUU5nZTB4TzNzNHlZeko3UGNzaHozeFpwWFFRbTAycXpOdUlhbmxkRk83SVNzQdIBdkFVX3lxTE0tcDBIRzRabTN0aUhfZVpaMG1MLWJYS0ZXTzgycllzc2tKU3lQeHZOd2R1bEg2Tno4Y1p1OVoyZUZfWlJiVUZReVNiZVhNbmRzV3RLWmswZGstcXNIdndHUE1ndFAwLU41ZmFCeGtuempkdE1Xc3c?oc=5\n\n\n[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n- TLT: 금리 0.1%p 오를 때 평균 -1.29%, 금리 오른 주 평균 -1.03%, 내린 주 평균 +1.01%, 1년 가격 변화 -5.0%, 상관계수 -0.93\n- IEF: 금리 0.1%p 오를 때 평균 -0.70%, 금리 오른 주 평균 -0.53%, 내린 주 평균 +0.55%, 1년 가격 변화 -1.7%, 상관계수 -0.97\n- SHY: 금리 0.1%p 오를 때 평균 -0.15%, 금리 오른 주 평균 -0.06%, 내린 주 평균 +0.14%, 1년 가격 변화 +1.6%, 상관계수 -0.79\n- QQQ: 금리 0.1%p 오를 때 평균 -0.05%, 금리 오른 주 평균 -0.05%, 내린 주 평균 +0.40%, 1년 가격 변화 +6.6%, 상관계수 -0.02\n- 미국 10년물 금리 4.09% → 4.84%(+0.74%p, 최근 1년, Yahoo Finance ^TNX). 주간 종가 기준, 배당 제외 가격 변화. '0.1%p당 평균 반응'은 금리 변화와 가격 변화의 회귀 기울기 × 0.1, ondo 계산. 금리가 오른 주 28번, 내린 주 24번. 지난 1년의 평균일 뿐 앞으로도 같다는 보장은 없음. 여기 '1년 가격 변화'는 주간 종가로 다시 계산한 배당 제외 값이라 위 종목 자료의 '1년 수익률'과 조금 다를 수 있음 - 둘을 같은 숫자처럼 나란히 쓰지 말 것.\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 연평균 수익률(CAGR): 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 값\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n- 공포·탐욕 지수: CNN이 주가 흐름·변동성 등 여러 지표로 만든 0~100점 투자심리 지수. 낮을수록 공포, 높을수록 탐욕\n- 환헤지: 환율이 움직여도 수익률이 덜 흔들리게 막는 장치. 이름에 (H)가 붙은 국내 상장 ETF가 이 방식\n- %p(퍼센트포인트): 비율끼리 뺀 차이. 비율이 몇 % 늘었는지(증가율)와는 다른 값\n- 상관계수: 두 숫자가 같이 움직인 정도(-1~+1). +1에 가까우면 같은 방향, -1에 가까우면 반대 방향, 0 근처면 거의 무관\n",
+ "drafts": {
+  "1": "<h1>금리가 변화할 때 채권 ETF와 성장주 ETF의 수익률은 어떻게 움직일까?</h1>\n<!-- 금리 변화에 따른 채권 ETF와 성장주 ETF의 수익률 및 상관관계를 분석합니다. 미국 10년물 금리와 TLT, IEF, SHY, QQQ의 과거 데이터를 바탕으로 시장 흐름과 투자 시 주의점을 정리해 드립니다. -->\n\n<p>2026년 11월 06일 기준, 미국 10년물 국채 금리는 4.837%를 기록하고 있습니다. 시장의 변동성이 이어지면서 원/달러 환율은 전일 대비 1.206656711471724% 상승한 1,356.24원으로 나타났습니다. 투자 심리를 나타내는 공포·탐욕 지수(CNN이 주가 흐름·변동성 등 여러 지표로 만든 0~100점 투자심리 지수. 낮을수록 공포, 높을수록 탐욕)는 19점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>이처럼 금리 향방을 둘러싼 불확실성이 커진 상황에서 국채 ETF로 자금이 몰리는 현상이 포착되고 있습니다. 금리 인하 기대감과 채권 가격의 관계를 파악하고, 채권과 성장주가 금리 변화에 어떤 다른 반응을 보이는지 데이터로 직접 짚어보겠습니다.</p>\n\n<h3>장기채와 단기채의 금리 반응</h3>\n\n<p>채권은 듀레이션(잔존만기)에 따라 금리 변화에 반응하는 폭이 크게 달라집니다. 잔존만기가 긴 장기채는 금리가 내릴 때 가격 상승 폭이 크지만, 반대로 금리가 오를 때는 하락 위험도 높습니다. 통상 금리가 떨어지면 채권 가격이 오르고 금리가 오르면 채권 가격이 내려갑니다.</p>\n\n<p>미국 국채에 투자하는 대표적인 해외 상장 ETF 3종의 과거 데이터를 비교해 보면 이러한 특징이 명확히 드러납니다. 20세 이상 장기 국채에 투자하는 TLT는 1년 수익률이 -5.21%이며 5년 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기)은 -43.70%에 달합니다. 반면 7-10년 만기 채권에 투자하는 IEF의 1년 수익률은 -1.69%, 5년 최대 낙폭은 -20.40%입니다. 1-3년 단기채인 SHY는 1년 수익률 1.61%, 5년 최대 낙폭 -5.34%를 기록하며 상대적으로 안정적인 흐름을 보였습니다.</p>\n\n<h4>🔸 만기별 미국 국채 ETF 데이터 비교</h4>\n\n<table>\n  <tr>\n    <th>티커 (종목명)</th>\n    <th>배당수익률</th>\n    <th>배당성장률</th>\n    <th>1년 수익률</th>\n    <th>상장 이후 연평균(CAGR)</th>\n    <th>최대 낙폭(5년)</th>\n  </tr>\n  <tr>\n    <td>TLT (iShares 20+ Year Treasury Bond ETF)</td>\n    <td>3.97%</td>\n    <td>-15.98%</td>\n    <td>-5.21%</td>\n    <td>-8.1%</td>\n    <td>-43.70%</td>\n  </tr>\n  <tr>\n    <td>IEF (iShares 7-10 Year Treasury Bond ETF)</td>\n    <td>3.37%</td>\n    <td>-14.33%</td>\n    <td>-1.69%</td>\n    <td>-1.5%</td>\n    <td>-20.40%</td>\n  </tr>\n  <tr>\n    <td>SHY (iShares 1-3 Year Treasury Bond ETF)</td>\n    <td>2.99%</td>\n    <td>-23.49%</td>\n    <td>1.9%</td>\n    <td>-5.34%</td>\n  </tr>\n</table>\n\n<p>상장 이후 연평균 수익률(CAGR: 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 값)은 TLT가 -8.1%, IEF가 -1.5%, SHY가 1.9%로 집계되었습니다. 이 세 종목은 모두 상장일이 서로 다르므로 연평균 수익률을 동일 선상에서 직접 비교하면 안 됩니다. 지수 주간 종가 기준 분석 데이터를 보면 1년 동안 미국 10년물 금리가 4.09%에서 4.84%로 0.74%p(퍼센트포인트: 비율끼리 뺀 차이) 상승할 때 금리와 가격 사이의 상관계수(두 숫자가 같이 움직인 정도. -1에 가까우면 반대 방향)는 TLT가 -0.93, IEF가 -0.97, SHY가 -0.79를 기록했습니다.</p>\n\n<p>금리가 0.1%p 오를 때의 평균 가격 변화율을 보면 TLT가 -1.29%, IEF가 -0.70%, SHY가 -0.15% 움직였습니다. 만기가 길수록 금리 변동에 대한 반응 민감도가 훨씬 크다는 것을 보여줍니다. 해당 해외 상장 ETF들은 모두 달러로 거래되므로 국내 투자자는 환율 변동에 따른 영향도 받게 됩니다.</p>\n\n<h3>성장주 ETF의 금리 상관성</h3>\n\n<p>나스닥 100 지수를 추종하는 QQQ는 대형 성장주 중심으로 구성되어 있어 채권 ETF와는 전혀 다른 금리 반응성을 보입니다. 이론적으로 고금리 환경은 미래 현금 흐름의 할인율을 높여 성장주 기업 가치에 부정적인 영향을 주지만 실제 시장 수익률 데이터는 금리 외에도 실적이나 산업 트렌드 등 다양한 변수의 영향을 받습니다.</p>\n\n<p>해외 상장 상품인 QQQ의 배당수익률은 0.48%이며 배당성장률은 8.99%를 나타내고 있습니다. 1년 수익률은 6.28%이며 5년 최대 낙폭은 -35.12%입니다. 상장 이후 연평균 수익률(CAGR)은 10.8%를 기록했습니다. 장기 국채 ETF인 TLT나 IEF가 금리 상승기 동안 1년 수익률에서 마이너스를 보인 것과 달리 성장주 ETF인 QQQ는 플러스 수익률을 유지했습니다.</p>\n\n<h4>🔸 QQQ의 금리 반응 분석</h4>\n\n<p>지난 1년간 주간 종가 기준으로 미국 10년물 금리와 QQQ의 가격 변동 상관계수를 계산해 보면 -0.02로 나타납니다. 상관계수가 0 근처에 위치한다는 것은 QQQ의 가격이 10년물 국채 금리 움직임과 통계적으로 거의 무관하게 움직였음을 의미합니다.</p>\n\n<p>금리가 0.1%p 오를 때 QQQ의 가격 반응은 평균 -0.05%에 그쳤습니다. 금리가 내린 주에는 평균 +0.40% 상승했습니다. 따라서 성장주 ETF는 채권 ETF에 비해 금리 변화 자체보다는 기업의 실적이나 기술적 호재 등 다른 요인에 더 크게 반응하는 경향을 나타냅니다. 해외 상장 상품인 QQQ 역시 달러로 거래되므로 원/달러 환율 변동의 영향을 직접 받습니다.</p>\n\n<h3>계좌 종류와 최근 투자 동향</h3>\n\n<p>투자자들이 미국 국채 및 성장주 ETF에 투자할 때는 계좌별 제약 조건도 고려해야 합니다. 해외(미국 등)에 직접 상장된 TLT, IEF, SHY, QQQ 같은 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 절세 혜택이 있는 절세 계좌를 활용하려면 동일한 지수를 추종하여 국내 증시에 상장된 국내 상장 ETF를 매수해야 합니다.</p>\n\n<p>최근 금리 향방을 둘러싼 움직임 속에서 국내 투자자들의 국채 관련 상품 수요가 크게 증가하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTE15M2NJSDNSb0VjY0EzemNRWW1INW8za190OExheFYtY2NiYnkxcnBFOVpVcDdQcmN5QktXNkNYc1Z5Q19uVFpGdUY5Ql9naFUxRmc?oc=5\" target=\"_blank\" rel=\"noopener\">매일경제</a>는 금리가 인하되기 전 채권을 매수하려는 투자 수요로 인해 미국 10년물 국채 ETF로 자금이 몰리고 있다고 보도했습니다.</p>\n\n<p>이러한 흐름 속에서 국내 상장 ETF의 순자산 규모도 빠르게 성장하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5CQ3IxMENFTzl6eFBOemZfa0NlX2ZnTlpObGFTMDg4RXl3TXFnb0FpOGpZMUVfYU5DeTdwQS1KMm1aZ0Y4Vy1ObXY1SzFCLThBVU5FdHhyOWxfWHU1?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>과 <a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE80dGM2N1RJbVlwdHBJeFItemh0c0ktNkdHRVZzXzdoa2wyMEZLYUlidjQ5UFJFWE1NdXl6U2QwX2tld19tRmFfYklWblU1emNYWlB2Q0xNQjhCUVJQWjVEMXRzcEQ?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>는 'KODEX 미국10년국채액티브(H)' 상품의 순자산이 2,000억 원을 돌파했다고 밝혔습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE41X0pQYnVKbHZqYVVWelVxU1hYei1ETXdoVkpDLVFBZGJNbDg2LWNRLVpHQjNhT1NZZlA0RzFoZWFxazRLUU5nZTB4TzNzNHlZeko3UGNzaHozeFpwWFFRbTAycXpOdUlhbmxkRk83SVNzQdIBdkFVX3lxTE0tcDBIRzRabTN0aUhfZVpaMG1MLWJYS0ZXTzgycllzc2tKU3lQeHZOd2R1bEg2Tno4Y1p1OVoyZUZfWlJiVUZReVNiZVhNbmRzV3RLWmswZGstcXNIdndHUE1ndFAwLU51ZmFCeGtuempkdE1Xc3c?oc=5\" target=\"_blank\" rel=\"noopener\">포춘코리아</a>에서도 해당 펀드로 2,000억 원 이상의 자금이 유입되며 안정적인 미국 장기채 투자 수단으로 활용되고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 연평균 수익률(CAGR)과 단순 1년 수익률은 어떻게 다른가요?</h4>\n<p>단순 1년 수익률은 최근 1년 동안의 수익률만을 측정한 수치입니다. 반면 연평균 수익률(CAGR)은 ETF가 상장된 시점부터 현재까지 여러 해 동안 기록한 전체 수익을 매년 일정한 비율로 성장했다고 가정하여 1년 단위로 환산한 값입니다.</p>\n\n<h4>🔸 최대 낙폭(MDD)이 마이너스 40퍼센트를 넘는다는 것은 무슨 뜻인가요?</h4>\n<p>최대 낙폭은 지정된 기간(예: 최근 5년) 동안 고점 대비 저점까지 가장 크게 떨어진 손실 폭을 말합니다. 만약 과거 고점에서 1,000만 원을 투자했다면 가장 하락폭이 컸던 시점에는 자산 가치가 약 563만 원(약 -43.70% 하락) 수준까지 줄어들었을 수 있음을 의미합니다.</p>\n\n<h4>🔸 환헤지(H)가 붙은 상품과 붙지 않은 상품은 어떤 차이가 있나요?</h4>\n<p>환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)가 붙은 ETF는 종목명에 (H)가 표시되며 환율 변동 위험을 최소화하여 기초자산(채권 금리나 지수)의 움직임에만 수익률이 연동되도록 설계됩니다. 환헤지가 없는 언헤지 상품은 원/달러 환율이 오를 때 추가적인 환차익을 얻을 수 있지만 환율이 떨어지면 환손실을 입을 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>미국 10년물 국채 금리 변동에 따른 각 ETF의 데이터는 채권과 성장주의 뚜렷한 특징 차이를 보여줍니다. TLT와 IEF 같은 미국 국채 ETF는 금리와 강한 음의 상관관계를 형성하고 있으며, 만기(듀레이션)가 길수록 금리 변화에 따른 가격 변동 위험과 최대 낙폭 폭이 훨씬 커집니다.</p>\n\n<p>반면 성장주 ETF인 QQQ는 국채 금리와의 상관계수가 -0.02로 매우 낮아 금리가 상승하는 구간에서도 개별 기업 실적과 시장 모멘텀에 따라 플러스 수익률을 나타내기도 했습니다. 채권 ETF는 금리 하락 시 가격 상승을 기대할 수 있지만, 금리 상승기에는 자산 가치가 줄어들 위험을 함께 고려해야 합니다.</p>\n\n<p>해외에 직접 상장된 ETF는 ISA나 연금저축 계좌에서 매수할 수 없으므로 절세 혜택을 활용하고자 할 때는 국내 증시에 상장된 관련 ETF를 선택하는 전략이 필요합니다. 과거 데이터에 나타난 반응률은 지난 1년 간의 추정치일 뿐 앞으로도 동일하게 반복된다고 보장할 수 없으므로, 투자 판단 시 종목별 특성과 만기 구조를 명확히 이해하고 접근하시길 바랍니다.</p>\n\n태그: 금리변화 채권ETF 성장주ETF TLT QQQ",
+  "2": "<h1>금리가 변화할 때 채권 ETF와 성장주 ETF의 수익률은 어떻게 움직일까?</h1>\n<!-- 금리 변화에 따른 채권 ETF와 성장주 ETF의 수익률 및 상관관계를 분석합니다. 미국 10년물 금리와 TLT, IEF, SHY, QQQ의 과거 데이터를 바탕으로 시장 흐름과 투자 시 주의점을 정리해 드립니다. -->\n\n<p>2026년 11월 06일 기준, 미국 10년물 국채 금리는 4.837%를 기록하고 있습니다. 시장의 변동성이 이어지면서 원/달러 환율은 전일 대비 1.206656711471724% 상승한 1,356.24원으로 나타났습니다. 투자 심리를 나타내는 공포·탐욕 지수(CNN이 주가 흐름·변동성 등 여러 지표로 만든 0~100점 투자심리 지수. 낮을수록 공포, 높을수록 탐욕)는 19점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>이처럼 금리 향방을 둘러싼 불확실성이 커진 상황에서 국채 ETF로 자금이 몰리는 현상이 포착되고 있습니다. 금리 인하 기대감과 채권 가격의 관계를 파악하고, 채권과 성장주가 금리 변화에 어떤 다른 반응을 보이는지 데이터로 직접 짚어보겠습니다.</p>\n\n<h3>장기채와 단기채의 금리 반응</h3>\n\n<p>채권은 듀레이션(잔존만기)에 따라 금리 변화에 반응하는 폭이 크게 달라집니다. 잔존만기가 긴 장기채는 금리가 내릴 때 가격 상승 폭이 크지만, 반대로 금리가 오를 때는 하락 위험도 높습니다. 통상 금리가 떨어지면 채권 가격이 오르고 금리가 오르면 채권 가격이 내려갑니다.</p>\n\n<p>미국 국채에 투자하는 대표적인 해외 상장 ETF 3종의 과거 데이터를 비교해 보면 이러한 특징이 명확히 드러납니다. 20세 이상 장기 국채에 투자하는 TLT는 1년 수익률이 -5.21%이며 5년 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기)은 -43.70%에 달합니다. 반면 7-10년 만기 채권에 투자하는 IEF의 1년 수익률은 -1.69%, 5년 최대 낙폭은 -20.40%입니다. 1-3년 단기채인 SHY는 1년 수익률 1.61%, 5년 최대 낙폭 -5.34%를 기록하며 상대적으로 안정적인 흐름을 보였습니다.</p>\n\n<h4>🔸 만기별 미국 국채 ETF 데이터 비교</h4>\n\n<table>\n  <tr>\n    <th>티커 (종목명)</th>\n    <th>배당수익률</th>\n    <th>배당성장률</th>\n    <th>1년 수익률</th>\n    <th>상장 이후 연평균(CAGR)</th>\n    <th>최대 낙폭(5년)</th>\n  </tr>\n  <tr>\n    <td>TLT (iShares 20+ Year Treasury Bond ETF)</td>\n    <td>3.97%</td>\n    <td>-15.98%</td>\n    <td>-5.21%</td>\n    <td>-8.1%</td>\n    <td>-43.70%</td>\n  </tr>\n  <tr>\n    <td>IEF (iShares 7-10 Year Treasury Bond ETF)</td>\n    <td>3.37%</td>\n    <td>-14.33%</td>\n    <td>-1.69%</td>\n    <td>-1.5%</td>\n    <td>-20.40%</td>\n  </tr>\n  <tr>\n    <td>SHY (iShares 1-3 Year Treasury Bond ETF)</td>\n    <td>2.99%</td>\n    <td>-23.49%</td>\n    <td>1.61%</td>\n    <td>1.9%</td>\n    <td>-5.34%</td>\n  </tr>\n</table>\n\n<p>각 종목의 연평균 수익률(CAGR: 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 값) 등 구체적인 수치는 위 표에서 확인할 수 있습니다. 이 종목들은 상장일이 서로 다르므로 연평균 수익률을 동일 선상에서 직접 비교하면 안 됩니다. 지수 주간 종가 기준 분석 데이터를 보면 1년 동안 미국 10년물 금리가 4.09%에서 4.84%로 0.74%p(퍼센트포인트: 비율끼리 뺀 차이) 상승할 때 금리와 가격 사이의 상관계수(두 숫자가 같이 움직인 정도. -1에 가까우면 반대 방향)는 TLT가 -0.93, IEF가 -0.97, SHY가 -0.79를 기록했습니다.</p>\n\n<p>금리가 0.1%p 오를 때의 평균 가격 변화율을 보면 TLT가 -1.29%, IEF가 -0.70%, SHY가 -0.15% 움직였습니다. 만기가 길수록 금리 변동에 대한 반응 민감도가 크다는 것을 보여줍니다. 해당 해외 상장 ETF들은 모두 달러로 거래되므로 국내 투자자는 환율 변동에 따른 영향도 받게 됩니다.</p>\n\n<h3>성장주 ETF의 금리 상관성</h3>\n\n<p>나스닥 100 지수를 추종하는 QQQ는 대형 성장주 중심으로 구성되어 있어 채권 ETF와는 전혀 다른 금리 반응성을 보입니다. 이론적으로 고금리 환경은 미래 현금 흐름의 할인율을 높여 성장주 기업 가치에 부정적인 영향을 주지만 실제 시장 수익률 데이터는 금리 외에도 실적이나 산업 트렌드 등 다양한 변수의 영향을 받습니다.</p>\n\n<p>해외 상장 상품인 QQQ의 배당수익률은 0.48%이며 배당성장률은 8.99%를 나타내고 있습니다. 1년 수익률은 6.28%이며 5년 최대 낙폭은 -35.12%입니다. 상장 이후 연평균 수익률(CAGR)은 10.8%를 기록했습니다. 장기 국채 ETF인 TLT나 IEF가 금리 상승기 동안 1년 수익률에서 마이너스를 보인 것과 달리 성장주 ETF인 QQQ는 플러스 수익률을 유지했습니다.</p>\n\n<h4>🔸 QQQ의 금리 반응 분석</h4>\n\n<p>지난 1년간 주간 종가 기준으로 미국 10년물 금리와 QQQ의 가격 변동 상관계수를 계산해 보면 -0.02로 나타납니다. 상관계수가 0 근처에 위치한다는 것은 QQQ의 가격이 10년물 국채 금리 움직임과 통계적으로 거의 무관하게 움직였음을 의미합니다.</p>\n\n<p>금리가 0.1%p 오를 때 QQQ의 가격 반응은 평균 -0.05%에 그쳤습니다. 금리가 내린 주에는 평균 +0.40% 상승했습니다. 따라서 성장주 ETF는 채권 ETF에 비해 금리 변화 자체보다는 기업의 실적이나 기술적 호재 등 다른 요인에 더 크게 반응하는 경향을 나타냅니다. 해외 상장 상품인 QQQ 역시 달러로 거래되므로 원/달러 환율 변동의 영향을 직접 받습니다.</p>\n\n<h3>계좌 종류와 최근 투자 동향</h3>\n\n<p>투자자들이 미국 국채 및 성장주 ETF에 투자할 때는 계좌별 제약 조건도 고려해야 합니다. 해외(미국 등)에 직접 상장된 TLT, IEF, SHY, QQQ 같은 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 절세 혜택이 있는 절세 계좌를 활용하려면 동일한 지수를 추종하여 국내 증시에 상장된 국내 상장 ETF를 매수해야 합니다.</p>\n\n<p>최근 금리 향방을 둘러싼 움직임 속에서 국내 투자자들의 국채 관련 상품 수요가 크게 증가하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTE15M2NJSDNSb0VjY0EzemNRWW1INW8za190OExheFYtY2NiYnkxcnBFOVpVcDdQcmN5QktXNkNYc1Z5Q19uVFpGdUY5Ql9naFUxRmc?oc=5\" target=\"_blank\" rel=\"noopener\">매일경제</a>는 금리가 인하되기 전 채권을 매수하려는 투자 수요로 인해 미국 10년물 국채 ETF로 자금이 몰리고 있다고 보도했습니다.</p>\n\n<p>이러한 흐름 속에서 국내 상장 ETF의 순자산 규모도 빠르게 성장하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5CQ3IxMENFTzl6eFBOemZfa0NlX2ZnTlpObGFTMDg4RXl3TXFnb0FpOGpZMUVfYU5DeTdwQS1KMm1aZ0Y4Vy1ObXY1SzFCLThBVU5FdHhyOWxfWHU1?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>과 <a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE80dGM2N1RJbVlwdHBJeFItemh0c0ktNkdHRVZzXzdoa2wyMEZLYUlidjQ5UFJFWE1NdXl6U2QwX2tld19tRmFfYklWblU1emNYWlB2Q0xNQjhCUVJQWjVEMXRzcEQ?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>는 'KODEX 미국10년국채액티브(H)' 상품의 순자산이 2,000억 원을 돌파했다고 밝혔습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE41X0pQYnVKbHZqYVVWelVxU1hYei1ETXdoVkpDLVFBZGJNbDg2LWNRLVpHQjNhT1NZZlA0RzFoZWFxazRLUU5nZTB4TzNzNHlZeko3UGNzaHozeFpwWFFRbTAycXpOdUlhbmxkRk83SVNzQdIBdkFVX3lxTE0tcDBIRzRabTN0aUhfZVpaMG1MLWJYS0ZXTzgycllzc2tKU3lQeHZOd2R1bEg2Tno4Y1p1OVoyZUZfWlJiVUZReVNiZVhNbmRzV3RLWmswZGstcXNIdndHUE1ndFAwLU51ZmFCeGtuempkdE1Xc3c?oc=5\" target=\"_blank\" rel=\"noopener\">포춘코리아</a>에서도 해당 펀드로 2,000억 원 이상의 자금이 유입되며 미국 장기채 투자 수단으로 활용되고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 연평균 수익률(CAGR)과 단순 1년 수익률은 어떻게 다른가요?</h4>\n<p>단순 1년 수익률은 최근 1년 동안의 수익률만을 측정한 수치입니다. 반면 연평균 수익률(CAGR)은 ETF가 상장된 시점부터 현재까지 여러 해 동안 기록한 전체 수익을 매년 일정한 비율로 성장했다고 가정하여 1년 단위로 환산한 값입니다.</p>\n\n<h4>🔸 최대 낙폭(MDD)은 무슨 뜻인가요?</h4>\n<p>최대 낙폭은 지정된 기간 동안 고점 대비 저점까지 가장 크게 떨어진 손실 폭을 말합니다. 예를 들어 TLT의 5년 최대 낙폭 -43.70%는 고점에서 1,000만 원을 투자했을 때 가장 하락 폭이 컸던 시점에 약 563만 원(1,000만 원 × (1 - 0.4370))까지 자산 가치가 줄었을 수 있음을 의미합니다.</p>\n\n<h4>🔸 환헤지(H)가 붙은 상품과 붙지 않은 상품은 어떤 차이가 있나요?</h4>\n<p>환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)가 붙은 ETF는 종목명에 (H)가 표시되며 환율 변동 위험을 최소화하여 기초자산(채권 금리나 지수)의 움직임에만 수익률이 연동되도록 설계됩니다. 환헤지가 없는 언헤지 상품은 원/달러 환율이 오를 때 추가적인 환차익을 얻을 수 있지만 환율이 떨어지면 환손실을 입을 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>금리가 변화할 때 TLT는 금리 0.1%p 상승 시 -1.29% 변동하는 반면 QQQ는 -0.05% 변동에 그쳐 채권 ETF가 성장주 ETF보다 금리에 훨씬 민감하게 반응합니다. 만기(듀레이션)가 길수록 금리 변화에 따른 가격 변동 위험과 최대 낙폭 폭이 커집니다.</p>\n\n<p>독자 여러분이 향후 지표를 확인할 때 참고할 기준으로 금리 0.1%p당 반응률(TLT -1.29% vs QQQ -0.05%), 상관계수(TLT -0.93 vs QQQ -0.02), 그리고 듀레이션에 따른 최대 낙폭(TLT -43.70% vs SHY -5.34%) 등 3가지 수치를 기준으로 살펴볼 수 있습니다.</p>\n\n<p>해외에 직접 상장된 ETF는 ISA나 연금저축 계좌에서 매수할 수 없으므로 절세 혜택을 활용하고자 할 때는 국내 증시에 상장된 관련 ETF를 선택하는 전략이 필요합니다. 과거 데이터에 나타난 반응률은 지난 1년 간의 추정치일 뿐 앞으로도 동일하게 반복된다고 보장할 수 없으므로, 투자 판단 시 종목별 특성과 만기 구조를 명확히 이해하고 접근하시길 바랍니다.</p>\n\n태그: 금리변화 채권ETF 성장주ETF TLT QQQ",
+  "3": "<h1>금리가 변화할 때 채권 ETF와 성장주 ETF의 수익률은 어떻게 움직일까?</h1>\n<!-- 금리 변화에 따른 채권 ETF와 성장주 ETF의 수익률 및 상관관계를 분석합니다. 미국 10년물 금리와 TLT, IEF, SHY, QQQ의 과거 데이터를 바탕으로 시장 흐름과 투자 시 주의점을 정리해 드립니다. -->\n\n<p>2026년 11월 06일 기준, 미국 10년물 국채 금리는 4.837%를 기록하고 있습니다. 시장의 변동성이 이어지면서 원/달러 환율은 전일 대비 1.206656711471724% 상승한 1,356.24원으로 나타났습니다. 투자 심리를 나타내는 공포·탐욕 지수(CNN이 주가 흐름·변동성 등 여러 지표로 만든 0~100점 투자심리 지수. 낮을수록 공포, 높을수록 탐욕)는 19점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>이처럼 금리 향방을 둘러싼 불확실성이 커진 상황에서 국채 ETF로 자금이 몰리는 현상이 포착되고 있습니다. 금리 인하 기대감과 채권 가격의 관계를 파악하고, 채권과 성장주가 금리 변화에 어떤 다른 반응을 보이는지 데이터로 직접 짚어보겠습니다.</p>\n\n<h3>장기채와 단기채의 금리 반응</h3>\n\n<p>채권은 듀레이션(잔존만기)에 따라 금리 변화에 반응하는 폭이 크게 달라집니다. 잔존만기가 긴 장기채는 금리가 내릴 때 가격 상승 폭이 크지만, 반대로 금리가 오를 때는 하락 위험도 높습니다. 통상 금리가 떨어지면 채권 가격이 오르고 금리가 오르면 채권 가격이 내려갑니다.</p>\n\n<p>미국 국채에 투자하는 대표적인 해외 상장 ETF 3종의 과거 데이터를 비교해 보면 이러한 특징이 명확히 드러납니다. 20세 이상 장기 국채에 투자하는 TLT는 1년 수익률이 -5.21%이며 5년 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기)은 -43.70%에 달합니다. 반면 7-10년 만기 채권에 투자하는 IEF의 1년 수익률은 -1.69%, 5년 최대 낙폭은 -20.40%입니다. 1-3년 단기채인 SHY는 1년 수익률 1.61%, 5년 최대 낙폭 -5.34%를 기록하며 상대적으로 안정적인 흐름을 보였습니다.</p>\n\n<h4>🔸 만기별 미국 국채 ETF 데이터 비교</h4>\n\n<table>\n  <tr>\n    <th>티커 (종목명)</th>\n    <th>배당수익률</th>\n    <th>배당성장률</th>\n    <th>1년 수익률</th>\n    <th>상장 이후 연평균(CAGR)</th>\n    <th>최대 낙폭(5년)</th>\n  </tr>\n  <tr>\n    <td>TLT (iShares 20+ Year Treasury Bond ETF)</td>\n    <td>3.97%</td>\n    <td>-15.98%</td>\n    <td>-5.21%</td>\n    <td>-8.1%</td>\n    <td>-43.70%</td>\n  </tr>\n  <tr>\n    <td>IEF (iShares 7-10 Year Treasury Bond ETF)</td>\n    <td>3.37%</td>\n    <td>-14.33%</td>\n    <td>-1.69%</td>\n    <td>-1.5%</td>\n    <td>-20.40%</td>\n  </tr>\n  <tr>\n    <td>SHY (iShares 1-3 Year Treasury Bond ETF)</td>\n    <td>2.99%</td>\n    <td>-23.49%</td>\n    <td>1.61%</td>\n    <td>1.9%</td>\n    <td>-5.34%</td>\n  </tr>\n</table>\n\n<p>이 종목들은 상장일이 서로 다르므로 연평균 수익률을 동일 선상에서 직접 비교하면 안 됩니다. 지수 주간 종가 기준 분석 데이터를 보면 1년 동안 미국 10년물 금리가 4.09%에서 4.84%로 0.74%p(퍼센트포인트: 비율끼리 뺀 차이) 상승할 때 금리와 가격 사이의 상관계수(두 숫자가 같이 움직인 정도. -1에 가까우면 반대 방향)는 TLT가 -0.93, IEF가 -0.97, SHY가 -0.79를 기록했습니다.</p>\n\n<p>금리가 0.1%p 오를 때의 평균 가격 변화율을 보면 TLT가 -1.29%, IEF가 -0.70%, SHY가 -0.15% 움직였습니다. 만기가 길수록 금리 변동에 대한 반응 민감도가 크다는 것을 보여줍니다. 해당 해외 상장 ETF들은 모두 달러로 거래되므로 국내 투자자는 환율 변동에 따른 영향도 받게 됩니다.</p>\n\n<h3>성장주 ETF의 금리 상관성</h3>\n\n<p>나스닥 100 지수를 추종하는 QQQ는 대형 성장주 중심으로 구성되어 있어 채권 ETF와는 전혀 다른 금리 반응성을 보입니다. 지수 주간 종가 기준 지난 1년간 미국 10년물 금리와 QQQ의 가격 변동 상관계수는 -0.02로, 금리가 0.1%p 오를 때 QQQ의 가격 반응은 평균 -0.05% 수준을 나타냈습니다.</p>\n\n<p>해외 상장 상품인 QQQ의 배당수익률은 0.48%이며 배당성장률은 8.99%를 나타내고 있습니다. 1년 수익률은 6.28%이며 5년 최대 낙폭은 -35.12%입니다. 상장 이후 연평균 수익률(CAGR)은 10.8%를 기록했습니다. 장기 국채 ETF인 TLT나 IEF가 금리 상승기 동안 1년 수익률에서 마이너스를 보인 것과 달리 성장주 ETF인 QQQ는 플러스 수익률을 유지했습니다.</p>\n\n<h4>🔸 QQQ의 금리 반응 분석</h4>\n\n<p>지난 1년간 주간 종가 기준으로 미국 10년물 금리와 QQQ의 가격 변동 상관계수를 계산해 보면 -0.02로 나타납니다. 상관계수가 0 근처에 위치한다는 것은 QQQ의 가격이 10년물 국채 금리 움직임과 통계적으로 거의 무관하게 움직였음을 의미합니다.</p>\n\n<p>금리가 오른 주에는 QQQ 가격이 평균 -0.05% 변동했고, 금리가 내린 주에는 평균 +0.40% 상승했습니다. 따라서 성장주 ETF는 채권 ETF에 비해 금리 변화 자체보다는 기업의 실적이나 기술적 호재 등 다른 요인에 더 크게 반응하는 경향을 나타냅니다. 해외 상장 상품인 QQQ 역시 달러로 거래되므로 원/달러 환율 변동의 영향을 직접 받습니다.</p>\n\n<h3>계좌 종류와 최근 투자 동향</h3>\n\n<p>투자자들이 미국 국채 및 성장주 ETF에 투자할 때는 계좌별 제약 조건도 고려해야 합니다. 해외(미국 등)에 직접 상장된 TLT, IEF, SHY, QQQ 같은 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형퇴직연금(IRP) 계좌로 직접 매수할 수 없습니다. 따라서 절세 혜택이 있는 절세 계좌를 활용하려면 동일한 지수를 추종하여 국내 증시에 상장된 국내 상장 ETF를 매수해야 합니다.</p>\n\n<p>최근 금리 향방을 둘러싼 움직임 속에서 국내 투자자들의 국채 관련 상품 수요가 크게 증가하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUkFVX3lxTE15M2NJSDNSb0VjY0EzemNRWW1INW8za190OExheFYtY2NiYnkxcnBFOVpVcDdQcmN5QktXNkNYc1Z5Q19uVFpGdUY5Ql9naFUxRmc?oc=5\" target=\"_blank\" rel=\"noopener\">매일경제</a>는 금리가 인하되기 전 채권을 매수하려는 투자 수요로 인해 미국 10년물 국채 ETF로 자금이 몰리고 있다고 보도했습니다.</p>\n\n<p>이러한 흐름 속에서 국내 상장 ETF의 순자산 규모도 빠르게 성장하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5CQ3IxMENFTzl6eFBOemZfa0NlX2ZnTlpObGFTMDg4RXl3TXFnb0FpOGpZMUVfYU5DeTdwQS1KMm1aZ0Y4Vy1ObXY1SzFCLThBVU5FdHhyOWxfWHU1?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>과 <a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTE80dGM2N1RJbVlwdHBJeFItemh0c0ktNkdHRVZzXzdoa2wyMEZLYUlidjQ5UFJFWE1NdXl6U2QwX2tld19tRmFfYklWblU1emNYWlB2Q0xNQjhCUVJQWjVEMXRzcEQ?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>는 'KODEX 미국10년국채액티브(H)' 상품의 순자산이 2,000억 원을 돌파했다고 밝혔습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE41X0pQYnVKbHZqYVVWelVxU1hYei1ETXdoVkpDLVFBZGJNbDg2LWNRLVpHQjNhT1NZZlA0RzFoZWFxazRLUU5nZTB4TzNzNHlZeko3UGNzaHozeFpwWFFRbTAycXpOdUlhbmxkRk83SVNzQdIBdkFVX3lxTE0tcDBIRzRabTN0aUhfZVpaMG1MLWJYS0ZXTzgycllzc2tKU3lQeHZOd2R1bEg2Tno4Y1p1OVoyZUZfWlJiVUZReVNiZVhNbmRzV3RLWmswZGstcXNIdndHUE1ndFAwLU51ZmFCeGtuempkdE1Xc3c?oc=5\" target=\"_blank\" rel=\"noopener\">포춘코리아</a>에서도 해당 펀드로 2,000억 원 이상의 자금이 유입되며 미국 장기채 투자 수단으로 활용되고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 연평균 수익률(CAGR)과 단순 1년 수익률은 어떻게 다른가요?</h4>\n<p>단순 1년 수익률은 최근 1년 동안의 수익률만을 측정한 수치입니다. 반면 연평균 수익률(CAGR)은 ETF가 상장된 시점부터 현재까지 여러 해 동안 기록한 전체 수익을 매년 일정한 비율로 성장했다고 가정하여 1년 단위로 환산한 값입니다.</p>\n\n<h4>🔸 최대 낙폭(MDD)은 무슨 뜻인가요?</h4>\n<p>최대 낙폭은 지정된 기간 동안 고점 대비 저점까지 가장 크게 떨어진 손실 폭을 말합니다. 기준 금액을 설정하여 가정한 예시로, TLT에 1억 원을 투자했다면 5년 최대 낙폭 -43.70%가 발생했을 때 자산 평가액이 가장 낮은 시점에 약 5,630만 원까지 줄었을 수 있음을 의미합니다.</p>\n\n<h4>🔸 환헤지(H)가 붙은 상품과 붙지 않은 상품은 어떤 차이가 있나요?</h4>\n<p>환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)가 붙은 ETF는 종목명에 (H)가 표시되며 환율 변동 위험을 최소화하여 기초자산(채권 금리나 지수)의 움직임에만 수익률이 연동되도록 설계됩니다. 환헤지가 없는 언헤지 상품은 원/달러 환율이 오를 때 추가적인 환차익을 얻을 수 있지만 환율이 떨어지면 환손실을 입을 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>금리가 변화할 때 TLT는 금리 0.1%p 상승 시 -1.29% 변동하는 반면 QQQ는 -0.05% 변동에 그쳐 채권 ETF가 성장주 ETF보다 금리에 훨씬 민감하게 반응합니다. 만기(듀레이션)가 길수록 금리 변화에 따른 가격 변동 위험과 최대 낙폭 폭이 커집니다.</p>\n\n<p>독자 여러분이 향후 지표를 확인할 때 참고할 기준으로 금리 0.1%p당 반응률(TLT -1.29% vs QQQ -0.05%), 상관계수(TLT -0.93 vs QQQ -0.02), 그리고 듀레이션에 따른 최대 낙폭(TLT -43.70% vs SHY -5.34%) 등 3가지 수치를 기준으로 살펴볼 수 있습니다.</p>\n\n<p>해외에 직접 상장된 ETF는 ISA나 연금저축 계좌에서 매수할 수 없으므로 절세 혜택을 활용하고자 할 때는 국내 증시에 상장된 관련 ETF를 선택하는 전략이 필요합니다. 과거 데이터에 나타난 반응률은 지난 1년 간의 추정치일 뿐 앞으로도 동일하게 반복된다고 보장할 수 없으므로, 투자 판단 시 종목별 특성과 만기 구조를 명확히 이해하고 접근하시길 바랍니다.</p>\n\n태그: 금리변화 채권ETF 성장주ETF TLT QQQ"
+ },
+ "minutes": 2.9
+}
