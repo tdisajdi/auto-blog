@@ -193,6 +193,10 @@ def ticker_facts(ticker, d, ea, today_label):
         lines.append(f"- 매매차익 세금 예시(코드 계산): 국내 상장 해외지수 ETF는 한 해 이익 1,000만 원이면 15.4% → {_won(gain * ea.TAX_DOMESTIC_DIVIDEND)}"
                      f", ISA(일반형)라면 200만 원 공제 후 9.9% → {_won(max(0, gain - ea.ISA_TAX_FREE_LIMIT) * ea.ISA_SEPARATE_TAX)}"
                      " (국내 주식형 ETF라면 매매차익 비과세)")
+    # 금융소득종합과세: 세금 가이드 자료에는 있는데 분석 글 자료에 없어서, 작가가 맞게 써도 '자료에 없음'으로 지적됨(2026-11-07 VOO)
+    lines.append("- 금융소득종합과세: 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 넘는 부분은 다른 소득과 합쳐 과세"
+                 + (" (해외 ETF 배당도 포함, 해외 ETF 매매차익(양도소득)은 포함 안 됨)" if overseas
+                    else " (국내 상장 해외지수 ETF 매매차익은 배당소득으로 잡혀 포함됨)"))
     fee = d.get("fee_impact_100m_10y")
     if fee not in _EMPTY:
         lines.append(f"- 보수 차이 예시(코드 계산): 운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 "
