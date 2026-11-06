@@ -240,7 +240,7 @@ assert v == 0.4 and marks["answers_title"] and not marks["plain_words"] and tip,
 print("value review ok")
 
 # 2026-11-05: 필수 답(정리의 숫자)은 반복 지적 예외 - 독자 편집·고쳐쓰기 규칙이 서로 부딪히지 않게
-assert "반복으로 지적하지 말 것" in desk.prompt("review_reader", category_label="c", facts="", must="")
+assert "'사소'로만" in desk.prompt("review_reader", category_label="c", facts="", must="")
 assert "직접 답" in open("ondo/writing/prompts/rewrite.txt", encoding="utf-8").read()
 print("must vs repetition ok")
 
