@@ -632,7 +632,8 @@ def run_explainer(topic, etf_module):
                                 "해석하세요.\n" if "<table" in (visual or "") else "")
               # 11-08 적립식 가이드: 세금 사실을 주자 세금 소제목·세금 FAQ까지 만들고, 자료에 없는 결론('국내 추가 원천징수 없음')도 씀
               + ("- [세금은 짧게] 이 글의 주제는 세금이 아닙니다. 세금은 [세금 사실] 안의 내용으로 한 문단 이내만 쓰고, 세금 소제목·"
-                 "세금 FAQ는 만들지 마세요. 자료에 없는 세금 결론(추가로 내는지 등)은 쓰지 마세요.\n" if not include_tax else ""),
+                 "세금 FAQ는 만들지 마세요. 자료에 없는 세금 결론은 쓰지 마세요 - 특히 '미국에서 낸 배당세 15%와 국내 세율의 차이를 "
+                 "국내에서 더 내는지(추가 원천징수 여부)'는 자료에 없습니다(공식 근거로 확인 안 됨).\n" if not include_tax else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
