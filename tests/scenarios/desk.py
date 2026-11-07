@@ -83,7 +83,7 @@ def _sent(rng):
 def long_html(tag="", n=80):
     rng = random.Random(len(tag) * 1000 + n)
     paras = "".join(f"<p>{tag}{_sent(rng)} {_sent(rng)}</p>" for i in range(n))
-    return f"<h1>시험 제목</h1><!-- 메타 -->{paras}<h3>섹션1</h3><p>내용</p>\n태그: 가 나 다 라 마"
+    return f"<h1>시험 제목</h1><!-- 메타 -->{paras}<h3>섹션1</h3><p>내용</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 시험 글의 핵심을 한 문장으로 짚는다.</p>\n태그: 가 나 다 라 마"
 
 calls = {"review": 0, "rewrite": 0, "section": 0, "unify": 0}
 VALUE_ANSWER = {"best_improvement": "청약 정책을 넣으세요", **{k: {"yes": True, "quote": ""} for k in ["answers_title", "unique_info", "decision_rule", "plain_words", "numbers_explained"]}}
