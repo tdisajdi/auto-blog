@@ -560,7 +560,11 @@ def run_explainer(topic, etf_module):
             calc_facts, visual = tax_scenarios()
             facts_text += "\n" + calc_facts
         else:
-            visual = price_chart(t["tickers"], data_cache)
+            # 세금 외 가이드: 제목 질문에 답하는 숫자를 코드가 계산(2026-11-08, guide_calcs.py). 실패하면 가격 그래프만.
+            import guide_calcs
+            calc_facts, visual = guide_calcs.guide_facts(topic_id, data_cache, rates_effect=rates_effect)
+            facts_text += ("\n" + calc_facts) if calc_facts else ""
+            visual = visual or price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
         k = ISSUE_KINDS[topic_id]
         kind_label, title_seed, article_type = "이슈 해설", k["title_hint"], "issue"
