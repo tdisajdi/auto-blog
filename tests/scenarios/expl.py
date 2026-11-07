@@ -33,6 +33,8 @@ print("fx effect ok")
 # 2026-11-02: 환율 변화 0.0%는 사실 자료에서 빠지고, 본문 영어 구절은 교열이 잡는다
 assert xe._day_move({"usd_krw_diff_pct": 0.0}) == ""
 assert "-0.42%" in xe._day_move({"usd_krw_diff_pct": -0.42, "usd_krw_direction": "하락"})
+assert "1.21%" in xe._day_move({"usd_krw_diff_pct": 1.214117186666646}) and "1.2141" not in xe._day_move({"usd_krw_diff_pct": 1.214117186666646})
+assert "상장 해외 상장" not in xe._ticker_fact_line("SPY", {"name": "S", "listing": "해외 상장", "mdd": "-24%"})
 from ondo.checks import lint
 assert lint.english_phrases("<p>환율 효과(calculated by ondo), VOO와 S&P 500</p><p>태그: etf, fx rate check</p>") == ["calculated by ondo"]
 print("fx filler/english ok")
