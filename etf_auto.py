@@ -6637,15 +6637,18 @@ def run_automation():
                 "sector": sector_analysis_html, "scenario": scenario_html, "macro": macro_thermo_html,
             })
             kind = "comparison" if len(etf_list) >= 2 else "analysis"
+            _facts = _analysis.fact_sheet(etf_list, etf_data_cache, sys.modules[__name__], macro_data, recent_news,
+                                          drawer_html, now.strftime("%Y년 %m월 %d일"), previous_analyses)
+            # 거의 같이 움직이는 두 상품이면 필수 질문을 '얼마나 같고 무엇이 다른가'로(11-08 TIGER vs ACE)
+            must_key = "comparison_twin" if kind == "comparison" and _analysis.is_twin(_facts) else kind
             produce_article(
                 kind_label="ETF 비교" if kind == "comparison" else "ETF 분석",
                 # 검색용 제목 최적화가 "환율과 금리가 S&P500 수익률에 미치는 영향"처럼 자료가 답하지 못하는 것을 약속해서
                 # 필수 질문(제목에 답하기)에서 계속 걸렸다(2026-11-05 VOO). 편집국에는 자료가 답하는 것만 약속하는 제목을 준다.
                 title_seed=(f"{title_tickers} 비교: 수익·낙폭·보수·세금을 같은 기준으로 보기" if kind == "comparison"
                             else f"{title_tickers} 점검: 수익·낙폭·배당·세금을 숫자로 보기"),
-                facts_text=_analysis.fact_sheet(etf_list, etf_data_cache, sys.modules[__name__], macro_data, recent_news,
-                                                drawer_html, now.strftime("%Y년 %m월 %d일"), previous_analyses),
-                rules=_analysis.ANALYSIS_RULES, must_answer=_analysis.MUST_ANSWER[kind],
+                facts_text=_facts,
+                rules=_analysis.ANALYSIS_RULES, must_answer=_analysis.MUST_ANSWER[must_key],
                 category_label=f"ETF/{'비교' if kind == 'comparison' else '종목 분석'}", article_type=kind,
                 topic_id=",".join(t.replace(".KS", "") for t in etf_list), memo=operator_memo,
                 closing_html=_analysis.closing_html(recent_news), drawer=drawer, drawer_html=drawer_html,

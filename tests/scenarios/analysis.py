@@ -114,4 +114,11 @@ _B = _pd.Series(100 * _np.cumprod(1 + _ra * 1.5 + 0.0001), index=_d[0:]).iloc[10
 blk = _an.same_period_block(["VOO", "QQQ"], {"VOO": _A, "QQQ": _B})
 assert blk.startswith("[같은 기간 비교") and _d[100].strftime("%Y-%m-%d") in blk and "더 오른 해" in blk and float(blk.split("상관계수 ")[1][:4]) >= 0.9, blk
 assert _an.same_period_block(["VOO"], {"VOO": _A}) == ""
+assert not _an.is_twin(blk), blk          # 1.5배로 움직이는 두 상품은 쌍둥이 아님
 print("same period ok")
+# 2026-11-08: 거의 같이 움직이는 두 상품(같은 지수 다른 운용사)은 쌍둥이 표시 → 필수 질문을 바꿈
+_T = _A * (1 + _np.random.default_rng(2).normal(0, 0.0003, 750))
+blk2 = _an.same_period_block(["360750.KS", "360200.KS"], {"360750.KS": _A, "360200.KS": _T})
+assert _an.is_twin(blk2) and "거의 같이 움직였다" in blk2, blk2
+assert "comparison_twin" in _an.MUST_ANSWER and any("억지로 차이를 만들지" in q for q in _an.MUST_ANSWER["comparison_twin"])
+print("twin comparison ok")
