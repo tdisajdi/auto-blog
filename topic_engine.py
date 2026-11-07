@@ -829,11 +829,34 @@ def _check_returns(tickers):
             print(f"{t}: 확인 실패 {type(e).__name__}: {e}")
 
 
+def _probe_kr_fee_sources(code):
+    """국내 ETF 총보수를 어디서 읽을 수 있는지 후보 주소를 차례로 불러 상태와 '보수' 주변 글자를 출력(발행 안 함, 키 없음)."""
+    urls = [
+        f"https://m.stock.naver.com/api/stock/{code}/integration",
+        f"https://m.stock.naver.com/api/stock/{code}/etfAnalysis",
+        f"https://navercomp.wisereport.co.kr/v2/ETF/index.aspx?cmp_cd={code}",
+        f"https://finance.naver.com/item/coinfo.naver?code={code}",
+        f"https://finance.naver.com/item/main.naver?code={code}",
+    ]
+    hdr = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"}
+    for u in urls:
+        try:
+            r = requests.get(u, headers=hdr, timeout=(8, 20))
+            t = r.text
+            hits = [m.start() for m in re.finditer(r"보수", t)][:3]
+            around = " | ".join(re.sub(r"\s+", " ", t[max(0, i - 60):i + 80]) for i in hits)
+            print(f"- {u}\n  상태 {r.status_code}, 길이 {len(t)}, '보수' {len(hits)}곳: {around[:400]}")
+        except Exception as e:
+            print(f"- {u}\n  실패 {type(e).__name__}: {e}")
+
+
 def run_check_sources():
     """깃허브에서 EIA·KOSIS 키가 실제로 작동하는지, 통계표가 어떤 항목을 주는지 점검 (발행 안 함)."""
     print("=== 텔레그램 ===")
     from blog_engine import telegram_diagnose
     telegram_diagnose()
+    print("=== 국내 ETF 보수 자료 후보 주소 진단(2026-11-08: 네이버 화면 스크래핑이 깃허브에서 보수를 못 읽음) ===")
+    _probe_kr_fee_sources("360750")
     print("=== ETF 1년 수익률 교차 확인(같은 값을 두 방법으로) ===")
     _check_returns(["SCHD", "SPY", "QQQ", "TLT", "VOO"])
     print("=== EIA (미국 원유 재고) ===")
