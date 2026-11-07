@@ -132,6 +132,10 @@ def fix_and_check(html):
     eng = english_phrases(h)
     if eng:
         issues.append(f"영어 문구 '{eng[0]}' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)")
+    else:
+        word = english_words(h)
+        if word:
+            issues.append(f"영어 단어 '{word[0]}' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)")
     awk = [why for w, why in AWKWARD.items() if w in text]
     if awk:
         issues.append(f"{SOFT}어려운 말: {'; '.join(awk[:3])}")
@@ -175,6 +179,23 @@ def fix_and_check(html):
     if cells:
         issues.append(f"표에 빈칸 표시('{text_of(cells[0])}') {len(cells)}곳 - 값이 없는 줄·칸은 표에서 빼거나 표 구성을 바꿀 것")
     return h, issues, fixes
+
+
+ENGLISH_OK = {"ondo"}     # 블로그 이름
+
+
+def english_words(html):
+    """한국어 문장 속 소문자 영어 단어(4글자 이상). 11-08: 'excess 금액', 'absolute한' 같은 단어가 검토에선 '사소'라 통과를 못 막음.
+    지난 임시글 148개에 돌려 보니 'ondo'(블로그 이름) 말고는 모두 진짜 실수였다(fluctuations·distortion·intermediate 등).
+    종목 코드는 대문자라 안 걸림. 링크 주소·태그 줄은 뺀다."""
+    t = re.sub(r"태그:.*", " ", text_of(re.sub(r"<a\b[^>]*>", "", html)))
+    t = re.sub(r"https?://\S+|\S+@\S+", " ", t)
+    out = []
+    for m in re.finditer(r"(?<![A-Za-z./@#-])([a-z]{4,})(?![A-Za-z./@-])", t):
+        w = m.group(1)
+        if w not in ENGLISH_OK and re.search(r"[가-힣]", t[max(0, m.start() - 12):m.end() + 8]):
+            out.append(w)
+    return out
 
 
 def english_phrases(html):
