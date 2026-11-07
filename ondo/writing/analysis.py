@@ -164,7 +164,10 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("운용보수(연)", d.get("expense_ratio")),
              _line("순자산(규모)", d.get("aum_str")),
              _line(f"기간별 가격 수익률({today_label} 기준, 배당 제외)", rets or None),
-             _line(f"상장 이후 연평균 수익률(CAGR, {d.get('inception_date', '상장일')}부터 - 상장일이 다른 ETF와 직접 비교 금지)",
+             _line(f"상장 이후 연평균 수익률(CAGR, "
+                   # 국내 ETF는 상장일을 못 받아 '정보 없음부터'라는 이상한 이름표가 나왔다(11-08 TIGER vs ACE)
+                   + (f"{d['inception_date']}부터 - " if d.get("inception_date") not in _EMPTY else "")
+                   + "상장일이 다른 ETF와 직접 비교 금지)",
                    f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
              _line("최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
              _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),
@@ -278,7 +281,24 @@ def same_period_block(etf_list, closes=None):
     if len(wk) >= 30:
         corr = wk[a].corr(wk[b])
         lines.append(f"- 주간 수익률 상관계수 {corr:.2f}(-1~+1, 1에 가까우면 거의 같이 움직임 - 둘 다 가지고 있어도 흔들림을 나누는 효과가 작다는 뜻)")
+        gap = abs((df[a].iloc[-1] / df[a].iloc[0]) - (df[b].iloc[-1] / df[b].iloc[0])) * 100
+        # 쌍둥이 상품(같은 지수를 따르는 운용사만 다른 상품 등): 11-08 TIGER vs ACE S&P500 - 5년 가격 차이 0.6%p, 상관계수 1.00인데
+        # '수익을 중시하면 A, 낙폭을 중시하면 B' 틀을 억지로 씌워 "미세하게라도 높은…" 같은 억지 문장이 나옴
+        # 상관계수는 '같은 방향'만 본다 - 1.5배·2배로 움직이는 상품도 1.00이 나와서(시험에서 발견) 흔들림 크기 비율도 본다
+        vol_ratio = float(wk[a].std() / wk[b].std()) if wk[b].std() else 0
+        if corr >= TWIN_CORR and gap < TWIN_GAP and 1 / TWIN_VOL <= vol_ratio <= TWIN_VOL:
+            lines.append(f"- {TWIN_MARK}: 같은 기간 가격 변화 차이 {gap:.1f}%p, 상관계수 {corr:.2f} → 두 ETF는 거의 같이 움직였다. "
+                         "이런 경우 수익률·낙폭의 작은 차이보다 보수·분배금 같은 비용 차이가 실제 차이가 될 수 있다(자료에 값이 있는 항목만 비교).")
     return "\n".join(lines)
+
+
+TWIN_CORR, TWIN_GAP, TWIN_VOL = 0.98, 5.0, 1.1
+TWIN_MARK = "두 ETF 움직임 비교(코드 계산)"
+
+
+def is_twin(facts_text):
+    """같은 기간 비교 자료에 '거의 같이 움직임' 줄이 있으면 쌍둥이 비교 글(필수 질문을 바꾼다)."""
+    return TWIN_MARK in (facts_text or "")
 
 
 def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previous_analyses=None):
@@ -312,4 +332,10 @@ MUST_ANSWER = {
                    # '적합하다'는 금지 표현이라, 검토가 그 말로 고치라고 하면 교열에서 다시 막혔다(2026-11-07) - 쓰는 모양을 정해 준다
                    "어떤 조건이면 어느 쪽 특징이 맞는지 - '적합·추천' 같은 말 없이 '○○을 중시한다면 A의 ~(숫자)가, △△을 감수할 수 있다면 "
                    "B의 ~(숫자)가 해당한다'처럼 조건과 숫자로"],
+    # 거의 같이 움직이는 두 상품(같은 지수의 다른 운용사 등) - '어느 쪽이 낫나' 틀 대신 '얼마나 같고 무엇이 다른가'(11-08)
+    "comparison_twin": ["두 ETF는 각각 무엇에 투자하나",
+                        "같은 기간 가격 변화 차이와 상관계수로 본 두 ETF가 얼마나 비슷한가(숫자로)",
+                        "자료에 있는 비용 차이(보수·분배금 등) - 자료에 값이 없는 항목은 쓰지 말 것",
+                        "한국 투자자 기준 세금·계좌·환율(두 상품이 같으면 같다고 한 번만)",
+                        "두 상품이 거의 같이 움직일 때 고를 때 확인할 숫자 - '적합·추천' 없이, 억지로 차이를 만들지 말 것"],
 }
