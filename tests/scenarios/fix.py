@@ -111,3 +111,45 @@ _, iss6, _ = lint.fix_and_check("<h1>t</h1><p>VOO는 2022년 1월 3일 고점에
                                 "QQQ는 2021년 12월 27일 고점에서 2022년 11월 3일 바닥까지 떨어진 뒤 2023년 12월 13일에 되찾았다.</p><p>태그: a</p>")
 assert not [i for i in iss6 if "숫자 줄글 나열" in i], iss6
 print("dates not year list ok")
+# 2026-11-08: KOSIS 표가 objL 단계를 더 요구하면 한 단계씩 늘려 다시 요청
+_calls = []
+class _KR:
+    def __init__(self, j): self._j = j
+    def json(self): return self._j
+def _kget(url, params=None, **k):
+    _calls.append(dict(params))
+    if "objL2" not in params:
+        return _KR({"err": "20", "errMsg": "필수요청변수값이 누락되었습니다. (objL)"})
+    return _KR([{"PRD_DE": "2024", "DT": "1"}])
+import importlib
+te = importlib.reload(te)          # 앞에서 kosis_data를 가짜로 바꿔 둬서 원래 함수로 되돌림
+_oldget = te.requests.get
+te.requests.get = _kget
+_oldkey = os.environ.get("KOSIS_API_KEY"); os.environ["KOSIS_API_KEY"] = "x"
+rows, err = te.kosis_data("110", "T", "Y", 3)
+assert rows and not err and len(_calls) == 2 and _calls[1]["objL2"] == "ALL", (rows, err, _calls)
+te.requests.get = _oldget
+print("kosis objL retry ok")
+# 2026-11-08: 분류2(예: 외국인근로자·귀화자)가 있는 표는 분류별로 따로 모아야 숫자가 섞이지 않음
+_rows = [{"C1": "A00", "C1_NM": "합계", "C2_NM": c2, "ITM_NM": "시도별 외국인주민 현황", "UNIT_NM": "명", "PRD_DE": p, "DT": v}
+         for c2, p, v in [("계", "2023", "100"), ("계", "2024", "120"), ("귀화자", "2023", "10"), ("귀화자", "2024", "11")]]
+_ser = te._kosis_series(_rows)
+assert _ser == {("계", "명"): [("2023", 100.0), ("2024", 120.0)], ("귀화자", "명"): [("2023", 10.0), ("2024", 11.0)]}, _ser
+print("kosis sub-classification ok")
+# 2026-11-08: 표별 이름 바꾸기·비율 계산·항목 고르기(외국인주민 표)
+_ser2 = {("합계", "명"): [("2023", 200.0), ("2024", 250.0)], ("총인구", "명"): [("2023", 5000.0), ("2024", 5000.0)],
+         ("귀화자", "명"): [("2024", 9.0)], ("외국인주민 세대수", "세대"): [("2024", 7.0)]}
+_tb = {"rename": {"합계": "외국인주민 합계"}, "items": ["외국인주민 합계", "귀화자"],
+       "ratio": ("외국인주민 합계", "총인구", "총인구 대비 외국인주민 비율")}
+_sh = te._kosis_shape(_ser2, _tb)
+assert list(_sh) == [("외국인주민 합계", "명"), ("총인구 대비 외국인주민 비율", "%"), ("귀화자", "명")], list(_sh)
+assert _sh[("총인구 대비 외국인주민 비율", "%")] == [("2023", 4.0), ("2024", 5.0)], _sh
+assert te._kosis_shape({("a", ""): [("1", 1.0)]}, {}) == {("a", ""): [("1", 1.0)]}
+print("kosis shape ok")
+# 2026-11-08: 분류3(합계·남자·여자)은 합계만, 단위가 빈 세부 분류는 상위 분류 단위를 물려받음
+_rows3 = [{"C1_NM": "합계", "C2": c2, "C2_NM": n2, "C3_NM": c3, "ITM_NM": "현황", "UNIT_NM": u, "PRD_DE": "2024", "DT": v}
+          for c2, n2, c3, u, v in [("AD", "국적 미취득", "합계", "명", "100"), ("AD", "국적 미취득", "남자", "명", "60"),
+                                   ("ADAA", "외국인근로자", "합계", "", "40"), ("ADAA", "외국인근로자", "여자", "", "10")]]
+_ser3 = te._kosis_series(_rows3)
+assert _ser3 == {("국적 미취득", "명"): [("2024", 100.0)], ("외국인근로자", "명"): [("2024", 40.0)]}, _ser3
+print("kosis c3 total + unit inherit ok")

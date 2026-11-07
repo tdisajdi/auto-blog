@@ -530,6 +530,21 @@ KOSIS_TABLES = [
      "terms": "통계청 인구주택총조사 기준 '일반가구'는 전체 가구에서 집단가구(기숙사·사회시설 등)와 외국인가구를 뺀 가구, "
               "'1인가구'는 혼자서 살림하는 가구. 1인가구비율 = 1인가구 ÷ 일반가구 × 100",
      "keywords": ["1인 가구", "1인가구", "혼자 사는", "나홀로"]},
+    # 외국인주민(행정안전부, KOSIS 기관 110): 이주배경인구 뉴스 글이 뉴스 제목뿐이라 자료가 얇고 확인 안 된 주장이 섞임(2026-11-08)
+    # → 근거 자료로만 붙인다(새 주제 후보로는 안 씀). 표 생김새는 11-08 check_sources로 확인함.
+    {"key": "foreign", "name": "외국인주민 현황", "org": "110", "tbl": "TX_11025_A000_A", "prd": "Y", "n": 10, "main": "외국인주민 합계",
+     "candidate": False,
+     # 분류2가 16개(합계·총인구·국적 미취득자와 그 세부·귀화자·자녀·세대수) → 이름을 알아보기 쉽게 바꾸고 글에 쓸 8개만 고른다.
+     "rename": {"합계": "외국인주민 합계"},
+     "items": ["외국인주민 합계", "한국국적을 가지지 않은 자", "한국국적을 취득한 자", "외국인주민자녀(출생)",
+               "외국인근로자", "결혼이민자", "유학생", "외국국적동포"],
+     # 같은 표의 '총인구'로 외국인주민 비율을 코드가 계산(뉴스의 "인구의 몇 %"를 확인할 수 있는 숫자)
+     "ratio": ("외국인주민 합계", "총인구", "총인구 대비 외국인주민 비율"),
+     "max_items": 9,
+     # 2026-11-08 점검에서 2024년 2,042,744 + 245,578 + 295,304 = 2,583,626(합계)로 맞는 것을 확인한 정의
+     "terms": "이 표(행정안전부)의 외국인주민 합계 = 한국국적을 가지지 않은 자 + 한국국적을 취득한 자(귀화자 등) + 외국인주민자녀(출생). "
+              "외국인근로자·결혼이민자·유학생·외국국적동포는 '한국국적을 가지지 않은 자'의 세부 분류",
+     "keywords": ["이주배경", "이주민", "외국인 주민", "외국인주민", "다문화", "이민", "외국인 근로자", "귀화"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
 
@@ -546,15 +561,22 @@ def kosis_data(org, tbl, prd, n, itm="ALL", objs=None):
     params = {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y", "orgId": org, "tblId": tbl,
               "prdSe": prd, "newEstPrdCnt": n, "itmId": itm}
     params.update(objs or {"objL1": "ALL"})
-    data = None
-    for attempt in range(2):   # KOSIS 서버가 가끔 연결을 안 받아서 한 번만 다시 시도
-        try:
-            data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=(8, 25)).json()
-            break
-        except Exception as e:
-            if attempt == 1:
-                return None, f"요청 실패({type(e).__name__})"
-            time.sleep(5)
+    # 분류가 여러 단계인 표는 objL2·objL3…까지 보내야 한다(2026-11-08 외국인주민 표: "필수요청변수값 누락(objL)").
+    # 표마다 단계 수를 미리 알기 어려워, 그 오류가 나면 한 단계씩 늘려 다시 요청한다(최대 objL4).
+    for level in range(1, 5):
+        data = None
+        for attempt in range(2):   # KOSIS 서버가 가끔 연결을 안 받아서 한 번만 다시 시도
+            try:
+                data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=(8, 25)).json()
+                break
+            except Exception as e:
+                if attempt == 1:
+                    return None, f"요청 실패({type(e).__name__})"
+                time.sleep(5)
+        if isinstance(data, dict) and "objL" in str(data.get("errMsg", "")) and not objs and level < 4:
+            params[f"objL{level + 1}"] = "ALL"
+            continue
+        break
     if isinstance(data, dict):
         return None, f"KOSIS 오류 {data.get('err')}: {data.get('errMsg')}"
     return data if isinstance(data, list) else None, ""
@@ -605,20 +627,63 @@ def _kosis_series(rows):
     nat = [r for r in rows if str(r.get("C1_NM", "")).strip() in _KOSIS_NATIONAL or str(r.get("C1", "")) in ("00", "0")]
     use = nat or rows
     one_item = len({r.get("ITM_NM") for r in use}) == 1
+    # 분류2·3(예: 외국인주민 표의 '외국인근로자·결혼이민자·귀화자…')이 있으면 이름에 넣는다.
+    # 넣지 않으면 같은 이름 칸에 여러 분류 값이 덮어써져 숫자가 뒤섞인다(2026-11-08 check_sources에서 발견).
+    # 분류3(예: 합계·남자·여자)은 합계가 있으면 합계만 쓴다 - 성별까지 나누면 항목 이름이 "외국인근로자 남자"처럼 갈라짐.
+    c3 = {str(r.get("C3_NM", "")).strip() for r in use}
+    if len(c3) > 1 and c3 & _KOSIS_NATIONAL:
+        use = [r for r in use if str(r.get("C3_NM", "")).strip() in _KOSIS_NATIONAL]
+    sub_lv = [c for c in ("C2_NM", "C3_NM") if len({str(r.get(c, "")).strip() for r in use}) > 1]
+    # 세부 분류는 단위가 비어 있을 때가 있어(외국인근로자 = '', 상위 '한국국적을 가지지 않은 자' = '명') 상위 분류 단위를 물려받는다.
+    unit_of = {str(r.get("C2")): r.get("UNIT_NM") for r in use if r.get("C2") and r.get("UNIT_NM")}
+    def _unit(r):
+        u = r.get("UNIT_NM") or ""
+        code = str(r.get("C2") or "")
+        while not u and len(code) > 1:
+            code = code[:-1]
+            u = unit_of.get(code, "")
+        return u
     out = {}
     for r in use:
         v = _num(r.get("DT"))
         if v is None:
             continue
+        sub = " ".join(str(r.get(c, "")).strip() for c in sub_lv).strip()
         if nat:
-            name = r.get("ITM_NM", "")
+            name = sub if (sub and one_item) else " - ".join(x for x in (r.get("ITM_NM", ""), sub) if x)
         elif one_item:
-            name = r.get("C1_NM", "")
+            name = " ".join(x for x in (r.get("C1_NM", ""), sub) if x)
         else:
-            name = f"{r.get('C1_NM', '')} - {r.get('ITM_NM', '')}"
+            name = " - ".join(x for x in (r.get("C1_NM", ""), r.get("ITM_NM", ""), sub) if x)
         name = re.sub(r"\s+", " ", re.sub(r"＜br＞|<br\s*/?>", " ", str(name))).strip()
-        out.setdefault((name, r.get("UNIT_NM", "") or ""), {})[str(r.get("PRD_DE"))] = v
+        out.setdefault((name, _unit(r)), {})[str(r.get("PRD_DE"))] = v
     return {k: sorted(v.items()) for k, v in out.items()}
+
+
+def _kosis_shape(series, table):
+    """표마다 정한 이름 바꾸기(rename)·비율 계산(ratio)·고를 항목(items)을 적용한다. 설정이 없으면 그대로."""
+    ren = table.get("rename") or {}
+    if ren:
+        series = {(ren.get(n, n), u): v for (n, u), v in series.items()}
+    ratio = table.get("ratio")
+    extra = {}
+    if ratio:
+        num_k, den_k, label = ratio
+        num = next((v for (n, _), v in series.items() if n == num_k), None)
+        den = next((v for (n, _), v in series.items() if n == den_k), None)
+        if num and den:
+            dd = dict(den)
+            pts = [(p, round(v / dd[p] * 100, 2)) for p, v in num if dd.get(p)]
+            if pts:
+                extra[(label, "%")] = pts
+    if table.get("items"):
+        order = {n: i for i, n in enumerate(table["items"])}
+        series = dict(sorted(((k, v) for k, v in series.items() if k[0] in order), key=lambda kv: order[kv[0][0]]))
+    if extra:
+        # 비율은 합계 바로 다음에 둔다(긴 흐름 계산 대상 4개 안에 들어가도록)
+        items = list(series.items())
+        series = dict(items[:1] + list(extra.items()) + items[1:])
+    return series
 
 
 def kosis_fact_block(table, max_items=8):
@@ -629,8 +694,9 @@ def kosis_fact_block(table, max_items=8):
             print(f"ℹ️ KOSIS 조회 실패({table['name']}): {err}")
         return "", None
     series = _kosis_series(rows)
+    series = _kosis_shape(series, table)
     lines, summary = [], None
-    for (item, unit), pts in list(series.items())[:max_items]:
+    for (item, unit), pts in list(series.items())[:table.get("max_items", max_items)]:
         if not pts:
             continue
         (lp, lv) = pts[-1]
@@ -758,6 +824,10 @@ def run_check_sources():
         print("표 이름:", rows[0].get("TBL_NM"), "| 행 수:", len(rows))
         print("항목:", sorted({(r.get("ITM_ID"), r.get("ITM_NM")) for r in rows})[:15])
         print("분류1 예시:", sorted({(r.get("C1"), r.get("C1_NM")) for r in rows})[:8])
+        for c in ("C2", "C3"):
+            subs = sorted({(str(r.get(c)), str(r.get(f"{c}_NM") or ""), str(r.get("UNIT_NM") or "")) for r in rows if r.get(c)})
+            if subs:
+                print(f"분류{c[1]} 전체({len(subs)}개):", subs[:30])
         print("기간:", sorted({r.get("PRD_DE") for r in rows})[-3:])
         block, summary = kosis_fact_block(tb)
         print(block or "(사실 블록 만들기 실패)")
