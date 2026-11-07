@@ -44,7 +44,7 @@ v_shape = pd.Series([100 - 4 * i if i <= 12 else 52 + 4 * (i - 12) for i in rang
 r2 = gc.calc_dca(v_shape)
 assert r2["dca"] > r2["lump"], r2
 f, v = gc.render_dca({"SPY": r, "QQQ": None})
-assert "구간 49개 중 거치식이 더 나았던 구간 49개" in f and "<table" in v, f
+assert "구간 49개 중 거치식 수익률이 더 높았던 구간 49개" in f and "<table" in v, f
 print("dca ok")
 
 # 4) 최대 낙폭: 100 → 60(-40%) → 100 회복
@@ -101,3 +101,8 @@ assert _re.sub(r", 1년 수익률 -?[\d.]+%", "", line) == "- QQQ (x): 해외 �
 src = open("explainer_engine.py", encoding="utf-8").read()
 assert 're.sub(r", 1년 수익률 -?[\\d.]+%", "", facts_text)' in src
 print("units and single 1y basis ok")
+# 2026-11-08: 계산 자료에 판단·권유 말('유리', '더 나았던')을 쓰지 않음 - 작가가 그대로 가져가 정책 지적을 받음
+import inspect as _insp
+_src = _insp.getsource(gc)
+assert "유리해지는" not in _src and "더 나았던" not in _src
+print("no judgement words in calc data ok")
