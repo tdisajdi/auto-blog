@@ -193,3 +193,10 @@ print("banned superior ok")
 _, iss12, _ = lint.fix_and_check("<h1>t</h1><h3>정리</h3><p><strong>한 줄 정리:</strong> 보수를 확인해 선택하세요.</p><p>태그: a</p>")
 assert [i for i in iss12 if "금지 표현 '선택하세요'" in i], iss12
 print("imperative advice banned ok")
+# 2026-11-08: 숫자 없는 '유리·훨씬' 판단은 참고 알림, 같은 문장에 숫자가 있으면 괜찮음, 질문형('유리할까')·제목은 제외
+assert lint.vague_comparisons("<h1>뭐가 유리할까</h1><p>적립식 방식을 활용하는 것이 유리합니다. 거치식 -32.6%, 적립식 -14.9%로 적립식이 유리했습니다.</p>") \
+    == ["적립식 방식을 활용하는 것이 유리합니다."]
+assert lint.vague_comparisons("<p>QQQ의 낙폭 -35.12%는 SHY보다 훨씬 컸다.</p>") == []      # '보다'에서 문장을 자르지 않음
+_, iss13, _ = lint.fix_and_check("<h1>t</h1><p>환헤지 ETF가 방어에 유리합니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
+assert [i for i in iss13 if i.startswith("[참고] 숫자 없는 판단 비교")], iss13
+print("vague comparison soft ok")
