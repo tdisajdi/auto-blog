@@ -505,7 +505,12 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
     # 계좌 규칙은 글쓰기 규칙에만 있고 사실 자료엔 없어서, 맞는 문장인데도 사실 검증이 '지어냄'으로 지적했다(2026-11-03 금리 글)
     if not include_tax and any(not t.endswith(".KS") for t in data_cache):
-        market += f"[계좌 사실]\n- {ea.OVERSEAS_ACCOUNT_NOTE}\n\n"
+        # 세금 가이드가 아니어도 작가가 해외 ETF 세금을 맞게 쓰는데 자료에 없어 '치명'(11-08 레버리지 가이드) → 핵심 두 줄만 자료로
+        market += (f"[계좌 사실]\n- {ea.OVERSEAS_ACCOUNT_NOTE}\n"
+                   f"[세금 사실 - {ea.TAX_RULES_BASIS}. 이 글의 주제가 세금이 아니면 한두 문장으로만]\n"
+                   f"- 미국 상장 ETF 매매차익: 연 {ea.OVERSEAS_CG_DEDUCTION // 10000}만 원 공제 후 {ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% "
+                   "양도소득세(지방세 포함), 다음 해 5월 직접 신고\n"
+                   f"- 미국 상장 ETF 배당: 미국에서 {ea.TAX_US_DIVIDEND_WITHHOLDING * 100:.0f}% 원천징수\n\n")
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
             f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))

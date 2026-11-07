@@ -32,7 +32,7 @@ w1 = r["windows"][0]
 assert w1["label"] == "1년" and w1["lev"] < w1["naive"] and w1["lev"] < 0, w1
 assert abs(r["flat_example"]["lev"] - ((1.3) * (1 - 3 * (1 - 1 / 1.1)) - 1) * 100) < 1e-9
 f, v = gc.render_leverage(r, "QQQ", "TQQQ")
-assert "제자리가 아님" in f and "TQQQ 실제" in v
+assert "제자리가 아님" in f and "TQQQ 실제" in v and f.count("연 변동성") == 1, f
 print("leverage ok")
 
 # 3) 적립식 vs 거치식: 꾸준히 오르면 거치식이 이김, 떨어졌다 회복하면 적립식이 이김

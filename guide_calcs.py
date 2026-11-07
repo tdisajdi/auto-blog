@@ -123,7 +123,9 @@ def render_leverage(res, base_name, lev_name):
         gap = w["lev"] - w["naive"]
         rows.append([w["label"], _pct(w["base"]), _pct(w["lev"]), _pct(w["naive"]), _pct(gap), f"{w['vol']:.1f}%"])
         lines.append(f"- 최근 {w['label']}({w['start']}부터): {base_name} {_pct(w['base'])}, {lev_name} 실제 {_pct(w['lev'])}, "
-                     f"'{base_name} × {m}' 단순 계산 {_pct(w['naive'])} → 실제와 차이 {_pct(gap)}. 이 기간 {base_name} 연 변동성 {w['vol']:.1f}%")
+                     f"'{base_name} × {m}' 단순 계산 {_pct(w['naive'])} → 실제와 차이 {_pct(gap)}")
+    # 변동성은 한 줄로(11-08: 구간마다 "이 기간 연 변동성 21.3%/20.9%"를 붙였더니 거의 같은 문장 세 개가 됨)
+    lines.append(f"- {base_name} 연 변동성(일별 수익률 기준): " + ", ".join(f"최근 {w['label']} {w['vol']:.1f}%" for w in res["windows"]))
     fe = res["flat_example"]
     lines.append(f"- 계산 예시: 기초지수가 하루 {fe['up']:+.1f}% 오르고 다음 날 {fe['down']:+.2f}% 내려 제자리로 돌아오면, "
                  f"매일 {m}배를 따라가는 ETF는 {fe['lev']:+.2f}% (제자리가 아님)")
