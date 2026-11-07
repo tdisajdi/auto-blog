@@ -18,6 +18,11 @@ def _pct(x, d=1):
     return f"{x:+.{d}f}%"
 
 
+def _pp(x, d=1):
+    """수익률끼리의 차이는 %가 아니라 %p(퍼센트포인트). 11-08 레버리지 글: '격차 -183.6%'로 나감."""
+    return f"{x:+.{d}f}%p"
+
+
 def _won(v):
     """원 단위 금액 → 읽기 쉬운 글자(만 원 단위 반올림)."""
     if abs(v) >= 10000:
@@ -124,9 +129,9 @@ def render_leverage(res, base_name, lev_name):
     rows, lines = [], []
     for w in res["windows"]:
         gap = w["lev"] - w["naive"]
-        rows.append([w["label"], _pct(w["base"]), _pct(w["lev"]), _pct(w["naive"]), _pct(gap), f"{w['vol']:.1f}%"])
+        rows.append([w["label"], _pct(w["base"]), _pct(w["lev"]), _pct(w["naive"]), _pp(gap), f"{w['vol']:.1f}%"])
         lines.append(f"- 최근 {w['label']}({w['start']}부터): {base_name} {_pct(w['base'])}, {lev_name} 실제 {_pct(w['lev'])}, "
-                     f"'{base_name} × {m}' 단순 계산 {_pct(w['naive'])} → 실제와 차이 {_pct(gap)}")
+                     f"'{base_name} × {m}' 단순 계산 {_pct(w['naive'])} → 실제와 차이 {_pp(gap)}")
     # 변동성은 한 줄로(11-08: 구간마다 "이 기간 연 변동성 21.3%/20.9%"를 붙였더니 거의 같은 문장 세 개가 됨)
     lines.append(f"- {base_name} 연 변동성(일별 수익률 기준): " + ", ".join(f"최근 {w['label']} {w['vol']:.1f}%" for w in res["windows"]))
     fe = res["flat_example"]
@@ -340,9 +345,9 @@ def render_covered(results):
     rows, lines = [], []
     for t, ws in results.items():
         for w in ws:
-            rows.append([t, w["label"], _pct(w["price"]), _pct(w["total"]), _pct(w["income"])])
+            rows.append([t, w["label"], _pct(w["price"]), _pct(w["total"]), _pp(w["income"])])
             lines.append(f"- {t}, 최근 {w['label']}({w['start']}부터): 가격만 {_pct(w['price'])}, 분배금을 다시 넣었다면(총수익) "
-                         f"{_pct(w['total'])} → 분배금이 보탠 몫 약 {_pct(w['income'])}")
+                         f"{_pct(w['total'])} → 분배금이 보탠 몫 약 {_pp(w['income'])}")
     note = ("Yahoo Finance 종가(가격만 / 분배금 재투자 반영), 달러·세전, ondo 계산. '분배금이 보탠 몫'은 총수익 - 가격 수익(근사). "
             + PAST_NOTE)
     table = charts.table_html("분배금을 빼면 가격은 어떻게 됐나: 가격 수익률 vs 총수익률",
@@ -385,7 +390,7 @@ def render_fx_hedge(r, asset, hedged_name):
         return "", ""
     lines = [f"- 최근 1년({r['start']}부터): {asset} 달러 기준 {_pct(r['usd'])}, 원/달러 환율 {r['fx0']:,.0f}원 → {r['fx1']:,.0f}원({_pct(r['fx'])})",
              f"- 같은 기간 원화로 환산하면(환노출) {_pct(r['krw_unhedged'])}, 환헤지 ETF {hedged_name}는 {_pct(r['hedged'])} "
-             f"→ 두 방식 차이 {_pct(r['krw_unhedged'] - r['hedged'])}"]
+             f"→ 두 방식 차이 {_pp(r['krw_unhedged'] - r['hedged'])}"]
     rows = [[f"{asset} (달러 기준)", _pct(r["usd"])], ["원/달러 환율 변화", _pct(r["fx"])],
             [f"{asset} 원화 환산(환노출)", _pct(r["krw_unhedged"])], [f"{hedged_name} (환헤지)", _pct(r["hedged"])]]
     note = ("Yahoo Finance 종가(배당 제외 가격), 최근 약 1년, ondo 계산. 원화 환산 = 달러 가격 × 원/달러 환율. "
