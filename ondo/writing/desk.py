@@ -273,7 +273,17 @@ def _quote_found(quote, text_norm):
     return not q or q[:15] in text_norm
 
 
-_SUMMARY_REPEAT = re.compile(r"(정리|결론|마무리)[^.]{0,40}(반복|되풀이|중복)|(반복|되풀이|중복)[^.]{0,40}(정리|결론|마무리)")
+# 정리 섹션 반복 판정(11-08 개정): 섹션을 가리키는 말만('정리된·정리하여' 같은 동사는 아님), 부정문·도입부 언급은 제외.
+# 지난 기록의 독자 편집 '중요' 지적에 돌려 확인 - 옛 판정은 "표에 이미 정리된 수치를…"(진짜 반복)과 "'정리' 섹션과 중복되지는
+# 않으나…"까지 낮추고, 정작 "'정리' 섹션의 구체적 금액(…) 사이에 중복"(총보수 글, 40자 넘게 떨어짐)은 못 잡았다.
+_SUMMARY_SEC = r"(?:['‘\"]?정리['’\"]?\s*(?:섹션|부분|문단|단락)|결론(?:부|에서|에|과|부분)|마무리)"
+_SUMMARY_REPEAT = re.compile(rf"{_SUMMARY_SEC}[^.]{{0,90}}(?:반복|되풀이|중복)|(?:반복|되풀이|중복)[^.]{{0,90}}{_SUMMARY_SEC}")
+_SUMMARY_NOT = re.compile(r"제외|밖의|밖에서|중복되지는? 않|반복되지는? 않|아니라|서론|도입|서두|첫 문단")
+
+
+def _summary_repeat(problem):
+    p = str(problem)
+    return bool(_SUMMARY_REPEAT.search(p)) and not _SUMMARY_NOT.search(p)
 
 
 def review_text(html):
@@ -308,7 +318,7 @@ def review(html, facts_text, category_label, log, round_no, must=None):
                 sev = "사소"
             # 11-07에 정한 규칙(정리 섹션의 숫자 재언급은 최대 '사소')을 빠른 모델이 무시하고 '중요'로 지적함(11-08 환율 글) → 코드가 지킴.
             # 정리 밖 본문끼리의 반복은 그대로 '중요'.
-            if role == "독자 편집" and sev == "중요" and _SUMMARY_REPEAT.search(str(it.get("problem", ""))):
+            if role == "독자 편집" and sev == "중요" and _summary_repeat(it.get("problem", "")):
                 sev = "사소"
             if not _quote_found(it.get("quote", ""), text_norm):
                 dropped += 1
