@@ -109,3 +109,9 @@ import inspect as _insp
 _src = _insp.getsource(gc)
 assert "유리해지는" not in _src and "더 나았던" not in _src
 print("no judgement words in calc data ok")
+
+# 2026-11-08: 배당 주제가 아니면 배당 숫자도 뺌(상관없는 문단에 끼워 넣지 않게)
+_ln2 = "- SPY (x): 해외 상장, 운용보수 0.09%, 배당수익률 1.03%, 배당성장률 4.54%, 환율 영향 있음"
+assert _xe.drop_overlapping_metrics(_ln2, "x") == "- SPY (x): 해외 상장, 운용보수 0.09%, 환율 영향 있음"
+assert _xe.drop_overlapping_metrics(_ln2, "x", keep_dividend=True) == _ln2
+print("dividend metrics only for dividend topics ok")
