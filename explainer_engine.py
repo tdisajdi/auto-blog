@@ -189,7 +189,7 @@ def _ticker_fact_line(ticker, d):
     return f"- {ticker.replace('.KS', '')} ({d.get('name', '')}): {body}"
 
 
-def drop_overlapping_metrics(facts_text, calc_facts):
+def drop_overlapping_metrics(facts_text, calc_facts, keep_dividend=False):
     """계산표가 자기 기준으로 다시 계산한 숫자는 종목 기본 자료에서 뺀다 - 숫자는 한 기준만(11-08 배운 원칙 12).
     한 글에 '1년 수익률'(QQQ 8.11% vs +5.8%, 레버리지)·'최대 낙폭'(TLT -43.70% vs -50.0%, 최대 낙폭 가이드)이 두 개씩 나왔다.
     상장 이후 연평균(CAGR)은 "직접 비교 금지" 경고와 숫자를 같이 주니 작가가 비교해 모순(적립식 가이드) → 계산표가 있으면 늘 뺀다."""
@@ -198,6 +198,10 @@ def drop_overlapping_metrics(facts_text, calc_facts):
         out = re.sub(r", 1년 수익률 -?[\d.]+%", "", out)
     if "최대 낙폭" in calc_facts:
         out = re.sub(r", 최대 낙폭\(5년\) -?[\d.]+%", "", out)
+    # 배당 주제가 아니면 배당수익률·배당성장률도 뺀다 - 작가가 받은 숫자를 다 쓰려고 상관없는 문단에 끼워 넣음
+    # (11-08 레버리지·적립식 가이드 두 번: "배당수익률 1.03%에 배당성장률 4.54%인 SPY…")
+    if not keep_dividend:
+        out = re.sub(r", 배당(?:수익률|성장률) -?[\d.]+%", "", out)
     return out
 
 
@@ -585,7 +589,8 @@ def run_explainer(topic, etf_module):
             import guide_calcs
             calc_facts, visual = guide_calcs.guide_facts(topic_id, data_cache, rates_effect=rates_effect)
             if calc_facts:
-                facts_text = drop_overlapping_metrics(facts_text, calc_facts)
+                facts_text = drop_overlapping_metrics(facts_text, calc_facts,
+                                                      keep_dividend=topic_id in ("dividend-growth", "covered-call-structure"))
                 facts_text += "\n" + calc_facts
             visual = visual or price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
@@ -624,7 +629,10 @@ def run_explainer(topic, etf_module):
         kind_label=kind_label, title_seed=title_seed, facts_text=facts_text,
         # 코드가 만든 계산표가 들어가는 글은 작가가 표를 또 만들지 않는다(2026-11-06 금리 글: 손으로 만든 표의 칸이 어긋나 '치명')
         rules=_SECTION_RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, 숫자는 문장으로 "
-                                "해석하세요.\n" if "<table" in (visual or "") else ""),
+                                "해석하세요.\n" if "<table" in (visual or "") else "")
+              # 11-08 적립식 가이드: 세금 사실을 주자 세금 소제목·세금 FAQ까지 만들고, 자료에 없는 결론('국내 추가 원천징수 없음')도 씀
+              + ("- [세금은 짧게] 이 글의 주제는 세금이 아닙니다. 세금은 [세금 사실] 안의 내용으로 한 문단 이내만 쓰고, 세금 소제목·"
+                 "세금 FAQ는 만들지 마세요. 자료에 없는 세금 결론(추가로 내는지 등)은 쓰지 마세요.\n" if not include_tax else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
