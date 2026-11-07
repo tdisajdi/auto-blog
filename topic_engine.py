@@ -551,15 +551,22 @@ def kosis_data(org, tbl, prd, n, itm="ALL", objs=None):
     params = {"method": "getList", "apiKey": key, "format": "json", "jsonVD": "Y", "orgId": org, "tblId": tbl,
               "prdSe": prd, "newEstPrdCnt": n, "itmId": itm}
     params.update(objs or {"objL1": "ALL"})
-    data = None
-    for attempt in range(2):   # KOSIS 서버가 가끔 연결을 안 받아서 한 번만 다시 시도
-        try:
-            data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=(8, 25)).json()
-            break
-        except Exception as e:
-            if attempt == 1:
-                return None, f"요청 실패({type(e).__name__})"
-            time.sleep(5)
+    # 분류가 여러 단계인 표는 objL2·objL3…까지 보내야 한다(2026-11-08 외국인주민 표: "필수요청변수값 누락(objL)").
+    # 표마다 단계 수를 미리 알기 어려워, 그 오류가 나면 한 단계씩 늘려 다시 요청한다(최대 objL4).
+    for level in range(1, 5):
+        data = None
+        for attempt in range(2):   # KOSIS 서버가 가끔 연결을 안 받아서 한 번만 다시 시도
+            try:
+                data = requests.get(KOSIS_DATA_URL, params=params, headers=UA, timeout=(8, 25)).json()
+                break
+            except Exception as e:
+                if attempt == 1:
+                    return None, f"요청 실패({type(e).__name__})"
+                time.sleep(5)
+        if isinstance(data, dict) and "objL" in str(data.get("errMsg", "")) and not objs and level < 4:
+            params[f"objL{level + 1}"] = "ALL"
+            continue
+        break
     if isinstance(data, dict):
         return None, f"KOSIS 오류 {data.get('err')}: {data.get('errMsg')}"
     return data if isinstance(data, list) else None, ""

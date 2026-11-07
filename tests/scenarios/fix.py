@@ -111,3 +111,22 @@ _, iss6, _ = lint.fix_and_check("<h1>t</h1><p>VOO는 2022년 1월 3일 고점에
                                 "QQQ는 2021년 12월 27일 고점에서 2022년 11월 3일 바닥까지 떨어진 뒤 2023년 12월 13일에 되찾았다.</p><p>태그: a</p>")
 assert not [i for i in iss6 if "숫자 줄글 나열" in i], iss6
 print("dates not year list ok")
+# 2026-11-08: KOSIS 표가 objL 단계를 더 요구하면 한 단계씩 늘려 다시 요청
+_calls = []
+class _KR:
+    def __init__(self, j): self._j = j
+    def json(self): return self._j
+def _kget(url, params=None, **k):
+    _calls.append(dict(params))
+    if "objL2" not in params:
+        return _KR({"err": "20", "errMsg": "필수요청변수값이 누락되었습니다. (objL)"})
+    return _KR([{"PRD_DE": "2024", "DT": "1"}])
+import importlib
+te = importlib.reload(te)          # 앞에서 kosis_data를 가짜로 바꿔 둬서 원래 함수로 되돌림
+_oldget = te.requests.get
+te.requests.get = _kget
+_oldkey = os.environ.get("KOSIS_API_KEY"); os.environ["KOSIS_API_KEY"] = "x"
+rows, err = te.kosis_data("110", "T", "Y", 3)
+assert rows and not err and len(_calls) == 2 and _calls[1]["objL2"] == "ALL", (rows, err, _calls)
+te.requests.get = _oldget
+print("kosis objL retry ok")
