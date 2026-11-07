@@ -239,7 +239,7 @@ def tax_scenarios():
                    for i, n in enumerate(names)],
         "source": f"{ea.TAX_RULES_BASIS} 세율로 ondo 계산"})
     facts = ("[계산 예시 - 코드가 세율로 직접 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고, "
-             "숫자를 인용해 '어떤 경우에 어느 쪽이 유리한지' 문장으로 해석하세요]\n"
+             "숫자를 인용해 '어떤 경우에 어느 쪽 세금이 적은지' 문장으로 해석하세요]\n"
              + "\n".join(f"- 한 해 이익 {r[0]}: " + ", ".join(f"{n} {t}" for n, t in zip(names, r[1:])) for r in rows)
              + f"\n- {note}\n" + _tax_breakeven_line())
     return facts, table + chart
@@ -572,6 +572,8 @@ def run_explainer(topic, etf_module):
                 # 계산표가 자체 기준의 수익률을 주므로 종목 기본 자료의 '1년 수익률'은 뺀다 - 기준일·계산이 달라 한 글에
                 # '1년 수익률'이 두 개 나왔다(11-08 레버리지 글: QQQ 8.11%와 +5.8%). 숫자는 한 기준만.
                 facts_text = re.sub(r", 1년 수익률 -?[\d.]+%", "", facts_text)
+                # 상장 이후 연평균(CAGR)도 뺀다 - "직접 비교 금지" 경고와 숫자를 같이 주니 작가가 비교해 앞뒤 모순(11-08 적립식 가이드)
+                facts_text = re.sub(r", 상장 이후 연평균\(CAGR[^)]*\) -?[\d.]+%", "", facts_text)
                 facts_text += "\n" + calc_facts
             visual = visual or price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
