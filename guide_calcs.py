@@ -251,13 +251,23 @@ def render_drawdown(results, amount=10_000_000):
     results = {k: v for k, v in results.items() if v}
     if len(results) < 2:
         return "", ""
-    rows, lines = [], []
-    for t, r in sorted(results.items(), key=lambda kv: kv[1]["pct"]):
+    rows = []
+    items = sorted(results.items(), key=lambda kv: kv[1]["pct"])
+    for t, r in items:
         low = amount * (1 + r["pct"] / 100)
         rec = f"{r['recover_days']:,}일 뒤({r['recovered']})" if r["recovered"] else "아직 못 되찾음"
         rows.append([t, f"{r['pct']:.1f}%", f"{_won(amount)} → {_won(low)}", f"{r['fall_days']:,}일", rec, f"{r['now_vs_peak']:.1f}%"])
-        lines.append(f"- {t}: 최근 5년 최대 낙폭 {r['pct']:.1f}% ({r['peak']} 고점 → {r['trough']} 바닥, {r['fall_days']:,}일 동안). "
-                     f"{_won(amount)}이 가장 낮을 때 {_won(low)}까지 줄어든 셈. 고점 회복: {rec}. 지금 5년 최고가 대비 {r['now_vs_peak']:.1f}%")
+    # 항목별 줄 + 이름표를 분명히(11-08 재시험: 한 줄에 '262일 동안'(하락)과 '656일 뒤'(회복)를 같이 써서 작가가 하락 기간을
+    # 회복 기간으로 잘못 써 '치명' 2개. 종목별 같은 모양 줄은 같은 틀 되풀이도 부름)
+    both = lambda f: ", ".join(f"{t} {f(r)}" for t, r in items)
+    lines = [
+        "- 최근 5년 최대 낙폭: " + both(lambda r: f"{r['pct']:.1f}%"),
+        "- 하락 기간(고점에서 바닥까지 떨어지는 데 걸린 날): " + both(lambda r: f"{r['fall_days']:,}일({r['peak']}→{r['trough']})"),
+        "- 회복 기간(바닥에서 다시 고점 가격을 되찾는 데 걸린 날): "
+        + both(lambda r: f"{r['recover_days']:,}일({r['recovered']})" if r["recovered"] else "아직 못 되찾음"),
+        f"- {_won(amount)}을 고점에 넣었다면 가장 낮을 때 평가액: " + both(lambda r: _won(amount * (1 + r['pct'] / 100))),
+        "- 지금 가격의 5년 최고가 대비: " + both(lambda r: f"{r['now_vs_peak']:.1f}%"),
+    ]
     note = ("Yahoo Finance 일별 종가(배당 제외 가격 기준), 최근 5년, 달러 기준, ondo 계산. '얼마까지 줄었나'는 고점에 넣었다고 가정한 예시. "
             + PAST_NOTE)
     table = charts.table_html("최근 5년, 가장 크게 떨어졌을 때와 회복까지 걸린 시간",

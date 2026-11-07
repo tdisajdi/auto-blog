@@ -54,6 +54,7 @@ d = gc.calc_drawdown(px)
 assert round(d["pct"], 1) == -40.0 and d["recovered"] and d["recover_days"] > 0, d
 f, v = gc.render_drawdown({"QQQ": d, "TLT": dict(d, pct=-48.0, recovered=None, recover_days=None)})
 assert "1,000만 원 → 600만 원" in v and "아직 못 되찾음" in v and f.index("TLT") < f.index("QQQ"), f
+assert "하락 기간(고점에서 바닥까지" in f and "회복 기간(바닥에서" in f and f.count("TLT") == 5, f
 print("drawdown ok")
 
 # 5) 배당: 해마다 10% 증가, 가격 그대로 → 연평균 +10%
@@ -98,8 +99,10 @@ assert "실제와 차이" in f and "%p" in f.split("실제와 차이")[1].split(
 import re as _re
 line = "- QQQ (x): 해외 상장, 운용보수 0.2%, 1년 수익률 8.11%, 최대 낙폭(5년) -35%"
 assert _re.sub(r", 1년 수익률 -?[\d.]+%", "", line) == "- QQQ (x): 해외 상장, 운용보수 0.2%, 최대 낙폭(5년) -35%"
-src = open("explainer_engine.py", encoding="utf-8").read()
-assert 're.sub(r", 1년 수익률 -?[\\d.]+%", "", facts_text)' in src
+import explainer_engine as _xe
+_ln = "- TLT (x): 해외 상장, 운용보수 0.15%, 1년 수익률 -5.03%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 2.1%, 최대 낙폭(5년) -43.70%"
+assert _xe.drop_overlapping_metrics(_ln, "- 최근 5년 최대 낙폭: TLT -50.0%") == "- TLT (x): 해외 상장, 운용보수 0.15%, 1년 수익률 -5.03%"
+assert _xe.drop_overlapping_metrics(_ln, "- 최근 1년: 수익률 +5.8%") == "- TLT (x): 해외 상장, 운용보수 0.15%, 최대 낙폭(5년) -43.70%"
 print("units and single 1y basis ok")
 # 2026-11-08: 계산 자료에 판단·권유 말('유리', '더 나았던')을 쓰지 않음 - 작가가 그대로 가져가 정책 지적을 받음
 import inspect as _insp
