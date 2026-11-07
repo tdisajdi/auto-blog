@@ -189,3 +189,7 @@ print("english words ok")
 _, iss11, _ = lint.fix_and_check("<h1>t</h1><p>지수형 상품의 성과가 우월했습니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
 assert [i for i in iss11 if "금지 표현 '우월'" in i], iss11
 print("banned superior ok")
+# 2026-11-08: 행동 지시형 권유('선택하세요')도 금지 표현
+_, iss12, _ = lint.fix_and_check("<h1>t</h1><h3>정리</h3><p><strong>한 줄 정리:</strong> 보수를 확인해 선택하세요.</p><p>태그: a</p>")
+assert [i for i in iss12 if "금지 표현 '선택하세요'" in i], iss12
+print("imperative advice banned ok")
