@@ -13,7 +13,7 @@ a10 = 10_000_000 * (1.05 * (1 - 0.0003)) ** 10
 b10 = 10_000_000 * (1.05 * (1 - 0.0013)) ** 10
 assert abs(r["rows"][0][2][(5.0, 10)] - a10) < 1 and abs(r["rows"][1][2][(5.0, 10)] - b10) < 1
 f, v = gc.render_expense(r)
-assert f"10년 뒤 B 쪽이 {gc._won(a10 - b10)} 적음" in f and "<table" in v and "총보수 0.1%p 차이는 10년 뒤 최종 금액을 약 1.00% 줄임" in f, f
+assert f"10년 뒤 B 쪽이 {gc._won(a10 - b10)} 적음" in f and "<table" in v and "가상의 예(실제 상품 아님): 총보수만 0.1%p 다른 두 ETF" in f and "보수 차이 0.1%p" in f and "최종 금액의 약 1.0%" in f, f
 assert gc.calc_expense({"A": 0.03}) is None
 print("expense ok")
 

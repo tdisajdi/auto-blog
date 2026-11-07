@@ -194,7 +194,7 @@ def _tax_fact_block():
         f"[세법 사실 자료 - {ea.TAX_RULES_BASIS}]\n"
         f"- 국내 일반계좌: 해외지수·채권형 국내 ETF의 매매차익·분배금 {ea.TAX_DOMESTIC_DIVIDEND * 100:.1f}% (국내 주식형 ETF 매매차익은 비과세)\n"
         f"- 미국 상장 ETF: 배당 미국 원천징수 {ea.TAX_US_DIVIDEND_WITHHOLDING * 100:.0f}%, 매매차익 연 {ea.OVERSEAS_CG_DEDUCTION // 10000}만 원 공제 후 "
-        f"{ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% 양도소득세(다음 해 5월 직접 신고)\n"
+        f"{ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% 양도소득세(다음 해 5월 국세청 홈택스 등으로 직접 신고)\n"
         f"- ISA(정식 이름: 개인종합자산관리계좌): {ea.ISA_TAX_FREE_LIMIT // 10000}만 원(서민형 400만 원)까지 비과세, 초과분 {ea.ISA_SEPARATE_TAX * 100:.1f}% 분리과세, 3년 의무가입, 연 2,000만 원 납입 한도\n"
         f"- 연금저축/IRP: 인출 전까지 과세 이연, 연금 수령 시 3.3~5.5%\n"
         "- 금융소득종합과세: 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 넘는 부분은 다른 소득과 합쳐 과세(해외 ETF 배당도 포함)\n"
@@ -509,7 +509,7 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
         market += (f"[계좌 사실]\n- {ea.OVERSEAS_ACCOUNT_NOTE}\n"
                    f"[세금 사실 - {ea.TAX_RULES_BASIS}. 이 글의 주제가 세금이 아니면 한두 문장으로만]\n"
                    f"- 미국 상장 ETF 매매차익: 연 {ea.OVERSEAS_CG_DEDUCTION // 10000}만 원 공제 후 {ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% "
-                   "양도소득세(지방세 포함), 다음 해 5월 직접 신고\n"
+                   "양도소득세(지방세 포함), 다음 해 5월 국세청 홈택스 등으로 직접 신고\n"
                    f"- 미국 상장 ETF 배당: 미국에서 {ea.TAX_US_DIVIDEND_WITHHOLDING * 100:.0f}% 원천징수\n\n")
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
             f"{market}[최근 뉴스]\n{news_block}\n\n"

@@ -68,12 +68,15 @@ def render_expense(res):
             cells.append(f"{_won(vals[(g, n)])}" + (f" ({_won(diff)})" if name != cheap[0] else " (기준)"))
         trows.append(cells)
         if name != cheap[0]:
-            lines.append(f"- {name}(총보수 {f:.4g}%) vs {cheap[0]}({cheap[1]:.4g}%): 원금 {_won(p)}, 보수 떼기 전 연 {g:g}% 가정 → "
+            lines.append(f"- 실제 두 ETF: {name}(총보수 {f:.4g}%) vs {cheap[0]}({cheap[1]:.4g}%), 보수 차이 {f - cheap[1]:.4g}%p. "
+                         f"원금 {_won(p)}, 보수 떼기 전 연 {g:g}% 가정 → "
                          + ", ".join(f"{n}년 뒤 {name} 쪽이 {_won(cheap[2][(g, n)] - vals[(g, n)])} 적음" for n in ys))
-    # 0.1%p 차이가 원금의 몇 %인지(수익률과 거의 무관한 근사) - "0.1%p 차이, 10년 뒤 얼마" 제목에 직접 답하는 숫자
+    # "0.1%p 차이, 10년 뒤 얼마" 제목에 직접 답하는 가상의 예 - 실제 두 ETF와 같은 원금·같은 수익률 가정으로만 계산한다.
+    # (11-08 첫 시험: 0% 가정 예시와 실제 두 ETF 예시가 우연히 둘 다 '10만 원'이 돼 작가가 섞어 써서 '치명')
+    hyp = {n: p * (1 + g / 100) ** n * (1 - (1 - 0.001) ** n) for n in ys}
     drag = {n: (1 - (1 - 0.001) ** n) * 100 for n in ys}
-    lines.append("- 총보수 0.1%p 차이는 " + ", ".join(f"{n}년 뒤 최종 금액을 약 {drag[n]:.2f}% 줄임" for n in ys)
-                 + f" (예: 원금 {_won(p)}, 수익 0% 가정이면 {ys[0]}년 뒤 약 {_won(p * drag[ys[0]] / 100)} 차이)")
+    lines.append(f"- 가상의 예(실제 상품 아님): 총보수만 0.1%p 다른 두 ETF, 같은 원금 {_won(p)}·같은 연 {g:g}% 가정 → "
+                 + ", ".join(f"{n}년 뒤 약 {_won(hyp[n])} 차이(최종 금액의 약 {drag[n]:.1f}%)" for n in ys))
     note = (f"원금 {_won(p)}을 한 번에 넣고, 보수를 떼기 전 연 {g:g}% 수익을 가정한 계산(ondo 계산). 괄호는 가장 싼 ETF와의 차이. "
             "총보수만 반영 - 매매 비용·세금·환율·추적 오차는 빼고 계산. 수익률 가정은 예시일 뿐 실제 수익이 아님.")
     header = ["ETF", "총보수"] + [f"{n}년 뒤" for n in ys]
