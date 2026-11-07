@@ -1,0 +1,413 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:BZ=F",
+ "title_seed": "브렌트유 가격 한 달 새 6% 내린 지금 위치: 1년 범위·재고·해외 가격으로 보기",
+ "category": "energy",
+ "started_at": "2026-11-07T12:58:41",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.9,
+   "chars": 1785
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 34.8,
+   "chars": 4747
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.1,
+   "chars": 227
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 393
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 206
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.5,
+   "chars": 812
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 23.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 20.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 35.7,
+   "chars": 4598
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 34.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.2,
+   "chars": 204
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.0,
+   "chars": 176
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 151
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.2,
+   "chars": 915
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "12:58:55",
+   "title": "브렌트유 한 달 6% 하락, 1년 범위와 재고로 보는 위치",
+   "sections": [
+    "최근 한 달 선물 가격",
+    "1년 범위와 평균 위치",
+    "미국 상업용 원유 재고"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "12:59:33",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "모델 전환",
+   "at": "13:00:06",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 1(사실 검증)"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "13:00:21",
+   "score": 0.97,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "본문에 제시된 WTI와 브렌트유의 1년 범위 백분율 계산 과정이나 의미를 표나 bullet point로 조금 더 시각화하여 독자가 한눈에 이해하기 쉽게 정리하기",
+   "issues": [
+    "[사소·독자 편집] '서부텍사스산원유(WTI)와 북해산 브렌트유 모두 최근 1주일간 큰 폭의 내림세를 보였으나 1년 전과 비교하면' → 아래에 제시되는 표의 수치를 문장에서 그대로 나열하거나 중복해서 설명하고 있습니다. / 고칠 방법: 문장에서는 전체적인 흐름만 간단히 언급하고 세부 수치는 표를 확인하도록 유도하십시오."
+   ],
+   "lint": [
+    "금지 표현 '무조건': 단정·수익 보장 표현",
+    "날짜별 숫자 줄글 나열(5개, 예: '10월 2일 424,134…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 3102
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "13:01:56",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "13:03:05",
+   "score": 1.0,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목을 독자의 궁금증을 유발하는 구체적인 질문과 수치 답변 형태로 수정하여 가독성과 호기심을 높이기",
+   "chars": 2815
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "13:03:08",
+   "post_id": 257,
+   "url": "https://ondo99.com/?p=257",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "브렌트유 한 달 6% 하락, 1년 범위와 재고로 보는 위치",
+  "url": "https://ondo99.com/?p=257",
+  "score": 1.0,
+  "issues": []
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 2026-11-07 기준]\n- WTI 원유(CL=F): 최근가 90.34 달러/배럴, 1주 -13.2%, 한 달 -1.3%, 1년 +52.0% (하루 -0.2%)\n  · 1년 최고 112.95(2026-04-07), 1년 최저 55.27(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 61% 지점, 1년 평균 81.27 대비 +11.2%, 3개월 +10.0%\n- 브렌트유(BZ=F): 최근가 97.76 달러/배럴, 1주 -16.9%, 한 달 -6.3%, 1년 +54.2% (하루 -0.5%)\n  · 1년 최고 118.35(2026-03-31), 1년 최저 58.92(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 65% 지점, 1년 평균 87.01 대비 +12.4%, 3개월 +11.4%\n- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, 뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n- 미국 상업용 원유 재고(EIA, 천 배럴): 2026-10-30 409,760, 2026-10-23 410,625, 2026-10-16 412,517, 2026-10-09 415,577, 2026-10-02 424,134 → 최근 1주 변화 -865, 1년 전(2025-10-31) 421,168 대비 -2.7%\n\n[관련 뉴스]\n- 브렌트유 가격 하락했으나 여전히 US$100 상회 - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMipAJBVV95cUxONndManBSWHBCeWNyNWZ2clRTdXFMenNYVWxTUEJTcWJMNHRVTzZ5WTlRMllMOHdXQmZfcklhN0lmc1I4R2RhZm9MUEJLbkVQR09ZNERaMThLZHh6alpJRHVOWDljM3FNRmJBaWp3S1BzQTQxTExaVnY1Wld0VFFCWFF2QlF3YXZyekdQZ2hNM2g0c3pjMWFCa1pad1lmaElueEg0SGpXZW5JUDhrLXFmUXVOcW0wMXNXd2ZPb1ViOG1MTW5jVm53X2JtalFDcVlQRnJxR3lBclVLZFBOZFJybi1nS2w0V1c5dU1jVmFJUFZLUUhFeGhpTmhqOVBtdEM2WlhmeDR1ajduRXpPZXNnTFV1UTNVVmJtMll4WGlNWm5xWmx3?oc=5\n- 국제유가, 하루 만에 반등…이란戰 불확실성에 브렌트유 3.9%↑ - 뉴시스 (뉴시스) https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Hb3lvNVNBanFmQURVQnNoaVE1a3lSVTdjZTdtWV9yS29uM09pMDhlMWhFdlNUbEVwdmJqSjY1NHBfd0VoQ0VuUG9oVWNXd28tdGJpTkJRajhYZk1xbXVfMNIBeEFVX3lxTE95eE1KckFiSVEzRTZmYzUwdC1tV3YtMkhXSXNrZHIxd0VlUkNjbHVRay1hdi1sanJGRElLVzlXUjBmUml2RjJ1UDV3T0N0cVRkQklKYUdXOUVCUlVSWlMtQzU4WTJXZi1TMXV3aUhmM21GN1E4LTVrVQ?oc=5\n- 美 중간선거 후에도 중동 리스크...브렌트유·WTI 가격 상승 - 이투뉴스 (이투뉴스) https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9TTEhrYTdaZk4zbnMtMUloRkhzYmp0aWhOU0lrdzYzbWJhSkk2aFZZNlJxcVBSOU1CSmlxSW1Da1NjdU96NHdTYTcwQXFrYnh5V21wekRPN2ZLa2NZUXBCbldja1hJOGPSAWtBVV95cUxPZG1mVzQxakFweFBQVTNLajNFSFVxRHZJRE10TldJU19MaGQ2dW5BWVp3cEFjYkdsc25RU3dmdGxKT20tcklQUFM2MFQyUzd5TDZDTzYwMzg4dVdPVjlNNGFkZkpjaFdoWFp1QQ?oc=5\n- 국제유가, 중동 해역 긴장에 상승…브렌트유 3.88%↑[상보] - 이투데이 (이투데이) https://news.google.com/rss/articles/CBMiVEFVX3lxTE5OQ2x2TEZ5T1NyWlp2ZFFTaWZhSDZTUkZfak9NRk41ckFQMXgyM1EwejRPZ1Nvc0pMX2RlRHRFZ0pjSVJHZEQ2UzZWMUlIbmhQYkVPeA?oc=5\n- 美 이란 게슘섬 공습에 국제유가 반등…브렌트유 106달러대 - 글로벌이코노믹 (글로벌이코노믹) https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\n- 오늘 연료 가격(2026년 11월 7일): 세계 유가는 주말을 앞두고 하락세를 보이며 11월 12일 가격 발표를 기다리고 있습니다. - Vietnam.vn (Vietnam.vn) https://news.google.com/rss/articles/CBMiowFBVV95cUxOU0gwcFgwQTNKcDlaRHh4QUlIRXcteFJtbV81ZzRQNGtIb1o3XzhpTHF3UktYTWF5WnN2Ykhxc0RIWkw1akZqTndHU3p2ZDBtNWJCSHhjbVJhUXFXMlhtTTJQNDZ5cDlkUi1rVThVM0pOLVR2NEYtR040eER5MERCVEoxOUhzS1FsdUNEcWZTc0hWeUdkV1Y3c2N2LU90V1ZpV3lR?oc=5\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 선물: 미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약. 원자재 가격 뉴스의 숫자는 대개 가장 가까운 만기 선물 가격\n- MWh: 메가와트시. 유럽 가스 가격에 쓰는 에너지 단위\n",
+ "drafts": {
+  "1": "<h1>브렌트유 한 달 6% 하락, 1년 범위와 재고로 보는 위치</h1>\n<!-- 최근 브렌트유 가격이 한 달 사이 6% 이상 내렸지만, 1년 범위와 재고 추이를 보면 여전히 1년 평균보다 높은 65% 지점에 위치하고 있습니다. -->\n\n<p>유가 하락 소식이 매체에 보도될 때 단기 등락 수치만 보고 시장이 하락세로 전환했다고 단정하기 쉽습니다. 하지만 최근 며칠이나 몇 주간의 변화율만으로는 현재 가격이 전체 흐름에서 어느 정도 수준인지 정확히 파악하기 어렵습니다.</p>\n\n<p>원자재 시장의 흐름을 균형 있게 보려면 단기 변동폭뿐만 아니라 1년 단위의 가격 범위와 미국 원유 재고 데이터를 함께 살펴보는 것이 좋습니다. 2026년 11월 07일 기준 공개된 자료를 바탕으로 현재 유가의 정확한 위치를 정리합니다.</p>\n\n<h3>최근 한 달 선물 가격</h3>\n\n<p>원자재 가격 뉴스는 대부분 가장 가까운 만기 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 가격을 기준으로 집계됩니다. 서부텍사스산원유(WTI)와 북해산 브렌트유 모두 최근 1주일간 큰 폭의 내림세를 보였으나 1년 전과 비교하면 높은 수준을 유지하고 있습니다.</p>\n\n<p>WTI 원유(CL=F)의 최근 가격은 배럴당 90.34 달러를 기록했습니다. 변화율을 보면 1주일 동안 -13.2%, 한 달 동안 -1.3% 내렸지만, 1년 전과 비교하면 +52.0% 상승한 수치입니다. 하루 기준 변동은 -0.2%였습니다.</p>\n\n<p>브렌트유(BZ=F)의 최근 가격은 배럴당 97.76 달러입니다. 1주일간 -16.9%, 한 달간 -6.3% 하락했으나 1년 전보다는 +54.2% 높은 수준입니다. 하루 변동률은 -0.5%를 나타냈습니다.</p>\n\n<h4>🔸 주요 원유 선물 가격 현황</h4>\n\n<table>\n  <tr>\n    <th>구분</th>\n    <th>최근가 (달러/배럴)</th>\n    <th>1주 변화율</th>\n    <th>한 달 변화율</th>\n    <th>1년 변화율</th>\n  </tr>\n  <tr>\n    <td>WTI 원유 (CL=F)</td>\n    <td>90.34</td>\n    <td>-13.2%</td>\n    <td>-1.3%</td>\n    <td>+52.0%</td>\n  </tr>\n  <tr>\n    <td>브렌트유 (BZ=F)</td>\n    <td>97.76</td>\n    <td>-16.9%</td>\n    <td>-6.3%</td>\n    <td>+54.2%</td>\n  </tr>\n</table>\n\n<p>최근 유가 변동의 원인에 대해 시장에서는 지정학적 변수를 주요 원인으로 꼽고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Hb3lvNVNBanFmQURVQnNoaVE1a3lSVTdjZTdtWV9yS29uM09pMDhlMWhFdlNUbEVwdmJqSjY1NHBfd0VoQ0VuUG9oVWNXd28tdGJpTkJRajhYZk1xbXVfMNIBeEFVX3lxTE95eE1KckFiSVEzRTZmYzUwdC1tV3YtMkhXSXNrZHIxd0VlUkNjbHVRay1hdi1sanJGRElLVzlXUjBmUml2RjJ1UDV3T0N0cVRkQklKYUdXOUVCUlVSWlMtQzU4WTJXZi1TMXV3aUhmM21GN1E4LTVrVQ?oc=5\" target=\"_blank\" rel=\"noopener\">뉴시스</a>는 이란 관련 불확실성으로 유가가 반등했다고 보도했으며, <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTE5NQ2x2TEZ5T1NyWlp2ZFFTaWZhSDZTUkZfak9NRk41ckFQMXgyM1EwejRPZ1Nvc0pMX2RlRHRFZ0pjSVJHZEQ2UzZWMUlIbmhQYkVPeA?oc=5\" target=\"_blank\" rel=\"noopener\">이투데이</a>는 중동 해역의 긴장감을 가격 상승의 배경으로 설명했습니다. <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\" target=\"_blank\" rel=\"noopener\">글로벌이코노믹</a> 역시 공습 이슈에 따른 유가 반등 흐름을 전했습니다. 반면 <a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxOU0gwcFgwQTNKcDlaRHh4QUlIRXcteFJtbV81ZzRQNGtIb1o3XzhpTHF3UktYTWF5WnN2Ykhxc0RIWkw1akZqTndHU3p2ZDBtNWJCSHhjbVJhUXFXMlhtTTJQNDZ5cDlkUi1rVThVM0pOLVR2NEYtR040eER5MERCVEoxOUhzS1FsdUNEcWZTc0hWeUdkV1Y3c2N2LU90V1ZpV3lR?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>은 주말을 앞두고 세계 유가가 하락세를 보였다고 전하는 등 뉴스의 시점에 따라 시황 해석에 차이가 나타나기도 합니다.</p>\n\n<h3>1년 범위와 평균 위치</h3>\n\n<p>단기적인 가격 내림세에도 불구하고 1년간의 고점과 저점을 기준으로 산출한 백분율 위치를 보면 현재 유가는 여전히 상단 영역에 자리 잡고 있습니다.</p>\n\n<p>WTI 원유의 지난 1년간 최고가는 2026년 4월 7일에 기록한 112.95 달러였으며, 최저가는 2025년 12월 16일의 55.27 달러였습니다. 최저점을 0%, 최고점을 100%로 보았을 때 현재 90.34 달러는 61% 지점에 해당합니다. 이는 1년 평균 가격인 81.27 달러보다 +11.2% 높은 수준이며, 3개월 전 대비로도 +10.0% 오른 상태입니다.</p>\n\n<p>브렌트유는 2026년 3월 31일에 1년 최고가인 118.35 달러를 기록했고, 2025년 12월 16일에 1년 최저가인 58.92 달러를 나타냈습니다. 현재 가격인 97.76 달러는 1년 범위 중 65% 지점에 위치하고 있습니다. 1년 평균가인 87.01 달러와 비교하면 +12.4% 높고, 3개월 전과 비교해도 +11.4% 상승한 지점입니다.</p>\n\n<p>이처럼 한 달간 6% 이상 내렸다는 단기 수치만 보면 하락폭이 커 보이지만, 1년 범위의 중간값 이상이자 1년 평균가를 웃도는 위치라는 점에서 가격이 저평가 영역으로 진입했다고 보기는 어렵습니다.</p>\n\n<h3>미국 상업용 원유 재고</h3>\n\n<p>원유의 수급 상황을 파악할 때 중요한 지표 중 하나는 미국 에너지정보청(EIA)이 발표하는 미국 상업용 원유 재고 데이터입니다. 수급의 누적 결과가 재고 수치로 나타나기 때문입니다.</p>\n\n<p>최근 5주간의 미국 상업용 원유 재고(단위: 천 배럴) 추이를 보면 연속적인 감소세를 확인할 수 있습니다. 2026년 10월 2일 424,134에서 시작해 10월 9일 415,577, 10월 16일 412,517, 10월 23일 410,625로 줄어들었고, 2026년 10월 30일 기준 409,760을 기록했습니다.</p>\n\n<p>가장 최근 1주일간의 재고 변화량은 -865천 배럴입니다. 또한 1년 전인 2025년 10월 31일의 재고 수치인 421,168천 배럴과 비교하면 현재 재고는 -2.7% 줄어든 상태입니다.</p>\n\n<p>재고가 지속적으로 감소하고 1년 전보다 적은 수치를 유지하고 있다는 점은 원유 시장의 물리적 공급이 유연하지 않거나 수요가 하방을 받치고 있음을 보여주는 참고 지표가 됩니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 뉴스의 시황 설명과 실제 가격 숫자가 다를 때 어떤 것을 믿어야 하나요?</h4>\n<p>기사 작성 시점과 보도 매체가 인용한 계약 달(월물)의 차이 때문에 가격 숫자가 다를 수 있습니다. 언론의 헤드라인 문구보다는 공개된 금융 데이터의 만기 선물 가격과 기준 일자를 직접 확인하는 것이 가장 정확합니다.</p>\n\n<h4>🔸 원유 재고가 감소하면 무조건 가격이 상승하는 인과관계로 보아야 하나요?</h4>\n<p>재고 감소가 가격 상승 요인으로 작용하는 경우가 많지만 절대적인 법칙은 아닙니다. 금리, 환율, 글로벌 경기 전망 등 거시경제 변수와 지정학적 위험 요소가 복합적으로 작용하므로 단일 지표만으로 가격 방향성을 단정할 수는 없습니다.</p>\n\n<h4>🔸 1년 범위 백분율 계산 시 최고점과 최저점은 고정된 값인가요?</h4>\n<p>아닙니다. 1년(52주) 범위는 매일 새로 업데이트되는 이동 구간입니다. 하루가 지날 때마다 가장 오래된 1년 전 데이터가 제외되고 새로운 날짜의 가격이 반영되므로 최고점과 최저점의 기준선 및 백분율 위치는 계속 변합니다.</p>\n\n<h3>정리</h3>\n\n<p>브렌트유 가격은 한 달 새 6.3% 내렸으나, 1년 최저·최고점 범위에서 여전히 65% 지점에 위치해 있으며 1년 평균가(87.01 달러)보다 +12.4% 높은 수준을 나타내고 있습니다. 단기 하락 뉴스만으로 시장 분위기를 판단하기보다는 전체적인 가격 위치를 파악하는 것이 중요합니다.</p>\n\n<p>독자가 유가 관련 뉴스를 접할 때 스스로 확인해 볼 수 있는 기준은 다음과 같습니다.</p>\n<p>1. 최근 단기 변동률과 함께 1년 범위 백분율(현재 가격이 최저 0%~최고 100% 중 어디에 있는지)을 확인합니다.</p>\n<p>2. 1년 평균 가격 대비 현재 가격의 차이(+% 또는 -%)를 체크합니다.</p>\n<p>3. 미국 상업용 원유 재고의 주간 변화량과 1년 전 대비 증감률(-2.7% 수준 등)을 종합적으로 비교합니다.</p>\n\n태그: 브렌트유 WTI원유 유가동향 원유재고 원자재선물",
+  "2": "<h1>브렌트유 한 달 6% 하락, 1년 범위와 재고로 보는 위치</h1>\n<!-- 최근 브렌트유 가격이 한 달 사이 6% 이상 내렸지만, 1년 범위와 재고 추이를 보면 여전히 1년 평균보다 높은 65% 지점에 위치하고 있습니다. -->\n\n<p>유가 하락 소식이 매체에 보도될 때 단기 등락 수치만 보고 시장이 하락세로 전환했다고 단정하기 쉽습니다. 하지만 최근 며칠이나 몇 주간의 변화율만으로는 현재 가격이 전체 흐름에서 어느 정도 수준인지 정확히 파악하기 어렵습니다.</p>\n\n<p>원자재 시장의 흐름을 균형 있게 보려면 단기 변동폭뿐만 아니라 1년 단위의 가격 범위와 미국 원유 재고 데이터를 함께 살펴보는 것이 좋습니다. 2026년 11월 07일 기준 공개된 자료를 바탕으로 현재 유가의 정확한 위치를 정리합니다.</p>\n\n<h3>최근 한 달 선물 가격</h3>\n\n<p>원자재 가격 뉴스는 대부분 가장 가까운 만기 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 가격을 기준으로 집계됩니다. 서부텍사스산원유(WTI)와 북해산 브렌트유 모두 최근 1주일간 내림세를 보였으나 1년 전과 비교하면 상승 흐름을 유지하고 있으며, 세부 수치는 아래 표에서 확인할 수 있습니다.</p>\n\n<p>최근 유가 변동의 원인에 대해 시장에서는 지정학적 변수를 주요 원인으로 꼽고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE1Hb3lvNVNBanFmQURVQnNoaVE1a3lSVTdjZTdtWV9yS29uM09pMDhlMWhFdlNUbEVwdmJqSjY1NHBfd0VoQ0VuUG9oVWNXd28tdGJpTkJRajhYZk1xbXVfMNIBeEFVX3lxTE95eE1KckFiSVEzRTZmYzUwdC1tV3YtMkhXSXNrZHIxd0VlUkNjbHVRay1hdi1sanJGRElLVzlXUjBmUml2RjJ1UDV3T0N0cVRkQklKYUdXOUVCUlVSWlMtQzU4WTJXZi1TMXV3aUhmM21GN1E4LTVrVQ?oc=5\" target=\"_blank\" rel=\"noopener\">뉴시스</a>는 이란 관련 불확실성으로 유가가 반등했다고 보도했으며, <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTE5NQ2x2TEZ5T1NyWlp2ZFFTaWZhSDZTUkZfak9NRk41ckFQMXgyM1EwejRPZ1Nvc0pMX2RlRHRFZ0pjSVJHZEQ2UzZWMUlIbmhQYkVPeA?oc=5\" target=\"_blank\" rel=\"noopener\">이투데이</a>는 중동 해역의 긴장감을 가격 상승의 배경으로 설명했습니다. <a href=\"https://news.google.com/rss/articles/CBMiiAFBVV95cUxQRVZmWXlWN0xIMks0UTkxNXIwMFlwbWVlaHVZWWlGS0hvclZIeE5FQm5KT3VZWlBoUHNBWmNDSldNd1JCZktySDhEd3Eydm8tNDhNYzV6UVVrNzhWemFLeHZ5RTF0andqM01UZVluQzRuMkwxcWRxaWNIOHA1OGJJd1paakJOUW9B?oc=5\" target=\"_blank\" rel=\"noopener\">글로벌이코노믹</a> 역시 공습 이슈에 따른 유가 반등 흐름을 전했습니다. 반면 <a href=\"https://news.google.com/rss/articles/CBMiowFBVV95cUxOU0gwcFgwQTNKcDlaRHh4QUlIRXcteFJtbV81ZzRQNGtIb1o3XzhpTHF3UktYTWF5WnN2Ykhxc0RIWkw1akZqTndHU3p2ZDBtNWJCSHhjbVJhUXFXMlhtTTJQNDZ5cDlkUi1rVThVM0pOLVR2NEYtR040eER5MERCVEoxOUhzS1FsdUNEcWZTc0hWeUdkV1Y3c2N2LU90V1ZpV3lR?oc=5\" target=\"_blank\" rel=\"noopener\">Vietnam.vn</a>은 주말을 앞두고 세계 유가가 하락세를 보였다고 전하는 등 뉴스의 시점에 따라 시황 해석에 차이가 나타나기도 합니다.</p>\n\n<h4>🔸 주요 원유 선물 가격 현황</h4>\n\n<table>\n  <tr>\n    <th>구분</th>\n    <th>최근가 (달러/배럴)</th>\n    <th>1주 변화율</th>\n    <th>한 달 변화율</th>\n    <th>1년 변화율</th>\n  </tr>\n  <tr>\n    <td>WTI 원유 (CL=F)</td>\n    <td>90.34</td>\n    <td>-13.2%</td>\n    <td>-1.3%</td>\n    <td>+52.0%</td>\n  </tr>\n  <tr>\n    <td>브렌트유 (BZ=F)</td>\n    <td>97.76</td>\n    <td>-16.9%</td>\n    <td>-6.3%</td>\n    <td>+54.2%</td>\n  </tr>\n</table>\n\n<h3>1년 범위와 평균 위치</h3>\n\n<p>단기적인 가격 내림세에도 불구하고 1년간의 고점과 저점을 기준으로 산출한 백분율 위치를 보면 현재 유가는 여전히 상단 영역에 자리 잡고 있습니다.</p>\n\n<p>WTI 원유의 지난 1년간 최고가는 2026년 4월 7일에 기록한 112.95 달러였으며, 최저가는 2025년 12월 16일의 55.27 달러였습니다. 최저점을 0%, 최고점을 100%로 보았을 때 현재 90.34 달러는 61% 지점에 해당합니다. 이는 1년 평균 가격인 81.27 달러보다 +11.2% 높은 수준이며, 3개월 전 대비로도 +10.0% 오른 상태입니다.</p>\n\n<p>브렌트유는 2026년 3월 31일에 1년 최고가인 118.35 달러를 기록했고, 2025년 12월 16일에 1년 최저가인 58.92 달러를 나타냈습니다. 현재 가격인 97.76 달러는 1년 범위 중 65% 지점에 위치하고 있습니다. 1년 평균가인 87.01 달러와 비교하면 +12.4% 높고, 3개월 전과 비교해도 +11.4% 상승한 지점입니다.</p>\n\n<p>이처럼 한 달간 6% 이상 내렸다는 단기 수치만 보면 하락폭이 커 보이지만, 1년 범위의 중간값 이상이자 1년 평균가를 웃도는 위치라는 점에서 가격이 저평가 영역으로 진입했다고 보기는 어렵습니다.</p>\n\n<h3>미국 상업용 원유 재고</h3>\n\n<p>원유의 수급 상황을 파악할 때 중요한 지표 중 하나는 미국 에너지정보청(EIA)이 발표하는 미국 상업용 원유 재고 데이터입니다. 수급의 누적 결과가 재고 수치로 나타나기 때문입니다.</p>\n\n<p>미국 상업용 원유 재고(단위: 천 배럴)는 2026년 10월 2일 424,134에서 지속적으로 감소하여 2026년 10월 30일 기준 409,760을 기록했습니다. 5주 전 시작점 대비 재고는 꾸준히 줄어드는 흐름을 보였습니다.</p>\n\n<p>가장 최근 1주일간의 재고 변화량은 -865천 배럴입니다. 또한 1년 전인 2025년 10월 31일의 재고 수치인 421,168천 배럴과 비교하면 현재 재고는 -2.7% 줄어든 상태입니다.</p>\n\n<p>재고가 지속적으로 감소하고 1년 전보다 적은 수치를 유지하고 있다는 점은 원유 시장의 물리적 공급이 유연하지 않거나 수요가 하방을 받치고 있음을 보여주는 참고 지표가 됩니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 뉴스의 시황 설명과 실제 가격 숫자가 다를 때 어떤 것을 믿어야 하나요?</h4>\n<p>기사 작성 시점과 보도 매체가 인용한 계약 달(월물)의 차이 때문에 가격 숫자가 다를 수 있습니다. 언론의 헤드라인 문구보다는 공개된 금융 데이터의 만기 선물 가격과 기준 일자를 직접 확인하는 것이 가장 정확합니다.</p>\n\n<h4>🔸 원유 재고가 감소하면 상승하는 인과관계로 보아야 하나요?</h4>\n<p>재고 감소가 가격 상승 요인으로 작용하는 경우가 많지만 절대적인 법칙은 아닙니다. 금리, 환율, 글로벌 경기 전망 등 거시경제 변수와 지정학적 위험 요소가 복합적으로 작용하므로 단일 지표만으로 가격 방향성을 단정할 수는 없습니다.</p>\n\n<h4>🔸 1년 범위 백분율 계산 시 최고점과 최저점은 고정된 값인가요?</h4>\n<p>아닙니다. 1년(52주) 범위는 매일 새로 업데이트되는 이동 구간입니다. 하루가 지날 때마다 가장 오래된 1년 전 데이터가 제외되고 새로운 날짜의 가격이 반영되므로 최고점과 최저점의 기준선 및 백분율 위치는 계속 변합니다.</p>\n\n<h3>정리</h3>\n\n<p>브렌트유 가격은 한 달 새 6.3% 내렸으나, 1년 최저·최고점 범위에서 여전히 65% 지점에 위치해 있으며 1년 평균가(87.01 달러)보다 +12.4% 높은 수준을 나타내고 있습니다. 단기 하락 뉴스만으로 시장 분위기를 판단하기보다는 전체적인 가격 위치를 파악하는 것이 중요합니다.</p>\n\n<p>독자가 유가 관련 뉴스를 접할 때 스스로 확인해 볼 수 있는 기준은 다음과 같습니다.</p>\n<p>1. 최근 단기 변동률과 함께 1년 범위 백분율(현재 가격이 최저 0%~최고 100% 중 어디에 있는지)을 확인합니다.</p>\n<p>2. 1년 평균 가격 대비 현재 가격의 차이(+% 또는 -%)를 체크합니다.</p>\n<p>3. 미국 상업용 원유 재고의 주간 변화량과 1년 전 대비 증감률(-2.7% 수준 등)을 종합적으로 비교합니다.</p>\n\n태그: 브렌트유 WTI원유 유가동향 원유재고 원자재선물"
+ },
+ "minutes": 4.5
+}
