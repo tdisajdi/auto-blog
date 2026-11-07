@@ -185,3 +185,7 @@ assert lint.english_words('<p>블로그 ondo 계산, SPY와 QQQ, <a href="https:
 _, iss10, _ = lint.fix_and_check("<h1>t</h1><p>환율 fluctuations에 따라</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
 assert [i for i in iss10 if i.startswith("영어 단어 'fluctuations'")], iss10
 print("english words ok")
+# 2026-11-08: '우월'도 과장 표현(커버드콜 가이드 정책 지적)
+_, iss11, _ = lint.fix_and_check("<h1>t</h1><p>지수형 상품의 성과가 우월했습니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
+assert [i for i in iss11 if "금지 표현 '우월'" in i], iss11
+print("banned superior ok")
