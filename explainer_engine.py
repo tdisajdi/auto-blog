@@ -510,7 +510,11 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
                    f"[세금 사실 - {ea.TAX_RULES_BASIS}. 이 글의 주제가 세금이 아니면 한두 문장으로만]\n"
                    f"- 미국 상장 ETF 매매차익: 연 {ea.OVERSEAS_CG_DEDUCTION // 10000}만 원 공제 후 {ea.TAX_OVERSEAS_CAPITAL_GAINS * 100:.0f}% "
                    "양도소득세(지방세 포함), 다음 해 5월 국세청 홈택스 등으로 직접 신고\n"
-                   f"- 미국 상장 ETF 배당: 미국에서 {ea.TAX_US_DIVIDEND_WITHHOLDING * 100:.0f}% 원천징수\n\n")
+                   f"- 미국 상장 ETF 배당: 미국에서 {ea.TAX_US_DIVIDEND_WITHHOLDING * 100:.0f}% 원천징수. 해외에서 낸 세금은 국내 세금에서 "
+                   "빼 준다(외국납부세액공제)\n"
+                   # 11-08 최대 낙폭 가이드: 작가가 국내 배당세율·종합과세 기준을 맞게 썼는데 자료에 없어 '치명' → 짧게 사실만
+                   f"- 국내 배당소득세율: 14%(지방소득세 포함 {ea.TAX_DOMESTIC_DIVIDEND * 100:.1f}%). 이자·배당 등 금융소득이 한 해 "
+                   "2,000만 원을 넘으면 넘는 부분은 다른 소득과 합쳐 과세(금융소득종합과세)\n\n")
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
             f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))
