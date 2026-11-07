@@ -626,7 +626,20 @@ def _kosis_series(rows):
     one_item = len({r.get("ITM_NM") for r in use}) == 1
     # 분류2·3(예: 외국인주민 표의 '외국인근로자·결혼이민자·귀화자…')이 있으면 이름에 넣는다.
     # 넣지 않으면 같은 이름 칸에 여러 분류 값이 덮어써져 숫자가 뒤섞인다(2026-11-08 check_sources에서 발견).
+    # 분류3(예: 합계·남자·여자)은 합계가 있으면 합계만 쓴다 - 성별까지 나누면 항목 이름이 "외국인근로자 남자"처럼 갈라짐.
+    c3 = {str(r.get("C3_NM", "")).strip() for r in use}
+    if len(c3) > 1 and c3 & _KOSIS_NATIONAL:
+        use = [r for r in use if str(r.get("C3_NM", "")).strip() in _KOSIS_NATIONAL]
     sub_lv = [c for c in ("C2_NM", "C3_NM") if len({str(r.get(c, "")).strip() for r in use}) > 1]
+    # 세부 분류는 단위가 비어 있을 때가 있어(외국인근로자 = '', 상위 '한국국적을 가지지 않은 자' = '명') 상위 분류 단위를 물려받는다.
+    unit_of = {str(r.get("C2")): r.get("UNIT_NM") for r in use if r.get("C2") and r.get("UNIT_NM")}
+    def _unit(r):
+        u = r.get("UNIT_NM") or ""
+        code = str(r.get("C2") or "")
+        while not u and len(code) > 1:
+            code = code[:-1]
+            u = unit_of.get(code, "")
+        return u
     out = {}
     for r in use:
         v = _num(r.get("DT"))
@@ -640,7 +653,7 @@ def _kosis_series(rows):
         else:
             name = " - ".join(x for x in (r.get("C1_NM", ""), r.get("ITM_NM", ""), sub) if x)
         name = re.sub(r"\s+", " ", re.sub(r"＜br＞|<br\s*/?>", " ", str(name))).strip()
-        out.setdefault((name, r.get("UNIT_NM", "") or ""), {})[str(r.get("PRD_DE"))] = v
+        out.setdefault((name, _unit(r)), {})[str(r.get("PRD_DE"))] = v
     return {k: sorted(v.items()) for k, v in out.items()}
 
 
