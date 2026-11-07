@@ -296,3 +296,6 @@ print("review link marker ok")
 tn = desk._norm(desk.review_text('<p><a href="https://x">TradingKey</a>에 따르면 VOO 자산이 늘었다</p>'))
 assert desk._quote_found("TradingKey에 따르면 VOO 자산이 늘었다", tn) and desk._quote_found("TradingKey[링크]에 따르면 VOO", tn)
 print("quote match with link marker ok")
+
+assert "조건과 숫자로 쓴 판단 기준은 권유가 아니라" in desk.prompt("review_policy", category_label="c", facts="", must="")
+print("policy allows conditional criteria ok")
