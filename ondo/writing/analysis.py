@@ -219,9 +219,73 @@ def previous_facts(previous_analyses):
     return ("[지난 분석과 비교]\n" + "\n".join(out) + "\n") if out else ""
 
 
+def _closes(ticker):
+    """5년 일별 종가(시간대 없이 날짜만). 실패하면 None."""
+    try:
+        if ticker.endswith(".KS"):
+            import FinanceDataReader as fdr
+            from datetime import datetime, timedelta
+            c = fdr.DataReader(ticker[:-3], (datetime.now() - timedelta(days=365 * 5 + 10)).strftime("%Y-%m-%d"))["Close"]
+        else:
+            import yfinance as yf
+            c = yf.Ticker(ticker).history(period="5y")["Close"]
+        c = c.dropna()
+        if getattr(c.index, "tz", None) is not None:
+            c.index = c.index.tz_localize(None)
+        c.index = c.index.normalize()
+        return c if len(c) > 60 else None
+    except Exception as e:
+        print(f"ℹ️ 비교용 가격 못 받음({ticker}): {type(e).__name__}")
+        return None
+
+
+def same_period_block(etf_list, closes=None):
+    """두 ETF를 '같은 기간'으로 맞춰 비교(2026-11-07). 상장일이 달라 CAGR을 직접 비교할 수 없어서 비교 글의 핵심이 비었다.
+    closes: {티커: 종가 시리즈}(시험용). 반환: 사실 자료 글(못 만들면 '')."""
+    import pandas as pd
+    if len(etf_list) < 2:
+        return ""
+    a, b = etf_list[0], etf_list[1]
+    closes = closes or {t: _closes(t) for t in (a, b)}
+    if closes.get(a) is None or closes.get(b) is None:
+        return ""
+    df = pd.DataFrame({a: closes[a], b: closes[b]}).dropna()
+    if len(df) < 120:
+        return ""
+    start, end = df.index[0], df.index[-1]
+    years = max((end - start).days / 365.25, 0.1)
+    lines = [f"[같은 기간 비교 - 코드 계산, 두 ETF 모두 자료가 있는 {start:%Y-%m-%d}~{end:%Y-%m-%d}(약 {years:.1f}년), 배당 제외 가격 기준. "
+             "상장 이후 연평균(CAGR) 대신 이 숫자로 비교하세요]"]
+    for t in (a, b):
+        c = df[t]
+        tot = c.iloc[-1] / c.iloc[0] - 1
+        ann = (1 + tot) ** (1 / years) - 1 if tot > -1 else None
+        mdd = (c / c.cummax() - 1).min()
+        lines.append(f"- {t}: 이 기간 가격 변화 {tot * 100:+.1f}%, 연평균 {ann * 100:+.1f}%, 이 기간 최대 낙폭 {mdd * 100:.1f}%"
+                     if ann is not None else f"- {t}: 이 기간 가격 변화 {tot * 100:+.1f}%, 이 기간 최대 낙폭 {mdd * 100:.1f}%")
+    wins, detail = {a: 0, b: 0}, []
+    for y in sorted(set(df.index.year)):
+        sub = df[df.index.year == y]
+        if len(sub) < 60:          # 너무 짧은 해(시작·끝 연도 일부)는 빼서 공정하게
+            continue
+        ra, rb = sub[a].iloc[-1] / sub[a].iloc[0] - 1, sub[b].iloc[-1] / sub[b].iloc[0] - 1
+        w = a if ra > rb else b
+        wins[w] += 1
+        detail.append(f"{y}년 {a} {ra * 100:+.1f}% / {b} {rb * 100:+.1f}%")
+    if detail:
+        lines.append(f"- 해마다 비교(그 해 안의 가격 변화): " + "; ".join(detail) + f" → {a}가 더 오른 해 {wins[a]}번, {b}가 더 오른 해 {wins[b]}번")
+    wk = df.resample("W-FRI").last().pct_change().dropna()
+    if len(wk) >= 30:
+        corr = wk[a].corr(wk[b])
+        lines.append(f"- 주간 수익률 상관계수 {corr:.2f}(-1~+1, 1에 가까우면 거의 같이 움직임 - 둘 다 가지고 있어도 흔들림을 나누는 효과가 작다는 뜻)")
+    return "\n".join(lines)
+
+
 def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previous_analyses=None):
     parts = ["[사실 자료 - 종목 데이터. 항목 이름표의 기간·단위·기준을 그대로 지켜서 쓰세요]"]
     parts += [ticker_facts(t, cache[t], ea, today_label) for t in etf_list if t in cache]
+    if len(etf_list) >= 2:
+        parts.append(same_period_block([t for t in etf_list if t in cache][:2]))
     parts.append(previous_facts(previous_analyses))
     parts.append(f"[오늘 시장 수치 - 이 ETF 설명과 직접 관련 있을 때만 쓰기]\n"
                  f"- 원/달러 환율 {macro.get('usd_krw')}, 미국 10년물 국채 금리 {macro.get('us_10y')}, "
