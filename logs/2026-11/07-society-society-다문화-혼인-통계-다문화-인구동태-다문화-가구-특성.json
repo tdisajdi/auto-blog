@@ -1,0 +1,261 @@
+{
+ "article_type": "society",
+ "topic_id": "society:다문화-혼인-통계-다문화-인구동태-다문화-가구-특성",
+ "title_seed": "다문화 가구의 혼인 특성 및 인구동태",
+ "category": "society",
+ "started_at": "2026-11-07T12:47:35",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.2,
+   "chars": 3358
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 20.0,
+   "chars": 6176
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.5,
+   "chars": 1003
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.1,
+   "chars": 413
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 155
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 943
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.9,
+   "chars": 5781
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.0,
+   "chars": 160
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 393
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.0,
+   "chars": 175
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.2,
+   "chars": 876
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "12:47:53",
+   "title": "통계로 본 다문화 가구 및 외국인주민 현황",
+   "sections": [
+    "외국인주민 규모와 비율",
+    "세부 항목별 현황과 증감",
+    "장기 흐름과 구성비 분석",
+    "다문화 혼인 특성과 지역 통계"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "12:48:16",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "12:48:49",
+   "score": 0.0,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "세부 항목별 증가율(예: 유학생 +13.0%)이나 구성비 숫자가 독자에게 주는 의미를 본문 속에서 더 구체적으로 풀어 설명하는 것",
+   "issues": [
+    "[치명·사실 검증] '법무부 통계는 출입국 관리 및 체류 자격 기준에 중점을 두는 반면, 행정안전부 통계는 지자체 거주 현황과 지' → 자료에 없는 법무부 통계와 행정안전부 통계의 상세한 차이 및 집계 방식을 지어내어 작성했습니다. / 고칠 방법: 자료 지침에 따라 다른 통계와 수치 차이가 있을 수 있다는 점은 기관마다 집계 기준이 다를 수 있다는 정도로만 간략히 언급하세요.",
+    "[치명·사실 검증] '관광이나 단순 방문 목적으로 단기간 머무르는 단기 체류자는 일반적인 외국인주민 및 다문화 가구 통계 대상에서' → 자료에 포함되어 있지 않은 단기 체류자의 포함 여부 및 통계 집계 방식을 지어내어 명시했습니다. / 고칠 방법: 자료에 나와 있지 않은 단기 체류 포함 여부에 대한 상세 설명을 삭제하세요.",
+    "[치명·사실 검증] '결혼이민자는 대한민국 국민과 혼인 관계를 맺고 체류하는 외국인을 뜻하며, 외국국적동포는 과거 한국 국적을 가' → 자료에 기술되어 있지 않은 각 분류의 세부 인정 기준과 정의를 임의로 지어내어 작성했습니다. / 고칠 방법: 자료에 명시되지 않은 각 체류 자격별 정의와 인정 기준 내용을 삭제하세요.",
+    "[사소·독자 편집] '한국국적을 가지지 않은 자는 2023년 1,935,150명에서 2024년 2,042,744명으로 5.6% 늘' → 표에 이미 제시된 세부 수치와 내용을 본문에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표에 있는 구체적인 숫자를 문장에서 반복하는 대신 핵심적인 증감 특징만 요약하세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '13.0%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '4.99%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "5,984명"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 4073
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "12:49:07",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "12:49:40",
+   "score": 0.97,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 현황 파악 질문에 대해 독자가 향후 인구 변화를 예측하거나 판단할 수 있는 조건부 기준을 본문 앞부분에 추가하기",
+   "issues": [
+    "[사소·독자 편집] '국내 거주 인구의 구조적 변화 속에서 외국인주민의 수와 전체 인구 내 비중은 매년 꾸준히 확대되는 양상을 띱' → 앞서 제시된 수치와 비율을 단순 반복하는 일반적인 문장으로 분량을 채우고 있습니다. / 고칠 방법: 추상적인 서술 대신 구체적인 증가 추세 핵심 수치를 1문장으로 압축하여 작성하십시오."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '13.0%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '4.99%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 3518
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "12:49:44",
+   "post_id": 253,
+   "url": "https://ondo99.com/?p=253",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "국내 외국인주민 258만 명 돌파, 총인구 대비 비율과 세부 현황은",
+  "url": "https://ondo99.com/?p=253",
+  "score": 0.97,
+  "issues": [
+   "[참고] 같은 숫자 '13.0%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[참고] 같은 숫자 '4.99%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '국내 거주 인구의 구조적 변화 속에서 외국인주민의 수와 전체 인구 내 비중은 매년 꾸준히 확대되는 양상을 띱' → 앞서 제시된 수치와 비율을 단순 반복하는 일반적인 문장으로 분량을 채우고 있습니다. / 고칠 방법: 추상적인 서술 대신 구체적인 증가 추세 핵심 수치를 1문장으로 압축하여 작성하십시오."
+  ]
+ },
+ "facts": "[공식 통계 - 국가통계포털(KOSIS) '시도별 외국인주민 현황', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]\n- 외국인주민 합계: 2024년 2,583,626명 (직전 2023년 2,459,542명), 1년 전(2023년) 대비 +5.0%\n- 총인구 대비 외국인주민 비율: 2024년 4.99% (직전 2023년 4.75%), 1년 전(2023년)보다 +0.24%p\n- 한국국적을 가지지 않은 자: 2024년 2,042,744명 (직전 2023년 1,935,150명), 1년 전(2023년) 대비 +5.6%\n- 한국국적을 취득한 자: 2024년 245,578명 (직전 2023년 234,506명), 1년 전(2023년) 대비 +4.7%\n- 외국인주민자녀(출생): 2024년 295,304명 (직전 2023년 289,886명), 1년 전(2023년) 대비 +1.9%\n- 외국인근로자: 2024년 502,634명 (직전 2023년 470,250명), 1년 전(2023년) 대비 +6.9%\n- 결혼이민자: 2024년 191,839명 (직전 2023년 180,072명), 1년 전(2023년) 대비 +6.5%\n- 유학생: 2024년 233,237명 (직전 2023년 206,329명), 1년 전(2023년) 대비 +13.0%\n- 외국국적동포: 2024년 415,695명 (직전 2023년 410,972명), 1년 전(2023년) 대비 +1.1%\n[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]\n- 2024년 외국인주민 합계 대비 구성비(코드 계산): 한국국적을 가지지 않은 자 79.1%, 한국국적을 취득한 자 9.5%, 외국인주민자녀(출생) 11.4%, 외국인근로자 19.5%, 결혼이민자 7.4%, 유학생 9.0%, 외국국적동포 16.1%\n- 1년 전(2023년) 대비 증가율이 가장 큰 항목(코드 계산): 유학생 +13.0%\n- 외국인주민 합계 흐름: 2015년 1,711,013명, 2016년 1,764,664명, 2017년 1,861,084명, 2018년 2,054,621명, 2019년 2,216,612명, 2020년 2,156,417명, 2021년 2,134,569명, 2022년 2,258,248명, 2023년 2,459,542명, 2024년 2,583,626명 → 이 기간 최고 2024년 2,583,626명, 최저 2015년 1,711,013명, 직전 기간 대비 변화가 가장 컸던 때 2023년(+201,294)\n- 총인구 대비 외국인주민 비율 흐름: 2015년 3.35%, 2016년 3.44%, 2017년 3.62%, 2018년 3.98%, 2019년 4.28%, 2020년 4.16%, 2021년 4.13%, 2022년 4.37%, 2023년 4.75%, 2024년 4.99% → 이 기간 최고 2024년 4.99%, 최저 2015년 3.35%, 직전 기간 대비 변화가 가장 컸던 때 2023년(+0.38%p)\n- 용어: 이 표(행정안전부)의 외국인주민 합계 = 한국국적을 가지지 않은 자 + 한국국적을 취득한 자(귀화자 등) + 외국인주민자녀(출생). 외국인근로자·결혼이민자·유학생·외국국적동포는 '한국국적을 가지지 않은 자'의 세부 분류\n- 자료 범위: 이 자료는 행정안전부 '외국인주민 현황' 하나뿐입니다. 법무부 체류외국인 통계·통계청 이주배경인구 통계와의 차이, 집계 방식(기준일·중복 처리·단기 체류 포함 여부), 각 분류의 세부 인정 기준은 자료에 없으니 쓰지 마세요. 다른 통계와 숫자가 다를 수 있다는 점은 '기관마다 집계 기준이 다를 수 있다' 정도로만 말하세요.\n\n[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n- 지난해 결혼 100쌍 중 9쌍 ‘다문화’…‘남편 10세 이상 연상’은 36.1% - 경기일보 (경기일보) https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Ba0lKMXdCWEhKbWZTN2F4eXJoa2d4SXlXMVNJY2REb28zRjZPZFFrSE0tQ0U1bEJfMlNNdy1jallKTWxzTnNUWlpxWnlTamZkeDI1YUJ6RHhSYW8?oc=5\n- [이슈&인사이트] 다문화가정 장애아동 교육, 통합적 지원 체계 구축이 시급 - 에너지경제신문 (에너지경제신문) https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ydi1DbUdJMXFJX25rWW1yZEkxcGFXX0Fyb2hIUDRseVA2b0UzdUZuT00xMnl6MllIUG1hSHREcGJfanVMVFZsSWZRNjJzVVFYbTBDVHRWS0hnUlE?oc=5\n- 시흥시, 2024년 다문화·외국인 가구 통계 공표 - 뉴스핌 (뉴스핌) https://news.google.com/rss/articles/CBMiXEFVX3lxTFB6clN2NUQ5R21iSlFINVdEUEdDR2FYZXBhSlJhdUxPcXNlRF9QQTVRTXloMjBLUWgzS1NHZlduZUlENThxVjViRlJtUGdpR0FVdkdCbTQ5YVpVUWJi?oc=5\n- 시흥시, 2024년 다문화 및 외국인 가구 통계 발표 - 기호일보 (기호일보) https://news.google.com/rss/articles/CBMib0FVX3lxTE1kckNCU1pNcEhlMVRHNnUtb2ZPYUlhel95SHUwdVJtelFBT0R5VUE3bmZKUlM5alU2a1UxTnhnVTZZWk9wcnpCMGhGclRMTHltOVJDaDluamJOQVdpcDFzMHBvLXIxZWJrY09ZeXlpQQ?oc=5\n- 제주 다문화 혼인 감소율·이혼 증가율 전국 최고 - 파이낸셜뉴스 (파이낸셜뉴스) https://news.google.com/rss/articles/CBMiWkFVX3lxTE1EMjg1WFd2UmhrOFZIajVQaGp0ZGY5Smd0eTNRa1EyeWNZVXBwU0pXd3Z3bzBfQTlKR2tIa3NHRVJrVXpWUE95ZFczdFhORDhqenhLN29mcmNqQQ?oc=5\n- 시흥시 다문화 인구, 얼마나 될까?…9751가구·2만5984명 - 뉴시스 (뉴시스) https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kMWdneXFKRXo3UXV0Y2RVR2hMWF9MVXZPem1CZEZRdVBYcVotd2xfb05ZQ1pTWWNEQmJ0RlNkWEpleERaM2x6NkZxam13UVJpdl9rY1VQbFJFOXV6aFpWSQ?oc=5\n- 시흥시, 다문화 및 외국인 가구에 관한 통계 공표 - 헤럴드경제 (헤럴드경제) https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HT3g3WE9HRkIwSnppa2Judl9tT2pDWHo0Zjg1bml3Yk9VbHZxcDZ4cU1MeHpOeTNtbEVGbEZnajVlUUhOaHZxSzNXMmtCcWpscFFIUWdR?oc=5\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- %p(퍼센트포인트): 비율끼리 뺀 차이. 비율이 몇 % 늘었는지(증가율)와는 다른 값\n",
+ "drafts": {
+  "1": "<h1>국내 외국인주민 258만 명 돌파, 총인구 대비 비율과 세부 현황은</h1>\n<!-- 행정안전부의 공식 통계를 바탕으로 2024년 국내 외국인주민 258만 명 돌파 현황과 총인구 대비 비율, 세부 항목별 증감 추이를 정확한 수치로 알아봅니다. -->\n\n<p>국내 다문화 가구와 외국인주민의 증가 현황을 단편적인 시각이나 추측을 넘어 정확한 통계 수치로 확인해 볼 시점입니다. 국내에 거주하는 외국인주민의 규모가 구체적으로 어느 정도인지, 전체 인구에서 차지하는 비중은 어떻게 변하고 있는지 궁금해하는 분들이 많습니다.</p>\n\n<p>행정안전부에서 발표한 '외국인주민 현황' 공식 통계를 바탕으로 전체적인 규모와 세부 분류별 인구 흐름을 정리해 드립니다. 기관마다 집계 기준이 다를 수 있으므로, 이번 글에서는 행정안전부의 공식 공표 자료에 집계된 수치를 기준으로 관련 현황을 다룹니다.</p>\n\n<h3>외국인주민 규모와 비율</h3>\n\n<p>행정안전부 통계에 따르면 2024년 기준 국내 외국인주민 합계는 2,583,626명으로 집계되었습니다. 이는 직전 연도인 2023년의 2,459,542명과 비교했을 때 1년 만에 5.0% 증가한 수치입니다. 국내에 거주하는 외국인주민 총수가 지속적인 상승세를 이어가고 있음을 보여줍니다.</p>\n\n<p>총인구 대비 외국인주민이 차지하는 비율 역시 함께 상승했습니다. 2024년 총인구 대비 외국인주민 비율은 4.99%를 기록하여, 2023년의 4.75%보다 1년 전 대비 0.24%p(퍼센트포인트: 비율끼리 뺀 차이. 비율이 몇 % 늘었는지인 증가율과는 다른 값) 상승했습니다. 전체 인구 100명 중 약 5명에 가까운 인원이 외국인주민으로 구성되어 있는 셈입니다.</p>\n\n<p>국내 거주 인구의 구조적 변화 속에서 외국인주민의 수와 전체 인구 내 비중은 매년 꾸준히 확대되는 양상을 띱니다. 이러한 공식 수치는 국내 외국인 인구의 변화를 파악하는 중요한 기초 자료가 됩니다.</p>\n\n<h3>세부 항목별 현황과 증감</h3>\n\n<p>외국인주민은 국적 보유 여부 및 체류 목적에 따라 여러 세부 항목으로 나뉩니다. 각 세부 항목별 인원과 전년 대비 증가율을 살펴보면 구체적인 인구 이동 양상을 파악할 수 있습니다.</p>\n\n<p>2024년 세부 항목별 현황을 정리한 결과는 다음과 같습니다.</p>\n\n<table>\n<tr><th>구분</th><th>2023년 인원(명)</th><th>2024년 인원(명)</th><th>전년 대비 증가율(%)</th></tr>\n<tr><td>한국국적을 가지지 않은 자</td><td>1,935,150</td><td>2,042,744</td><td>+5.6%</td></tr>\n<tr><td>한국국적을 취득한 자</td><td>234,506</td><td>245,578</td><td>+4.7%</td></tr>\n<tr><td>외국인주민자녀(출생)</td><td>289,886</td><td>295,304</td><td>+1.9%</td></tr>\n<tr><td>외국인근로자</td><td>470,250</td><td>502,634</td><td>+6.9%</td></tr>\n<tr><td>결혼이민자</td><td>180,072</td><td>191,839</td><td>+6.5%</td></tr>\n<tr><td>유학생</td><td>206,329</td><td>233,237</td><td>+13.0%</td></tr>\n<tr><td>외국국적동포</td><td>410,972</td><td>415,695</td><td>+1.1%</td></tr>\n</table>\n\n<p>한국국적을 가지지 않은 자는 2023년 1,935,150명에서 2024년 2,042,744명으로 5.6% 늘어났습니다. 같은 기간 한국국적을 취득한 자는 234,506명에서 245,578명으로 4.7% 증가했고, 국내에서 출생한 외국인주민자녀는 289,886명에서 295,304명으로 1.9% 증가했습니다.</p>\n\n<p>한국국적을 가지지 않은 자의 세부 분류를 보면, 외국인근로자가 2023년 470,250명에서 2024년 502,634명으로 6.9% 증가했습니다. 결혼이민자는 180,072명에서 191,839명으로 6.5% 늘어났으며, 유학생은 206,329명에서 233,237명으로 13.0% 증가하여 높은 신장세를 보였습니다. 외국국적동포의 경우 410,972명에서 415,695명으로 1.1% 증가했습니다.</p>\n\n<h3>장기 흐름과 구성비 분석</h3>\n\n<p>행정안전부 통계 기준에 따르면 외국인주민 합계는 '한국국적을 가지지 않은 자', '한국국적을 취득한 자(귀화자 등)', '외국인주민자녀(출생)'의 세 가지 범주를 더해 산출합니다. 세부 항목인 외국인근로자, 결혼이민자, 유학생, 외국국적동포는 '한국국적을 가지지 않은 자' 안에 포함되는 세부 분류에 해당합니다.</p>\n\n<p>2024년 외국인주민 합계(2,583,626명)를 기준으로 각 항목이 차지하는 구성비를 살펴보면, 한국국적을 가지지 않은 자가 79.1%로 가장 큰 비중을 차지합니다. 이어 외국인주민자녀(출생)가 11.4%, 한국국적을 취득한 자가 9.5% 순입니다. 세부 분류 항목 중에서는 외국인근로자가 19.5%, 외국국적동포가 16.1%, 유학생이 9.0%, 결혼이민자가 7.4%의 구성비를 나타냅니다.</p>\n\n<p>1년 전인 2023년 대비 증가율이 가장 큰 항목은 유학생으로 +13.0%의 수치를 기록했습니다. 이는 학업을 위해 국내에 입국하여 체류하는 인원이 빠른 속도로 확대되고 있음을 보여주는 지표입니다.</p>\n\n<p>장기 추이를 보면 외국인주민 합계는 2015년 1,711,013명으로 최저치를 기록한 이후 상승세를 이어왔습니다. 2019년 2,216,612명을 기록한 뒤 2020년(2,156,417명)과 2021년(2,134,569명)에 일시적으로 감소하기도 했으나, 다시 반등하여 2024년에는 기간 내 최고치인 2,583,626명에 도달했습니다. 직전 기간 대비 인원 변화가 가장 컸던 시점은 2023년으로 전년 대비 201,294명이 늘어났습니다.</p>\n\n<p>총인구 대비 외국인주민 비율 장기 흐름 또한 유사한 궤적을 그립니다. 2015년 3.35%로 가장 낮은 비율을 보인 후 상승하여 2024년에는 기간 내 최고치인 4.99%를 기록했습니다. 직전 기간 대비 비율 변화가 가장 컸던 때는 2023년으로, 1년 전보다 0.38%p 증가한 바 있습니다.</p>\n\n<h3>다문화 혼인 특성과 지역 통계</h3>\n\n<p>언론 보도를 통해서도 다문화 혼인 및 지역별 가구 현황에 대한 구체적인 수치를 확인할 수 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Ba0lKMXdCWEhKbWZTN2F4eXJoa2d4SXlXMVNJY2REb28zRjZPZFFrSE0tQ0U1bEJfMlNNdy1jallKTWxzTnNUWlpxWnlTamZkeDI1YUJ6RHhSYW8?oc=5\" target=\"_blank\" rel=\"noopener\">경기일보</a> 보도에 따르면 지난해 결혼 100쌍 중 9쌍이 ‘다문화’ 혼인이었으며, 이 가운데 ‘남편이 10세 이상 연상’인 비중은 36.1%로 나타났습니다.</p>\n\n<p>지역별 가구 통계 발표도 이어지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kMWdneXFKRXo3UXV0Y2RVR2hMWF9MVXZPem1CZEZRdVBYcVotd2xfb05ZQ1pTWWNEQmJ0RlNkWEpleERaM2x6NkZxam13UVJpdl9rY1VQbFJFOXV6aFpWSQ?oc=5\" target=\"_blank\" rel=\"noopener\">뉴시스</a>, <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTFB6clN2NUQ5R21iSlFINVdEUEdDR2FYZXBhSlJhdUxPcXNlRF9QQTVRTXloMjBLUWgzS1NHZlduZUlENThxVjViRlJtUGdpR0FVdkdCbTQ5YVpVUWJi?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>, <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE1kckNCU1pNcEhlMVRHNnUtb2ZPYUlhel_5SHUwdVJtelFBT0R5VUE3bmZKUlM5alU2a1UxTnhnVTZZWk9wcnpCMGhGclRMTHltOVJDaDluamJOQVdpcDFzMHBvLXIxZWJrY09ZeXlpQQ?oc=5\" target=\"_blank\" rel=\"noopener\">기호일보</a>, <a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HT3g3WE9HRkIwJnppa2Judl9tT2pDWHo0Zjg1bml3Yk9VbHZxcDZ4cU1MeHpOeTNtbEVGbEZnajVlUUhOaHZxSzNXMmtCcWpscFFIUWdR?oc=5\" target=\"_blank\" rel=\"noopener\">헤럴드경제</a> 보도에 의하면 시흥시는 2024년 다문화 및 외국인 가구 통계를 공표했으며, 이에 따라 확인된 시흥시 다문화 인구는 9,751가구, 2만 5,984명 규모입니다.</p>\n\n<p>지역에 따른 특이점도 존재합니다. <a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE1EMjg1WFd2UmhrOFZIajVQaGp0ZGY5Smd0eTNRa1EyeWNZVXBwU0pXd3Z3bzBfQTlKR2tIa3NHRVJrVXpWUE95ZFczdFhORDhqenhLN29mcmNqQQ?oc=5\" target=\"_blank\" rel=\"noopener\">파이낸셜뉴스</a>는 제주 지역의 다문화 혼인 감소율과 이혼 증가율이 전국 최고를 기록했다고 보도했습니다. 한편 교육 및 복지 지원과 관련해 <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ydi1DbUdJMXFJX25rWW1yZEkxcGFXX0Fyb2hIUDRseVA2b0UzdUZuT00xMnl6MllIUG1hSHREcGJfanVMVFZsSWZRNjJzVVFYbTBDVHRWS0hnUlE?oc=5\" target=\"_blank\" rel=\"noopener\">에너지경제신문</a>은 다문화가정 장애아동 교육을 위한 통합적 지원 체계 구축이 시급하다고 지목하기도 했습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 법무부 체류외국인 통계와 행정안전부 외국인주민 통계는 어떤 차이가 있나요?</h4>\n<p>두 통계는 발표 기관과 조사 목적에 차이가 있어 수치가 다르게 집계될 수 있습니다. 법무부 통계는 출입국 관리 및 체류 자격 기준에 중점을 두는 반면, 행정안전부 통계는 지자체 거주 현황과 지역 사회 구성원 파악을 주요 기준으로 삼습니다. 따라서 분석 목적에 맞춰 적절한 통계 자료를 구분하여 확인해야 합니다.</p>\n\n<h4>🔸 다문화 가구 통계에 단기 체류 외국인이나 관광객도 포함되나요?</h4>\n<p>행정안전부 외국인주민 현황 조사는 일정한 거주 요건을 충족하거나 지역 사회에 정착하여 생활하는 인원을 주요 대상으로 삼습니다. 관광이나 단순 방문 목적으로 단기간 머무르는 단기 체류자는 일반적인 외국인주민 및 다문화 가구 통계 대상에서 제외됩니다.</p>\n\n<h4>🔸 결혼이민자와 외국국적동포는 행정 분류상 어떻게 구분되나요?</h4>\n<p>결혼이민자는 대한민국 국민과 혼인 관계를 맺고 체류하는 외국인을 뜻하며, 외국국적동포는 과거 한국 국적을 가졌거나 부모·조부모가 한국 국적이었던 외국 국적 소지자를 의미합니다. 행정안전부 현황 통계상 두 항목 모두 '한국국적을 가지지 않은 자'의 세부 분류로 각기 구분되어 집계됩니다.</p>\n\n<h3>정리</h3>\n\n<p>2024년 기준 국내 외국인주민 수는 2,583,626명으로 총인구 대비 4.99%의 비율을 기록했습니다. 2015년 1,711,013명(3.35%) 이후 꾸준히 인원과 비중이 증가해 왔으며, 세부 항목 중에서는 유학생이 전년 대비 +13.0%의 가장 높은 증가율을 나타냈습니다.</p>\n\n<p>향후 관련 뉴스와 인구 통계를 접할 때 스스로 파악해 볼 수 있는 점검 기준은 다음과 같습니다.</p>\n<p>1. 외국인주민 총수와 총인구 대비 비율(4.99% 기준선 변화 여부)</p>\n<p>2. 세부 분류 중 증가폭이 가장 큰 그룹(유학생 +13.0%, 외국인근로자 +6.9% 등 세부 증감률)</p>\n<p>3. 통계 발표 기관의 집계 기준(행정안전부 거주 기준과 타 기관 체류 기준의 차이 확인)</p>\n\n<p>인구 구조의 세부 변화를 정확히 이해하기 위해서는 공식 통계 수치와 세부 구성비의 흐름을 지속적으로 살펴보는 것이 좋습니다.</p>\n\n태그: 다문화가구 외국인주민 행정안전부통계 외국인근로자 유학생현황",
+  "2": "<h1>국내 외국인주민 258만 명 돌파, 총인구 대비 비율과 세부 현황은</h1>\n<!-- 행정안전부의 공식 통계를 바탕으로 2024년 국내 외국인주민 258만 명 돌파 현황과 총인구 대비 비율, 세부 항목별 증감 추이를 정확한 수치로 알아봅니다. -->\n\n<p>국내 다문화 가구와 외국인주민의 증가 현황을 단편적인 시각이나 추측을 넘어 정확한 통계 수치로 확인해 볼 시점입니다. 국내에 거주하는 외국인주민의 규모가 구체적으로 어느 정도인지, 전체 인구에서 차지하는 비중은 어떻게 변하고 있는지 궁금해하는 분들이 많습니다.</p>\n\n<p>행정안전부에서 발표한 '외국인주민 현황' 공식 통계를 바탕으로 전체적인 규모와 세부 분류별 인구 흐름을 정리해 드립니다. 기관마다 집계 기준이 다를 수 있으므로, 이번 글에서는 행정안전부의 공식 공표 자료에 집계된 수치를 기준으로 관련 현황을 다룹니다.</p>\n\n<h3>외국인주민 규모와 비율</h3>\n\n<p>행정안전부 통계에 따르면 2024년 기준 국내 외국인주민 합계는 2,583,626명으로 집계되었습니다. 이는 직전 연도인 2023년의 2,459,542명과 비교했을 때 1년 만에 5.0% 증가한 수치입니다. 국내에 거주하는 외국인주민 총수가 지속적인 상승세를 이어가고 있음을 보여줍니다.</p>\n\n<p>총인구 대비 외국인주민이 차지하는 비율 역시 함께 상승했습니다. 2024년 총인구 대비 외국인주민 비율은 4.99%를 기록하여, 2023년의 4.75%보다 1년 전 대비 0.24%p(퍼센트포인트: 비율끼리 뺀 차이. 비율이 몇 % 늘었는지인 증가율과는 다른 값) 상승했습니다. 전체 인구 100명 중 약 5명에 가까운 인원이 외국인주민으로 구성되어 있는 셈입니다.</p>\n\n<p>국내 거주 인구의 구조적 변화 속에서 외국인주민의 수와 전체 인구 내 비중은 매년 꾸준히 확대되는 양상을 띱니다. 이러한 공식 수치는 국내 외국인 인구의 변화를 파악하는 중요한 기초 자료가 됩니다.</p>\n\n<h3>세부 항목별 현황과 증감</h3>\n\n<p>외국인주민은 국적 보유 여부 및 체류 목적에 따라 여러 세부 항목으로 나뉩니다. 각 세부 항목별 인원과 전년 대비 증가율을 살펴보면 구체적인 인구 이동 양상을 파악할 수 있습니다.</p>\n\n<p>2024년 세부 항목별 현황을 정리한 결과는 다음과 같습니다.</p>\n\n<table>\n<tr><th>구분</th><th>2023년 인원(명)</th><th>2024년 인원(명)</th><th>전년 대비 증가율(%)</th></tr>\n<tr><td>한국국적을 가지지 않은 자</td><td>1,935,150</td><td>2,042,744</td><td>+5.6%</td></tr>\n<tr><td>한국국적을 취득한 자</td><td>234,506</td><td>245,578</td><td>+4.7%</td></tr>\n<tr><td>외국인주민자녀(출생)</td><td>289,886</td><td>295,304</td><td>+1.9%</td></tr>\n<tr><td>외국인근로자</td><td>470,250</td><td>502,634</td><td>+6.9%</td></tr>\n<tr><td>결혼이민자</td><td>180,072</td><td>191,839</td><td>+6.5%</td></tr>\n<tr><td>유학생</td><td>206,329</td><td>233,237</td><td>+13.0%</td></tr>\n<tr><td>외국국적동포</td><td>410,972</td><td>415,695</td><td>+1.1%</td></tr>\n</table>\n\n<p>2024년 세부 항목별 변동을 보면 한국국적을 가지지 않은 자가 전년 대비 +5.6% 증가하며 가장 큰 비중을 유지한 가운데, 유학생이 +13.0%로 가장 빠른 증가세를 보였습니다. 또한 외국인근로자(+6.9%)와 결혼이민자(+6.5%) 역시 전체 외국인주민 평균 증가율(+5.0%)을 웃도는 확장세를 나타냈습니다.</p>\n\n<p>반면 한국국적을 취득한 자(+4.7%), 외국인주민자녀(+1.9%), 외국국적동포(+1.1%)는 상대적으로 완만한 완충 곡선을 그리며 전체 수치 증가에 기여했습니다.</p>\n\n<h3>장기 흐름과 구성비 분석</h3>\n\n<p>행정안전부 통계 기준에 따르면 외국인주민 합계는 '한국국적을 가지지 않은 자', '한국국적을 취득한 자(귀화자 등)', '외국인주민자녀(출생)'의 세 가지 범주를 더해 산출합니다. 세부 항목인 외국인근로자, 결혼이민자, 유학생, 외국국적동포는 '한국국적을 가지지 않은 자' 안에 포함되는 세부 분류에 해당합니다.</p>\n\n<p>2024년 외국인주민 합계(2,583,626명)를 기준으로 각 항목이 차지하는 구성비를 살펴보면, 한국국적을 가지지 않은 자가 79.1%로 가장 큰 비중을 차지합니다. 이어 외국인주민자녀(출생)가 11.4%, 한국국적을 취득한 자가 9.5% 순입니다. 세부 분류 항목 중에서는 외국인근로자가 19.5%, 외국국적동포가 16.1%, 유학생이 9.0%, 결혼이민자가 7.4%의 구성비를 나타냅니다.</p>\n\n<p>1년 전인 2023년 대비 증가율이 가장 큰 항목은 유학생으로 +13.0%의 수치를 기록했습니다. 이는 학업을 위해 국내에 입국하여 체류하는 인원이 빠른 속도로 확대되고 있음을 보여주는 지표입니다.</p>\n\n<p>장기 추이를 보면 외국인주민 합계는 2015년 1,711,013명으로 최저치를 기록한 이후 상승세를 이어왔습니다. 2019년 2,216,612명을 기록한 뒤 2020년(2,156,417명)과 2021년(2,134,569명)에 일시적으로 감소하기도 했으나, 다시 반등하여 2024년에는 기간 내 최고치인 2,583,626명에 도달했습니다. 직전 기간 대비 인원 변화가 가장 컸던 시점은 2023년으로 전년 대비 201,294명이 늘어났습니다.</p>\n\n<p>총인구 대비 외국인주민 비율 장기 흐름 또한 유사한 궤적을 그립니다. 2015년 3.35%로 가장 낮은 비율을 보인 후 상승하여 2024년에는 기간 내 최고치인 4.99%를 기록했습니다. 직전 기간 대비 비율 변화가 가장 컸던 때는 2023년으로, 1년 전보다 0.38%p 증가한 바 있습니다.</p>\n\n<h3>다문화 혼인 특성과 지역 통계</h3>\n\n<p>언론 보도를 통해서도 다문화 혼인 및 지역별 가구 현황에 대한 구체적인 수치를 확인할 수 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Ba0lKMXdCWEhKbWZTN2F4eXJoa2d4SXlXMVNJY2REb28zRjZPZFFrSE0tQ0U1bEJfMlNNdy1jallKTWxzTnNUWlpxWnlTamZkeDI1YUJ6RHhSYW8?oc=5\" target=\"_blank\" rel=\"noopener\">경기일보</a> 보도에 따르면 지난해 결혼 100쌍 중 9쌍이 ‘다문화’ 혼인이었으며, 이 가운데 ‘남편이 10세 이상 연상’인 비중은 36.1%로 나타났습니다.</p>\n\n<p>지역별 가구 통계 발표도 이어지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiYEFVX3lxTE5kMWdneXFKRXo3UXV0Y2RVR2hMWF9MVXZPem1CZEZRdVBYcVotd2xfb05ZQ1pTWWNEQmJ0RlNkWEpleERaM2x6NkZxam13UVJpdl9rY1VQbFJFOXV6aFpWSQ?oc=5\" target=\"_blank\" rel=\"noopener\">뉴시스</a>, <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTFB6clN2NUQ5R21iSlFINVdEUEdDR2FYZXBhSlJhdUxPcXNlRF9QQTVRTXloMjBLUWgzS1NHZlduZUlENThxVjViRlJtUGdpR0FVdkdCbTQ5YVpVUWJi?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>, <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE1kckNCU1pNcEhlMVRHNnUtb2ZPYUlhel_5SHUwdVJtelFBT0R5VUE3bmZKUlM5alU2a1UxTnhnVTZZWk9wcnpCMGhGclRMTHltOVJDaDluamJOQVdpcDFzMHBvLXIxZWJrY09ZeXlpQQ?oc=5\" target=\"_blank\" rel=\"noopener\">기호일보</a>, <a href=\"https://news.google.com/rss/articles/CBMiVkFVX3lxTE1HT3g3WE9HRkIwJnppa2Judl9tT2pDWHo0Zjg1bml3Yk9VbHZxcDZ4cU1MeHpOeTNtbEVGbEZnajVlUUhOaHZxSzNXMmtCcWpscFFIUWdR?oc=5\" target=\"_blank\" rel=\"noopener\">헤럴드경제</a> 보도에 의하면 시흥시는 2024년 다문화 및 외국인 가구 통계를 공표했으며, 이에 따라 확인된 시흥시 다문화 인구는 9,751가구입니다.</p>\n\n<p>지역에 따른 특이점도 존재합니다. <a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTE1EMjg1WFd2UmhrOFZIajVQaGp0ZGY5Smd0eTNRa1EyeWNZVXBwU0pXd3Z3bzBfQTlKR2tIa3NHRVJrVXpWUE95ZFczdFhORDhqenhLN29mcmNqQQ?oc=5\" target=\"_blank\" rel=\"noopener\">파이낸셜뉴스</a>는 제주 지역의 다문화 혼인 감소율과 이혼 증가율이 전국 최고를 기록했다고 보도했습니다. 한편 교육 및 복지 지원과 관련해 <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ydi1DbUdJMXFJX25rWW1yZEkxcGFXX0Fyb2hIUDRseVA2b0UzdUZuT00xMnl6MllIUG1hSHREcGJfanVMVFZsSWZRNjJzVVFYbTBDVHRWS0hnUlE?oc=5\" target=\"_blank\" rel=\"noopener\">에너지경제신문</a>은 다문화가정 장애아동 교육을 위한 통합적 지원 체계 구축이 시급하다고 지목하기도 했습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 기관마다 발표하는 외국인 관련 통계 숫자가 왜 다른가요?</h4>\n<p>행정안전부의 '외국인주민 현황' 자료 외에도 다른 기관의 통계 수치와 차이가 발생하는 경우가 있습니다. 이는 조사 기관마다 통계를 집계할 때 적용하는 기준과 목적이 다를 수 있기 때문이므로, 자료 활용 시 발표 기관과 대상 기준을 확인하는 것이 좋습니다.</p>\n\n<h3>정리</h3>\n\n<p>2024년 기준 국내 외국인주민 수는 2,583,626명으로 총인구 대비 4.99%의 비율을 기록했습니다. 2015년 1,711,013명(3.35%) 이후 꾸준히 인원과 비중이 증가해 왔으며, 세부 항목 중에서는 유학생이 전년 대비 +13.0%의 가장 높은 증가율을 나타냈습니다.</p>\n\n<p>향후 관련 뉴스와 인구 통계를 접할 때 스스로 파악해 볼 수 있는 점검 기준은 다음과 같습니다.</p>\n<p>1. 외국인주민 총수와 총인구 대비 비율(4.99% 기준선 변화 여부)</p>\n<p>2. 세부 분류 중 증가폭이 가장 큰 그룹(유학생 +13.0%, 외국인근로자 +6.9% 등 세부 증감률)</p>\n<p>3. 통계 발표 기관의 집계 기준(기관마다 집계 기준이 다를 수 있다는 점 확인)</p>\n\n<p>인구 구조의 세부 변화를 정확히 이해하기 위해서는 공식 통계 수치와 세부 구성비의 흐름을 지속적으로 살펴보는 것이 좋습니다.</p>\n\n태그: 다문화가구 외국인주민 행정안전부통계 외국인근로자 유학생현황"
+ },
+ "minutes": 2.1
+}
