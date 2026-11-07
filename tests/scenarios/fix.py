@@ -130,3 +130,9 @@ rows, err = te.kosis_data("110", "T", "Y", 3)
 assert rows and not err and len(_calls) == 2 and _calls[1]["objL2"] == "ALL", (rows, err, _calls)
 te.requests.get = _oldget
 print("kosis objL retry ok")
+# 2026-11-08: 분류2(예: 외국인근로자·귀화자)가 있는 표는 분류별로 따로 모아야 숫자가 섞이지 않음
+_rows = [{"C1": "A00", "C1_NM": "합계", "C2_NM": c2, "ITM_NM": "시도별 외국인주민 현황", "UNIT_NM": "명", "PRD_DE": p, "DT": v}
+         for c2, p, v in [("계", "2023", "100"), ("계", "2024", "120"), ("귀화자", "2023", "10"), ("귀화자", "2024", "11")]]
+_ser = te._kosis_series(_rows)
+assert _ser == {("계", "명"): [("2023", 100.0), ("2024", 120.0)], ("귀화자", "명"): [("2023", 10.0), ("2024", 11.0)]}, _ser
+print("kosis sub-classification ok")

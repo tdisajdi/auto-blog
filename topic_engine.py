@@ -617,17 +617,21 @@ def _kosis_series(rows):
     nat = [r for r in rows if str(r.get("C1_NM", "")).strip() in _KOSIS_NATIONAL or str(r.get("C1", "")) in ("00", "0")]
     use = nat or rows
     one_item = len({r.get("ITM_NM") for r in use}) == 1
+    # 분류2·3(예: 외국인주민 표의 '외국인근로자·결혼이민자·귀화자…')이 있으면 이름에 넣는다.
+    # 넣지 않으면 같은 이름 칸에 여러 분류 값이 덮어써져 숫자가 뒤섞인다(2026-11-08 check_sources에서 발견).
+    sub_lv = [c for c in ("C2_NM", "C3_NM") if len({str(r.get(c, "")).strip() for r in use}) > 1]
     out = {}
     for r in use:
         v = _num(r.get("DT"))
         if v is None:
             continue
+        sub = " ".join(str(r.get(c, "")).strip() for c in sub_lv).strip()
         if nat:
-            name = r.get("ITM_NM", "")
+            name = sub if (sub and one_item) else " - ".join(x for x in (r.get("ITM_NM", ""), sub) if x)
         elif one_item:
-            name = r.get("C1_NM", "")
+            name = " ".join(x for x in (r.get("C1_NM", ""), sub) if x)
         else:
-            name = f"{r.get('C1_NM', '')} - {r.get('ITM_NM', '')}"
+            name = " - ".join(x for x in (r.get("C1_NM", ""), r.get("ITM_NM", ""), sub) if x)
         name = re.sub(r"\s+", " ", re.sub(r"＜br＞|<br\s*/?>", " ", str(name))).strip()
         out.setdefault((name, r.get("UNIT_NM", "") or ""), {})[str(r.get("PRD_DE"))] = v
     return {k: sorted(v.items()) for k, v in out.items()}
@@ -770,6 +774,10 @@ def run_check_sources():
         print("표 이름:", rows[0].get("TBL_NM"), "| 행 수:", len(rows))
         print("항목:", sorted({(r.get("ITM_ID"), r.get("ITM_NM")) for r in rows})[:15])
         print("분류1 예시:", sorted({(r.get("C1"), r.get("C1_NM")) for r in rows})[:8])
+        for c in ("C2", "C3"):
+            subs = sorted({(r.get(c), r.get(f"{c}_NM"), r.get("UNIT_NM")) for r in rows if r.get(c)})
+            if subs:
+                print(f"분류{c[1]} 전체({len(subs)}개):", subs[:30])
         print("기간:", sorted({r.get("PRD_DE") for r in rows})[-3:])
         block, summary = kosis_fact_block(tb)
         print(block or "(사실 블록 만들기 실패)")
