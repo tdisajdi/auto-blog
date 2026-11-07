@@ -307,9 +307,12 @@ def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previ
     if len(etf_list) >= 2:
         parts.append(same_period_block([t for t in etf_list if t in cache][:2]))
     parts.append(previous_facts(previous_analyses))
-    parts.append(f"[오늘 시장 수치 - 이 ETF 설명과 직접 관련 있을 때만 쓰기]\n"
-                 f"- 원/달러 환율 {macro.get('usd_krw')}, 미국 10년물 국채 금리 {macro.get('us_10y')}, "
-                 f"공포·탐욕 지수 {macro.get('fear_greed')}")
+    # 비교 글에는 오늘 시장 수치를 주지 않는다 - 11-08 운용사 비교에서 '공포 지수 22(극단적 공포)'가 "나눠서 사라·환헤지 섞어라" 같은
+    # 지어낸 투자 조언을 끌어냄(사실 '치명'·'중요' 3개, 정책 '치명'). 두 상품 비교에 필요한 숫자가 아니다.
+    if len(etf_list) < 2:
+        parts.append(f"[오늘 시장 수치 - 이 ETF 설명과 직접 관련 있을 때만 쓰기]\n"
+                     f"- 원/달러 환율 {macro.get('usd_krw')}, 미국 10년물 국채 금리 {macro.get('us_10y')}, "
+                     f"공포·탐욕 지수 {macro.get('fear_greed')}")
     if news:
         parts.append("[관련 뉴스 - 인용할 때 매체명에 링크]\n" + "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news))
     vis = []
