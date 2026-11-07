@@ -40,6 +40,20 @@ def text_of(html):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t)).strip()
 
 
+VAGUE_COMPARE = re.compile(r"유리(?!할까|한지|할지)|훨씬")      # 질문형('뭐가 유리할까')은 괜찮음
+
+
+def vague_comparisons(html):
+    """숫자 없이 '유리합니다·훨씬'으로 판단하는 문장(제목·소제목 제외). 11-08 연구 노트: 개선 후 막은 지적 1위가 과장·권유(27%)였고
+    그 절반이 '~가 유리합니다'. 정책 담당이 지적한 문장은 모두 숫자가 없었고, 같은 문장에 숫자가 있는 조건부 비교는 통과했다."""
+    body = re.sub(r"<h[1-4][^>]*>.*?</h[1-4]>", " ", html or "", flags=re.S)
+    out = []
+    for snt in re.split(r"(?<=[.!?])\s+", text_of(body)):      # '다'로 나누면 '…보다 훨씬'에서 잘려 숫자를 놓친다
+        if VAGUE_COMPARE.search(snt) and not re.search(r"\d", snt):
+            out.append(snt.strip()[:60])
+    return out
+
+
 def _sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?다요])\s+", text) if len(s.strip()) >= 25]
 
@@ -131,6 +145,12 @@ def fix_and_check(html):
             issues.append(f"{'연도' if many is years else '날짜'}별 숫자 줄글 나열({len(many)}개, 예: '{many[0]}…') - 흐름은 그래프가 "
                           "보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것")
             break
+    vague = vague_comparisons(h)
+    if vague:
+        # 참고만(막지 않음): 지난 기록에서 정책 지적 판 11개 중 8개를 잡았지만, 통과한 좋은 글 4편에서도 걸림
+        # ('이익에 따라 유리한 계좌가 달라집니다'처럼 중립 설명) → 막으면 좋은 글을 해침
+        issues.append(f"{SOFT}숫자 없는 판단 비교 {len(vague)}곳('{vague[0]}…') - '유리하다·훨씬' 대신 두 숫자를 나란히 쓸 것"
+                      "(예: '거치식 -32.6%, 적립식 -14.9%로 적립식의 하락 폭이 작았다')")
     eng = english_phrases(h)
     if eng:
         issues.append(f"영어 문구 '{eng[0]}' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)")
