@@ -189,6 +189,18 @@ def _ticker_fact_line(ticker, d):
     return f"- {ticker.replace('.KS', '')} ({d.get('name', '')}): {body}"
 
 
+def drop_overlapping_metrics(facts_text, calc_facts):
+    """계산표가 자기 기준으로 다시 계산한 숫자는 종목 기본 자료에서 뺀다 - 숫자는 한 기준만(11-08 배운 원칙 12).
+    한 글에 '1년 수익률'(QQQ 8.11% vs +5.8%, 레버리지)·'최대 낙폭'(TLT -43.70% vs -50.0%, 최대 낙폭 가이드)이 두 개씩 나왔다.
+    상장 이후 연평균(CAGR)은 "직접 비교 금지" 경고와 숫자를 같이 주니 작가가 비교해 모순(적립식 가이드) → 계산표가 있으면 늘 뺀다."""
+    out = re.sub(r", 상장 이후 연평균\(CAGR[^)]*\) -?[\d.]+%", "", facts_text)
+    if re.search(r"1년|수익률", calc_facts):
+        out = re.sub(r", 1년 수익률 -?[\d.]+%", "", out)
+    if "최대 낙폭" in calc_facts:
+        out = re.sub(r", 최대 낙폭\(5년\) -?[\d.]+%", "", out)
+    return out
+
+
 def _tax_fact_block():
     return (
         f"[세법 사실 자료 - {ea.TAX_RULES_BASIS}]\n"
@@ -573,11 +585,7 @@ def run_explainer(topic, etf_module):
             import guide_calcs
             calc_facts, visual = guide_calcs.guide_facts(topic_id, data_cache, rates_effect=rates_effect)
             if calc_facts:
-                # 계산표가 자체 기준의 수익률을 주므로 종목 기본 자료의 '1년 수익률'은 뺀다 - 기준일·계산이 달라 한 글에
-                # '1년 수익률'이 두 개 나왔다(11-08 레버리지 글: QQQ 8.11%와 +5.8%). 숫자는 한 기준만.
-                facts_text = re.sub(r", 1년 수익률 -?[\d.]+%", "", facts_text)
-                # 상장 이후 연평균(CAGR)도 뺀다 - "직접 비교 금지" 경고와 숫자를 같이 주니 작가가 비교해 앞뒤 모순(11-08 적립식 가이드)
-                facts_text = re.sub(r", 상장 이후 연평균\(CAGR[^)]*\) -?[\d.]+%", "", facts_text)
+                facts_text = drop_overlapping_metrics(facts_text, calc_facts)
                 facts_text += "\n" + calc_facts
             visual = visual or price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
