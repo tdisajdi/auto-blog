@@ -44,7 +44,7 @@ v_shape = pd.Series([100 - 4 * i if i <= 12 else 52 + 4 * (i - 12) for i in rang
 r2 = gc.calc_dca(v_shape)
 assert r2["dca"] > r2["lump"], r2
 f, v = gc.render_dca({"SPY": r, "QQQ": None})
-assert "구간 49개 중 거치식 수익률이 더 높았던 구간 49개" in f and "<table" in v, f
+assert "구간 49개 중 거치식 수익률이 더 높았던 구간 수: SPY 49개" in f and "<table" in v and f.count("SPY") == 4, f
 print("dca ok")
 
 # 4) 최대 낙폭: 100 → 60(-40%) → 100 회복
