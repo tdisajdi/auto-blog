@@ -96,6 +96,14 @@ def fix_and_check(html):
     h = re.sub(r"<p[^>]*>.*?</p>", _dedupe, h, flags=re.S)
     h = _drop_repeated_sentences(h, fixes)
 
+    # 한 줄 정리(2026-11-08 사용자 제안): 표기를 하나로 맞추고, 반복 검사에서는 뺀다(정리 내용을 한 줄로 다시 짚는 게 원래 역할)
+    new = ONE_LINE.sub(lambda m: f"<p><strong>{ONE_LINE_LABEL}:</strong> {m.group(1).strip()}</p>", h)
+    if new != h:
+        if [text_of(x) for x in re.findall(r"<p[^>]*>.*?</p>", new, flags=re.S)] != \
+                [text_of(x) for x in re.findall(r"<p[^>]*>.*?</p>", h, flags=re.S)]:
+            fixes.append("한 줄 정리 표기 통일")
+        h = new
+    one = ONE_LINE.search(h)
     text = text_of(h)
     if re.search(r"(?<![A-Za-z])N/A(?![A-Za-z])|해당 없음으로 (기재|표시)", text):
         issues.append("N/A 언급: 자료에 값이 없는 항목은 아예 쓰지 말 것")
@@ -140,10 +148,21 @@ def fix_and_check(html):
         issues.append("제목(<h1>) 없음")
     if not re.search(r"태그:\s*\S", h):
         issues.append("마지막 태그 줄(태그: ...) 없음")
-    dup = [s for s in _sentences(text) if text.count(s) > 1]
+    if not one:
+        issues.append(f"한 줄 정리 없음 - 정리 섹션 마지막 문단으로 '<p><strong>{ONE_LINE_LABEL}:</strong> …</p>' 한 문장"
+                      "(40~80자, 글 전체에서 기억할 핵심 하나)을 넣을 것")
+    else:
+        body = text_of(one.group(1))
+        after = h[:one.start()].rfind("<h3")
+        if len(body) > 100:
+            issues.append(f"{SOFT}한 줄 정리가 {len(body)}자 - 80자 안팎의 한 문장으로 줄일 것")
+        if after < 0 or "정리" not in text_of(h[after:h.find("</h3>", after) + 5]):
+            issues.append(f"{SOFT}한 줄 정리가 '정리' 섹션 밖에 있음 - 정리 섹션 마지막 문단으로 옮길 것")
+    text_rep = text_of(ONE_LINE.sub("", h))        # 반복 검사용(한 줄 정리 제외)
+    dup = [s for s in _sentences(text_rep) if text_rep.count(s) > 1]
     if dup:
         issues.append(f"같은 문장 반복: '{dup[0][:30]}…'")
-    pairs = similar_sentences(text)
+    pairs = similar_sentences(text_rep)
     if pairs:
         tag = "" if len(pairs) >= 2 else SOFT
         issues.append(f"{tag}비슷한 문장 반복 {len(pairs)}쌍 - 한 번만 남기고 지울 것. 예: '{pairs[0][0][:40]}…' / '{pairs[0][1][:40]}…'")
@@ -261,6 +280,9 @@ def drop_copied_tables(h, visual_texts, fixes):
     return re.sub(r"<table.*?</table>", _check, h, flags=re.S | re.I)
 
 
+ONE_LINE_LABEL = "한 줄 정리"
+ONE_LINE = re.compile(r"<p[^>]*>\s*(?:<(?:strong|b)>\s*)?(?:📌\s*)?한\s?줄\s?(?:정리|요약|평)\s*[:：]?\s*(?:</(?:strong|b)>)?"
+                      r"\s*[:：]?\s*(.+?)</p>", re.S)
 SOFT = "[참고] "     # 이 표시가 붙은 지적은 고쳐쓰기에 전달만 하고 발행을 막지는 않는다
 
 

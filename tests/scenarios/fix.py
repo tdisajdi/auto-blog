@@ -169,3 +169,13 @@ assert "유학생 12.0%" in _blk and "증가율이 가장 큰 항목(코드 계�
 assert "총인구 대비 외국인주민 비율: 2024년 5%" in _blk and "자료 범위:" in _blk, _blk
 assert _blk.count(" 흐름: ") == 2 and _sm["item"] == "외국인주민 합계", _blk
 print("foreign shares/growth/scope ok")
+# 2026-11-08: 한 줄 정리 - 표기 통일, 없으면 지적(막음), 정리 첫 문장과 비슷해도 반복 검사에서 제외
+h7, iss7, fx7 = lint.fix_and_check("<h1>t</h1><h3>정리</h3><p>원화 기준 수익률은 환율 때문에 달러 기준보다 6.5%p 낮았다.</p>"
+                                   "<p>📌 한줄 요약: 원화 기준 수익률은 환율 때문에 달러 기준보다 낮았다.</p><p>태그: a</p>")
+assert "<p><strong>한 줄 정리:</strong> 원화 기준 수익률은" in h7 and "한 줄 정리 표기 통일" in fx7, (h7, fx7)
+assert not [i for i in iss7 if "한 줄 정리" in i or "비슷한 문장" in i], iss7
+_, iss8, _ = lint.fix_and_check("<h1>t</h1><h3>정리</h3><p>끝.</p><p>태그: a</p>")
+assert [i for i in iss8 if i.startswith("한 줄 정리 없음")] and lint.blocking([i for i in iss8 if "한 줄 정리" in i]), iss8
+_, iss9, _ = lint.fix_and_check("<h1>t</h1><p><strong>한 줄 정리:</strong> 짧다.</p><h3>정리</h3><p>끝.</p><p>태그: a</p>")
+assert [i for i in iss9 if "정리' 섹션 밖" in i], iss9
+print("one-line summary ok")
