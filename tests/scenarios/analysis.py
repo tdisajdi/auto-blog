@@ -104,3 +104,14 @@ assert "고점 가격을 되찾음" in st and "배당 제외" in st, st
 m2 = _ea._drawdown_detail(_pd.Series(list(range(100, 140)) + list(range(140, 110, -1)), index=_pd.date_range("2022-01-03", periods=70, freq="7D"), dtype=float))
 assert m2["recovered"] is None and "되찾지 못함" in _an._mdd_story(m2), m2
 print("mdd recovery ok")
+
+# 2026-11-07: 비교 글 - 같은 기간으로 맞춘 비교(가격 변화·연평균·최대 낙폭·해마다 승패·상관계수)
+import numpy as _np
+_d = _pd.date_range("2022-01-03", periods=750, freq="B")
+_ra = _np.random.default_rng(1).normal(0.0004, 0.01, 750)
+_A = _pd.Series(100 * _np.cumprod(1 + _ra), index=_d)
+_B = _pd.Series(100 * _np.cumprod(1 + _ra * 1.5 + 0.0001), index=_d[0:]).iloc[100:]     # B는 늦게 상장
+blk = _an.same_period_block(["VOO", "QQQ"], {"VOO": _A, "QQQ": _B})
+assert blk.startswith("[같은 기간 비교") and _d[100].strftime("%Y-%m-%d") in blk and "더 오른 해" in blk and float(blk.split("상관계수 ")[1][:4]) >= 0.9, blk
+assert _an.same_period_block(["VOO"], {"VOO": _A}) == ""
+print("same period ok")
