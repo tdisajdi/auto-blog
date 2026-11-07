@@ -226,6 +226,38 @@ def _classify_kr_etf(name, category=None):
 _KR_ETF_NAMES = {}
 
 
+NAVER_KR_INFO_URL = "https://m.stock.naver.com/api/stock/{code}/integration"
+
+
+def _naver_kr_pairs(data):
+    """네이버 모바일 종목 데이터(JSON)에서 {'key': 이름, 'value': 값} 묶음을 모두 모아 {이름: 값}으로."""
+    out = {}
+
+    def walk(x):
+        if isinstance(x, dict):
+            if isinstance(x.get("key"), str) and "value" in x:
+                out.setdefault(x["key"], str(x["value"]))
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(data)
+    return out
+
+
+def _naver_kr_info(code):
+    """국내 ETF 펀드보수·기초지수 등(2026-11-08). 깃허브 서버에선 네이버 금융 화면에 '보수'가 안 나와(요소 없음) 국내 운용사
+    비교 글의 핵심인 보수가 비었다 → check_sources 진단으로 열리는 것을 확인한 모바일 데이터 주소에서 읽는다. 실패하면 {}."""
+    try:
+        r = requests.get(NAVER_KR_INFO_URL.format(code=str(code).replace(".KS", "")), timeout=(8, 20),
+                         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"})
+        return _naver_kr_pairs(r.json()) if r.status_code == 200 else {}
+    except Exception as e:
+        print(f"   ⚠️ 네이버 모바일 종목 자료 실패: {type(e).__name__}")
+        return {}
+
+
 def _kr_etf_name(code):
     """국내 ETF 코드 → 이름(KRX ETF 목록). 실패하면 None."""
     if not _KR_ETF_NAMES:
@@ -2652,6 +2684,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     calculated_yield = "0.00%"
     div_cycle = "정보 없음"
     expense_ratio = "N/A"
+    kr_index = None
     calculated_div_growth = None
     top_holdings = []
     earnings_info = []
@@ -2708,6 +2741,12 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         except Exception as e:
             print(f"   ⚠️ FDR 데이터 오류: {e}")
 
+        # 2-0. 펀드보수·기초지수: 네이버 모바일 데이터(브라우저 없이) - 화면 스크래핑보다 먼저, 화면에서 못 읽어도 남는다
+        kr_info = _naver_kr_info(raw_code)
+        fee = kr_info.get("펀드보수") or kr_info.get("총보수")
+        if fee and re.search(r"\d", fee):
+            expense_ratio = fee if fee.endswith("%") else f"{fee}%"
+        kr_index = kr_info.get("기초지수") or None
         # 2. 메타 정보 (네이버 금융 스크래핑)
         try:
             driver.get(f"https://finance.naver.com/item/main.naver?code={raw_code}")
@@ -2731,7 +2770,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
             dfs = pd.read_html(StringIO(driver.page_source))
             for df in dfs:
                 df_str = df.to_string()
-                if "펀드보수" in df_str or "총보수" in df_str:
+                if ("펀드보수" in df_str or "총보수" in df_str) and expense_ratio == "N/A":
                     for _, row in df.iterrows():
                         r_text = " ".join([str(x) for x in row.values])
                         if "펀드보수" in r_text or "총보수" in r_text:
@@ -2977,7 +3016,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         # 그대로 들어가, AI가 "이 ETF가 추종하는 지수는 IBIT입니다" 같은 이상한
         # 문장을 쓸 위험이 있었음. category(카테고리 분류)가 지수와 유사한 정보를
         # 담는 경우가 있어 대신 시도하고, 없으면 지어내지 않고 정직하게 "정보 없음"으로 처리.
-        "index": info.get('category', '정보 없음') if not is_kr else "정보 없음",
+        "index": info.get('category', '정보 없음') if not is_kr else (kr_index or "정보 없음"),
         "sector": info.get('sector', '정보 없음') if not is_kr else "정보 없음",
         "industry": info.get('industry', '정보 없음') if not is_kr else "정보 없음",
         "inception_date": inception_date_str if not is_kr else "정보 없음",

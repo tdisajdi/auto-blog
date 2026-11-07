@@ -839,6 +839,11 @@ def _probe_kr_fee_sources(code):
         f"https://finance.naver.com/item/main.naver?code={code}",
     ]
     hdr = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"}
+    try:
+        import etf_auto
+        print("- 네이버 모바일 종목 자료 항목 전체:", etf_auto._naver_kr_info(code))
+    except Exception as e:
+        print("- 네이버 모바일 종목 자료 읽기 실패:", type(e).__name__)
     for u in urls:
         try:
             r = requests.get(u, headers=hdr, timeout=(8, 20))

@@ -164,7 +164,10 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("운용보수(연)", d.get("expense_ratio")),
              _line("순자산(규모)", d.get("aum_str")),
              _line(f"기간별 가격 수익률({today_label} 기준, 배당 제외)", rets or None),
-             _line(f"상장 이후 연평균 수익률(CAGR, {d.get('inception_date', '상장일')}부터 - 상장일이 다른 ETF와 직접 비교 금지)",
+             _line(f"상장 이후 연평균 수익률(CAGR, "
+                   # 국내 ETF는 상장일을 못 받아 '정보 없음부터'라는 이상한 이름표가 나왔다(11-08 TIGER vs ACE)
+                   + (f"{d['inception_date']}부터 - " if d.get("inception_date") not in _EMPTY else "")
+                   + "상장일이 다른 ETF와 직접 비교 금지)",
                    f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
              _line("최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
              _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),

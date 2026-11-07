@@ -122,3 +122,9 @@ blk2 = _an.same_period_block(["360750.KS", "360200.KS"], {"360750.KS": _A, "3602
 assert _an.is_twin(blk2) and "거의 같이 움직였다" in blk2, blk2
 assert "comparison_twin" in _an.MUST_ANSWER and any("억지로 차이를 만들지" in q for q in _an.MUST_ANSWER["comparison_twin"])
 print("twin comparison ok")
+# 2026-11-08: 국내 ETF 보수 - 네이버 모바일 종목 자료(JSON)에서 key/value 묶음을 모두 모음
+_js = {"totalInfos": [{"code": "nav", "key": "NAV", "value": "24,708.04"}, {"code": "fundPay", "key": "펀드보수", "value": "0.007%"},
+                      {"code": "etfBaseIdx", "key": "기초지수", "value": "S&P 500"}], "other": {"deep": [{"key": "시총", "value": "10조"}]}}
+_pp = _ea._naver_kr_pairs(_js)
+assert _pp["펀드보수"] == "0.007%" and _pp["기초지수"] == "S&P 500" and _pp["시총"] == "10조", _pp
+print("naver kr pairs ok")
