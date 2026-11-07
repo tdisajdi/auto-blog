@@ -273,6 +273,9 @@ def _quote_found(quote, text_norm):
     return not q or q[:15] in text_norm
 
 
+_SUMMARY_REPEAT = re.compile(r"(정리|결론|마무리)[^.]{0,40}(반복|되풀이|중복)|(반복|되풀이|중복)[^.]{0,40}(정리|결론|마무리)")
+
+
 def review_text(html):
     """검토 담당에게 보여 줄 글자. 링크가 걸린 말 뒤에 [링크]를 붙인다(2026-11-07: 태그를 빼고 보여 줬더니 링크가 있는데도
     '매체명에 링크 없음'을 매번 '중요'로 지적 - VOO 글이 이 잘못된 지적으로 세 번 떨어짐)."""
@@ -302,6 +305,10 @@ def review(html, facts_text, category_label, log, round_no, must=None):
             # 사실 판단은 사실 검증 담당만(자료를 보고 대조함). 2026-10-31: 정책 담당(약한 모델)이 자료와 반대로
             # "손익 통산이 된다"고 치명 지적 → 고쳐쓰기가 따라서 맞던 글이 틀려졌다.
             if role != "사실 검증" and sev == "치명" and not POLICY_WORDS.search(str(it.get("problem", ""))):
+                sev = "사소"
+            # 11-07에 정한 규칙(정리 섹션의 숫자 재언급은 최대 '사소')을 빠른 모델이 무시하고 '중요'로 지적함(11-08 환율 글) → 코드가 지킴.
+            # 정리 밖 본문끼리의 반복은 그대로 '중요'.
+            if role == "독자 편집" and sev == "중요" and _SUMMARY_REPEAT.search(str(it.get("problem", ""))):
                 sev = "사소"
             if not _quote_found(it.get("quote", ""), text_norm):
                 dropped += 1

@@ -299,3 +299,8 @@ print("quote match with link marker ok")
 
 assert "조건과 숫자로 쓴 판단 기준은 권유가 아니라" in desk.prompt("review_policy", category_label="c", facts="", must="")
 print("policy allows conditional criteria ok")
+# 2026-11-08: 독자 편집이 '정리 섹션 반복'을 '중요'로 지적하면 코드가 '사소'로(11-07 규칙 강제)
+assert desk._SUMMARY_REPEAT.search("환율 예시 설명이 뒤의 '정리' 섹션에서 거의 동일하게 반복됩니다.")
+assert desk._SUMMARY_REPEAT.search("앞서 다룬 수치를 결론부에서 그대로 되풀이")
+assert not desk._SUMMARY_REPEAT.search("계좌 선택 섹션에서 GLD 수치가 중복으로 되풀이되고 있습니다.")
+print("summary repeat downgrade ok")
