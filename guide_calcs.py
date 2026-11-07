@@ -192,17 +192,22 @@ def render_dca(results, total=12_000_000):
     results = {k: v for k, v in results.items() if v}
     if not results:
         return "", ""
-    rows, lines = [], []
+    rows = []
     for t, r in results.items():
-        n_all = r["wins"]["lump"] + r["wins"]["dca"]
         rows.append([t, f"{r['start']}~{r['end']}", _pct(r["lump"]), _pct(r["dca"]),
                      f"거치식 {r['wins']['lump']}번 / 적립식 {r['wins']['dca']}번", _pct(r["worst"]["lump"]), _pct(r["worst"]["dca"])])
-        lines.append(f"- {t}, {r['start']}~{r['end']}({r['n']}개월): 같은 총액 {_won(total)}을 첫 달에 한 번에 넣었다면 {_pct(r['lump'])}"
-                     f"(평가액 {_won(total * (1 + r['lump'] / 100))}), 매달 {_won(total / r['n'])}씩 나눠 넣었다면 {_pct(r['dca'])}"
-                     f"(평가액 {_won(total * (1 + r['dca'] / 100))})")
-        lines.append(f"- {t}, 이 기간 안의 {r['window']}개월짜리 구간 {n_all}개 중 거치식 수익률이 더 높았던 구간 {r['wins']['lump']}개, "
-                     f"적립식 수익률이 더 높았던 구간 {r['wins']['dca']}개. 가장 나빴던 구간 수익률: 거치식 {_pct(r['worst']['lump'])}, "
-                     f"적립식 {_pct(r['worst']['dca'])}")
+    # 종목별 줄이 아니라 항목별 줄로(11-08 적립식 재시험: 종목마다 같은 모양 두 줄을 주니 작가도 "QQQ 역시…"로 같은 틀을 되풀이해 '중요')
+    one = next(iter(results.values()))
+    both = lambda f: ", ".join(f"{t} {f(r)}" for t, r in results.items())
+    lines = [
+        f"- 기간·조건: {one['start']}~{one['end']}({one['n']}개월), 같은 총액 {_won(total)}을 첫 달에 한 번에(거치식) vs "
+        f"매달 {_won(total / one['n'])}씩(적립식)",
+        "- 전체 기간 수익률(거치식 / 적립식): " + both(lambda r: f"{_pct(r['lump'])} / {_pct(r['dca'])}"),
+        "- 전체 기간 평가액(거치식 / 적립식): " + both(lambda r: f"{_won(total * (1 + r['lump'] / 100))} / {_won(total * (1 + r['dca'] / 100))}"),
+        f"- 이 기간 안의 {one['window']}개월짜리 구간 {one['wins']['lump'] + one['wins']['dca']}개 중 거치식 수익률이 더 높았던 구간 수: "
+        + both(lambda r: f"{r['wins']['lump']}개"),
+        f"- {one['window']}개월 구간 중 가장 나빴던 수익률(거치식 / 적립식): " + both(lambda r: f"{_pct(r['worst']['lump'])} / {_pct(r['worst']['dca'])}"),
+    ]
     note = ("Yahoo Finance 월말 종가(배당 재투자 반영), 달러 기준(환율·세금·수수료 제외), ondo 계산. 적립식은 매달 같은 금액을 그달 말 가격에 "
             "산다고 가정. 수익률은 넣은 총액 대비. " + PAST_NOTE)
     table = charts.table_html("같은 돈을 한 번에 vs 매달 나눠서: 실제 가격으로 돌려 본 결과",
@@ -349,8 +354,13 @@ def render_covered(results):
     for t, ws in results.items():
         for w in ws:
             rows.append([t, w["label"], _pct(w["price"]), _pct(w["total"]), _pp(w["income"])])
-            lines.append(f"- {t}, 최근 {w['label']}({w['start']}부터): 가격만 {_pct(w['price'])}, 분배금을 다시 넣었다면(총수익) "
-                         f"{_pct(w['total'])} → 분배금이 보탠 몫 약 {_pp(w['income'])}")
+    # 종목별 같은 모양 줄 대신 기간별로 종목을 나란히(11-08 적립식 재시험의 '같은 틀 되풀이' 교훈을 미리 적용)
+    labels = [w["label"] for w in next(iter(results.values()))]
+    for lab in labels:
+        cells = [(t, next((w for w in ws if w["label"] == lab), None)) for t, ws in results.items()]
+        cells = [(t, w) for t, w in cells if w]
+        lines.append(f"- 최근 {lab}({cells[0][1]['start']}부터) 가격만 / 분배금 재투자 포함(총수익) / 분배금이 보탠 몫: "
+                     + ", ".join(f"{t} {_pct(w['price'])} / {_pct(w['total'])} / {_pp(w['income'])}" for t, w in cells))
     note = ("Yahoo Finance 종가(가격만 / 분배금 재투자 반영), 달러·세전, ondo 계산. '분배금이 보탠 몫'은 총수익 - 가격 수익(근사). "
             + PAST_NOTE)
     table = charts.table_html("분배금을 빼면 가격은 어떻게 됐나: 가격 수익률 vs 총수익률",

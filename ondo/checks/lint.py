@@ -154,6 +154,8 @@ def fix_and_check(html):
     else:
         body = text_of(one.group(1))
         after = h[:one.start()].rfind("<h3")
+        if len(re.findall(r"\d[\d,.]*%?", body)) >= 3:
+            issues.append(f"{SOFT}한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것")
         if len(body) > 100:
             issues.append(f"{SOFT}한 줄 정리가 {len(body)}자 - 80자 안팎의 한 문장으로 줄일 것")
         if after < 0 or "정리" not in text_of(h[after:h.find("</h3>", after) + 5]):
