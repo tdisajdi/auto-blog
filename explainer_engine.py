@@ -173,7 +173,8 @@ def _ticker_fact_line(ticker, d):
     if ticker.endswith(".KS") and str(yld).strip() in ("0.00%", "0%", "0.0%"):
         yld = None
     items = [
-        ("상장", d.get("listing")),
+        # listing 값이 이미 '해외 상장'/'국내 상장'이라 이름표를 붙이면 '상장 해외 상장'이 됐다(2026-11-08)
+        ("", d.get("listing")),
         ("운용보수", d.get("expense_ratio")),
         ("배당수익률", yld),
         ("배당성장률", d.get("dividend_growth_rate")),
@@ -184,7 +185,7 @@ def _ticker_fact_line(ticker, d):
         ("최대 낙폭(5년)", d.get("mdd")),
         ("환율 영향", d.get("fx_exposure")),
     ]
-    body = ", ".join(f"{k} {v}" for k, v in items if v not in _EMPTY)
+    body = ", ".join(f"{k} {v}".strip() for k, v in items if v not in _EMPTY)
     return f"- {ticker.replace('.KS', '')} ({d.get('name', '')}): {body}"
 
 
@@ -519,7 +520,8 @@ def _day_move(macro_data):
         return ""
     if abs(pct) < 0.05:
         return ""
-    return f" (전일 대비 {pct}% {macro_data.get('usd_krw_direction', '')})".rstrip(" )") + ")"
+    # 반올림 없이 '1.214117186666646%'가 글에 그대로 들어갔다(2026-11-08) → 소수 둘째 자리까지
+    return f" (전일 대비 {pct:.2f}% {macro_data.get('usd_krw_direction', '')})".rstrip(" )") + ")"
 
 
 def _closing_block(news, include_tax):

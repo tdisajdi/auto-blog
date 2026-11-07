@@ -2480,7 +2480,7 @@ def get_macro_data():
                 direction = "상승" if diff_raw > 0 else "하락"
                 if diff_pct >= 0.5:
                     macro_info["is_fx_volatile"] = True
-                    macro_info["usd_krw_diff_pct"] = diff_pct
+                    macro_info["usd_krw_diff_pct"] = round(diff_pct, 2)   # 반올림 없이 글에 '1.214117186666646%'가 들어갔음
                     macro_info["usd_krw_direction"] = direction
     except (KeyError, AttributeError, ValueError) as e:
         print(f"⚠️ 환율 조회 실패: {type(e).__name__}: {e}")
