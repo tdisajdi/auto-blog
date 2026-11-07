@@ -153,3 +153,19 @@ _rows3 = [{"C1_NM": "합계", "C2": c2, "C2_NM": n2, "C3_NM": c3, "ITM_NM": "현
 _ser3 = te._kosis_series(_rows3)
 assert _ser3 == {("국적 미취득", "명"): [("2024", 100.0)], ("외국인근로자", "명"): [("2024", 40.0)]}, _ser3
 print("kosis c3 total + unit inherit ok")
+# 2026-11-08: 외국인주민 표 - 구성비·증가율 1위 코드 계산, 흐름 2개만, 자료 범위 안내
+_frows = []
+for p_, vals in [("2022", {"합계": 180, "총인구": 5000, "한국국적을 가지지 않은 자": 140, "유학생": 18}),
+                 ("2023", {"합계": 200, "총인구": 5000, "한국국적을 가지지 않은 자": 150, "유학생": 20}),
+                 ("2024", {"합계": 250, "총인구": 5000, "한국국적을 가지지 않은 자": 180, "유학생": 30})]:
+    for c2, v in vals.items():
+        _frows.append({"C1": "A00", "C1_NM": "합계", "C2": c2, "C2_NM": c2, "ITM_NM": "현황", "UNIT_NM": "명", "PRD_DE": p_, "DT": str(v)})
+_ftb = next(t for t in te.KOSIS_TABLES if t["key"] == "foreign")
+_old_kd = te.kosis_data
+te.kosis_data = lambda *a, **k: (_frows, "")
+_blk, _sm = te.kosis_fact_block(_ftb)
+te.kosis_data = _old_kd
+assert "유학생 12.0%" in _blk and "증가율이 가장 큰 항목(코드 계산): 유학생 +50.0%" in _blk, _blk
+assert "총인구 대비 외국인주민 비율: 2024년 5%" in _blk and "자료 범위:" in _blk, _blk
+assert _blk.count(" 흐름: ") == 2 and _sm["item"] == "외국인주민 합계", _blk
+print("foreign shares/growth/scope ok")

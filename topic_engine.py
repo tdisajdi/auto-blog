@@ -544,6 +544,14 @@ KOSIS_TABLES = [
      # 2026-11-08 점검에서 2024년 2,042,744 + 245,578 + 295,304 = 2,583,626(합계)로 맞는 것을 확인한 정의
      "terms": "이 표(행정안전부)의 외국인주민 합계 = 한국국적을 가지지 않은 자 + 한국국적을 취득한 자(귀화자 등) + 외국인주민자녀(출생). "
               "외국인근로자·결혼이민자·유학생·외국국적동포는 '한국국적을 가지지 않은 자'의 세부 분류",
+     # 11-08 재시험: 작가가 법무부·통계청 통계와의 차이, 집계 방식, 자녀 정의를 기억으로 써서 '치명'·'중요'로 떨어짐
+     "scope": "이 자료는 행정안전부 '외국인주민 현황' 하나뿐입니다. 법무부 체류외국인 통계·통계청 이주배경인구 통계와의 차이, "
+              "집계 방식(기준일·중복 처리·단기 체류 포함 여부), 각 분류의 세부 인정 기준은 자료에 없으니 쓰지 마세요. "
+              "다른 통계와 숫자가 다를 수 있다는 점은 '기관마다 집계 기준이 다를 수 있다' 정도로만 말하세요.",
+     # 세부 항목 10년 흐름까지 주니 항목마다 같은 모양으로 되풀이(독자 편집 '중요') → 흐름은 합계·비율 2개만
+     "trend_n": 2,
+     # 판단 기준이 없다는 지적(가치 0.6) → 합계 대비 구성비와 1년 증가율 1위를 코드가 계산
+     "shares_of": "외국인주민 합계",
      "keywords": ["이주배경", "이주민", "외국인 주민", "외국인주민", "다문화", "이민", "외국인 근로자", "귀화"]},
 ]
 _KOSIS_NATIONAL = {"전국", "계", "합계", "총계", "전체"}
@@ -727,7 +735,25 @@ def kosis_fact_block(table, max_items=8):
     # 긴 흐름(2026-11-03): 2년치만 주면 같은 숫자 8개를 본문·표·FAQ에서 되풀이했다(사회 글 ?p=253).
     # 주요 항목 몇 개는 기간 전체 흐름과 그 기간의 최고·최저(언제였는지)를 코드가 계산해서 준다.
     trend = []
-    for (item, unit), pts in list(series.items())[:4]:
+    # 구성비·증가율 1위(표 설정 shares_of가 있을 때): "4명 중 1명" 같은 판단 숫자를 코드가 계산
+    if table.get("shares_of"):
+        base = series.get((table["shares_of"], "명")) or next((v for (n, _), v in series.items() if n == table["shares_of"]), None)
+        if base:
+            bp, bv = base[-1]
+            parts, growth = [], []
+            for (item, unit), pts in series.items():
+                if item == table["shares_of"] or unit == "%" or not pts or pts[-1][0] != bp:
+                    continue
+                parts.append(f"{item} {pts[-1][1] / bv * 100:.1f}%")
+                if len(pts) >= 2 and pts[-2][1]:
+                    growth.append((pts[-1][1] / pts[-2][1] - 1) * 100)
+                    growth[-1] = (growth[-1], item, pts[-2][0])
+            if parts:
+                trend.append(f"- {_fmt_period(bp, table['prd'])} {table['shares_of']} 대비 구성비(코드 계산): " + ", ".join(parts))
+            if growth:
+                g, gi, gp = max(growth)
+                trend.append(f"- 1년 전({_fmt_period(gp, table['prd'])}) 대비 증가율이 가장 큰 항목(코드 계산): {gi} {g:+.1f}%")
+    for (item, unit), pts in list(series.items())[:table.get("trend_n", 4)]:
         if len(pts) < 3:
             continue
         flow = ", ".join(f"{_fmt_period(p, table['prd'])} {_fmt_val(v, unit)}" for p, v in pts[-10:])
@@ -753,6 +779,8 @@ def kosis_fact_block(table, max_items=8):
         trend.append(f"- 용어: {table['terms']}")
     if table.get("threshold_note"):
         trend.append(f"- 판단 기준: {table['threshold_note']}")
+    if table.get("scope"):
+        trend.append(f"- 자료 범위: {table['scope']}")
     if trend:
         lines.append("[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]")
         lines += trend
