@@ -106,3 +106,8 @@ fx5 = []
 h5 = lint.link_sources('<p>TradingKey 보도에서도 언급됐다. TradingKey는</p><p><a href="https://news.example/y">연합뉴스</a>에 따르면</p>', facts_n, fx5)
 assert h5.count('href="https://news.example/t"') == 1 and h5.count("news.example/y") == 1 and fx5 == ["매체명 링크 추가: TradingKey"], (h5, fx5)
 print("source autolink ok")
+# 2026-11-07: 날짜(○년 ○월 ○일)는 연도별 나열로 세지 않음
+_, iss6, _ = lint.fix_and_check("<h1>t</h1><p>VOO는 2022년 1월 3일 고점에서 2022년 10월 12일 바닥까지 떨어졌고 2023년 12월 13일에 회복했다. "
+                                "QQQ는 2021년 12월 27일 고점에서 2022년 11월 3일 바닥까지 떨어진 뒤 2023년 12월 13일에 되찾았다.</p><p>태그: a</p>")
+assert not [i for i in iss6 if "숫자 줄글 나열" in i], iss6
+print("dates not year list ok")
