@@ -1,0 +1,487 @@
+{
+ "article_type": "guide",
+ "topic_id": "leverage-decay",
+ "title_seed": "3배 레버리지 ETF를 오래 들고 있으면 생기는 일",
+ "category": "etf",
+ "started_at": "2026-11-07T13:24:47",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.8,
+   "chars": 2662
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 28.3,
+   "chars": 4363
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 38.3,
+   "chars": 592
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.4,
+   "chars": 396
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.7,
+   "chars": 191
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 1033
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 21.7,
+   "chars": 3793
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 88.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 23.1,
+   "chars": 233
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 658
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.5,
+   "chars": 159
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.8,
+   "chars": 1079
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 90.2,
+   "chars": 3475
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 26.3,
+   "chars": 172
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.2,
+   "chars": 350
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.8,
+   "chars": 149
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.1,
+   "chars": 826
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "13:25:05",
+   "title": "3배 레버리지 ETF를 오래 들고 있으면 생기는 일",
+   "sections": [
+    "QQQ와 TQQQ의 기본 지표",
+    "기간별 수익률과 단순 계산 차이",
+    "일일 재조정과 변동성의 영향",
+    "국내 계좌 이용과 투자 확인 기준"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "13:25:36",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "13:27:05",
+   "score": 0.53,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "판단 기준 제시"
+   ],
+   "value_tip": "변동성과 횡보장에 따라 투자를 결정할 수 있는 구체적인 조건부 판단 기준(~한 경우라면 ~를 먼저 점검)을 본문에 추가하기",
+   "issues": [
+    "[치명·사실 검증] '해외 상장 ETF는 매매 차익에 대해 양도소득세(기본 공제 연 250만 원 초과분 대상 22% 세율)가 적용' → 자료에 없는 세금 제도 및 규정 수치(기본 공제 연 250만 원, 22% 세율, 5월 홈택스 신고 등)를 지어내어 작성했습니다. / 고칠 방법: 자료에 명시되지 않은 세금 신고 절차 및 관련 수치 내용을 삭제하세요.",
+    "[중요·독자 편집] '3배 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 운용 자산의 비중을 다시 맞추는 일일 재조' → 동일한 설명과 정의가 '일일 재조정과 변동성의 영향' 섹션에서 거의 그대로 반복되고 있습니다. / 고칠 방법: 서론의 정의는 간략하게 줄이고 중복되는 문단을 통합해야 합니다."
+   ],
+   "lint": [
+    "비슷한 문장 반복 2쌍 - 한 번만 남기고 지울 것. 예: '레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 운용 자산의…' / '일일 재조정과 변동성의 영향 3배 레버리지 ETF는 매일 기초지수 하루 …'"
+   ],
+   "numbers": [
+    "27.27%"
+   ],
+   "fixes": [
+    "마크다운 표기를 HTML로 변환",
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "계산표가 들어가는 글이라 작가가 만든 표 삭제"
+   ],
+   "chars": 3650
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "13:27:30",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "13:29:54",
+   "score": 0.76,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "본문 하단에 제시된 3가지 확인 기준(연 변동성, 단순 3배 격차, 최대 낙폭)을 활용해 독자가 자신의 투자 성향을 점검하는 구체적인 예시를 추가하기",
+   "issues": [
+    "[중요·독자 편집] '3배 레버리지 상품인 TQQQ는 기초지수보다 하락 폭이 커질 수 있어 자산 하강기 시 손실 위험이 상대적으로' → 도입부 및 다른 섹션에서 이미 다룬 하락 위험과 환율 위험 설명이 본문 내에서 반복됩니다. / 고칠 방법: 중복되는 위험 요소 내용을 하나의 섹션으로 통합하여 간결하게 서술하십시오.",
+    "[중요·독자 편집] '해외 시장에 상장된 TQQQ는 ISA, 연금저축, IRP 등 국내 절세 계좌에서 직접 거래하는 것이 불가능합' → 본문의 국내 계좌 이용 섹션에서 이미 설명한 절세 계좌 거래 제한 내용이 자주 묻는 질문 섹션에서 다시 반복됩니다. / 고칠 방법: 본문 또는 FAQ 중 한 곳에만 절세 계좌 관련 내용을 배치하십시오."
+   ],
+   "lint": [
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '이 기간 QQQ의 연 변동성은 21.3%였습니다.…' / '이 기간 QQQ의 연 변동성은 20.9%였습니다.…'"
+   ],
+   "numbers": [
+    "27.27%"
+   ],
+   "chars": 3420
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "13:31:27",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "13:32:32",
+   "score": 0.97,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 장기 보유 시의 결과에 대해 투자 기간(1년, 3년, 5년)별로 독자가 취해야 할 행동 가이드를 더 명확하게 연결하기",
+   "issues": [
+    "[사소·독자 편집] 'QQQ(Invesco QQQ Trust)와 3배 레버리지상품인 TQQQ(ProShares UltraPro Q' → 문장이 다소 길어 가독성이 떨어집니다. / 고칠 방법: 문장을 두 개로 나누어 작성하세요."
+   ],
+   "lint": [
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '이 기간 QQQ의 연 변동성은 21.3%였습니다.…' / '이 기간 QQQ의 연 변동성은 20.9%였습니다.…'"
+   ],
+   "numbers": [
+    "27.27%"
+   ],
+   "chars": 3136
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "3배 레버리지 ETF를 오래 들고 있으면 생기는 일",
+  "url": "https://ondo99.com/?p=285",
+  "score": 0.97,
+  "issues": [
+   "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '이 기간 QQQ의 연 변동성은 21.3%였습니다.…' / '이 기간 QQQ의 연 변동성은 20.9%였습니다.…'",
+   "[사소·독자 편집] 'QQQ(Invesco QQQ Trust)와 3배 레버리지상품인 TQQQ(ProShares UltraPro Q' → 문장이 다소 길어 가독성이 떨어집니다. / 고칠 방법: 문장을 두 개로 나누어 작성하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 예시 ETF 실제 데이터]\n- QQQ (Invesco QQQ Trust): 해외 상장, 배당수익률 0.47%, 배당성장률 8.99%, 1년 수익률 8.11%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 11.1%, 최대 낙폭(5년) -35.12%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- TQQQ (ProShares UltraPro QQQ): 해외 상장, 배당수익률 0.93%, 배당성장률 22.94%, 1년 수익률 -0.47%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 5.3%, 최대 낙폭(5년) -81.66%, 환율 영향 있음 (해외 상장, 달러로 거래)\n\n[계좌 사실]\n- 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n\n[최근 뉴스]\n- 수집된 뉴스 없음\n\n\n[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n- 최근 1년(2025-11-05부터): QQQ +5.8%, TQQQ 실제 -7.0%, 'QQQ × 3' 단순 계산 +17.3% → 실제와 차이 -24.3%. 이 기간 QQQ 연 변동성 21.3%\n- 최근 3년(2023-11-01부터): QQQ +86.9%, TQQQ 실제 +213.2%, 'QQQ × 3' 단순 계산 +260.8% → 실제와 차이 -47.6%. 이 기간 QQQ 연 변동성 20.9%\n- 최근 5년(2021-10-29부터): QQQ +75.1%, TQQQ 실제 +41.6%, 'QQQ × 3' 단순 계산 +225.2% → 실제와 차이 -183.6%. 이 기간 QQQ 연 변동성 23.3%\n- 계산 예시: 기초지수가 하루 +10.0% 오르고 다음 날 -9.09% 내려 제자리로 돌아오면, 매일 3배를 따라가는 ETF는 -5.45% (제자리가 아님)\n- Yahoo Finance 종가(배당 반영), 거래일 기준 구간, ondo 계산. '단순 계산'은 기초 수익률 × 3. 레버리지 ETF는 '하루' 수익률의 3배를 목표로 하므로 기간이 길어지면 단순 계산과 달라짐. 과거 자료로 계산한 값일 뿐 앞으로도 같다는 보장은 없음.\n[일반 원리 - 이 범위 안에서만 설명하세요]\n- 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 다시 맞춘다(일일 재조정). 그래서 오르내림이 반복되면 같은 기초 수익률이라도 결과가 달라지고, 변동성이 클수록 그 차이가 커지는 경향이 있다.\n- 한 방향으로 꾸준히 오른 기간에는 단순 계산보다 더 많이 오를 수도 있다(위 표의 '차이'가 양수인 경우).\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 연평균 수익률(CAGR): 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 값\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n",
+ "drafts": {
+  "1": "<h1>3배 레버리지 ETF를 오래 들고 있으면 생기는 일</h1>\n<!-- 3배 레버리지 ETF를 장기 보유할 때 일일 재조정과 변동성으로 인해 실제 수익률과 단순 3배 계산값 사이에 발생하는 격차를 실증 데이터로 정리합니다. -->\n\n<p>3배 레버리지 ETF를 장기 보유할 때 수익률이 단순 계산과 달라지는 이유와 실제 데이터를 확인합니다. 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 운용 자산의 비중을 다시 맞추는 일일 재조정을 진행합니다.</p>\n\n<p>이 때문에 기간이 길어질수록 단순 3배를 곱한 값과 실제 손익 사이의 격차가 발생합니다. 이번 분석은 Yahoo Finance 종가(배당 반영) 기준, 거래일 기준 구간을 바탕으로 ondo에서 계산한 수치를 기반으로 작성되었습니다.</p>\n\n<h3>QQQ와 TQQQ의 기본 지표</h3>\n\n<p>QQQ(Invesco QQQ Trust)와 3배 레버리지상품인 TQQQ(ProShares UltraPro QQQ)는 모두 해외에 상장되어 달러로 거래되므로 환율 영향이 존재합니다. 기초지수인 QQQ의 배당수익률은 0.47%, 배당성장률은 8.99%이며, TQQQ의 배당수익률은 0.93%, 배당성장률은 22.94%를 기록하고 있습니다.</p>\n\n<p>최근 1년 수익률을 비교하면 QQQ가 8.11%를 기록한 반면, TQQQ는 -0.47%를 기록했습니다. 각 상품의 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 QQQ가 11.1%, TQQQ가 5.3%입니다. 다만 두 종목은 상장일이 서로 다르므로 연평균 수익률을 종목끼리 직접 비교해서는 안 됩니다.</p>\n\n<p>투자 과정에서 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율로 그 기간 중 가장 크게 잃었을 때의 크기)에서도 큰 차이를 보입니다. 최근 5년 기준 QQQ의 최대 낙폭은 -35.12%였으나, TQQQ의 최대 낙폭은 -81.66%에 달했습니다.</p>\n\n<h4>🔸 장기 보유 시 위험 요소</h4>\n<p>3배 레버리지 상품인 TQQQ는 기초지수보다 하락 폭이 커질 수 있어 자산 하강기 시 손실 위험이 상대적으로 높습니다. 더불어 미국 시장에 상장된 해외 ETF 특성상 원화 가치 변동에 따른 환율 위험도 함께 고려해야 합니다.</p>\n\n<h3>기간별 수익률과 단순 계산 차이</h3>\n\n<p>레버리지 ETF의 장기 투자 시 발생하는 단순 계산과의 차이는 기간이 늘어날수록 더욱 뚜렷하게 나타납니다. 단순 계산은 기초 지수 수익률에 3을 곱한 값이지만, 레버리지 상품은 매일의 수익률을 기준으로 따르기 때문입니다.</p>\n\n<p>2025년 11월 5일부터 계산한 최근 1년 동안 QQQ는 +5.8% 상승했으며, 'QQQ × 3' 단순 계산값은 +17.3%였습니다. 하지만 TQQQ의 실제 수익률은 -7.0%를 기록하여 단순 계산 대비 -24.3%의 차이가 발생했습니다. 이 기간 QQQ의 연 변동성은 21.3%였습니다.</p>\n\n<p>2023년 11월 1일부터 계산한 최근 3년 구간에서는 QQQ가 +86.9% 오르는 동안, 단순 계산값은 +260.8%였으나 TQQQ 실제 수익률은 +213.2%로 -47.6%의 차이를 보였습니다. 이 기간 QQQ의 연 변동성은 20.9%였습니다.</p>\n\n<p>2021년 10월 29일부터 산출한 최근 5년 데이터에서는 QQQ가 +75.1% 상승했고 단순 계산값은 +225.2%에 달했으나, TQQQ의 실제 수익률은 +41.6%에 그치며 -183.6%의 격차가 나타났습니다. 이 시기 QQQ의 연 변동성은 23.3%로 집계되었습니다.</p>\n\n\n\n<h3>일일 재조정과 변동성의 영향</h3>\n\n<p>3배 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 자산 비중을 다시 맞추는 일일 재조정을 진행합니다. 이러한 구조적 특성 때문에 주가가 일정하게 움직이지 않고 오르내림을 반복하면 기초지수 수익률이 제자리로 돌아오더라도 ETF 계좌는 손실을 입게 됩니다.</p>\n\n<p>예를 들어 기초지수가 하루 +10.0% 오르고 다음 날 -9.09% 내려 다시 원점으로 돌아오는 상황을 가정해 볼 수 있습니다. 이 경우 매일 3배를 따라가는 ETF는 첫날 +30.0% 상승 후 다음 날 -27.27% 하락하게 되어, 결과적으로 -5.45%의 손실을 기록하며 제자리를 찾지 못합니다.</p>\n\n<p>따라서 오르내림이 반복되는 횡보장이나 변동성이 높은 시장 상황에서는 기초 지수의 전체 수익률이 같더라도 레버리지 ETF의 최종 성과는 크게 낮아질 수 있습니다. 반면 기초지수가 하락 없이 한 방향으로 꾸준히 오르는 상승 기간에는 일일 복리 효과 덕분에 단순 3배 계산값보다 더 높은 수익을 얻기도 합니다.</p>\n\n<h3>국내 계좌 이용과 투자 확인 기준</h3>\n\n<p>TQQQ나 QQQ처럼 해외(미국 등)에 상장된 ETF는 ISA(개인종합자산관리계좌), 연금저축, IRP(개인형퇴직연금) 같은 국내 절세 계좌에서 직접 매수할 수 없습니다. 따라서 이들 절세 계좌의 혜택을 활용하려면 미국 지수를 추종하여 국내 자산운용사가 발행한 국내 상장 ETF를 대안으로 선택해야 합니다.</p>\n\n<p>과거 주가 흐름과 수익률 격차 자료는 지나온 기간 동안 일일 재조정이 미친 영향을 보여주는 결과일 뿐이며, 향후 시장에서도 동일한 수익률이나 격차가 반복된다는 보장은 없습니다. 해외 ETF 거래 시 발생하는 달러 환율 변화와 세금 발생 여부 역시 챙겨보아야 할 부분입니다.</p>\n\n<p>3배 레버리지 상품을 검토할 때에는 기초 지수의 단기 방향성뿐만 아니라, 예상되는 장기 변동성 수준과 계좌 내 자산 배분 비중을 사전에 점검하는 자세가 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 TQQQ를 ISA 계좌에서 직접 거래할 수 있나요?</h4>\n<p>해외 시장에 상장된 TQQQ는 ISA, 연금저축, IRP 등 국내 절세 계좌에서 직접 거래하는 것이 불가능합니다. 이러한 계좌를 통해 투자 절세 효과를 얻고자 한다면 미국 나스닥 지수를 추종하도록 국내에 상장된 ETF 상품을 찾아 매수해야 합니다.</p>\n\n<h4>🔸 해외 상장 3배 레버리지 ETF 매매 시 세금 신고는 어떻게 하나요?</h4>\n<p>해외 상장 ETF는 매매 차익에 대해 양도소득세(기본 공제 연 250만 원 초과분 대상 22% 세율)가 적용됩니다. 종합소득세 합산 대상이 아닌 양도소득세 항목이므로, 매년 5월에 국세청 홈택스 등을 통해 직접 양도소득세를 신고하고 납부해야 합니다.</p>\n\n<h4>🔸 레버리지 상품 장기 투자 시 공개 자료를 볼 때 유의할 한계는 무엇인가요?</h4>\n<p>과거 산출된 1년, 3년, 5년 데이터는 해당 구간 동안 발생한 주가 변동성과 장세 특성이 반영된 수치일 뿐입니다. 기초지수의 주가 흐름 방향과 횡보 기간의 길이에 따라 향후 실제 3배 레버리지 ETF의 성과는 지수 수익률 및 과거 데이터와 전혀 다른 양상을 보일 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>3배 레버리지 ETF를 오래 들고 있을 경우 일일 재조정 구조로 인해 기초지수의 3배 수익을 그대로 얻기 어렵습니다. 실제 데이터에 따르면 최근 5년 간 기초지수 QQQ가 +75.1% 상승하여 단순 계산값은 +225.2%였으나, 3배 레버리지 TQQQ의 실제 수익률은 +41.6%에 머무르며 -183.6%의 큰 격차가 발생했습니다.</p>\n\n<p>앞으로 레버리지 투자 뉴스나 관련 지표를 살펴볼 때는 다음 기준을 직접 확인하는 것이 좋습니다.</p>\n\n<p>1. <strong>기초지수의 연 변동성 수치</strong>: 최근 5년간 QQQ 연 변동성이 23.3%에 달했던 것처럼, 변동성이 커질수록 일일 재조정으로 인한 원금 깎임 영향이 커집니다.</p>\n<p>2. <strong>단순 3배 계산값과 실제 수익률 격차</strong>: 최근 1년 기준 단순 계산(+17.3%)과 실제 성과(-7.0%) 사이의 -24.3% 차이처럼, 추종 기간 동안의 실제 누적 성과 차이를 비교해보아야 합니다.</p>\n<p>3. <strong>최대 낙폭(MDD) 수준</strong>: 최근 5년 TQQQ의 최대 낙폭이 -81.66%였던 점을 참고해 자산 손실 폭을 버틸 수 있는지 확인해야 합니다.</p>\n\n태그: 3배레버리지 TQQQ QQQ 일일재조정 변동성모의",
+  "2": "<h1>3배 레버리지 ETF를 오래 들고 있으면 생기는 일</h1>\n<!-- 3배 레버리지 ETF를 장기 보유할 때 일일 재조정과 변동성으로 인해 실제 수익률과 단순 3배 계산값 사이에 발생하는 격차를 실증 데이터로 정리합니다. -->\n\n<p>3배 레버리지 ETF를 장기 보유할 때 수익률이 단순 계산과 달라지는 이유와 실제 데이터를 확인합니다. 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 운용 자산의 비중을 다시 맞추는 일일 재조정을 진행합니다.</p>\n\n<p>이 때문에 기간이 길어질수록 단순 3배를 곱한 값과 실제 손익 사이의 격차가 발생합니다. 이번 분석은 Yahoo Finance 종가(배당 반영) 기준, 거래일 기준 구간을 바탕으로 ondo에서 계산한 수치를 기반으로 작성되었습니다.</p>\n\n<h3>QQQ와 TQQQ의 기본 지표</h3>\n\n<p>QQQ(Invesco QQQ Trust)와 3배 레버리지상품인 TQQQ(ProShares UltraPro QQQ)는 모두 해외에 상장되어 달러로 거래되므로 환율 영향이 존재합니다. 기초지수인 QQQ의 배당수익률은 0.47%, 배당성장률은 8.99%이며, TQQQ의 배당수익률은 0.93%, 배당성장률은 22.94%를 기록하고 있습니다.</p>\n\n<p>최근 1년 수익률을 비교하면 QQQ가 8.11%를 기록한 반면, TQQQ는 -0.47%를 기록했습니다. 각 상품의 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 QQQ가 11.1%, TQQQ가 5.3%입니다. 다만 두 종목은 상장일이 서로 다르므로 연평균 수익률을 종목끼리 직접 비교해서는 안 됩니다.</p>\n\n<p>투자 과정에서 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율로 그 기간 중 가장 크게 잃었을 때의 크기)에서도 큰 차이를 보입니다. 최근 5년 기준 QQQ의 최대 낙폭은 -35.12%였으나, TQQQ의 최대 낙폭은 -81.66%에 달했습니다.</p>\n\n<h4>🔸 장기 보유 시 위험 요소</h4>\n<p>3배 레버리지 상품인 TQQQ는 기초지수보다 하락 폭이 커질 수 있어 자산 하강기 시 손실 위험이 상대적으로 높습니다. 더불어 미국 시장에 상장된 해외 ETF 특성상 원화 가치 변동에 따른 환율 위험도 함께 고려해야 합니다.</p>\n\n<h3>기간별 수익률과 단순 계산 차이</h3>\n\n<p>레버리지 ETF의 장기 투자 시 발생하는 단순 계산과의 차이는 기간이 늘어날수록 더욱 뚜렷하게 나타납니다. 단순 계산은 기초 지수 수익률에 3을 곱한 값이지만, 레버리지 상품은 매일의 수익률을 기준으로 따르기 때문입니다.</p>\n\n<p>2025년 11월 5일부터 계산한 최근 1년 동안 QQQ는 +5.8% 상승했으며, 'QQQ × 3' 단순 계산값은 +17.3%였습니다. 하지만 TQQQ의 실제 수익률은 -7.0%를 기록하여 단순 계산 대비 -24.3%의 차이가 발생했습니다. 이 기간 QQQ의 연 변동성은 21.3%였습니다.</p>\n\n<p>2023년 11월 1일부터 계산한 최근 3년 구간에서는 QQQ가 +86.9% 오르는 동안, 단순 계산값은 +260.8%였으나 TQQQ 실제 수익률은 +213.2%로 -47.6%의 차이를 보였습니다. 이 기간 QQQ의 연 변동성은 20.9%였습니다.</p>\n\n<p>2021년 10월 29일부터 산출한 최근 5년 데이터에서는 QQQ가 +75.1% 상승했고 단순 계산값은 +225.2%에 달했으나, TQQQ의 실제 수익률은 +41.6%에 그치며 -183.6%의 격차가 나타났습니다. 이 시기 QQQ의 연 변동성은 23.3%로 집계되었습니다.</p>\n\n<h3>일일 재조정과 변동성의 영향</h3>\n\n<p>일일 재조정 구조적 특성 때문에 주가가 일정하게 움직이지 않고 오르내림을 반복하면 기초지수 수익률이 제자리로 돌아오더라도 ETF 계좌는 손실을 입게 됩니다.</p>\n\n<p>예를 들어 기초지수가 하루 +10.0% 오르고 다음 날 -9.09% 내려 다시 원점으로 돌아오는 상황을 가정해 볼 수 있습니다. 이 경우 매일 3배를 따라가는 ETF는 첫날 +30.0% 상승 후 다음 날 하루 수익률의 3배인 -27.27%(-9.09% × 3) 하락하게 되어, 결과적으로 -5.45%의 손실을 기록하며 제자리를 찾지 못합니다.</p>\n\n<p>따라서 오르내림이 반복되는 횡보장이나 변동성이 높은 시장 상황에서는 기초 지수의 전체 수익률이 같더라도 레버리지 ETF의 최종 성과는 크게 낮아질 수 있습니다. 반면 기초지수가 하락 없이 한 방향으로 꾸준히 오르는 상승 기간에는 일일 복리 효과 덕분에 단순 3배 계산값보다 더 높은 수익을 얻기도 합니다.</p>\n\n<h3>국내 계좌 이용과 투자 확인 기준</h3>\n\n<p>TQQQ나 QQQ처럼 해외(미국 등)에 상장된 ETF는 개인종합자산관리계좌(ISA), 연금저축, 개인형퇴직연금(IRP) 같은 국내 절세 계좌에서 직접 매수할 수 없습니다. 따라서 이들 절세 계좌의 혜택을 활용하려면 미국 지수를 추종하여 국내 자산운용사가 발행한 국내 상장 ETF를 대안으로 선택해야 합니다.</p>\n\n<p>과거 주가 흐름과 수익률 격차 자료는 지나온 기간 동안 일일 재조정이 미친 영향을 보여주는 결과일 뿐이며, 향후 시장에서도 동일한 수익률이나 격차가 반복된다는 보장은 없습니다. 해외 ETF 거래 시 발생하는 달러 환율 변화 역시 챙겨보아야 할 부분입니다.</p>\n\n<p>3배 레버리지 상품을 검토할 때에는 기초 지수의 단기 방향성뿐만 아니라, 예상되는 장기 변동성 수준과 계좌 내 자산 배분 비중을 사전에 점검하는 자세가 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 TQQQ를 ISA 계좌에서 직접 거래할 수 있나요?</h4>\n<p>해외 시장에 상장된 TQQQ는 ISA, 연금저축, IRP 등 국내 절세 계좌에서 직접 거래하는 것이 불가능합니다. 이러한 계좌를 통해 투자 절세 효과를 얻고자 한다면 미국 나스닥 지수를 추종하도록 국내에 상장된 ETF 상품을 찾아 매수해야 합니다.</p>\n\n<h4>🔸 레버리지 상품 장기 투자 시 공개 자료를 볼 때 유의할 한계는 무엇인가요?</h4>\n<p>과거 산출된 1년, 3년, 5년 데이터는 해당 구간 동안 발생한 주가 변동성과 장세 특성이 반영된 수치일 뿐입니다. 기초지수의 주가 흐름 방향과 횡보 기간의 길이에 따라 향후 실제 3배 레버리지 ETF의 성과는 지수 수익률 및 과거 데이터와 전혀 다른 양상을 보일 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>3배 레버리지 ETF를 오래 들고 있을 경우 일일 재조정 구조로 인해 기초지수의 3배 수익을 그대로 얻기 어렵습니다. 실제 데이터에 따르면 최근 5년 간 기초지수 QQQ가 +75.1% 상승하여 단순 계산값은 +225.2%였으나, 3배 레버리지 TQQQ의 실제 수익률은 +41.6%에 머무르며 -183.6%의 큰 격차가 발생했습니다.</p>\n\n<p>앞으로 레버리지 투자 뉴스나 관련 지표를 살펴볼 때는 다음 기준을 직접 확인하는 것이 좋습니다.</p>\n\n<p>1. 기초지수의 연 변동성 수치: 최근 5년간 QQQ 연 변동성이 23.3%에 달했던 것처럼, 변동성이 커질수록 일일 재조정으로 인한 원금 깎임 영향이 커집니다.</p>\n<p>2. 단순 3배 계산값과 실제 수익률 격차: 최근 1년 기준 단순 계산(+17.3%)과 실제 성과(-7.0%) 사이의 -24.3% 차이처럼, 추종 기간 동안의 실제 누적 성과 차이를 비교해보아야 합니다.</p>\n<p>3. 최대 낙폭(MDD) 수준: 최근 5년 TQQQ의 최대 낙폭이 -81.66%였던 점을 참고해 자산 손실 폭을 버틸 수 있는지 확인해야 합니다.</p>\n\n태그: 3배레버리지 TQQQ QQQ 일일재조정 변동성모의",
+  "3": "<h1>3배 레버리지 ETF를 오래 들고 있으면 생기는 일</h1>\n<!-- 3배 레버리지 ETF를 장기 보유할 때 일일 재조정과 변동성으로 인해 실제 수익률과 단순 3배 계산값 사이에 발생하는 격차를 실증 데이터로 정리합니다. -->\n\n<p>3배 레버리지 ETF를 장기 보유할 때 수익률이 단순 계산과 달라지는 이유와 실제 데이터를 확인합니다. 레버리지 ETF는 매일 기초지수 하루 수익률의 3배를 목표로 운용 자산의 비중을 다시 맞추는 일일 재조정을 진행합니다.</p>\n\n<p>이 때문에 기간이 길어질수록 단순 3배를 곱한 값과 실제 손익 사이의 격차가 발생합니다. 이번 분석은 Yahoo Finance 종가(배당 반영) 기준, 거래일 기준 구간을 바탕으로 ondo에서 계산한 수치를 기반으로 작성되었습니다.</p>\n\n<h3>QQQ와 TQQQ의 기본 지표</h3>\n\n<p>QQQ(Invesco QQQ Trust)와 3배 레버리지상품인 TQQQ(ProShares UltraPro QQQ)는 모두 해외에 상장되어 달러로 거래되므로 환율 영향이 존재합니다. 기초지수인 QQQ의 배당수익률은 0.47%, 배당성장률은 8.99%이며, TQQQ의 배당수익률은 0.93%, 배당성장률은 22.94%를 기록하고 있습니다.</p>\n\n<p>최근 1년 수익률을 비교하면 QQQ가 8.11%를 기록한 반면, TQQQ는 -0.47%를 기록했습니다. 각 상품의 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 QQQ가 11.1%, TQQQ가 5.3%입니다. 다만 두 종목은 상장일이 서로 다르므로 연평균 수익률을 종목끼리 직접 비교해서는 안 됩니다.</p>\n\n<p>투자 과정에서 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율로 그 기간 중 가장 크게 잃었을 때의 크기)에서도 큰 차이를 보입니다. 최근 5년 기준 QQQ의 최대 낙폭은 -35.12%였으나, TQQQ의 최대 낙폭은 -81.66%에 달했습니다. 3배 레버리지 상품인 TQQQ는 기초지수보다 하락 폭이 커질 수 있어 자산 하강기 시 손실 위험이 상대적으로 높습니다.</p>\n\n<h3>기간별 수익률과 단순 계산 차이</h3>\n\n<p>레버리지 ETF의 장기 투자 시 발생하는 단순 계산과의 차이는 기간이 늘어날수록 더욱 뚜렷하게 나타납니다. 단순 계산은 기초 지수 수익률에 3을 곱한 값이지만, 레버리지 상품은 매일의 수익률을 기준으로 따르기 때문입니다.</p>\n\n<p>2025년 11월 5일부터 계산한 최근 1년 동안 QQQ는 +5.8% 상승했으며, 'QQQ × 3' 단순 계산값은 +17.3%였습니다. 하지만 TQQQ의 실제 수익률은 -7.0%를 기록하여 단순 계산 대비 -24.3%의 차이가 발생했습니다. 이 기간 QQQ의 연 변동성은 21.3%였습니다.</p>\n\n<p>2023년 11월 1일부터 계산한 최근 3년 구간에서는 QQQ가 +86.9% 오르는 동안, 단순 계산값은 +260.8%였으나 TQQQ 실제 수익률은 +213.2%로 -47.6%의 차이를 보였습니다. 이 기간 QQQ의 연 변동성은 20.9%였습니다.</p>\n\n<p>2021년 10월 29일부터 산출한 최근 5년 데이터에서는 QQQ가 +75.1% 상승했고 단순 계산값은 +225.2%에 달했으나, TQQQ의 실제 수익률은 +41.6%에 그치며 -183.6%의 격차가 나타났습니다. 이 시기 QQQ의 연 변동성은 23.3%로 집계되었습니다.</p>\n\n<h3>일일 재조정과 변동성의 영향</h3>\n\n<p>일일 재조정 구조적 특성 때문에 주가가 일정하게 움직이지 않고 오르내림을 반복하면 기초지수 수익률이 제자리로 돌아오더라도 ETF 계좌는 손실을 입게 됩니다.</p>\n\n<p>예를 들어 기초지수가 하루 +10.0% 오르고 다음 날 -9.09% 내려 다시 원점으로 돌아오는 상황을 가정해 볼 수 있습니다. 이 경우 매일 3배를 따라가는 ETF는 첫날 +30.0% 상승 후 다음 날 하루 수익률의 3배인 -27.27%(-9.09%에 3을 곱한 값) 하락하게 되어, 결과적으로 -5.45%의 손실을 기록하며 제자리를 찾지 못합니다.</p>\n\n<p>따라서 오르내림이 반복되는 횡보장이나 변동성이 높은 시장 상황에서는 기초 지수의 전체 수익률이 같더라도 레버리지 ETF의 최종 성과는 크게 낮아질 수 있습니다. 반면 기초지수가 하락 없이 한 방향으로 꾸준히 오르는 상승 기간에는 일일 복리 효과 덕분에 단순 3배 계산값보다 더 높은 수익을 얻기도 합니다.</p>\n\n<h3>국내 계좌 이용과 투자 확인 기준</h3>\n\n<p>TQQQ나 QQQ처럼 해외(미국 등)에 상장된 ETF는 개인종합자산관리계좌(ISA), 연금저축, 개인형퇴직연금(IRP) 같은 국내 절세 계좌에서 직접 매수할 수 없습니다. 따라서 이들 절세 계좌의 혜택을 활용하려면 미국 지수를 추종하여 국내 자산운용사가 발행한 국내 상장 ETF를 대안으로 선택해야 합니다.</p>\n\n<p>과거 주가 흐름과 수익률 격차 자료는 지나온 기간 동안 일일 재조정이 미친 영향을 보여주는 결과일 뿐이며, 향후 시장에서도 동일한 수익률이나 격차가 반복된다는 보장은 없습니다.</p>\n\n<p>3배 레버리지 상품을 검토할 때에는 기초 지수의 단기 방향성뿐만 아니라, 예상되는 장기 변동성 수준과 계좌 내 자산 배분 비중을 사전에 점검하는 자세가 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 레버리지 상품 장기 투자 시 공개 자료를 볼 때 유의할 한계는 무엇인가요?</h4>\n<p>과거 산출된 1년, 3년, 5년 데이터는 해당 구간 동안 발생한 주가 변동성과 장세 특성이 반영된 수치일 뿐입니다. 기초지수의 주가 흐름 방향과 횡보 기간의 길이에 따라 향후 실제 3배 레버리지 ETF의 성과는 지수 수익률 및 과거 데이터와 전혀 다른 양상을 보일 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>3배 레버리지 ETF를 오래 들고 있을 경우 일일 재조정 구조로 인해 기초지수의 3배 수익을 그대로 얻기 어렵습니다. 실제 데이터에 따르면 최근 5년 간 기초지수 QQQ가 +75.1% 상승하여 단순 계산값은 +225.2%였으나, 3배 레버리지 TQQQ의 실제 수익률은 +41.6%에 머무르며 -183.6%의 큰 격차가 발생했습니다.</p>\n\n<p>앞으로 레버리지 투자 뉴스나 관련 지표를 살펴볼 때는 다음 기준을 직접 확인하는 것이 좋습니다.</p>\n\n<p>1. 기초지수의 연 변동성 수치: 최근 5년간 QQQ 연 변동성이 23.3%에 달했던 것처럼, 변동성이 커질수록 일일 재조정으로 인한 원금 깎임 영향이 커집니다.</p>\n<p>2. 단순 3배 계산값과 실제 수익률 격차: 최근 1년 기준 단순 계산(+17.3%)과 실제 성과(-7.0%) 사이의 -24.3% 차이처럼, 추종 기간 동안의 실제 누적 성과 차이를 비교해보아야 합니다.</p>\n<p>3. 최대 낙폭(MDD) 수준: 최근 5년 TQQQ의 최대 낙폭이 -81.66%였던 점을 참고해 자산 손실 폭을 버틸 수 있는지 확인해야 합니다.</p>\n\n태그: 3배레버리지 TQQQ QQQ 일일재조정 변동성모의"
+ },
+ "minutes": 7.8
+}
