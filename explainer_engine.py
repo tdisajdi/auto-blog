@@ -568,7 +568,11 @@ def run_explainer(topic, etf_module):
             # 세금 외 가이드: 제목 질문에 답하는 숫자를 코드가 계산(2026-11-08, guide_calcs.py). 실패하면 가격 그래프만.
             import guide_calcs
             calc_facts, visual = guide_calcs.guide_facts(topic_id, data_cache, rates_effect=rates_effect)
-            facts_text += ("\n" + calc_facts) if calc_facts else ""
+            if calc_facts:
+                # 계산표가 자체 기준의 수익률을 주므로 종목 기본 자료의 '1년 수익률'은 뺀다 - 기준일·계산이 달라 한 글에
+                # '1년 수익률'이 두 개 나왔다(11-08 레버리지 글: QQQ 8.11%와 +5.8%). 숫자는 한 기준만.
+                facts_text = re.sub(r", 1년 수익률 -?[\d.]+%", "", facts_text)
+                facts_text += "\n" + calc_facts
             visual = visual or price_chart(t["tickers"], data_cache)
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
         k = ISSUE_KINDS[topic_id]

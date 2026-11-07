@@ -92,3 +92,12 @@ assert gc.guide_facts("tax-accounts", {}) == ("", "")
 gc._hist = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("no net"))
 assert gc.guide_facts("leverage-decay", {}) == ("", "")
 print("guide fallback ok")
+# 2026-11-08 사람 눈 읽기에서 발견: 수익률끼리의 차이는 %p, 계산표가 있으면 종목 자료의 '1년 수익률'은 뺌(한 글에 두 기준 금지)
+f, _ = gc.render_leverage(gc.calc_leverage(base, lev), "QQQ", "TQQQ")
+assert "실제와 차이" in f and "%p" in f.split("실제와 차이")[1].split("\n")[0], f
+import re as _re
+line = "- QQQ (x): 해외 상장, 운용보수 0.2%, 1년 수익률 8.11%, 최대 낙폭(5년) -35%"
+assert _re.sub(r", 1년 수익률 -?[\d.]+%", "", line) == "- QQQ (x): 해외 상장, 운용보수 0.2%, 최대 낙폭(5년) -35%"
+src = open("explainer_engine.py", encoding="utf-8").read()
+assert 're.sub(r", 1년 수익률 -?[\\d.]+%", "", facts_text)' in src
+print("units and single 1y basis ok")
