@@ -575,6 +575,22 @@ def fetch_compete(conf, get=None):
     return out
 
 
+# 사이트 틀(관련 글 목록·태그·댓글)의 소제목은 글 내용이 아니므로 뺀다(2026-11-08 첫 측정: '관련글·TAG·더보기'가 빠진 말로 잡힘)
+_CHROME = re.compile(r"관련\s?글|함께 보면|같은 주제|TAG|태그|댓글|더보기|메일로 받아|저장 상태|구독|공유|이전 글|다음 글|추천 글|인기 글|가이드$")
+
+
+def _clean_features(f):
+    f = dict(f)
+    heads = []
+    for h in f.get("headings") or []:
+        if _CHROME.search(h):
+            break                        # 보통 글 끝의 '관련 글' 뒤로는 전부 사이트 틀
+        heads.append(h)
+    f["n_headings"] = len(heads) if f.get("headings") is not None else f.get("n_headings", 0)
+    f["words"] = sorted(_tokens(" ".join(heads)))
+    return f
+
+
 def _median(xs):
     xs = sorted(x for x in xs if x is not None)
     return xs[len(xs) // 2] if xs else None
@@ -587,7 +603,7 @@ def compete_report(conf, result):
         r = by_id.get(t["id"])
         if not r:
             continue
-        good = [p["features"] for p in r["pages"] if p.get("ok")]
+        good = [_clean_features(p["features"]) for p in r["pages"] if p.get("ok")]
         lines.append(f"\n■ {t['id']} - '{t.get('query', '')}' (읽은 경쟁 글 {len(good)}/{len(r['pages'])})")
         if not good:
             continue
@@ -599,6 +615,7 @@ def compete_report(conf, result):
         except (OSError, ValueError, KeyError):
             lines.append("  (우리 글 기록 없음)")
             continue
+        lines.append("  (우리 글의 표·그림은 0으로 나오지만 계산표·차트는 발행할 때 시스템이 따로 넣음 - 본문 글자만 비교)")
         for key, name in (("chars", "분량(글자)"), ("n_headings", "소제목 수"), ("tables", "표"), ("images", "그림"), ("numbers", "숫자 수")):
             lines.append(f"  - {name}: 우리 {ours[key]} / 경쟁 중간값 {_median([g[key] for g in good])} (최대 {max(g[key] for g in good)})")
         lines.append(f"  - FAQ 있는 경쟁 글 {sum(g['faq'] for g in good)}/{len(good)} (우리 {'있음' if ours['faq'] else '없음'})"
