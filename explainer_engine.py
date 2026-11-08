@@ -59,9 +59,11 @@ SEARCH_SEEDS = {"overseas-vs-domestic-tax": "해외 ETF 세금", "expense-ratio"
                 "fx": "환율 해외 ETF", "rates": "금리 채권 ETF", "sentiment": "공포탐욕지수"}
 
 ISSUE_KINDS = {
+    # 11-08 재시험 2번 미통과: 제목('확인할 것')이 넓어 작가가 빈자리를 일반 지식(환전 전략·야간 선물·iNAV)으로 채움.
+    # 국내 ETF 2개는 계산표에 안 쓰이는데 보수·낙폭 숫자만 늘려 '파편적 나열' 지적 → 제목을 계산표가 답하는 질문으로 좁히고 종목도 계산에 쓰는 것만.
     "fx": {"label": "환율", "query": "원/달러 환율",
-           "title_hint": "환율이 움직일 때 해외 ETF 투자자가 확인할 것",
-           "tickers": ["SPY", "360750.KS", "GLD", "132030.KS"]},
+           "title_hint": "최근 1년 원/달러 환율 변화가 해외 ETF의 원화 수익률을 얼마나 바꿨나",
+           "tickers": ["SPY", "QQQ", "GLD"]},
     "rates": {"label": "금리", "query": "미국 10년물 국채 금리",
               "title_hint": "금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
               "tickers": ["TLT", "IEF", "SHY", "QQQ"]},
