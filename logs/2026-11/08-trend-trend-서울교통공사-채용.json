@@ -1,0 +1,312 @@
+{
+ "article_type": "trend",
+ "topic_id": "trend:서울교통공사-채용",
+ "title_seed": "요즘 '서울교통공사 채용'에 관심이 몰리는 이유",
+ "category": "trend",
+ "started_at": "2026-11-08T18:35:03",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.8,
+   "chars": 1944
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.1,
+   "chars": 1789
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.9,
+   "chars": 4498
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.3,
+   "chars": 742
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.2,
+   "chars": 423
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 123
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 895
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.8,
+   "chars": 4552
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.6,
+   "chars": 257
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.9,
+   "chars": 482
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 130
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.5,
+   "chars": 749
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.9,
+   "chars": 4534
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.1,
+   "chars": 232
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.2,
+   "chars": 633
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.6,
+   "chars": 179
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.4,
+   "chars": 801
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획 실패",
+   "at": "18:35:10",
+   "attempt": 1,
+   "reason": "설계도 형식이 맞지 않음"
+  },
+  {
+   "step": "기획 실패",
+   "at": "18:35:26",
+   "attempt": 2,
+   "reason": "설계도 형식이 맞지 않음"
+  },
+  {
+   "step": "기획",
+   "at": "18:35:26",
+   "sections": [
+    "무슨 일이 있었나",
+    "숫자로 보기",
+    "아직 모르는 것"
+   ],
+   "reason": "기본 설계도 사용"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "18:35:42",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "18:36:06",
+   "score": 0.64,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "용어 풀이"
+   ],
+   "value_tip": "채용 공고 일정의 구체적인 날짜나 원서 접수 기간을 본문 자료에 추가하여 실용성을 높이기",
+   "issues": [
+    "[중요·사실 검증] '서울교통공사 채용 검색량이 최근 급증한 이유는 무엇일까 서울교통공사의 2026년 하반기 신입사원 504명 채' → 제목이 던진 질문에 대한 답은 정리 문단에서 한 번만 써야 하나 도입부에서 숫자를 넣어 이미 답변했습니다. / 고칠 방법: 도입부 문장에서 구체적 답변과 숫자를 삭제하고 개요 형태로 변경한 뒤, 정리 문단에서만 답변을 작성하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 같은 종류의 숫자·뉴스를 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 정리 문단의 확인 기준 2~3개 제시 부분에 자료의 숫자(예: 최근 7개 평균 8.6배, 신입 504명 등)를 함께 제시하세요.",
+    "[중요·독자 편집] '구분 채용 인원 2026년 하반기 신입사원 504명 하반기 공무·경비직 153명 공개된 하반기 채용 규모는 ' → 표에 제시된 내용과 숫자를 본문 문장에서 그대로 다시 풀어서 읽어주고 있습니다. / 고칠 방법: 표 내용은 표로 확인하도록 안내하고 문장에서는 생략하거나 핵심 추이만 요약하세요."
+   ],
+   "lint": [
+    "너무 얇음: 본문 2499자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2530
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "18:36:19",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "18:36:51",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "제공된 채용 인원 규모와 구글 트렌드 검색량 수치를 표나 목록으로 더 직관적으로 비교하여 보여주기",
+   "issues": [
+    "[중요·독자 편집] '서울교통공사는 2026년 하반기 신입사원 504명을 채용합니다. 또한 퍼블릭타임스[링크]에 의하면 공무 및 ' → 무슨 일이 있었나 섹션에서 언급한 채용 인원 숫자가 바로 이어지는 표와 설명 문장에서 다시 되풀이되고 있습니다. / 고칠 방법: 본문에서는 채용 인원 숫자를 제외하고 노사 갈등과 공고 발표 사실만 서술한 뒤, 표를 통해 숫자를 제시합니다."
+   ],
+   "lint": [
+    "너무 얇음: 본문 2434자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "chars": 2465
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "18:37:05",
+   "model": "gemini-3.6-flash",
+   "todo": 2
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "18:37:44",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.4,
+   "value_missing": [
+    "제목 질문에 답함",
+    "판단 기준 제시",
+    "용어 풀이"
+   ],
+   "value_tip": "구글 트렌드 수치 상승 데이터를 구직자가 채용 일정이나 동향을 파악할 때 참고할 수 있는 실질적 활용 팁으로 연결하기",
+   "issues": [
+    "[중요·독자 편집] '서울교통공사의 하반기 채용 공고 발표와 함께 노동조합의 신규 채용 확대 요구 집회' → 도입부의 요약 내용과 첫 번째 본문 섹션의 내용이 같은 사건을 반복하여 중복 서술되었습니다. / 고칠 방법: 도입부에서는 검색 급증 현상만 짧게 언급하고, 세부 배경은 본문 섹션에서만 다루도록 내용을 분리하세요.",
+    "[사소·독자 편집] '하반기 채용 규모는 표를 통해 확인할 수 있으며, 신입사원 분야 채용 인원이 공무·경비직보다 351명 많은 ' → 표에 나와 있는 수치를 본문 문장에서 다시 풀어서 단순 반복하고 있습니다. / 고칠 방법: 표로 제시된 수치와 중복되지 않는 추가적인 의미나 특징만 문장으로 서술하세요."
+   ],
+   "lint": [
+    "너무 얇음: 본문 2416자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "chars": 2447
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "서울교통공사 채용 검색량이 최근 급증한 이유는 무엇일까",
+  "url": "https://ondo99.com/?p=299",
+  "score": 0.88,
+  "issues": [
+   "[중요·독자 편집] '서울교통공사는 2026년 하반기 신입사원 504명을 채용합니다. 또한 퍼블릭타임스[링크]에 의하면 공무 및 ' → 무슨 일이 있었나 섹션에서 언급한 채용 인원 숫자가 바로 이어지는 표와 설명 문장에서 다시 되풀이되고 있습니다. / 고칠 방법: 본문에서는 채용 인원 숫자를 제외하고 노사 갈등과 공고 발표 사실만 서술한 뒤, 표를 통해 숫자를 제시합니다.",
+   "너무 얇음: 본문 2434자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+  ]
+ },
+ "facts": "[사실 자료]\n- 구글 급상승 검색어(한국, 2026-11-08)에 '서울교통공사 채용'가 올랐습니다.\n[검색 관심도 - 구글 트렌드(한국), '서울교통공사 채용', 최근 3개월. 0~100은 이 기간 최고점을 100으로 둔 상대값]\n- 지금 값은 3개월 최고점의 100%(코드 계산)\n- 최근 7개 측정값 평균은 3개월 평균의 8.6배(코드 계산)\n- 처음 2주 평균 2.9 → 마지막 2주 평균 39.6(+1251%, 코드 계산)\n- 읽는 법: 상대값이라 검색한 사람 수가 아니며, 다른 검색어와 숫자를 직접 비교하면 안 됩니다.\n[관련 뉴스 - 제목만 확인됨, 제목에 없는 내용은 단정하지 마세요]\n- 서울교통공사 올바른노조, 시청 앞 집회…“신규 채용·인건비 보전 승인하라” - 문화일보 (문화일보) https://news.google.com/rss/articles/CBMiUEFVX3lxTE9Nbm16bXY5dEdjNVRZbTMxV0I5dktqQk9pRVY4MkRhRHZieFZUeUlpbWYzX3FEa0JJVDh4ZFp4RW1pLWk4YlY1UnZGbEdXanpu?oc=5\n- 서울교통공사 MZ노조, 서울시에 '신규 채용·정책인건비 보전' 촉구 - 뉴스핌 (뉴스핌) https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SZ09NOTBMMHU4QWhuMXJMV2tNUC1wME1tcEtlWXRXQ2Q1RGlDNkdfYWVCTEJYZEhoMWtUVXFfbVZhZnE5QTh4VnZPSW5kWUxLaWhUNm1pN1V1MzRW?oc=5\n- [오늘의 공기업 채용정보] 서울교통공사, 2026년 하반기 신입사원 504명 채용 - 아웃소싱타임스 (아웃소싱타임스) https://news.google.com/rss/articles/CBMickFVX3lxTE9ITWJNUXYyeWxoSDlPWkU4NzBROXJkTG51MXdrd2N0WHNWWmRabWR0T2hmSHktcHFLRE9ma0wxM1dDOVV4LUhhNmNGbmFOQllSRlRyajFUU1d3ZFF0ZFdjOVU5eUQydHgwUEF5TVk2ckZUQQ?oc=5\n- 서울교통공사 노조, 쟁의행위 가결…\"교섭결렬 시 파업 돌입\" - 머니투데이 - 머니투데이 (머니투데이) https://news.google.com/rss/articles/CBMiakFVX3lxTFAxd1U5b0ZMMFBJQ0pOeENBV0dlOXRidFR6dFJmLURfUTBQYUptNWNReEJSdFlnOXFUcFYxbXVjal9NbUtTS194N1dtRkx4Tmp3QUtQQmxoWk9Hd3hMYWl4NUNhRUJEUW5US2fSAW9BVV95cUxObDVOazB0RUtET1lQYXBHSmJjUmhJS1RUNEUzeURIYkpURlJkd0VlRUFGOE13ZWl0Nm02Q050Rm9lVGYtVGIyZkVIbV9fZUFCYUJCcHhwcHgzcTAwRExBZWxwdTc1MFBYeW8zb3l1VkE?oc=5\n- 해마다 반복되는 '출근길 불안'…서울지하철 파업 위기 언제까지 - 뉴스1 (뉴스1) https://news.google.com/rss/articles/CBMiT0FVX3lxTE8yUDktSXJ5Mmp2YW1Ic0Q0TnA0S1A2S0J3all3dW1wM1VWMXJfSTVGUlRkUGRlQUhUWnVQcmdaNWFhTkpiMFFJZWpXelhnakU?oc=5\n- ‘ 서울교통공사, 하반기 공무·경비직 153명 채용 - 퍼블릭타임스 (퍼블릭타임스) https://news.google.com/rss/articles/CBMiakFVX3lxTE5oMUdSNUVVMlhUaDZpQ3lHMXhBUFpTMDFobFdoRHNLZVlDQ0dPdFhoU0FwVnJHOTRNVThXSHQ4MjA0dlNzSWJyRC1tLXhmbEZZQ1pYeHhxX2tpdi0xMldCMTQxODhrZnVFaWfSAW5BVV95cUxOZkNhelBVMFI5ZUZSOXpiUUg3XzVQSnNhQkxyWkh5QjdXeVNhRnhHSHdWMFE4VWZlckwtTGdPSTdyMnJQbzVyNXRHNE5DTk9CUE1lQWZPblZObnVmV0tRcUt2Q0RYTVVYdTZkY1RLdw?oc=5\n\n[독자가 실제로 검색하는 말 - 구글·네이버 자동완성 '서울교통공사 채용', 2026-11-08. 사실 자료가 아님. '자주 묻는 질문'은 여기서 고르되 위 자료로 답할 수 있는 것만 자연스러운 질문 문장으로 쓰고, 답할 자료가 없으면 넣지 마세요. 검색어 문구를 그대로 제목·본문에 끼워 넣지 마세요]\n- 서울교통공사 채용공고\n- 서울교통공사 채용 공고 2026\n- 서울교통공사 채용 스펙\n- 서울교통공사 채용 공고 pdf\n- 서울교통공사 채용 공고 2025\n- 서울교통공사 채용 일정\n- 서울교통공사 채용 공고 2026 하반기\n- 서울교통공사 채용 하반기\n- 서울교통공사 채용 자소서\n- 서울교통공사 채용형 인턴\n- 서울교통공사 채용 가산점\n- 서울교통공사 채용 2025\n",
+ "drafts": {
+  "1": "<h1>서울교통공사 채용 검색량이 최근 급증한 이유는 무엇일까</h1>\n<!-- 2026년 11월 서울교통공사의 하반기 신입사원 및 공무·경비직 채용 공고 발표와 노조의 신규 채용 촉구 집회, 쟁의행위 가결 소식이 이어지며 관심이 집중되는 배경을 정리합니다. -->\n\n<p>서울교통공사의 2026년 하반기 신입사원 504명 채용 공고와 공무·경비직 153명 채용 소식이 연이어 발표되었습니다. 동시에 노동조합 측의 신규 채용 확대 요구 집회와 쟁의행위 가결 소식이 전해지면서 구직자들의 관심이 급격히 쏠리고 있습니다.</p>\n\n<p>이번 글에서는 최근 포털 사이트에서 해당 검색어가 급상승한 배경과 채용 규모 관련 공개 자료, 그리고 향후 노사 교섭 상황에 따라 달라질 수 있는 변수들을 정리해 전달합니다.</p>\n\n<h3>무슨 일이 있었나</h3>\n\n<p>서울교통공사의 하반기 채용 일정과 노사 간의 갈등 상황이 동시에 보도되며 관심이 확대되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE9ITWJNUXYyeWxoSDlPWkU4NzBROXJkTG51MXdrd2N0WHNWWmRabWR0T2hmSHktcHFLRE9ma0wxM1dDOVV4LUhhNmNGbmFOQllSRlRyajFUU1d3ZFF0ZFdjOVU5eUQydHgwUEF5TVk2ckZUQQ?oc=5\" target=\"_blank\" rel=\"noopener\">아웃소싱타임스</a> 보도에 따르면 서울교통공사는 2026년 하반기 신입사원 504명을 채용합니다. 또한 <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE5oMUdSNUVVMlhTaDZpQ3lHMXhBUFpTMDFobFdoRHNLZVlDQ0dPdFhoU0FwVnJHOTRNVThXSHQ4MjA4dlNzSWJyRC1tLXhmbEZZQ1pYeHhxX2tpdi0xMldCMTQxODhrZnVFaWfSAW5BVV95cUxOZkNhelBVMFI5ZUZSOXpiUUg3XzVQSnNhQkxyWkh5QjdXeVNhRnhHSHdWMFE4VWZlckwtTGdPSTdyMnJQbzVyNXRHNE5DTk9CUE1lQWZPblZObnVmV0tRcUt2Q0RYTVVYdTZkY1RLdw?oc=5\" target=\"_blank\" rel=\"noopener\">퍼블릭타임스</a>에 의하면 공무 및 경비직 153명에 대한 하반기 채용도 함께 진행되고 있습니다.</p>\n\n<p>이러한 신규 채용 소식과 더불어 노조의 인력 확충 요구도 거세지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTE9Nbm16bXY5dEdjNVRZbTMxV0I5dktqQk9pRVY4MkRhRHZieFZUeUlpbWYzX3FEa0JJVDh4ZFp4RW1pLWk4YlY1UnZGbEdXanpu?oc=5\" target=\"_blank\" rel=\"noopener\">문화일보</a>와 <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SZ09NOTBMMHU4QWhuMXJMV2tNUC1wME1tcEtlWXRXQ2Q1RGlDNkdfYWVCTEJYZEhoMWtUVXFfbVZhZnE5QTh4VnZPSW5kWYLKaWhUNm1pN1V1MzRW?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 서울교통공사 올바른노조는 서울시청 앞에서 집회를 열고 신규 채용 증원과 정책인건비 보전을 촉구했습니다.</p>\n\n<p>노사 간의 입장 차이로 인한 파업 가능성도 대두된 상황입니다. <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTFAxd1U5b0ZMMFBJQ0pOeENBV0dlOXRidFR6dFJmLURfUTBQYUptNWNReEJSdFlnOXFUcFYxbXVjal9NbUtTS194N1dtRkx4Tmp3QUtQQmxoWk9Hd3hMYWl4NUNhRUJEUW5US2fSAW9BVV95cUxObDVOazB0RUtET1lQYXBHSmJjUmhJS1RUNEUzeURIYkpURlJkd0VlRUFGOE13ZWl0Nm02Q050Rm9lVGYtVGIyZkVIbV9fZUFCYUJCcHhwcHgzcTAwRExBZWxwdTc1MFBYeW8zb3l1VkE?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 보도에 의하면 서울교통공사 노조는 쟁의행위를 가결하였으며 교섭 결렬 시 파업에 돌입하겠다는 방침을 밝혔습니다. 이에 따라 <a href=\"https://news.google.com/rss/articles/CBMiT0FVX3lxTE8yUDktSXJ5Mmp2YW1Ic0Q0TnA0S1A2S0J3all3dW1wM1VWMXJfSTVGUlRkUGRlQUhUWnVQcmdaNWFhTkpiMFFJZWpXelhnakU?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a> 등 언론에서는 매년 반복되는 출근길 지하철 운행 차질 우려를 함께 조명하고 있습니다.</p>\n\n<h3>숫자로 보기</h3>\n\n<p>구글 트렌드 자료에 따르면 2026년 11월 8일 기준 '서울교통공사 채용' 검색어 관심도는 최근 3개월 최고점인 100을 기록했습니다. 이는 구직자 및 일반 시민들의 관심이 해당 시점에 매우 집중되었음을 의미합니다.</p>\n\n<p>상세 수치를 살펴보면 최근 7개 측정값의 평균은 3개월 전체 평균 대비 8.6배 수준으로 상승했습니다. 수집 초기 2주간 평균 2.9에 불과했던 관심도 수치는 마지막 2주간 평균 39.6으로 크게 올라 약 1,251% 증가했습니다.</p>\n\n<table>\n<tr><th>구분</th><th>채용 인원</th></tr>\n<tr><td>2026년 하반기 신입사원</td><td>504명</td></tr>\n<tr><td>하반기 공무·경비직</td><td>153명</td></tr>\n</table>\n\n<p>공개된 하반기 채용 규모는 신입사원 분야가 공무·경비직 채용 분야보다 351명 더 많습니다. 대규모 신입 공채와 함께 공무·경비 직렬의 채용이 동시 추진되면서 전반적인 지원 관심도를 견인한 것으로 분석됩니다.</p>\n\n<h3>아직 모르는 것</h3>\n\n<p>이번에 발표된 채용 공고 외에 추가 인력 증원이 이루어질지 여부는 아직 확정되지 않았습니다. 노동조합 측에서 신규 채용 확대와 인건비 보전을 요구하며 집회를 개최하고 쟁의행위를 가결한 상황이지만, 서울시와 공사 측의 최종 수용 여부는 미정입니다.</p>\n\n<p>또한 노사 교섭 결렬 시 실제 파업으로 이어질지, 혹은 협상을 통해 타결될지 여부도 향후 일정에 영향을 줄 수 있는 변수입니다. 파업 돌입 여부 및 교섭 타결 결과에 따른 정확한 채용 전형 일정 변동 가능성은 향후 공사의 공식 발표를 확인해야 합니다.</p>\n\n<p>가산점 항목이나 세부 전형별 자격 기준 등 모집 요강의 구체적인 명세는 공식 채용 시스템의 공고문을 직접 검토하는 과정이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 이번 하반기 신입사원과 공무·경비직 채용 일정은 어디서 확인하나요?</h4>\n<p>서울교통공사 공식 채용 홈페이지 및 원서접수 시스템을 통해 상세한 채용 일정과 전형 절차를 확인해야 합니다. 보도자료 외의 상세 일정은 공사 공고문을 기준으로 확인하는 것이 확실합니다.</p>\n\n<h4>🔸 노조의 쟁의행위 가결이 진행 중인데 채용 일정에 영향이 있나요?</h4>\n<p>노사 교섭 진행 상황 및 쟁의행위 여부에 따른 구체적인 전형 일정 변경 여부는 아직 확인되지 않았습니다. 일정 변동에 대한 사항은 서울교통공사의 공식 입장을 주시해야 합니다.</p>\n\n<h4>🔸 채용 공고에서 요구하는 세부 자격요건이나 가산점 기준을 알 수 있나요?</h4>\n<p>보도된 기사 제목 및 수치 자료 외에 직렬별 필수 자격증, 어학 성적, 가산점 비율 등 구체적인 세부 조건은 나와 있지 않으므로 공식 공고문 PDF 파일이나 채용 안내 페이지를 직접 확인해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>2026년 11월 기준 서울교통공사 채용에 관심이 쏠린 이유는 504명의 하반기 신입사원 채용과 153명의 공무·경비직 채용 공고가 발표된 가운데, 노조의 신규 채용 확대 요구 집회 및 쟁의행위 가결 소식이 더해졌기 때문입니다. 이에 따라 구글 트렌드 검색 관심도는 최근 3개월 최고점인 100을 기록했습니다.</p>\n\n<p>앞으로 공기업 채용 및 유관 소식을 접할 때는 첫째, 언론 보도에 명시된 모집 직렬별 정확한 채용 인원 수치를 파악해야 합니다. 둘째, 노사 교섭 상황이나 쟁의행위 발생 여부 등 채용 진행 환경에 영향을 미치는 외부 변수를 체크해야 합니다. 마지막으로 세부 제출 서류 및 전형 기준은 반드시 기관의 공식 채용 공고를 기준으로 확인하는 것이 안전합니다.</p>\n\n<p>지하철 운행 및 공공 교통 서비스의 안정성과 직결된 기관인 만큼, 채용 규모와 노동 환경을 둘러싼 노사 협상 결과는 향후 공공부문 고용 시장에도 지속적인 영향을 미칠 것으로 보입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 서울교통공사 채용 관심 급증은 하반기 657명 규모의 채용 발표와 노조의 채용 확대 요구 쟁의행위가 맞물린 결과입니다.</p>\n\n태그: 서울교통공사 서울교통공사채용 공공기관채용 공기업채용 채용동향",
+  "2": "<h1>서울교통공사 채용 검색량이 최근 급증한 이유는 무엇일까</h1>\n<!-- 2026년 11월 서울교통공사의 하반기 신입사원 및 공무·경비직 채용 공고 발표와 노조의 신규 채용 촉구 집회, 쟁의행위 가결 소식이 이어지며 관심이 집중되는 배경을 정리합니다. -->\n\n<p>서울교통공사의 하반기 채용 공고 발표와 함께 노동조합의 신규 채용 확대 요구 집회, 쟁의행위 가결 소식이 연이어 전해졌습니다. 이에 따라 구직자와 일반 시민들의 관심이 집중되며 관련 검색량이 급증하는 모습을 보였습니다.</p>\n\n<p>이번 글에서는 최근 포털 사이트에서 해당 검색어가 급상승한 배경과 채용 규모 관련 공개 자료, 그리고 향후 노사 교섭 상황에 따라 달라질 수 있는 변수들을 정리해 전달합니다.</p>\n\n<h3>무슨 일이 있었나</h3>\n\n<p>서울교통공사의 하반기 채용 일정과 노사 간의 갈등 상황이 동시에 보도되며 관심이 확대되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE9ITWJNUXYyeWxoSDlPWkU4NzBROXJkTG51MXdrd2N0WHNWWmRabWR0T2hmSHktcHFLRE9ma0wxM1dDOVV4LUhhNmNGbmFOQllSRlRyajFUU1d3ZFF0ZFdjOVU5eUQydHgwUEF5TVk2ckZUQQ?oc=5\" target=\"_blank\" rel=\"noopener\">아웃소싱타임스</a> 보도에 따르면 서울교통공사는 2026년 하반기 신입사원 504명을 채용합니다. 또한 <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE5oMUdSNUVVMlhTaDZpQ3lHMXhBUFpTMDFobFdoRHNLZVlDQ0dPdFhoU0FwVnJHOTRNVThXSHQ4MjA8dlNzSWJyRC1tLXhmbEZZQ1pYeHhxX2tpdi0xMldCMTQxODhrZnVFaWfSAW5BVV95cUxOZkNhelBVMFI5ZUZSOXpiUUg3XzVQSnNhQkxyWkh5QjdXeVNhRnhHSHdWMFE4VWZlckwtTGdPSTdyMnJQbzVyNXRHNE5DTk9CUE1lQWZPblZObnVmV0tRcUt2Q0RYTVVYdTZkY1RLdw?oc=5\" target=\"_blank\" rel=\"noopener\">퍼블릭타임스</a>에 의하면 공무 및 경비직 153명에 대한 하반기 채용도 함께 진행되고 있습니다.</p>\n\n<p>이러한 신규 채용 소식과 더불어 노조의 인력 확충 요구도 거세지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTE9Nbm16bXY5dEdjNVRZbTMxV0I5dktqQk9pRVY4MkRhRHZieFZUeUlpbWYzX3FEa0JJVDh4ZFp4RW1pLWk4YlY1UnZGbEdXanpu?oc=5\" target=\"_blank\" rel=\"noopener\">문화일보</a>와 <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SZ09NOTBMMHU4QWhuMXJMV2tNUC1wME1tcEtlWXRXQ2Q1RGlDNkdfYWVCTEJYZEhoMWtUVXFfbVZhZnE5QTh4VnZPSW5kWYLKaWhUNm1pN1V1MzRW?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 서울교통공사 올바른노조는 서울시청 앞에서 집회를 열고 신규 채용 증원과 정책인건비 보전을 촉구했습니다.</p>\n\n<p>노사 간의 입장 차이로 인한 파업 가능성도 대두된 상황입니다. <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTFAxd1U5b0ZMMFBJQ0pOeENBV0dlOXRidFR6dFJmLURfUTBQYUptNWNReEJSdFlnOXFUcFYxbXVjal9NbUtTS194N1dtRkx4Tmp3QUtQQmxoWk9Hd3hMYWl4NUNhRUJEUW5US2fSAW9BVV95cUxObDVOazB0RUtET1lQYXBHSmJjUmhJS1RUNEUzeURIYkpURlJkd0VlRUFGOE13ZWl0Nm02Q050Rm9lVGYtVGIyZkVIbV9fZUFCYUJCcHhwcHgzcTAwRExBZWxwdTc1MFBYeW8zb3l1VkE?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 보도에 의하면 서울교통공사 노조는 쟁의행위를 가결하였으며 교섭 결렬 시 파업에 돌입하겠다는 방침을 밝혔습니다. 이에 따라 <a href=\"https://news.google.com/rss/articles/CBMiT0FVX3lxTE8yUDktSXJ5Mmp2YW1Ic0Q0TnA0S1A2S0J3all3dW1wM1VWMXJfSTVGUlRkUGRlQUhUWnVQcmdaNWFhTkpiMFFJZWpXelhnakU?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a> 등 언론에서는 해마다 반복되는 출근길 지하철 운행 차질 우려를 함께 조명하고 있습니다.</p>\n\n<h3>숫자로 보기</h3>\n\n<p>구글 트렌드 자료에 따르면 2026년 11월 8일 기준 '서울교통공사 채용' 검색어 관심도는 최근 3개월 최고점인 100을 기록했습니다. 이는 3개월간 상대적 관심이 가장 높은 수준에 도달했음을 나타냅니다.</p>\n\n<p>상세 수치를 보면 측정 시작 후 첫 2주 평균 관심도가 2.9였으나, 마지막 2주 평균은 39.6으로 크게 상승해 1,251% 증가율을 보였습니다. 최근 7개 측정값 평균 역시 3개월 전체 평균 대비 8.6배 높게 나타났습니다.</p>\n\n<table>\n<tr><th>구분</th><th>채용 인원</th></tr>\n<tr><td>2026년 하반기 신입사원</td><td>504명</td></tr>\n<tr><td>하반기 공무·경비직</td><td>153명</td></tr>\n</table>\n\n<p>하반기 채용 규모는 표를 통해 확인할 수 있으며, 신입사원 분야 채용 인원이 공무·경비직보다 351명 많은 규모로 공고되었습니다.</p>\n\n<h3>아직 모르는 것</h3>\n\n<p>이번에 발표된 채용 공고 외에 추가 인력 증원이 이루어질지 여부는 아직 확정되지 않았습니다. 노동조합 측에서 신규 채용 확대와 인건비 보전을 요구하며 집회를 개최하고 쟁의행위를 가결한 상황이지만, 서울시와 공사 측의 최종 수용 여부는 미정입니다.</p>\n\n<p>또한 노사 교섭 결렬 시 실제 파업으로 이어질지, 혹은 협상을 통해 타결될지 여부도 향후 일정에 영향을 줄 수 있는 변수입니다. 파업 돌입 여부 및 교섭 타결 결과에 따른 정확한 채용 전형 일정 변동 가능성은 향후 공사의 공식 발표를 확인해야 합니다.</p>\n\n<p>가산점 항목이나 세부 전형별 자격 기준 등 모집 요강의 구체적인 명세는 공식 채용 시스템의 공고문을 직접 검토하는 과정이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 이번 하반기 신입사원과 공무·경비직 채용 일정은 어디서 확인하나요?</h4>\n<p>서울교통공사 공식 채용 홈페이지 및 원서접수 시스템을 통해 상세한 채용 일정과 전형 절차를 확인해야 합니다. 보도자료 외의 상세 일정은 공사 공고문을 기준으로 확인하는 것이 확실합니다.</p>\n\n<h4>🔸 노조의 쟁의행위 가결이 진행 중인데 채용 일정에 영향이 있나요?</h4>\n<p>노사 교섭 진행 상황 및 쟁의행위 여부에 따른 구체적인 전형 일정 변경 여부는 아직 확인되지 않았습니다. 일정 변동에 대한 사항은 서울교통공사의 공식 입장을 주시해야 합니다.</p>\n\n<h4>🔸 채용 공고에서 요구하는 세부 자격요건이나 가산점 기준을 알 수 있나요?</h4>\n<p>보도된 기사 제목 및 수치 자료 외에 직렬별 필수 자격증, 어학 성적, 가산점 비율 등 구체적인 세부 조건은 나와 있지 않으므로 공식 공고문 PDF 파일이나 채용 안내 페이지를 직접 확인해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>2026년 11월 기준 서울교통공사 채용에 관심이 쏠린 이유는 하반기 신입사원 504명 및 공무·경비직 153명 채용 공고가 나온 상황에서 노조의 신규 채용 확대 요구 집회와 쟁의행위 가결 소식이 함께 전해졌기 때문입니다.</p>\n\n<p>앞으로 관련 채용 동향이나 검색 흐름을 볼 때는 첫째, 최근 7개 측정값 평균 관심도가 전체 평균의 8.6배에 달하는 등 단기 검색 급증 추이가 나타나는지 확인해야 합니다. 둘째, 발표된 신입사원 504명 규모에 더해 노조 집회와 쟁의행위 결과에 따른 추가 인력 확충이나 인건비 보전 반영 여부를 파악해야 합니다. 셋째, 구글 트렌드 관심도 수치가 0에서 100 사이의 상대적 수치임을 인지하고 실제 검색량으로 오인하지 않는 기준을 세워야 합니다.</p>\n\n<p>지하철 운행 및 공공 교통 서비스의 안정성과 직결된 기관인 만큼, 채용 규모와 노동 환경을 둘러싼 노사 협상 결과는 향후 공공부문 고용 시장에도 지속적인 영향을 미칠 것으로 보입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 서울교통공사 채용 관심 급증은 신입 504명 채용 공고와 노조의 채용 확대 요구 쟁의행위가 맞물린 결과입니다.</p>\n\n태그: 서울교통공사 서울교통공사채용 공공기관채용 공기업채용 채용동향",
+  "3": "<h1>서울교통공사 채용 검색량이 최근 급증한 이유는 무엇일까</h1>\n<!-- 2026년 11월 서울교통공사의 하반기 신입사원 및 공무·경비직 채용 공고 발표와 노조의 신규 채용 촉구 집회, 쟁의행위 가결 소식이 이어지며 관심이 집중되는 배경을 정리합니다. -->\n\n<p>서울교통공사의 하반기 채용 공고 발표와 함께 노동조합의 신규 채용 확대 요구 집회, 쟁의행위 가결 소식이 연이어 전해졌습니다. 이에 따라 구직자와 일반 시민들의 관심이 집중되며 관련 검색량이 급증하는 모습을 보였습니다.</p>\n\n<p>이번 글에서는 최근 포털 사이트에서 해당 검색어가 급상승한 배경과 채용 규모 관련 공개 자료, 그리고 향후 노사 교섭 상황에 따라 달라질 수 있는 변수들을 정리해 전달합니다.</p>\n\n<h3>무슨 일이 있었나</h3>\n\n<p>서울교통공사의 하반기 채용 일정 발표와 노사 간의 갈등 상황이 동시에 조명되며 관심이 확대되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE9ITWJNUXYyeWxoSDlPWkU4NzBROXJkTG51MXdrd2N0WHNWWmRabWR0T2hmSHktcHFLRE9ma0wxM1dDOVV4LUhhNmNGbmFOQllSRlRyajFUU1d3ZFF0ZFdjOVU5eUQydHgwUEF5TVk2ckZUQQ?oc=5\" target=\"_blank\" rel=\"noopener\">아웃소싱타임스</a> 보도에 따르면 서울교통공사는 2026년 하반기 신입사원 모집에 나섰으며, <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTE5oMUdSNUVVMlhTaDZpQ3lHMXhBUFpTMDFobFdoRHNLZVlDQ0dPdFhoU0FwVnJHOTRNVThXSHQ4MjA8dlNzSWJyRC1tLXhmbEZZQ1pYeHhxX2tpdi0xMldCMTQxODhrZnVFaWfSAW5BVV95cUxOZkNhelBVMFI5ZUZSOXpiUUg3XzVQSnNhQkxyWkh5QjdXeVNhRnhHSHdWMFE4VWZlckwtTGdPSTdyMnJQbzVyNXRHNE5DTk9CUE1lQWZPblZObnVmV0tRcUt2Q0RYTVVYdTZkY1RLdw?oc=5\" target=\"_blank\" rel=\"noopener\">퍼블릭타임스</a>에 의하면 공무 및 경비직 채용도 함께 발표되었습니다.</p>\n\n<p>이러한 신규 채용 소식과 더불어 노조의 인력 확충 요구도 거세지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiUEFVX3lxTE9Nbm16bXY5dEdjNVRZbTMxV0I5dktqQk9pRVY4MkRhRHZieFZUeUlpbWYzX3FEa0JJVDh4ZFp4RW1pLWk4YlY1UnZGbEdXanpu?oc=5\" target=\"_blank\" rel=\"noopener\">문화일보</a>와 <a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE5SZ09NOTBMMHU4QWhuMXJMV2tNUC1wME1tcEtlWXRXQ2Q1RGlDNkdfYWVCTEJYZEhoMWtUVXFfbVZhZnE5QTh4VnZPSW5kWYLKaWhUNm1pN1V1MzRW?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a>에 따르면 서울교통공사 올바른노조는 서울시청 앞에서 집회를 열고 신규 채용 증원과 정책인건비 보전을 촉구했습니다.</p>\n\n<p>노사 간의 입장 차이로 인한 파업 가능성도 대두된 상황입니다. <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTFAxd1U5b0ZMMFBJQ0pOeENBV0dlOXRidFR6dFJmLURfUTBQYUptNWNReEJSdFlnOXFUcFYxbXVjal9NbUtTS194N1dtRkx4Tmp3QUtQQmxoWk9Hd3hMYWl4NUNhRUJEUW5US2fSAW9BVV95cUxObDVOazB0RUtET1lQYXBHSmJjUmhJS1RUNEUzeURIYkpURlJkd0VlRUFGOE13ZWl0Nm02Q050Rm9lVGYtVGIyZkVIbV9fZUFCYUJCcHhwcHgzcTAwRExBZWxwdTc1MFBYeW8zb3l1VkE?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 보도에 의하면 서울교통공사 노조는 쟁의행위를 가결하였으며 교섭 결렬 시 파업에 돌입하겠다는 방침을 밝혔습니다. 이에 따라 <a href=\"https://news.google.com/rss/articles/CBMiT0FVX3lxTE8yUDktSXJ5Mmp2YW1Ic0Q0TnA0S1A2S0J3all3dW1wM1VWMXJfSTVGUlRkUGRlQUhUWnVQcmdaNWFhTkpiMFFJZWpXelhnakU?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a> 등 언론에서는 해마다 반복되는 출근길 지하철 운행 차질 우려를 함께 조명하고 있습니다.</p>\n\n<h3>숫자로 보기</h3>\n\n<p>구글 트렌드 자료에 따르면 2026년 11월 8일 기준 '서울교통공사 채용' 검색어 관심도는 최근 3개월 최고점인 100을 기록했습니다. 이는 3개월간 상대적 관심이 가장 높은 수준에 도달했음을 나타냅니다.</p>\n\n<p>상세 수치를 보면 측정 시작 후 첫 2주 평균 관심도가 2.9였으나, 마지막 2주 평균은 39.6으로 크게 상승해 1,251% 증가율을 보였습니다. 최근 7개 측정값 평균 역시 3개월 전체 평균 대비 8.6배 높게 나타났습니다.</p>\n\n<table>\n<tr><th>구분</th><th>채용 인원</th></tr>\n<tr><td>2026년 하반기 신입사원</td><td>504명</td></tr>\n<tr><td>하반기 공무·경비직</td><td>153명</td></tr>\n</table>\n\n<p>하반기 채용 규모는 표를 통해 확인할 수 있으며, 신입사원 분야 채용 인원이 공무·경비직보다 351명 많은 규모로 공고되었습니다.</p>\n\n<h3>아직 모르는 것</h3>\n\n<p>이번에 발표된 채용 공고 외에 추가 인력 증원이 이루어질지 여부는 아직 확정되지 않았습니다. 노동조합 측에서 신규 채용 확대와 인건비 보전을 요구하며 집회를 개최하고 쟁의행위를 가결한 상황이지만, 서울시와 공사 측의 최종 수용 여부는 미정입니다.</p>\n\n<p>또한 노사 교섭 결렬 시 실제 파업으로 이어질지, 혹은 협상을 통해 타결될지 여부도 향후 일정에 영향을 줄 수 있는 변수입니다. 파업 돌입 여부 및 교섭 타결 결과에 따른 정확한 채용 전형 일정 변동 가능성은 향후 공사의 공식 발표를 확인해야 합니다.</p>\n\n<p>가산점 항목이나 세부 전형별 자격 기준 등 모집 요강의 구체적인 명세는 공식 채용 시스템의 공고문을 직접 검토하는 과정이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 이번 하반기 신입사원과 공무·경비직 채용 일정은 어디서 확인하나요?</h4>\n<p>서울교통공사 공식 채용 홈페이지 및 원서접수 시스템을 통해 상세한 채용 일정과 전형 절차를 확인해야 합니다. 보도자료 외의 상세 일정은 공사 공고문을 기준으로 확인하는 것이 확실합니다.</p>\n\n<h4>🔸 노조의 쟁의행위 가결이 진행 중인데 채용 일정에 영향이 있나요?</h4>\n<p>노사 교섭 진행 상황 및 쟁의행위 여부에 따른 구체적인 전형 일정 변경 여부는 아직 확인되지 않았습니다. 일정 변동에 대한 사항은 서울교통공사의 공식 입장을 주시해야 합니다.</p>\n\n<h4>🔸 채용 공고에서 요구하는 세부 자격요건이나 가산점 기준을 알 수 있나요?</h4>\n<p>보도된 기사 제목 및 수치 자료 외에 직렬별 필수 자격증, 어학 성적, 가산점 비율 등 구체적인 세부 조건은 나와 있지 않으므로 공식 공고문 PDF 파일이나 채용 안내 페이지를 직접 확인해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>2026년 11월 기준 서울교통공사 채용에 관심이 쏠린 이유는 하반기 신입사원 504명 및 공무·경비직 153명 채용 공고가 나온 상황에서 노조의 신규 채용 확대 요구 집회와 쟁의행위 가결 소식이 함께 전해졌기 때문입니다.</p>\n\n<p>앞으로 관련 채용 동향이나 검색 흐름을 볼 때는 첫째, 최근 7개 측정값 평균 관심도가 전체 평균의 8.6배에 달하는 등 단기 검색 급증 추이가 나타나는지 확인해야 합니다. 둘째, 발표된 신입사원 504명 규모에 더해 노조 집회와 쟁의행위 결과에 따른 추가 인력 확충이나 인건비 보전 반영 여부를 파악해야 합니다. 셋째, 구글 트렌드 관심도 수치가 0에서 100 사이의 상대적 수치임을 인지하고 실제 검색량으로 오인하지 않는 기준을 세워야 합니다.</p>\n\n<p>지하철 운행 및 공공 교통 서비스의 안정성과 직결된 기관인 만큼, 채용 규모와 노동 환경을 둘러싼 노사 협상 결과는 향후 공공부문 고용 시장에도 지속적인 영향을 미칠 것으로 보입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 서울교통공사 채용 관심 급증은 신입 504명 채용 공고와 노조의 채용 확대 요구 쟁의행위가 맞물린 결과입니다.</p>\n\n태그: 서울교통공사 서울교통공사채용 공공기관채용 공기업채용 채용동향"
+ },
+ "minutes": 2.7
+}
