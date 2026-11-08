@@ -586,7 +586,8 @@ def discover_tech():
     # 검색어가 기사와 맞는지 코드가 확인(11-08 첫 시험: 화성 위성 착륙 기사에 'lunar landing' 논문 수 → '주제와 무관한 일반론'·'치명')
     kw = str(pick.get("keyword_en") or "").strip()
     src = f"{it['title']} {it.get('summary', '')} {body}".lower()
-    if not kw or not any(w in src for w in re.findall(r"[a-z]{4,}", kw.lower())):
+    # 낱말 하나만 맞아도 통과시켰더니 'lunar landing'이 'landing' 하나로 통과(11-08 재시험) → 모든 낱말이 기사에 있어야 함
+    if not kw or not all(w in src for w in re.findall(r"[a-z]{4,}", kw.lower())):
         print(f"ℹ️ 신기술: 논문 검색어 '{kw}'가 기사에 없음 - 자료가 기사와 안 맞아 쓰지 않음")
         return []
     papers = papers_block(kw, pick.get("keyword_label_ko", ""))
