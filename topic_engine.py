@@ -354,7 +354,7 @@ def _ct_count(**params):
         return None
 
 
-def clinical_trials_block(condition, intervention=""):
+def clinical_trials_block(condition, intervention="", label="", intervention_label=""):
     """질환(영어) 기준 임상 등록 현황 + 코드 계산(모집 중 비율·3상 비율·연도별 새 임상 증감)."""
     condition = str(condition or "").strip()
     if not condition:
@@ -368,7 +368,7 @@ def clinical_trials_block(condition, intervention=""):
     y = datetime.now().year
     years = [(yy, _ct_count(**q, **{"filter.advanced": f"AREA[StartDate]RANGE[{yy}-01-01,{yy}-12-31]"}))
              for yy in range(y - 5, y)]
-    lines = [f"[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 검색어 '{condition}', "
+    lines = [f"[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '{label or condition}', "
              f"{datetime.now():%Y-%m-%d} 조회. 전 세계에서 등록된 임상 기준]",
              f"- 등록된 임상시험 전체: {total:,}건"]
     if rec is not None:
@@ -383,7 +383,7 @@ def clinical_trials_block(condition, intervention=""):
     if intervention:
         n = _ct_count(**{"query.intr": intervention})
         if n:
-            lines.append(f"- 이 약·치료법('{intervention}')이 들어간 임상: {n:,}건")
+            lines.append(f"- 이 약·치료법('{intervention_label or intervention}')이 들어간 임상: {n:,}건")
     lines.append("- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.")
     return "\n".join(lines) + "\n"
 
@@ -401,7 +401,7 @@ def _openalex(params):
         return None
 
 
-def papers_block(keyword):
+def papers_block(keyword, label=""):
     """기술 검색어(영어)의 연도별 논문 수 + 코드 계산(5년 증감·올해 같은 기간 비교).
     2026-11-08: arXiv(물리·컴퓨터 분야만, 요청 7번)는 깃허브에서 결과가 안 나와 OpenAlex(전 분야, 연도별 한 번에)로 바꿈."""
     keyword = str(keyword or "").strip()
@@ -429,7 +429,8 @@ def papers_block(keyword):
         r = _openalex({"filter": f"{q},from_publication_date:{a},to_publication_date:{b}", "per_page": 1})
         return (r or {}).get("meta", {}).get("count")
     this, last = _n(f"{y}-01-01", f"{y}-{md}"), _n(f"{y - 1}-01-01", f"{y - 1}-{md}")
-    lines = [f"[공식 자료 - 학술 논문 공개 색인 OpenAlex, 검색어 '{keyword}'(영어 제목·초록 기준), {now:%Y-%m-%d} 조회]",
+    # 자료에 영어 검색어를 그대로 보이면 작가가 본문에 옮겨 써 교열 '영어 단어'로 막힘(11-08 신기술 'lunar') → 한국어 이름을 보인다
+    lines = [f"[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '{label or keyword}'(영어 논문의 제목·초록에서 찾음), {now:%Y-%m-%d} 조회]",
              "- 해마다 나온 논문 수: " + ", ".join(f"{a}년 {b:,}편" for a, b in ys)]
     if ys[0][1]:
         lines.append(f"- {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
@@ -572,7 +573,8 @@ def discover_tech():
         "AI·로봇·우주·반도체·에너지 기술·바이오 기술·특허처럼 의미가 오래가는 기술 변화를 우선하세요.\n"
         f"{listing}\n"
         'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
-        '"keyword_en": "이 기술을 가리키는 영어 전문 용어 1~3단어(논문 검색용, 예: solid-state battery)", "why": "이유 한 문장"}') or {}
+        '"keyword_en": "이 기사의 핵심 기술을 가리키는 영어 용어 1~3단어 - 기사 제목·요약에 실제로 나온 단어로(논문 검색용, 예: solid-state battery)", '
+        '"keyword_label_ko": "그 용어의 한국어 이름(예: 고체 배터리)", "why": "이유 한 문장"}') or {}
     try:
         idx = int(pick.get("index"))
         it = items[idx] if idx >= 0 else None
@@ -580,10 +582,16 @@ def discover_tech():
         it = None
     if not it:
         return []
-    papers = papers_block(pick.get("keyword_en"))
+    body = scrape_text(it["url"]) or it["summary"]
+    # 검색어가 기사와 맞는지 코드가 확인(11-08 첫 시험: 화성 위성 착륙 기사에 'lunar landing' 논문 수 → '주제와 무관한 일반론'·'치명')
+    kw = str(pick.get("keyword_en") or "").strip()
+    src = f"{it['title']} {it.get('summary', '')} {body}".lower()
+    if not kw or not any(w in src for w in re.findall(r"[a-z]{4,}", kw.lower())):
+        print(f"ℹ️ 신기술: 논문 검색어 '{kw}'가 기사에 없음 - 자료가 기사와 안 맞아 쓰지 않음")
+        return []
+    papers = papers_block(kw, pick.get("keyword_label_ko", ""))
     if not papers:
         return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
-    body = scrape_text(it["url"]) or it["summary"]
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
              f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
@@ -615,7 +623,8 @@ def discover_bio():
         "소식을 우선하고, 인사·투자유치·소송 소식은 피하세요.\n"
         f"{listing}\n"
         'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
-        '"condition_en": "대상 질환의 영어 이름(예: obesity)", "intervention_en": "약·치료법의 영어 성분명(없으면 빈칸)", '
+        '"condition_en": "대상 질환의 영어 이름(예: obesity)", "condition_ko": "그 질환의 한국어 이름(예: 비만)", '
+        '"intervention_en": "약·치료법의 영어 성분명(없으면 빈칸)", "intervention_ko": "그 성분의 한국어 표기(없으면 빈칸)", '
         '"why": "이유 한 문장"}') or {}
     try:
         idx = int(pick.get("index"))
@@ -624,7 +633,8 @@ def discover_bio():
         it = None
     if not it:
         return []
-    trials = clinical_trials_block(pick.get("condition_en"), pick.get("intervention_en"))
+    trials = clinical_trials_block(pick.get("condition_en"), pick.get("intervention_en"),
+                                   pick.get("condition_ko", ""), pick.get("intervention_ko", ""))
     if not trials:
         return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     body = scrape_text(it["url"]) or it["summary"]

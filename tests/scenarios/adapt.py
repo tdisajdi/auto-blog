@@ -6,16 +6,20 @@ te.google_news=lambda q,n=5:[{"title":f"{q} 뉴스{i} <b>","url":f"http://n/{i}"
 te.scrape_text=lambda u, limit=3000: "본문"*100
 te.fetch_feed=lambda url,d=3:[{"title":"FDA approves new drug X","url":"http://f/1","summary":"approval","source":"FDA"},
                              {"title":"Company hires CEO","url":"http://f/2","summary":"","source":"Fierce"}]
-te._ask_json=lambda p, thinking_budget=0: {"index":0,"title_ko":"신약 X 승인","keywords_ko":"신약 X","why":"승인"}
+te._ask_json=lambda p, thinking_budget=0: {"index":0,"title_ko":"신약 X 승인","keywords_ko":"신약 X","keyword_en":"new drug","keyword_label_ko":"신약","why":"승인"}
 # 2026-11-08: 공식 자료(임상 등록·논문 수)가 없으면 뉴스·기사 발췌만으로는 쓰지 않음
 _ct, _ax = te.clinical_trials_block, te.papers_block
-te.clinical_trials_block = lambda c, i="": ""
-te.papers_block = lambda k: ""
+te.clinical_trials_block = lambda *a: ""
+te.papers_block = lambda *a: ""
 assert te.discover_bio() == [] and te.discover_tech() == []
-te.clinical_trials_block = lambda c, i="": "[공식 자료 - 임상]\n- 등록된 임상시험 전체: 10건\n"
-te.papers_block = lambda k: "[공식 자료 - 논문]\n- 논문 10편\n"
+te.clinical_trials_block = lambda *a: "[공식 자료 - 임상]\n- 등록된 임상시험 전체: 10건\n"
+te.papers_block = lambda *a: "[공식 자료 - 논문]\n- 논문 10편\n"
 b=te.discover_bio(); assert b[0]["score"]==2.0 and b[0]["topic_key"].startswith("bio:") and "[공식 자료 - 임상]" in b[0]["facts_text"], b
 t=te.discover_tech(); assert t and t[0]["category"]=="tech" and "[공식 자료 - 논문]" in t[0]["facts_text"]
+_aj = te._ask_json
+te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","keyword_en":"lunar landing","why":"x"}
+assert te.discover_tech() == []          # 기사에 없는 검색어(달 착륙)면 자료가 안 맞으니 쓰지 않음(11-08)
+te._ask_json = _aj
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
 te.clinical_trials_block, te.papers_block = _ct, _ax
 def fake_ct(**p):
@@ -26,9 +30,10 @@ def fake_ct(**p):
     if p.get("query.intr"): return 7
     return 200
 te._ct_count = fake_ct
-blk = te.clinical_trials_block("obesity", "semaglutide")
+blk = te.clinical_trials_block("obesity", "semaglutide", "비만", "세마글루타이드")
+assert "질환 '비만'" in blk and "'세마글루타이드')" in blk and "obesity" not in blk, blk
 assert "등록된 임상시험 전체: 200건" in blk and "모집 중인 임상: 25건(전체의 12.5%, 코드 계산)" in blk and "3상(허가 신청 직전 단계) 임상: 50건(전체의 25.0%" in blk, blk
-assert "(코드 계산)" in blk.split("해마다")[1] and "'semaglutide')이 들어간 임상: 7건" in blk, blk
+assert "(코드 계산)" in blk.split("해마다")[1] and "이 들어간 임상: 7건" in blk, blk
 te._ct_count = lambda **p: None
 assert te.clinical_trials_block("obesity") == "" and te.clinical_trials_block("") == ""
 import datetime as _dt
@@ -38,7 +43,8 @@ def fake_oa(params):
         return {"group_by": [{"key": str(yy), "count": 100 + 25 * (yy - (_y - 5))} for yy in range(_y - 6, _y + 1)]}
     return {"meta": {"count": 60 if f"from_publication_date:{_y}-" in params["filter"] else 40}}
 te._openalex = fake_oa
-ab = te.papers_block("solid-state battery")
+ab = te.papers_block("solid-state battery", "고체 배터리")
+assert "주제 '고체 배터리'" in ab and "solid-state" not in ab, ab
 assert "해마다 나온 논문 수" in ab and "+100.0%(코드 계산)" in ab and "+50.0%(코드 계산)" in ab, ab
 te._openalex = lambda p: None
 assert te.papers_block("x") == "" and te.papers_block("") == ""
