@@ -524,8 +524,12 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     news = [n for n in (ea._get_recent_news_for_query(news_query, max_results=10) if news_query else [])
             if not any(w in n.get("title", "") for w in _OFF_TOPIC_NEWS)][:4]
     news_block = "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news) or "- 수집된 뉴스 없음"
+    # 공포/탐욕 지수는 투자심리 글에만(11-08: 환율 글·운용사 비교 글에서 '공포 지수 22 → 환율 변동성 확대·전략' 같은 지어낸 관계와
+    # 투자 조언을 계속 끌어냄 - 그 글들의 질문에 필요한 숫자가 아니다)
+    fg = "공포" in str(news_query or "") or "탐욕" in str(news_query or "")
     macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')}{_day_move(macro_data)}\n"
-                   f"- 미국 10년물 금리: {macro_data.get('us_10y')}\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}")
+                   f"- 미국 10년물 금리: {macro_data.get('us_10y')}"
+                   + (f"\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}" if fg else ""))
     # 오늘의 시장 수치(환율·금리·공포지수)는 이슈 글에만. 기초 가이드는 오래 읽히는 글이라 도입에 넣으면 어색했다.
     market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
     # 계좌 규칙은 글쓰기 규칙에만 있고 사실 자료엔 없어서, 맞는 문장인데도 사실 검증이 '지어냄'으로 지적했다(2026-11-03 금리 글)
@@ -610,7 +614,8 @@ def run_explainer(topic, etf_module):
         visual = ""
         if topic_id == "fx":       # 환율 글: "환율이 실제로 수익률을 얼마나 바꿨나"를 코드가 계산해서 제목 질문에 답하게
             calc_facts, visual = fx_effect(data_cache)
-            facts_text += ("\n" + calc_facts) if calc_facts else ""
+            if calc_facts:         # 11-08 재시험: 배당성장률 등 주제와 먼 종목 숫자를 길게 나열('일반론') → 가이드처럼 겹치는·무관한 숫자 뺌
+                facts_text = drop_overlapping_metrics(facts_text, calc_facts) + "\n" + calc_facts
         elif topic_id == "sentiment":  # 투자심리 글: VIX 구간별 그 뒤 SPY 성과(과거 통계)
             calc_facts, visual = sentiment_effect()
             facts_text += ("\n" + calc_facts) if calc_facts else ""
