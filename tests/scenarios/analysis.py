@@ -128,3 +128,26 @@ _js = {"totalInfos": [{"code": "nav", "key": "NAV", "value": "24,708.04"}, {"cod
 _pp = _ea._naver_kr_pairs(_js)
 assert _pp["펀드보수"] == "0.007%" and _pp["기초지수"] == "S&P 500" and _pp["시총"] == "10조", _pp
 print("naver kr pairs ok")
+
+# 2026-11-08 운용사 비교 재시험: 쌍둥이 비교엔 '고를 때 남는 차이'(보수 원화 차이·거래대금·세금 같음)를 코드가 주고, 상장일 CAGR·0.1%p 가정은 뺌
+import types as _ty
+_ea = _ty.SimpleNamespace(_is_overseas_listed=lambda d: False, OVERSEAS_ACCOUNT_NOTE="x", TAX_US_DIVIDEND_WITHHOLDING=0.15,
+                          TAX_DOMESTIC_DIVIDEND=0.154, OVERSEAS_CG_DEDUCTION=2_500_000, TAX_OVERSEAS_CAPITAL_GAINS=0.22,
+                          ISA_TAX_FREE_LIMIT=2_000_000, ISA_SEPARATE_TAX=0.099)
+_c = {"360750.KS": {"name": "TIGER", "expense_ratio": "0.007%", "trade_value": "7,188억", "listing": "국내 상장", "index": "S&P 500",
+                    "cagr": 0.12, "fee_impact_100m_10y": "996,140원"},
+      "360200.KS": {"name": "ACE", "expense_ratio": "0.005%", "trade_value": "1,200억", "listing": "국내 상장", "index": "S&P 500",
+                    "cagr": 0.13, "fee_impact_100m_10y": "995,960원"}}
+tb = _an.twin_choice_block(["360750.KS", "360200.KS"], _c, _ea)
+assert "보수 360750 약 700원, 360200 약 500원 → 차이 약 200원" in tb and "10년이면 약 2,000원" in tb, tb
+assert "360750이 약 6.0배(코드 계산)" in tb and "기초지수(S&P 500)가 같아" in tb and "세금 섹션을 따로 만들지 말고" in tb, tb
+assert _an._won_amount("7,188억") == 7.188e11 and _an._won_amount("3.2조") == 3.2e12 and _an._won_amount("") is None
+_orig = _an.same_period_block
+_an.same_period_block = lambda pair, closes=None: f"[같은 기간 비교]\n- {_an.TWIN_MARK}: 거의 같이 움직였다"
+fs = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
+assert "[두 ETF를 고를 때 남는 차이" in fs and "상장 이후 연평균" not in fs and "0.1%p 더 높은" not in fs, fs
+_an.same_period_block = lambda pair, closes=None: "[같은 기간 비교]\n- 차이 큼"
+fs2 = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
+assert "[두 ETF를 고를 때 남는 차이" not in fs2 and "상장 이후 연평균" in fs2
+_an.same_period_block = _orig
+print("twin choice block ok")
