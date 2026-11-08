@@ -228,7 +228,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
     print(f"📋 [{kind_label}] {title_seed} - 편집국 시작")
     if search_seed and "[독자가 실제로 검색하는 말" not in facts_text:
-        facts_text = facts_text + "\n" + search_questions_block(search_seed)
+        facts_text = facts_text + "\n" + search_questions_block(search_seed, facts=facts_text)
     log = EditLog(article_type, topic_id, title_seed, category=os.environ.get("BLOG_CATEGORY", ""))
     try:
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
@@ -498,8 +498,18 @@ def _suggest_naver(q):
         return []
 
 
-def search_questions_block(seed, limit=12):
-    """seed(짧은 검색어)로 구글·네이버 자동완성을 모아 자료 블록으로. 없으면 ""."""
+def _answerable(q, seed, facts):
+    """자동완성 말 중 seed 말고 남는 낱말이 자료에 나오는가(자료로 답할 수 있을 가능성). facts가 없으면 통과."""
+    if not facts:
+        return True
+    rest = [w for w in re.findall(r"[가-힣A-Za-z]{2,}", q) if w.lower() not in seed.lower()]
+    return not rest or any(w in facts for w in rest)
+
+
+def search_questions_block(seed, limit=12, facts=""):
+    """seed(짧은 검색어)로 구글·네이버 자동완성을 모아 자료 블록으로. 없으면 "".
+    facts를 주면 자료에 근거 낱말이 있는 것만 남긴다(11-08: 환율·인구사회 글에서 '환전 시점'·'법무부 통계와 차이' 같은
+    자료로 답 못 하는 검색어를 작가가 FAQ로 써서 '치명' - '답할 수 없으면 넣지 말라'는 말만으로는 부족)."""
     seed = str(seed or "").strip()
     if not seed:
         return ""
@@ -507,7 +517,7 @@ def search_questions_block(seed, limit=12):
     for tail in _SUGGEST_TAILS:
         for s in _suggest_google(seed + tail) + _suggest_naver(seed + tail):
             key = re.sub(r"\s+", "", s).lower()
-            if _SUGGEST_NOISE.search(s):
+            if _SUGGEST_NOISE.search(s) or not _answerable(s, seed, facts):
                 continue
             if key in seen or len(s) < len(seed) + 2 or len(s) > 30:
                 continue
