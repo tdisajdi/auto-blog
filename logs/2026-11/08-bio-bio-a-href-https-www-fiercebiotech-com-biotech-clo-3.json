@@ -1,0 +1,215 @@
+{
+ "article_type": "bio",
+ "topic_id": "bio:a-href-https-www-fiercebiotech-com-biotech-cloudbreak-posts-",
+ "title_seed": "클라우드브레이크, 안과 질환 치료제 임상 3상 성공",
+ "category": "bio",
+ "started_at": "2026-11-08T20:36:03",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.6,
+   "chars": 2950
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.0,
+   "chars": 3783
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.5,
+   "chars": 493
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 137
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 135
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.4,
+   "chars": 847
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.1,
+   "chars": 3926
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.0,
+   "chars": 243
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 158
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.5,
+   "chars": 233
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.3,
+   "chars": 829
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:36:15",
+   "title": "클라우드브레이크 CBT-001 임상 3상 성공 결과와 향후 일정",
+   "sections": [
+    "CBT-001 임상 3상 1차 평가지표 결과",
+    "안전성과 부작용 프로필 확인",
+    "익상편 글로벌 임상 및 연구 현황",
+    "향후 상용화 계획과 확인 기준"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:36:31",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:37:02",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목을 독자의 질문형으로 수정하고 본문 도입부에 핵심 조건과 숫자를 요약하여 배치하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 동일한 종류의 임상·바이오 뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자(예: 익상편 글로벌 임상 135건 중 3상 20건(14.8%), 모집 중 6건(4.4%) 등)와 함께 제시하지 않았습니다. / 고칠 방법: 정리 문단에 독자가 향후 관련 뉴스를 볼 때 스스로 확인할 기준 2~3개를 자료에 포함된 수치(예: 전체 등록 임상 중 3상 비중 14.8% 등)와 함께 기술하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2951
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "20:37:14",
+   "model": "gemini-3.6-flash",
+   "todo": 2
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:37:47",
+   "score": 1.0,
+   "passed": true,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "숫자 해석"
+   ],
+   "value_tip": "제목을 질문형으로 바꾸고 본문에 있는 상용화 예상 연도나 핵심 임상 수치를 제목에 미리 요약하여 직관성을 높이기",
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "chars": 2970
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "클라우드브레이크 CBT-001 임상 3상 성공 결과와 향후 일정",
+  "url": "https://ondo99.com/?p=305",
+  "score": 1.0,
+  "issues": [
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+  ]
+ },
+ "facts": "[사실 자료 - 원문]\n제목: <a href=\"https://www.fiercebiotech.com/biotech/cloudbreak-posts-phase-3-eye-disease-win-amid-ipo-storm\" hreflang=\"en\">Cloudbreak posts phase 3 eye disease win amid IPO storm</a> (Fierce Biotech, https://www.fiercebiotech.com/biotech/cloudbreak-posts-phase-3-eye-disease-win-amid-ipo-storm)\n본문 발췌: A phase 3 study of Cloudbreak Pharma’s eye disease drug candidate has hit its co-primary endpoints, boosting a biotech embroiled in an IPO investigation. Officials in Hong Kong suspended trading of Cloudbreak shares in September over concerns that the biotech's IPO may have been rigged to create an artificial impression of demand for the stock. Against that backdrop, Cloudbreak continued to advance CBT-001, a multi-kinase inhibitor eye drop. The biotech is developing the eye drop for pterygium, an ocular surface disease that lacks FDA-approved therapies. Thursday, Cloudbreak reported statistically significant improvements on both the primary endpoints of its phase 3 trial. Given twice daily for three months, both CBT-001 doses had a statistically larger effect on conjunctival hyperemia than the placebo control, achieving one primary endpoint.   Conjunctival hyperemia, a medical term for when the white of the eye looks red, improved on the study drug starting from Week 2. The improvements were maintained through every visit up to Month 12. Cloudbreak tracked patients through Month 12 to assess the other primary endpoint, which evaluated the effect of CBT-001 on pterygium lesion length. Again, both CBT-001 doses beat placebo. Cloudbreak has yet to share detailed data, but said the treatment-versus-vehicle benefit was about 10% of baseline and was yet to plateau at Month 12. Superficial punctate keratitis, an eye disorder caused by cell death, was the most common adverse event on CBT-001, affecting 20% of patients on the low dose compared to 8% on placebo. Most cases resolved following treatment with artificial tears. Cloudbreak reported a similar adverse event profile for the high dose, although at a higher incidence.  The biotech plans to meet with the FDA to review the findings and discuss potential next steps for the program. In March, Cloudbreak said (PDF) it planned to start a second phase 3 trial in the third quarter of 2026 and complete the study in late 2028. In September, Cloudbreak estimated (PDF) that it would commercialize CBT-001 in the U.S. between 2030 and 2032. Cloudbreak has a commercialization partnership for Greater China and another deal covering Asian markets, including Japan and South Korea. As of March, the biotech was exploring self-commercialization and out-licensing options for the U.S. and other regions. The biotech published (PDF) the latest update on the IPO investigation and the suspension of its stock in late September. At the time, Cloudbreak’s board had formed an independent special committee to investigate concerns about its IPO. The company delayed its 2026 interim report in response to the internal investigation.\n\n[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '익상편', 2026-11-08 조회. 전 세계에서 등록된 임상 기준]\n- 등록된 임상시험 전체: 135건\n- 지금 참가자를 모집 중인 임상: 6건(전체의 4.4%, 코드 계산)\n- 3상(허가 신청 직전 단계) 임상: 20건(전체의 14.8%, 코드 계산)\n- 해마다 새로 시작한 임상 수: 2021년 5건, 2022년 2건, 2023년 7건, 2024년 6건, 2025년 5건 → 2021년 대비 2025년 +0.0%(코드 계산)\n- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.\n\n[관련 뉴스]\n- 클라우드브레이크 안약, 임상 3상 성공…IPO 조사 속 반전 - 바이오북미디어 (바이오북미디어) https://news.google.com/rss/articles/CBMiVEFVX3lxTE0yTjEwc18wUnVha0p0dm9aa0syZ3hMUERsZXlIazJlWVFSdTlLSDVYOFFYX19qT3IxbUxCNUp2ODFMcVpud093ZmRmZGc3S3JnSWpnaQ?oc=5\n- 눈 흰자에서 검은자 쪽으로 자라는 '살'⋯안약으로 진행 늦췄다 - 코메디닷컴 (코메디닷컴) https://news.google.com/rss/articles/CBMiQkFVX3lxTE5zTHYxVEZJSnZYWjlqcm9vTGsxZlBVM1pWRW5pSGVKRDg0WVlQY045Zkd6RWdqTlpBQkZBSVR3ODhPdw?oc=5\n- 클라우드브레이크 파마, 최초의 익상편 치료제 'CBT-001' 3상 성공…결막 충혈·병변 진행 동시 억제 - 아이알팜 (아이알팜) https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9LVzBQQU83WVl1d3RIOHBsdWh0N0tTT21jamFqRVdCbWdrRjNXdFpRM25QREplalRxWW5xdUNRcjVNbGRsOEFIOHhuVVRwTzNkWVJYNWtObjl2Y1VMTFZRUmtOX0JnQ2s?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>클라우드브레이크 CBT-001 임상 3상 성공 결과와 향후 일정</h1>\n<!-- 클라우드브레이크의 익상편 치료제 CBT-001이 임상 3상에서 결막 충혈과 병변 길이를 모두 개선하며 공동 1차 평가지표를 충족했습니다. 주요 임상 결과와 안전성 데이터, 향후 상용화 일정을 정리합니다. -->\n\n<p>홍콩 증권 당국이 기업공개(IPO) 수요 조작 의혹으로 9월 거래를 중지시킨 클라우드브레이크 파마가 안과 질환 치료제 후보물질의 임상 3상 시험 결과를 발표했습니다.</p>\n\n<a href=\"https://www.fiercebiotech.com/biotech/cloudbreak-posts-phase-3-eye-disease-win-amid-ipo-storm\" target=\"_blank\" rel=\"noopener\">Fierce Biotech</a> 보도에 따르면, 이 기업은 IPO 관련 조사를 받는 상황 속에서도 익상편 치료제 후보물질인 CBT-001의 임상 3상 연구를 계속 진행해 왔습니다.\n\n<p>익상편은 미국 식품의약국(FDA) 승인을 받은 치료제가 아직 없는 안구 표면 질환입니다. 이번 임상 결과는 주가 조작 조사라는 악재 속에서 나온 주요 학술적 성과입니다.</p>\n\n<h3>CBT-001 임상 3상 1차 평가지표 결과</h3>\n\n<p>CBT-001은 익상편 치료를 위해 개발된 다중 키나아제 억제제 성분의 점안액입니다. 클라우드브레이크는 이번 3상 임상시험에서 설정한 두 가지 공동 1차 평가지표를 모두 통과하며 통계적 유의성을 확보했다고 밝혔습니다.</p>\n\n<p>임상 참가자들에게 3개월 동안 하루 두 번 약을 투여한 결과, 고용량과 저용량 용량군 모두 위약 대조군에 비해 결막 충혈 개선 효과가 통계적으로 크게 나타났습니다.</p>\n\n<p>눈의 흰자위가 붉게 보이는 증상인 결막 충혈은 약물 투여 2주 차부터 개선되기 시작했습니다. 이러한 개선 효과는 12개월 차까지 진행된 모든 추적 관찰 시점에서 유지되었습니다.</p>\n\n<p>또 다른 1차 평가지표인 익상편 병변 길이에 대한 평가에서도 CBT-001 투여군이 위약군을 앞질렀습니다. 세부 데이터가 모두 공개되지는 않았지만, 기저치 대비 약 10%의 치료 이점이 확인되었으며 12개월 차 시점에도 효과의 정체기(플래토)에 도달하지 않았습니다.</p>\n\n<h3>안전성과 부작용 프로필 확인</h3>\n\n<p>임상시험 동안 투여군에서 관찰된 가장 흔한 이상반응은 세포 사멸로 인해 발생하는 안질환인 표재성 점상 각막염이었습니다.</p>\n\n<p>저용량 투여군에서는 환자의 20%에게서 이 증상이 발생하여, 위약 투여군의 8%에 비해 더 높은 발병률을 기록했습니다. 이는 위약군 대비 12%포인트 높은 수치입니다.</p>\n\n<p>발생한 표재성 점상 각막염 사례의 대부분은 인공눈물을 사용한 치료를 통해 증상이 호전되었습니다.</p>\n\n<p>고용량 투여군에서도 이와 유사한 부작용 양상이 보고되었으나, 저용량군에 비해 발생 빈도는 더 높게 나타났습니다.</p>\n\n<h3>익상편 글로벌 임상 및 연구 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소 데이터에 따르면, 익상편 질환에 대해 전 세계에 등록된 임상시험은 총 135건입니다. 약물 개발 단계별 비중과 연도별 연구 진입 현황은 아래와 같습니다.</p>\n\n<table>\n  <tr>\n    <th>구분</th>\n    <th>수치 (비율)</th>\n  </tr>\n  <tr>\n    <td>전체 등록 임상시험</td>\n    <td>135건</td>\n  </tr>\n  <tr>\n    <td>모집 중인 임상시험</td>\n    <td>6건 (4.4%)</td>\n  </tr>\n  <tr>\n    <td>임상 3상 시험</td>\n    <td>20건 (14.8%)</td>\n  </tr>\n  <tr>\n    <td>2021년 신규 임상시험</td>\n    <td>5건</td>\n  </tr>\n  <tr>\n    <td>2022년 신규 임상시험</td>\n    <td>2건</td>\n  </tr>\n  <tr>\n    <td>2023년 신규 임상시험</td>\n    <td>7건</td>\n  </tr>\n  <tr>\n    <td>2024년 신규 임상시험</td>\n    <td>6건</td>\n  </tr>\n  <tr>\n    <td>2025년 신규 임상시험</td>\n    <td>5건</td>\n  </tr>\n</table>\n\n<p>전체 135건 연구 중 허가 신청 직전 단계인 3상 임상은 20건(14.8%)이며, 현재 환자를 모집 중인 연구는 6건(4.4%)에 불과합니다. 연도별 신규 임상 수는 2021년 5건에서 2022년 2건으로 줄었다가 2025년 5건을 기록하며 2021년과 동일한 수준을 유지했습니다.</p>\n\n<h3>향후 상용화 계획과 확인 기준</h3>\n\n<p>클라우드브레이크는 이번 임상 3상 결과를 바탕으로 미국 FDA와 미팅을 진행하여 향후 절차를 논의할 예정입니다. 회사 측이 밝힌 개발 및 상용화 일정 계획은 다음과 같습니다.</p>\n\n<h4>🔸 임상 및 상용화 일정 현황</h4>\n<p>이 바이오기업은 2026년 3분기에 두 번째 임상 3상 시험을 시작하여 2028년 말에 마치는 일정을 계획하고 있습니다. 이후 미국 시장 내 CBT-001의 최종 상용화 시점은 2030년에서 2032년 사이로 추정하고 있습니다.</p>\n\n<p>클라우드브레이크는 중화권 지역에 대한 상업화 파트너십을 체결했으며, 한국과 일본을 포함한 아시아 시장을 대상하는 별도의 계약도 체결한 상태입니다. 미국 및 기타 지역에 대해서는 자체 상업화 또는 기술 이전(아웃 라이선싱) 방안을 검토하고 있습니다.</p>\n\n<p>한편 회사는 9월 말 경영진 및 주식 거래 정지 관련 최신 상황을 공시했습니다. 이사회 내에 독립 특별위원회를 구성해 IPO 관련 우려 사항을 조사 중이며, 이에 따라 2026년 반기 보고서 제출이 지연되었습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상 3상 성공이 회사의 IPO 조사 결과를 즉시 무죄로 만들어 주나요?</h4>\n<p>그렇지 않습니다. 임상 3상 성공은 약물의 유효성과 안전성에 대한 과학적 결과일 뿐이며, 홍콩 당국이 조사 중인 주가 조작 및 IPO 상장 관련 법적 위반 혐의와는 별개의 사안입니다.</p>\n\n<h4>🔸 CBT-001은 미국 FDA의 승인을 받은 최초의 익상편 치료제인가요?</h4>\n<p>아직 아닙니다. CBT-001은 임상 3상 중 한 단계의 1차 평가지표를 충족한 상태이며, 두 번째 3상 임상과 FDA의 최종 품목 허가 승인 절차를 거쳐야 정식 치료제로 인정받습니다.</p>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 약물의 효과나 안전성이 더 높다는 뜻인가요?</h4>\n<p>아닙니다. 글로벌 임상시험 등록 건수는 해당 질환에 대해 업계가 얼마나 활발히 연구를 진행하고 있는지를 나타내는 지표일 뿐, 개별 약물의 치료 효과나 안전성을 보증하지는 않습니다.</p>\n\n<h3>정리</h3>\n\n<p>클라우드브레이크의 CBT-001은 최초의 FDA 승인 익상편 치료제를 목표로 임상 3상에서 결막 충혈 및 병변 길이 개선이라는 공동 1차 평가지표를 충족했습니다. 하지만 최종 상용화까지는 2026년 3분기 시작 예정인 두 번째 3상과 2028년 말 임상 완료, 이후 FDA 허가 절차가 남아 있습니다.</p>\n\n<p>향후 유사한 바이오기업의 임상 발표를 접할 때는 발표된 임상 결과 외에도 두 가지를 직접 확인해야 합니다. 첫째, 해당 임상이 단일 3상인지 확증을 위한 추가 3상이 남아 있는지 체크해야 합니다. 둘째, 연구 성과와 별개로 기업의 거래 정지나 내부 조사 등 지배구조 리스크가 해소되었는지 여부를 확인하는 것이 필요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> CBT-001은 익상편 3상 1차 지표를 달성했으나 상용화는 2030년 이후로 예상됩니다.</p>\n\n태그: 클라우드브레이크 CBT001 익상편 임상3상 바이오뉴스",
+  "2": "<h1>클라우드브레이크 CBT-001 임상 3상 성공 결과와 향후 일정</h1>\n<!-- 클라우드브레이크의 익상편 치료제 CBT-001이 임상 3상에서 결막 충혈과 병변 길이를 모두 개선하며 공동 1차 평가지표를 충족했습니다. 주요 임상 결과와 안전성 데이터, 향후 상용화 일정을 정리합니다. -->\n\n<p>홍콩 증권 당국이 기업공개(IPO) 수요 조작 의혹으로 9월 거래를 중지시킨 클라우드브레이크 파마가 안과 질환 치료제 후보물질의 임상 3상 시험 결과를 발표했습니다.</p>\n\n<p><a href=\"https://www.fiercebiotech.com/biotech/cloudbreak-posts-phase-3-eye-disease-win-amid-ipo-storm\" target=\"_blank\" rel=\"noopener\">Fierce Biotech</a> 보도에 따르면, 이 기업은 IPO 관련 조사를 받는 상황 속에서도 익상편 치료제 후보물질인 CBT-001의 임상 3상 연구를 계속 진행해 왔습니다.</p>\n\n<p>익상편은 미국 식품의약국(FDA) 승인을 받은 치료제가 아직 없는 안구 표면 질환입니다. 이번 임상 결과는 주가 조작 조사라는 악재 속에서 나온 주요 학술적 성과입니다.</p>\n\n<h3>CBT-001 임상 3상 1차 평가지표 결과</h3>\n\n<p>CBT-001은 익상편 치료를 위해 개발된 다중 키나아제 억제제 성분의 점안액입니다. 클라우드브레이크는 이번 3상 임상시험에서 설정한 두 가지 공동 1차 평가지표를 모두 통과하며 통계적 유의성을 확보했다고 밝혔습니다.</p>\n\n<p>임상 참가자들에게 3개월 동안 하루 두 번 약을 투여한 결과, 고용량과 저용량 용량군 모두 위약 대조군에 비해 결막 충혈 개선 효과가 통계적으로 크게 나타났습니다.</p>\n\n<p>눈의 흰자위가 붉게 보이는 증상인 결막 충혈은 약물 투여 2주 차부터 개선되기 시작했습니다. 이러한 개선 효과는 12개월 차까지 진행된 모든 추적 관찰 시점에서 유지되었습니다.</p>\n\n<p>또 다른 1차 평가지표인 익상편 병변 길이에 대한 평가에서도 CBT-001 투여군이 위약군을 앞질렀습니다. 세부 데이터가 모두 공개되지는 않았지만, 기저치 대비 약 10%의 치료 이점이 확인되었으며 12개월 차 시점에도 효과의 정체기(플래토)에 도달하지 않았습니다.</p>\n\n<h3>안전성과 부작용 프로필 확인</h3>\n\n<p>임상시험 동안 투여군에서 관찰된 가장 흔한 이상반응은 세포 사멸로 인해 발생하는 안질환인 표재성 점상 각막염이었습니다.</p>\n\n<p>저용량 투여군에서는 환자의 20%에게서 이 증상이 발생하여, 위약 투여군의 8%에 비해 더 높은 발병률을 기록했습니다.</p>\n\n<p>발생한 표재성 점상 각막염 사례의 대부분은 인공눈물을 사용한 치료를 통해 증상이 호전되었습니다.</p>\n\n<p>고용량 투여군에서도 이와 유사한 부작용 양상이 보고되었으나, 저용량군에 비해 발생 빈도는 더 높게 나타났습니다.</p>\n\n<h3>익상편 글로벌 임상 및 연구 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소 데이터에 따르면, 익상편 질환에 대해 전 세계에 등록된 임상시험은 총 135건입니다. 약물 개발 단계별 비중과 연도별 연구 진입 현황은 아래와 같습니다.</p>\n\n<table>\n  <tr>\n    <th>구분</th>\n    <th>수치 (비율)</th>\n  </tr>\n  <tr>\n    <td>전체 등록 임상시험</td>\n    <td>135건</td>\n  </tr>\n  <tr>\n    <td>모집 중인 임상시험</td>\n    <td>6건 (4.4%)</td>\n  </tr>\n  <tr>\n    <td>임상 3상 시험</td>\n    <td>20건 (14.8%)</td>\n  </tr>\n  <tr>\n    <td>2021년 신규 임상시험</td>\n    <td>5건</td>\n  </tr>\n  <tr>\n    <td>2022년 신규 임상시험</td>\n    <td>2건</td>\n  </tr>\n  <tr>\n    <td>2023년 신규 임상시험</td>\n    <td>7건</td>\n  </tr>\n  <tr>\n    <td>2024년 신규 임상시험</td>\n    <td>6건</td>\n  </tr>\n  <tr>\n    <td>2025년 신규 임상시험</td>\n    <td>5건</td>\n  </tr>\n</table>\n\n<p>전체 135건 연구 중 허가 신청 직전 단계인 3상 임상은 20건(14.8%)이며, 현재 환자를 모집 중인 연구는 6건(4.4%)에 불과합니다. 연도별 신규 임상 수는 2021년 5건에서 2022년 2건으로 줄었다가 2025년 5건을 기록하며 2021년과 동일한 수준을 유지했습니다.</p>\n\n<h3>향후 상용화 계획과 확인 기준</h3>\n\n<p>클라우드브레이크는 이번 임상 3상 결과를 바탕으로 미국 FDA와 미팅을 진행하여 향후 절차를 논의할 예정입니다. 회사 측이 밝힌 개발 및 상용화 일정 계획은 다음과 같습니다.</p>\n\n<h4>🔸 임상 및 상용화 일정 현황</h4>\n<p>이 바이오기업은 2026년 3분기에 두 번째 임상 3상 시험을 시작하여 2028년 말에 마치는 일정을 계획하고 있습니다. 이후 미국 시장 내 CBT-001의 최종 상용화 시점은 2030년에서 2032년 사이로 추정하고 있습니다.</p>\n\n<p>클라우드브레이크는 중화권 지역에 대한 상업화 파트너십을 체결했으며, 한국과 일본을 포함한 아시아 시장을 대상하는 별도의 계약도 체결한 상태입니다. 미국 및 기타 지역에 대해서는 자체 상업화 또는 기술 이전(아웃 라이선싱) 방안을 검토하고 있습니다.</p>\n\n<p>한편 회사는 9월 말 경영진 및 주식 거래 정지 관련 최신 상황을 공시했습니다. 이사회 내에 독립 특별위원회를 구성해 IPO 관련 우려 사항을 조사 중이며, 이에 따라 2026년 반기 보고서 제출이 지연되었습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상 3상 성공이 회사의 IPO 조사 결과를 즉시 무죄로 만들어 주나요?</h4>\n<p>그렇지 않습니다. 임상 3상 성공은 약물의 유효성과 안전성에 대한 과학적 결과일 뿐이며, 홍콩 당국이 조사 중인 주가 조작 및 IPO 상장 관련 법적 위반 혐의와는 별개의 사안입니다.</p>\n\n<h4>🔸 CBT-001은 미국 FDA의 승인을 받은 최초의 익상편 치료제인가요?</h4>\n<p>아직 아닙니다. CBT-001은 임상 3상 중 한 단계의 1차 평가지표를 충족한 상태이며, 두 번째 3상 임상과 FDA의 최종 품목 허가 승인 절차를 거쳐야 정식 치료제로 인정받습니다.</p>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 약물의 효과나 안전성이 더 높다는 뜻인가요?</h4>\n<p>아닙니다. 글로벌 임상시험 등록 건수는 해당 질환에 대해 업계가 얼마나 활발히 연구를 진행하고 있는지를 나타내는 지표일 뿐, 개별 약물의 치료 효과나 안전성을 보증하지는 않습니다.</p>\n\n<h3>정리</h3>\n\n<p>클라우드브레이크의 CBT-001은 최초의 FDA 승인 익상편 치료제를 목표로 임상 3상에서 결막 충혈 및 병변 길이 개선이라는 공동 1차 평가지표를 충족했습니다. 하지만 최종 상용화까지는 2026년 3분기 시작 예정인 두 번째 3상과 2028년 말 임상 완료, 이후 FDA 허가 절차가 남아 있습니다.</p>\n\n<p>독자가 향후 관련 바이오 뉴스를 볼 때는 다음 수치들을 기준으로 삼아 스스로 확인할 수 있습니다. 첫째, 해당 질환의 전체 등록 임상 중 허가 직전 단계인 3상 비중이 14.8%(135건 중 20건) 수준인지를 확인하여 상용화에 가까운 연구 현황을 살펴봐야 합니다. 둘째, 현재 환자를 실제 모집 중인 임상 비중이 4.4%(135건 중 6건)처럼 활발하게 추진되는 파이프라인인지 파악하는 것이 필요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> CBT-001은 익상편 3상 지표를 충족했으나 상용화는 두 번째 3상을 거쳐 추진됩니다.</p>\n\n태그: 클라우드브레이크 CBT001 익상편 임상3상 바이오뉴스"
+ },
+ "minutes": 1.8
+}
