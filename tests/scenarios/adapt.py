@@ -21,7 +21,7 @@ assert te.discover_bio() == []           # 기사에 없는 넓은 질환명이�
 te._ask_json = _aj2
 t=te.discover_tech(); assert t and t[0]["category"]=="tech" and "[공식 자료 - 논문]" in t[0]["facts_text"]
 _aj = te._ask_json
-te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","keyword_en":"lunar landing","why":"x"}
+te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","keyword_en":"lunar drug","why":"x"}
 assert te.discover_tech() == []          # 기사에 없는 검색어(달 착륙)면 자료가 안 맞으니 쓰지 않음(11-08)
 te._ask_json = _aj
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
