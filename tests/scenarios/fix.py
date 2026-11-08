@@ -210,3 +210,10 @@ print("advice wording ok")
 assert not any("사상 최대" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "현물과 선물 차이가 '사상 최대'로 벌어졌다고 보도했습니다.</p>")[1])
 assert any("사상 최대" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "가격 차이가 사상 최대로 벌어졌습니다.</p>")[1])
 print("quoted superlative ok")
+
+# 2026-11-08 사람 눈 읽기: 답이 '자료에 없다'뿐인 FAQ는 막음
+_faq = "<h3>자주 묻는 질문</h3><h4>🔸 단기 체류자도 포함되나요?</h4><p>단기 체류 포함 여부는 이 자료에 포함되어 있지 않습니다.</p><h3>정리</h3><p>x</p>"
+assert any("답이 없는 FAQ 1개" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "</p>" + _faq)[1])
+_faq2 = "<h3>자주 묻는 질문</h3><h4>🔸 비율은?</h4><p>2024년 4.99%입니다.</p><h3>정리</h3><p>자료에 없는 내용은 쓰지 않았습니다.</p>"
+assert not any("답이 없는 FAQ" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "</p>" + _faq2)[1])
+print("empty faq ok")
