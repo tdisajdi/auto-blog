@@ -623,7 +623,7 @@ def discover_bio():
         "소식을 우선하고, 인사·투자유치·소송 소식은 피하세요.\n"
         f"{listing}\n"
         'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
-        '"condition_en": "대상 질환의 영어 이름(예: obesity)", "condition_ko": "그 질환의 한국어 이름(예: 비만)", '
+        '"condition_en": "대상 질환의 영어 이름 - 기사에 나온 구체적인 질환명 그대로(예: obesity, pterygium. eye disease 같은 넓은 말 말고)", "condition_ko": "그 질환의 한국어 이름(예: 비만)", '
         '"intervention_en": "약·치료법의 영어 성분명(없으면 빈칸)", "intervention_ko": "그 성분의 한국어 표기(없으면 빈칸)", '
         '"why": "이유 한 문장"}') or {}
     try:
@@ -633,11 +633,17 @@ def discover_bio():
         it = None
     if not it:
         return []
-    trials = clinical_trials_block(pick.get("condition_en"), pick.get("intervention_en"),
+    body = scrape_text(it["url"]) or it["summary"]
+    # 질환 이름이 기사에 실제로 나오는 구체적인 말인지 확인(11-08 첫 시험: 익상편 신약 기사에 'eye disease' 전체 통계 → '다른 글에도 들어갈 일반론')
+    cond = str(pick.get("condition_en") or "").strip()
+    src = f"{it['title']} {it.get('summary', '')} {body}".lower()
+    if not cond or not all(w in src for w in re.findall(r"[a-z]{4,}", cond.lower())):
+        print(f"ℹ️ 바이오: 질환 이름 '{cond}'이 기사에 그대로 없음 - 자료가 기사와 안 맞아 쓰지 않음")
+        return []
+    trials = clinical_trials_block(cond, pick.get("intervention_en"),
                                    pick.get("condition_ko", ""), pick.get("intervention_ko", ""))
     if not trials:
         return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
-    body = scrape_text(it["url"]) or it["summary"]
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
              f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
