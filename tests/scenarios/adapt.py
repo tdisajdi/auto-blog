@@ -95,5 +95,9 @@ assert qb.lower().count("- 레버리지 etf 세금\n") == 1 and "총정리 보�
 te._suggest_google = lambda q: []
 te._suggest_naver = lambda q: []
 assert te.search_questions_block("레버리지 ETF") == "" and te.search_questions_block("") == ""
+te._suggest_google = lambda q: ["레버리지 ETF 세금", "레버리지 ETF 환전 시점", "레버리지 ETF 변동성", "레버리지 ETF 원리"]
+te._suggest_naver = lambda q: []
+qf = te.search_questions_block("레버리지 ETF", facts="QQQ 변동성 21% 세금 22% 원리")
+assert "환전 시점" not in qf and "- 레버리지 ETF 변동성" in qf, qf     # 자료에 근거 낱말이 없는 검색어는 뺌
 print("search questions ok")
 print("adapters ok")
