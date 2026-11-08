@@ -6,7 +6,7 @@ te.google_news=lambda q,n=5:[{"title":f"{q} 뉴스{i} <b>","url":f"http://n/{i}"
 te.scrape_text=lambda u, limit=3000: "본문"*100
 te.fetch_feed=lambda url,d=3:[{"title":"FDA approves new drug X","url":"http://f/1","summary":"approval","source":"FDA"},
                              {"title":"Company hires CEO","url":"http://f/2","summary":"","source":"Fierce"}]
-te._ask_json=lambda p, thinking_budget=0: {"index":0,"title_ko":"신약 X 승인","keywords_ko":"신약 X","keyword_en":"new drug","keyword_label_ko":"신약","why":"승인"}
+te._ask_json=lambda p, thinking_budget=0: {"index":0,"title_ko":"신약 X 승인","keywords_ko":"신약 X","keyword_en":"new drug","keyword_label_ko":"신약","condition_en":"approval","why":"승인"}
 # 2026-11-08: 공식 자료(임상 등록·논문 수)가 없으면 뉴스·기사 발췌만으로는 쓰지 않음
 _ct, _ax = te.clinical_trials_block, te.papers_block
 te.clinical_trials_block = lambda *a: ""
@@ -15,6 +15,10 @@ assert te.discover_bio() == [] and te.discover_tech() == []
 te.clinical_trials_block = lambda *a: "[공식 자료 - 임상]\n- 등록된 임상시험 전체: 10건\n"
 te.papers_block = lambda *a: "[공식 자료 - 논문]\n- 논문 10편\n"
 b=te.discover_bio(); assert b[0]["score"]==2.0 and b[0]["topic_key"].startswith("bio:") and "[공식 자료 - 임상]" in b[0]["facts_text"], b
+_aj2 = te._ask_json
+te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","condition_en":"eye disease","why":"x"}
+assert te.discover_bio() == []           # 기사에 없는 넓은 질환명이면 쓰지 않음(11-08)
+te._ask_json = _aj2
 t=te.discover_tech(); assert t and t[0]["category"]=="tech" and "[공식 자료 - 논문]" in t[0]["facts_text"]
 _aj = te._ask_json
 te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","keyword_en":"lunar landing","why":"x"}
