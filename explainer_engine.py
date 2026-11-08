@@ -51,6 +51,13 @@ GUIDE_TOPICS = [
      "tickers": ["459580.KS", "488770.KS"], "tax": True},
 ]
 
+# 독자가 실제로 검색하는 말(자동완성)을 모을 짧은 검색어(2026-11-08, topic_engine.search_questions_block)
+SEARCH_SEEDS = {"overseas-vs-domestic-tax": "해외 ETF 세금", "expense-ratio": "ETF 총보수", "covered-call-structure": "커버드콜 ETF",
+                "hedged-vs-unhedged": "환헤지 ETF", "tr-vs-pr": "TR ETF", "dca-vs-lump": "적립식 거치식",
+                "mdd-risk": "MDD 최대낙폭", "tax-accounts": "ISA 연금저축 ETF", "dividend-growth": "배당성장률",
+                "bond-duration": "채권 ETF 금리", "leverage-decay": "레버리지 ETF", "parking-etf": "파킹형 ETF",
+                "fx": "환율 해외 ETF", "rates": "금리 채권 ETF", "sentiment": "공포탐욕지수"}
+
 ISSUE_KINDS = {
     "fx": {"label": "환율", "query": "원/달러 환율",
            "title_hint": "환율이 움직일 때 해외 ETF 투자자가 확인할 것",
@@ -641,4 +648,5 @@ def run_explainer(topic, etf_module):
         closing_html=_closing_block(news, include_tax), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
         meta={"example_tickers": list(data_cache.keys())},
+        search_seed=SEARCH_SEEDS.get(topic_id, ""),
     )
