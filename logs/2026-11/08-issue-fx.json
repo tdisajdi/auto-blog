@@ -1,0 +1,374 @@
+{
+ "article_type": "issue",
+ "topic_id": "fx",
+ "title_seed": "환율이 움직일 때 해외 ETF 투자자가 확인할 것",
+ "category": "etf",
+ "started_at": "2026-11-08T19:36:05",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.4,
+   "chars": 2355
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.7,
+   "chars": 5862
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.6,
+   "chars": 953
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.6,
+   "chars": 619
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.3,
+   "chars": 161
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 1072
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 18.1,
+   "chars": 5963
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 17.8,
+   "chars": 926
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 645
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.5,
+   "chars": 141
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.4,
+   "chars": 876
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.7,
+   "chars": 5517
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.6,
+   "chars": 210
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 792
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.1,
+   "chars": 216
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.3,
+   "chars": 802
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "19:36:19",
+   "title": "환율이 움직일 때 해외 ETF 투자자가 확인할 점",
+   "sections": [
+    "해외 상장 ETF의 환율 영향",
+    "국내 상장 해외 ETF와 환율",
+    "환율 변동과 수익률 확인 기준"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "19:36:41",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "19:37:15",
+   "score": 0.44,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "본문 내 계산 예시와 환율 변화율(5.8% 하락)의 의미를 독자가 한눈에 비교할 수 있도록 요약 표를 추가하면 더 좋아집니다.",
+   "issues": [
+    "[치명·사실 검증] '해외 상장 ETF는 달러로 결제되므로 증권사 원화대금 결제 서비스를 이용하더라도 매수 시점의 환율이 적용됩니' → 자료에 없는 '증권사 원화대금 결제 서비스'라는 제도를 지어내어 설명했습니다. / 고칠 방법: 자료에 포함된 해외 상장 ETF의 달러 거래 방식과 환율 영향 사실만을 바탕으로 설명하세요.",
+    "[중요·사실 검증] '공포·탐욕 지수가 22점 수준으로 낮아지면 주가 변동성과 함께 환율 변동성도 확대되는 경향이 있습니다.' → 공포·탐욕 지수 하락 시 환율 변동성이 함께 확대된다는 경향이나 주가-환율 관계는 자료에 없는 단정적 주장입니다. / 고칠 방법: 자료에 명시되지 않은 지표 간 상관관계나 시장 경향을 단정하는 문장을 삭제하세요.",
+    "[사소·사실 검증] '환율이 높을 때 매수하면 향후 환율 하락 시 주가가 올라mother 원화 손익이 낮아질 위험이 있습니다.' → '올라mother'라는 잘못된 단어가 섞여 있어 오탈자가 발생했습니다. / 고칠 방법: '주가가 올라mother'를 '주가가 올라가더라도' 또는 '주가가 올라'로 수정하세요.",
+    "[사소·독자 편집] '머니투데이[링크] 기사에서도 원화 강세 시기 ETF 상품 구조에 따라 수익률 차이가 크게 벌어졌음을 언급하고' → 외부 매체를 단순 소개하는 문장은 구체적인 해석이나 수치 없이 분량을 채우는 경향이 있습니다. / 고칠 방법: 해당 매체 언급을 생략하고 원화 강세에 따른 수익률 차이 결과만 한 문장으로 압축하세요.",
+    "[사소·독자 편집] '연합뉴스[링크] 자료나 네이버페이 머니스토리[링크]의 설명처럼 환율 변동은 달러선물이나 관련 상품의 성과를 ' → 여러 언론 매체를 나열하며 환율의 중요성을 반복해서 언급하고 있습니다. / 고칠 방법: 매체 이름을 빼고 환율 변동이 상품 성과에 미치는 영향만 간결하게 서술하세요."
+   ],
+   "lint": [
+    "깨진 단어 '라mother': 한글과 영어가 한 단어에 섞임 - 올바른 한국어 단어로 고칠 것",
+    "영어 문구 'calculated by ondo' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)",
+    "[참고] 같은 숫자 '5.8%'를 8번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 4271
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "19:37:40",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "19:38:45",
+   "score": 0.26,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 '확인해야 할 기준'에 대해 독자가 바로 적용할 수 있도록 본문 하단의 정리 내용을 구체적인 조건식 형태로 상단에 요약 배치하는 것",
+   "issues": [
+    "[치명·사실 검증] '또한 환율이 급격하게 변동하는 시장 상황에서는 완벽하게 100% 위험이 차단되지 않고 일부 미세한 오차가 발' → 사실 자료에 없는 '100% 위험 차단 불가' 및 '미세 오차 발생' 등의 제도를 지어내어 단정했습니다. / 고칠 방법: 자료에 포함된 내용인 환헤지 비용 발생과 환율 영향 완화에 대해서만 언급하세요.",
+    "[중요·사실 검증] '해외 상장 ETF를 매수할 때 별도의 환전 시점을 조절해야 하나요?' → [독자가 실제로 검색하는 말] 및 [사실 자료]에 근거 자료가 없는 질문과 답변을 지어내어 작성했습니다. / 고칠 방법: 자료로 답할 수 있는 범위의 질문만 다루고, 답할 자료가 없는 환전 시점 조절 관련 질문과 답변은 삭제하세요.",
+    "[중요·사실 검증] '공포·탐욕 지수가 극단적 공포일 때 환노출 ETF 전략은 어떻게 세워야 하나요?' → 사실 자료에 없는 질문과 투자 전략 단정 문장을 지어내어 작성했습니다. / 고칠 방법: 자료에 언급되지 않은 공포·탐욕 지수 관련 대응 전략 질문과 답을 삭제하세요.",
+    "[중요·독자 편집] 'SPY의 1년 수익률은 10.77%를 나타냈으며' → 앞선 본문 섹션에서 다룬 SPY의 1년 수익률 숫자를 이후 계산 섹션에서 다시 반복하고 있습니다. / 고칠 방법: 수익률 숫자는 계산 섹션에만 배치하고 앞선 섹션에서는 보수와 배당 내용만 다루세요.",
+    "[사소·독자 편집] '이처럼 시장 지표가 크게 흔들릴 때는 자산 자체의 가격 변화뿐만 아니라 환율의 움직임이 최종 수익률을 결정짓' → 다른 투자 글에도 쉽게 쓰일 수 있는 일반적인 도입부 표현이 포함되어 있습니다. / 고칠 방법: 환율 변동이 해외 ETF 원화 수익에 미치는 영향에 초점을 맞춘 문장으로 바꾸세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '5.8%'를 8번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 4225
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "19:39:04",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "19:39:39",
+   "score": 0.85,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "계산된 원화 수익률 예시(SPY, GLD 등)를 본문 내에 요약 표 형태로 추가하여 비교 가독성 높이기",
+   "issues": [
+    "[중요·독자 편집] '미국 시장에 상장된 SPY(State Street SPDR S&P 500 ETF Trust)는 운용보수(ET' → 환율 변동이 해외 ETF 원화 수익률에 미치는 영향을 다루는 글인데, SPY의 세부 배당성장률까지 길게 나열하여 주제와 거리가 먼 일반론적 설명이 섞였습니다. / 고칠 방법: SPY의 구체적인 배당성장률 수치는 생략하고 환율과 연동되는 환노출 구조 설명에 집중하세요.",
+    "[사소·독자 편집] '원/달러 환율이 1,356.34원으로 움직이는 시장 상황에서는 자산의 달러 가격 변화뿐만 아니라 환율 흐름이' → 앞서 도입부에서 이미 언급한 환율 수치와 의미를 본문 중간에서 다시 반복하여 문장이 길어졌습니다. / 고칠 방법: 환율 변화가 원화 수익률에 미치는 영향만 간결하게 한 문장으로 압축하세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '5.8%'를 8번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 3801
+  }
+ ],
+ "result": {
+  "status": "failed",
+  "reason": "다시 쓴 판이 기준 미달 - 원래 글 유지",
+  "title": "환율 변동 시 해외 ETF 투자자가 원화 수익률에서 확인해야 할 기준",
+  "score": 0.85,
+  "issues": [
+   "[중요·독자 편집] '미국 시장에 상장된 SPY(State Street SPDR S&P 500 ETF Trust)는 운용보수(ET' → 환율 변동이 해외 ETF 원화 수익률에 미치는 영향을 다루는 글인데, SPY의 세부 배당성장률까지 길게 나열하여 주제와 거리가 먼 일반론적 설명이 섞였습니다. / 고칠 방법: SPY의 구체적인 배당성장률 수치는 생략하고 환율과 연동되는 환노출 구조 설명에 집중하세요.",
+   "[참고] 같은 숫자 '5.8%'를 8번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '원/달러 환율이 1,356.34원으로 움직이는 시장 상황에서는 자산의 달러 가격 변화뿐만 아니라 환율 흐름이' → 앞서 도입부에서 이미 언급한 환율 수치와 의미를 본문 중간에서 다시 반복하여 문장이 길어졌습니다. / 고칠 방법: 환율 변화가 원화 수익률에 미치는 영향만 간결하게 한 문장으로 압축하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 예시 ETF 실제 데이터]\n- SPY (State Street SPDR S&P 500 ETF Trust): 해외 상장, 운용보수 0.09%, 배당수익률 1.03%, 배당성장률 4.54%, 1년 수익률 10.77%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 10.8%, 최대 낙폭(5년) -24.50%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- 360750 (TIGER 미국S&P500): 국내 상장, 운용보수 0.007%, 1년 수익률 1.74%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 14.8%, 최대 낙폭(5년) -19.15%, 환율 영향 있음 (국내 상장이지만 해외 자산, 환헤지 안 함)\n- GLD (SPDR Gold Shares): 해외 상장, 운용보수 0.40%, 배당수익률 0.00%, 1년 수익률 1.14%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 16.9%, 최대 낙폭(5년) -28.26%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- 132030 (KODEX 골드선물(H)): 국내 상장, 운용보수 0.68%, 1년 수익률 -2.14%, 상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨) 14.0%, 최대 낙폭(5년) -32.05%, 환율 영향 환헤지형 (국내 상장, 환율 영향을 줄인 상품)\n\n[오늘의 시장 수치]\n- 원/달러 환율: 1,356.34원 (전일 대비 1.21% 상승)\n- 미국 10년물 금리: 4.859%\n- 공포/탐욕 지수: 22점 (극단적 공포)\n\n[계좌 사실]\n- 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 쓰려면 같은 지수를 추종하는 국내 상장 ETF를 사야 합니다.\n[세금 사실 - 2026년 10월 기준 세법. 참고용 - 이 글의 주제가 세금이 아니면 본문에 세율 숫자·신고 절차를 쓰지 말 것]\n- 미국 상장 ETF 매매차익: 연 250만 원 공제 후 22% 양도소득세(지방세 포함), 다음 해 5월 국세청 홈택스 등으로 직접 신고\n- 미국 상장 ETF 배당: 미국에서 15% 원천징수. 해외에서 낸 세금은 국내 세금에서 빼 준다(외국납부세액공제)\n- 국내 배당소득세율: 14%(지방소득세 포함 15.4%). 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 넘는 부분은 다른 소득과 합쳐 과세(금융소득종합과세)\n\n[최근 뉴스]\n- '환율 다시 오르겠지?' 생각에 환노출형 ETF에 베팅하는 서학개미 - 한국일보 (한국일보) https://news.google.com/rss/articles/CBMibkFVX3lxTE92bXhCU1JEYW1vUzI2VWFVeXZKUFVZWmgyUEt5UG5RTC1VdzY4SmpRMlRCN0N4Ty0teGduTnR3TlFDNEMtbkg0SmFuMXBSejJscy1oemNKRmYyd3lqdEdQUGpGbEJKbHhfSkplNFZR0gFzQVVfeXFMTU92MHFHMVZ6M0ZoQzkwS2lQRUQ5V3dORUJwZll4ODZCcjlMb1JLdXJjM1VCWk9qaDZPV0NKdWFuOUxDZGZkTFFSZmVOZGVQMndRVHdxbWl0NjJ5NG5Ta19oVGZMTDlXa0VWeWlqS2tpOHFkTQ?oc=5\n- 원화 강세에 美 ETF 수익률 희비…'이것' 붙으니 수익률 10%P↑ - 머니투데이 - 머니투데이 (머니투데이) https://news.google.com/rss/articles/CBMiaEFVX3lxTFAzeWFPRk85QnZzV29EcEl4YzlBYWdDREV3WTF6X1dOTDBwSEllWTBNWmtTZUM3QjVtSm9GZTRMQ2RJVDU4Z3poZDhsY3Z5WkxnTHYxLXFqTFZtSXVVU3ZRUlZGNEtrdkg00gFuQVVfeXFMTlhwd0gzLTIxdkxHWG1DQ005T2dBSnJBaDNBQWI3RkhQNGJsWWhvOHREZjNRUW1YNl9zVkcxMEhweTdHQzVraHdyZ0NrTDdWUWllTFZ4Mmt3VnZ0WDk1NXp0NTNqMEp2bVk1bHNVS2c?oc=5\n- 환율이 오르면 돈 벌 수 있다고? 킹달러 시대 주목할 달러선물 ETF 총정리 - 네이버페이 머니스토리 (네이버페이 머니스토리) https://news.google.com/rss/articles/CBMiWEFVX3lxTE5oTmhseVREZzlyUjFvRk5RdHl6RjkwZGF4SUswRXNkRklFY0Q3M2E0cXhoYUkxYlZXQUtxS0Q5T1RXOUhhS2pMNWVjZVZnY1lhQUFGQ3U2SDY?oc=5\n- 3분기 약달러에 ETF 상승률 1∼3위 모두 '달러 곱버스' 차지 - 연합뉴스 (연합뉴스) https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QQ2JnM0VfaDBVY0VHS0RaTzhERHkwRlJNbEtaUWZ3U2hfVDA4cjJYU1hpMGZQamU5MElZVjBfaHlINEZGeW5RX3ctVzBTU0NlMm4zS0pKTTdTVFnSAWBBVV95cUxOOTRXZWhiUVQ5aTJqdnRDUERPTF9MZmF1OG8xOXp2N2tIYjgxMDE1UDIxTG1janQ5VUpnenNVX1hkbXVKZEV0YXZ5THFwRFFoc19ZNTdBWnhaMHEwNHZLZDc?oc=5\n\n\n[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n- SPY: 달러 기준 1년 +10.8%, 원화 기준 +4.4%, 환율이 반대로 같은 폭 움직였다면 +17.2%\n- GLD: 달러 기준 1년 +1.1%, 원화 기준 -4.7%, 환율이 반대로 같은 폭 움직였다면 +7.0%\n- 원/달러 환율 1,440원 → 1,356원(-5.8%, 최근 1년, Yahoo Finance). 원화 수익률 = (1+달러 수익률)×(1+환율 변화)-1, 배당·세금·환전 수수료 제외, ondo 계산. '반대였다면'은 환율이 같은 폭만큼 반대로 움직였다고 가정한 값.\n- 국내 상장 해외 자산 ETF 중 환헤지 안 한 상품(예: 360750)의 원화 수익률에는 이미 환율 변화가 들어 있고, 이름에 (H)가 붙은 환헤지 상품은 환율 영향을 줄이는 대신 헤지 비용이 든다.\n\n[독자가 실제로 검색하는 말 - 구글·네이버 자동완성 '환율 해외 ETF', 2026-11-08. 사실 자료가 아님. '자주 묻는 질문'은 여기서 고르되 위 자료로 답할 수 있는 것만 자연스러운 질문 문장으로 쓰고, 답할 자료가 없으면 넣지 마세요. 검색어 문구를 그대로 제목·본문에 끼워 넣지 마세요]\n- 국내 상장 해외 etf 환율\n- 국내 상장 해외 etf 환율 영향\n- 국내상장 해외etf 환율 반영\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 운용보수: ETF 운용사가 매년 자산에서 떼어 가는 비용(자산 대비 %)\n- 연평균 수익률(CAGR): 여러 해의 수익을 '매년 같은 비율로 불어났다'고 보고 1년치로 환산한 값\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n- 환헤지: 환율이 움직여도 수익률이 덜 흔들리게 막는 장치. 이름에 (H)가 붙은 국내 상장 ETF가 이 방식\n- 선물: 미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약. 원자재 가격 뉴스의 숫자는 대개 가장 가까운 만기 선물 가격\n- 공포·탐욕 지수: CNN이 주가 흐름·변동성 등 여러 지표로 만든 0~100점 투자심리 지수. 낮을수록 공포, 높을수록 탐욕\n- 원천징수: 배당·이자를 줄 때 세금을 미리 떼고 주는 것\n- 환노출: 환율 변화가 수익률에 그대로 반영되는 것. 달러로 거래되는 해외 상장 ETF가 이 경우\n",
+ "drafts": {
+  "1": "<h1>환율 변동 시 해외 ETF 투자자가 원화 수익률에서 확인해야 할 기준</h1>\n<!-- 2026년 11월 08일 기준 원/달러 환율 변화가 해외 상장 ETF와 국내 상장 해외 자산 ETF의 원화 수익률에 미치는 영향을 분석하고 투자 시 확인할 기준을 정리합니다. -->\n\n<p>2026년 11월 08일 기준 원/달러 환율은 전일 대비 1.21% 상승한 1,356.34원을 기록하고 있습니다. 같은 날 미국 10년물 금리는 4.859%를 나타내고 있으며, 시장의 투자 심리를 보여주는 공포·탐욕 지수(CNN이 주가 흐름과 변동성 등 여러 지표로 만든 0~100점 투자심리 지수)는 22점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>이처럼 시장 지표가 크게 흔들릴 때는 자산 자체의 가격 변화뿐만 아니라 환율의 움직임이 최종 수익률을 결정짓는 핵심 변수로 작동합니다. 환율이 오르거나 내릴 때 달러로 직접 거래되는 해외 상장 상품과 국내 시장에 상장된 해외 자산 상품의 원화 기준 평가액이 어떻게 달라지는지 정확히 파악해야 합니다.</p>\n\n<p>해외 자산에 투자하는 ETF는 크게 환노출(환율 변화가 수익률에 그대로 반영되는 것) 상품과 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치) 상품으로 나뉩니다. 두 방식에 따라 기초자산의 성과가 같더라도 투자자가 실제로 손에 쥐는 원화 수익률에는 상당한 차이가 발생합니다.</p>\n\n<h3>해외 상장 ETF의 환율 영향</h3>\n\n<p>달러로 직접 매수하는 해외 상장 ETF는 환노출 구조를 가지므로 환율 변동의 영향을 받습니다. 미국 시장에 상장된 SPY(State Street SPDR S&P 500 ETF Trust)는 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용)가 0.09%이며 배당수익률은 1.03%, 배당성장률은 4.54%를 기록하고 있습니다.</p>\n\n<p>SPY의 1년 수익률은 10.77%를 나타냈으며, 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 10.8%입니다. 단, 상장일이 다른 종목끼리 연평균 수익률을 직접 비교해서는 안 됩니다. 5년 기준 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -24.50%였습니다.</p>\n\n<p>달러화로 거래되는 SPY와 같은 해외 상장 종목은 미국 현지 주가가 상승하더라도 원/달러 환율이 하락하면 원화로 환산한 최종 수익률이 낮아지게 됩니다. 원화 강세 국면에서는 달러 기준 수익의 일부가 환차손으로 상쇄되는 구조를 보입니다.</p>\n\n<p>해외 상장 ETF는 세제 적용 방식에서도 국내 상장 상품과 차이가 존재합니다. 해외 상장 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형 퇴직연금(IRP)으로 직접 살 수 없으므로, 이러한 계좌의 혜택을 활용하려면 국내 상장 ETF를 선택해야 합니다. 세법 관련 상세 내용은 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 확인할 수 있습니다.</p>\n\n<p>해외 상장 원자재 상품인 GLD(SPDR Gold Shares) 역시 환율 영향이 그대로 적용되는 대표적인 달러 거래 ETF입니다. GLD의 운용보수는 0.40%이며 배당수익률은 0.00%입니다. 최근 1년 수익률은 1.14%를 기록했고, 5년 기준 최대 낙폭은 -28.26%로 집계되었습니다. GLD의 상장 이후 연평균 수익률은 16.9%입니다.</p>\n\n<h3>국내 상장 해외 ETF와 환율</h3>\n\n<p>국내 증시에 상장된 해외 자산 ETF 중에서도 환헤지 여부에 따라 환율 반영 방식이 완전히 갈립니다. 종목명 끝에 (H)가 붙지 않은 상품은 국내 상장 상품이지만 환노출 방식으로 운용되어 환율 변화가 원화 평가액에 들어갑니다.</p>\n\n<h4>🔸 환노출형과 환헤지형 상품 비교</h4>\n\n<p>미국 S&P 500 지수를 추종하는 국내 상장 상품인 360750(TIGER 미국S&P500)은 운용보수가 0.007%로 매우 낮게 설정되어 있습니다. 최근 1년 수익률은 1.74%를 기록했고, 5년 기준 최대 낙폭은 -19.15%였습니다. 상장 이후 연평균 수익률은 14.8%를 나타내고 있습니다. 이 상품은 환헤지를 하지 않으므로 원/달러 환율 흐름이 주가에 연동됩니다.</p>\n\n<p>반면 금 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 지수를 따르는 132030(KODEX 골드선물(H))은 종목명의 (H)에서 알 수 있듯 환헤지형 상품입니다. 운용보수는 0.68%이며 1년 수익률은 -2.14%를 나타냈습니다. 상장 이후 연평균 수익률은 14.0%이고 5년 기준 최대 낙폭은 -32.05%입니다.</p>\n\n<p>환헤지 상품은 원/달러 환율 변동에 따른 수익률 흔들림을 줄여주는 역할을 하지만, 파생상품 계약을 통해 환율을 고정하는 과정에서 헤지 비용이 지속적으로 발생합니다. 원화 강세나 약세 흐름과 상관없이 기초자산 자체의 가격 변화에만 집중하고자 할 때 활용되는 구조입니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE92bXhCU1JEYW1vUzI2VWFVeXZKUFVZWmgyUEt5UG5RTC1VdzY4SmpRMlRCN0N4Ty0teGduTnR3TlFDNEMtbkg0SmFuMXBSejJscy1oemNKRmYyd3lqdEdQUGpGbEJKbHhfSkplNFZR0gFzQVVfeXFMTU92MHFHMVZ6M0ZoQzkwS2lQRUQ5V3dORUJwZll4ODZCcjlMb1JLdXJjM1VCWk9qaDZPV0NKdWFuOUxDZGZkTFFSZmVOZGVQMndRVHdxbWl0NjJ5NG5Ta19oVGZMTDlXa0VWeWlqS2tpOHFkTQ?oc=5\" target=\"_blank\" rel=\"noopener\">한국일보</a> 보도에 따르면 환율 상승을 기대하고 환노출형 ETF에 투자하는 경향이 나타나기도 하지만, 환율 변동 방향에 따른 실제 원화 손익 구조를 사전에 파악하는 것이 중요합니다.\n\n<h3>환율 변동과 수익률 확인 기준</h3>\n\n<p>최근 1년 동안 원/달러 환율은 1,440원에서 1,356원으로 5.8% 하락했습니다. 환율 하락은 원화 가치가 올라가는 원화 강세를 의미하므로, 환노출 상태로 보유한 달러 자산의 원화 환산 수익률을 낮추는 요인으로 작용했습니다.</p>\n\n<p>원화 수익률 계산식은 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'로 산출되며, 이는 배당과 세금 및 환전 수수료를 제외하고 calculated by ondo 기준으로 계산한 수치입니다. 이 식에 따라 환율이 5.8% 하락한 기간 동안 자산별 원화 성과는 달러 기준 성과와 큰 차이를 보였습니다.</p>\n\n<p>미국 증시 대표 지수를 따르는 SPY는 달러 기준 1년 수익률이 +10.8%였으나, 원/달러 환율이 5.8% 떨어지면서 원화 기준 수익률은 +4.4%로 축소되었습니다. 만약 같은 기간 환율이 반대로 5.8% 상승(환율 약세)했다면 원화 수익률은 +17.2%에 달했을 것입니다.</p>\n\n<p>금 자산에 투자하는 GLD는 달러 기준 1년 수익률이 +1.1%를 기록했지만, 환율 5.8% 하락 영향이 더해져 원화 기준 수익률은 -4.7%로 손실 전환되었습니다. 만약 환율이 같은 폭만큼 반대로 움직였다면 원화 수익률은 +7.0%가 되었을 것입니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFAzeWFPRk85QnZzV29EcEl4YzlBYWdDREV3WTF6X1dOTDBwSEllWTBNWmtTZUM3QjVtSm9GZTRMQ2RJVDU4Z3poZDhsY3Z5WkxnTHYxLXFqTFZtSXVVU3ZRUlZGNEtrdkg00gFuQVVfeXFMTlhwd0gzLTIxdkxHWG1DQ005T2dBSnJBaDNBQWI3RkhQNGJsWWhvOHREZjNRUW1YNl9zVkcxMEhweTdHQzVraHdyZ0NrTDdWUWllTFZ4Mmt3VnZ0WDk1NXp0NTNqMEp2bVk1bHNVS2c?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 기사에서도 원화 강세 시기 ETF 상품 구조에 따라 수익률 차이가 크게 벌어졌음을 언급하고 있습니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QQ2JnM0VfaDBVY0VHS0RaTzhERHkwRlJNbEtaUWZ3U2hfVDA4cjJYU1hpMGZQamU5MElZVjBfaHlINEZGeW5RX3ctVzBTU0NlMm4zS0pKTTdTVFnSAWBBVV95cUxOOTRXZWhiUVQ5aTJqdnRDUERPTF9MZmF1OG8xOXp2N2tIYjgxMDE1UDIxTG1janQ5VUpnenNVX1hkbXVKZEV0YXZ5THFwRFFoc19ZNTdBWnhaMHEwNHZLZDc?oc=5\" target=\"_blank\" rel=\"noopener\">연합뉴스</a> 자료나 <a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE5oTmhseVREZzlyUjFvRk5RdHl6RjkwZGF4SUswRXNkRklFY0Q3M2E0cXhoYUkxYlZXQUtxS0Q5T1RXOUhhS2pMNWVjZVZnY1lhQUFGQ3U2SDY?oc=5\" target=\"_blank\" rel=\"noopener\">네이버페이 머니스토리</a>의 설명처럼 환율 변동은 달러선물이나 관련 상품의 성과를 바꾸는 핵심 요인입니다. 투자자는 기초자산의 상승 여부와 함께 환율 변동 방향을 동시에 점검해야 합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 환헤지형 상품은 환율 영향이 완전히 없나요?</h4>\n<p>환헤지형 상품은 파생상품 계약을 통해 환율 변동 위험을 최소화하지만, 헤지 계약을 갱신하는 과정에서 발생하는 헤지 비용이 펀드 자산에서 차감됩니다. 또한 환율이 급격하게 변동하는 시장 상황에서는 완벽하게 100% 위험이 차단되지 않고 일부 미세한 오차가 발생할 수 있습니다.</p>\n\n<h4>🔸 해외 상장 ETF를 매수할 때 별도의 환전 시점을 조절해야 하나요?</h4>\n<p>해외 상장 ETF는 달러로 결제되므로 증권사 원화대금 결제 서비스를 이용하더라도 매수 시점의 환율이 적용됩니다. 따라서 기초자산 주가와 함께 매수 당일의 환율 수준을 확인해야 하며, 환율이 높을 때 매수하면 향후 환율 하락 시 주가가 올라mother 원화 손익이 낮아질 위험이 있습니다.</p>\n\n<h4>🔸 공포·탐욕 지수가 극단적 공포일 때 환노출 ETF 전략은 어떻게 세워야 하나요?</h4>\n<p>공포·탐욕 지수가 22점 수준으로 낮아지면 주가 변동성과 함께 환율 변동성도 확대되는 경향이 있습니다. 주가 하락과 환율 상승이 동시에 일어나는 고환율 국면인지, 반대로 주가와 환율이 함께 떨어지는 상황인지 구분하여 원화 수익률 계산식을 통해 위험 요소를 체크해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>환율이 움직일 때 해외 ETF 투자자가 확인해야 할 핵심은 기초자산의 달러 수익률과 원/달러 환율 변화율이 결합해 최종 원화 수익률을 만든다는 사실입니다. 최근 1년처럼 환율이 1,440원에서 1,356원으로 5.8% 하락하는 원화 강세장에서는 SPY의 달러 수익률이 +10.8%여도 원화 수익률은 +4.4%로 크게 낮아집니다.</p>\n\n<p>앞으로 환율 뉴스와 ETF 성과를 파악할 때는 다음 기준을 확인해야 합니다. 첫째, 투자하려는 ETF의 상품명 뒤에 (H)가 붙어 있는지 확인하여 환노출인지 환헤지형인지 구별합니다. 둘째, 해외 상장 달러 거래 상품과 국내 상장 환노출 상품(360750 등)은 동일하게 환율 5.8% 하락 시 원화 평가액이 줄어드는 구조임을 인지합니다. 셋째, 기초자산 수익률에 환율 변동률을 곱하는 원화 수익률 산식 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'을 직접 대입하여 최종 성과를 계산합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 환율 5.8% 하락 시 해외 ETF의 원화 수익률은 달러 수익률보다 낮아지므로 환헤지 여부를 가장 먼저 확인해야 합니다.</p>\n\n태그: 환율해외ETF 원화수익률 환노출환헤지 SPY수익률 ETF환율영향",
+  "2": "<h1>환율 변동 시 해외 ETF 투자자가 원화 수익률에서 확인해야 할 기준</h1>\n<!-- 2026년 11월 08일 기준 원/달러 환율 변화가 해외 상장 ETF와 국내 상장 해외 자산 ETF의 원화 수익률에 미치는 영향을 분석하고 투자 시 확인할 기준을 정리합니다. -->\n\n<p>2026년 11월 08일 기준 원/달러 환율은 전일 대비 1.21% 상승한 1,356.34원을 기록하고 있습니다. 같은 날 미국 10년물 금리는 4.859%를 나타내고 있으며, 시장의 투자 심리를 보여주는 공포·탐욕 지수(CNN이 주가 흐름과 변동성 등 여러 지표로 만든 0~100점 투자심리 지수)는 22점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>이처럼 시장 지표가 크게 흔들릴 때는 자산 자체의 가격 변화뿐만 아니라 환율의 움직임이 최종 수익률을 결정짓는 핵심 변수로 작동합니다. 환율이 오르거나 내릴 때 달러로 직접 거래되는 해외 상장 상품과 국내 시장에 상장된 해외 자산 상품의 원화 기준 평가액이 어떻게 달라지는지 정확히 파악해야 합니다.</p>\n\n<p>해외 자산에 투자하는 ETF는 크게 환노출(환율 변화가 수익률에 그대로 반영되는 것) 상품과 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치) 상품으로 나뉩니다. 두 방식에 따라 기초자산의 성과가 같더라도 투자자가 실제로 손에 쥐는 원화 수익률에는 상당한 차이가 발생합니다.</p>\n\n<h3>해외 상장 ETF의 환율 영향</h3>\n\n<p>달러로 직접 매수하는 해외 상장 ETF는 환노출 구조를 가지므로 환율 변동의 영향을 받습니다. 미국 시장에 상장된 SPY(State Street SPDR S&P 500 ETF Trust)는 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용)가 0.09%이며 배당수익률은 1.03%, 배당성장률은 4.54%를 기록하고 있습니다.</p>\n\n<p>SPY의 1년 수익률은 10.77%를 나타냈으며, 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 10.8%입니다. 단, 상장일이 다른 종목끼리 연평균 수익률을 직접 비교해서는 안 됩니다. 5년 기준 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -24.50%였습니다.</p>\n\n<p>달러화로 거래되는 SPY와 같은 해외 상장 종목은 미국 현지 주가가 상승하더라도 원/달러 환율이 하락하면 원화로 환산한 최종 수익률이 낮아지게 됩니다. 원화 강세 국면에서는 달러 기준 수익의 일부가 환차손으로 상쇄되는 구조를 보입니다.</p>\n\n<p>해외 상장 ETF는 세제 적용 방식에서도 국내 상장 상품과 차이가 존재합니다. 해외 상장 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형 퇴직연금(IRP)으로 직접 살 수 없으므로, 이러한 계좌의 혜택을 활용하려면 국내 상장 ETF를 선택해야 합니다. 세법 관련 상세 내용은 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 확인할 수 있습니다.</p>\n\n<p>해외 상장 원자재 상품인 GLD(SPDR Gold Shares) 역시 환율 영향이 그대로 적용되는 대표적인 달러 거래 ETF입니다. GLD의 운용보수는 0.40%이며 배당수익률은 0.00%입니다. 최근 1년 수익률은 1.14%를 기록했고, 5년 기준 최대 낙폭은 -28.26%로 집계되었습니다. GLD의 상장 이후 연평균 수익률은 16.9%입니다.</p>\n\n<h3>국내 상장 해외 ETF와 환율</h3>\n\n<p>국내 증시에 상장된 해외 자산 ETF 중에서도 환헤지 여부에 따라 환율 반영 방식이 완전히 갈립니다. 종목명 끝에 (H)가 붙지 않은 상품은 국내 상장 상품이지만 환노출 방식으로 운용되어 환율 변화가 원화 평가액에 들어갑니다.</p>\n\n<h4>🔸 환노출형과 환헤지형 상품 비교</h4>\n\n<p>미국 S&P 500 지수를 추종하는 국내 상장 상품인 360750(TIGER 미국S&P500)은 운용보수가 0.007%로 매우 낮게 설정되어 있습니다. 최근 1년 수익률은 1.74%를 기록했고, 5년 기준 최대 낙폭은 -19.15%였습니다. 상장 이후 연평균 수익률은 14.8%를 나타내고 있습니다. 이 상품은 환헤지를 하지 않으므로 원/달러 환율 흐름이 주가에 연동됩니다.</p>\n\n<p>반면 금 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 지수를 따르는 132030(KODEX 골드선물(H))은 종목명의 (H)에서 알 수 있듯 환헤지형 상품입니다. 운용보수는 0.68%이며 1년 수익률은 -2.14%를 나타냈습니다. 상장 이후 연평균 수익률은 14.0%이고 5년 기준 최대 낙폭은 -32.05%입니다.</p>\n\n<p>환헤지 상품은 원/달러 환율 변동에 따른 수익률 흔들림을 줄여주는 역할을 하지만, 파생상품 계약을 통해 환율을 고정하는 과정에서 헤지 비용이 지속적으로 발생합니다. 원화 강세나 약세 흐름과 상관없이 기초자산 자체의 가격 변화에만 집중하고자 할 때 활용되는 구조입니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE92bXhCU1JEYW1vUzI2VWFVeXZKUFVZWmgyUEt5UG5RTC1VdzY4SmpRMlRCN0N4Ty0teGduTnR3TlFDNEMtbkg0SmFuMXBSejJscy1oemNKRmYyd3lqdEdQUGpGbEJKbHhfSkplNFZR0gFzQVVfeXFMTU92MHFHMVZ6M0ZoQzkwS2lQRUQ5V3dORUJwZll4ODZCcjlMb1JLdXJjM1VCZk9qaDZPV0NKdWFuOUxDZGZkTFFSZmVOZGVQMndRVHdxbWl0NjJ5NG5Ta19oVGZMTDlXa0VWeWlqS2tpOHFkTQ?oc=5\" target=\"_blank\" rel=\"noopener\">한국일보</a> 보도에 따르면 환율 상승을 기대하고 환노출형 ETF에 투자하는 경향이 나타나기도 하지만, 환율 변동 방향에 따른 실제 원화 손익 구조를 사전에 파악하는 것이 중요합니다.\n\n<h3>환율 변동과 수익률 확인 기준</h3>\n\n<p>최근 1년 동안 원/달러 환율은 1,440원에서 1,356원으로 5.8% 하락했습니다. 환율 하락은 원화 가치가 올라가는 원화 강세를 의미하므로, 환노출 상태로 보유한 달러 자산의 원화 환산 수익률을 낮추는 요인으로 작용했습니다.</p>\n\n<p>원화 수익률 계산식은 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'로 산출되며, 이는 배당과 세금 및 환전 수수료를 제외하고 ondo 계산 기준으로 계산한 수치입니다. 이 식에 따라 환율이 5.8% 하락한 기간 동안 자산별 원화 성과는 달러 기준 성과와 큰 차이를 보였습니다.</p>\n\n<p>미국 증시 대표 지수를 따르는 SPY는 달러 기준 1년 수익률이 +10.8%였으나, 원/달러 환율이 5.8% 떨어지면서 원화 기준 수익률은 +4.4%로 축소되었습니다. 만약 같은 기간 환율이 반대로 5.8% 상승(환율 약세)했다면 원화 수익률은 +17.2%에 달했을 것입니다.</p>\n\n<p>금 자산에 투자하는 GLD는 달러 기준 1년 수익률이 +1.1%를 기록했지만, 환율 5.8% 하락 영향이 더해져 원화 기준 수익률은 -4.7%로 손실 전환되었습니다. 만약 환율이 같은 폭만큼 반대로 움직였다면 원화 수익률은 +7.0%가 되었을 것입니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFAzeWFPRk85QnZzV29EcEl4YzlBYWdDREV3WTF6X1dOTDBwSEllWTBNWmtTZUM3QjVtSm9GZTRMQ2RJVDU4Z3poZDhsY3Z5WkxnTHYxLXFqTFZtSXVVU3ZRUlZGNEtrdkg00gFuQVVfeXFMTlhwd0gzLTIxdkxHWG1DQ005T2dBSnJBaDNBQWI3RkhQNGJsWWhvOHREZjNRUW1YNl9zVkcxMEhweTdHQzVraHdyZ0NrTDdWUWllTFZ4Mmt3VnZ0WDk1NXp0NTNqMEp2bVk1bHNVS2c?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 기사에서도 원화 강세 시기 ETF 상품 구조에 따라 수익률 차이가 크게 벌어졌음을 언급하고 있습니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QQ2JnM0VfaDBVY0VHS0RaTzhERHkwRlJNbEtaUWZ3U2hfVDA4cjJYU1hpMGZQamU5MElZVjBfaHlINEZGeW5RX3ctVzBTU0NlMm4zS0pKTTdTVFnSAWBBVV95cUxOOTRXZWhiUVQ5aTJqdnRDUERPTF9MZmF1OG8xOXp2N2tIYjgxMDE1UDIxTG1janQ5VUpnenNVX1hkbXVKZEV0YXZ5THFwRFFoc19ZNTdBWnhaMHEwNHZLZDc?oc=5\" target=\"_blank\" rel=\"noopener\">연합뉴스</a> 자료나 <a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE5oTmhseVREZzlyUjFvRk5RdHl6RjkwZGF4SUswRXNkRklFY0Q3M2E0cXhoYUkxYlZXQUtxS0Q5T1RXOUhhS2pMNWVjZVZnY1lhQUFGQ3U2SDY?oc=5\" target=\"_blank\" rel=\"noopener\">네이버페이 머니스토리</a>의 설명처럼 환율 변동은 달러선물이나 관련 상품의 성과를 바꾸는 핵심 요인입니다. 투자자는 기초자산의 상승 여부와 함께 환율 변동 방향을 동시에 점검해야 합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 환헤지형 상품은 환율 영향이 완전히 없나요?</h4>\n<p>환헤지형 상품은 파생상품 계약을 통해 환율 변동 위험을 최소화하지만, 헤지 계약을 갱신하는 과정에서 발생하는 헤지 비용이 펀드 자산에서 차감됩니다. 또한 환율이 급격하게 변동하는 시장 상황에서는 완벽하게 100% 위험이 차단되지 않고 일부 미세한 오차가 발생할 수 있습니다.</p>\n\n<h4>🔸 해외 상장 ETF를 매수할 때 별도의 환전 시점을 조절해야 하나요?</h4>\n<p>해외 상장 ETF는 달러로 결제되므로 매수 시점의 환율이 원화 실질 소요 비용에 반영됩니다. 따라서 기초자산 주가와 함께 매수 당일의 환율 수준을 확인해야 하며, 환율이 높을 때 매수하면 향후 환율 하락 시 주가가 올라가더라도 원화 손익이 낮아질 위험이 있습니다.</p>\n\n<h4>🔸 공포·탐욕 지수가 극단적 공포일 때 환노출 ETF 전략은 어떻게 세워야 하나요?</h4>\n<p>공포·탐욕 지수가 22점 수준으로 낮아진 극단적 공포 단계에서는 주가 하락과 환율 상승이 동시에 일어나는 고환율 국면인지, 반대로 주가와 환율이 함께 떨어지는 상황인지 구분하여 원화 수익률 계산식을 통해 위험 요소를 체크해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>환율이 움직일 때 해외 ETF 투자자가 확인해야 할 핵심은 기초자산의 달러 수익률과 원/달러 환율 변화율이 결합해 최종 원화 수익률을 만든다는 사실입니다. 최근 1년처럼 환율이 1,440원에서 1,356원으로 5.8% 하락하는 원화 강세장에서는 SPY의 달러 수익률이 +10.8%여도 원화 수익률은 +4.4%로 크게 낮아집니다.</p>\n\n<p>앞으로 환율 뉴스와 ETF 성과를 파악할 때는 다음 기준을 확인해야 합니다. 첫째, 투자하려는 ETF의 상품명 뒤에 (H)가 붙어 있는지 확인하여 환노출인지 환헤지형인지 구별합니다. 둘째, 해외 상장 달러 거래 상품과 국내 상장 환노출 상품(360750 등)은 동일하게 환율 5.8% 하락 시 원화 평가액이 줄어드는 구조임을 인지합니다. 셋째, 기초자산 수익률에 환율 변동률을 곱하는 원화 수익률 산식 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'을 직접 대입하여 최종 성과를 계산합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 환율 5.8% 하락 시 해외 ETF의 원화 수익률은 달러 수익률보다 낮아지므로 환헤지 여부를 가장 먼저 확인해야 합니다.</p>\n\n태그: 환율해외ETF 원화수익률 환노출환헤지 SPY수익률 ETF환율영향",
+  "3": "<h1>환율 변동 시 해외 ETF 투자자가 원화 수익률에서 확인해야 할 기준</h1>\n<!-- 2026년 11월 08일 기준 원/달러 환율 변화가 해외 상장 ETF와 국내 상장 해외 자산 ETF의 원화 수익률에 미치는 영향을 분석하고 투자 시 확인할 기준을 정리합니다. -->\n\n<p>2026년 11월 08일 기준 원/달러 환율은 전일 대비 1.21% 상승한 1,356.34원을 기록하고 있습니다. 같은 날 미국 10년물 금리는 4.859%를 나타내고 있으며, 시장의 투자 심리를 보여주는 공포·탐욕 지수(CNN이 주가 흐름과 변동성 등 여러 지표로 만든 0~100점 투자심리 지수)는 22점으로 극단적 공포 단계를 가리키고 있습니다.</p>\n\n<p>원/달러 환율이 1,356.34원으로 움직이는 시장 상황에서는 자산의 달러 가격 변화뿐만 아니라 환율 흐름이 해외 자산 투자자의 원화 수익률을 크게 바꾸게 됩니다. 환율이 오르거나 내릴 때 달러로 직접 거래되는 해외 상장 상품과 국내 시장에 상장된 해외 자산 상품의 원화 기준 평가액이 어떻게 달라지는지 정확히 파악해야 합니다.</p>\n\n<p>해외 자산에 투자하는 ETF는 크게 환노출(환율 변화가 수익률에 그대로 반영되는 것) 상품과 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치) 상품으로 나뉩니다. 두 방식에 따라 기초자산의 성과가 같더라도 투자자가 실제로 손에 쥐는 원화 수익률에는 상당한 차이가 발생합니다.</p>\n\n<h3>해외 상장 ETF의 환율 영향</h3>\n\n<p>달러로 직접 매수하는 해외 상장 ETF는 환노출 구조를 가지므로 환율 변동의 영향을 받습니다. 미국 시장에 상장된 SPY(State Street SPDR S&P 500 ETF Trust)는 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용)가 0.09%이며 배당수익률은 1.03%, 배당성장률은 4.54%를 기록하고 있습니다.</p>\n\n<p>SPY의 상장 이후 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 10.8%입니다. 단, 상장일이 다른 종목끼리 연평균 수익률을 직접 비교해서는 안 됩니다. 5년 기준 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -24.50%였습니다.</p>\n\n<p>달러화로 거래되는 SPY와 같은 해외 상장 종목은 미국 현지 주가가 상승하더라도 원/달러 환율이 하락하면 원화로 환산한 최종 수익률이 낮아지게 됩니다. 원화 강세 국면에서는 달러 기준 수익의 일부가 환차손으로 상쇄되는 구조를 보입니다.</p>\n\n<p>해외 상장 ETF는 세제 적용 방식에서도 국내 상장 상품과 차이가 존재합니다. 해외 상장 ETF는 개인종합자산관리계좌(ISA)나 연금저축, 개인형 퇴직연금(IRP)으로 직접 살 수 없으므로, 이러한 계좌의 혜택을 활용하려면 국내 상장 ETF를 선택해야 합니다. 세법 관련 상세 내용은 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 확인할 수 있습니다.</p>\n\n<p>해외 상장 원자재 상품인 GLD(SPDR Gold Shares) 역시 환율 영향이 그대로 적용되는 대표적인 달러 거래 ETF입니다. GLD의 운용보수는 0.40%이며 배당수익률은 0.00%입니다. 최근 1년 수익률은 1.14%를 기록했고, 5년 기준 최대 낙폭은 -28.26%로 집계되었습니다. GLD의 상장 이후 연평균 수익률은 16.9%입니다.</p>\n\n<h3>국내 상장 해외 ETF와 환율</h3>\n\n<p>국내 증시에 상장된 해외 자산 ETF 중에서도 환헤지 여부에 따라 환율 반영 방식이 완전히 갈립니다. 종목명 끝에 (H)가 붙지 않은 상품은 국내 상장 상품이지만 환노출 방식으로 운용되어 환율 변화가 원화 평가액에 들어갑니다.</p>\n\n<h4>🔸 환노출형과 환헤지형 상품 비교</h4>\n\n<p>미국 S&P 500 지수를 추종하는 국내 상장 상품인 360750(TIGER 미국S&P500)은 운용보수가 0.007%로 매우 낮게 설정되어 있습니다. 최근 1년 수익률은 1.74%를 기록했고, 5년 기준 최대 낙폭은 -19.15%였습니다. 상장 이후 연평균 수익률은 14.8%를 나타내고 있습니다. 이 상품은 환헤지를 하지 않으므로 원/달러 환율 흐름이 주가에 연동됩니다.</p>\n\n<p>반면 금 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 지수를 따르는 132030(KODEX 골드선물(H))은 종목명의 (H)에서 알 수 있듯 환헤지형 상품입니다. 운용보수는 0.68%이며 1년 수익률은 -2.14%를 나타냈습니다. 상장 이후 연평균 수익률은 14.0%이고 5년 기준 최대 낙폭은 -32.05%입니다.</p>\n\n<p>환헤지 상품은 원/달러 환율 변동에 따른 수익률 흔들림을 줄여주는 역할을 하지만, 파생상품 계약을 통해 환율을 고정하는 과정에서 헤지 비용이 지속적으로 발생합니다. 원화 강세나 약세 흐름과 상관없이 기초자산 자체의 가격 변화에만 집중하고자 할 때 활용되는 구조입니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMibkFVX3lxTE92bXhCU1JEYW1vUzI2VWFVeXZKUFVZWmgyUEt5UG5RTC1VdzY4SmpRMlRCN0N4Ty0teGduTnR3TlFDNEMtbkg0SmFuMXBSejJscy1oemNKRmYyd3lqdEdQUGpGbEJKbHhfSkplNFZR0gFzQVVfeXFMTU92MHFHMVZ6M0ZoQzkwS2lQRUQ5V3dORUJwZll4ODZCcjlMb1JLdXJjM1VCZk9qaDZPV0NKdWFuOUxDZGZkTFFSZmVOZGVQMndRVHdxbWl0NjJ5NG5Ta19oVGZMTDlXa0VWeWlqS2tpOHFkTQ?oc=5\" target=\"_blank\" rel=\"noopener\">한국일보</a> 보도에 따르면 환율 상승을 기대하고 환노출형 ETF에 투자하는 경향이 나타나기도 하지만, 환율 변동 방향에 따른 실제 원화 손익 구조를 사전에 파악하는 것이 중요합니다.\n\n<h3>환율 변동과 수익률 확인 기준</h3>\n\n<p>최근 1년 동안 원/달러 환율은 1,440원에서 1,356원으로 5.8% 하락했습니다. 환율 하락은 원화 가치가 올라가는 원화 강세를 의미하므로, 환노출 상태로 보유한 달러 자산의 원화 환산 수익률을 낮추는 요인으로 작용했습니다.</p>\n\n<p>원화 수익률 계산식은 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'로 산출되며, 이는 배당과 세금 및 환전 수수료를 제외하고 ondo 계산 기준으로 계산한 수치입니다. 이 식에 따라 환율이 5.8% 하락한 기간 동안 자산별 원화 성과는 달러 기준 성과와 큰 차이를 보였습니다.</p>\n\n<p>미국 증시 대표 지수를 따르는 SPY는 달러 기준 1년 수익률이 +10.8%였으나, 원/달러 환율이 5.8% 떨어지면서 원화 기준 수익률은 +4.4%로 축소되었습니다. 만약 같은 기간 환율이 반대로 5.8% 상승(환율 약세)했다면 원화 수익률은 +17.2%에 달했을 것입니다.</p>\n\n<p>금 자산에 투자하는 GLD는 달러 기준 1년 수익률이 +1.1%를 기록했지만, 환율 5.8% 하락 영향이 더해져 원화 기준 수익률은 -4.7%로 손실 전환되었습니다. 만약 환율이 같은 폭만큼 반대로 움직였다면 원화 수익률은 +7.0%가 되었을 것입니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFAzeWFPRk85QnZzV29EcEl4YzlBYWdDREV3WTF6X1dOTDBwSEllWTBNWmtTZUM3QjVtSm9GZTRMQ2RJVDU4Z3poZDhsY3Z5ZExvTHYxLXFqTFZtIXVVU3ZRUlZGNEtrdkg00gFuQVVfeXFMTlhwd0gzLTIxdkxHWG1DQ005T2dBSnJBaDNBQWI3RkhQNGJsWWhvOHREZjNRUW1YNl9zVkcxMEhweTdHQzVraHdyZ0NrTDdWUWllTFZ4Mmt3VnZ0WDk1NXp0NTNqMEp2bVk1bHNVS2c?oc=5\" target=\"_blank\" rel=\"noopener\">머니투데이</a> 기사에서도 원화 강세 시기 ETF 상품 구조에 따라 수익률 차이가 크게 벌어졌음을 언급하고 있습니다.</p>\n\n<a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5QQ2JnM0VfaDBVY0VHS0RaTzhERHkwRlJNbEtaUWZ3U2hfVDA4cjJYU1hpMGZQamU5MElZVjBfaHlINEZGeW5RX3ctVzBTU0NlMm4zS0pKTTdTVFnSAWBBVV95cUxOOTRXZWhiUVQ5aTJqdnRDUERPTF9MZmF1OG8xOXp2N2tIYjgxMDE1UDIxTG1janQ5VUpnenNVX1hkbXVKZEV0YXZ5THFwRFFoc19ZNTdBWnhaMHEwNHZLZDc?oc=5\" target=\"_blank\" rel=\"noopener\">연합뉴스</a> 자료나 <a href=\"https://news.google.com/rss/articles/CBMiWEFVX3lxTE5oTmhseVREZzlyUjFvRk5RdHl6RjkwZGF4SUswRXNkRklFY0Q3M2E0cXhoYUkxYlZXQUtxS0Q5T1RXOUhhS2pMNWVjZVZnY1lhQUFGQ3U2SDY?oc=5\" target=\"_blank\" rel=\"noopener\">네이버페이 머니스토리</a>의 설명처럼 환율 변동은 달러선물이나 관련 상품의 성과를 바꾸는 핵심 요인입니다. 투자자는 기초자산의 상승 여부와 함께 환율 변동 방향을 동시에 점검해야 합니다.\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 환헤지형 상품은 환율 영향이 완전히 없나요?</h4>\n<p>환헤지형 상품은 파생상품 계약을 통해 환율 변동 영향을 줄이는 구조입니다. 다만 헤지 계약을 갱신하거나 유지하는 과정에서 발생하는 헤지 비용이 펀드 자산에서 차감되는 특성이 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>환율이 움직일 때 해외 ETF 투자자가 확인해야 할 핵심은 기초자산의 달러 수익률과 원/달러 환율 변화율이 결합해 최종 원화 수익률을 만든다는 사실입니다. 최근 1년처럼 환율이 1,440원에서 1,356원으로 5.8% 하락하는 원화 강세장에서는 SPY의 달러 수익률이 +10.8%여도 원화 수익률은 +4.4%로 크게 낮아집니다.</p>\n\n<p>앞으로 환율 뉴스와 ETF 성과를 파악할 때는 다음 기준을 확인해야 합니다. 첫째, 투자하려는 ETF의 상품명 뒤에 (H)가 붙어 있는지 확인하여 환노출인지 환헤지형인지 구별합니다. 둘째, 해외 상장 달러 거래 상품과 국내 상장 환노출 상품(360750 등)은 동일하게 환율 5.8% 하락 시 원화 평가액이 줄어드는 구조임을 인지합니다. 셋째, 기초자산 수익률에 환율 변동률을 곱하는 원화 수익률 산식 '(1 + 달러 수익률) × (1 + 환율 변화율) - 1'을 직접 대입하여 최종 성과를 계산합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 환율 5.8% 하락 시 해외 ETF의 원화 수익률은 달러 수익률보다 낮아지므로 환헤지 여부를 가장 먼저 확인해야 합니다.</p>\n\n태그: 환율해외ETF 원화수익률 환노출환헤지 SPY수익률 ETF환율영향"
+ },
+ "minutes": 3.6
+}
