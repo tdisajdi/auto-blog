@@ -8,16 +8,16 @@ te.fetch_feed=lambda url,d=3:[{"title":"FDA approves new drug X","url":"http://f
                              {"title":"Company hires CEO","url":"http://f/2","summary":"","source":"Fierce"}]
 te._ask_json=lambda p, thinking_budget=0: {"index":0,"title_ko":"신약 X 승인","keywords_ko":"신약 X","why":"승인"}
 # 2026-11-08: 공식 자료(임상 등록·논문 수)가 없으면 뉴스·기사 발췌만으로는 쓰지 않음
-_ct, _ax = te.clinical_trials_block, te.arxiv_block
+_ct, _ax = te.clinical_trials_block, te.papers_block
 te.clinical_trials_block = lambda c, i="": ""
-te.arxiv_block = lambda k: ""
+te.papers_block = lambda k: ""
 assert te.discover_bio() == [] and te.discover_tech() == []
 te.clinical_trials_block = lambda c, i="": "[공식 자료 - 임상]\n- 등록된 임상시험 전체: 10건\n"
-te.arxiv_block = lambda k: "[공식 자료 - arXiv]\n- 논문 10편\n"
+te.papers_block = lambda k: "[공식 자료 - 논문]\n- 논문 10편\n"
 b=te.discover_bio(); assert b[0]["score"]==2.0 and b[0]["topic_key"].startswith("bio:") and "[공식 자료 - 임상]" in b[0]["facts_text"], b
-t=te.discover_tech(); assert t and t[0]["category"]=="tech" and "[공식 자료 - arXiv]" in t[0]["facts_text"]
+t=te.discover_tech(); assert t and t[0]["category"]=="tech" and "[공식 자료 - 논문]" in t[0]["facts_text"]
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
-te.clinical_trials_block, te.arxiv_block = _ct, _ax
+te.clinical_trials_block, te.papers_block = _ct, _ax
 def fake_ct(**p):
     adv = p.get("filter.advanced", "")
     if "PHASE3" in adv: return 50
@@ -31,11 +31,17 @@ assert "등록된 임상시험 전체: 200건" in blk and "모집 중인 임상:
 assert "(코드 계산)" in blk.split("해마다")[1] and "'semaglutide')이 들어간 임상: 7건" in blk, blk
 te._ct_count = lambda **p: None
 assert te.clinical_trials_block("obesity") == "" and te.clinical_trials_block("") == ""
-te._arxiv_count = lambda k, a, b: 100 if a.endswith("0101") and b.endswith("1231") and int(a[:4]) < 2030 else (60 if a[:4] == str(__import__("datetime").datetime.now().year) else 40)
-ab = te.arxiv_block("solid-state battery")
-assert "해마다 올라온 논문 수" in ab and "+0.0%(코드 계산)" in ab and "+50.0%(코드 계산)" in ab, ab
-te._arxiv_count = lambda k, a, b: None
-assert te.arxiv_block("x") == ""
+import datetime as _dt
+_y = _dt.datetime.now().year
+def fake_oa(params):
+    if params.get("group_by"):
+        return {"group_by": [{"key": str(yy), "count": 100 + 25 * (yy - (_y - 5))} for yy in range(_y - 6, _y + 1)]}
+    return {"meta": {"count": 60 if f"from_publication_date:{_y}-" in params["filter"] else 40}}
+te._openalex = fake_oa
+ab = te.papers_block("solid-state battery")
+assert "해마다 나온 논문 수" in ab and "+100.0%(코드 계산)" in ab and "+50.0%(코드 계산)" in ab, ab
+te._openalex = lambda p: None
+assert te.papers_block("x") == "" and te.papers_block("") == ""
 tb = te.trend_interest_block("단풍", {"series": [10.0] * 76 + [50.0] * 14})
 assert "최고점의 100%" in tb and "+400%" in tb and "배(코드 계산)" in tb, tb
 assert te.trend_interest_block("단풍", {"series": [1.0] * 5}) == "" and te.trend_interest_block("x", None) == ""

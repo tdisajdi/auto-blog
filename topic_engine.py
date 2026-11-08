@@ -335,7 +335,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
 # 자료가 비면 그 후보는 쓰지 않는다(인구사회와 같은 원칙).
 # ------------------------------------------------------------
 CT_URL = "https://clinicaltrials.gov/api/v2/studies"
-ARXIV_URL = "http://export.arxiv.org/api/query"
+OPENALEX_URL = "https://api.openalex.org/works"
 
 
 def _ct_count(**params):
@@ -386,43 +386,54 @@ def clinical_trials_block(condition, intervention=""):
     return "\n".join(lines) + "\n"
 
 
-def _arxiv_count(keyword, start, end):
-    """arXiv에서 검색어가 들어간 논문 수(start·end는 YYYYMMDD). 실패하면 None."""
-    q = f'all:"{keyword}" AND submittedDate:[{start}0000 TO {end}2359]'
+def _openalex(params):
+    """OpenAlex(전 세계 학술 논문 공개 색인, 키 없음) 조회. 실패하면 None(원인은 화면에)."""
     try:
-        r = requests.get(ARXIV_URL, params={"search_query": q, "max_results": 0}, headers=UA, timeout=(8, 25))
-        m = re.search(r"<opensearch:totalResults[^>]*>(\d+)<", r.text)
-        return int(m.group(1)) if r.ok and m else None
+        r = requests.get(OPENALEX_URL, params=params, headers=UA, timeout=(8, 25))
+        if not r.ok:
+            print(f"ℹ️ OpenAlex 상태 {r.status_code}: {r.text[:150]}")
+            return None
+        return r.json()
     except Exception as e:
-        print(f"ℹ️ arXiv 조회 실패: {type(e).__name__}")
+        print(f"ℹ️ OpenAlex 조회 실패: {type(e).__name__}: {str(e)[:120]}")
         return None
-    finally:
-        time.sleep(3)          # arXiv 요청 간격 안내(3초)
 
 
-def arxiv_block(keyword):
-    """기술 검색어(영어)의 연도별 논문 수 + 코드 계산(5년 증가율·올해 같은 기간 비교)."""
+def papers_block(keyword):
+    """기술 검색어(영어)의 연도별 논문 수 + 코드 계산(5년 증감·올해 같은 기간 비교).
+    2026-11-08: arXiv(물리·컴퓨터 분야만, 요청 7번)는 깃허브에서 결과가 안 나와 OpenAlex(전 분야, 연도별 한 번에)로 바꿈."""
     keyword = str(keyword or "").strip()
     if not keyword:
         return ""
     now = datetime.now()
     y = now.year
-    years = [(yy, _arxiv_count(keyword, f"{yy}0101", f"{yy}1231")) for yy in range(y - 5, y)]
-    ys = [(a, b) for a, b in years if b is not None]
-    if len(ys) < 3 or not any(b for _, b in ys):
+    d = _openalex({"search": keyword, "group_by": "publication_year", "per_page": 200})
+    if not d:
         return ""
-    md = f"{now:%m%d}"
-    this = _arxiv_count(keyword, f"{y}0101", f"{y}{md}")
-    last = _arxiv_count(keyword, f"{y - 1}0101", f"{y - 1}{md}")
-    lines = [f"[공식 자료 - 논문 공개 저장소 arXiv, 검색어 '{keyword}'(영어 제목·초록 기준), {now:%Y-%m-%d} 조회]",
-             "- 해마다 올라온 논문 수: " + ", ".join(f"{a}년 {b:,}편" for a, b in ys)]
+    counts = {}
+    for g in d.get("group_by") or []:
+        try:
+            counts[int(g.get("key"))] = int(g.get("count"))
+        except (TypeError, ValueError):
+            continue
+    ys = [(yy, counts.get(yy, 0)) for yy in range(y - 5, y)]
+    if not any(b for _, b in ys):
+        return ""
+    md = f"{now:%m-%d}"
+
+    def _n(a, b):
+        r = _openalex({"search": keyword, "filter": f"from_publication_date:{a},to_publication_date:{b}", "per_page": 1})
+        return (r or {}).get("meta", {}).get("count")
+    this, last = _n(f"{y}-01-01", f"{y}-{md}"), _n(f"{y - 1}-01-01", f"{y - 1}-{md}")
+    lines = [f"[공식 자료 - 학술 논문 공개 색인 OpenAlex, 검색어 '{keyword}'(영어 제목·초록 기준), {now:%Y-%m-%d} 조회]",
+             "- 해마다 나온 논문 수: " + ", ".join(f"{a}년 {b:,}편" for a, b in ys)]
     if ys[0][1]:
         lines.append(f"- {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
     if this is not None and last:
         lines.append(f"- 올해 1월 1일~{now.month}월 {now.day}일 {this:,}편, 작년 같은 기간 {last:,}편 → "
                      f"{(this / last - 1) * 100:+.1f}%(코드 계산)")
-    lines.append("- 읽는 법: arXiv는 물리·컴퓨터·수학 쪽 논문이 먼저 올라오는 곳이고 심사 전 원고가 많습니다. "
-                 "논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다.")
+    lines.append("- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. "
+                 "최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.")
     return "\n".join(lines) + "\n"
 
 
@@ -507,7 +518,7 @@ def discover_tech():
         it = None
     if not it:
         return []
-    papers = arxiv_block(pick.get("keyword_en"))
+    papers = papers_block(pick.get("keyword_en"))
     if not papers:
         return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     body = scrape_text(it["url"]) or it["summary"]
@@ -991,9 +1002,9 @@ def run_check_sources():
     _probe_kr_fee_sources("360750")
     print("=== ETF 1년 수익률 교차 확인(같은 값을 두 방법으로) ===")
     _check_returns(["SCHD", "SPY", "QQQ", "TLT", "VOO"])
-    print("=== 두 번째 글 공식 자료(2026-11-08): 임상시험 등록소·arXiv 접속 ===")
+    print("=== 두 번째 글 공식 자료(2026-11-08): 임상시험 등록소·OpenAlex 접속 ===")
     print(clinical_trials_block("obesity", "semaglutide") or "임상시험 등록소: 결과 없음(접속 실패?)")
-    print(arxiv_block("solid-state battery") or "arXiv: 결과 없음(접속 실패?)")
+    print(papers_block("solid-state battery") or "OpenAlex: 결과 없음(접속 실패?)")
     print("=== EIA (미국 원유 재고) ===")
     print(_eia_weekly("oil") or "원유: 결과 없음 (키 없음 또는 조회 실패)")
     print(_eia_weekly("gas") or "가스: 결과 없음 (키 없음 또는 조회 실패)")
