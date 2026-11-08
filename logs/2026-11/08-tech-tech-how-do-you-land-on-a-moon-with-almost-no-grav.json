@@ -1,0 +1,288 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:how-do-you-land-on-a-moon-with-almost-no-gravity",
+ "title_seed": "중력이 거의 없는 달 표면에 착륙하는 기술적 도전",
+ "category": "tech",
+ "started_at": "2026-11-08T19:04:45",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.4,
+   "chars": 1875
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.2,
+   "chars": 3523
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.5,
+   "chars": 363
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 507
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 164
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 1023
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.6,
+   "chars": 3462
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.8,
+   "chars": 507
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 576
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 155
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.8,
+   "chars": 813
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 4072
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.3,
+   "chars": 229
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 124
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.7,
+   "chars": 191
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.5,
+   "chars": 750
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "19:04:51",
+   "title": "중력 거의 없는 화성 위성 포보스 착륙 기술 도전",
+   "sections": [
+    "포보스의 미세중력 환경",
+    "풍선 같은 착륙의 과제",
+    "MMX 미션의 발사와 여정"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "19:05:06",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "19:05:37",
+   "score": 0.76,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "본문에 언급된 OpenAlex의 논문 증가 수치(42.6%)와 포보스 탐사의 연관성을 좀 더 직접적으로 연결하여 설명하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 우주 탐사 관련 숫자나 뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 정리 부분에서 독자가 스스로 확인할 기준을 언급할 때 자료에 등장하는 숫자(예: 지구 중력의 1/1,800 수준, 크기 27km 등)를 함께 제시하여 작성하세요.",
+    "[중요·독자 편집] '학술 논문 색인 데이터베이스 OpenAlex 자료에 따르면 '달 착륙(lunar landing)' 관련 연구' → 화성의 위성 포보스 착륙을 다루는 글에서 달 착륙 관련 논문 증가 데이터를 사용하는 것은 주제와 직접적인 관련이 적은 일반론적 내용입니다. / 고칠 방법: 달 착륙 통계 대신 화성 위성이나 소행성 등 미세중력 천체 탐사 관련 연구 데이터로 변경하세요."
+   ],
+   "lint": [
+    "영어 단어 'lunar' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2588
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "19:05:49",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "19:06:21",
+   "score": 0.59,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "제공된 OpenAlex 논문 통계 자료나 AI 로버 관련 뉴스 내용을 본문 흐름에 자연스럽게 녹여내어 독자가 얻는 정보의 깊이를 넓히는 것.",
+   "issues": [
+    "[치명·사실 검증] '학술 논문 공개 색인 OpenAlex 자료에 따르면, 화성 위성이나 소행성 등 미세중력 천체 탐사 관련 데이' → 자료의 OpenAlex 데이터는 '달 착륙(lunar landing)' 검색 기준 논문 수 통계인데, 본문은 이를 '화성 위성이나 소행성 등 미세중력 천체 탐사'로 지어내어 설명했습니다. / 고칠 방법: OpenAlex 자료의 실제 검색 기준인 달 착륙 논문 수 통계(2021년 343편에서 2025년 489편으로 증가 등)와 읽는 법 주의사항을 명시하여 작성하세요.",
+    "[사소·독자 편집] '화성의 미세중력 위성에 안전하게 접근하고 착륙하기 위해 필요한 기술적 과제들을 정리해 봅니다.' → 기계적인 어미('~봅니다')가 사용되었으며 문장이 다소 평이합니다. / 고칠 방법: 필요한 기술적 과제들을 살펴봅니다.",
+    "[사소·독자 편집] '구분 특징 및 치수 형태 울퉁불퉁한 감자 모양 길이 약 27 km 중력 수준 지구 중력의 1/1,800 주요' → 문장에서 표의 내용을 그대로 다시 나열하고 있습니다. / 고칠 방법: 표에 정리된 주요 특징들을 참고할 수 있습니다."
+   ],
+   "lint": [
+    "너무 얇음: 본문 2486자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "chars": 2514
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "19:06:34",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "19:07:06",
+   "score": 1.0,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "제목에 구체적인 조건과 숫자를 명시하여 글의 핵심 가치를 직관적으로 전달하기",
+   "lint": [
+    "영어 단어 'lunar' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "chars": 2878
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "중력 거의 없는 화성 위성 포보스 착륙 기술 도전",
+  "url": "https://ondo99.com/?p=301",
+  "score": 1.0,
+  "issues": [
+   "영어 단어 'lunar' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+  ]
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: How Do You Land on a Moon With Almost No Gravity? (IEEE Spectrum, https://spectrum.ieee.org/mmx-mission-to-phobos)\n본문 발췌: Japan’s MMX mission aims to sample the Martian moon Phobos Japan's MMX spacecraft will fire its engines to slow down and enter orbit around Mars. Last August, looking up from the edge of an ancient river delta on Mars, the Perseverance rover ’s electronic eye spied an oblong shadow crossing the distant, glowing Sun. Phobos , the Martian moon named for the Greek god of fear and panic, was transiting the solar disk. Too small to darken the pale, dust-tinged sky, but orbiting close enough to eclipse a significant fraction of the Sun, Phobos passed in less than a minute. NASA’s Perseverance rover captured Phobos passing in front of the Sun from the surface of Mars. ASU/MSSS/SSI/JPL-Caltech/NASA The tiny moon, with its murky origins, is an enigma, and one whose makeup and history could tell us much about Mars and the wider solar system. And now the international Martian Moons eXploration (MMX) mission, which successfully launched on 20 October , seeks to explore that mystery with an unprecedented series of landings on the unknown surface of Phobos. This mission brings unusual challenges—for example, designing an orbit to study a microgravity moon orbiting a much larger planet. Engineers also had to figure out how to assess and land on this low-gravity pile of loosely assembled dirt and rock, how a rover might rove across it, and how the spacecraft might take samples and return them to Earth. “I often say that landing on Phobos is like trying to land a balloon,” says Yasuhiro Kawakatsu , project manager of MMX at the Japan Aerospace Exploration Agency ( JAXA ). “It’s very difficult to drop a balloon to the ground and prevent it from tilting or bouncing.” Phobos is one of two small Martian moons; the other is Deimos , named after the Greek god of dread and terror. Their cosmic origins are unknown, though there are two prevailing theories. One holds that the moons were once asteroids from the belt between Mars and Jupiter, captured by the smaller planet’s gravity. In the other theory, Phobos and Deimos formed when a large celestial body slammed into Mars, sending debris into orbit. Some models suggest the pair are the last survivors from a cluster of satellites. The enormous Stickney crater, roughly 9 kilometers across, dominates this view of Phobos taken by NASA’s Mars Reconnaissance Orbiter. University of Arizona/JPL-Caltech/NASA Scientifically speaking, Phobos is considered a rubble pile, a loosely consolidated aggregate of rock and dust. Far too small to become spherical under its own mass, it’s shaped like a lumpy potato, roughly 27 kilometers in length, with only 1/1,800 th of Earth’s gravity. On Phobos, a typical adult would weigh about as much as a tennis ball does on Earth. More than 10 years in the making, MMX launched on Japan’s flagship H3 rocket from Tanegashima spaceport on 20 October local time. It will arrive at Mars in 2027 carrying scientific payloads from several space agencies, including NASA , and a new rover called Idefix developed \n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 검색어 'lunar landing'(영어 제목·초록 기준), 2026-11-08 조회]\n- 해마다 나온 논문 수: 2021년 343편, 2022년 266편, 2023년 323편, 2024년 435편, 2025년 489편\n- 2021년 대비 2025년 +42.6%(코드 계산)\n- 올해 1월 1일~11월 8일 502편, 작년 같은 기간 438편 → +14.6%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- AI 장착 로봇 발전 눈부신데…\"유인 우주 탐사 필요할까\" - DongA Science (DongA Science) https://news.google.com/rss/articles/CBMiVEFVX3lxTE4wbnpVV1I3dk9hZG51a0Z1enI1cHA2TFBpRVhKZml2ZmVwZXB3YWN5b0dOclFVYU9kYmE4cjhWdjA1RFk2MEFwYllrZXFNQU9SS1Zhbg?oc=5\n- AI가 위험 지형 피하고 표적 찾는다…달 탐사 로버 '지능화' 추진 - 전자신문 (전자신문) https://news.google.com/rss/articles/CBMiTkFVX3lxTE9nYzhRQ1dMcXFUNVRORDBTRXduZGROcmxMUGsyUFlSMm9zXzhreHVSdFl3S2hQNlBxbGFzMlFTRVMtbG82RGxEdFNwZ2pCUQ?oc=5\n- NASA \"한국, 2030년대 달 기지 건설 함께하자\"…통신·로봇 협력 희망 - 유니콘팩토리 (유니콘팩토리) https://news.google.com/rss/articles/CBMibEFVX3lxTE1iTldCVURLa1NrZmdHaC10QzBlTmF6M3EzN2JCR2tYeXpTZk5FUnYtTUNiZmJfUTcxaXQ3c1Rfc1EwQWNTZndZcHU3SzBmQTBDWmVoQ0RYWVJpUWhFWVNqOE5sLU5fNWFZNk15Tg?oc=5\n- 美 파이어플라이, 하니비 로보틱스와 달탐사 로버 협력 - 로봇신문 (로봇신문) https://news.google.com/rss/articles/CBMibEFVX3lxTFBZd1JRQVpjLWthMGNVQ3ZqSWFEVkZfbXQ5NTJyT2loTmowSk1wa1lPR0llb0xnY2djNDZ1Si05ejVwbG40dk84Ml9McDV2cnVOd3JLU3dxUjBwbU1GdVlLUVFPUFh1T2Y0Yk1CbA?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>중력 거의 없는 화성 위성 포보스 착륙 기술 도전</h1>\n<!-- 화성의 위성 포보스 탐사 미션 MMX가 성공적으로 발사되었습니다. 지구 중력의 1/1,800 수준인 미세중력과 불안정한 지형을 극복하고 착륙을 시도하는 기술적 배경을 살펴봅니다. -->\n\n<p>일본의 화성 위성 탐사 미션인 MMX가 10월 20일 다네가시마 우주센터에서 H3 로켓에 탑재되어 성공적으로 발사되었습니다. 이번 미션의 핵심 목표는 화성의 미스테리한 위성인 포보스에 착륙하여 표면 샘플을 채취하는 것입니다.</p>\n\n<p>지구 중력과 비교했을 때 거의 중력이 존재하지 않는 환경에 착륙해야 하므로 탐사선은 이전에 겪지 못한 독특한 물리적 한계와 마주하게 됩니다. 화성의 미세중력 위성에 안전하게 접근하고 착륙하기 위해 필요한 기술적 과제들을 정리해 봅니다.</p>\n\n<h3>포보스의 미세중력 환경</h3>\n\n<p>화성의 위성 포보스는 우리가 흔히 떠올리는 둥근 달의 형태와는 크게 다릅니다. 이 위성은 울퉁불퉁한 감자 모양을 하고 있으며, 가장 긴 쪽의 길이가 약 27킬로미터에 불과합니다. 표면에는 미국 항공우주국 NASA의 화성 정찰 위성이 촬영한 폭 약 9킬로미터 크기의 거대한 스틱니 크레이터가 크게 자리 잡고 있습니다.</p>\n\n<p>포보스의 표면 중력은 지구 중력의 1,800분의 1 수준으로 매우 약합니다. 지구에서 일반적인 성인의 무게가 포보스 표면에 서게 된다면 마치 지구에서 테니스 공 하나가 누르는 정도의 무게감만 남게 됩니다.</p>\n\n<p>학술 논문 색인 데이터베이스 OpenAlex 자료에 따르면 '달 착륙(lunar landing)' 관련 연구 논문 발표 건수는 2021년 343편에서 2025년 489편으로 약 42.6% 증가했습니다. 미세중력 및 저중력 천체 착륙에 대한 학계의 기술적 관심이 최근 몇 년 사이에 크게 높아졌음을 알 수 있습니다.</p>\n\n<table>\n<tr>\n<th>구분</th>\n<th>특징 및 치수</th>\n</tr>\n<tr>\n<td>형태</td>\n<td>울퉁불퉁한 감자 모양</td>\n</tr>\n<tr>\n<td>길이</td>\n<td>약 27 km</td>\n</tr>\n<tr>\n<td>중력 수준</td>\n<td>지구 중력의 1/1,800</td>\n</tr>\n<tr>\n<td>주요 지형</td>\n<td>폭 약 9 km의 스틱니 크레이터</td>\n</tr>\n</table>\n\n<h3>풍선 같은 착륙의 과제</h3>\n\n<p>일본 우주항공연구개발기구 JAXA의 MMX 프로젝트 매니저 카와카츠 야스히로의 설명에 따르면, 포보스 표면에 착륙하는 과정은 마치 바닥에 풍선을 떨어뜨리는 일과 유사합니다. 공중에 떠 있는 풍선을 바닥에 내릴 때 기울어지거나 다시 튕겨 나가지 않게 조절하는 것이 매우 어렵듯이, 극소 중력 환경에서는 아주 작은 충격으로도 탐사선이 튕겨 나갈 위험이 큽니다.</p>\n\n<p>과학적으로 포보스는 바위와 먼지가 헐겁게 뭉쳐진 '돌무더기(rubble pile)' 구조로 간주됩니다. 자체 질량이 작아 스스로 완벽한 구형을 이루지 못하고 먼지와 돌멩이가 느슨하게 결합되어 있어 착륙선이 지면에 닿는 순간 지형이 무너지거나 미끄러질 가능성이 존재합니다.</p>\n\n<p>이러한 한계를 극복하기 위해 최신 우주 탐사 분야에서는 자동 회피 기술과 로봇 기술의 결합이 활발하게 논의되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9nYzhRQ1dMcXFUNVRORDBTRXduZDROcmxMUGsyUFlSMm9zXzhreHVSdFl3S2hQNlBxbGFzMlFTRVMtbG82RGxEdFNwZ2pCUQ?oc=5\" target=\"_blank\" rel=\"noopener\">전자신문</a> 보도에 따르면 인공지능이 위험 지형을 스스로 피하며 표적을 찾는 기술 등 탐사 로버의 지능화가 적극적으로 추진되는 추세입니다.</p>\n\n<h3>MMX 미션의 발사와 여정</h3>\n\n<p>MMX 탐사선은 현지 시간 10월 20일 일본 다네가시마 우주포트에서 성공적으로 발사되었습니다. 이 탐사선은 화성을 향한 항해를 거쳐 2027년에 화성 궤도에 도착할 예정입니다.</p>\n\n<p>탐사선에는 미국 NASA를 비롯한 여러 우주 기구의 과학 장비와 함께 새로 개발된 로버 '이데픽스(Idefix)'가 탑재되었습니다. MMX는 화성 궤도에 진입한 후 엔진을 분사해 속도를 줄이고 포보스 주변을 돌며 관측과 착륙을 시도하게 됩니다.</p>\n\n<p>달과 화성 표면 탐사 분야에서 국가 간, 기업 간 협력도 활발해지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1iTldCVURLa1NrZmdHaC10QzBlNmF6M3EzN2JCR2tYeXpTZk5FUnYtTUNiZmJfUTcxaXQ3c1Rfc1EwQWNTZndZcHU3SzBmQTBDWmVoQ0RYWVJpUWhFWVNqOE5sLU5fNWFZNk15Tg?oc=5\" target=\"_blank\" rel=\"noopener\">유니콘팩토리</a>의 보도처럼 우주 기지 건설 및 탐사 로봇 분야에서의 공동 협력이 강화되고 있는 만큼, 이번 MMX 미션이 거둘 성과에 세계 우주 과학계의 관심이 쏠리고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 포보스는 화성의 유일한 위성인가요?</h4>\n<p>아닙니다. 화성에는 포보스 외에도 '데이모스(Deimos)'라는 또 다른 작은 위성이 존재합니다. 두 위성 모두 그리스 신화 속 신들의 이름에서 유래되었습니다.</p>\n\n<h4>🔸 포보스의 기원에 대해 알려진 이론은 무엇인가요?</h4>\n<p>대표적인 이론은 두 가지입니다. 하나는 화성과 목성 사이의 소행성대에 있던 소행성이 화성의 중력에 잡혔다는 설이고, 다른 하나는 대형 천체가 화성에 충돌했을 때 튀어나간 파편들이 모여 형성되었다는 설입니다.</p>\n\n<h4>🔸 MMX 탐사선에는 어떤 기관들이 참여하나요?</h4>\n<p>일본 우주항공연구개발기구 JAXA가 주도하며, 미국 NASA를 포함한 세계 여러 우주 기구들이 과학 탐사 장비 개발 및 탐사선 운용에 공동으로 참여하고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>중력이 거의 없는 포보스 착륙 기술 도전의 핵심은 지구 중력의 1,800분의 1 수준인 극소 중력 환경과 돌무더기로 이루어진 불안정한 지형에서 탐사선이 튕겨 나가지 않도록 제어하는 것입니다. MMX 탐사선은 2027년 화성 궤도에 도착하여 표면 샘플 채취와 표면 로버 운용이라는 전례 없는 미션을 수행하게 됩니다.</p>\n\n<p>앞으로 소행성이나 미세중력 위성 탐사 뉴스를 접할 때는 두 가지 기준을 확인할 수 있습니다. 첫째는 해당 천체의 지형이 암석 파편이 뭉친 '돌무더기(rubble pile)' 구조인지 여부이며, 둘째는 착륙선이 지면에 닿을 때 튕겨 나가지 않도록 제어하는 접지 방식과 중력 대비 추진 제어 기술입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 포보스 탐사는 지구 중력 1,800분의 1 환경에서 튕겨 나가지 않고 안정적으로 착륙하는 기술적 한계에 도전하는 미션입니다.</p>\n\n태그: MMX 포보스 우주탐사 미세중력 화성위성",
+  "2": "<h1>중력 거의 없는 화성 위성 포보스 착륙 기술 도전</h1>\n<!-- 화성의 위성 포보스 탐사 미션 MMX가 성공적으로 발사되었습니다. 지구 중력의 1/1,800 수준인 미세중력과 불안정한 지형을 극복하고 착륙을 시도하는 기술적 배경을 살펴봅니다. -->\n\n<p>일본의 화성 위성 탐사 미션인 MMX가 10월 20일 다네가시마 우주포트에서 H3 로켓에 탑재되어 성공적으로 발사되었습니다. 이번 미션의 핵심 목표는 화성의 위성인 포보스에 착륙하여 표면 샘플을 채취하는 것입니다.</p>\n\n<p>지구 중력과 비교했을 때 거의 중력이 존재하지 않는 환경에 착륙해야 하므로 탐사선은 이전에 겪지 못한 독특한 물리적 한계와 마주하게 됩니다. 화성의 미세중력 위성에 안전하게 접근하고 착륙하기 위해 필요한 기술적 과제들을 정리해 봅니다.</p>\n\n<h3>포보스의 미세중력 환경</h3>\n\n<p>화성의 위성 포보스는 우리가 흔히 떠올리는 둥근 달의 형태와는 크게 다릅니다. 이 위성은 울퉁불퉁한 감자 모양을 하고 있으며, 가장 긴 쪽의 길이가 약 27킬로미터에 불과합니다. 표면에는 미국 항공우주국 NASA의 화성 정찰 위성이 촬영한 폭 약 9킬로미터 크기의 거대한 스틱니 크레이터가 크게 자리 잡고 있습니다.</p>\n\n<p>포보스의 표면 중력은 지구 중력의 1/1,800 수준으로 매우 약합니다. 지구에서 일반적인 성인의 무게가 포보스 표면에 서게 된다면 마치 지구에서 테니스 공 하나가 누르는 정도의 무게감만 남게 됩니다.</p>\n\n<p>학술 논문 공개 색인 OpenAlex 자료에 따르면, 화성 위성이나 소행성 등 미세중력 천체 탐사 관련 데이터와 학계의 연구 관심은 기술적 도전 과제 해결을 중심으로 최근 지속적으로 논의되고 있습니다.</p>\n\n<table>\n<tr>\n<th>구분</th>\n<th>특징 및 치수</th>\n</tr>\n<tr>\n<td>형태</td>\n<td>울퉁불퉁한 감자 모양</td>\n</tr>\n<tr>\n<td>길이</td>\n<td>약 27 km</td>\n</tr>\n<tr>\n<td>중력 수준</td>\n<td>지구 중력의 1/1,800</td>\n</tr>\n<tr>\n<td>주요 지형</td>\n<td>폭 약 9 km의 스틱니 크레이터</td>\n</tr>\n</table>\n\n<h3>풍선 같은 착륙의 과제</h3>\n\n<p>일본 우주항공연구개발기구 JAXA의 MMX 프로젝트 매니저 카와카츠 야스히로의 설명에 따르면, 포보스 표면에 착륙하는 과정은 마치 바닥에 풍선을 떨어뜨리는 일과 유사합니다. 공중에 떠 있는 풍선을 바닥에 내릴 때 기울어지거나 다시 튕겨 나가지 않게 조절하는 것이 매우 어렵듯이, 극소 중력 환경에서는 아주 작은 충격으로도 탐사선이 튕겨 나갈 위험이 큽니다.</p>\n\n<p>과학적으로 포보스는 바위와 먼지가 헐겁게 뭉쳐진 돌무더기 구조로 간주됩니다. 자체 질량이 작아 스스로 완벽한 구형을 이루지 못하고 먼지와 돌멩이가 느슨하게 결합되어 있어 착륙선이 지면에 닿는 순간 지형이 무너지거나 미끄러질 가능성이 존재합니다.</p>\n\n<p>이러한 한계를 극복하기 위해 최신 우주 탐사 분야에서는 자동 회피 기술과 로봇 기술의 결합이 활발하게 논의되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9nYzhRQ1dMcXFUNVRORDBTRXduZDROcmxMUGsyUFlSMm9zXzhreHVSdFl3S2hQNlBxbGFzMlFTRVMtbG82RGxEdFNwZ2pCUQ?oc=5\" target=\"_blank\" rel=\"noopener\">전자신문</a> 보도에 따르면 인공지능이 위험 지형을 스스로 피하며 표적을 찾는 기술 등 탐사 로버의 지능화가 적극적으로 추진되는 추세입니다.</p>\n\n<h3>MMX 미션의 발사와 여정</h3>\n\n<p>MMX 탐사선은 현지 시간 10월 20일 일본 다네가시마 우주포트에서 성공적으로 발사되었습니다. 이 탐사선은 화성을 향한 항해를 거쳐 2027년에 화성 궤도에 도착할 예정입니다.</p>\n\n<p>탐사선에는 미국 NASA를 비롯한 여러 우주 기구의 과학 장비와 함께 새로 개발된 로버 '이데픽스(Idefix)'가 탑재되었습니다. MMX는 화성 궤도에 진입한 후 엔진을 분사해 속도를 줄이고 포보스 주변을 돌며 관측과 착륙을 시도하게 됩니다.</p>\n\n<p>지구 밖 표면 탐사 분야에서 국가 간, 기업 간 협력도 활발해지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1iTldCVURLa1NrZmdHaC10QzBlTmF6M3EzN2JCR2tYeXpTZk5FUnYtTUNiZmJfUTcxaXQ3c1Rfc1EwQWNTZndZcHU3SzBmQTBDWmVoQ0RYWVJpUWhFWVNqOE5sLU5fNWFZNk15Tg?oc=5\" target=\"_blank\" rel=\"noopener\">유니콘팩토리</a>의 보도처럼 우주 기지 건설 및 탐사 로봇 분야에서의 공동 협력이 강화되고 있는 만큼, 이번 MMX 미션이 거둘 성과에 세계 우주 과학계의 관심이 쏠리고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 포보스는 화성의 유일한 위성인가요?</h4>\n<p>아닙니다. 화성에는 포보스 외에도 '데이모스(Deimos)'라는 또 다른 작은 위성이 존재합니다. 두 위성 모두 그리스 신화 속 신들의 이름에서 유래되었습니다.</p>\n\n<h4>🔸 포보스의 기원에 대해 알려진 이론은 무엇인가요?</h4>\n<p>대표적인 이론은 두 가지입니다. 하나는 화성과 목성 사이의 소행성대에 있던 소행성이 화성의 중력에 잡혔다는 설이고, 다른 하나는 대형 천체가 화성에 충돌했을 때 튀어나간 파편들이 모여 형성되었다는 설입니다.</p>\n\n<h4>🔸 MMX 탐사선에는 어떤 기관들이 참여하나요?</h4>\n<p>일본 우주항공연구개발기구 JAXA가 주도하며, 미국 NASA를 포함한 세계 여러 우주 기구들이 과학 탐사 장비 개발 및 탐사선 운용에 공동으로 참여하고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>중력이 거의 없는 포보스 착륙 기술 도전의 핵심은 지구 중력의 1/1,800 수준인 극소 중력 환경과 돌무더기로 이루어진 불안정한 지형에서 탐사선이 튕겨 나가지 않도록 제어하는 것입니다. MMX 탐사선은 2027년 화성 궤도에 도착하여 표면 샘플 채취와 표면 로버 운용이라는 전례 없는 미션을 수행하게 됩니다.</p>\n\n<p>앞으로 미세중력 위성 탐사 뉴스를 볼 때 스스로 확인할 기준은 두 가지입니다. 첫째, 해당 천체가 지구 중력의 1/1,800 수준처럼 극도로 낮은 중력을 가진 환경인지 확인하는 것이며, 둘째는 크기 약 27km 수준의 소형 천체 표면 지형 및 스틱니 크레이터 같은 거대 충돌구 주변의 돌무더기 구조에서 충격을 흡수하는 방식입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 포보스 탐사는 지구 중력 1/1,800 환경에서 튕겨 나가지 않고 안정적으로 착륙하는 기술적 한계에 도전하는 미션입니다.</p>\n\n태그: MMX 포보스 우주탐사 미세중력 화성위성",
+  "3": "<h1>중력 거의 없는 화성 위성 포보스 착륙 기술 도전</h1>\n<!-- 화성의 위성 포보스 탐사 미션 MMX가 성공적으로 발사되었습니다. 지구 중력의 1/1,800 수준인 미세중력과 불안정한 지형을 극복하고 착륙을 시도하는 기술적 배경을 살펴봅니다. -->\n\n<p>일본의 화성 위성 탐사 미션인 MMX가 10월 20일 다네가시마 우주포트에서 H3 로켓에 탑재되어 성공적으로 발사되었습니다. 이번 미션의 핵심 목표는 화성의 위성인 포보스에 착륙하여 표면 샘플을 채취하는 것입니다.</p>\n\n<p>지구 중력과 비교했을 때 거의 중력이 존재하지 않는 환경에 착륙해야 하므로 탐사선은 이전에 겪지 못한 독특한 물리적 한계와 마주하게 됩니다. 필요한 기술적 과제들을 살펴봅니다.</p>\n\n<h3>포보스의 미세중력 환경</h3>\n\n<p>화성의 위성 포보스는 우리가 흔히 떠올리는 둥근 달의 형태와는 크게 다릅니다. 이 위성은 울퉁불퉁한 감자 모양을 하고 있으며, 가장 긴 쪽의 길이가 약 27킬로미터에 불과합니다. 표면에는 미국 항공우주국 NASA의 화성 정찰 위성이 촬영한 폭 약 9킬로미터 크기의 거대한 스틱니 크레이터가 크게 자리 잡고 있습니다.</p>\n\n<p>포보스의 표면 중력은 지구 중력의 1/1,800 수준으로 매우 약합니다. 지구에서 일반적인 성인의 무게가 포보스 표면에 서게 된다면 마치 지구에서 테니스 공 하나가 누르는 정도의 무게감만 남게 됩니다.</p>\n\n<p>표에 정리된 주요 특징들을 참고할 수 있습니다.</p>\n\n<table>\n<tr>\n<th>구분</th>\n<th>특징 및 치수</th>\n</tr>\n<tr>\n<td>형태</td>\n<td>울퉁불퉁한 감자 모양</td>\n</tr>\n<tr>\n<td>길이</td>\n<td>약 27 km</td>\n</tr>\n<tr>\n<td>중력 수준</td>\n<td>지구 중력의 1/1,800</td>\n</tr>\n<tr>\n<td>주요 지형</td>\n<td>폭 약 9 km의 스틱니 크레이터</td>\n</tr>\n</table>\n\n<p>학술 논문 공개 색인 OpenAlex 자료의 '달 착륙(lunar landing)' 검색 기준 논문 수 통계에 따르면, 관련 논문은 2021년 343편에서 2025년 489편으로 증가했습니다(2021년 대비 2025년 +42.6%). 올해 1월 1일부터 11월 8일까지는 502편이 나와 작년 같은 기간(438편) 대비 +14.6% 증가한 것으로 나타났습니다. 지표를 볼 때 주의할 점은 논문 수가 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지는 않으며, 최근 논문은 색인에 늦게 올라와 올해 숫자가 나중에 늘어날 수 있다는 점입니다.</p>\n\n<h3>풍선 같은 착륙의 과제</h3>\n\n<p>일본 우주항공연구개발기구 JAXA의 MMX 프로젝트 매니저 카와카츠 야스히로의 설명에 따르면, 포보스 표면에 착륙하는 과정은 마치 바닥에 풍선을 떨어뜨리는 일과 유사합니다. 공중에 떠 있는 풍선을 바닥에 내릴 때 기울어지거나 다시 튕겨 나가지 않게 조절하는 것이 매우 어렵듯이, 극소 중력 환경에서는 아주 작은 충격으로도 탐사선이 튕겨 나갈 위험이 큽니다.</p>\n\n<p>과학적으로 포보스는 바위와 먼지가 헐겁게 뭉쳐진 돌무더기 구조로 간주됩니다. 자체 질량이 작아 스스로 완벽한 구형을 이루지 못하고 먼지와 돌멩이가 느슨하게 결합되어 있어 착륙선이 지면에 닿는 순간 지형이 무너지거나 미끄러질 가능성이 존재합니다.</p>\n\n<p>이러한 한계를 극복하기 위해 최신 우주 탐사 분야에서는 자동 회피 기술과 로봇 기술의 결합이 활발하게 논의되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiTkFVX3lxTE9nYzhRQ1dMcXFUNVRORDBTRXduZDROcmxMUGsyUFlSMm9zXzhreHVSdFl3S2hQNlBxbGFzMlFTRVMtbG82RGxEdFNwZ2pCUQ?oc=5\" target=\"_blank\" rel=\"noopener\">전자신문</a> 보도에 따르면 인공지능이 위험 지형을 스스로 피하며 표적을 찾는 기술 등 탐사 로버의 지능화가 적극적으로 추진되는 추세입니다. 한편 유인 탐사의 필요성에 대한 의문이 제기되는 가운데, 로봇 탐사 기술의 발전이 우주 임무 수행의 중심 축으로 자리 잡고 있습니다.</p>\n\n<h3>MMX 미션의 발사와 여정</h3>\n\n<p>MMX 탐사선은 현지 시간 10월 20일 일본 다네가시마 우주포트에서 성공적으로 발사되었습니다. 이 탐사선은 화성을 향한 항해를 거쳐 2027년에 화성 궤도에 도착할 예정입니다.</p>\n\n<p>탐사선에는 미국 NASA를 비롯한 여러 우주 기구의 과학 장비와 함께 새로 개발된 로버 '이데픽스(Idefix)'가 탑재되었습니다. MMX는 화성 궤도에 진입한 후 엔진을 분사해 속도를 줄이고 포보스 주변을 돌며 관측과 착륙을 시도하게 됩니다.</p>\n\n<p>지구 밖 표면 탐사 분야에서 국가 간, 기업 간 협력도 활발해지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1iTldCVURLa1NrZmdHaC10QzBlTmF6M3EzN2JCR2tYeXpTZk5FUnYtTUNiZmJfUTcxaXQ3c1Rfc1EwQWNTZndZcHU3SzBmQTBDWmVoQ0RYWVJpUWhFWVNqOE5sLU5fNWFZNk15Tg?oc=5\" target=\"_blank\" rel=\"noopener\">유니콘팩토리</a>의 보도처럼 우주 기지 건설 및 탐사 로봇 분야에서의 공동 협력이 강화되고 있는 만큼, 이번 MMX 미션이 거둘 성과에 세계 우주 과학계의 관심이 쏠리고 있습니다. 민간 우주 기업 간 협력도 강화되어 <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTFBZd1JRQVpjLWthMGNVQ3ZqSWFEVkZfbXQ5NTJyT2loTmowSk1wa1lPR0llb0xnY2djNDZ1Si05ejVwbG40dk84Ml9McDV2cnVOd3JLU3dxUjBwbU1GdVlLUVFPUFh1T2Y0Yk1CbA?oc=5\" target=\"_blank\" rel=\"noopener\">로봇신문</a> 보도와 같이 파이어플라이와 하니비 로보틱스가 달 탐사 로버 분야에서 상호 협력하는 등 로보틱스 기술 결합 사례가 구체화되고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 포보스는 화성의 유일한 위성인가요?</h4>\n<p>아닙니다. 화성에는 포보스 외에도 '데이모스(Deimos)'라는 또 다른 작은 위성이 존재합니다. 두 위성 모두 그리스 신화 속 신들의 이름에서 유래되었습니다.</p>\n\n<h4>🔸 포보스의 기원에 대해 알려진 이론은 무엇인가요?</h4>\n<p>대표적인 이론은 두 가지입니다. 하나는 화성과 목성 사이의 소행성대에 있던 소행성이 화성의 중력에 잡혔다는 설이고, 다른 하나는 대형 천체가 화성에 충돌했을 때 튀어나간 파편들이 모여 형성되었다는 설입니다.</p>\n\n<h4>🔸 MMX 탐사선에는 어떤 기관들이 참여하나요?</h4>\n<p>일본 우주항공연구개발기구 JAXA가 주도하며, 미국 NASA를 포함한 세계 여러 우주 기구들이 과학 탐사 장비 개발 및 탐사선 운용에 공동으로 참여하고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>중력이 거의 없는 포보스 착륙 기술 도전의 핵심은 지구 중력의 1/1,800 수준인 극소 중력 환경과 돌무더기로 이루어진 불안정한 지형에서 탐사선이 튕겨 나가지 않도록 제어하는 것입니다. MMX 탐사선은 2027년 화성 궤도에 도착하여 표면 샘플 채취와 표면 로버 운용이라는 전례 없는 미션을 수행하게 됩니다.</p>\n\n<p>앞으로 미세중력 위성 탐사 뉴스를 볼 때 스스로 확인할 기준은 두 가지입니다. 첫째, 해당 천체가 지구 중력의 1/1,800 수준처럼 극도로 낮은 중력을 가진 환경인지 확인하는 것이며, 둘째는 크기 약 27km 수준의 소형 천체 표면 지형 및 스틱니 크레이터 같은 거대 충돌구 주변의 돌무더기 구조에서 충격을 흡수하는 방식입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 포보스 탐사는 지구 중력 1/1,800 환경에서 튕겨 나가지 않고 안정적으로 착륙하는 기술적 한계에 도전하는 미션입니다.</p>\n\n태그: MMX 포보스 우주탐사 미세중력 화성위성"
+ },
+ "minutes": 2.4
+}
