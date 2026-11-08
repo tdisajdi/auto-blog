@@ -8,6 +8,7 @@
   python lab_bench.py exam --check         시험지(lab/exam.json) 점검
   python lab_bench.py exam --run           시험지를 실제 검토 담당에게 풀림(AI 호출 - 깃허브 실행 lab_exam으로)
   python lab_bench.py exam --report        지금까지 푼 시험지 결과 모아 보기
+  python lab_bench.py compete [--fetch]    경쟁 글 비교(lab/compete.json의 검색 상위 글과 구조 비교. --fetch는 깃허브 lab_compete로)
 
 시험지 원칙(사용자와 정함 2026-11-08): 한 번 만든 자로만 재면 글이 자에 맞춰질 뿐이다 → 시험지도 계속 고친다. 단
   ① 새로 찾은 실패만 더한다(빼지 않음) ② 판이 바뀌면 version을 올리고 결과는 판끼리만 비교한다
@@ -523,6 +524,92 @@ def exam_main(args):
     return 0
 
 
+# ───────────────────────── ④ 경쟁 글 비교 ─────────────────────────
+# 사용자 제안(2026-11-08): 실제 독자·구글 평가는 공개 뒤 오래 걸리므로, 같은 질문으로 검색하면 위에 나오는 글과 지금 비교한다.
+# 본문은 저장하지 않고 구조만 잰다(분량·소제목·표·그림·숫자 수·FAQ·날짜·저자 표시). 우리가 배울 수 있는 것만 본다 -
+# 도메인 나이·링크 수 같은 '글 밖' 요인은 비교하지 않는다.
+COMPETE_FILE = os.path.join("lab", "compete.json")
+_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"}
+
+
+def page_features(html, site_chrome=True):
+    """글 구조 측정. site_chrome=False면 우리 초안(사이트 머리·날짜·저자는 워드프레스가 붙임)."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html or "", "html.parser")
+    raw = str(soup)[:300000]
+    for t in soup(["script", "style", "nav", "footer", "header", "aside", "form", "noscript"]):
+        t.decompose()
+    main = soup.find("article") or soup.find("main") or soup.body or soup
+    text = re.sub(r"\s+", " ", main.get_text(" ")).strip()
+    heads = [re.sub(r"\s+", " ", h.get_text(" ")).strip()[:60] for h in main.find_all(["h2", "h3"])]
+    heads = [h for h in heads if h]
+    nums = [n for n in numbers._numbers(text) if n[2] or n[3]]
+    return {"chars": len(text), "n_headings": len(heads), "headings": heads[:30],
+            "tables": len(main.find_all("table")), "images": len(main.find_all("img")), "numbers": len(nums),
+            "faq": bool(re.search(r"자주 묻는|FAQ|Q&A|질문과 답", text)),
+            "date": None if not site_chrome else bool(re.search(
+                r"(작성|게시|수정|업데이트|발행|입력)\s*(일|일시)?\s*[:：]?\s*20\d\d|20\d\d[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}", text[:4000] + raw[:40000])),
+            "author": None if not site_chrome else bool(re.search(r"글쓴이|작성자|기자|에디터|필자|rel=\"author\"|\"author\"", raw)),
+            "words": sorted(_tokens(" ".join(heads)))[:60], "_text": text}
+
+
+def fetch_compete(conf, get=None):
+    import requests
+    get = get or (lambda u: requests.get(u, headers=_UA, timeout=(8, 20)))
+    out = {"version": conf.get("version"), "topics": []}
+    for t in conf.get("topics", []):
+        pages = []
+        for u in t.get("urls", []):
+            try:
+                r = get(u)
+                if not r.ok:
+                    pages.append({"url": u, "ok": False, "status": r.status_code})
+                    continue
+                r.encoding = r.encoding if r.encoding and r.encoding.lower() != "iso-8859-1" else r.apparent_encoding
+                f = page_features(r.text)
+                f.pop("_text", None)
+                pages.append({"url": u, "ok": f["chars"] >= 500, "status": r.status_code, "features": f})
+            except Exception as e:
+                pages.append({"url": u, "ok": False, "status": type(e).__name__})
+        out["topics"].append({"id": t["id"], "query": t.get("query", ""), "pages": pages})
+    return out
+
+
+def _median(xs):
+    xs = sorted(x for x in xs if x is not None)
+    return xs[len(xs) // 2] if xs else None
+
+
+def compete_report(conf, result):
+    lines = [f"[경쟁 글 비교 {result.get('version')}판] 같은 질문으로 검색했을 때 위에 나오는 글과 구조 비교(본문 저장 안 함)"]
+    by_id = {t["id"]: t for t in result.get("topics", [])}
+    for t in conf.get("topics", []):
+        r = by_id.get(t["id"])
+        if not r:
+            continue
+        good = [p["features"] for p in r["pages"] if p.get("ok")]
+        lines.append(f"\n■ {t['id']} - '{t.get('query', '')}' (읽은 경쟁 글 {len(good)}/{len(r['pages'])})")
+        if not good:
+            continue
+        try:
+            d = json.load(open(t["ours"], encoding="utf-8"))
+            a = {"drafts": d["drafts"], "rounds": {str(s["step"]).split()[-1]: s for s in d.get("steps", [])
+                                                  if str(s.get("step", "")).startswith("편집장 검토")}}
+            ours = page_features(d["drafts"][final_round(a)], site_chrome=False)
+        except (OSError, ValueError, KeyError):
+            lines.append("  (우리 글 기록 없음)")
+            continue
+        for key, name in (("chars", "분량(글자)"), ("n_headings", "소제목 수"), ("tables", "표"), ("images", "그림"), ("numbers", "숫자 수")):
+            lines.append(f"  - {name}: 우리 {ours[key]} / 경쟁 중간값 {_median([g[key] for g in good])} (최대 {max(g[key] for g in good)})")
+        lines.append(f"  - FAQ 있는 경쟁 글 {sum(g['faq'] for g in good)}/{len(good)} (우리 {'있음' if ours['faq'] else '없음'})"
+                     f", 날짜 표시 {sum(bool(g['date']) for g in good)}/{len(good)}, 저자 표시 {sum(bool(g['author']) for g in good)}/{len(good)}")
+        cnt = Counter(w for g in good for w in set(g.get("words") or []))
+        body = ours["_text"]
+        gaps = [w for w, n in cnt.most_common() if n >= 2 and w not in body]
+        lines.append("  - 경쟁 글 2곳 이상의 소제목에 나오는데 우리 글엔 없는 말: " + (", ".join(gaps[:12]) or "없음"))
+    return "\n".join(lines)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -536,11 +623,29 @@ def main(argv=None):
     e.add_argument("--run", action="store_true")
     e.add_argument("--report", action="store_true")
     e.add_argument("--limit", type=int)
+    c = sub.add_parser("compete")
+    c.add_argument("--fetch", action="store_true")
     a = p.parse_args(argv)
     if a.cmd == "replay":
         print(replay(load_logs(since=a.since), lint, load_lint(a.vs) if a.vs else None))
     elif a.cmd == "score":
         print(scorecard(load_logs(since=a.since)))
+    elif a.cmd == "compete":
+        conf = json.load(open(COMPETE_FILE, encoding="utf-8"))
+        if a.fetch:
+            res = fetch_compete(conf)
+            from ondo.config import kst_now
+            os.makedirs(RESULT_DIR, exist_ok=True)
+            path = os.path.join(RESULT_DIR, f"compete-{kst_now():%Y%m%d-%H%M}.json")
+            json.dump(res, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+            print("저장:", path)
+        else:
+            runs = sorted(glob.glob(os.path.join(RESULT_DIR, "compete-*.json")))
+            if not runs:
+                print("경쟁 글 측정 결과 없음 - 깃허브 실행 lab_compete로 먼저 모으세요")
+                return 1
+            res = json.load(open(runs[-1], encoding="utf-8"))
+        print(compete_report(conf, res))
     else:
         return exam_main(a)
     return 0

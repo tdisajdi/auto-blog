@@ -100,3 +100,20 @@ assert len(res) == 7 and all(r["kind"] != "good" or not r["hit"] for r in res), 
 s = lb.summarize(res, 1)
 assert "공개 문제: 결함 잡음" in s and "숨긴 문제" in s and "judgement" in s and "실제 실패 0/1" in s, s
 print("exam ok")
+
+# 경쟁 글 비교(2026-11-08): 구조만 재고 본문은 저장하지 않음, 우리 글에 없는 공통 소제목 낱말을 찾음
+page = ("<html><head><script>x</script></head><body><header>메뉴</header><article><h1>제목</h1>"
+        "<p>작성일 2026.10.01 · 글쓴이 홍길동</p><h2>변동성과 일일 재조정</h2><p>" + "설명 " * 300 + "수익률 12.5% 손실 -5.45%</p>"
+        "<h2>세금과 계좌</h2><table><tr><td>1</td></tr></table><img src='a.png'><h3>자주 묻는 질문</h3></article></body></html>")
+f = lb.page_features(page)
+assert f["n_headings"] == 3 and f["tables"] == 1 and f["images"] == 1 and f["numbers"] >= 2 and f["faq"] and f["date"] and f["author"], f
+assert "메뉴" not in f["_text"] and "변동성" in f["words"], f
+class R:
+    def __init__(s, t, ok=True): s.text, s.ok, s.status_code, s.encoding, s.apparent_encoding = t, ok, 200 if ok else 404, "utf-8", "utf-8"
+conf = {"version": 1, "topics": [{"id": "lev", "ours": arts[0]["file"], "query": "레버리지",
+                                  "urls": ["http://a", "http://b", "http://c"]}]}
+res = lb.fetch_compete(conf, get=lambda u: R(page) if u != "http://c" else R("", ok=False))
+assert [p["ok"] for p in res["topics"][0]["pages"]] == [True, True, False] and "_text" not in res["topics"][0]["pages"][0]["features"]
+rep = lb.compete_report(conf, res)
+assert "읽은 경쟁 글 2/3" in rep and "표: 우리 0 / 경쟁 중간값 1" in rep and "재조정" in rep.split("우리 글엔 없는 말:")[1], rep
+print("compete ok")

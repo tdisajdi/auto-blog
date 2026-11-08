@@ -1,0 +1,63 @@
+{
+ "version": 1,
+ "about": "경쟁 글 비교(사용자 제안 2026-11-08): 같은 질문으로 검색했을 때 위에 나오는 글과 우리 글의 구조·다루는 내용을 비교. 본문은 저장하지 않고 구조(분량·소제목·표·숫자 수·날짜·저자 표시)만 잰다. 검색 결과 주소는 Claude가 검색해서 넣고, 판이 바뀌면 version을 올린다.",
+ "topics": [
+  {
+   "id": "leverage",
+   "ours": "logs/2026-11/07-guide-leverage-decay-2.json",
+   "query": "레버리지 ETF 음의 복리 장기투자 손실 이유",
+   "urls": [
+    "https://kbam.co.kr/insights/guide/leverage-inverse-etf-daily-reset-risk-guide",
+    "https://alphasquare.co.kr/home/insight/posts/fc97f96c-8fdf-4252-b3fd-26894f0c0842",
+    "https://thecheck.co.kr/?p=2080",
+    "https://brunch.co.kr/@coygray/613",
+    "https://brunch.co.kr/@kid008/1063"
+   ]
+  },
+  {
+   "id": "hedged",
+   "ours": "logs/2026-11/07-guide-hedged-vs-unhedged.json",
+   "query": "환헤지 환노출 ETF 차이",
+   "urls": [
+    "https://kbam.co.kr/insights/guide/etf-currency-hedged-vs-unhedged-guide",
+    "https://wikidocs.net/blog/@EcoFun/31320/",
+    "https://www.ebc.com/kr/forex/297252.html",
+    "https://biz.sbs.co.kr/amp/article/20000319076",
+    "https://bullstory.io/blog/etf-usd-완전-정리-달러-연동-etf-3가지-유형과-환헤지-선택-기준-2026"
+   ]
+  },
+  {
+   "id": "expense",
+   "ours": "logs/2026-11/07-guide-expense-ratio-3.json",
+   "query": "ETF 총보수 차이 장기 수익률 영향",
+   "urls": [
+    "https://v.daum.net/v/tSva8rqyt8",
+    "https://v.daum.net/v/9ZatGmHEgj",
+    "https://bullstory.io/hub/%EC%B4%9D%EB%B3%B4%EC%88%98",
+    "https://tilnote.io/pages/68838dce65132c82f71f9d58"
+   ]
+  },
+  {
+   "id": "dca",
+   "ours": "logs/2026-11/07-guide-dca-vs-lump-3.json",
+   "query": "적립식 거치식 ETF 비교",
+   "urls": [
+    "https://kbam.co.kr/insights/guide/etf-investment-lump-sum-vs-dollar-cost-averaging",
+    "https://news1425.tistory.com/10",
+    "https://jinyjinyya.tistory.com/793"
+   ]
+  },
+  {
+   "id": "dividend",
+   "ours": "logs/2026-11/07-guide-dividend-growth.json",
+   "query": "배당성장률 배당수익률 차이 SCHD",
+   "urls": [
+    "https://www.dividend-nomad.com/2026/04/schd-2026-10.html",
+    "https://brunch.co.kr/@nasky76/890",
+    "https://bullstory.io/blog/schd-단점-배당성장-둔화성장주-소외-잦은-종목-교체까지-데이터로-짚어본다",
+    "https://www.moneynestlab.com/dividend/schd",
+    "https://geekseo.tistory.com/1223"
+   ]
+  }
+ ]
+}
