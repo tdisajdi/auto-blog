@@ -468,6 +468,8 @@ def trend_interest_block(kw, interest):
 GOOGLE_SUGGEST_URL = "https://suggestqueries.google.com/complete/search"
 NAVER_SUGGEST_URL = "https://ac.search.naver.com/nx/ac"
 _SUGGEST_TAILS = ["", " 왜", " 장기", " 단점", " 차이", " 세금"]
+# 커뮤니티 이름·추천·무료 같은 말은 질문이 아니라 검색 습관이라 뺀다(2026-11-08 점검: '디시', '교육 무료')
+_SUGGEST_NOISE = re.compile(r"디시|갤러리|더쿠|클리앙|뽐뿌|나무위키|추천|무료|순위|주가|전망|사이트|어플|앱")
 
 
 def _suggest_google(q):
@@ -501,6 +503,8 @@ def search_questions_block(seed, limit=12):
     for tail in _SUGGEST_TAILS:
         for s in _suggest_google(seed + tail) + _suggest_naver(seed + tail):
             key = re.sub(r"\s+", "", s).lower()
+            if _SUGGEST_NOISE.search(s):
+                continue
             if key in seen or len(s) < len(seed) + 2 or len(s) > 30:
                 continue
             seen.add(key)
