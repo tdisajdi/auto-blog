@@ -35,7 +35,7 @@ assert [a["topic"] for a in arts] == ["a", "b", "c", "c", "x"], [a["file"] for a
 assert lb.final_round(arts[2]) == "2"
 
 # 고유 숫자: a는 계산값(-5.45%)을 본문에 씀, b는 안 씀(-7.77%가 본문에 없음), 공통 가정값(1억 원)은 세지 않음
-consts = lb.common_constants(arts, min_topics=2)
+consts = lb.common_constants(arts, min_topics=2, min_types=1)
 assert lb.unique_numbers(arts[0]["drafts"]["1"], arts[0]["facts"], consts) == ["-5.45%"] or \
     lb.unique_numbers(arts[0]["drafts"]["1"], arts[0]["facts"], consts) == ["5.45%"], lb.unique_numbers(arts[0]["drafts"]["1"], arts[0]["facts"], consts)
 assert lb.unique_numbers(arts[1]["drafts"]["1"], arts[1]["facts"], consts) == []

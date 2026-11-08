@@ -148,13 +148,16 @@ def _code_values(facts):
     return vals
 
 
-def common_constants(arts, min_topics=3):
-    """여러 주제의 계산 줄에 똑같이 나오는 숫자 = 가정값·세율(1억 원, 15.4% 등). 고유 숫자로 치지 않는다."""
-    seen = defaultdict(set)
+def common_constants(arts, min_topics=3, min_types=2):
+    """여러 주제·여러 글 종류의 계산 줄에 똑같이 나오는 숫자 = 가정값·세율(1억 원, 15.4% 등). 고유 숫자로 치지 않는다.
+    11-08: 같은 통계표를 쓴 인구사회 글 3편(외국인주민)의 구성비가 '여러 주제에 나옴'으로 걸러져 고유 숫자 0개로 잘못 셈 →
+    한 종류 안에서만 반복되는 숫자는 가정값이 아니라 같은 자료이므로 글 종류도 2개 이상일 때만 상수로 본다."""
+    seen, kinds = defaultdict(set), defaultdict(set)
     for a in arts:
         for v in _code_values(a["facts"]):
             seen[v].add(a["topic"])
-    return {v for v, t in seen.items() if len(t) >= min_topics}
+            kinds[v].add(a["type"])
+    return {v for v, t in seen.items() if len(t) >= min_topics and len(kinds[v]) >= min_types}
 
 
 def unique_numbers(html, facts, constants=()):
