@@ -205,3 +205,8 @@ from ondo.checks import lint as _lt
 assert any("적절합니다" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "이쪽을 고르는 것이 적절합니다.</p>")[1])
 assert not any("적절" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "이 방식이 적절한지 확인합니다.</p>")[1])
 print("advice wording ok")
+
+# 2026-11-08: 기사 표현을 따옴표로 인용한 '사상 최대'는 허용, 단정은 막음
+assert not any("사상 최대" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "현물과 선물 차이가 '사상 최대'로 벌어졌다고 보도했습니다.</p>")[1])
+assert any("사상 최대" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "가격 차이가 사상 최대로 벌어졌습니다.</p>")[1])
+print("quoted superlative ok")
