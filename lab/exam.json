@@ -1,0 +1,73 @@
+{
+ "version": 1,
+ "about": "검토 담당 시험지. 원칙: 새로 찾은 실패만 더한다(빼지 않음) / 판을 바꾸면 version을 올리고 결과는 같은 판끼리만 비교 / hidden 문제는 규칙을 고칠 때 보지 않는다.",
+ "history": [
+  "1판(2026-11-08): 좋은 초안 6(숨김 2) × 변형 2 + 실제로 통과했던 나쁜 초안 3(숨김 1)"
+ ],
+ "mutations": [
+  "wrong_number",
+  "judgement",
+  "invented_source",
+  "fake_fact",
+  "repeat_para"
+ ],
+ "mutations_per_base": 2,
+ "bases": [
+  {
+   "id": "g-leverage",
+   "file": "logs/2026-11/07-guide-leverage-decay-2.json",
+   "round": 1
+  },
+  {
+   "id": "g-cmp-voo-qqq",
+   "file": "logs/2026-11/07-comparison-voo-qqq-5.json",
+   "round": 2
+  },
+  {
+   "id": "g-issue-rates",
+   "file": "logs/2026-11/06-issue-rates-3.json",
+   "round": 2
+  },
+  {
+   "id": "g-society-marriage",
+   "file": "logs/2026-11/07-society-society-다문화-혼인-통계-다문화-인구동태-다문화-가구-특성.json",
+   "round": 2
+  },
+  {
+   "id": "g-mdd",
+   "file": "logs/2026-11/07-guide-mdd-risk-3.json",
+   "round": 2,
+   "hidden": true
+  },
+  {
+   "id": "g-analysis-voo",
+   "file": "logs/2026-11/07-analysis-voo-5.json",
+   "round": 2,
+   "hidden": true
+  }
+ ],
+ "real": [
+  {
+   "id": "r-tax-overclaim",
+   "file": "logs/2026-10/31-guide-overseas-vs-domestic-tax-6.json",
+   "round": 2,
+   "expect": "월등|유리|권유|단정|과장",
+   "why": "'절세 측면에서 월등히 유리합니다' - 그때 0.97로 통과(권유·과장)"
+  },
+  {
+   "id": "r-hedge-numberless",
+   "file": "logs/2026-11/07-guide-hedged-vs-unhedged-2.json",
+   "round": 1,
+   "expect": "유리|단정|근거|숫자",
+   "why": "'환헤지 ETF가 방어에 유리합니다' - 숫자 없는 판단"
+  },
+  {
+   "id": "r-covered-superior",
+   "file": "logs/2026-11/07-guide-covered-call-structure.json",
+   "round": 1,
+   "expect": "우월|과장|단정",
+   "why": "'…보다 우월했습니다' - 과장 표현",
+   "hidden": true
+  }
+ ]
+}
