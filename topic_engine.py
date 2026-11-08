@@ -407,7 +407,9 @@ def papers_block(keyword):
         return ""
     now = datetime.now()
     y = now.year
-    d = _openalex({"search": keyword, "group_by": "publication_year", "per_page": 200})
+    # 제목·초록에서만 찾는다('search'는 본문 전체까지 찾아 숫자가 부풀고 자료 이름표 '제목·초록 기준'과 어긋남, 2026-11-08 점검)
+    q = f"title_and_abstract.search:{keyword.replace(',', ' ')}"
+    d = _openalex({"filter": q, "group_by": "publication_year", "per_page": 200})
     if not d:
         return ""
     counts = {}
@@ -422,7 +424,7 @@ def papers_block(keyword):
     md = f"{now:%m-%d}"
 
     def _n(a, b):
-        r = _openalex({"search": keyword, "filter": f"from_publication_date:{a},to_publication_date:{b}", "per_page": 1})
+        r = _openalex({"filter": f"{q},from_publication_date:{a},to_publication_date:{b}", "per_page": 1})
         return (r or {}).get("meta", {}).get("count")
     this, last = _n(f"{y}-01-01", f"{y}-{md}"), _n(f"{y - 1}-01-01", f"{y - 1}-{md}")
     lines = [f"[공식 자료 - 학술 논문 공개 색인 OpenAlex, 검색어 '{keyword}'(영어 제목·초록 기준), {now:%Y-%m-%d} 조회]",
