@@ -99,6 +99,9 @@ res = lb.run_exam(exam, fake_review)
 assert len(res) == 7 and all(r["kind"] != "good" or not r["hit"] for r in res), res
 s = lb.summarize(res, 1)
 assert "공개 문제: 결함 잡음" in s and "숨긴 문제" in s and "judgement" in s and "실제 실패 0/1" in s, s
+res2 = lb.run_exam(exam, lambda h, f, c: None)
+assert all(r["failed"] and r["hit"] is None for r in res2)
+assert "측정 못 한 문제 7개" in lb.summarize(res2, 1) and "측정된 문제 없음" in lb.summarize(res2, 1)
 print("exam ok")
 
 # 경쟁 글 비교(2026-11-08): 구조만 재고 본문은 저장하지 않음, 우리 글에 없는 공통 소제목 낱말을 찾음

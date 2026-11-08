@@ -450,7 +450,8 @@ def caught(item, lint_issues, review_issues, base_lint=()):
 
 
 def run_exam(exam, review_fn, limit=None):
-    """review_fn(html, facts, category) → 검토 지적 목록. 결과를 모아 돌려준다."""
+    """review_fn(html, facts, category) → 검토 지적 목록, 또는 None(검토 담당이 아무도 답하지 않음 = 측정 실패).
+    2026-11-08 첫 실행: 키 파일을 안 읽어 21문제 모두 '답 없음'이었는데 '못 잡음'으로 셌음 → 실패는 따로 센다."""
     items = plan_exam(exam, limit)
     base_lint = {}
     res = []
@@ -458,17 +459,23 @@ def run_exam(exam, review_fn, limit=None):
         h, li, _fx = lint.fix_and_check(it["html"])
         if it["kind"] == "good":
             base_lint[it["id"]] = lint.blocking(li)
-        found = review_fn(h, it["facts"], it["category"]) or []
-        hit = caught(it, li, found, base_lint.get(it.get("base"), ()))
+        found = review_fn(h, it["facts"], it["category"])
+        failed = found is None
+        found = found or []
+        hit = None if failed else caught(it, li, found, base_lint.get(it.get("base"), ()))
         res.append({"id": it["id"], "kind": it["kind"], "mutation": it.get("mutation"), "hidden": it["hidden"],
-                    "hit": hit, "issues": [f"[{f.get('severity')}·{f.get('by', '')}] {f.get('quote', '')[:50]} → "
+                    "hit": hit, "failed": failed, "issues": [f"[{f.get('severity')}·{f.get('by', '')}] {f.get('quote', '')[:50]} → "
                                            f"{f.get('problem', '')[:80]}" for f in found][:8],
                     "lint": lint.blocking(li)[:4]})
     return res
 
 
 def summarize(res, version):
-    lines = [f"[시험지 {version}판] 문제 {len(res)}개"]
+    bad = [r for r in res if r.get("failed") or r.get("hit") is None]
+    lines = [f"[시험지 {version}판] 문제 {len(res)}개" + (f" - 검토 담당이 답하지 않아 측정 못 한 문제 {len(bad)}개(비율에서 뺌)" if bad else "")]
+    res = [r for r in res if r not in bad]
+    if not res:
+        return "\n".join(lines + ["- 측정된 문제 없음 - 키·한도·접속을 확인할 것"])
     for hidden in (False, True):
         part = [r for r in res if r["hidden"] == hidden]
         if not part:
@@ -506,13 +513,18 @@ def exam_main(args):
             for name, res in lst:
                 print(name + "\n" + summarize(res, v))
         return 0
+    try:                                 # 키 파일(.env) - 다른 실행 진입점(blog_engine)처럼 먼저 읽는다
+        from dotenv import load_dotenv
+        load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+    except ImportError:
+        pass
     from ondo.checks.editlog import EditLog
     from ondo.writing import desk
     log = EditLog("lab", "exam", "시험지")
 
     def review_fn(html, facts, category):
-        _score, found = desk.review(html, facts, category, log, 1)
-        return found
+        score, found = desk.review(html, facts, category, log, 1)
+        return None if score is None else found
     res = run_exam(exam, review_fn, args.limit)
     from ondo.config import kst_now
     os.makedirs(RESULT_DIR, exist_ok=True)
