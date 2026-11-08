@@ -435,7 +435,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         if not html:
             fail = next((st for st in reversed(log.data["steps"]) if st["step"] == "쓰기 실패"), {})
             limited = "한도" in str(fail.get("reason", "")) or r.limited
-            log.data["result"]["reason"] = ("좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 4시쯤 "
+            log.data["result"]["reason"] = ("좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 5시쯤(서머타임 기간 4시) "
                                             "한도가 풀린 뒤 다시 시도해 주세요" if limited
                                             else f"섹션별 쓰기 실패({fail.get('part', '?')}: {fail.get('reason', '답이 없음')})")
             return None

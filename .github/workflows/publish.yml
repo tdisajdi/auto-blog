@@ -72,6 +72,11 @@ on:
         required: false
         type: boolean
         default: false
+      lab_exam:
+        description: '검토 담당 시험지 풀기 - 정답을 아는 초안으로 검토가 결함을 잡는지 잼 (발행 안 함, AI 호출 약 60번)'
+        required: false
+        type: boolean
+        default: false
       check_trends:
         description: '구글 트렌드 조회가 되는지 점검 (발행 안 함)'
         required: false
@@ -449,6 +454,10 @@ jobs:
           fi
           if [ "${{ github.event.inputs.check_sources }}" = "true" ]; then
             python topic_engine.py --check-sources
+            exit 0
+          fi
+          if [ "${{ github.event.inputs.lab_exam }}" = "true" ]; then
+            python lab_bench.py exam --run || echo "시험지 실행 실패"
             exit 0
           fi
           if [ "${{ github.event.inputs.etf_discover }}" = "true" ]; then
