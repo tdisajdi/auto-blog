@@ -135,6 +135,13 @@ def fix_and_check(html):
             if not quoted:
                 issues.append(f"금지 표현 '{m.group(0)}': {why}")
                 break
+    # 답이 '자료에 없다'뿐인 FAQ(11-08 사람 눈 읽기: 인구사회 글 FAQ 3개 중 2개가 "자료에 명시되어 있지 않습니다"로 끝남 - 독자에게 쓸모 없음)
+    faq = re.search(r"자주 묻는 질문(.*?)(<h[23][^>]*>[^<]*(정리|마무리)|$)", h, flags=re.S)
+    if faq:
+        empty = [q for q in re.findall(r"<p[^>]*>(.*?)</p>", faq.group(1), flags=re.S)
+                 if re.search(r"(명시되어|포함되어|나와|담겨) 있지 않|자료에(는)? (없|포함되지 않)|확인할 수 없", text_of(q))]
+        if empty:
+            issues.append(f"답이 없는 FAQ {len(empty)}개 - 답이 '자료에 없다'뿐인 질문은 빼고, 자료로 답할 수 있는 질문만 남길 것")
     puff = [w for w in PUFFERY if w in text]
     if puff:
         issues.append(f"{SOFT}꾸밈말 {', '.join(puff[:4])} - 숫자나 사실로 바꿀 수 있으면 바꿀 것")
