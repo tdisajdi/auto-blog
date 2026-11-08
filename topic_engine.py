@@ -217,13 +217,15 @@ def _link_candidates(title_seed):
 
 def produce_article(*, kind_label, title_seed, facts_text, rules, category_label, article_type, topic_id,
                     memo="", closing_html="", meta=None, chart=None, visual_html="",
-                    drawer=None, drawer_html=None, top_html="", extra_data=None, must_answer=None):
+                    drawer=None, drawer_html=None, top_html="", extra_data=None, must_answer=None, search_seed=""):
     """편집국(ondo/writing/desk.py)에서 글 쓰기 → 조립 → 중복 검사 → 발행/임시글 → 기록 → 텔레그램.
     단계마다 무슨 일이 있었는지는 편집 기록부(logs/)에 남는다.
     drawer/drawer_html: 시각 자료 서랍(ETF 종목 분석) - 기획이 고른 것만 정해진 섹션 뒤에 넣는다.
     top_html: 글 맨 위 띠(온도 서명). extra_data: 기록부에 같이 남길 자료(종목 분석의 시리즈 추적용 숫자).
     반환: (상태 "publish"/"draft"/"failed", 제목, 주소)"""
     print(f"📋 [{kind_label}] {title_seed} - 편집국 시작")
+    if search_seed and "[독자가 실제로 검색하는 말" not in facts_text:
+        facts_text = facts_text + "\n" + search_questions_block(search_seed)
     log = EditLog(article_type, topic_id, title_seed, category=os.environ.get("BLOG_CATEGORY", ""))
     try:
         result = write_article(kind_label=kind_label, title_seed=title_seed, facts_text=facts_text, rules=rules,
@@ -458,6 +460,60 @@ def trend_interest_block(kw, interest):
     return "\n".join(l for l in lines if l) + "\n"
 
 
+# ------------------------------------------------------------
+# 독자가 실제로 검색하는 말(2026-11-08): 경쟁 글 비교 결과 - 상위 글은 FAQ에 실제 검색 질문을 10개 안팎 둠.
+# 분량을 억지로 늘리지 않고, 자동완성에 나오는 말 가운데 자료로 답할 수 있는 것만 FAQ에 쓰게 한다.
+# 비교한 방법: 구글 '함께 묻는 질문'(검색 결과 화면을 긁어야 해 불안정·유료 API) / 구글·네이버 자동완성(무료, 키 없음) → 자동완성 둘을 합침.
+# ------------------------------------------------------------
+GOOGLE_SUGGEST_URL = "https://suggestqueries.google.com/complete/search"
+NAVER_SUGGEST_URL = "https://ac.search.naver.com/nx/ac"
+_SUGGEST_TAILS = ["", " 왜", " 장기", " 단점", " 차이", " 세금"]
+
+
+def _suggest_google(q):
+    try:
+        r = requests.get(GOOGLE_SUGGEST_URL, params={"client": "firefox", "hl": "ko", "gl": "kr", "q": q},
+                         headers=UA, timeout=(5, 10))
+        data = r.json() if r.ok else []
+        return [str(x) for x in (data[1] if len(data) > 1 else [])]
+    except Exception as e:
+        print(f"ℹ️ 구글 자동완성 실패: {type(e).__name__}")
+        return []
+
+
+def _suggest_naver(q):
+    try:
+        r = requests.get(NAVER_SUGGEST_URL, params={"q": q, "st": 100, "r_format": "json", "q_enc": "utf-8",
+                                                    "r_enc": "utf-8", "frm": "nv"}, headers=UA, timeout=(5, 10))
+        items = (r.json().get("items") or [[]])[0] if r.ok else []
+        return [str(it[0] if isinstance(it, list) else it) for it in items]
+    except Exception as e:
+        print(f"ℹ️ 네이버 자동완성 실패: {type(e).__name__}")
+        return []
+
+
+def search_questions_block(seed, limit=12):
+    """seed(짧은 검색어)로 구글·네이버 자동완성을 모아 자료 블록으로. 없으면 ""."""
+    seed = str(seed or "").strip()
+    if not seed:
+        return ""
+    seen, out = {re.sub(r"\s+", "", seed).lower()}, []
+    for tail in _SUGGEST_TAILS:
+        for s in _suggest_google(seed + tail) + _suggest_naver(seed + tail):
+            key = re.sub(r"\s+", "", s).lower()
+            if key in seen or len(s) < len(seed) + 2 or len(s) > 30:
+                continue
+            seen.add(key)
+            out.append(s.strip())
+        if len(out) >= limit:
+            break
+    if len(out) < 3:
+        return ""
+    return (f"[독자가 실제로 검색하는 말 - 구글·네이버 자동완성 '{seed}', {datetime.now():%Y-%m-%d}. 사실 자료가 아님. "
+            "'자주 묻는 질문'은 여기서 고르되 위 자료로 답할 수 있는 것만 자연스러운 질문 문장으로 쓰고, 답할 자료가 없으면 넣지 마세요. "
+            "검색어 문구를 그대로 제목·본문에 끼워 넣지 마세요]\n" + "\n".join(f"- {x}" for x in out[:limit]) + "\n")
+
+
 _TREND_EXCLUDE_HINT = "사람 이름(연예인·정치인·운동선수 포함), 사건사고·범죄·재난·사망, 정치·선거, 스포츠 경기 결과, 특정 방송 회차"
 
 
@@ -491,7 +547,7 @@ def discover_trend():
         chart = ({"title": f"'{kw}' 구글 검색 관심도 (최근 3개월)", "unit": "", "kind": "line",
                   "source": "Google Trends (기간 내 최고점 = 100인 상대지수)", "values": series,
                   "labels": ["3개월 전"] + [""] * (len(series) - 2) + ["최근"]} if len(series) >= 10 else None)
-        out.append({"category": "trend", "topic_key": f"trend:{_slug(kw)}", "chart": chart,
+        out.append({"category": "trend", "topic_key": f"trend:{_slug(kw)}", "chart": chart, "search_seed": kw,
                     "title_seed": f"요즘 '{kw}'에 관심이 몰리는 이유",
                     "facts_text": facts, "news": news, "score": 1.0 + min(max(momentum, 0) / 100, 1.0),
                     "reason": f"구글 급상승 검색어 '{kw}' - {p.get('why', '')}", "source_note": "구글 트렌드, 구글 뉴스"})
@@ -528,6 +584,7 @@ def discover_tech():
     facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
              f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "tech", "topic_key": f"tech:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
+             "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": 1.0, "reason": pick.get("why", ""), "source_note": it["source"]}]
 
 
@@ -571,6 +628,7 @@ def discover_bio():
     facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
              f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "bio", "topic_key": f"bio:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
+             "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": strength(it), "reason": pick.get("why", ""), "source_note": it["source"]}]
 
 
@@ -1006,6 +1064,7 @@ def run_check_sources():
     _check_returns(["SCHD", "SPY", "QQQ", "TLT", "VOO"])
     print("=== 두 번째 글 공식 자료(2026-11-08): 임상시험 등록소·OpenAlex 접속 ===")
     print(clinical_trials_block("obesity", "semaglutide") or "임상시험 등록소: 결과 없음(접속 실패?)")
+    print(search_questions_block("레버리지 ETF") or "자동완성: 결과 없음(접속 실패?)")
     print(papers_block("solid-state battery") or "OpenAlex: 결과 없음(접속 실패?)")
     print("=== EIA (미국 원유 재고) ===")
     print(_eia_weekly("oil") or "원유: 결과 없음 (키 없음 또는 조회 실패)")
@@ -1115,7 +1174,7 @@ def discover_energy():
              "뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n"
              + (f"\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n{compare}" if compare else "")
              + f"{_eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))}\n[관련 뉴스]\n{_news_block(news)}\n")
-    return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news,
+    return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news, "search_seed": f"{best['name']} 가격",
              # 제목은 자료로 답할 수 있는 것만 약속한다(국내 기름값 자료가 없어 '생활에 미치는 영향'에 답을 못 했음, 2026-11-03)
              # '배경'·'전망'도 약속하지 않는다: 원인 자료가 없어 독자 가치 검토가 '제목 질문에 답 못함'으로 지적(2026-11-03 ?p=257)
              "title_seed": f"{best['name']} 가격 {move} 지금 위치: 1년 범위·재고·해외 가격으로 보기"
@@ -1164,6 +1223,7 @@ def discover_society():
     note = "국가통계포털(KOSIS) 공식 통계, 통계 발표 관련 보도(구글 뉴스)"
     chart = _kosis_chart(tb, sm)
     out.append({"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
+                "search_seed": pick.get("keywords_ko") or "",
                 "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
                 "score": 1.1, "reason": pick.get("why", ""), "source_note": note, "chart": chart})
     return out
@@ -1215,7 +1275,7 @@ def _kosis_candidates():
             strength = min(abs(sm["rel"] or 0) / 10, 0.6)
         news = google_news(f"{tb['name']} 통계", 5)
         facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
-        cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm),
+        cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm), "search_seed": tb["name"],
                       # 어느 글에나 붙는 꼬리('숫자로 본 우리 사회의 변화') 대신 자료가 답하는 사실을 제목에(2026-11-03)
                       "title_seed": f"{period} {name} {value}, {_kosis_position(sm)}, 흐름과 의미 정리",
                       "facts_text": facts, "score": 1.2 + strength,
@@ -1338,7 +1398,7 @@ def run_confirmed():
         closing_html=closing_block(ctx.get("source_note", ""), ctx.get("news", []),
                                    "<br/>건강·치료에 관한 결정은 반드시 의료진과 상의하세요." if ctx["category"] == "bio" else ""),
         meta={"topic_key": ctx["topic_key"]},
-        chart=ctx.get("chart"),
+        chart=ctx.get("chart"), search_seed=ctx.get("search_seed", ""),
     )
 
 

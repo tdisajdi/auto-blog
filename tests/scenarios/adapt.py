@@ -76,4 +76,14 @@ trend_engine.get_interest=lambda kws, geo, timeframe: {}
 assert te.discover_trend()==[]           # 관심도 자료가 없으면 쓰지 않음
 cb=te.closing_block("출처", te.google_news("x",2))
 assert "<b>" not in cb and "&lt;b&gt;" in cb
+# 2026-11-08: 독자가 실제로 검색하는 말(구글·네이버 자동완성)을 FAQ 자료로 - 사실 자료가 아니라는 표시, 너무 적으면 안 붙임
+te._suggest_google = lambda q: [q, q + " 뜻", "레버리지 ETF 장기투자 손실", "레버리지 ETF 추천 종목 순위 2026 최신 정리 모음 총정리 보기"]
+te._suggest_naver = lambda q: ["레버리지 ETF 세금", "레버리지 etf 세금"]
+qb = te.search_questions_block("레버리지 ETF")
+assert qb.startswith("[독자가 실제로 검색하는 말") and "사실 자료가 아님" in qb and "- 레버리지 ETF 장기투자 손실" in qb, qb
+assert qb.lower().count("- 레버리지 etf 세금\n") == 1 and "총정리 보기" not in qb and "\n- 레버리지 ETF\n" not in qb, qb
+te._suggest_google = lambda q: []
+te._suggest_naver = lambda q: []
+assert te.search_questions_block("레버리지 ETF") == "" and te.search_questions_block("") == ""
+print("search questions ok")
 print("adapters ok")
