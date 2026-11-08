@@ -699,6 +699,10 @@ def _eia_weekly(kind):
         if len(vals) >= 53:
             p0, v0 = vals[52]
             line += f", 1년 전({p0}) {v0:,.0f} 대비 {(recent[0][1] / v0 - 1) * 100:+.1f}%"
+        if unit.startswith("천 배럴"):
+            # 11-08 에너지 시험: '409,760천 배럴'을 작가가 '4억 976만 천 배럴'로 잘못 바꿔 '치명' → 읽는 단위로 코드가 바꿔 준다
+            b = recent[0][1] * 1000
+            line += f" (최근 값을 읽는 단위로: 약 {b / 1e8:.2f}억 배럴 = {round(b / 1e4):,}만 배럴, 코드 계산)"
         return line + "\n"
     except Exception as e:
         print(f"ℹ️ EIA 조회 실패({kind}): {type(e).__name__}")
