@@ -146,6 +146,7 @@ _orig = _an.same_period_block
 _an.same_period_block = lambda pair, closes=None: f"[같은 기간 비교]\n- {_an.TWIN_MARK}: 거의 같이 움직였다"
 fs = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
 assert "[두 ETF를 고를 때 남는 차이" in fs and "상장 이후 연평균" not in fs and "0.1%p 더 높은" not in fs, fs
+assert "매매차익 세금 예시" not in fs and "금융소득종합과세" not in fs and "- 계좌:" not in fs and "세금·계좌 조건" in fs, fs
 _an.same_period_block = lambda pair, closes=None: "[같은 기간 비교]\n- 차이 큼"
 fs2 = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
 assert "[두 ETF를 고를 때 남는 차이" not in fs2 and "상장 이후 연평균" in fs2

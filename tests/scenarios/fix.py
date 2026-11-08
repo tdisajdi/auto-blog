@@ -200,3 +200,8 @@ assert lint.vague_comparisons("<p>QQQ의 낙폭 -35.12%는 SHY보다 훨씬 컸�
 _, iss13, _ = lint.fix_and_check("<h1>t</h1><p>환헤지 ETF가 방어에 유리합니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
 assert [i for i in iss13 if i.startswith("[참고] 숫자 없는 판단 비교")], iss13
 print("vague comparison soft ok")
+# 2026-11-08: 선택을 권하는 '~하는 것이 적절합니다'는 막고, '적절한지 확인'은 그대로
+from ondo.checks import lint as _lt
+assert any("적절합니다" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "이쪽을 고르는 것이 적절합니다.</p>")[1])
+assert not any("적절" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "이 방식이 적절한지 확인합니다.</p>")[1])
+print("advice wording ok")
