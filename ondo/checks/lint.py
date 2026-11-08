@@ -70,6 +70,11 @@ def fix_and_check(html):
     if new != h:
         fixes.append("코드 울타리(```) 제거")
         h = new
+    # 국내 종목 코드 뒤의 '.KS'(야후 표기)는 독자에게 뜻 없는 기술 표기(11-08 사람 눈 읽기: '360750.KS는 가격 변화…') → 지운다
+    new = re.sub(r"(?<![\w/=.])(\d{6})\.KS(?![A-Za-z0-9])", r"\1", h)
+    if new != h:
+        fixes.append("종목 코드의 .KS 표기 제거")
+        h = new
     new = re.sub(r"(<h[1-4][^>]*>\s*(?:🔸\s*)?)part\s*\d+\s*[:.\-)]?\s*", r"\1", h, flags=re.I)
     if new != h:
         fixes.append("제목의 Part 번호 제거")
