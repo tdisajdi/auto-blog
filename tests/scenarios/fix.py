@@ -217,3 +217,8 @@ assert any("답이 없는 FAQ 1개" in i for i in _lt.fix_and_check("<p>" + "문
 _faq2 = "<h3>자주 묻는 질문</h3><h4>🔸 비율은?</h4><p>2024년 4.99%입니다.</p><h3>정리</h3><p>자료에 없는 내용은 쓰지 않았습니다.</p>"
 assert not any("답이 없는 FAQ" in i for i in _lt.fix_and_check("<p>" + "문장입니다. " * 300 + "</p>" + _faq2)[1])
 print("empty faq ok")
+
+# 2026-11-08: 국내 종목 코드의 .KS 표기 지움(주소 안은 그대로)
+_h, _i, _f = _lt.fix_and_check("<p>360750.KS는 올랐고 <a href='https://finance.yahoo.com/quote/360750.KS'>야후</a></p>")
+assert "360750는" in _h and "quote/360750.KS" in _h and "종목 코드의 .KS 표기 제거" in _f, _h
+print("ks suffix ok")
