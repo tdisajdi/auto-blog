@@ -125,6 +125,11 @@ def replay(arts, new=lint, old=None):
 
 
 # ───────────────────────── ② 완료 기준 성적표 ─────────────────────────
+# '(코드 계산)' 표시가 없어도 코드가 계산해 넣는 판단 숫자 줄(에너지 1년 범위 위치·평균 대비, 통계 기준선 넘은 해 등).
+# 2026-11-08: 이 줄을 못 알아봐서 성적표가 에너지·인구사회 글을 '고유 숫자 0개'로 잘못 셌음.
+CODE_HINT = re.compile(r"코드 계산|범위\(최저=0%|평균 [\d.,]+ 대비|처음 넘은 해|구성비|가장 컸던 때")
+
+
 def _code_values(facts):
     """[사실 자료] 중 코드가 계산한 줄의 숫자(값, 소수 자리)."""
     vals, in_code = set(), False
@@ -132,7 +137,9 @@ def _code_values(facts):
         if line.startswith("["):
             in_code = "코드" in line
             continue
-        if in_code or "코드 계산" in line:
+        for m in re.finditer(r"(\d+)% 지점", line):          # 1년 범위 중 위치(작은 정수지만 코드가 계산한 판단 숫자)
+            vals.add((float(m.group(1)), 0))
+        if in_code or CODE_HINT.search(line):
             for _raw, v, dec, unit in numbers._numbers(line):
                 if dec == 0 and (abs(v) < 100 if unit else (v < 1000 or 1990 <= v <= 2100)):
                     continue                     # 3배·10%·1억 같은 작은 정수는 가정값일 때가 많다

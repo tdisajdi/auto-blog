@@ -1010,17 +1010,16 @@ def discover_society():
         it = None
     if not it:
         return out
-    related = google_news(pick.get("keywords_ko") or it["title"], 6)
-    facts = (f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n")
-    note = "통계 발표 관련 보도(구글 뉴스)"
+    # 공식 통계(KOSIS) 표를 못 찾으면 이 뉴스로는 쓰지 않는다. 2026-11-08 성적표: 뉴스 제목만으로 쓴 인구사회 글은
+    # 점수 1.0이어도 독자 가치 2/5·코드 계산 숫자 0개 - '가치 없는 콘텐츠'(뉴스 정리)에 가장 가까움.
     tb = _kosis_table_for(f"{pick.get('title_ko', '')} {pick.get('keywords_ko', '')} {it['title']}")
-    chart = None
-    if tb:
-        block, sm = kosis_fact_block(tb)
-        if block:
-            facts = block + "\n" + facts
-            note = "국가통계포털(KOSIS) 공식 통계, " + note
-            chart = _kosis_chart(tb, sm)
+    block, sm = kosis_fact_block(tb) if tb else ("", None)
+    if not block:
+        return out
+    related = google_news(pick.get("keywords_ko") or it["title"], 6)
+    facts = block + "\n" + f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n"
+    note = "국가통계포털(KOSIS) 공식 통계, 통계 발표 관련 보도(구글 뉴스)"
+    chart = _kosis_chart(tb, sm)
     out.append({"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
                 "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
                 "score": 1.1, "reason": pick.get("why", ""), "source_note": note, "chart": chart})
