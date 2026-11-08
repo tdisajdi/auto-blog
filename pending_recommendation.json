@@ -26,10 +26,12 @@
     }
   ],
   "created_at": "2026-11-07T22:34:26.788676",
-  "reminder_count": 0,
-  "message_id": 221,
+  "reminder_count": 1,
+  "message_id": 258,
   "message_ids": [
-    221
+    221,
+    258
   ],
-  "sent_at": "2026-11-07T22:34:27.618087"
+  "sent_at": "2026-11-08T22:31:19.107157",
+  "last_reminded_at": "2026-11-08T22:31:18.430917"
 }
