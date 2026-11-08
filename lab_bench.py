@@ -364,8 +364,10 @@ def mut_repeat_para(html, facts):
     if len(ps) < 4:
         return None, None
     m = max(ps[:len(ps) // 2], key=lambda x: len(x.group(1)))
-    copy = f"<p>{m.group(1)}</p>"
-    return _insert_before_summary(html, copy), lint.text_of(m.group(1))[:80]
+    # 2판(2026-11-08): 똑같은 문단은 교열 코드가 먼저 지워 검토 담당을 재지 못함 → 문장 순서를 바꾼 되풀이(사람이 실제로 쓰는 반복에 더 가까움)
+    sents = [x for x in re.split(r"(?<=[.!?])\s+", m.group(1).strip()) if x]
+    copy = f"<p>{' '.join(reversed(sents)) if len(sents) >= 2 else m.group(1)}</p>"
+    return _insert_before_summary(html, copy), lint.text_of(sents[-1] if len(sents) >= 2 else m.group(1))[:80]
 
 
 def mut_no_summary(html, facts):
@@ -429,8 +431,13 @@ def plan_exam(exam, limit=None):
     return items[:limit] if limit else items
 
 
-def caught(item, lint_issues, review_issues, base_lint=()):
-    """막는 지적(교열 막음 / 검토 치명·중요) 가운데 넣은 결함을 가리키는 것이 있나."""
+def caught(item, lint_issues, review_issues, base_lint=(), fixes=()):
+    """막는 지적(교열 막음 / 검토 치명·중요) 가운데 넣은 결함을 가리키는 것이 있나.
+    교열 코드가 넣은 결함을 자동으로 지웠으면(fixes) 그것도 잡은 것으로 본다(1판 집계 오류 바로잡음)."""
+    mk0 = (item.get("marker") or "")[:15]
+    if item.get("kind") == "mutation" and mk0 and any(mk0 in str(f) or str(f).split(": ", 1)[-1][:15] in (item.get("marker") or "")
+                                                       for f in fixes if "중복" in str(f) or "반복" in str(f)):
+        return True
     hard = [i for i in lint.blocking(lint_issues) if _kind(i) not in {_kind(b) for b in base_lint}]
     serious = [f for f in review_issues if f.get("severity") in ("치명", "중요")]
     if item["kind"] == "good":
@@ -456,13 +463,13 @@ def run_exam(exam, review_fn, limit=None):
     base_lint = {}
     res = []
     for it in items:
-        h, li, _fx = lint.fix_and_check(it["html"])
+        h, li, fx = lint.fix_and_check(it["html"])
         if it["kind"] == "good":
             base_lint[it["id"]] = lint.blocking(li)
         found = review_fn(h, it["facts"], it["category"])
         failed = found is None
         found = found or []
-        hit = None if failed else caught(it, li, found, base_lint.get(it.get("base"), ()))
+        hit = None if failed else caught(it, li, found, base_lint.get(it.get("base"), ()), fx)
         res.append({"id": it["id"], "kind": it["kind"], "mutation": it.get("mutation"), "hidden": it["hidden"],
                     "hit": hit, "failed": failed, "issues": [f"[{f.get('severity')}·{f.get('by', '')}] {f.get('quote', '')[:50]} → "
                                            f"{f.get('problem', '')[:80]}" for f in found][:8],
