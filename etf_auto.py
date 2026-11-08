@@ -2685,6 +2685,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     div_cycle = "정보 없음"
     expense_ratio = "N/A"
     kr_index = None
+    kr_info = {}
     calculated_div_growth = None
     top_holdings = []
     earnings_info = []
@@ -3003,6 +3004,8 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         # 보여주던 필드를 "환노출 여부"라는 사실 그대로의 라벨로 변경.
         "fx_exposure": _fx_exposure_label(is_kr, short_name),
         "listing": "국내 상장" if is_kr else "해외 상장",
+        # 하루 거래대금(네이버 모바일 자료, 전일 기준) - 거의 같은 두 국내 ETF를 고를 때 남는 차이(2026-11-08 운용사 비교)
+        "trade_value": kr_info.get("대금") if is_kr else None,
         "hedge_cost": f"{hedge_cost:.2f}%",  # 하위 호환용으로 유지 (내부 채점/세금계산 참조)
         "custom_attractiveness_score": custom_score,
         "custom_attractiveness_notes": custom_rationale,

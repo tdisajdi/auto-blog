@@ -301,11 +301,55 @@ def is_twin(facts_text):
     return TWIN_MARK in (facts_text or "")
 
 
+def _won_amount(text):
+    """'7,188억', '1,234백만', '3.2조' → 원 단위 숫자. 못 읽으면 None."""
+    m = re.search(r"([\d,.]+)\s*(조|억|백만|만)?", str(text or ""))
+    if not m:
+        return None
+    try:
+        v = float(m.group(1).replace(",", ""))
+    except ValueError:
+        return None
+    return v * {"조": 1e12, "억": 1e8, "백만": 1e6, "만": 1e4}.get(m.group(2) or "", 1)
+
+
+# 쌍둥이 비교에서 빼는 줄: 상장일 기준 CAGR(같은 기간 비교와 숫자가 둘이라 혼란 - 11-08 '연평균 수익률 두 기준'), 가정 예시(0.1%p)
+_TWIN_DROP = re.compile(r"^- (상장 이후 연평균 수익률|보수 차이 예시\(코드 계산\): 운용보수가 0\.1%p)")
+
+
+def twin_choice_block(etf_list, cache, ea):
+    """거의 같이 움직이는 두 ETF에서 실제로 남는 차이를 코드가 계산(2026-11-08 운용사 비교 재시험: 자료에 없던 '추적오차·호가·
+    총보수 비율'을 작가가 확인 기준으로 지어내 '중요' 3개). 보수의 실제 원화 차이·하루 거래대금·세금 조건이 같은지."""
+    a, b = etf_list[:2]
+    da, db = cache.get(a) or {}, cache.get(b) or {}
+    na, nb = a.replace(".KS", ""), b.replace(".KS", "")
+    lines = ["[두 ETF를 고를 때 남는 차이 - 코드 계산. 자료에 없는 기준(추적오차·호가 차이·기타 비용 등)은 만들지 말 것]"]
+    fa, fb = _num(da.get("expense_ratio")), _num(db.get("expense_ratio"))
+    if fa is not None and fb is not None:
+        ca, cb = 10_000_000 * fa / 100, 10_000_000 * fb / 100
+        lines.append(f"- 운용보수의 실제 차이(코드 계산): 1,000만 원을 1년 두면 보수 {na} 약 {ca:,.0f}원, {nb} 약 {cb:,.0f}원 → 차이 약 {abs(ca - cb):,.0f}원"
+                     f"(10년이면 약 {abs(ca - cb) * 10:,.0f}원, 수익 재투자 효과 제외)")
+    ta, tb = _won_amount(da.get("trade_value")), _won_amount(db.get("trade_value"))
+    if ta and tb:
+        big, small = (na, nb) if ta >= tb else (nb, na)
+        lines.append(f"- 하루 거래대금(전일, 네이버 증권): {na} {da.get('trade_value')}원, {nb} {db.get('trade_value')}원 → {big}이 약 {max(ta, tb) / min(ta, tb):.1f}배(코드 계산)"
+                     "  · 일반 원리: 거래가 많은 쪽이 사고팔 때 원하는 가격에 체결되기 쉬운 편(이 자료에 호가 차이 숫자는 없음)")
+    if da.get("listing") and da.get("listing") == db.get("listing"):
+        same_idx = da.get("index") not in _EMPTY and da.get("index") == db.get("index")
+        lines.append(f"- 세금·계좌 조건: 두 ETF 모두 {da.get('listing')}" + (f"이고 기초지수({da.get('index')})가 같아" if same_idx else "이라")
+                     + " 세금 계산 방식과 쓸 수 있는 계좌가 같다 → 세금은 두 ETF를 가르는 기준이 아님(세금 섹션을 따로 만들지 말고 한 문장으로)")
+    return "\n".join(lines) if len(lines) > 1 else ""
+
+
 def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previous_analyses=None):
     parts = ["[사실 자료 - 종목 데이터. 항목 이름표의 기간·단위·기준을 그대로 지켜서 쓰세요]"]
     parts += [ticker_facts(t, cache[t], ea, today_label) for t in etf_list if t in cache]
     if len(etf_list) >= 2:
-        parts.append(same_period_block([t for t in etf_list if t in cache][:2]))
+        pair = [t for t in etf_list if t in cache][:2]
+        parts.append(same_period_block(pair))
+        if is_twin(parts[-1]):
+            parts[1:-1] = ["\n".join(l for l in p.split("\n") if not _TWIN_DROP.match(l)) for p in parts[1:-1]]
+            parts.append(twin_choice_block(pair, cache, ea))
     parts.append(previous_facts(previous_analyses))
     # 비교 글에는 오늘 시장 수치를 주지 않는다 - 11-08 운용사 비교에서 '공포 지수 22(극단적 공포)'가 "나눠서 사라·환헤지 섞어라" 같은
     # 지어낸 투자 조언을 끌어냄(사실 '치명'·'중요' 3개, 정책 '치명'). 두 상품 비교에 필요한 숫자가 아니다.
@@ -338,7 +382,9 @@ MUST_ANSWER = {
     # 거의 같이 움직이는 두 상품(같은 지수의 다른 운용사 등) - '어느 쪽이 낫나' 틀 대신 '얼마나 같고 무엇이 다른가'(11-08)
     "comparison_twin": ["두 ETF는 각각 무엇에 투자하나",
                         "같은 기간 가격 변화 차이와 상관계수로 본 두 ETF가 얼마나 비슷한가(숫자로)",
-                        "자료에 있는 비용 차이(보수·분배금 등) - 자료에 값이 없는 항목은 쓰지 말 것",
-                        "한국 투자자 기준 세금·계좌·환율(두 상품이 같으면 같다고 한 번만)",
-                        "두 상품이 거의 같이 움직일 때 고를 때 확인할 숫자 - '적합·추천' 없이, 억지로 차이를 만들지 말 것"],
+                        "자료에 있는 비용 차이(보수의 실제 원화 차이 등) - 자료에 값이 없는 항목은 쓰지 말 것",
+                        # 11-08 재시험: 이 질문 때문에 기획이 '계좌와 세금' 섹션을 만들고 자료에 없는 해외 ETF 세율(22%)을 씀 → 한 문장으로
+                        "한국 투자자 기준 세금·계좌·환율 - 두 상품이 같으면 '같다'는 한 문장만(세금 섹션을 따로 만들지 말 것)",
+                        "두 상품이 거의 같이 움직일 때 고를 때 확인할 숫자([두 ETF를 고를 때 남는 차이]의 보수 원화 차이·거래대금) "
+                        "- '적합·추천' 없이, 억지로 차이를 만들지 말 것"],
 }
