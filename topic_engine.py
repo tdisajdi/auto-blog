@@ -329,6 +329,122 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
 # 분야별 발굴기 - 후보: {category, topic_key, title_seed, facts_text, news, score, reason, source_note}
 # ============================================================
 
+# ------------------------------------------------------------
+# 두 번째 글 공식 자료(2026-11-08): 트렌드·신기술·바이오가 뉴스 제목·기사 발췌만으로 쓰이던 것을 막는다.
+# 성적표 결과 - 뉴스만으로 쓴 글은 점수가 높아도 독자 가치 2/5·코드 계산 숫자 0개('가치 없는 콘텐츠'에 가까움).
+# 자료가 비면 그 후보는 쓰지 않는다(인구사회와 같은 원칙).
+# ------------------------------------------------------------
+CT_URL = "https://clinicaltrials.gov/api/v2/studies"
+ARXIV_URL = "http://export.arxiv.org/api/query"
+
+
+def _ct_count(**params):
+    """임상시험 등록소(ClinicalTrials.gov)에서 조건에 맞는 임상 건수. 실패하면 None."""
+    try:
+        r = requests.get(CT_URL, params={"countTotal": "true", "pageSize": 1, "format": "json", **params},
+                         headers=UA, timeout=(8, 20))
+        if not r.ok:
+            return None
+        n = r.json().get("totalCount")
+        return int(n) if n is not None else None
+    except Exception as e:
+        print(f"ℹ️ 임상시험 등록소 조회 실패: {type(e).__name__}")
+        return None
+
+
+def clinical_trials_block(condition, intervention=""):
+    """질환(영어) 기준 임상 등록 현황 + 코드 계산(모집 중 비율·3상 비율·연도별 새 임상 증감)."""
+    condition = str(condition or "").strip()
+    if not condition:
+        return ""
+    q = {"query.cond": condition}
+    total = _ct_count(**q)
+    if not total:
+        return ""
+    rec = _ct_count(**q, **{"filter.overallStatus": "RECRUITING"})
+    p3 = _ct_count(**q, **{"filter.advanced": "AREA[Phase]PHASE3"})
+    y = datetime.now().year
+    years = [(yy, _ct_count(**q, **{"filter.advanced": f"AREA[StartDate]RANGE[{yy}-01-01,{yy}-12-31]"}))
+             for yy in range(y - 5, y)]
+    lines = [f"[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 검색어 '{condition}', "
+             f"{datetime.now():%Y-%m-%d} 조회. 전 세계에서 등록된 임상 기준]",
+             f"- 등록된 임상시험 전체: {total:,}건"]
+    if rec is not None:
+        lines.append(f"- 지금 참가자를 모집 중인 임상: {rec:,}건(전체의 {rec / total * 100:.1f}%, 코드 계산)")
+    if p3 is not None:
+        lines.append(f"- 3상(허가 신청 직전 단계) 임상: {p3:,}건(전체의 {p3 / total * 100:.1f}%, 코드 계산)")
+    ys = [(a, b) for a, b in years if b is not None]
+    if len(ys) >= 3 and ys[0][1]:
+        lines.append("- 해마다 새로 시작한 임상 수: " + ", ".join(f"{a}년 {b:,}건" for a, b in ys)
+                     + f" → {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
+    intervention = str(intervention or "").strip()
+    if intervention:
+        n = _ct_count(**{"query.intr": intervention})
+        if n:
+            lines.append(f"- 이 약·치료법('{intervention}')이 들어간 임상: {n:,}건")
+    lines.append("- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.")
+    return "\n".join(lines) + "\n"
+
+
+def _arxiv_count(keyword, start, end):
+    """arXiv에서 검색어가 들어간 논문 수(start·end는 YYYYMMDD). 실패하면 None."""
+    q = f'all:"{keyword}" AND submittedDate:[{start}0000 TO {end}2359]'
+    try:
+        r = requests.get(ARXIV_URL, params={"search_query": q, "max_results": 0}, headers=UA, timeout=(8, 25))
+        m = re.search(r"<opensearch:totalResults[^>]*>(\d+)<", r.text)
+        return int(m.group(1)) if r.ok and m else None
+    except Exception as e:
+        print(f"ℹ️ arXiv 조회 실패: {type(e).__name__}")
+        return None
+    finally:
+        time.sleep(3)          # arXiv 요청 간격 안내(3초)
+
+
+def arxiv_block(keyword):
+    """기술 검색어(영어)의 연도별 논문 수 + 코드 계산(5년 증가율·올해 같은 기간 비교)."""
+    keyword = str(keyword or "").strip()
+    if not keyword:
+        return ""
+    now = datetime.now()
+    y = now.year
+    years = [(yy, _arxiv_count(keyword, f"{yy}0101", f"{yy}1231")) for yy in range(y - 5, y)]
+    ys = [(a, b) for a, b in years if b is not None]
+    if len(ys) < 3 or not any(b for _, b in ys):
+        return ""
+    md = f"{now:%m%d}"
+    this = _arxiv_count(keyword, f"{y}0101", f"{y}{md}")
+    last = _arxiv_count(keyword, f"{y - 1}0101", f"{y - 1}{md}")
+    lines = [f"[공식 자료 - 논문 공개 저장소 arXiv, 검색어 '{keyword}'(영어 제목·초록 기준), {now:%Y-%m-%d} 조회]",
+             "- 해마다 올라온 논문 수: " + ", ".join(f"{a}년 {b:,}편" for a, b in ys)]
+    if ys[0][1]:
+        lines.append(f"- {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
+    if this is not None and last:
+        lines.append(f"- 올해 1월 1일~{now.month}월 {now.day}일 {this:,}편, 작년 같은 기간 {last:,}편 → "
+                     f"{(this / last - 1) * 100:+.1f}%(코드 계산)")
+    lines.append("- 읽는 법: arXiv는 물리·컴퓨터·수학 쪽 논문이 먼저 올라오는 곳이고 심사 전 원고가 많습니다. "
+                 "논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다.")
+    return "\n".join(lines) + "\n"
+
+
+def trend_interest_block(kw, interest):
+    """구글 검색 관심도 시계열에서 코드 계산(최고점 대비 지금·최근 평균 ÷ 기간 평균·처음 2주 대비 마지막 2주)."""
+    series = [float(v) for v in (interest or {}).get("series") or [] if v is not None]
+    if len(series) < 20 or max(series) <= 0:
+        return ""
+    peak = max(series)
+    avg = sum(series) / len(series)
+    head, tail = series[:14], series[-14:]
+    h, t = sum(head) / len(head), sum(tail) / len(tail)
+    recent = sum(series[-7:]) / 7
+    lines = [f"[검색 관심도 - 구글 트렌드(한국), '{kw}', 최근 3개월. 0~100은 이 기간 최고점을 100으로 둔 상대값]",
+             f"- 지금 값은 3개월 최고점의 {series[-1] / peak * 100:.0f}%(코드 계산)",
+             f"- 최근 7개 측정값 평균은 3개월 평균의 {recent / avg:.1f}배(코드 계산)" if avg else "",
+             (f"- 처음 2주 평균 {h:.1f} → 마지막 2주 평균 {t:.1f}({(t / h - 1) * 100:+.0f}%, 코드 계산)" if h
+              else f"- 처음 2주에는 관심도가 거의 0이었고 마지막 2주 평균은 {t:.1f}(코드 계산)"),
+             "- 읽는 법: 상대값이라 검색한 사람 수가 아니며, 다른 검색어와 숫자를 직접 비교하면 안 됩니다."]
+    return "\n".join(l for l in lines if l) + "\n"
+
+
 _TREND_EXCLUDE_HINT = "사람 이름(연예인·정치인·운동선수 포함), 사건사고·범죄·재난·사망, 정치·선거, 스포츠 경기 결과, 특정 방송 회차"
 
 
@@ -352,9 +468,11 @@ def discover_trend():
         news = google_news(kw, 6)
         if len(news) < 3:
             continue
-        momentum = interest["momentum_pct"] if interest else 0
-        facts = (f"[사실 자료]\n- 구글 급상승 검색어(한국, {datetime.now():%Y-%m-%d})에 '{kw}'가 올랐습니다.\n"
-                 + (f"- 구글 검색 관심도: 최근 7일 평균이 3개월 평균 대비 {momentum:+.1f}% (최근값 {interest['latest']}, 0~100 상대지수)\n" if interest else "")
+        block = trend_interest_block(kw, interest)
+        if not block:
+            continue                   # 검색 관심도 자료가 없으면 뉴스 제목만으로는 쓰지 않는다(2026-11-08)
+        momentum = interest["momentum_pct"]
+        facts = (f"[사실 자료]\n- 구글 급상승 검색어(한국, {datetime.now():%Y-%m-%d})에 '{kw}'가 올랐습니다.\n{block}"
                  + f"[관련 뉴스 - 제목만 확인됨, 제목에 없는 내용은 단정하지 마세요]\n{_news_block(news)}\n")
         series = (interest or {}).get("series") or []
         chart = ({"title": f"'{kw}' 구글 검색 관심도 (최근 3개월)", "unit": "", "kind": "line",
@@ -380,7 +498,8 @@ def discover_tech():
         "아래 기술 기사 중 '신기술·특허' 블로그 글로 가장 좋은 1개를 고르세요. 신제품 할인·리뷰·인사 소식보다 "
         "AI·로봇·우주·반도체·에너지 기술·바이오 기술·특허처럼 의미가 오래가는 기술 변화를 우선하세요.\n"
         f"{listing}\n"
-        'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", "why": "이유 한 문장"}') or {}
+        'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
+        '"keyword_en": "이 기술을 가리키는 영어 전문 용어 1~3단어(논문 검색용, 예: solid-state battery)", "why": "이유 한 문장"}') or {}
     try:
         idx = int(pick.get("index"))
         it = items[idx] if idx >= 0 else None
@@ -388,10 +507,13 @@ def discover_tech():
         it = None
     if not it:
         return []
+    papers = arxiv_block(pick.get("keyword_en"))
+    if not papers:
+        return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     body = scrape_text(it["url"]) or it["summary"]
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
-             f"[관련 뉴스]\n{_news_block(news[1:])}\n")
+             f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "tech", "topic_key": f"tech:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "facts_text": facts, "news": news, "score": 1.0, "reason": pick.get("why", ""), "source_note": it["source"]}]
 
@@ -418,7 +540,9 @@ def discover_bio():
         "아래 바이오 소식 중 일반 독자에게 의미 있는 1개를 고르세요. 신약 승인, 주요 임상 결과처럼 사실이 분명한 "
         "소식을 우선하고, 인사·투자유치·소송 소식은 피하세요.\n"
         f"{listing}\n"
-        'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", "why": "이유 한 문장"}') or {}
+        'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
+        '"condition_en": "대상 질환의 영어 이름(예: obesity)", "intervention_en": "약·치료법의 영어 성분명(없으면 빈칸)", '
+        '"why": "이유 한 문장"}') or {}
     try:
         idx = int(pick.get("index"))
         it = items[:25][idx] if idx >= 0 else None
@@ -426,10 +550,13 @@ def discover_bio():
         it = None
     if not it:
         return []
+    trials = clinical_trials_block(pick.get("condition_en"), pick.get("intervention_en"))
+    if not trials:
+        return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     body = scrape_text(it["url"]) or it["summary"]
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
-             f"[관련 뉴스]\n{_news_block(news[1:])}\n")
+             f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "bio", "topic_key": f"bio:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "facts_text": facts, "news": news, "score": strength(it), "reason": pick.get("why", ""), "source_note": it["source"]}]
 
@@ -864,6 +991,9 @@ def run_check_sources():
     _probe_kr_fee_sources("360750")
     print("=== ETF 1년 수익률 교차 확인(같은 값을 두 방법으로) ===")
     _check_returns(["SCHD", "SPY", "QQQ", "TLT", "VOO"])
+    print("=== 두 번째 글 공식 자료(2026-11-08): 임상시험 등록소·arXiv 접속 ===")
+    print(clinical_trials_block("obesity", "semaglutide") or "임상시험 등록소: 결과 없음(접속 실패?)")
+    print(arxiv_block("solid-state battery") or "arXiv: 결과 없음(접속 실패?)")
     print("=== EIA (미국 원유 재고) ===")
     print(_eia_weekly("oil") or "원유: 결과 없음 (키 없음 또는 조회 실패)")
     print(_eia_weekly("gas") or "가스: 결과 없음 (키 없음 또는 조회 실패)")
