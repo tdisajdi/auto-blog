@@ -351,8 +351,16 @@ def fx_effect(data_cache):
                                 "series": [{"name": "달러 기준", "values": usd}, {"name": "원화 기준", "values": krw},
                                            {"name": "환율이 반대였다면", "values": rev}],
                                 "source": "Yahoo Finance, ondo 계산"})
+    # 11-09: 종목마다 같은 꼴의 줄을 주자 작가가 'SPY는…, QQQ는…, GLD는…'으로 세 번 되풀이해 독자 편집 '중요'(환율 고정 시험).
+    # → 코드가 공통 결론(환율 때문에 생긴 차이의 범위)을 한 줄로 먼저 주고, 종목별 줄은 '표에 있음 - 대표 1개만, 빠져도 누락 아님'으로.
+    gaps = [k - u for u, k in zip(usd, krw)]
+    summary = (f"- 공통 결론(코드 계산): 환율이 {fx_chg * 100:+.1f}% 움직여 {len(rows)}개 ETF 모두 원화 수익률이 달러 기준보다 "
+               f"{min(gaps):+.1f}~{max(gaps):+.1f}%p 달라짐" if len(rows) >= 2 else "")
     facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
-             + "\n".join(f"- {a}: 달러 기준 1년 {b}, 원화 기준 {c}, 환율이 반대로 같은 폭 움직였다면 {e}" for a, b, c, e in rows)
+             + (summary + "\n" if summary else "")
+             + "- 종목별 값(표·그래프에 모두 들어감 - 본문에서는 대표 1개만 문장으로 풀고 나머지는 표를 가리키세요. 종목마다 같은 문장을 "
+               "되풀이하지 말 것. 본문에 없는 종목은 누락이 아님):\n"
+             + "\n".join(f"  - {a}: 달러 기준 1년 {b}, 원화 기준 {c}, 환율이 반대로 같은 폭 움직였다면 {e}" for a, b, c, e in rows)
              + f"\n- {note}\n- 국내 상장 해외 자산 ETF 중 환헤지 안 한 상품(예: 360750)의 원화 수익률에는 이미 환율 변화가 들어 있고, "
              "이름에 (H)가 붙은 환헤지 상품은 환율 영향을 줄이는 대신 헤지 비용이 든다.\n")
     return facts, table + chart
