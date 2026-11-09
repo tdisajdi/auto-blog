@@ -1,7 +1,8 @@
 import os, sys, json, io, contextlib
 from datetime import datetime
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
-import etf_auto as ea
+import etf_auto  # noqa: F401
+from ondo.etf import approval as ea   # 텔레그램 승인 코드가 있는 곳(11-09 나눔)을 바꿔 끼운다
 sent, edits, answers = [], [], []
 ea._telegram_send_message=lambda t,*a,**k: sent.append((t,k.get("reply_to"))) or 1
 ea._telegram_edit_text=lambda mid,t: edits.append((mid,t)) or True

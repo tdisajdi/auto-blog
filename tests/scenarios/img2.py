@@ -1,6 +1,7 @@
 import os, sys, json, io, contextlib
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
-import etf_auto as ea, media_engine as me, blog_engine as be
+import etf_auto, media_engine as me, blog_engine as be  # noqa: F401
+from ondo.etf import approval as ea   # 텔레그램 승인 코드가 있는 곳(11-09 나눔)을 바꿔 끼운다
 sent=[]
 ea._telegram_send_message=be._telegram_send_message=lambda t,*a,**k: sent.append(t) or 900
 ea._load_telegram_offset=lambda:0; saved={}

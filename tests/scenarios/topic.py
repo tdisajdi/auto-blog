@@ -36,7 +36,8 @@ te.run_discover_and_notify(); p=json.load(open("pending_topic.json")); assert "�
 print("discover ok")
 
 # 3) two-slot approval
-import etf_auto as ea
+import etf_auto  # noqa: F401
+from ondo.etf import approval as ea   # 텔레그램 승인 코드가 있는 곳(11-09 나눔)을 바꿔 끼운다
 ea._telegram_send_message = fake_send
 ea._save_pending({"ticker":"SPY","reason":"r","article_type":"단일 분석","message_id":555,"sent_at":(datetime.now()-timedelta(hours=5)).isoformat(),"created_at":datetime.now().isoformat()})
 ea._load_telegram_offset=lambda:0; ea._save_telegram_offset=lambda x:None
