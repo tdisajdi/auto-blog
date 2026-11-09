@@ -281,9 +281,14 @@ _SUMMARY_REPEAT = re.compile(rf"{_SUMMARY_SEC}[^.]{{0,90}}(?:반복|되풀이|�
 _SUMMARY_NOT = re.compile(r"제외|밖의|밖에서|중복되지는? 않|반복되지는? 않|아니라|서론|도입|서두|첫 문단")
 
 
+_INTRO_REPEAT = re.compile(r"(?:도입|서두|첫 문단)[^.]{0,90}(?:반복|되풀이|중복)|(?:반복|되풀이|중복)[^.]{0,90}(?:도입|서두|첫 문단)")
+
+
 def _summary_repeat(problem):
+    """독자 편집의 '중요' 되풀이 지적 가운데 필수 요소를 겨냥한 것(→ '사소'로 낮춤):
+    정리 섹션 반복(11-07 규칙) + 11-09 밤부터 도입부 첫 문단의 답 숫자가 본문에서 다시 나오는 것(답은 도입부에서 먼저 - 독자 30초 기준)."""
     p = str(problem)
-    return bool(_SUMMARY_REPEAT.search(p)) and not _SUMMARY_NOT.search(p)
+    return (bool(_SUMMARY_REPEAT.search(p)) and not _SUMMARY_NOT.search(p)) or bool(_INTRO_REPEAT.search(p))
 
 
 def review_text(html):
