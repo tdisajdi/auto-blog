@@ -546,6 +546,104 @@ def exam_main(args):
     return 0
 
 
+# ───────────────────────── ③-2 채점 흔들림 ─────────────────────────
+# 2026-11-09: 시험 3번 모두 검토가 앞 판에 이미 있던 문제(원천징수 15%, 가환율 문답)를 놓쳤다가 뒤 판에서 잡았고, 거의 같은 글의
+# 독자 가치가 0.8 → 1.0 → 0.6으로 흔들렸다. 같은 글을 여러 번 채점해 얼마나 흔들리는지 잰다(고치기 전에 크기부터 잰다).
+def _qkey(q):
+    return re.sub(r"[\s\W_]+", "", str(q))[:15]
+
+
+def pick_noise(arts, n=4):
+    """서로 다른 주제의 최근 기록에서 1판 초안(실제 문제가 섞여 있어 '매번 잡나'를 볼 수 있음)을 n개."""
+    out, seen = [], set()
+    for a in reversed(arts):
+        key = (a["type"], a["topic"])
+        if key in seen or "1" not in a["drafts"]:
+            continue
+        seen.add(key)
+        out.append({"id": os.path.basename(a["file"]), "html": a["drafts"]["1"], "facts": a["facts"],
+                    "category": a.get("category") or a["type"]})
+        if len(out) >= n:
+            break
+    return out
+
+
+def run_noise(items, review_fn, value_fn=None, repeats=3):
+    """review_fn(html, facts, category) → (점수, 지적 목록) 또는 (None, ...). value_fn(html, facts, category) → 가치 또는 None."""
+    res = []
+    for it in items:
+        h = lint.fix_and_check(it["html"])[0]
+        runs = []
+        for _ in range(repeats):
+            score, found = review_fn(h, it["facts"], it["category"])
+            value = value_fn(h, it["facts"], it["category"]) if value_fn else None
+            serious = sorted({_qkey(f.get("quote") or f.get("problem", "")) for f in found or []
+                              if f.get("severity") in ("치명", "중요")})
+            runs.append({"score": score, "value": value, "serious": serious})
+        res.append({"id": it["id"], "runs": runs})
+    return res
+
+
+def noise_summary(res):
+    lines = ["[채점 흔들림] 같은 글을 여러 번 채점"]
+    all_keys = once = 0
+    ranges, vranges = [], []
+    for r in res:
+        ok = [x for x in r["runs"] if x["score"] is not None]
+        if len(ok) < 2:
+            lines.append(f"- {r['id']}: 측정 못 함(검토가 답하지 않음)")
+            continue
+        sc = [x["score"] for x in ok]
+        vs = [x["value"] for x in ok if x["value"] is not None]
+        keys = {}
+        for x in ok:
+            for k in x["serious"]:
+                keys[k] = keys.get(k, 0) + 1
+        n_once = sum(1 for c in keys.values() if c < len(ok))
+        all_keys += len(keys)
+        once += n_once
+        ranges.append(max(sc) - min(sc))
+        if len(vs) >= 2:
+            vranges.append(max(vs) - min(vs))
+        lines.append(f"- {r['id']}: 점수 {' / '.join(f'{v:.2f}' for v in sc)}"
+                     + (f", 가치 {' / '.join(f'{v:.1f}' for v in vs)}" if vs else "")
+                     + f", 치명·중요 지적 {len(keys)}개 중 매번 나오지 않은 것 {n_once}개")
+    if ranges:
+        lines.append(f"요약: 점수 흔들림 평균 {sum(ranges) / len(ranges):.2f}(최대 {max(ranges):.2f})"
+                     + (f", 가치 흔들림 평균 {sum(vranges) / len(vranges):.2f}" if vranges else "")
+                     + (f", 치명·중요 지적 중 매번 나오지 않은 비율 {once}/{all_keys}" if all_keys else ""))
+    else:
+        lines.append("측정된 글 없음")
+    return "\n".join(lines)
+
+
+def noise_main(args):
+    try:
+        from dotenv import load_dotenv
+        load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
+    except ImportError:
+        pass
+    from ondo.checks.editlog import EditLog
+    from ondo.writing import desk
+    from ondo.config import kst_now
+    log = EditLog("lab", "noise", "채점 흔들림")
+
+    def review_fn(h, facts, cat):
+        return desk.review(h, facts, cat, log, 1)
+
+    def value_fn(h, facts, cat):
+        t = re.search(r"<h1[^>]*>(.*?)</h1>", h, flags=re.S)
+        return desk.value_review(h, lint.text_of(t.group(1)) if t else "", cat, log, 1, facts)[0]
+    items = pick_noise(load_logs(), args.n)
+    res = run_noise(items, review_fn, value_fn, args.repeats)
+    os.makedirs(RESULT_DIR, exist_ok=True)
+    path = os.path.join(RESULT_DIR, f"noise-{kst_now():%Y%m%d-%H%M}.json")
+    json.dump(res, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(noise_summary(res))
+    print("저장:", path)
+    return 0
+
+
 # ───────────────────────── ④ 경쟁 글 비교 ─────────────────────────
 # 사용자 제안(2026-11-08): 실제 독자·구글 평가는 공개 뒤 오래 걸리므로, 같은 질문으로 검색하면 위에 나오는 글과 지금 비교한다.
 # 본문은 저장하지 않고 구조만 잰다(분량·소제목·표·그림·숫자 수·FAQ·날짜·저자 표시). 우리가 배울 수 있는 것만 본다 -
@@ -662,6 +760,9 @@ def main(argv=None):
     e.add_argument("--run", action="store_true")
     e.add_argument("--report", action="store_true")
     e.add_argument("--limit", type=int)
+    nz = sub.add_parser("noise")
+    nz.add_argument("--n", type=int, default=4)
+    nz.add_argument("--repeats", type=int, default=3)
     c = sub.add_parser("compete")
     c.add_argument("--fetch", action="store_true")
     a = p.parse_args(argv)
@@ -669,6 +770,8 @@ def main(argv=None):
         print(replay(load_logs(since=a.since), lint, load_lint(a.vs) if a.vs else None))
     elif a.cmd == "score":
         print(scorecard(load_logs(since=a.since)))
+    elif a.cmd == "noise":
+        return noise_main(a)
     elif a.cmd == "compete":
         conf = json.load(open(COMPETE_FILE, encoding="utf-8"))
         if a.fetch:
