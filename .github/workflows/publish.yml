@@ -215,11 +215,6 @@ jobs:
         with:
           python-version: '3.11'
       - uses: browser-actions/setup-chrome@v1
-      # xclip은 복사·붙여넣기 도구(브라우저 로그인 같은 옛 방식용)라 지금 흐름엔 거의 필요 없다. 2026-11-06 우분투 저장소가 멈춰
-      # 이 단계에서 24분 넘게 걸려 10분 점검 전체가 막혔다 → 2분 제한, 실패해도 다음 단계로 진행.
-      - run: sudo apt-get update && sudo apt-get install -y xclip
-        timeout-minutes: 2
-        continue-on-error: true
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
         env:
@@ -422,11 +417,6 @@ jobs:
         with:
           python-version: '3.11'
       - uses: browser-actions/setup-chrome@v1
-      # xclip은 복사·붙여넣기 도구(브라우저 로그인 같은 옛 방식용)라 지금 흐름엔 거의 필요 없다. 2026-11-06 우분투 저장소가 멈춰
-      # 이 단계에서 24분 넘게 걸려 10분 점검 전체가 막혔다 → 2분 제한, 실패해도 다음 단계로 진행.
-      - run: sudo apt-get update && sudo apt-get install -y xclip
-        timeout-minutes: 2
-        continue-on-error: true
       - run: pip install -r requirements.txt
       - name: 통합 키 파일(.env) 복원
         env:
