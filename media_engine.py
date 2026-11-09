@@ -366,9 +366,6 @@ def plan_layout(body, photo_block="", chart_block="", n_slots=0):
     return body, slots
 
 
-def place_media(body, photo_block="", chart_block=""):
-    """(예전 이름 유지) 사진·차트만 배치."""
-    return plan_layout(body, photo_block, chart_block, 0)[0]
 
 
 def body_image_html(img_url, slot, alt):

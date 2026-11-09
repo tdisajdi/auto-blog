@@ -28,15 +28,8 @@ import os
 import json
 import hashlib
 import uuid
-import pyperclip
 from datetime import datetime
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from dotenv import load_dotenv
-import secrets as _secrets_module  # 이름 충돌 방지용 별칭(IndexNow 키 생성에 사용)
 import atexit
 
 load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '.env'))
@@ -61,8 +54,6 @@ def _cat_path(filename):
 WP_SITE_URL = os.environ.get("WP_SITE_URL")
 WP_OAUTH_TOKEN = os.environ.get("WP_OAUTH_TOKEN")
 WP_SITE_ID = os.environ.get("WP_SITE_ID")
-WP_EMAIL = os.environ.get("WP_EMAIL")
-WP_PASSWORD = os.environ.get("WP_PASSWORD")
 
 # ============================================================
 # Gemini API 키 로테이션
@@ -70,36 +61,23 @@ WP_PASSWORD = os.environ.get("WP_PASSWORD")
 # 키 앞에 "이름표:"를 붙일 수 있다(예: aa@gmail.com:AIza...) - 문제 생기면 텔레그램에 이름표로 알림. ondo/keys.py
 from ondo import keys as _ondo_keys
 GEMINI_API_KEYS = [k for _no, _label, k in _ondo_keys.parse(os.environ.get("GEMINI_API_KEY", ""))]
-GEMINI_API_KEY = GEMINI_API_KEYS[0] if GEMINI_API_KEYS else None  # 하위 호환용
 
 # ============================================================
 # 텔레그램 / Threads
 # ============================================================
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
-THREADS_ACCESS_TOKEN = os.environ.get("THREADS_ACCESS_TOKEN", "")
-THREADS_USER_ID = os.environ.get("THREADS_USER_ID", "")
 
 # 카테고리별로 격리되는 상태 파일들
 STATE_FILE = _cat_path('article_state.json')
 GENERATION_STATE_FILE = _cat_path('generation_state.json')
 DATA_CACHE_FILE = _cat_path('data_cache.json')
-QUOTE_FILE = _cat_path('quotes_history.txt')
 API_USAGE_LOG_FILE = _cat_path('api_usage_log.json')
-RAW_RESPONSES_DIR = os.path.join(BASE_DIR, BLOG_CATEGORY, 'raw_responses')
-PUBLISHED_ARTICLES_DIR = os.path.join(BASE_DIR, BLOG_CATEGORY, 'published_articles')
 
-# [주의] IndexNow 인증키는 카테고리 구분 없이 사이트 전체가 공유한다.
-INDEXNOW_KEY_STATE_FILE = os.path.join(BASE_DIR, 'indexnow_key.json')
 
 NEWS_CACHE_TTL = 60 * 60  # 1시간 캐시
 
-# _llm_part_check(PART_CHECK_SAFE_CAP)와 동일한 상한을 씀
-PREVIOUS_CONTENT_BLOCK_CAP = 40000
 
-# Threads 카드뉴스 이미지 크기 (인스타그램/Threads 세로형 카드 표준 비율 4:5)
-CARD_WIDTH = 1080
-CARD_HEIGHT = 1350
 
 
 # ============================================================
@@ -390,100 +368,12 @@ def _save_generation_state(state):
     _save_json_file(GENERATION_STATE_FILE, state)
 
 
-def _get_raw_response_path(session_key, part_num, label=None):
-    """[신규] Part별 원본 JSON 저장 경로를 결정.
-    session_key(해시)는 캐시 매칭에 쓰이던 값 그대로 유지해 기존 로직과의
-    호환성을 지키되, 실제 파일명에는 label(예: "2026-07-06_IBIT")을 붙여서
-    파일명만 보고도 어떤 날짜의 어떤 티커인지 바로 알아볼 수 있게 한다.
-    label이 없으면 세션키만으로 구성(하위 호환).
-    같은 세션 안에서는 파트번호로 구분되고, 재생성되면 같은 경로에 덮어써진다
-    (가장 최근/최종 확정된 버전만 유지하는 게 검토 목적에 맞음)."""
-    os.makedirs(RAW_RESPONSES_DIR, exist_ok=True)
-    if label:
-        # 파일명에 부적합한 문자(경로 구분자 등) 제거
-        safe_label = re.sub(r'[\\/:*?"<>|]+', '_', label)
-        filename = f"{safe_label}_part{part_num}_{session_key[:8]}.json"
-    else:
-        filename = f"{session_key}_part{part_num}.json"
-    return os.path.join(RAW_RESPONSES_DIR, filename)
 
 
-def _save_raw_part_response(session_key, part_num, response_text, label=None):
-    """Part 생성이 성공(검수 통과 또는 최대 재시도 후 확정)했을 때, AI가 준
-    원본 JSON 그대로(html+facts)를 파일로 저장. 사람이 이 파일을 직접 열어
-    html이나 facts 필드를 고칠 수 있고, 그 수정은 _load_raw_part_response로
-    다시 읽을 때 그대로 반영된다."""
-    path = _get_raw_response_path(session_key, part_num, label=label)
-    try:
-        # response_text 자체가 이미 JSON 문자열이므로, 파싱해서 보기 좋게
-        # indent를 넣어 저장한다 (사람이 직접 열어 읽고 고치기 쉽도록).
-        parsed = json.loads(response_text)
-        with open(path, 'w', encoding='utf-8') as f:
-            json.dump(parsed, f, ensure_ascii=False, indent=2)
-        print(f"💾 Part{part_num} 원본 응답 저장: {path}")
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"⚠️ Part{part_num} 원본 응답 저장 실패 (검토용 파일만 실패, 진행에는 영향 없음): {type(e).__name__}: {e}")
 
 
-def _load_raw_part_response(session_key, part_num, label=None):
-    """저장된 Part 원본 JSON을 다시 읽어온다. 사람이 파일을 직접 고쳤다면
-    그 수정된 내용 그대로 반환된다. 파일이 없거나 손상됐으면 None을 반환하고,
-    호출부는 이 경우 메모리에 있던 원래 값을 그대로 쓰면 된다(안전한 폴백)."""
-    path = _get_raw_response_path(session_key, part_num, label=label)
-    if not os.path.exists(path):
-        return None
-    try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-        return data
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"⚠️ Part{part_num} 저장된 응답 읽기 실패 - 메모리 값을 대신 사용합니다: {type(e).__name__}: {e}")
-        return None
 
 
-def _clear_generation_state(session_label=None):
-    """발행이 완전히 끝난 시점에 호출된다. generation_state.json을 지워
-    "재개할 세션이 없음" 상태로 만드는 기존 동작에 더해, session_label이
-    주어지면 raw_responses/ 폴더에서 이번 세션이 만든 Part1~5 원본 JSON
-    파일도 함께 지운다.
-
-    [신규] 발행이 끝난 raw_responses/ 파일은 더 이상 아무도 읽지 않는다
-    (_load_raw_part_response는 "재시도/재생성 진행 중"일 때만 쓰이고, 세션이
-    끝나면 다시 열릴 일이 없음 - 사람이 검토용으로 열어보는 것도 발행 *전에*
-    하는 것이지 발행 후엔 의미가 없음). GitHub Actions처럼 무인으로 도는
-    환경에서는 애초에 이 파일을 열어 손으로 고칠 사람도 없으므로, 발행 완료와
-    동시에 지워서 디스크(혹은 git 저장소) 용량이 계속 쌓이는 걸 막는다.
-    로컬에서 사람이 검토 목적으로 계속 남겨두고 싶다면 KEEP_RAW_RESPONSES=1을
-    .env에 넣어 이 정리 동작을 끌 수 있다."""
-    try:
-        if os.path.exists(GENERATION_STATE_FILE):
-            os.remove(GENERATION_STATE_FILE)
-    except OSError as e:
-        print(f"⚠️ 생성 상태 파일 삭제 실패: {type(e).__name__}: {e}")
-
-    if not session_label:
-        return
-    if os.environ.get("KEEP_RAW_RESPONSES", "").strip() == "1":
-        print("ℹ️ KEEP_RAW_RESPONSES=1 설정으로 raw_responses/ 파일을 지우지 않고 남겨둡니다.")
-        return
-    if not os.path.isdir(RAW_RESPONSES_DIR):
-        return
-
-    safe_label = re.sub(r'[\\/:*?"<>|]+', '_', session_label)
-    removed = 0
-    try:
-        for filename in os.listdir(RAW_RESPONSES_DIR):
-            # 파일명 형식: "{safe_label}_part{번호}_{세션키8자리}.json"
-            if filename.startswith(f"{safe_label}_part") and filename.endswith(".json"):
-                try:
-                    os.remove(os.path.join(RAW_RESPONSES_DIR, filename))
-                    removed += 1
-                except OSError as e:
-                    print(f"⚠️ raw_responses 파일 삭제 실패({filename}): {type(e).__name__}: {e}")
-        if removed:
-            print(f"🧹 발행 완료 - 이번 세션의 raw_responses 파일 {removed}개를 정리했습니다.")
-    except OSError as e:
-        print(f"⚠️ raw_responses 폴더 조회 실패: {type(e).__name__}: {e}")
 
 
 def _load_cache():
@@ -525,19 +415,6 @@ def _is_similar_text(a, b):
     return ratio > 0.75
 
 
-def _extract_section_titles(html_content, max_titles=15):
-    """저장된 이전 글의 HTML에서 <h3> 제목들을 뽑아, 그 글이 어떤 섹션을
-    중점적으로 다뤘는지 파악합니다. 같은 티커를 재작성할 때 이전 글과
-    다른 앵글을 잡도록 지시하는 데 사용합니다."""
-    titles = re.findall(r'<h3[^>]*>(.*?)</h3>', html_content, flags=re.DOTALL | re.IGNORECASE)
-    cleaned = []
-    for t in titles:
-        clean = re.sub(r'<[^>]+>', '', t).strip()
-        # 이모지 및 변형 선택자(variation selector) 등 앞머리 장식 문자 제거
-        clean = re.sub(r'^[\U0001F000-\U0001FFFF\u2600-\u27BF\uFE0F\s]+', '', clean).strip()
-        if clean and clean not in cleaned:
-            cleaned.append(clean)
-    return cleaned[:max_titles]
 
 
 def _normalize_title_for_compare(title):
@@ -604,43 +481,6 @@ def _prune_old_article_content(state, keep_full_count=20, truncate_to=1000):
     return state
 
 
-def _save_published_article_file(title, html_content, topic_keys, version=1):
-    """완성된 최종 글(제목/목차/태그까지 다 합쳐진 상태)을 주제 키별
-    폴더에 사람이 읽기 좋은 형태로 저장한다. (ETF는 티커, 테크/바이오/특허는
-    슬러그 등 카테고리별로 다른 값을 topic_keys에 넘기면 된다.)
-
-    구조: published_articles/{키}/{날짜}_{키}[_v{버전}].html
-    예:   published_articles/QQQ/2026-07-09_QQQ.html
-          published_articles/QQQ/2026-08-15_QQQ_v2.html (같은 키 재분석 시)
-
-    여러 키를 한 글에서 같이 다뤘다면 각 키 폴더에 전부 저장한다 - 어느
-    폴더에서 찾아도 그 글을 볼 수 있게.
-
-    실패해도(디스크 문제 등) 전체 발행 흐름을 막지 않도록 조용히 로그만
-    남기고 넘어간다 - 이건 편의 기능이지 발행 자체의 필수 조건이 아니다."""
-    if not html_content:
-        return
-
-    date_str = datetime.now().strftime('%Y-%m-%d')
-    keys = topic_keys or ['UNKNOWN']
-
-    # 파일 안에 제목을 맨 위에 명시해서, 메모장으로 열었을 때 바로 무슨
-    # 글인지 알아볼 수 있게 한다(HTML 주석이라 실제 렌더링에는 영향 없음).
-    file_content = f"<!-- 제목: {title} -->\n<!-- 저장일: {date_str} -->\n\n{html_content}"
-
-    for key in keys:
-        key_clean = key.replace(".KS", "").replace(".US", "")
-        try:
-            key_dir = os.path.join(PUBLISHED_ARTICLES_DIR, key_clean)
-            os.makedirs(key_dir, exist_ok=True)
-            version_suffix = f"_v{version}" if version and version > 1 else ""
-            filename = f"{date_str}_{key_clean}{version_suffix}.html"
-            filepath = os.path.join(key_dir, filename)
-            with open(filepath, 'w', encoding='utf-8') as f:
-                f.write(file_content)
-            print(f"💾 완성본 저장: {filepath}")
-        except OSError as e:
-            print(f"⚠️ {key_clean} 완성본 파일 저장 실패(발행 자체엔 영향 없음): {type(e).__name__}: {e}")
 
 
 def _register_article(title, content, status='draft', notes='', version=1, extra_data=None, url='', state_file=None):
@@ -669,537 +509,28 @@ def _register_article(title, content, status='draft', notes='', version=1, extra
     _save_state(state, state_file)
 
 
-def _llm_part_check(part_html, part_label, previous_parts_summary, max_retries=2, category_label="ETF"):
-    """
-    완성본 전체를 보는 _llm_quality_check와 달리, Part 하나가 생성되는 즉시
-    그 Part만 빠르게 검수합니다. 목적은 두 가지:
-    1) 방금 생성된 Part가 이전 Part들과 내용이 겹치지 않는지 (목차/메타/서론 중복,
-       같은 조언 반복 등)
-    2) 이 Part 자체가 다른 ETF 글에도 그대로 쓸 수 있는 뻔한 문장으로 채워지지 않았는지
-
-    [중요] 이 함수는 반드시 "이전 Part는 이미 확정된 상태"에서만 호출해야 합니다.
-    즉 Part n을 검수할 때는 Part 1~(n-1)이 이미 통과되어 session에 저장된 뒤여야
-    하며, 절대로 나중에 이전 Part로 거슬러 올라가 재검수/재생성해서는 안 됩니다.
-    그렇게 하면 이후 Part들이 이미 옛날 버전을 참고해 쓰여진 상태라 중복/모순이
-    생길 수 있습니다. 순서: Part 생성 -> 이 함수로 검수 -> 실패시 그 자리에서
-    Part만 재생성 -> 통과하면 확정 -> 다음 Part로 진행.
-
-    실패 시(응답 없음/파싱 실패) None을 반환하며, 호출부는 이를 "검수 불가"로
-    처리해 통과로 간주하지 않아야 합니다.
-    """
-    # [수정] 예전엔 뒤 3000자만 잘라서 넘겼는데, 호출부도 이제 전체 누적 히스토리
-    # (p1~p_(n-1))를 넘기도록 고쳤으므로 여기서 다시 뒤쪽만 잘라버리면 그 수정이
-    # 무의미해진다. HTML 태그(script/style 포함)는 벗겨서 텍스트만 남기고,
-    # 전체를 그대로 넘긴다 - 최종 검수(_llm_quality_check)와 동일한 방식.
-    summary_excerpt = _extract_text_for_review(previous_parts_summary) if previous_parts_summary else ""
-    PART_CHECK_SAFE_CAP = 40000
-    if len(summary_excerpt) > PART_CHECK_SAFE_CAP:
-        print(f"⚠️ {part_label} 검수: 이전 파트 누적 텍스트가 {len(summary_excerpt)}자로 예상보다 깁니다. "
-              f"뒤 {PART_CHECK_SAFE_CAP}자만 검수에 사용합니다.")
-        summary_excerpt = summary_excerpt[-PART_CHECK_SAFE_CAP:]
-
-    prompt = (
-        f"당신은 한국어 원어민 편집자입니다. 5개 파트로 나눠 순차 생성 중인 {category_label} 블로그 글에서 "
-        f"방금 '{part_label}' 파트가 생성되었습니다. 이 파트만 아래 기준으로 빠르게 검수하세요.\n\n"
-        "체크리스트:\n"
-        "1. duplicate_with_previous: 아래 [이전까지 생성된 내용 요약]과 실질적으로 같은 내용(같은 조언, "
-        "같은 문장 구조, 이미 나온 섹션 재작성)이 이 파트에 또 나오는가?\n"
-        "2. thin_content: 이 파트의 문단을 소재명만 바꿔 다른 글에 그대로 붙여도 말이 되는 "
-        "뻔한 일반론 문장이 있는가?\n"
-        "3. broken_html: h3/table 등 HTML 태그가 깨지거나 지시받은 형식(표 등)을 안 지킨 부분이 있는가?\n\n"
-        "아래 JSON 형식으로만 답하세요 (다른 텍스트 없이):\n"
-        "{\n"
-        '  "quality_score": 0.0에서 1.0 사이 숫자 (1.0 = 문제 없음),\n'
-        '  "issues": ["구체적 문제점을 한국어로 짧게 나열, 없으면 빈 배열"],\n'
-        '  "pass": true 또는 false\n'
-        "}\n\n"
-        "[이전까지 생성된 내용 전체 (HTML 태그 제거, 텍스트만)]\n"
-        f"{summary_excerpt}\n\n"
-        f"[방금 생성된 '{part_label}' 파트 본문]\n"
-        f"{part_html}\n"
-    )
-
-    for attempt in range(max_retries):
-        try:
-            # [신규] 이 검수가 여기서 문제를 놓치면, 나중에 훨씬 비싼 최종 통합검수
-            # 단계에서야 발견되어 5파트 전체 재생성이 트리거될 수 있다(실제 로그에서
-            # 반복 관측됨). 출력 자체는 짧은 JSON이라 사고를 켜도 비용 증가가 작으므로,
-            # 여기서 조기에 정확히 잡아내는 쪽이 총 비용/호출 수 관점에서 더 이득이다.
-            raw = get_gemini_response(prompt, thinking_budget=24576)
-            if not raw:
-                print(f"⚠️ {part_label} 검수: API 응답 없음 (시도 {attempt + 1}/{max_retries})")
-                continue
-            text = raw.strip()
-            if text.startswith("```"):
-                text = re.sub(r'^```(?:json)?\s*', '', text)
-                text = re.sub(r'\s*```$', '', text)
-            start = text.find('{')
-            end = text.rfind('}')
-            if start == -1 or end == -1 or end <= start:
-                print(f"⚠️ {part_label} 검수 응답 파싱 실패 (시도 {attempt + 1}/{max_retries})")
-                continue
-            data = json.loads(text[start:end + 1])
-            score = max(0.0, min(1.0, float(data.get('quality_score', 0.0))))
-            issues = data.get('issues', []) or []
-            passed = bool(data.get('pass', score >= 0.6))
-            return {'quality_score': score, 'issues': issues, 'pass': passed}
-        except (json.JSONDecodeError, ValueError, TypeError) as e:
-            print(f"⚠️ {part_label} 검수 파싱 오류 (시도 {attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
-        except Exception as e:
-            print(f"⚠️ {part_label} 검수 오류 (시도 {attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
-
-    return None
 
 
-def _extract_text_for_review(html_content):
-    """LLM 검수용으로만 쓸 '텍스트 사본'을 만든다.
-
-    [중요] 이 함수는 실제 발행 콘텐츠(blog_content)를 전혀 건드리지 않는다.
-    BeautifulSoup으로 원본을 파싱해 script/style 태그(플로틀리 차트 JSON,
-    CSS 등 - AI가 쓴 문장이 아니라 코드가 계산한 값이라 정책/품질 검수 대상이
-    아님)만 제거한 '읽기 전용 사본'을 만들어 반환한다. 원본 html_content는
-    이 함수 호출 전/후로 전혀 수정되지 않으며, 실제 발행은 항상 원본으로 이루어진다.
-
-    태그 단위로 파싱 후 제거하기 때문에, 예전의 문자열 앞/뒤 N자 자르기 방식과
-    달리 태그 중간이 잘리는 일이 없다(<table> 등이 통째로 파싱되어 다뤄짐).
-
-    BeautifulSoup이 없으면 원본을 그대로 반환한다(안전한 폴백 - 검수 품질은
-    떨어지지만 프로그램이 죽지는 않음).
-    """
-    try:
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(html_content, 'html.parser')
-        for tag in soup(['script', 'style']):
-            tag.decompose()
-        text_only = soup.get_text(separator=' ', strip=True)
-        text_only = re.sub(r'\s+', ' ', text_only).strip()
-        return text_only
-    except ImportError:
-        print("⚠️ BeautifulSoup 미설치 - 검수용 텍스트를 원본 그대로 사용합니다(차트 데이터 포함, 토큰 소모 증가).")
-        return html_content
-    except Exception as e:
-        print(f"⚠️ 검수용 텍스트 추출 실패({type(e).__name__}: {e}) - 원본을 그대로 사용합니다.")
-        return html_content
 
 
-def _build_previous_content_block(confirmed_text_so_far):
-    """[신규] Part2~5 생성 프롬프트에 이전 파트의 '실제 문장'을 직접 넣어주기 위한 블록.
-
-    [중요] 예전에는 생성 프롬프트에 facts_json_str(숫자 요약)만 들어가고, 이전 파트가
-    실제로 어떤 문장/조언으로 그 숫자를 풀어썼는지는 전혀 안 들어갔다. 그래서 "이미
-    언급한 내용은 반복하지 마세요"라고 지시해봤자 AI 입장에선 뭘 반복하면 안 되는지
-    구체적으로 알 방법이 없었고, 그 결과 절세 계좌 설명 같은 문단이 파트마다 처음
-    쓰는 것처럼 반복 생성되는 문제가 있었음(_llm_part_check가 사후에 이걸 잡아내
-    재생성을 트리거하긴 했지만, 애초에 안 겹치게 예방하는 것보다 비효율적).
-
-    HTML 태그/스타일/스크립트는 _extract_text_for_review로 벗겨서 토큰을 아끼되,
-    실제 문장 내용은 그대로 전달한다. 글이 길어질 것을 대비해 뒤쪽(가장 최근에
-    쓰인 파트 = 지금 이어 쓸 파트와 가장 가까운 맥락)을 우선 보존한다.
-    """
-    if not confirmed_text_so_far:
-        return ""
-    text = _extract_text_for_review(confirmed_text_so_far)
-    if len(text) > PREVIOUS_CONTENT_BLOCK_CAP:
-        text = "...(앞부분 생략)... " + text[-PREVIOUS_CONTENT_BLOCK_CAP:]
-    return (
-        "\n[이전까지 실제로 작성된 본문 전체 (HTML 태그 제거, 텍스트만 - 참고용)]\n"
-        f"{text}\n"
-        "[위 내용을 반드시 확인하고, 같은 조언·같은 문장 구조·같은 설명(예: 절세 계좌 활용법, "
-        "거시경제 지표 해석 등)을 다시 쓰지 마세요. 위에 없는 새로운 이야기만 작성하세요.]\n"
-    )
 
 
-# ETF 파이프라인의 기본 Part 구성 설명. category_label이 ETF가 아닌 다른 카테고리
-# (테크/바이오/특허 등)에서 _llm_quality_check를 호출할 때는 반드시 그 카테고리의
-# 실제 Part 구성에 맞는 part_descriptions를 넘겨야 한다 - 안 넘기면 이 ETF용
-# 설명이 기본값으로 쓰여서, 검수가 엉뚱한 기준으로 problem_parts를 판단하게 된다.
-DEFAULT_ETF_PART_DESCRIPTIONS = (
-    "- Part1: 도입/기초 (제목, 서론, 기초정보, 수익률·배당 기초 지표)\n"
-    "- Part2: 수익/시뮬레이션 (수익률+배당 표, 1000만원 시뮬레이션, 세금 시나리오)\n"
-    "- Part3: 전략/리스크 (리스크 분석, 위험 시나리오, 경쟁분석, 실수료 비교)\n"
-    "- Part4: 포트폴리오/심화 (연령별 포트폴리오, 매매 타이밍, 섹터 심화)\n"
-    "- Part5: 반박/결론/마무리 (반박, 경제 사이클, 제언, 요약, FAQ, 태그)"
-)
 
 
-def _extra_quality_items(category_label):
-    """실제 발행 글에서 놓쳤던 오류 유형을 검수 항목에 명시한다(2026-07 QQQ 글 점검 결과)."""
-    items = (
-        "6. repeated_blocks: 같은 표(예: 수익률표, 배당내역표)나 같은 문단이 글 안에서 두 번 이상 나오는가?\n"
-        "7. unsupported_claims: 링크나 구체적 출처 없이 '외신 보도', '업계에 따르면', '운용사 팩트시트' 같은 "
-        "뭉뚱그린 출처를 단 주장, 또는 위 데이터에 없는 사실(다른 회사의 신상품 출시, 특정 기업 실적 등)을 "
-        "단정적으로 쓴 문장이 있는가?\n"
-        "8. date_confusion: '지난 분석(날짜) 대비'처럼 비교 기준 날짜가 글 작성일과 같거나 뒤섞인 문장이 있는가?\n"
-    )
-    if "ETF" in (category_label or ""):
-        items += (
-            "9. korea_account_rules: 한국 계좌 규칙 오류가 있는가? 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP로 "
-            "직접 살 수 없는데 그 계좌로 이 ETF를 사라고 안내하거나, 'ISA 전액 비과세'처럼 한도 없이 비과세라고 "
-            "쓴 경우를 반드시 지적하세요.\n"
-        )
-    return items + "\n"
 
 
-def _llm_quality_check(content, facts_json_str=None, max_retries=2, category_label="ETF/투자", part_descriptions=None):
-    """
-    단순 단어 카운트가 아니라, Gemini에게 실제로 글을 읽고 채점하게 합니다.
-    애드센스 통과 관점에서 자연스러움, 정책 위반 소지, 논리적 모순,
-    실질적 정보 부족(thin content) 여부를 봅니다.
-
-    [강화] 이전에는 팩트시트를 받지 않아서, 본문 안의 서술(예: 투자 매력도 평가,
-    "안정적", "위험함" 같은 정성적 판단)이 실제 수치와 모순되는지 전혀 검증하지
-    못했음(예: MDD -53%인데 "안정적"이라고 서술해도 이 검수가 못 잡는 구조).
-    facts_json_str이 주어지면 이 대조 검증도 체크리스트에 포함시킨다.
-
-    [신규] 이 함수는 최종 발행 여부를 좌우하는 마지막 관문이므로, 다른 호출과
-    달리 get_gemini_response에 thinking_budget=24576(gemini-2.5-flash 최댓값 =
-    "추론강도 high")을 넘겨 실제로 깊게 사고한 뒤 채점하게 한다. 원고 생성
-    호출(Part1~5)은 여전히 thinking_budget=0(기본값)을 그대로 쓰므로 이 변경은
-    검수 정확도만 높이고 생성 속도/토큰 비용에는 영향을 주지 않는다.
-
-    실패 시(네트워크 오류, 파싱 실패 등) None을 반환합니다.
-    호출부는 None일 경우 반드시 "검수 불가 - 사람이 직접 확인 필요"로 처리해야 하며,
-    실패를 '통과'로 간주해서는 안 됩니다.
-    """
-    # [변경] 예전에는 앞 4000자+뒤 3000자만 잘라서 넘겼는데, 이러면 중간 섹션
-    # (연령별 포트폴리오, 매매 타이밍, 경제 사이클 등)에서 발생하는 반복/중복은
-    # 애초에 비교 대상이 서로 안 보여서 검수가 절대 못 잡는 구조였음
-    # (조각을 몇 개로 나누든 "따로 보기"만으로는 조각 간 비교가 저절로 생기지 않음).
-    #
-    # Gemini 2.5 계열은 무료 티어도 100만 토큰 컨텍스트 윈도우를 그대로 쓰므로,
-    # ETF 글 한 편(보통 수만 자 수준)을 통째로 넣는 건 용량 문제가 아니다.
-    # 대신 Plotly 차트용 원본 JSON 배열(script 태그)과 style은 AI가 쓴 문장이
-    # 아니라 코드가 계산한 값이라 애초에 검수 대상이 아니므로, 이를 제거한
-    # '검수용 텍스트 사본'을 만들어 전체를 한 번에 넘긴다(원본 blog_content는
-    # 건드리지 않음 - 실제 발행은 항상 원본 그대로 나간다).
-    review_text = _extract_text_for_review(content)
-
-    # 혹시 모를 극단적 케이스(섹션이 크게 늘어나는 등)에 대비한 안전장치.
-    # 평소 분량(수천~1만자 수준)에서는 절대 걸리지 않는 매우 넉넉한 상한이며,
-    # 걸리더라도 조용히 자르지 않고 경고를 남겨 사람이 알아채도록 한다.
-    SAFE_CHAR_CAP = 60000
-    if len(review_text) > SAFE_CHAR_CAP:
-        print(f"⚠️ 검수용 텍스트가 {len(review_text)}자로 예상보다 훨씬 깁니다. "
-              f"앞 {SAFE_CHAR_CAP}자만 검수합니다 - 섹션이 비정상적으로 늘어나지 않았는지 확인하세요.")
-        excerpt = review_text[:SAFE_CHAR_CAP]
-    else:
-        excerpt = review_text
-
-    facts_block = ""
-    fact_check_item = ""
-    if facts_json_str:
-        facts_block = f"\n[이 글이 근거해야 할 실제 수치 데이터(팩트 시트)]\n{facts_json_str}\n"
-        fact_check_item = (
-            "5. fact_mismatch: 본문의 서술(예: '안정적', '낮은 변동성', '고성장' 같은 정성적 평가나 "
-            "요약 문구)이 위 팩트 시트의 실제 수치와 모순되지 않는가? 예를 들어 MDD가 -40% 이상인데 "
-            "'안정적'이라고 서술하거나, 수익률이 마이너스인데 '견조한 성과'라고 서술하는 경우를 지적하세요. "
-            "본문에 등장하는 숫자 자체가 팩트 시트와 다르게 왜곡되어 있는지도 확인하세요. "
-            "다만 주의: '최근 1년 수익률'과 '연평균성장률(CAGR, 상장 이후 전체 기간 기준)'은 서로 다른 "
-            "기간을 기준으로 하므로 값이 크게 다를 수 있습니다(예: 최근 1년은 -40%인데 CAGR은 +13%인 것이 "
-            "실제로 가능함 - 장기 누적과 최근 1년의 방향이 다를 수 있기 때문). 본문이 이 두 지표의 기준 기간이 "
-            "다르다는 점을 이미 설명하고 있다면 이를 모순으로 지적하지 마세요. 오직 같은 기간을 가리키는데도 "
-            "서로 다른 숫자가 나오는 경우만 지적하세요.\n\n"
-        )
-
-    prompt = (
-        "당신은 애드센스 심사 담당자이자 한국어 원어민 편집자입니다.\n"
-        f"아래는 자동 생성된 {category_label} 블로그 글의 전체 본문(HTML 태그와 차트 스크립트는 제거된 텍스트)입니다.\n"
-        "글 전체가 빠짐없이 제공되므로, 서로 다른 섹션 사이의 반복이나 모순도 함께 판단할 수 있습니다.\n"
-        "이 글이 애드센스 심사와 실제 독자 관점에서 문제가 없는지 엄격하게 평가하세요.\n"
-        f"[오늘 날짜] {_kst_now():%Y년 %m월 %d일}. 오늘이나 그 이전 날짜는 미래가 아니므로 날짜 오류로 지적하지 마세요"
-        "(당신이 아는 최신 시점보다 뒤라도 실제 오늘 날짜가 기준입니다).\n"
-        "[내부 링크] 같은 블로그의 다른 글을 소개하는 링크(함께 보면 좋은 글)는 정상이니 문제로 보지 마세요. "
-        "다만 문장 중간에 다른 글 제목이 어색하게 끼어 있으면 unnatural_language로 지적하세요.\n"
-        f"{facts_block}\n"
-        "체크리스트:\n"
-        "1. unnatural_language: 어색하거나 기계적으로 치환된 흔적이 있는 문장, 반복되는 표현이 있는가?\n"
-        "2. policy_risk: 무조건적 수익 보장, 100% 확정 표현, 과장된 표현, 오해를 유발할 수 있는 금융 조언이 있는가?\n"
-        "3. logical_issues: 문맥상 모순되거나 앞뒤가 안 맞는 문장, 뜬금없는 문장이 있는가?\n"
-        "4. thin_content: 다음 기준으로 엄격하게 판단하세요 - 이 문단을 소재명만 바꿔서 다른 글에 "
-        "그대로 붙여넣어도 말이 되는가? 그렇다면 그건 이 글만의 고유 정보가 아니라 뻔한 일반론이므로 문제로 지적하세요. "
-        "특히 연령별 포트폴리오, 매매 타이밍, 경제 사이클, 결론/제언 섹션에 이런 일반론적 문장이 없는지 확인하세요.\n\n"
-        f"{fact_check_item}"
-        f"{_extra_quality_items(category_label)}"
-        "[본문 구성 안내] 이 글은 다음 5개 파트를 이어붙여 만들어졌습니다. 문제를 발견하면 그 문제가 "
-        "실제로 어느 파트에서 비롯됐는지 함께 판단하세요:\n"
-        f"{part_descriptions or DEFAULT_ETF_PART_DESCRIPTIONS}\n\n"
-        "아래 JSON 형식으로만 답하세요 (다른 텍스트 없이):\n"
-        "{\n"
-        '  "quality_score": 0.0에서 1.0 사이 숫자 (1.0 = 문제 전혀 없음, 0.0 = 심각한 문제),\n'
-        '  "issues": ["구체적 문제점을 한국어로 짧게 나열, 없으면 빈 배열"],\n'
-        '  "problem_parts": [문제의 원인이 되는 파트 번호만 정수 배열로, 예: [2, 3]. 문제가 없거나 '
-        '어느 파트 때문인지 특정하기 어려우면 빈 배열 []. 단순히 "여러 곳에서 언급된 정보"라는 이유로 '
-        '전체 파트를 다 넣지 말고, 실제로 그 문제 문장/수치가 처음 등장하거나 원인이 된 파트만 지목하세요.\n'
-        '  "publish_recommended": true 또는 false\n'
-        "}\n\n"
-        "--- 본문 시작 ---\n"
-        f"{excerpt}\n"
-        "--- 본문 끝 ---\n"
-    )
-
-    for attempt in range(max_retries):
-        try:
-            raw = get_gemini_response(prompt, thinking_budget=24576)
-            if not raw:
-                print(f"⚠️ LLM 품질 체크: API 응답 없음 (시도 {attempt + 1}/{max_retries})")
-                continue
-            text = raw.strip()
-            if text.startswith("```"):
-                text = re.sub(r'^```(?:json)?\s*', '', text)
-                text = re.sub(r'\s*```$', '', text)
-            start = text.find('{')
-            end = text.rfind('}')
-            if start == -1 or end == -1 or end <= start:
-                print(f"⚠️ LLM 품질 체크 응답 파싱 실패 (시도 {attempt + 1}/{max_retries})")
-                continue
-            data = json.loads(text[start:end + 1])
-            score = float(data.get('quality_score', 0.0))
-            score = max(0.0, min(1.0, score))
-            issues = data.get('issues', []) or []
-            publish_recommended = bool(data.get('publish_recommended', score >= 0.6))
-            # [추가] 어느 파트(1~5)가 문제의 원인인지. 형식이 어긋나거나 범위를
-            # 벗어난 값이 섞여 있어도 죽지 않도록 안전하게 정수 1~5만 걸러낸다.
-            raw_problem_parts = data.get('problem_parts', []) or []
-            problem_parts = []
-            for p in raw_problem_parts:
-                try:
-                    p_int = int(p)
-                    if 1 <= p_int <= 5:
-                        problem_parts.append(p_int)
-                except (ValueError, TypeError):
-                    continue
-            problem_parts = sorted(set(problem_parts))
-            return {
-                'quality_score': score,
-                'issues': issues,
-                'publish_recommended': publish_recommended,
-                'problem_parts': problem_parts,
-            }
-        except (json.JSONDecodeError, ValueError, TypeError) as e:
-            print(f"⚠️ LLM 품질 체크 파싱 오류 (시도 {attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
-        except Exception as e:
-            print(f"⚠️ LLM 품질 체크 오류 (시도 {attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
-
-    return None
 
 
-def _llm_targeted_fix(part_html, part_label, issues, facts_json_str=None, max_retries=2, category_label="ETF"):
-    """
-    [신규] 최종 검수(_llm_quality_check)가 지적한 문제를, 처음부터 다시 쓰는 대신
-    "문제가 된 그 파트의 텍스트만" 넘겨서 직접 고치게 하는 사후 교정 함수.
-
-    기존 방식(재생성)의 문제: 검수가 "Part2와 Part4의 배당 정보가 모순된다"처럼
-    정확한 문제를 찾아내도, 그 파트를 통째로 다시 "새로 쓰게" 시키면 AI가 완전히
-    다른 문장으로 재작성하면서 (a) 잘 써졌던 다른 부분까지 같이 바뀌어버리고
-    (b) 운이 나쁘면 새로운 종류의 실수가 또 생길 수 있음. 그래서 재시도를 거듭해도
-    같은 유형의 문제가 계속 반복되는 경우가 많았음(3번을 다 써도 해결 안 됨).
-
-    이 함수는 다르게 접근한다: "이 텍스트에서 지적된 문제만 고치고, 나머지는 최대한
-    원래 표현을 유지하라"고 명시적으로 요청한다. 즉 재작성이 아니라 "교정"이다.
-    이러면 (a) 이미 잘 쓴 부분이 불필요하게 또 바뀔 위험이 줄고 (b) 무엇을 고쳐야
-    하는지 매우 구체적으로 알려주므로 같은 실수가 반복될 확률도 낮아진다.
-
-    반환값: 성공 시 교정된 HTML 문자열, 실패 시 None (호출부는 None이면 원본을
-    그대로 쓰거나 기존 재생성 방식으로 폴백해야 함).
-    """
-    if not part_html or not issues:
-        return None
-
-    issues_text = "\n".join(f"- {issue}" for issue in issues)
-    fact_check_item = ""
-    if facts_json_str:
-        fact_check_item = (
-            f"\n[반드시 지켜야 할 실제 데이터]\n{facts_json_str}\n"
-            "위 데이터와 다른 숫자가 본문에 있다면 반드시 위 데이터에 맞게 고치세요.\n"
-        )
-
-    prompt = (
-        f"아래는 {category_label} 분석 블로그 글의 '{part_label}' 부분입니다. "
-        "이 텍스트를 검수한 결과 아래와 같은 구체적 문제가 발견되었습니다:\n"
-        f"{issues_text}\n"
-        f"{fact_check_item}\n"
-        "[매우 중요한 작업 방식]\n"
-        "- 이 텍스트를 처음부터 새로 쓰지 마세요. 지적된 문제가 있는 부분만 정확히 찾아 "
-        "고치고, 문제와 무관한 나머지 문장/구조/HTML은 최대한 원래 그대로 유지하세요.\n"
-        "- 특히 수치나 사실관계가 지적됐다면, 위쪽 [반드시 지켜야 할 실제 데이터]와 "
-        "정확히 일치하도록 그 숫자만 바로잡으세요.\n"
-        "- 반복/중복이 지적됐다면, 중복되는 문장을 삭제하거나 다른 파트를 참조하는 짧은 "
-        "언급으로 줄이세요. 전체 문단을 다른 말로 풀어써서 '재작성'하지 마세요.\n"
-        "- HTML 태그 구조는 원본과 동일하게 유지하세요.\n"
-        "- 출력은 고쳐진 전체 HTML만 출력하세요. 설명이나 안내 문구를 앞뒤에 붙이지 마세요.\n\n"
-        "--- 원본 텍스트 시작 ---\n"
-        f"{part_html}\n"
-        "--- 원본 텍스트 끝 ---\n"
-    )
-
-    for attempt in range(max_retries):
-        try:
-            raw = get_gemini_response(prompt, thinking_budget=24576)
-            if not raw:
-                print(f"⚠️ 사후 교정: API 응답 없음 (시도 {attempt + 1}/{max_retries})")
-                continue
-            fixed = raw.strip()
-            if fixed.startswith("```"):
-                fixed = re.sub(r'^```(?:html)?\s*', '', fixed)
-                fixed = re.sub(r'\s*```$', '', fixed)
-            if len(fixed) < len(part_html) * 0.5:
-                # [안전장치] 교정 결과가 원본의 절반도 안 되면, AI가 요약해버렸거나
-                # 뭔가 크게 잘못 잘렸을 가능성이 높다. 이 경우 교정 실패로 간주해
-                # 호출부가 원본을 그대로 쓰도록 한다(내용이 통째로 사라지는 것보다
-                # 안전).
-                print(f"⚠️ 사후 교정 결과가 원본보다 지나치게 짧습니다({len(fixed)}자 vs 원본 {len(part_html)}자) - 교정 실패로 간주합니다.")
-                continue
-            return fixed
-        except Exception as e:
-            print(f"⚠️ 사후 교정 오류 (시도 {attempt + 1}/{max_retries}): {type(e).__name__}: {e}")
-
-    return None
 
 
-def _policy_filter(content):
-    """애드센스 정책 위반 단어 필터링"""
-    blacklist = {
-        '무조건': '항상',
-        '100%': '대략',
-        '절대': '사실상',
-        '한 방에': '단기간에',
-        '완벽한': '완전한',
-        '무조건 수익': '안정성 확보',
-    }
-    issues = []
-    for bad, replacement in blacklist.items():
-        if bad in content:
-            content = content.replace(bad, replacement)
-            issues.append(f"'{bad}' -> '{replacement}'")
-
-    # [수정] 이전에는 '보장' -> '보장할 수는 없지만'으로 무차별 치환했는데,
-    # AI가 이미 "보장하지 않습니다"처럼 부정문을 쓴 경우에도 똑같이 적용되어
-    # "보장할 수는 없지만하지 않습니다" 같은 이중부정 문장이 실제로 여러 번
-    # 생성됐음(1,000만원 시뮬레이션 안내문 등에서 3회 반복 확인됨).
-    # "보장한다/보장합니다"류 확정 서술어일 때만 자연스러운 완결 문장으로
-    # 바꾸고, 이미 부정형인 경우는 건드리지 않는다.
-    guarantee_confirm_pattern = re.compile(r'보장(?:합니다|한다|해요|드립니다)')
-    if guarantee_confirm_pattern.search(content):
-        content = guarantee_confirm_pattern.sub('보장할 수는 없지만 기대할 수 있습니다', content)
-        issues.append("'보장(확정형 서술어)' -> '보장할 수는 없지만 기대할 수 있습니다'")
-
-    return content, issues
 
 
-def _ai_recovery(content):
-    """AI 감지 우회 단어 치환.
-    [수정] 이전에는 단순 str.replace()로 'AI'를 찾아 무조건 치환했는데,
-    이게 "FAIR"->"F인공지능R", "MAIN"->"M인공지능N"처럼 완전히 무관한
-    영단어 안에 우연히 포함된 "AI"까지 오염시키는 버그가 있었음(실제
-    재현 확인됨). 정규식 단어 경계(\\b)를 사용해 'AI'가 독립된 단어로
-    등장할 때만 치환하도록 수정."""
-    simple_replacements = {
-        '자동 생성': '자동 생성(참고)',
-        '매우 중요': '중요',
-        '이것은': '여기서',
-        '결론적으로': '요약하면',
-        '요약하자면': '정리하면',
-        '정리하자면': '간단히 말하면',
-        '무조건': '가능성이 높다',
-        '100%': '대체로',
-        '완벽한': '충분히 검토된'
-    }
-    for old, new in simple_replacements.items():
-        content = content.replace(old, new)
-
-    # 'AI'만 별도로 단어 경계를 지켜서 치환 (앞뒤가 영문자가 아닐 때만)
-    # [수정] 기존 정규식은 "AI(인공지능)"처럼 AI 본인이 이미 "AI"를 풀어서
-    # 설명해둔 경우에도 앞의 "AI"까지 똑같이 "인공지능"으로 바꿔버려서
-    # "인공지능(인공지능)"이라는 중복이 실제로 여러 번 발생했음(이건 AI가 만든
-    # 실수가 아니라 이 치환 로직 자체가 만들어낸 결과물이었음). 바로 뒤에
-    # "(인공지능"이 이어지는 경우는 이미 풀어 쓴 것으로 보고 건드리지 않는다.
-    content = re.sub(r'(?<![A-Za-z])AI(?![A-Za-z])(?!\s*\(인공지능)', '인공지능', content)
-
-    return content
 
 
-def _reduce_repetition(content):
-    """텍스트 반복도 감소"""
-    sentences = re.split(r'(?<=[.!?])\s+', content)
-    uniq = []
-    for sent in sentences:
-        if not sent.strip():
-            continue
-        is_dup = any(_is_similar_text(sent, prev) for prev in uniq)
-        if is_dup:
-            sent = sent.replace('투자자라면', '투자자분이시라면')
-        uniq.append(sent)
-    return ' '.join(uniq)
 
 
-def _clean_redundant_parenthetical(content):
-    """
-    [신규] "인공지능(인공지능)"처럼 '단어(같은 단어)' 형태로 괄호 안에
-    직전 단어가 그대로 반복되는 패턴을 정리하는 로컬(비-API) 후처리 필터.
-
-    이런 패턴은 대부분 여러 단계의 텍스트 치환(_ai_recovery 등)이 겹치면서
-    우연히 생기는 기계적 실수라서, AI에게 "이거 고쳐줘"라고 API를 또 호출할
-    필요가 없다. 정규식으로 즉시, 무료로, 100% 정확하게 잡아낼 수 있는
-    문제라서 API 사후 교정(_llm_targeted_fix)과는 역할을 분리했다:
-    - 의미 판단이 필요한 문제(파트 간 모순, 실질적 중복) -> API 사후 교정
-    - 순수 기계적 패턴(단어(같은 단어) 등) -> 이 로컬 필터
-
-    실행 위치: Part1~5를 합친 직후, 발행 직전 한 번만 실행되며 네트워크
-    호출이 전혀 없어 몇 밀리초 안에 끝난다.
-    """
-    issues = []
-
-    # 패턴 1: "인공지능(인공지능)", "ETF(ETF)"처럼 한글/영문 단어가 그대로
-    # 괄호 안에 반복되는 경우 -> 괄호 부분 삭제
-    pattern = re.compile(r'([가-힣A-Za-z0-9]+)\(\1\)')
-    matches = pattern.findall(content)
-    if matches:
-        content = pattern.sub(r'\1', content)
-        for m in set(matches):
-            issues.append(f"중복 괄호 정리: '{m}({m})' -> '{m}'")
-
-    # 패턴 2: "인공지능(AI)"처럼 이미 풀어 쓴 한글 단어 뒤에 원어 약어가
-    # 불필요하게 다시 붙는 경우는 굳이 건드리지 않음(오히려 원어 병기가
-    # 독자에게 도움이 될 수 있어 패턴 1보다 훨씬 보수적으로 접근).
-
-    return content, issues
 
 
-def _safe_html_filter(html_content):
-    """HTML 구조를 파괴하지 않도록 텍스트 노드만 필터링.
-    [중요] 이전에는 _policy_filter가 반환하는 issues(실제로 어떤 정책 위반
-    표현이 어떻게 자동 치환됐는지)를 전부 버리고 있어서, 발행 전 요약에서
-    "이 글에서 무엇이 순화됐는지"를 사람이 전혀 알 수 없었음. 이제 issues를
-    모아서 반환하고, 호출부(run_automation)가 policy_issues_overall에
-    누적해 발행 전 요약에 보여줄 수 있게 한다."""
-    all_issues = []
-    try:
-        from bs4 import BeautifulSoup
-        soup = BeautifulSoup(html_content, 'html.parser')
-
-        # 텍스트 노드만 필터링 (태그 속성은 건드리지 않음)
-        for text_node in soup.find_all(string=True):
-            if text_node.parent.name not in ['script', 'style']:  # 코드/스타일 제외
-                filtered_text, issues = _policy_filter(text_node.string)
-                filtered_text = _ai_recovery(filtered_text)
-                filtered_text = _reduce_repetition(filtered_text)
-                filtered_text, redundant_issues = _clean_redundant_parenthetical(filtered_text)
-                text_node.string.replace_with(filtered_text)
-                all_issues.extend(issues)
-                all_issues.extend(redundant_issues)
-
-        return str(soup), all_issues
-    except ImportError:
-        # BeautifulSoup 없으면 기존 방식 (리스크 있음)
-        print("⚠️ BeautifulSoup 설치 필요: pip install beautifulsoup4")
-        filtered, issues = _policy_filter(html_content)
-        filtered = _ai_recovery(filtered)
-        filtered = _reduce_repetition(filtered)
-        filtered, redundant_issues = _clean_redundant_parenthetical(filtered)
-        return filtered, issues + redundant_issues
-    except (ValueError, TypeError, AttributeError, RuntimeError) as e:
-        print(f"⚠️ HTML 필터링 실패: {type(e).__name__}: {e}")
-        return html_content, []
 
 
 def _record_api_call(model_name):
@@ -1539,167 +870,10 @@ def get_gemini_response(prompt, thinking_budget=0):
     return None
 
 
-def _extract_facts_from_response(response_text, part_num):
-    """JSON 응답에서 주요 수치 및 HTML을 안전하게 추출합니다."""
-    try:
-        import json
-        response_data = json.loads(response_text)
-    except json.JSONDecodeError:
-        start = response_text.find('{')
-        end = response_text.rfind('}')
-        if start != -1 and end != -1 and end > start:
-            try:
-                import json
-                response_data = json.loads(response_text[start:end+1])
-            except json.JSONDecodeError as e:
-                print(f"⚠️ JSON 파싱 오류 (Part {part_num}): {e}")
-                return {"html": response_text, "facts": {}}
-        else:
-            print(f"⚠️ JSON 파싱 오류 (Part {part_num}): 유효한 JSON 블록을 찾을 수 없음")
-            return {"html": response_text, "facts": {}}
-    except Exception as e:
-        print(f"⚠️ 팩트 추출 오류 (Part {part_num}): {e}")
-        return {"html": response_text, "facts": {}}
-
-    # AI가 {"html": ...} 대신 목록([...])이나 다른 모양으로 답하는 경우가 있다(2026-10-31 실제로 멈춤).
-    if isinstance(response_data, list):
-        response_data = next((x for x in response_data if isinstance(x, dict)), {})
-    if not isinstance(response_data, dict):
-        return {"html": response_text, "facts": {}}
-    facts = response_data.get('facts', {})
-    if not isinstance(facts, dict):
-        facts = {}
-    html = response_data.get('html', response_data.get('content', response_text))
-    print(f"✅ Part {part_num} 팩트 추출 완료")
-    return {"html": html, "facts": facts}
 
 
-def _generate_part_with_check(prompt, part_num, part_label, confirmed_text_so_far, max_part_retries=2, session_key=None, label=None, category_label="ETF"):
-    """
-    Part 하나를 생성하고, 생성 직후 그 자리에서 검수 -> 실패시 재생성을 반복합니다.
-    반드시 이전 Part들이 이미 확정된 상태(confirmed_text_so_far)에서만 호출해야 하며,
-    이 함수가 반환한 뒤에는 그 결과를 확정으로 간주하고 다음 Part로 넘어갑니다.
-    (거슬러 올라가 다시 부르면 안 됩니다 - 이후 Part들이 이미 이 결과를 참고해 쓰여집니다)
-
-    session_key가 주어지면, 확정된 원본 JSON 응답을 raw_responses/ 폴더에
-    저장해 사람이 나중에 직접 열어 검토하거나 html/facts 필드를 수정할 수
-    있게 한다. 없으면 저장을 건너뛴다(기존 동작과 동일, 하위 호환).
-
-    반환값: (raw_response_text, quality_info) - quality_info는 None일 수 있음(검수 불가 상태)
-    raw_response_text는 항상 최선의 결과(마지막 시도)를 반환합니다 (완전 실패해도 재생성을 포기하고
-    사람이 최종 검토하게 함 - 자동화가 멈춰버리는 것보다 낫습니다).
-    """
-    last_response = None
-    last_quality = None
-    previous_issues = None
-    last_failed_html = None  # [신규] 직전 시도에서 실제로 생성됐던 HTML(검수 실패분) - 재시도 프롬프트에 원문으로 첨부
-
-    RETRY_ATTEMPT_EXCERPT_CAP = 8000  # 재시도 프롬프트에 원문을 통째로 넣진 않고 텍스트 추출 후 상한을 둠
-
-    for attempt in range(max_part_retries):
-        print(f"🤖 {part_label} 생성 중 (시도 {attempt + 1}/{max_part_retries})...")
-
-        # [수정] 이전 시도에서 검수가 지적한 문제가 있다면, 프롬프트에 명시적으로
-        # 추가해서 AI가 같은 실수를 반복하지 않도록 합니다. 첫 시도(previous_issues
-        # 없음)에는 원래 prompt를 그대로 사용합니다.
-        # [추가 수정] 예전에는 "지적사항 요약 문구"만 다시 넣어줬는데, 이러면 AI가
-        # 실제로 뭘 어떻게 썼길래 겹쳤는지 원문 대조 없이 "말로만" 고치게 되어
-        # 형태만 바뀐 비슷한 문제가 재발하기 쉬웠음. 직전 시도의 실제 텍스트(HTML
-        # 제거)를 함께 보여줘서, 그 원문을 보고 실제로 다른 문장으로 고치도록 한다.
-        if previous_issues:
-            issues_text = "\n".join(f"- {issue}" for issue in previous_issues)
-            previous_attempt_block = ""
-            if last_failed_html:
-                prev_text = _extract_text_for_review(last_failed_html)
-                if len(prev_text) > RETRY_ATTEMPT_EXCERPT_CAP:
-                    prev_text = prev_text[:RETRY_ATTEMPT_EXCERPT_CAP] + " ...(중략)"
-                previous_attempt_block = (
-                    "\n\n[직전 시도에서 실제로 작성했던 원문 (텍스트만 추출 - 이걸 그대로 다시 쓰지 말 것)]\n"
-                    f"{prev_text}\n"
-                )
-            current_prompt = (
-                prompt
-                + "\n\n[중요 - 직전 시도 검수 결과 반영 필수]\n"
-                + "바로 이전 시도에서 아래 문제들이 지적되어 재생성하는 것입니다. "
-                + "같은 문제를 절대 반복하지 말고, 아래 각 지적사항을 실제로 고친 새로운 내용을 작성하세요:\n"
-                + issues_text
-                + previous_attempt_block
-            )
-        else:
-            current_prompt = prompt
-
-        # [신규] 첫 시도는 사고 없이 빠르게 뽑는다(대부분 통과하거나, 실패해도
-        # 재시도 프롬프트가 문제를 구체적으로 짚어주므로 굳이 비쌀 필요 없음).
-        # 반면 재시도(previous_issues가 있는 경우)는 "지적된 문제를 실제로
-        # 피해서 다시 써야" 하는, 사고가 실제로 값어치를 하는 상황이므로
-        # 사고를 켠다 - 같은 문제를 반복해서 재시도 횟수를 낭비하는 것보다
-        # 한 번에 제대로 고치는 쪽이 총 호출 수/토큰 관점에서 더 싸다.
-        gen_thinking_budget = 24576 if previous_issues else 0
-        response_text = get_gemini_response(current_prompt, thinking_budget=gen_thinking_budget)
-        if not response_text:
-            print(f"⚠️ {part_label} 생성 자체가 실패했습니다 (API 응답 없음).")
-            continue
-        last_response = response_text
-
-        # 검수용으로 HTML만 대략 추출 (완전 파싱은 호출부에서 다시 함 - 여기선 검수 목적만)
-        try:
-            parsed_for_check = json.loads(response_text)
-            html_for_check = parsed_for_check.get('html', response_text)
-        except (json.JSONDecodeError, AttributeError):
-            html_for_check = response_text
-
-        print(f"🔎 {part_label} 즉시 검수 중...")
-        check_result = _llm_part_check(html_for_check, part_label, confirmed_text_so_far, category_label=category_label)
-        last_quality = check_result
-
-        if check_result is None:
-            print(f"⚠️ {part_label} 검수 불가(응답 실패) - 통과로 간주하지 않고 재시도합니다.")
-            continue
-
-        if check_result['pass'] and check_result['quality_score'] >= 0.6:
-            print(f"✅ {part_label} 검수 통과 (점수 {check_result['quality_score']:.2f})")
-            if session_key:
-                _save_raw_part_response(session_key, part_num, last_response, label=label)
-            return last_response, last_quality
-        else:
-            print(f"🔁 {part_label} 검수 미통과 (점수 {check_result['quality_score']:.2f}) - 이 파트만 재생성합니다.")
-            if check_result['issues']:
-                for issue in check_result['issues']:
-                    print(f"   - {issue}")
-            # [수정] 다음 재시도에서 사용할 수 있도록 지적사항을 저장해둡니다.
-            previous_issues = check_result['issues']
-            # [신규] 지적사항 요약뿐 아니라 실제로 뭐라고 썼는지도 다음 시도에 보여주기 위해 원문을 저장.
-            last_failed_html = html_for_check
-
-    print(f"⚠️ {part_label}: 최대 재시도 도달 - 마지막 생성 결과를 그대로 사용합니다. 발행 전 직접 확인하세요.")
-    if session_key and last_response:
-        _save_raw_part_response(session_key, part_num, last_response, label=label)
-    return last_response, last_quality
 
 
-def get_unique_quote():
-    used_quotes = []
-    if os.path.exists(QUOTE_FILE):
-        with open(QUOTE_FILE, "r", encoding="utf-8") as f:
-            used_quotes = f.read().splitlines()
-    
-    print("📜 중복되지 않는 새로운 금융 명언을 찾는 중...")
-    prompt = f"금융 데이터베이스. 사용된 명언: {used_quotes}\n위 리스트에 없는 새로운 금융/투자 명언 1개(워렌 버핏, 피터 린치, 앙드레 코스톨라니, 벤저민 그레이엄 등 실존 투자가).\n응답을 JSON 형식으로 출력하세요: {{\"kor\": \"한글명언\", \"eng\": \"영어원문\", \"author\": \"인물이름\"}}"
-    
-    res = get_gemini_response(prompt)
-    default_quote = {"kor": "투자는 IQ 게임이 아니다.", "eng": "Investing is not a game where the guy with the 160 IQ beats the guy with 130 IQ.", "author": "워렌 버핏"}
-    
-    if not res:
-        return default_quote
-
-    try:
-        quote_data = json.loads(res)
-        with open(QUOTE_FILE, "a", encoding="utf-8") as f:
-            f.write(quote_data.get("kor", "") + "\n")
-        return quote_data
-    except Exception as e:
-        print(f"⚠️ 명언 파싱 오류: {type(e).__name__}: {e}")
-        return default_quote
 
 
 def _check_publish_interval(min_hours=20):
@@ -1767,163 +941,8 @@ def _wp_tags_param(tag_names):
     return ",".join(cleaned)
 
 
-def _print_final_quality_summary(final_quality_score, final_quality_issues, policy_issues_overall):
-    """[신규] 발행 직전 품질 검수 요약을 출력하는 헬퍼. 반자동 발행 경로
-    여러 곳(워드프레스 API 실패, Selenium 실패)에서 동일한 로직이 중복되던
-    것을 하나로 추출."""
-    print("\n📋 발행 전 최종 품질 검수 요약")
-    if final_quality_score is None:
-        print("   ⚠️ 자동 품질 검수가 완료되지 못했습니다. 반드시 본문을 직접 읽고 판단하세요.")
-    else:
-        print(f"   품질 점수: {final_quality_score:.2f} / 1.00 (0.6 미만이면 위험 신호)")
-    if final_quality_issues:
-        print("   지적된 문제점:")
-        for issue in final_quality_issues:
-            print(f"   - {issue}")
-    else:
-        print("   지적된 문제점 없음")
-    if policy_issues_overall:
-        unique_policy_issues = list(dict.fromkeys(policy_issues_overall))
-        print("   자동 순화된 표현 (애드센스 정책 대응):")
-        for issue in unique_policy_issues:
-            print(f"   - {issue}")
-    print("="*50)
 
 
-def publish_to_wordpress_selenium(driver, title, html_content, wp_email, wp_password, site_url):
-    """[신규] wordpress.com에 Selenium으로 로그인부터 발행까지 완전 자동화한다.
-    API(애플리케이션 비밀번호)가 막혀있는 무료/개인/프리미엄 요금제에서
-    사용하기 위한 방식. wordpress.com 로그인은 보통 "이메일 입력 -> 계속 ->
-    비밀번호 입력 -> 로그인"의 2단계 구조를 쓴다.
-
-    [중요] wordpress.com의 실제 화면 구조(버튼 클래스명, ID)는 시점에 따라
-    조금씩 바뀔 수 있다. 아래 셀렉터가 정확히 안 맞으면(예: "요소를 찾을 수
-    없음" 오류), 실제로 로그인 화면을 열어 개발자 도구(F12)로 정확한
-    선택자를 확인해서 조정이 필요할 수 있다 - 이건 Selenium 방식 자체의
-    근본적인 한계(화면이 바뀌면 깨짐)로, 티스토리에서 겪은 것과 동일한
-    종류의 문제이며 API 방식만이 이 문제에서 완전히 자유롭다.
-
-    반환값: (성공 여부(bool), 발행된 글의 실제 URL(str) 또는 오류 메시지)
-    """
-    try:
-        # --- 1단계: 로그인 ---
-        driver.get("https://wordpress.com/log-in")
-        time.sleep(3)
-
-        try:
-            email_field = WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.ID, "usernameOrEmail"))
-            )
-            email_field.click()
-            pyperclip.copy(wp_email)
-            email_field.send_keys(Keys.CONTROL, 'v')
-            time.sleep(0.5)
-            email_field.send_keys(Keys.ENTER)
-            time.sleep(2)
-        except TimeoutException:
-            return False, "로그인 화면의 이메일 입력란(#usernameOrEmail)을 찾지 못했습니다. wordpress.com 화면 구조가 바뀌었을 수 있습니다."
-
-        try:
-            password_field = WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.ID, "password"))
-            )
-            password_field.click()
-            pyperclip.copy(wp_password)
-            password_field.send_keys(Keys.CONTROL, 'v')
-            time.sleep(0.5)
-            password_field.send_keys(Keys.ENTER)
-        except TimeoutException:
-            return False, "로그인 화면의 비밀번호 입력란(#password)을 찾지 못했습니다. wordpress.com 화면 구조가 바뀌었을 수 있습니다."
-
-        print("⏳ 워드프레스 로그인 대기 (10초)...")
-        time.sleep(10)
-
-        # --- 2단계: 새 글쓰기 화면 진입 ---
-        base = site_url.rstrip('/')
-        driver.get(f"{base}/wp-admin/post-new.php")
-        time.sleep(5)
-
-        # 구텐베르크 에디터의 초기 안내 팝업(사용법 소개 등)이 뜨면 닫기
-        try:
-            close_btn = WebDriverWait(driver, 5).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "button[aria-label='Close']"))
-            )
-            close_btn.click()
-            time.sleep(1)
-        except TimeoutException:
-            pass  # 팝업이 없으면 그냥 진행
-
-        # --- 3단계: 제목 입력 ---
-        try:
-            title_field = WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "h1[aria-label='Add title'], textarea[aria-label='Add title']"))
-            )
-            title_field.click()
-            pyperclip.copy(title)
-            title_field.send_keys(Keys.CONTROL, 'v')
-            time.sleep(1)
-        except TimeoutException:
-            return False, "제목 입력란을 찾지 못했습니다. 에디터 화면 구조가 바뀌었을 수 있습니다."
-
-        # --- 4단계: 본문을 코드 편집기(HTML 모드)로 전환해 붙여넣기 ---
-        # 구텐베르크는 블록 단위 편집이 기본이라, 완성된 HTML을 그대로
-        # 붙여넣으려면 "코드 편집기" 모드로 전환해야 한다(우측 상단 옵션
-        # 메뉴(⋮) -> Code editor). 이 전환 없이 본문에 바로 붙여넣으면
-        # HTML 태그가 텍스트 그대로 노출되어 깨진다.
-        try:
-            options_btn = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "button[aria-label='Options']"))
-            )
-            options_btn.click()
-            time.sleep(1)
-            code_editor_btn = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Code editor')]"))
-            )
-            code_editor_btn.click()
-            time.sleep(1)
-        except TimeoutException:
-            return False, "코드 편집기(HTML 모드) 전환 버튼을 찾지 못했습니다. 에디터 화면 구조가 바뀌었을 수 있습니다."
-
-        try:
-            content_area = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "textarea.editor-post-text-editor"))
-            )
-            content_area.click()
-            pyperclip.copy(html_content)
-            content_area.send_keys(Keys.CONTROL, 'v')
-            time.sleep(2)
-        except TimeoutException:
-            return False, "본문 코드 편집기 영역을 찾지 못했습니다."
-
-        # --- 5단계: 발행 ---
-        try:
-            publish_btn = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Publish')]"))
-            )
-            publish_btn.click()
-            time.sleep(2)
-            # 발행 확인 패널에서 다시 한번 "Publish" 버튼이 뜨는 2단계 확인 구조
-            confirm_btn = WebDriverWait(driver, 10).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, "div.editor-post-publish-panel button.editor-post-publish-button"))
-            )
-            confirm_btn.click()
-            time.sleep(5)
-        except TimeoutException:
-            return False, "발행 버튼을 찾지 못했습니다. 초안으로 저장되었을 수 있으니 워드프레스 관리자 화면에서 직접 확인해주세요."
-
-        # --- 6단계: 발행된 글의 실제 URL 확인 ---
-        try:
-            WebDriverWait(driver, 15).until(
-                EC.presence_of_element_located((By.XPATH, "//a[contains(text(), 'View Post')]"))
-            )
-            view_post_link = driver.find_element(By.XPATH, "//a[contains(text(), 'View Post')]")
-            published_url = view_post_link.get_attribute("href")
-            return True, published_url or f"{base} (발행됐지만 정확한 URL 확인 실패 - 관리자 화면에서 확인하세요)"
-        except TimeoutException:
-            return True, f"{base} (발행은 된 것으로 보이나 정확한 URL 확인 실패 - 관리자 화면에서 확인하세요)"
-
-    except Exception as e:
-        return False, f"예상치 못한 오류: {type(e).__name__}: {e}"
 
 
 # 자동화 카테고리(BLOG_CATEGORY) → 워드프레스 카테고리 주소(slug).
@@ -2168,92 +1187,10 @@ def get_wordpress_recent_posts(count=15):
         return []
 
 
-def generate_optimized_title(topic, title_pattern_hint, context_snippet="", category_label="ETF"):
-    """
-    [SEO/제목 최적화 부서] Part1이 제목을 자유생성하기 전에, 서로 다른
-    앵글(데이터 강조/질문형/호기심 유발/이득 강조/시의성 강조)로 후보
-    제목 5개를 만들고, 그중 가장 클릭할 만한(그러면서 과장/낚시성은 아닌)
-    제목 하나를 스스로 골라 확정한다.
-
-    확정된 제목은 이후 Part1 프롬프트에 "이 제목을 그대로 써라"로 전달되어,
-    기존의 "패턴을 참고해서 새로 만들어라" 방식을 대체한다.
-
-    실패하면 None을 돌려주고, 호출한 쪽은 기존 방식(title_pattern_hint를
-    참고해서 Part1이 자유생성)으로 그대로 진행한다.
-    """
-    prompt = f"""당신은 {category_label} 분석 블로그의 SEO 담당자입니다.
-주제: {topic}
-참고할 제목 스타일(그대로 베끼지 말고 영감만 얻으세요): {title_pattern_hint}
-글의 대략적인 맥락: {context_snippet[:500] if context_snippet else "(정보 없음)"}
-
-서로 다른 5가지 앵글로 제목 후보를 만들고, 그중 가장 클릭률이 높을 것 같으면서도
-과장·낚시성이 없는 제목 하나를 선택하세요.
-앵글: ① 데이터/수치 강조 ② 질문형 ③ 호기심 유발 ④ 독자 이득 강조 ⑤ 시의성 강조
-
-[SEO 체크리스트 - 워드프레스 Rank Math 플러그인의 채점 기준에 맞춰서 작성]
-- 제목 길이: 50~60자 권장 (너무 길면 검색결과에서 잘리고, 너무 짧으면 정보가 부족함)
-- 포커스 키워드("{topic}")를 제목 앞쪽 절반 안에 배치
-- 능동태, 읽기 쉬운 문장 구조 사용
-
-반드시 JSON 형식으로만 답하세요:
-{{"candidates": ["후보1", "후보2", "후보3", "후보4", "후보5"],
-  "selected": "최종 선택된 제목",
-  "reason": "이 제목을 고른 이유(1~2문장)"}}
-"""
-    raw = get_gemini_response(prompt, thinking_budget=0)
-    if raw is None:
-        print("⚠️ 제목 최적화 생성 실패(API 소진 등) - 기존 방식(자유생성)으로 진행합니다.")
-        return None
-    try:
-        parsed = json.loads(raw)
-        if parsed.get("selected"):
-            return parsed
-        return None
-    except (json.JSONDecodeError, TypeError):
-        print("⚠️ 제목 최적화 결과 JSON 파싱 실패 - 기존 방식(자유생성)으로 진행합니다.")
-        return None
 
 
-def _card_html_shell(body_html):
-    """3개 카드가 공통으로 쓰는 배경/폰트/레이아웃 뼈대."""
-    return f"""<!DOCTYPE html>
-<html><head><meta charset="utf-8">
-<style>
-  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-  body {{
-    width: {CARD_WIDTH}px; height: {CARD_HEIGHT}px;
-    background: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
-    font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    padding: 80px; color: #f1f5f9;
-  }}
-</style></head>
-<body>{body_html}</body></html>"""
 
 
-def _render_html_to_image(driver, html_str, output_path):
-    """
-    이미 실행 중인 Selenium 드라이버(driver)를 재사용해서 HTML을 그대로
-    스크린샷으로 저장한다. 새로 브라우저를 띄우지 않고 발행 파이프라인이
-    이미 켜둔 드라이버를 공유하는 방식이라 리소스가 추가로 들지 않는다.
-    """
-    tmp_path = os.path.abspath(f"_card_tmp_{int(time.time()*1000)}.html")
-    with open(tmp_path, "w", encoding="utf-8") as f:
-        f.write(html_str)
-    try:
-        driver.set_window_size(CARD_WIDTH, CARD_HEIGHT)
-        driver.get(f"file://{tmp_path}")
-        time.sleep(0.5)  # 렌더링 안정화 대기
-        driver.save_screenshot(output_path)
-        return True
-    except Exception as e:
-        print(f"⚠️ 카드 이미지 렌더링 실패: {type(e).__name__}: {e}")
-        return False
-    finally:
-        try:
-            os.remove(tmp_path)
-        except OSError:
-            pass
 
 
 def _upload_media(file_path, mime_type):
@@ -2278,167 +1215,18 @@ def _upload_media(file_path, mime_type):
     return None, None
 
 
-def _upload_file_to_wordpress(file_path, mime_type):
-    """파일을 워드프레스 미디어 라이브러리에 올리고 공개 URL을 돌려준다(카드뉴스 이미지, IndexNow
-    키 파일 등). 실패하면(요금제 제한 등으로 API가 막혀 있을 수 있음) None."""
-    return _upload_media(file_path, mime_type)[1]
 
 
-def _upload_image_to_wordpress(image_path):
-    """[하위 호환용 별칭] 카드뉴스 이미지 업로드는 이 이름 그대로 계속 쓴다."""
-    return _upload_file_to_wordpress(image_path, "image/png")
 
 
-def _get_or_create_indexnow_key():
-    """
-    IndexNow 인증키를 (최초 1회만) 자동으로 만들고, 워드프레스 미디어
-    라이브러리에 키 파일을 올려서 공개 URL을 확보한다. 이후로는 저장해둔
-    값을 계속 재사용한다 - 사람이 직접 키를 발급받거나 파일을 올릴 필요가
-    전혀 없이, 첫 실행 때 코드가 알아서 다 처리한다.
-    """
-    state = _load_json_file(INDEXNOW_KEY_STATE_FILE, None)
-    if state and state.get("key") and state.get("key_url"):
-        return state["key"], state["key_url"]
-
-    key = _secrets_module.token_hex(16)  # 32자리 16진수 - IndexNow 규격에 맞음
-    key_file_path = os.path.abspath(f"{key}.txt")
-    with open(key_file_path, "w", encoding="utf-8") as f:
-        f.write(key)
-
-    key_url = _upload_file_to_wordpress(key_file_path, "text/plain")
-    try:
-        os.remove(key_file_path)
-    except OSError:
-        pass
-
-    if not key_url:
-        print("⚠️ IndexNow 키 파일 업로드 실패 - 이번엔 검색엔진 알림을 건너뜁니다.")
-        return key, None
-
-    _save_json_file(INDEXNOW_KEY_STATE_FILE, {"key": key, "key_url": key_url})
-    print(f"✅ IndexNow 키 최초 생성 및 업로드 완료: {key_url}")
-    return key, key_url
 
 
-def ping_indexnow(article_url):
-    """
-    발행된 글 URL을 IndexNow에 제출해서 Bing/Yandex/네이버 등에 즉시
-    알린다. 실패해도 예외를 던지지 않는다 - 발행 자체와는 무관한 부가
-    기능이라, 이것 때문에 파이프라인이 멈추면 안 된다.
-    """
-    try:
-        key, key_url = _get_or_create_indexnow_key()
-        if not key_url:
-            return False
-        resp = requests.get(
-            "https://api.indexnow.org/indexnow",
-            params={"url": article_url, "key": key, "keyLocation": key_url},
-            timeout=10,
-        )
-        if resp.status_code in (200, 202):
-            print("✅ IndexNow(Bing/Yandex/네이버 등) 색인 알림 전송 완료")
-            return True
-        print(f"⚠️ IndexNow 알림 실패: {resp.status_code} {resp.text[:200]}")
-        return False
-    except Exception as e:
-        print(f"⚠️ IndexNow 알림 중 오류(무시하고 계속 진행): {type(e).__name__}: {e}")
-        return False
 
 
-def _threads_create_carousel_item(image_url):
-    """캐러셀에 들어갈 이미지 하나를 위한 컨테이너를 만들고 id를 돌려준다."""
-    try:
-        resp = requests.post(
-            f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
-            data={
-                "media_type": "IMAGE",
-                "image_url": image_url,
-                "is_carousel_item": "true",
-                "access_token": THREADS_ACCESS_TOKEN,
-            },
-            timeout=20,
-        )
-        return resp.json().get("id")
-    except Exception as e:
-        print(f"⚠️ Threads 캐러셀 아이템 생성 실패: {type(e).__name__}: {e}")
-        return None
 
 
-def _threads_post_carousel(image_urls, caption):
-    """
-    이미지 URL 목록을 캐러셀(옆으로 넘기는 여러 장) 게시물로 발행한다.
-    최소 2장이 있어야 캐러셀로 취급된다(1장이면 그냥 단일 이미지 게시물이 됨).
-    """
-    if not THREADS_ACCESS_TOKEN or not THREADS_USER_ID:
-        print("ℹ️ THREADS_ACCESS_TOKEN/THREADS_USER_ID 미설정 - Threads 게시를 건너뜁니다.")
-        return False
-    if len(image_urls) < 2:
-        print("⚠️ 캐러셀에 쓸 이미지가 2장 미만이라 게시를 건너뜁니다.")
-        return False
-    try:
-        item_ids = [i for i in (_threads_create_carousel_item(u) for u in image_urls) if i]
-        if len(item_ids) < 2:
-            print("⚠️ 캐러셀 아이템 생성에 실패한 이미지가 있어 게시를 건너뜁니다.")
-            return False
-
-        carousel_resp = requests.post(
-            f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
-            data={
-                "media_type": "CAROUSEL",
-                "children": ",".join(item_ids),
-                "text": caption,
-                "access_token": THREADS_ACCESS_TOKEN,
-            },
-            timeout=20,
-        )
-        carousel_id = carousel_resp.json().get("id")
-        if not carousel_id:
-            print(f"⚠️ Threads 캐러셀 컨테이너 생성 실패: {carousel_resp.status_code} {carousel_resp.text[:200]}")
-            return False
-
-        publish_resp = requests.post(
-            f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads_publish",
-            data={"creation_id": carousel_id, "access_token": THREADS_ACCESS_TOKEN},
-            timeout=20,
-        )
-        if publish_resp.status_code == 200:
-            print("✅ Threads 카드뉴스(캐러셀) 게시 완료")
-            return True
-        print(f"⚠️ Threads 캐러셀 발행 실패: {publish_resp.status_code} {publish_resp.text[:200]}")
-        return False
-    except Exception as e:
-        print(f"⚠️ Threads 캐러셀 게시 중 오류: {type(e).__name__}: {e}")
-        return False
 
 
-def _threads_post(text):
-    """Threads에 텍스트만 있는 게시물을 올린다 (카드뉴스 실패 시 폴백용)."""
-    if not THREADS_ACCESS_TOKEN or not THREADS_USER_ID:
-        print("ℹ️ THREADS_ACCESS_TOKEN/THREADS_USER_ID 미설정 - Threads 게시를 건너뜁니다.")
-        return False
-    try:
-        create_resp = requests.post(
-            f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads",
-            data={"media_type": "TEXT", "text": text, "access_token": THREADS_ACCESS_TOKEN},
-            timeout=15,
-        )
-        creation_id = create_resp.json().get("id")
-        if not creation_id:
-            print(f"⚠️ Threads 게시물 생성 실패: {create_resp.status_code} {create_resp.text[:200]}")
-            return False
-        publish_resp = requests.post(
-            f"https://graph.threads.net/v1.0/{THREADS_USER_ID}/threads_publish",
-            data={"creation_id": creation_id, "access_token": THREADS_ACCESS_TOKEN},
-            timeout=15,
-        )
-        if publish_resp.status_code == 200:
-            print("✅ Threads 홍보 게시 완료 (텍스트)")
-            return True
-        print(f"⚠️ Threads 게시 발행 실패: {publish_resp.status_code} {publish_resp.text[:200]}")
-        return False
-    except Exception as e:
-        print(f"⚠️ Threads 게시 중 오류(무시하고 계속 진행): {type(e).__name__}: {e}")
-        return False
 
 
 def _telegram_send_message(text, with_approve_button=False, parse_mode=None, buttons=None, reply_to=None):
