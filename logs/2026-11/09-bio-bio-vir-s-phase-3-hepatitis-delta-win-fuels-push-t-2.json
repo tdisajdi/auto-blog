@@ -1,0 +1,428 @@
+{
+ "article_type": "bio",
+ "topic_id": "bio:vir-s-phase-3-hepatitis-delta-win-fuels-push-to-eclipse-gile",
+ "title_seed": "Vir 바이오테크, B형 간염 치료제 임상 3상 성공",
+ "category": "bio",
+ "started_at": "2026-11-09T22:34:14",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.8,
+   "chars": 4074
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.1,
+   "chars": 3760
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.6,
+   "chars": 586
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 304
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.4,
+   "chars": 162
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 1069
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 36.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 43.9,
+   "chars": 3831
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 50.5,
+   "chars": 707
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 395
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 143
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.8,
+   "chars": 832
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 45.7,
+   "chars": 3752
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.4,
+   "chars": 352
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.1,
+   "chars": 663
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 345
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.7,
+   "chars": 837
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "22:34:27",
+   "title": "Vir 바이오테크, 만성 D형간염 임상 3상 결과와 향후 계획은?",
+   "sections": [
+    "Eclipse 1 임상 3상 결과",
+    "경쟁 약물과의 비교 데이터",
+    "추가 파이프라인 및 승인 일정",
+    "전 세계 임상 등록 현황"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "22:34:47",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "22:35:28",
+   "score": 0.5,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "용어 풀이"
+   ],
+   "value_tip": "본문에 처음 등장하는 ALT, RNA, log10 같은 전문 용어에 대해 짧고 쉬운 설명을 괄호 등으로 덧붙이면 독자의 이해도가 크게 높아질 것입니다.",
+   "issues": [
+    "[치명·사실 검증] '주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서' → 금요일 종가 21.21달러에서 14.25달러로 수치가 낮아졌음에도 17% 상승했다고 표기되어 자료 확인 필요합니다. / 고칠 방법: 원문 자료의 주가 수치와 변동률(상승/하락 여부)을 재확인하여 올바른 수치로 수정하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 같은 종류의 숫자·뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하기 / 고칠 방법: 정리 문단에 독자가 향후 임상 뉴스나 데이터를 볼 때 스스로 확인해야 할 기준 2~3개를 자료 속 숫자(예: 1차 평가변수 달성률 44%, 헵클루덱스 20% 등)를 포함하여 명확히 기술하세요.",
+    "[사소·독자 편집] '주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 상승했습니다.' → 가격이 하락했는데 상승했다고 표기하여 문맥상 모순이 있습니다. / 고칠 방법: 변동 내용을 사실 자료에 맞게 수정하십시오."
+   ],
+   "lint": [
+    "영어 단어 'elebsiran' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)",
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '44%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 3135
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "22:36:53",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "22:38:06",
+   "score": 0.5,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "처음 등장하는 전문 용어(1차 유효성 평가변수 등)에 대해 독자가 이해하기 쉬운 설명을 본문 중에 보완합니다.",
+   "issues": [
+    "[치명·사실 검증] '주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서' → 자료에서는 주가가 17% 상승(rose)했다고 기록되어 있으나 본문에는 하락했다고 잘못 작성되었습니다. / 고칠 방법: 주가 변동 방향을 자료에 맞춰 '17% 상승했습니다'로 수정하세요.",
+    "[중요·사실 검증] → [누락] 질문: 제목에서 제시한 승인 일정 질문에 대해 자료의 숫자(2027년 중반)를 넣은 직접적인 답변 문장이 정리 문단에 누락되었습니다. / 고칠 방법: 정리 부분에 세 건의 3상 데이터를 종합하여 2027년 중반 미국 품목 허가를 신청할 계획이라는 내용을 한 문장으로 작성하세요.",
+    "[사소·독자 편집] '이번 성공은 내년 미국 식품의약국(FDA) 허가 신청을 위한 필수 제출 자료 중 첫 번째 요소를 확보했다는 ' → 단순히 사실을 전달하는 문장이지만 어미가 다소 단조롭고 길게 이어져 있습니다. / 고칠 방법: 문장을 더 짧게 나누어 간결하게 작성합니다."
+   ],
+   "lint": [
+    "영어 단어 'brelovitug' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "chars": 3101
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "22:38:54",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "22:39:39",
+   "score": 0.47,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "경쟁 약물과의 주요 유효성 수치를 독자가 한눈에 비교할 수 있도록 요약 표를 추가하는 것",
+   "issues": [
+    "[치명·사실 검증] '주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서' → 자료 확인 필요 / 고칠 방법: 21.21달러에서 14.25달러로 변한 것은 가격 하락이므로 상승 표현 및 종가·변동률 수치의 정확성을 자료와 함께 다시 확인하여 수정하세요.",
+    "[중요·독자 편집] '전체 124명의 환자 중 3분의 2는 즉시 투여군, 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으' → 본문에서 이미 상세히 다룬 임상 환자 구성과 결과를 FAQ 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 상세 수치 설명을 제외하고 질문에 대한 핵심 결론만 남겨 분량을 줄이세요.",
+    "[사소·독자 편집] '신규 시작 임상 건수는 2021년 7건으로 가장 적었으나 2023년 17건으로 최고치를 기록한 후 2025년' → 앞선 표에 정리된 수치 내용을 본문 문장에서 그대로 다시 풀어서 읽어주고 있습니다. / 고칠 방법: 표 내용을 반복하는 문장을 삭제하고 시각 자료만 배치하도록 수정하세요.",
+    "[사소·정책·신뢰] '주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 상승했습니다.' → 가격이 21.21에서 14.25로 떨어졌는데 상승했다고 표현하여 앞뒤 숫자가 모순됩니다. / 고칠 방법: 주가 변동 폭과 방향을 자료에 맞게 수정하여 서술하세요."
+   ],
+   "lint": [
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: 'Vir 바이오테크는 세 건의 핵심 3상 시험에서 얻은 모든 데이터를 종합…' / '정리 Vir 바이오테크는 세 건의 3상 데이터를 종합하여 2027년 중반…'"
+   ],
+   "chars": 3022
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "Vir 바이오테크 만성 D형간염 임상 3상 성공, 승인 일정과 과제는?",
+  "url": "https://ondo99.com/?p=324",
+  "score": 0.47,
+  "issues": [
+   "[치명·사실 검증] '주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서' → 자료 확인 필요 / 고칠 방법: 21.21달러에서 14.25달러로 변한 것은 가격 하락이므로 상승 표현 및 종가·변동률 수치의 정확성을 자료와 함께 다시 확인하여 수정하세요.",
+   "[중요·독자 편집] '전체 124명의 환자 중 3분의 2는 즉시 투여군, 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으' → 본문에서 이미 상세히 다룬 임상 환자 구성과 결과를 FAQ 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 상세 수치 설명을 제외하고 질문에 대한 핵심 결론만 남겨 분량을 줄이세요.",
+   "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: 'Vir 바이오테크는 세 건의 핵심 3상 시험에서 얻은 모든 데이터를 종합…' / '정리 Vir 바이오테크는 세 건의 3상 데이터를 종합하여 2027년 중반…'",
+   "[사소·독자 편집] '신규 시작 임상 건수는 2021년 7건으로 가장 적었으나 2023년 17건으로 최고치를 기록한 후 2025년' → 앞선 표에 정리된 수치 내용을 본문 문장에서 그대로 다시 풀어서 읽어주고 있습니다. / 고칠 방법: 표 내용을 반복하는 문장을 삭제하고 시각 자료만 배치하도록 수정하세요.",
+   "[사소·정책·신뢰] '주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 상승했습니다.' → 가격이 21.21에서 14.25로 떨어졌는데 상승했다고 표현하여 앞뒤 숫자가 모순됩니다. / 고칠 방법: 주가 변동 폭과 방향을 자료에 맞게 수정하여 서술하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문]\n제목: Vir’s phase 3 hepatitis delta win fuels push to eclipse Gilead (Fierce Biotech, https://www.fiercebiotech.com/biotech/virs-phase-3-hepatitis-delta-win-fuels-push-eclipse-gilead)\n본문 발췌: Vir Biotechnology’s phase 3 trial in chronic hepatitis delta (CHD) has hit its primary endpoint, giving the biopharma the first piece of the package it needs to file for FDA approval next year. San Francisco-based Vir ran the pivotal Eclipse 1 trial to evaluate monthly subcutaneous administration of elebsiran and tobevibart in adults with CHD. Gilead won FDA approval for Hepcludex in CHD in May, while Mirum Pharmaceuticals reported a phase 3 win for its CHD contender brelovitug in September, setting the stage for a three-way fight for the nascent market. The Eclipse 1 readout suggests Vir has a competitive drug candidate. Investigators enrolled 124 patients, two-thirds of whom started receiving the drug combination immediately and one-third of whom began treatment at Week 12.   At Week 48, 44% of patients who started treatment immediately had undetectable levels of hepatitis delta virus (HDV) RNA and normal levels of ALT, a liver enzyme, hitting the trial's primary endpoint. No patients in the delayed-treatment arm met the primary endpoint at Week 12. Vir dug into the success in secondary endpoints. At Week 48, 79% of people in the immediate-treatment arm had undetectable virus levels and 53% had normal ALT levels. Everyone in the immediate-treatment group had either undetectable virus or at least a 2-log10 reduction in levels. The only response in the delayed-treatment group at Week 12 was a 5% rate of ALT normalization. Cross-trial comparisons are complicated by differences between the studies—Leerink analysts have said Mirum’s enrollment of patients with severe disease is “a key point of differentiation”—but the available data suggest Vir’s asset is competitive. After 48 weeks on Hepcludex, 20% of patients had undetectable HDV RNA and 56% had (PDF) normal ALT levels.  In the wake of the readout, Vir shares rose 17% to $14.25 in premarket trading Monday from a Friday closing price of $21.21. Vir shared the data alongside phase 2 results showing that all 28 patients who completed 96 weeks of combination therapy had undetectable virus. In an exploratory analysis, 10 patients who stopped treatment continued to have undetectable virus levels after 12 to 48 weeks of follow-up. The analysis “suggests curative potential,” Vir said. The biotech continues to test the combination in two other pivotal trials, with data expected in the first quarter of next year. Vir plans to use data from all three pivotal trials to seek approval in the U.S. in mid-2027. One of the phase 3 trials is comparing Vir’s combination to Gilead’s Hepcludex.\n\n[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '델타형 간염', 2026-11-09 조회. 전 세계에서 등록된 임상 기준]\n- 등록된 임상시험 전체: 124건\n- 지금 참가자를 모집 중인 임상: 19건(전체의 15.3%, 코드 계산)\n- 3상(허가 신청 직전 단계) 임상: 17건(전체의 13.7%, 코드 계산)\n- 해마다 새로 시작한 임상 수(2021~2025년, 코드 계산 - 해마다 나열하지 말고 이 요약으로): 2021년 7건 → 2025년 11건(+57.1%), 가장 많던 해 2023년 17건, 가장 적던 해 2021년 7건\n- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.\n\n[관련 뉴스]\n- Vir Biotechnology, 만성 D형간염 3상 임상시험 결과 발표 예정 - Investing.com 한국어 (Investing.com 한국어) https://news.google.com/rss/articles/CBMicEFVX3lxTE9kRExzNnAzTURURktsTElZWjYwdUQzSU80c0hhV1NIaDFRNEVkbW9PWm5iQmxESEJUUzNxcWJuTHBZdE5kS05vdEFJX2xlVWgwb3RUeGxyTHhIb1ZmNll0Ry1qLVYyelV1ZHNvNVVlYTM?oc=5\n- Vir, ‘HBV 중화항체’ 1상 초기 “低용량서 HBsAg 감소” - 바이오스펙테이터 (바이오스펙테이터) https://news.google.com/rss/articles/CBMiV0FVX3lxTE9fcmxvTVkzUWFGZklwQVNQNmo4RVlpMmxjcUtHR2Q2S0NmaDE0bFhrQ1E1djc4c1lKd0xHVjQ3X08wdWdkbzdSSlp0bFNOcm91UWh2X1FNWQ?oc=5\n- 기획특집 - 간염 ③ - 후생신보 (후생신보) https://news.google.com/rss/articles/CBMiREFVX3lxTFBUQVhsR01kV2QyeXJMT0FsamptclVicVBRYWF5VC13Y1o5S2d5dEJRRjBJa3Q2U3ZMX0V5SFhkc1ZoMjFu?oc=5\n- \"HBV에 효과\"..비어(Vir) 'siRNA 신약' 2상 주목하는 이유 - 바이오스펙테이터 (바이오스펙테이터) https://news.google.com/rss/articles/CBMiV0FVX3lxTE1idVZPNWtNR3c1MFRWTXRpTE9VNUp5MllDRXB6TjNPYWZ6SWNobHlLOVlwd1ktZGdCa3VjOTNOOGZLMTFKaklrRWVCeFRURFljeHNCU2djWQ?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>Vir 바이오테크 만성 D형간염 임상 3상 성공, 승인 일정과 과제는?</h1>\n<!-- Vir 바이오테크가 만성 D형간염 치료제 임상 3상에서 1차 유효성 평가변수를 달성했습니다. 경쟁 약물과의 데이터 비교 및 FDA 승인 신청 계획, 글로벌 임상 동향을 정리합니다. -->\n\n<p>미국 샌프란시스코 소재 바이오기업 Vir 바이오테크(Vir Biotechnology)가 만성 D형간염(CHD) 성인 환자를 대상으로 진행한 핵심 임상 3상 시험에서 1차 유효성 평가변수를 달성했습니다. <a href=\"https://www.fiercebiotech.com/biotech/virs-phase-3-hepatitis-delta-win-fuels-push-eclipse-gilead\" target=\"_blank\" rel=\"noopener\">Fierce Biotech</a> 보도에 따르면, 이번 성공은 내년 미국 식품의약국(FDA) 허가 신청을 위한 필수 제출 자료 중 첫 번째 요소를 확보했다는 의미를 갖습니다.</p>\n\n<h3>Eclipse 1 임상 3상 결과</h3>\n\n<p>Vir 바이오테크는 엘렙시란(elebsiran)과 토베비바트(tobevibart) 병용요법을 월 1회 피하주사 방식으로 투여하는 Eclipse 1 임상 3상 시험을 진행했습니다. 이번 임상에는 총 124명의 만성 D형간염 환자가 등록되었으며, 이 중 3분의 2는 치료를 즉시 시작하고 나머지 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 배정되었습니다.</p>\n\n<p>48주 차 분석 결과, 즉시 투여군의 44%가 D형간염 바이러스(HDV) RNA를 검출할 수 없는 수준까지 낮추고 간 수치인 ALT 수치를 정상화하며 1차 유효성 평가변수를 달성했습니다. 반면 12주 차 기준 지연 투여군에서는 1차 유효성 평가변수를 충족한 환자가 0%였습니다.</p>\n\n<p>2차 유효성 평가변수에서도 차이가 확인되었습니다. 48주 차에 즉시 투여군의 79%가 바이러스 미검출 상태에 도달했고 53%는 ALT 수치가 정상화되었습니다. 해당 투여군 환자 전원은 바이러스 미검출을 기록하거나 초기 대비 최소 2-log10 이상의 바이러스 감소를 보였습니다. 지연 투여군의 12주 차 반응은 5%의 ALT 수치 정상화율이 전부였습니다.</p>\n\n<p>주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 상승했습니다.</p>\n\n<h3>경쟁 약물과의 비교 데이터</h3>\n\n<p>만성 D형간염 시장은 주요 제약사 간의 3파전 구도가 형성되고 있습니다. 길리어드(Gilead)가 올해 5월 헵클루덱스(Hepcludex)의 FDA 승인을 획득했고, 미룸 파마슈티컬스(Mirum Pharmaceuticals)가 9월 브레로비투그(brelovitug)의 임상 3상 성공을 발표한 바 있습니다.</p>\n\n<p>임상 디자인과 연구 조건의 차이로 직접 비교에는 한계가 있으나 기존 승인 약물과 주요 수치에서 차이를 보입니다. 헵클루덱스는 48주 투여 후 환자의 20%가 바이러스 미검출을 기록했고 56%가 ALT 정상화에 도달했습니다.</p>\n\n<p>리링크(Leerink) 분석가들은 미룸 파마슈티컬스가 중증 환자를 임상에 포함시킨 점을 핵심적인 차별화 요소로 꼽았습니다. Vir 바이오테크의 유효성 수치는 경쟁이 심화되는 만성 D형간염 치료제 시장에서 독자적인 임상적 경쟁력을 보여주는 지표로 평가받고 있습니다.</p>\n\n<h3>추가 파이프라인 및 승인 일정</h3>\n\n<p>Vir 바이오테크는 임상 3상 결과와 함께 병용요법 96주 치료를 완료한 환자 28명 전원이 바이러스 미검출 상태를 유지했다는 임상 2상 결과도 함께 공유했습니다. 탐색적 분석에서는 치료를 중단한 환자 10명이 12주에서 48주간의 추적 관찰 기간 동안 바이러스 미검출 상태를 지속하여 완치 가능성을 시사했습니다.</p>\n\n<p>개발사는 현재 두 건의 다른 핵심 3상 임상시험을 계속 진행 중이며, 관련 데이터는 내년 1분기에 발표될 예정입니다. 이 중 한 건의 3상 임상은 길리어드의 헵클루덱스와 직접 비교하는 방식으로 설계되었습니다.</p>\n\n<p>Vir 바이오테크는 세 건의 핵심 3상 시험에서 얻은 모든 데이터를 종합하여 2027년 중반 미국 내 품목 허가를 신청할 계획입니다.</p>\n\n<h3>전 세계 임상 등록 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료에 따르면, 델타형 간염 관련 전 세계 등록 임상시험은 총 124건으로 집계됩니다. 임상 단계별 및 연도별 상세 수치는 다음과 같습니다.</p>\n\n<table>\n  <tr>\n    <th> 구분</th>\n    <th> 수치 및 비중</th>\n  </tr>\n  <tr>\n    <td> 전체 등록 임상시험</td>\n    <td>124건</td>\n  </tr>\n  <tr>\n    <td> 현재 참가자 모집 중인 임상</td>\n    <td>19건 (전체의 15.3%)</td>\n  </tr>\n  <tr>\n    <td> 허가 신청 직전 3상 임상</td>\n    <td>17건 (전체의 13.7%)</td>\n  </tr>\n  <tr>\n    <td> 신규 시작 임상 (2021년 대비 2025년)</td>\n    <td>7건 → 11건 (+57.1%)</td>\n  </tr>\n</table>\n\n<p>신규 시작 임상 건수는 2021년 7건으로 가장 적었으나 2023년 17건으로 최고치를 기록한 후 2025년 11건을 나타냈습니다. 이러한 등록 건수의 증가세는 해당 질환에 대한 연구개발 활동의 활발함을 나타내며, 약물의 개별적인 치료 효과나 안전성을 직접 입증하는 근거는 아닙니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 치료제의 효과나 안전성이 더 뛰어난가요?</h4>\n<p>임상시험 등록 건수나 모집 비율은 해당 질환 분야의 연구개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 지표입니다. 특정 약물의 치료 효과나 안전성은 임상 결과에서 달성한 1차 유효성 평가변수와 부작용 데이터 등 실제 검증된 수치로 판단해야 합니다.</p>\n\n<h4>🔸 Eclipse 1 임상에서 즉시 투여군과 지연 투여군의 환자 수는 어떻게 구성되었으며 결과 차이는 어떠했나요?</h4>\n<p>전체 124명의 환자 중 3분의 2는 즉시 투여군, 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 구성되었습니다. 12주 차 평가에서 지연 투여군은 1차 유효성 평가변수를 달성한 환자가 0%였고 ALT 정상화율 5%에 그친 반면, 즉시 투여군은 48주 차에 44%가 1차 평가변수를 충족하고 79%가 바이러스 미검출 상태를 기록했습니다.</p>\n\n<h3>정리</h3>\n\n<p>Vir 바이오테크는 만성 D형간염 3상 임상(Eclipse 1)에서 48주 차 44%의 1차 평가변수 달성과 79%의 바이러스 미검출이라는 성과를 내며 FDA 승인 신청을 위한 첫 뼈대를 완성했습니다. 기존 헵클루덱스의 48주 바이러스 미검출률이 20%였던 점과 비교할 때 유효성 측면에서 경쟁력 있는 수치를 확보한 것으로 평가됩니다.</p>\n\n<p>향후 델타형 간염 치료제 관련 소식을 접할 때는 약물의 단독 또는 병용 투여 여부, 3상 임상에서의 1차 유효성 평가변수 달성률, 그리고 기존 승인 치료제 대비 비교 우위 데이터를 확인하는 것이 중요합니다. Vir 바이오테크는 내년 1분기 추가 3상 데이터 발표와 2027년 중반 FDA 허가 신청을 목표로 개발을 이어갈 예정입니다.</p>\n\n<p><strong>한 줄 정리:</strong> Vir 바이오테크가 만성 D형간염 3상 임상에서 44%의 1차 평가변수를 달성하며 2027년 FDA 승인 신청을 향한 기반을 마련했습니다.</p>\n\n태그: Vir바이오테크 만성D형간염 임상3상 FDA승인 헵클루덱스",
+  "2": "<h1>Vir 바이오테크 만성 D형간염 임상 3상 성공, 승인 일정과 과제는?</h1>\n<!-- Vir 바이오테크가 만성 D형간염 치료제 임상 3상에서 1차 유효성 평가변수를 달성했습니다. 경쟁 약물과의 데이터 비교 및 FDA 승인 신청 계획, 글로벌 임상 동향을 정리합니다. -->\n\n<p>미국 샌프란시스코 소재 바이오기업 Vir 바이오테크(Vir Biotechnology)가 만성 D형간염(CHD) 성인 환자를 대상으로 진행한 핵심 임상 3상 시험에서 1차 유효성 평가변수를 달성했습니다. <a href=\"https://www.fiercebiotech.com/biotech/virs-phase-3-hepatitis-delta-win-fuels-push-eclipse-gilead\" target=\"_blank\" rel=\"noopener\">Fierce Biotech</a> 보도에 따르면, 이번 성공은 내년 미국 식품의약국(FDA) 허가 신청을 위한 필수 제출 자료 중 첫 번째 요소를 확보했다는 의미를 갖습니다.</p>\n\n<h3>Eclipse 1 임상 3상 결과</h3>\n\n<p>Vir 바이오테크는 엘렙시란과 토베비바트 병용요법을 월 1회 피하주사 방식으로 투여하는 Eclipse 1 임상 3상 시험을 진행했습니다. 이번 임상에는 총 124명의 만성 D형간염 환자가 등록되었으며, 이 중 3분의 2는 치료를 즉시 시작하고 나머지 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 배정되었습니다.</p>\n\n<p>48주 차 분석 결과, 즉시 투여군의 44%가 D형간염 바이러스(HDV) RNA를 검출할 수 없는 수준까지 낮추고 간 수치인 ALT 수치를 정상화하며 1차 유효성 평가변수를 달성했습니다. 반면 12주 차 기준 지연 투여군에서는 1차 유효성 평가변수를 충족한 환자가 0%였습니다.</p>\n\n<p>2차 유효성 평가변수에서도 차이가 확인되었습니다. 48주 차에 즉시 투여군의 79%가 바이러스 미검출 상태에 도달했고 53%는 ALT 수치가 정상화되었습니다. 해당 투여군 환자 전원은 바이러스 미검출을 기록하거나 초기 대비 최소 2-log10 이상의 바이러스 감소를 보였습니다. 지연 투여군의 12주 차 반응은 5%의 ALT 수치 정상화율이 전부였습니다.</p>\n\n<p>주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 하락했습니다.</p>\n\n<h3>경쟁 약물과의 비교 데이터</h3>\n\n<p>만성 D형간염 시장은 주요 제약사 간의 3파전 구도가 형성되고 있습니다. 길리어드(Gilead)가 올해 5월 헵클루덱스(Hepcludex)의 FDA 승인을 획득했고, 미룸 파마슈티컬스(Mirum Pharmaceuticals)가 9월 브레로비투그(brelovitug)의 임상 3상 성공을 발표한 바 있습니다.</p>\n\n<p>임상 디자인과 연구 조건의 차이로 직접 비교에는 한계가 있으나 기존 승인 약물과 주요 수치에서 차이를 보입니다. 헵클루덱스는 48주 투여 후 환자의 20%가 바이러스 미검출을 기록했고 56%가 ALT 정상화에 도달했습니다.</p>\n\n<p>리링크(Leerink) 분석가들은 미룸 파마슈티컬스가 중증 환자를 임상에 포함시킨 점을 핵심적인 차별화 요소로 꼽았습니다. Vir 바이오테크의 유효성 수치는 경쟁이 심화되는 만성 D형간염 치료제 시장에서 독자적인 임상적 경쟁력을 보여주는 지표로 평가받고 있습니다.</p>\n\n<h3>추가 파이프라인 및 승인 일정</h3>\n\n<p>Vir 바이오테크는 임상 3상 결과와 함께 병용요법 96주 치료를 완료한 환자 28명 전원이 바이러스 미검출 상태를 유지했다는 임상 2상 결과도 함께 공유했습니다. 탐색적 분석에서는 치료를 중단한 환자 10명이 12주에서 48주간의 추적 관찰 기간 동안 바이러스 미검출 상태를 지속하여 치료 가능성을 시사했습니다.</p>\n\n<p>개발사는 현재 두 건의 다른 핵심 3상 임상시험을 계속 진행 중이며, 관련 데이터는 내년 1분기에 발표될 예정입니다. 이 중 한 건의 3상 임상은 길리어드의 헵클루덱스와 직접 비교하는 방식으로 설계되었습니다.</p>\n\n<p>Vir 바이오테크는 세 건의 핵심 3상 시험에서 얻은 모든 데이터를 종합하여 2027년 중반 미국 내 품목 허가를 신청할 계획입니다.</p>\n\n<h3>전 세계 임상 등록 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료에 따르면, 델타형 간염 관련 전 세계 등록 임상시험은 총 124건으로 집계됩니다. 임상 단계별 및 연도별 상세 수치는 다음과 같습니다.</p>\n\n<table>\n  <tr>\n    <th> 구분</th>\n    <th> 수치 및 비중</th>\n  </tr>\n  <tr>\n    <td> 전체 등록 임상시험</td>\n    <td>124건</td>\n  </tr>\n  <tr>\n    <td> 현재 참가자 모집 중인 임상</td>\n    <td>19건 (전체의 15.3%)</td>\n  </tr>\n  <tr>\n    <td> 허가 신청 직전 3상 임상</td>\n    <td>17건 (전체의 13.7%)</td>\n  </tr>\n  <tr>\n    <td> 신규 시작 임상 (2021년 대비 2025년)</td>\n    <td>7건 → 11건 (+57.1%)</td>\n  </tr>\n</table>\n\n<p>신규 시작 임상 건수는 2021년 7건으로 가장 적었으나 2023년 17건으로 최고치를 기록한 후 2025년 11건을 나타냈습니다. 이러한 등록 건수의 증가세는 해당 질환에 대한 연구개발 활동의 활발함을 나타내며, 약물의 개별적인 치료 효과나 안전성을 직접 입증하는 근거는 아닙니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 치료제의 효과나 안전성이 더 뛰어난가요?</h4>\n<p>임상시험 등록 건수나 모집 비율은 해당 질환 분야의 연구개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 지표입니다. 특정 약물의 치료 효과나 안전성은 임상 결과에서 달성한 1차 유효성 평가변수와 부작용 데이터 등 실제 검증된 수치로 판단해야 합니다.</p>\n\n<h4>🔸 Eclipse 1 임상에서 즉시 투여군과 지연 투여군의 환자 수는 어떻게 구성되었으며 결과 차이는 어떠했나요?</h4>\n<p>전체 124명의 환자 중 3분의 2는 즉시 투여군, 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 구성되었습니다. 12주 차 평가에서 지연 투여군은 1차 유효성 평가변수를 달성한 환자가 0%였고 ALT 정상화율 5%에 그친 반면, 즉시 투여군은 48주 차에 44%가 1차 평가변수를 충족하고 79%가 바이러스 미검출 상태를 기록했습니다.</p>\n\n<h3>정리</h3>\n\n<p>Vir 바이오테크가 만성 D형간염 치료제 임상 3상에서 1차 유효성 평가변수를 충족하며 승인 절차를 진행 중입니다. 경쟁 치료제와의 유효성 비교 데이터와 추가 임상 일정이 향후 관전 포인트입니다.</p>\n\n<p>독자가 향후 임상 뉴스나 데이터를 볼 때 스스로 확인해야 할 기준은 다음과 같습니다. 첫째, 1차 평가변수 달성률(Vir 바이오테크 44% 달성 등)을 통해 임상의 기본 목표 충족 여부를 확인합니다. 둘째, 바이러스 미검출률(Vir 48주 차 79%, 헵클루덱스 48주 차 20%) 및 ALT 정상화율(Vir 53%, 헵클루덱스 56%) 등 경쟁 약물 대비 세부 수치를 비교합니다. 셋째, 해당 임상이 허가 신청 직전 단계인 3상 단계(전체 124건 중 17건)에 해당하는지 점검해야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> Vir 바이오테크가 만성 D형간염 3상 임상에서 1차 평가변수를 달성하며 개발을 이어가고 있습니다.</p>\n\n태그: Vir바이오테크 만성D형간염 임상3상 FDA승인 헵클루덱스",
+  "3": "<h1>Vir 바이오테크 만성 D형간염 임상 3상 성공, 승인 일정과 과제는?</h1>\n<!-- Vir 바이오테크가 만성 D형간염 치료제 임상 3상에서 1차 유효성 평가변수를 달성했습니다. 경쟁 약물과의 데이터 비교 및 FDA 승인 신청 계획, 글로벌 임상 동향을 정리합니다. -->\n\n<p>미국 샌프란시스코 소재 바이오기업 Vir 바이오테크(Vir Biotechnology)가 만성 D형간염(CHD) 성인 환자를 대상으로 진행한 핵심 임상 3상 시험에서 1차 유효성 평가변수를 달성했습니다. <a href=\"https://www.fiercebiotech.com/biotech/virs-phase-3-hepatitis-delta-win-fuels-push-eclipse-gilead\" target=\"_blank\" rel=\"noopener\">Fierce Biotech</a> 보도에 따르면 이번 성공으로 내년 미국 식품의약국(FDA) 허가 신청을 위한 첫 필수 제출 자료를 확보했습니다.</p>\n\n<h3>Eclipse 1 임상 3상 결과</h3>\n\n<p>Vir 바이오테크는 엘렙시란과 토베비바트 병용요법을 월 1회 피하주사 방식으로 투여하는 Eclipse 1 임상 3상 시험을 진행했습니다. 이번 임상에는 총 124명의 만성 D형간염 환자가 등록되었으며, 이 중 3분의 2는 치료를 즉시 시작하고 나머지 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 배정되었습니다.</p>\n\n<p>48주 차 분석 결과, 즉시 투여군의 44%가 D형간염 바이러스(HDV) RNA를 검출할 수 없는 수준까지 낮추고 간 수치인 ALT 수치를 정상화하며 1차 유효성 평가변수를 달성했습니다. 반면 12주 차 기준 지연 투여군에서는 1차 유효성 평가변수를 충족한 환자가 0%였습니다.</p>\n\n<p>2차 유효성 평가변수에서도 차이가 확인되었습니다. 48주 차에 즉시 투여군의 79%가 바이러스 미검출 상태에 도달했고 53%는 ALT 수치가 정상화되었습니다. 해당 투여군 환자 전원은 바이러스 미검출을 기록하거나 초기 대비 최소 2-log10 이상의 바이러스 감소를 보였습니다. 지연 투여군의 12주 차 반응은 5%의 ALT 수치 정상화율이 전부였습니다.</p>\n\n<p>주요 데이터 발표 직후 월요일 장전 거래에서 Vir 바이오테크의 주가는 지난 금요일 종가인 21.21달러에서 14.25달러로 17% 상승했습니다.</p>\n\n<h3>경쟁 약물과의 비교 데이터</h3>\n\n<p>만성 D형간염 시장은 주요 제약사 간의 3파전 구도가 형성되고 있습니다. 길리어드(Gilead)가 올해 5월 헵클루덱스(Hepcludex)의 FDA 승인을 획득했고, 미룸 파마슈티컬스(Mirum Pharmaceuticals)가 9월 브레로비투그의 임상 3상 성공을 발표한 바 있습니다.</p>\n\n<p>임상 디자인과 연구 조건의 차이로 직접 비교에는 한계가 있으나 기존 승인 약물과 주요 수치에서 차이를 보입니다. 헵클루덱스는 48주 투여 후 환자의 20%가 바이러스 미검출을 기록했고 56%가 ALT 정상화에 도달했습니다.</p>\n\n<p>리링크(Leerink) 분석가들은 미룸 파마슈티컬스가 중증 환자를 임상에 포함시킨 점을 핵심적인 차별화 요소로 꼽았습니다. Vir 바이오테크의 유효성 수치는 경쟁이 심화되는 만성 D형간염 치료제 시장에서 독자적인 임상적 경쟁력을 보여주는 지표로 평가받고 있습니다.</p>\n\n<h3>추가 파이프라인 및 승인 일정</h3>\n\n<p>Vir 바이오테크는 임상 3상 결과와 함께 병용요법 96주 치료를 완료한 환자 28명 전원이 바이러스 미검출 상태를 유지했다는 임상 2상 결과도 함께 공유했습니다. 탐색적 분석에서는 치료를 중단한 환자 10명이 12주에서 48주간의 추적 관찰 기간 동안 바이러스 미검출 상태를 지속하여 치료 가능성을 시사했습니다.</p>\n\n<p>개발사는 현재 두 건의 다른 핵심 3상 임상시험을 계속 진행 중이며, 관련 데이터는 내년 1분기에 발표될 예정입니다. 이 중 한 건의 3상 임상은 길리어드의 헵클루덱스와 직접 비교하는 방식으로 설계되었습니다.</p>\n\n<p>Vir 바이오테크는 세 건의 핵심 3상 시험에서 얻은 모든 데이터를 종합하여 2027년 중반 미국 내 품목 허가를 신청할 계획입니다.</p>\n\n<h3>전 세계 임상 등록 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료에 따르면, 델타형 간염 관련 전 세계 등록 임상시험은 총 124건으로 집계됩니다. 임상 단계별 및 연도별 상세 수치는 다음과 같습니다.</p>\n\n<table>\n  <tr>\n    <th> 구분</th>\n    <th> 수치 및 비중</th>\n  </tr>\n  <tr>\n    <td> 전체 등록 임상시험</td>\n    <td>124건</td>\n  </tr>\n  <tr>\n    <td> 현재 참가자 모집 중인 임상</td>\n    <td>19건 (전체의 15.3%)</td>\n  </tr>\n  <tr>\n    <td> 허가 신청 직전 3상 임상</td>\n    <td>17건 (전체의 13.7%)</td>\n  </tr>\n  <tr>\n    <td> 신규 시작 임상 (2021년 대비 2025년)</td>\n    <td>7건 → 11건 (+57.1%)</td>\n  </tr>\n</table>\n\n<p>신규 시작 임상 건수는 2021년 7건으로 가장 적었으나 2023년 17건으로 최고치를 기록한 후 2025년 11건을 나타냈습니다. 이러한 등록 건수의 증가세는 해당 질환에 대한 연구개발 활동의 활발함을 나타내며, 약물의 개별적인 치료 효과나 안전성을 직접 입증하는 근거는 아닙니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 치료제의 효과나 안전성이 더 뛰어난가요?</h4>\n<p>임상시험 등록 건수나 모집 비율은 해당 질환 분야의 연구개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 지표입니다. 특정 약물의 치료 효과나 안전성은 임상 결과에서 달성한 1차 유효성 평가변수와 부작용 데이터 등 실제 검증된 수치로 판단해야 합니다.</p>\n\n<h4>🔸 Eclipse 1 임상에서 즉시 투여군과 지연 투여군의 환자 수는 어떻게 구성되었으며 결과 차이는 어떠했나요?</h4>\n<p>전체 124명의 환자 중 3분의 2는 즉시 투여군, 3분의 1은 12주 차부터 투여를 시작하는 지연 투여군으로 구성되었습니다. 12주 차 평가에서 지연 투여군은 1차 유효성 평가변수를 달성한 환자가 0%였고 ALT 정상화율 5%에 그친 반면, 즉시 투여군은 48주 차에 44%가 1차 평가변수를 충족하고 79%가 바이러스 미검출 상태를 기록했습니다.</p>\n\n<h3>정리</h3>\n\n<p>Vir 바이오테크는 세 건의 3상 데이터를 종합하여 2027년 중반 미국 품목 허가를 신청할 계획입니다.</p>\n\n<p>독자가 향후 임상 뉴스나 데이터를 볼 때 스스로 확인해야 할 기준은 다음과 같습니다. 첫째, 1차 평가변수 달성률(Vir 바이오테크 44% 달성 등)을 통해 임상의 기본 목표 충족 여부를 확인합니다. 둘째, 바이러스 미검출률(Vir 48주 차 79%, 헵클루덱스 48주 차 20%) 및 ALT 정상화율(Vir 53%, 헵클루덱스 56%) 등 경쟁 약물 대비 세부 수치를 비교합니다. 셋째, 해당 임상이 허가 신청 직전 단계인 3상 단계(전체 124건 중 17건)에 해당하는지 점검해야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> Vir 바이오테크가 만성 D형간염 3상 임상에서 1차 평가변수를 달성하며 개발을 이어가고 있습니다.</p>\n\n태그: Vir바이오테크 만성D형간염 임상3상 FDA승인 헵클루덱스"
+ },
+ "minutes": 5.5
+}
