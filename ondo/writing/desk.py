@@ -525,6 +525,21 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         passed = score is not None and score >= min_q and not serious and not hard_lint
         if os.environ.get("VALUE_BLOCKING") == "1" and value is not None and value < VALUE_MIN:
             passed = False
+        # 통과 직전 확인 채점(2026-11-09): 같은 글을 3번 채점해 보니 치명·중요 지적 7개 중 4개가 매번 나오지 않았다(lab_bench noise).
+        # 한 번 채점으로 '운 좋게 통과'하는 글을 막으려고, 통과로 나온 판만 한 번 더 채점해 새 치명·중요가 나오면 통과를 취소한다.
+        # 비교한 방법: 매번 두 번 채점해 합치기(비용 2배·괜한 지적도 늘어남) / 좋은 모델로(사실 검증은 이미 좋은 모델) → 통과 판만 확인.
+        if passed and os.environ.get("CONFIRM_REVIEW", "1") != "0":
+            score2, found2 = review(html, facts_text, category_label, log, round_no + 10, must=must_answer)
+            if score2 is not None:
+                known = {_norm(f.get("quote") or f.get("problem", ""))[:15] for f in found}
+                extra = [f for f in found2 if f["severity"] in ("치명", "중요")
+                         and _norm(f.get("quote") or f.get("problem", ""))[:15] not in known]
+                log.step("통과 확인 검토", score=score2, new_serious=[_issue_text(f) for f in extra])
+                if extra:
+                    found = found + extra
+                    serious = serious + extra
+                    score = round(max(0.0, 1.0 - sum(SEVERITY_WEIGHT[f["severity"]] for f in found)), 2)
+                    passed = False
         log.data.setdefault("drafts", {})[str(round_no)] = html      # 판마다 원문 보관(사람이 읽고 평가할 수 있게)
         missing = [name for key, name in VALUE_KEYS if marks and not marks.get(key)]
         log.step(f"편집장 검토 {round_no}", score=score, passed=passed, value=value, value_missing=missing,

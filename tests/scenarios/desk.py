@@ -113,7 +113,7 @@ def post_desk(url, payload, key):
 llm._post = post_desk
 log = editlog.EditLog("guide", "single", "시험")
 res = desk.write_article(kind_label="기초 가이드", title_seed="시험", facts_text=facts, rules="", category_label="ETF", log=log)
-assert res and res["score"] == 1.0 and res["clean"] and calls == {"review": 6, "rewrite": 1, "section": 0, "unify": 0}, (res and res["score"], calls)
+assert res and res["score"] == 1.0 and res["clean"] and calls == {"review": 9, "rewrite": 1, "section": 0, "unify": 0}, (res and res["score"], calls)
 first = next(s for s in log.data["steps"] if s["step"] == "편집장 검토 1")
 assert first["score"] == 0.88 and not first["passed"], first          # 중요 1개(-0.12), 지어낸 인용 치명은 버림
 assert any(s["step"] == "검토 1 정리" for s in log.data["steps"])
@@ -355,3 +355,35 @@ res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules
 assert res["clean"] and calls_p["patch"] == 1 and calls_p["rewrite"] == 0 and "최근 10년" not in res["html"], (calls_p, res["score"])
 assert any(s["step"] == "부분 고침" and s["applied"] == 1 for s in log.data["steps"])
 print("patch mode ok")
+
+# 2026-11-09: 통과 직전 확인 채점 - 첫 채점이 놓친 치명을 확인 채점이 잡으면 통과 취소 → 다음 판에서 고침
+calls_c = {"review": 0, "rewrite": 0}
+body_c = long_html("", 60).replace("</h1>", "</h1><p>이 상품은 지난 10년 중 가장 낮은 보수를 받는 상품으로 알려져 있습니다.</p>", 1)
+def post_confirm(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "독자 가치 담당" in p:
+        return R(200, json.dumps(VALUE_ANSWER))
+    if "기획 회의" in p:
+        return R(200, json.dumps(PLAN))
+    if "심각도 기준" in p:
+        calls_c["review"] += 1
+        # 사실 검증의 두 번째 채점(확인)에서만 잡힘 - 첫 채점은 놓침
+        if "사실 검증 담당" in p and "지난 10년 중" in p and calls_c["review"] > 3:
+            return R(200, json.dumps({"issues": [{"severity": "치명", "quote": "지난 10년 중 가장 낮은 보수", "problem": "자료에 없는 기간"}]}))
+        return R(200, json.dumps({"issues": []}))
+    if "지적된 문장만 고쳐서" in p:
+        return R(200, json.dumps({"edits": [{"find": "이 상품은 지난 10년 중 가장 낮은 보수를 받는 상품으로 알려져 있습니다.", "replace": ""}]}))
+    if "지적된 문제만 고치고" in p:
+        calls_c["rewrite"] += 1
+        return R(200, long_html("고친 "))
+    if "글 전체를 한 번에" in p:
+        return R(200, body_c)
+    raise AssertionError(p[:80])
+llm._post = post_confirm
+log = editlog.EditLog("guide", "confirm", "시험")
+res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules="", category_label="c", log=log)
+conf = [s for s in log.data["steps"] if s["step"] == "통과 확인 검토"]
+first = next(s for s in log.data["steps"] if s["step"] == "편집장 검토 1")
+assert conf and conf[0]["new_serious"] and not first["passed"], (conf, first.get("passed"))
+assert res["clean"] and "지난 10년" not in res["html"], res["score"]
+print("confirm review ok")
