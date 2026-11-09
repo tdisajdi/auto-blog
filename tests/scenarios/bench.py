@@ -120,3 +120,19 @@ assert [p["ok"] for p in res["topics"][0]["pages"]] == [True, True, False] and "
 rep = lb.compete_report(conf, res)
 assert "읽은 경쟁 글 2/3" in rep and "표: 우리 0 / 경쟁 중간값 1" in rep and "재조정" in rep.split("우리 글엔 없는 말:")[1], rep
 print("compete ok")
+
+# 채점 흔들림(2026-11-09): 같은 글을 여러 번 채점 - 매번 나오지 않은 치명·중요 지적, 점수·가치 범위
+items = lb.pick_noise(arts, n=2)
+assert len(items) == 2 and items[0]["id"] != items[1]["id"] and all(i["html"] for i in items), items
+_calls = {"n": 0}
+def _rev(h, f, c):
+    _calls["n"] += 1
+    found = [{"severity": "중요", "quote": "매번 나오는 지적 문장입니다"}]
+    if _calls["n"] % 2:
+        found.append({"severity": "치명", "quote": "가끔만 나오는 지적 문장입니다"})
+    return (0.53 if _calls["n"] % 2 else 0.88), found
+nres = lb.run_noise(items[:1], _rev, lambda h, f, c: 0.8, repeats=3)
+ns = lb.noise_summary(nres)
+assert "0.53 / 0.88 / 0.53" in ns and "매번 나오지 않은 것 1개" in ns and "점수 흔들림 평균 0.35" in ns and "1/2" in ns, ns
+assert "측정 못 함" in lb.noise_summary(lb.run_noise(items[:1], lambda h, f, c: (None, []), repeats=2))
+print("noise ok")
