@@ -46,6 +46,33 @@ def get_tistory_rss_links(blog_url):
     return []
 
 
+def _dividend_yoy(dividends):
+    """배당을 '같은 시기끼리' 비교한 한 줄(2026-11-09). 분기 배당은 분기마다 오르내려서 '직전 대비 감소'만 주면
+    작가가 그 이유를 지어냈다(VOO 시험에서 두 번 '치명·중요'). 1년 전 같은 시기·최근 1년 합계와 그 전 1년 합계를 코드가 비교해 준다.
+    dividends: 날짜 인덱스의 배당 금액(pd.Series). 자료가 모자라면 ""."""
+    try:
+        s = dividends.dropna().sort_index()
+        if len(s) < 5:
+            return ""
+        last_d, last_v = s.index[-1], float(s.iloc[-1])
+        ago = s[(s.index >= last_d - pd.Timedelta(days=400)) & (s.index <= last_d - pd.Timedelta(days=330))]
+        parts = []
+        if len(ago):
+            av = float(ago.iloc[-1])
+            if av > 0:
+                parts.append(f"가장 최근 배당({last_d:%Y-%m-%d} {last_v:.4f})은 1년 전 같은 시기({ago.index[-1]:%Y-%m-%d} {av:.4f}) 대비 "
+                             f"{(last_v / av - 1) * 100:+.2f}%")
+        cur = s[s.index > last_d - pd.Timedelta(days=365)]
+        prev = s[(s.index <= last_d - pd.Timedelta(days=365)) & (s.index > last_d - pd.Timedelta(days=730))]
+        t12, p12 = float(cur.sum()), float(prev.sum())
+        # 그 전 1년 자료가 덜 쌓였으면(지급 횟수가 다르면) 합계 비교가 엉터리가 된다(만들 때 시험에서 +40%가 나옴) → 횟수가 같을 때만
+        if t12 > 0 and p12 > 0 and len(cur) == len(prev):
+            parts.append(f"최근 1년 배당 합계 {t12:.4f}는 그 전 1년 {p12:.4f} 대비 {(t12 / p12 - 1) * 100:+.2f}%")
+        return " / ".join(parts)
+    except Exception:
+        return ""
+
+
 def _calculate_dividend_growth_rate(dividends):
     """TTM 방식으로 배당 성장률 산정: 최근 1년 vs 이전 1년 비교"""
     try:
@@ -540,6 +567,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     aum_str = None
     yield_gap = None
     ma200_info = None  # [신규] 200일 이동평균 대비 현재가 - 실제 계산 성공 시에만 채워짐
+    dividend_yoy = ""
     dividend_stability_desc = ""  # [신규] 배당 이력 기반 안정성 설명 - 실제 계산 성공 시에만 채워짐
     short_name = ticker_symbol
     dividends_list = []
@@ -724,6 +752,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                             change_str = f"{sign}{change_pct:.2f}%"
                     dividends_list.append({"date": d.strftime("%Y-%m-%d"), "val": f"{v:.4f} {currency}", "change": change_str})
                 calculated_div_growth = _calculate_dividend_growth_rate(ticker.dividends)
+                dividend_yoy = _dividend_yoy(ticker.dividends)
 
                 # [신규] 배당 안정성 설명. 이미 계산된 dividends_list(최근 4회
                 # 배당 지급액과 직전 대비 증감률)를 재사용해, 감소 횟수를 세는
@@ -848,6 +877,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         # 않아서 관련 섹션이 절대 실행되지 않는 죽은 코드였음. 순수 계산값을 반영.
         "ma200_info": ma200_info,
         "dividend_stability_desc": dividend_stability_desc,
+        "dividend_yoy": dividend_yoy,
         # [수정] "환헤지 비용"이라는 실제로 계산한 적 없는 값을 계산한 것처럼
         # 보여주던 필드를 "환노출 여부"라는 사실 그대로의 라벨로 변경.
         "fx_exposure": _fx_exposure_label(is_kr, short_name),

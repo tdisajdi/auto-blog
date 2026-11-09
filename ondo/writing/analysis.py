@@ -175,6 +175,8 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("최근 배당수익률(최근 1년 배당 ÷ 현재 가격)", d.get("yield") if not (code.isdigit() and _num(d.get("yield")) == 0) else None),
              _line("최근 배당 내역(지급일 금액, 직전 대비 증감)", divs or None),
              _line("배당 변화 결론(코드가 위 내역으로 계산 - 이 문장 그대로 인용)", d.get("dividend_stability_desc")),
+             _line("배당 같은 시기 비교(코드 계산 - 분기마다 오르내리므로 직전 회차보다 이것으로 추세를 볼 것. "
+                   "배당이 늘거나 준 이유는 자료에 없으니 짐작해 쓰지 말 것)", d.get("dividend_yoy") or None),
              _line("배당성장률(코드 계산값 - '연평균 배당 증가율'로만 언급)", d.get("dividend_growth_rate")),
              _line("5년 전 1,000만 원을 한 번에 넣었다면(가격 기준 계산)", d.get("simulated_result")),
              _line("환율 영향", d.get("fx_exposure")),

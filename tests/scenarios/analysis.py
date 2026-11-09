@@ -152,3 +152,15 @@ fs2 = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08�
 assert "[두 ETF를 고를 때 남는 차이" not in fs2 and "상장 이후 연평균" in fs2
 _an.same_period_block = _orig
 print("twin choice block ok")
+
+# 2026-11-09: 배당 같은 시기 비교 - 1년 전 같은 시기 대비, 지급 횟수가 같을 때만 1년 합계 비교
+import pandas as _pd
+from ondo.etf.data import _dividend_yoy
+_idx = _pd.to_datetime(["2025-03-27", "2025-06-27", "2025-09-26", "2025-12-22", "2026-03-27", "2026-06-26", "2026-09-28"])
+_y = _dividend_yoy(_pd.Series([1.81, 1.74, 1.74, 1.77, 1.87, 1.96, 1.82], index=_idx))
+assert "1년 전 같은 시기(2025-09-26 1.7400) 대비 +4.60%" in _y and "합계" not in _y, _y      # 그 전 1년이 3회뿐 → 합계 비교 안 함
+_idx2 = _pd.to_datetime(["2024-12-20", "2025-03-27", "2025-06-27", "2025-09-26", "2025-12-22", "2026-03-27", "2026-06-26", "2026-09-28"])
+_y2 = _dividend_yoy(_pd.Series([1.70, 1.81, 1.74, 1.74, 1.77, 1.87, 1.96, 1.82], index=_idx2))
+assert "최근 1년 배당 합계 7.4200는 그 전 1년 6.9900 대비 +6.15%" in _y2, _y2
+assert _dividend_yoy(_pd.Series([1.0, 1.1], index=_idx[:2])) == ""
+print("dividend yoy ok")
