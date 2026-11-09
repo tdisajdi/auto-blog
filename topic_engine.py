@@ -372,6 +372,31 @@ def _series_line(label, ys, unit):
             f"({ch}), 가장 많던 해 {hi[0]}년 {hi[1]:,}{unit}, 가장 적던 해 {lo[0]}년 {lo[1]:,}{unit}")
 
 
+_MOVE = re.compile(r"(rose|jumped|climbed|gained|surged|soared|fell|dropped|declined|slid|sank|tumbled|plunged)\s+(\d+(?:\.\d+)?)%"
+                   r"\s+to\s+\$?([\d,]+(?:\.\d+)?)[^.]{0,120}?\bfrom\b[^$\d.]{0,40}\$?([\d,]+(?:\.\d+)?)", re.I)
+
+
+def number_conflicts(text):
+    """원문 기사 안에서 '올라/내려 X% … to $A … from $B'의 방향·변동률이 서로 맞지 않는 문장을 찾는다(2026-11-09).
+    Vir 기사: 'shares rose 17% to $14.25 … from a Friday closing price of $21.21' - 내렸는데 '상승'. 작가·검토가 세 판 내내 오르락내리락했다."""
+    out = []
+    for m in _MOVE.finditer(text or ""):
+        verb, pct, to_v, from_v = m.group(1).lower(), float(m.group(2)), float(m.group(3).replace(",", "")), float(m.group(4).replace(",", ""))
+        if not from_v:
+            continue
+        real = (to_v / from_v - 1) * 100
+        up = verb in ("rose", "jumped", "climbed", "gained", "surged", "soared")
+        if (real > 0) != up or abs(abs(real) - pct) > max(1.5, pct * 0.15):
+            out.append(f"'{m.group(0)[:120]}' - 실제 계산 {real:+.1f}%")
+    return out
+
+
+def _conflict_note(body):
+    c = number_conflicts(body)
+    return ("[원문 숫자 확인 - 코드 대조] 원문 기사 안의 숫자가 서로 맞지 않습니다(기사 오류로 보임). 이 숫자들은 본문에 쓰지 마세요: "
+            + " / ".join(c) + "\n\n") if c else ""
+
+
 def clinical_trials_block(condition, intervention="", label="", intervention_label=""):
     """질환(영어) 기준 임상 등록 현황 + 코드 계산(모집 중 비율·3상 비율·연도별 새 임상 증감)."""
     condition = str(condition or "").strip()
@@ -619,8 +644,8 @@ def discover_tech():
     if not papers:
         return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
-    facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
-             f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
+    facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
+             + f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "tech", "topic_key": f"tech:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": 1.0, "reason": pick.get("why", ""), "source_note": it["source"]}]
@@ -671,8 +696,8 @@ def discover_bio():
     if not trials:
         return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
-    facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n"
-             f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
+    facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
+             + f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
     return [{"category": "bio", "topic_key": f"bio:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": strength(it), "reason": pick.get("why", ""), "source_note": it["source"]}]
@@ -715,9 +740,12 @@ def _eia_weekly(kind):
             return ""
         vals = [(x["period"], float(x["value"])) for x in rows if x.get("value") not in (None, "")]
         recent = vals[:5]
-        line = f"- {name}(EIA, {unit}): " + ", ".join(f"{p} {v:,.0f}" for p, v in recent)
+        # 11-09: 5주 값을 나열해 주자 작가가 그대로 옮겨 교열 '날짜별 숫자 줄글 나열'에 막힘(에너지 고정 시험) → 최근 값·변화만
+        line = (f"- {name}(EIA, {unit}, 코드 계산 - 주별 값을 나열하지 말고 이 요약으로): 최근({recent[0][0]}) {recent[0][1]:,.0f}")
         if len(recent) >= 2:
-            line += f" → 최근 1주 변화 {recent[0][1] - recent[1][1]:+,.0f}"
+            line += f", 최근 1주 변화 {recent[0][1] - recent[1][1]:+,.0f}"
+        if len(recent) >= 5:
+            line += f", 4주 전({recent[4][0]}) 대비 {recent[0][1] - recent[4][1]:+,.0f}"
         if len(vals) >= 53:
             p0, v0 = vals[52]
             line += f", 1년 전({p0}) {v0:,.0f} 대비 {(recent[0][1] / v0 - 1) * 100:+.1f}%"

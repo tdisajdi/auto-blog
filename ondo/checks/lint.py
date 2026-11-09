@@ -226,6 +226,11 @@ def fix_and_check(html):
 ENGLISH_OK = {"ondo"}     # 블로그 이름
 
 
+# 약의 국제 일반명(INN) 어미 - 고유명사라 한국어로 바꿀 말이 없다(2026-11-09 바이오: elebsiran·brelovitug가 '영어 단어'로 막혀 작가가 피할 길이 없었음)
+DRUG_NAME = re.compile(r"(?:siran|mab|tug|bart|mig|ment|nib|parib|ciclib|lisib|tinib|cept|glutide|gliflozin|tide|previr|asvir|buvir|vudine|"
+                       r"sartan|pril|olol|stat|mycin|cillin|cycline|azole|platin|taxel|rubicin|gene|cel|leucel|ersen)$")
+
+
 def english_words(html):
     """한국어 문장 속 소문자 영어 단어(4글자 이상). 11-08: 'excess 금액', 'absolute한' 같은 단어가 검토에선 '사소'라 통과를 못 막음.
     지난 임시글 148개에 돌려 보니 'ondo'(블로그 이름) 말고는 모두 진짜 실수였다(fluctuations·distortion·intermediate 등).
@@ -235,7 +240,7 @@ def english_words(html):
     out = []
     for m in re.finditer(r"(?<![A-Za-z./@#-])([a-z]{4,})(?![A-Za-z./@-])", t):
         w = m.group(1)
-        if w not in ENGLISH_OK and re.search(r"[가-힣]", t[max(0, m.start() - 12):m.end() + 8]):
+        if w not in ENGLISH_OK and not DRUG_NAME.search(w) and re.search(r"[가-힣]", t[max(0, m.start() - 12):m.end() + 8]):
             out.append(w)
     return out
 

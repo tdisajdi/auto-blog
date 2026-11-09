@@ -250,3 +250,13 @@ be.requests.get = lambda url, **k: _RL(0, 403)
 assert be.wp_list_public_posts() is None
 be.requests.get, be.WP_OAUTH_TOKEN, be.WP_SITE_ID = _old_get, _old_tok, _old_id
 print("list public posts ok")
+
+# 2026-11-09: 원문 기사 숫자 모순 찾기(Vir 기사), 약 이름(국제 일반명)은 영어 단어 예외
+_c = te.number_conflicts("In the wake of the readout, Vir shares rose 17% to $14.25 in premarket trading Monday from a Friday closing price of $21.21. Other text.")
+assert _c and "-32.8%" in _c[0], _c
+assert te.number_conflicts("Shares rose 17% to $14.25 from a Friday close of $12.18.") == []          # 맞는 문장은 그대로
+assert "원문 숫자 확인" in te._conflict_note("Vir shares fell 10% to $20 from $10.") and te._conflict_note("no numbers") == ""
+from ondo.checks import lint as _lt2
+assert _lt2.english_words("<p>신약 elebsiran과 brelovitug를 함께 투여했다는 내용입니다.</p>") == []
+assert _lt2.english_words("<p>가격이 크게 fluctuate 하는 모습입니다.</p>") == ["fluctuate"]
+print("number conflicts / drug names ok")
