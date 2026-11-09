@@ -5,7 +5,6 @@ finance-datareader
 selenium
 webdriver-manager
 python-dotenv
-pyperclip
 google-api-python-client
 google-auth
 

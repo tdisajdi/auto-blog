@@ -724,8 +724,6 @@ def _eia_weekly(kind):
     return ""
 
 
-def _eia_crude_inventory():
-    return _eia_weekly("oil")
 
 
 def _price_stats(h):
