@@ -37,7 +37,7 @@ te._ct_count = fake_ct
 blk = te.clinical_trials_block("obesity", "semaglutide", "비만", "세마글루타이드")
 assert "질환 '비만'" in blk and "'세마글루타이드')" in blk and "obesity" not in blk, blk
 assert "등록된 임상시험 전체: 200건" in blk and "모집 중인 임상: 25건(전체의 12.5%, 코드 계산)" in blk and "3상(허가 신청 직전 단계) 임상: 50건(전체의 25.0%" in blk, blk
-assert "(코드 계산)" in blk.split("해마다")[1] and "이 들어간 임상: 7건" in blk, blk
+assert "코드 계산" in blk.split("해마다 새로 시작한 임상 수")[1] and "가장 많던 해" in blk and "이 들어간 임상: 7건" in blk, blk
 te._ct_count = lambda **p: None
 assert te.clinical_trials_block("obesity") == "" and te.clinical_trials_block("") == ""
 import datetime as _dt
@@ -49,7 +49,9 @@ def fake_oa(params):
 te._openalex = fake_oa
 ab = te.papers_block("solid-state battery", "고체 배터리")
 assert "주제 '고체 배터리'" in ab and "solid-state" not in ab, ab
-assert "해마다 나온 논문 수" in ab and "+100.0%(코드 계산)" in ab and "+50.0%(코드 계산)" in ab, ab
+assert "해마다 나온 논문 수" in ab and "(+100.0%)" in ab and "+50.0%(코드 계산)" in ab, ab
+# 11-09: 연도별 나열 대신 요약(처음·마지막·가장 많던/적던 해) - 작가가 해마다 숫자를 줄글로 옮기지 않게
+assert "해마다 나열하지 말고" in ab and "가장 많던 해" in ab and f"{_y - 3}년 125편" not in ab, ab
 te._openalex = lambda p: None
 assert te.papers_block("x") == "" and te.papers_block("") == ""
 tb = te.trend_interest_block("단풍", {"series": [10.0] * 76 + [50.0] * 14})
