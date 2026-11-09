@@ -401,3 +401,7 @@ h_h = "<h4>🔸 VOO의 배당금이 직전 회차보다 감소했다면 걱정�
 nh, nk, drh = desk.apply_patches(h_h, [{"find": "VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?", "replace": ""}], facts)
 assert nk == 0 and nh == h_h and any("소제목" in x for x in drh), (nh, drh)
 print("patch keeps headings ok")
+# 2026-11-09 밤: 답은 도입부에서 먼저 → 도입부 숫자가 본문에서 다시 나온다는 '중요' 지적은 '사소'로
+assert desk._summary_repeat("도입부의 이 문장은 바로 아래 섹션의 내용과 숫자를 그대로 되풀이하고 있습니다.")
+assert not desk._summary_repeat("계좌 선택 섹션에서 GLD 수치가 중복으로 되풀이되고 있습니다.")
+print("intro repeat downgrade ok")
