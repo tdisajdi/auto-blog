@@ -173,7 +173,9 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),
              _line("배당 주기", d.get("div_cycle")),
              _line("최근 배당수익률(최근 1년 배당 ÷ 현재 가격)", d.get("yield") if not (code.isdigit() and _num(d.get("yield")) == 0) else None),
-             _line("최근 배당 내역(지급일 금액, 직전 대비 증감)", divs or None),
+             # 11-09: 날짜별 4건을 주자 작가가 본문에 그대로 나열해 교열 '날짜별 숫자 줄글 나열'에 막힘(VOO 3번) → 이름표로 막음
+             _line("최근 배당 내역(지급일 금액, 직전 대비 증감 - 카드·표에 이미 들어감. 본문에서 날짜별로 나열하지 말고 "
+                   "가장 최근 값과 아래 '같은 시기 비교'로 설명)", divs or None),
              _line("배당 변화 결론(코드가 위 내역으로 계산 - 이 문장 그대로 인용)", d.get("dividend_stability_desc")),
              _line("배당 같은 시기 비교(코드 계산 - 분기마다 오르내리므로 직전 회차보다 이것으로 추세를 볼 것. "
                    "배당이 늘거나 준 이유는 자료에 없으니 짐작해 쓰지 말 것)", d.get("dividend_yoy") or None),

@@ -396,3 +396,8 @@ nd, n_ok, dr = desk.apply_patches(h_dup, [{"find": "한국 배당소득세율 14
     facts + "\n- 15% 원천징수\n- 2,000만 원")
 assert n_ok == 1 and "단정하는" not in nd and nd.count("원천징수") == 1 and any("옆 문장과 겹쳐" in x for x in dr), (nd, dr)
 print("patch neighbor dup ok")
+# 2026-11-09: 소제목 안은 부분 고침하지 않음(FAQ 질문 소제목이 지워진 사고)
+h_h = "<h4>🔸 VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?</h4><p>답 문장은 여기에 있고 길게 이어집니다 정말로요.</p>"
+nh, nk, drh = desk.apply_patches(h_h, [{"find": "VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?", "replace": ""}], facts)
+assert nk == 0 and nh == h_h and any("소제목" in x for x in drh), (nh, drh)
+print("patch keeps headings ok")
