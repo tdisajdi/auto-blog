@@ -1145,6 +1145,8 @@ def wp_find_post_by_url(url):
         r = requests.get(target, headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
                          params={"fields": "ID,title,categories"}, timeout=20)
         if r.status_code != 200:
+            # 2026-11-09: 못 찾은 이유(404 = 글 없음/삭제됨, 403 = 권한)가 안 보여서 비공개 처리 확인이 안 됐다
+            print(f"ℹ️ 글 주소로 글 찾기: 응답 {r.status_code} ({target.rsplit('/', 1)[-1][:60]})")
             return None
         data = r.json()
         cat_slugs = [c.get("slug") for c in (data.get("categories") or {}).values()]
