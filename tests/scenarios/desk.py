@@ -387,3 +387,12 @@ first = next(s for s in log.data["steps"] if s["step"] == "편집장 검토 1")
 assert conf and conf[0]["new_serious"] and not first["passed"], (conf, first.get("passed"))
 assert res["clean"] and "지난 10년" not in res["html"], res["score"]
 print("confirm review ok")
+
+# 2026-11-09: 부분 고침이 바로 앞 문장을 되풀이하면 그 고침은 지움(VOO 연달아 시험 사고 재현)
+h_dup = ("<p>VOO 배당금은 지급 시 미국 현지에서 15%의 세금이 원천징수된 후 계좌로 입금됩니다. "
+         "한국 배당소득세율 14%보다 미국 세율이 높아 추가로 떼는 세금은 없다고 단정하는 문장입니다.</p><p>직접 살 수 없습니다 정말로 그렇습니다.</p>")
+nd, n_ok, dr = desk.apply_patches(h_dup, [{"find": "한국 배당소득세율 14%보다 미국 세율이 높아 추가로 떼는 세금은 없다고 단정하는 문장입니다.",
+    "replace": "미국 현지에서 15% 세금이 원천징수되며, 배당소득을 포함한 한 해 금융소득이 2,000만 원을 넘으면 금융소득종합과세 대상에 포함됩니다."}],
+    facts + "\n- 15% 원천징수\n- 2,000만 원")
+assert n_ok == 1 and "단정하는" not in nd and nd.count("원천징수") == 1 and any("옆 문장과 겹쳐" in x for x in dr), (nd, dr)
+print("patch neighbor dup ok")

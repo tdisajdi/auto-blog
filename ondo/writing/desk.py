@@ -447,6 +447,16 @@ def apply_patches(html, edits, facts_text, log=None):
             dropped.append(f"고친 문장이 너무 길거나 소제목을 넣음: {find[:30]}")
             continue
         m = hits[0]
+        # 고친 문장이 바로 앞뒤 문장과 거의 같으면 이미 있는 내용 → 지운다(2026-11-09 VOO 연달아 시험: 고친 문장이 앞 문장
+        # '미국에서 15% 원천징수'를 되풀이해 다음 판에서 '중요' 반복 지적)
+        if new:
+            near = lint._sentences(lint.text_of(html[max(0, m.start() - 400):m.start()]))[-2:] + \
+                lint._sentences(lint.text_of(html[m.end():m.end() + 400]))[:2]
+            gn = lint._grams(new)
+            # 옆 문장 내용이 고친 문장 안에 얼마나 들어 있나(포함 비율). 실제 사례 0.39, 상관없는 문장 0.09~0.14 → 0.35
+            if any(gn and len(gn & lint._grams(x)) / len(lint._grams(x)) >= 0.35 for x in near if lint._grams(x)):
+                dropped.append(f"고친 문장이 바로 옆 문장과 겹쳐 지움: {new[:30]}")
+                new = ""
         html = html[:m.start()] + new + html[m.end():]
         applied += 1
     html = re.sub(r"<p>\s*</p>", "", html)
