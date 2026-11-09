@@ -42,6 +42,11 @@ on:
         description: '이 글을 비공개(임시글)로 내림 (글 주소 또는 ondo99.com/?p=번호)'
         required: false
         default: ''
+      list_public:
+        description: '지금 사이트에 공개된 글 목록 보기(번호·날짜·제목 - 공개 글 점검용, 바꾸는 것 없음)'
+        required: false
+        type: boolean
+        default: false
       detect_only:
         description: '실제 발행 없이 다음 후보 티커만 확인'
         required: false
@@ -438,6 +443,10 @@ jobs:
             case "$TOPIC2_TEST" in trend|tech|bio|energy|society) ;; *) echo "❌ 분야 이름 확인: $TOPIC2_TEST"; exit 1;; esac
             BLOG_CATEGORY="$TOPIC2_TEST" python topic_engine.py --test "$TOPIC2_TEST"
             exit $?
+          fi
+          if [ "${{ github.event.inputs.list_public }}" = "true" ]; then
+            python -c "import blog_engine as b; ps = b.wp_list_public_posts(); print('공개 글:', '확인 실패' if ps is None else len(ps)); [print(p['id'], p['date'], p['title'][:60], p['url']) for p in ps or []]"
+            exit 0
           fi
           if [ -n "$UNPUBLISH_URL" ]; then
             python -c "import sys, blog_engine as b; t = b.wp_find_post_by_url(sys.argv[1]); print('대상:', t); ok = bool(t) and b.wp_update_post(t[0], status='draft'); print('비공개 처리:', ok); sys.exit(0 if ok else 1)" "$UNPUBLISH_URL"

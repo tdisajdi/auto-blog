@@ -1167,6 +1167,28 @@ def wp_find_post_by_url(url):
         return None
 
 
+def wp_list_public_posts(limit=100):
+    """사이트에 지금 '공개'된 글 전체(번호·날짜·제목·주소). 2026-11-09: 7월 QQQ 글이 실제로 공개돼 있었는데 기록만 보고는
+    알 수 없었다 → 공개 글을 직접 세어 보는 점검용(애드센스 심사관 관점 점검 파①, 정기 점검 차)."""
+    if not (WP_OAUTH_TOKEN and WP_SITE_ID):
+        return None
+    out, page = [], 1
+    while len(out) < limit:
+        r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/",
+                         headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                         params={"status": "publish", "number": 50, "page": page, "fields": "ID,date,title,URL"}, timeout=20)
+        if r.status_code != 200:
+            print(f"ℹ️ 공개 글 목록: 응답 {r.status_code}")
+            return None
+        posts = r.json().get("posts", [])
+        out += [{"id": p.get("ID"), "date": str(p.get("date", ""))[:10], "title": html.unescape(p.get("title", "")),
+                 "url": p.get("URL", "")} for p in posts]
+        if len(posts) < 50:
+            break
+        page += 1
+    return out[:limit]
+
+
 def get_wordpress_recent_posts(count=15):
     """[신규] 워드프레스에 이미 발행된 글 목록(제목/URL)을 최신순으로 가져온다.
     내부 링크(다른 카테고리 글도 포함해서 서로 연결) 재료로 쓰인다.
