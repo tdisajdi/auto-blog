@@ -68,6 +68,12 @@ def _dividend_yoy(dividends):
         # 그 전 1년 자료가 덜 쌓였으면(지급 횟수가 다르면) 합계 비교가 엉터리가 된다(만들 때 시험에서 +40%가 나옴) → 횟수가 같을 때만
         if t12 > 0 and p12 > 0 and len(cur) == len(prev):
             parts.append(f"최근 1년 배당 합계 {t12:.4f}는 그 전 1년 {p12:.4f} 대비 {(t12 / p12 - 1) * 100:+.2f}%")
+        # 줄어드는 게 드문 일인가(11-09): 원인은 자료로 알 수 없지만 '얼마나 자주 줄었나'는 셀 수 있다 - 작가가 원인을 지어내던 자리에
+        # 확인 가능한 숫자를 준다(VOO 1판에서 배당 원인 짐작이 자료 금지 표시에도 되풀이됨)
+        last = s.iloc[-20:]
+        if len(last) >= 8:
+            downs = int(sum(1 for a, b in zip(last.iloc[:-1], last.iloc[1:]) if b < a))
+            parts.append(f"최근 {len(last)}회 지급 중 직전 회차보다 줄어든 적 {downs}회")
         return " / ".join(parts)
     except Exception:
         return ""
