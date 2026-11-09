@@ -476,8 +476,9 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         log.step(f"편집장 검토 {round_no}", score=score, passed=passed, value=value, value_missing=missing,
                  value_tip=improve, issues=[_issue_text(f) for f in found], lint=lint_issues, numbers=nums,
                  fixes=fixes, chars=len(lint.text_of(html)))
-        # 통과한 판 > 교열 지적 없는 판 > 점수 순. (2026-10-31: 1.0점 초안에 N/A·분량 문제가 남았는데 발행됨)
-        rank = (passed, not hard_lint, -len(serious), score or 0, value or 0)
+        # 통과한 판 > 교열 지적 없는 판 > 치명(지어낸 사실) 없는 판 > 점수 순. (2026-10-31: 1.0점 초안에 N/A·분량 문제가 남았는데 발행됨)
+        # 2026-11-09: 지적 '개수'를 점수보다 앞에 두었더니 중요 1개(0.88점) 판 대신 치명 1개(0.38점) 판을 남겼다(?p=308)
+        rank = (passed, not hard_lint, -sum(f["severity"] == "치명" for f in found), score or 0, -len(serious), value or 0)
         if best is None or rank > best["_rank"]:
             best = {"html": html, "plan": plan, "score": score, "clean": passed, "_rank": rank, "round": round_no,
                     "value": value, "value_missing": missing, "_found": found,

@@ -106,7 +106,9 @@ def fetch_feed(url, max_age_days=3):
             if ts and time.mktime(ts) < cutoff:
                 continue
             summary = re.sub(r"<[^>]+>", " ", e.get("summary", "") or "")
-            out.append({"title": e.get("title", "").strip(), "url": e.get("link", ""), "summary": re.sub(r"\s+", " ", summary)[:600],
+            # 제목에 링크 태그가 섞여 오는 RSS가 있다(2026-11-08 Fierce Biotech: 주제 이름이 'a-href-https-…'가 됨)
+            title = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", e.get("title", "") or ""))).strip()
+            out.append({"title": title, "url": e.get("link", ""), "summary": re.sub(r"\s+", " ", summary)[:600],
                         "source": source})
     except Exception as e:
         print(f"ℹ️ RSS 읽기 실패({url}): {type(e).__name__}")
