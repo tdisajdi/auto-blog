@@ -362,6 +362,16 @@ def _ct_count(**params):
         return None
 
 
+def _series_line(label, ys, unit):
+    """연도별 숫자를 '줄글 나열'이 아닌 요약 한 줄로(2026-11-09). 자료에 '2021년 5건, 2022년 2건, …'을 주면 작가가 그대로 옮겨
+    교열의 '연도별 숫자 줄글 나열'에 막혔다(바이오 시험 3판). 처음·마지막·가장 많던 해·적던 해만 준다."""
+    a, b = ys[0], ys[-1]
+    hi, lo = max(ys, key=lambda x: x[1]), min(ys, key=lambda x: x[1])
+    ch = "같음(변화 없음)" if a[1] == b[1] else f"{(b[1] / a[1] - 1) * 100:+.1f}%" if a[1] else "비교 불가"
+    return (f"- {label}({a[0]}~{b[0]}년, 코드 계산 - 해마다 나열하지 말고 이 요약으로): {a[0]}년 {a[1]:,}{unit} → {b[0]}년 {b[1]:,}{unit}"
+            f"({ch}), 가장 많던 해 {hi[0]}년 {hi[1]:,}{unit}, 가장 적던 해 {lo[0]}년 {lo[1]:,}{unit}")
+
+
 def clinical_trials_block(condition, intervention="", label="", intervention_label=""):
     """질환(영어) 기준 임상 등록 현황 + 코드 계산(모집 중 비율·3상 비율·연도별 새 임상 증감)."""
     condition = str(condition or "").strip()
@@ -385,8 +395,7 @@ def clinical_trials_block(condition, intervention="", label="", intervention_lab
         lines.append(f"- 3상(허가 신청 직전 단계) 임상: {p3:,}건(전체의 {p3 / total * 100:.1f}%, 코드 계산)")
     ys = [(a, b) for a, b in years if b is not None]
     if len(ys) >= 3 and ys[0][1]:
-        lines.append("- 해마다 새로 시작한 임상 수: " + ", ".join(f"{a}년 {b:,}건" for a, b in ys)
-                     + f" → {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
+        lines.append(_series_line("해마다 새로 시작한 임상 수", ys, "건"))
     intervention = str(intervention or "").strip()
     if intervention:
         n = _ct_count(**{"query.intr": intervention})
@@ -439,9 +448,7 @@ def papers_block(keyword, label=""):
     this, last = _n(f"{y}-01-01", f"{y}-{md}"), _n(f"{y - 1}-01-01", f"{y - 1}-{md}")
     # 자료에 영어 검색어를 그대로 보이면 작가가 본문에 옮겨 써 교열 '영어 단어'로 막힘(11-08 신기술 'lunar') → 한국어 이름을 보인다
     lines = [f"[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '{label or keyword}'(영어 논문의 제목·초록에서 찾음), {now:%Y-%m-%d} 조회]",
-             "- 해마다 나온 논문 수: " + ", ".join(f"{a}년 {b:,}편" for a, b in ys)]
-    if ys[0][1]:
-        lines.append(f"- {ys[0][0]}년 대비 {ys[-1][0]}년 {(ys[-1][1] / ys[0][1] - 1) * 100:+.1f}%(코드 계산)")
+             _series_line("해마다 나온 논문 수", ys, "편")]
     if this is not None and last:
         lines.append(f"- 올해 1월 1일~{now.month}월 {now.day}일 {this:,}편, 작년 같은 기간 {last:,}편 → "
                      f"{(this / last - 1) * 100:+.1f}%(코드 계산)")
