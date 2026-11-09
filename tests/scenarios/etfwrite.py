@@ -1,0 +1,30 @@
+"""2026-11-09: ETF 분석 글 경로(write_etf_article) - 파일을 나눈 뒤에도 자료 → 시각 자료 서랍 → 편집국까지 이어지는지, 운영자 메모·드라이버 정리."""
+import sys,os; os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
+from datetime import datetime
+import etf_auto as ea, topic_engine as te
+from ondo.writing import analysis
+got={}
+ea.get_tistory_rss_links=lambda u: []
+ea._get_previous_analysis=lambda l,t,rss_posts=None: {}
+ea.get_macro_data=lambda: {"usd_krw":"1,400원","us_10y":"4.1%","fear_greed":"50"}
+class D:
+    def quit(s): got["quit"]=1
+ea._create_chrome_driver=lambda: D()
+ea.get_etf_real_data=lambda t,d,m: {"name":t}
+ea._create_widget_html=lambda *a: "<div>w</div>"
+ea._create_backtest_simulation_chart=lambda *a: ("<div>b</div>",{})
+ea._create_return_calendar_heatmap=lambda *a: "<div>c</div>"
+ea._get_recent_news_for_etfs=lambda c,m: [{"title":"n","url":"http://x","source":"s"}]
+ea.get_macro_thermometer_indicators=lambda: {}
+ea._add_competitive_comparison=lambda c: "<table>c</table>"
+ea._add_risk_scenarios=lambda c: ("<div>r</div>",{})
+ea._add_sector_deep_analysis=lambda c,m: ""
+ea._add_scenario_analysis=lambda c,t: "<div>s</div>"
+ea._build_macro_thermometers_chart=lambda i: ""
+analysis.fact_sheet=lambda *a,**k: "[사실 자료]"
+te.produce_article=lambda **k: got.update(k)
+open("confirmed_topic_context.json","w").write('{"ticker":"VOO","memo":"메모"}')
+ea.write_etf_article(["VOO"],"오늘",datetime.now())
+assert got["quit"] and got["article_type"]=="analysis" and got["memo"]=="메모" and got["drawer"], got.keys()
+assert not os.path.exists("confirmed_topic_context.json")
+print("etf write path ok")
