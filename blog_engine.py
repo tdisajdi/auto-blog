@@ -1135,15 +1135,22 @@ def wp_find_post_by_url(url):
     q = _up.parse_qs(parsed.query)
     base = f"https://public-api.wordpress.com/rest/v1.1/sites/{WP_SITE_ID}/posts/"
     if q.get("p"):
-        target = base + q["p"][0]
+        targets = [base + q["p"][0]]
     else:
-        slug = _up.unquote([seg for seg in parsed.path.split("/") if seg][-1]) if parsed.path.strip("/") else ""
-        if not slug:
+        raw = [seg for seg in parsed.path.split("/") if seg][-1] if parsed.path.strip("/") else ""
+        if not raw:
             return None
-        target = base + "slug:" + _up.quote(slug)
+        # 한글 제목 글은 워드프레스가 주소를 '%eb%82…' 문자열 그대로 저장한다(2026-11-09: 한글로 풀어 다시 대문자로 바꿔 보냈더니
+        # 7월 QQQ 글을 못 찾음) → 푼 이름과 저장된 그대로의 이름을 차례로 시도
+        targets = [base + "slug:" + _up.quote(_up.unquote(raw))]
+        if "%" in raw:
+            targets.append(base + "slug:" + _up.quote(raw.lower(), safe=""))
     try:
-        r = requests.get(target, headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
-                         params={"fields": "ID,title,categories"}, timeout=20)
+        for target in targets:
+            r = requests.get(target, headers={"Authorization": f"Bearer {WP_OAUTH_TOKEN}"},
+                             params={"fields": "ID,title,categories"}, timeout=20)
+            if r.status_code == 200:
+                break
         if r.status_code != 200:
             # 2026-11-09: 못 찾은 이유(404 = 글 없음/삭제됨, 403 = 권한)가 안 보여서 비공개 처리 확인이 안 됐다
             print(f"ℹ️ 글 주소로 글 찾기: 응답 {r.status_code} ({target.rsplit('/', 1)[-1][:60]})")
