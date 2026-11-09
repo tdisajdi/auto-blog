@@ -77,7 +77,7 @@ def _valid_plan(p):
             "slug": str(p.get("slug") or ""),
             "intro": {"goal": str(intro.get("goal") or "독자의 질문과 이 글의 범위"),
                       "facts": [str(f) for f in (intro.get("facts") or [])][:6]},
-            "sections": clean, "faq": faq or ["자주 묻는 질문 3개를 자료로 답할 수 있는 것으로 고르세요"]}
+            "sections": clean, "faq": faq or ["자료로 답할 수 있는 질문 2~3개를 고르세요"]}
 
 
 DEFAULT_PLAN = {
@@ -88,7 +88,7 @@ DEFAULT_PLAN = {
         {"heading": "숫자로 보기", "goal": "자료의 숫자를 표로 정리하고 뜻을 설명", "facts": [], "table": True, "chars": 1100},
         {"heading": "아직 모르는 것", "goal": "확인되지 않은 점과 주의할 점", "facts": [], "table": False, "chars": 1000},
     ],
-    "faq": ["자료로 답할 수 있는 질문 3개를 고르세요"],
+    "faq": ["자료로 답할 수 있는 질문 2~3개를 고르세요"],
 }
 
 
