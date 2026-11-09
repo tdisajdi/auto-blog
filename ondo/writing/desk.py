@@ -447,6 +447,11 @@ def apply_patches(html, edits, facts_text, log=None):
             dropped.append(f"고친 문장이 너무 길거나 소제목을 넣음: {find[:30]}")
             continue
         m = hits[0]
+        # 소제목(<h1>~<h4>) 안의 글은 고치지 않는다(2026-11-09 VOO: FAQ 질문 소제목을 지워 '질문 없이 답만' 지적)
+        before = html[:m.start()]
+        if re.search(r"<h[1-4][^>]*>(?:(?!</h[1-4]>).)*$", before, flags=re.S | re.I):
+            dropped.append(f"소제목은 고치지 않음: {find[:30]}")
+            continue
         # 고친 문장이 바로 앞뒤 문장과 거의 같으면 이미 있는 내용 → 지운다(2026-11-09 VOO 연달아 시험: 고친 문장이 앞 문장
         # '미국에서 15% 원천징수'를 되풀이해 다음 판에서 '중요' 반복 지적)
         if new:
