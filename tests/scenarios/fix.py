@@ -222,3 +222,18 @@ print("empty faq ok")
 _h, _i, _f = _lt.fix_and_check("<p>360750.KS는 올랐고 <a href='https://finance.yahoo.com/quote/360750.KS'>야후</a></p>")
 assert "360750는" in _h and "quote/360750.KS" in _h and "종목 코드의 .KS 표기 제거" in _f, _h
 print("ks suffix ok")
+
+# 2026-11-09: 한글 주소 글 찾기 - 워드프레스는 '%eb%82…'를 그대로 저장 → 푼 이름이 404면 저장된 그대로 다시 시도
+_seen = []
+class _R:
+    def __init__(s, code): s.status_code = code
+    def json(s): return {"ID": 77, "title": "QQQ", "categories": {}}
+_old_get, _old_tok, _old_id = be.requests.get, be.WP_OAUTH_TOKEN, be.WP_SITE_ID
+be.WP_OAUTH_TOKEN, be.WP_SITE_ID = "t", "1"
+be.requests.get = lambda url, **k: (_seen.append(url), _R(200 if "%25eb" in url else 404))[1]
+assert be.wp_find_post_by_url("https://ondo99.com/2026/07/16/%eb%82%98%ec%8a%a4%eb%8b%a5-100/") == (77, "QQQ", "etf"), _seen
+assert len(_seen) == 2 and "%EB%82%98" in _seen[0], _seen
+_seen.clear()
+assert be.wp_find_post_by_url("https://ondo99.com/2026/07/21/nasdaq-100-qqq/") is None and len(_seen) == 1   # 영어 주소는 한 번만
+be.requests.get, be.WP_OAUTH_TOKEN, be.WP_SITE_ID = _old_get, _old_tok, _old_id
+print("korean slug lookup ok")
