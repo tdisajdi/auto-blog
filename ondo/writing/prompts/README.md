@@ -12,6 +12,7 @@ AI에게 주는 글쓰기 규칙을 코드가 아니라 글 파일로 보관하�
 | unify.txt | 나눠 쓴 글 이음새 다듬기 | 좋은 모델 → 넉넉한 모델 |
 | review_fact.txt / review_reader.txt / review_policy.txt | 검토 담당 3명(사실 검증 / 독자 편집 / 정책·신뢰). 문제마다 심각도와 인용 → 점수는 코드가 계산 | 사실 검증은 좋은 모델, 나머지는 넉넉한 모델 |
 | review_common.txt | 검토 담당 공통: 심각도 기준, 답 형식 | - |
-| rewrite.txt | 고쳐쓰기(최대 2번) | 좋은 모델 |
+| patch.txt | 부분 고침: 지적이 모두 문장을 콕 집을 때 그 문장만 고쳐 JSON으로 받음(11-09) | 좋은 모델 |
+| rewrite.txt | 고쳐쓰기(빠진 내용·교열 막힘이 있을 때, 부분 고침과 합쳐 최대 2번) | 좋은 모델 |
 
 분야별 규칙(의학 정보, 계좌 원칙 등)은 topic_engine.py CATEGORIES와 explainer_engine.py에 있다.

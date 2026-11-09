@@ -310,3 +310,48 @@ assert not desk._summary_repeat("정리 섹션을 제외하고 본문에서 1,00
 assert not desk._summary_repeat("마지막 '정리' 섹션과 중복되지는 않으나 본문 내 다른 수치 설명들과 어우러져 반복되었습니다.")
 assert not desk._summary_repeat("서론과 결론에서 청년층 주거 지원 정책을 거의 동일한 내용으로 반복하고 있습니다.")
 print("summary repeat downgrade ok")
+
+# 2026-11-09: 부분 고침 - 지적이 모두 본문 문장을 가리키면 그 문장만 고쳐 받아 바꿔 넣는다
+h = ("<h1>t</h1><p>보수는 <strong>0.03%</strong>로 낮은 편이며 최근 10년 중 가장 낮은 수준입니다. 다른 문장은 그대로 둡니다 정말로요.</p>"
+     "<p>배당은 3.456%입니다. 이 문장은 지적과 상관없는 설명 문장입니다.</p>")
+f_q = [{"severity": "치명", "quote": "최근 10년 중 가장 낮은 수준", "problem": "자료에 없는 기간", "by": "사실 검증"}]
+assert desk.patchable(f_q, [], [], h)
+assert not desk.patchable(f_q, ["한 줄 정리 없음"], [], h)                       # 교열 막힘은 전체 고쳐쓰기
+assert not desk.patchable(f_q + [{"severity": "중요", "quote": "", "problem": "[누락] 판단 기준", "by": "x"}], [], [], h)
+assert not desk.patchable([{"severity": "사소", "quote": "x", "problem": "p", "by": "x"}], [], [], h)
+new, n, dropped = desk.apply_patches(h, [
+    {"find": "보수는 0.03%로 낮은 편이며 최근 10년 중 가장 낮은 수준입니다.", "replace": "보수는 0.03%로 낮은 편입니다."},  # 굵게 태그가 끼어도 찾음
+    {"find": "배당은 3.456%입니다.", "replace": "배당은 27.5%입니다."},                                                 # 자료에 없는 숫자 → 버림
+    {"find": "없는 문장을 찾으라고 한 경우입니다.", "replace": "x"}], facts)
+assert n == 1 and "최근 10년" not in new and "보수는 0.03%로 낮은 편입니다." in new and "배당은 3.456%" in new, (n, new)
+assert any("자료에 없는 숫자" in d for d in dropped) and any("못 찾음" in d for d in dropped), dropped
+assert "다른 문장은 그대로 둡니다" in new
+# 흐름: 첫 판 인용 지적 → 부분 고침(전체 고쳐쓰기 안 부름) → 다음 판 통과
+body_p = long_html("", 60).replace("</h1>", "</h1><p>이 상품은 최근 10년 중 가장 낮은 보수를 받는다고 알려져 있습니다.</p>", 1)
+calls_p = {"patch": 0, "rewrite": 0, "review": 0}
+def post_patch(url, payload, key):
+    p = payload["contents"][0]["parts"][0]["text"]
+    if "독자 가치 담당" in p:
+        return R(200, json.dumps(VALUE_ANSWER))
+    if "기획 회의" in p:
+        return R(200, json.dumps(PLAN))
+    if "심각도 기준" in p:
+        calls_p["review"] += 1
+        if "사실 검증 담당" in p and "최근 10년 중" in p:
+            return R(200, json.dumps({"issues": [{"severity": "치명", "quote": "최근 10년 중 가장 낮은 보수", "problem": "자료에 없는 기간"}]}))
+        return R(200, json.dumps({"issues": []}))
+    if "지적된 문장만 고쳐서" in p:
+        calls_p["patch"] += 1
+        return R(200, json.dumps({"edits": [{"find": "이 상품은 최근 10년 중 가장 낮은 보수를 받는다고 알려져 있습니다.", "replace": ""}]}))
+    if "지적된 문제만 고치고" in p:
+        calls_p["rewrite"] += 1
+        return R(200, long_html("고친 "))
+    if "글 전체를 한 번에" in p:
+        return R(200, body_p)
+    raise AssertionError(p[:80])
+llm._post = post_patch
+log = editlog.EditLog("guide", "patch", "시험")
+res = desk.write_article(kind_label="k", title_seed="s", facts_text=facts, rules="", category_label="c", log=log)
+assert res["clean"] and calls_p["patch"] == 1 and calls_p["rewrite"] == 0 and "최근 10년" not in res["html"], (calls_p, res["score"])
+assert any(s["step"] == "부분 고침" and s["applied"] == 1 for s in log.data["steps"])
+print("patch mode ok")

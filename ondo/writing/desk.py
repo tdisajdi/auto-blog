@@ -401,6 +401,60 @@ def apply_typo_fixes(html, found, log=None, severities=("사소",)):
     return html, fixed
 
 
+# 부분 고침(2026-11-09): 지난 기록에서 '치명·중요' 지적의 77%가 고칠 문장을 콕 집었는데, 그때도 글 전체를 다시 써서
+# 고쳐쓰기 90번 중 29번은 점수가 떨어졌다(멀쩡한 곳에 '최근 10년'·'약 3년' 같은 사실을 새로 지어냄).
+# → 지적이 모두 본문 문장을 가리키면 그 문장만 고쳐 받아 코드가 바꿔 넣는다. 빠진 내용·교열 막힘이 있으면 예전처럼 전체 고쳐쓰기.
+MAX_PATCH = 6
+
+
+def patchable(found, hard_lint, nums, html):
+    serious = [f for f in found if f["severity"] in ("치명", "중요")]
+    if not serious or hard_lint or nums:
+        return False
+    text_norm = _norm(review_text(html))
+    return all(f.get("quote") and len(_norm(f["quote"])) >= 8 and _quote_found(f["quote"], text_norm)
+               and not str(f.get("problem", "")).lstrip().startswith("[누락]") for f in serious)
+
+
+def _sentence_pattern(sentence):
+    """본문 글자 사이에 인라인 태그(<strong>, <a …>)·공백 차이가 있어도 찾게 한다."""
+    chars = [c for c in lint.text_of(sentence).strip() if not c.isspace()]
+    return re.compile(r"(?:<[^>]+>|\s)*".join(re.escape(c) for c in chars)) if len(chars) >= 8 else None
+
+
+def apply_patches(html, edits, facts_text, log=None):
+    """edits: [{find, replace}]. 본문에 정확히 한 번 나오는 문장만, 새 확인 안 된 숫자를 들이지 않는 것만 바꾼다.
+    반환: (고친 html, 적용 수, 버린 이유 목록)"""
+    applied, dropped = 0, []
+    for e in edits or []:
+        if not isinstance(e, dict):
+            continue
+        find, new = str(e.get("find") or "").strip(), str(e.get("replace") or "").strip()
+        pat = _sentence_pattern(find)
+        if not pat:
+            dropped.append("찾을 문장이 너무 짧음")
+            continue
+        hits = list(pat.finditer(html))
+        if len(hits) != 1:
+            dropped.append(f"본문에서 {'못 찾음' if not hits else '여러 번 나옴'}: {find[:30]}")
+            continue
+        old_nums = set(numbers.unverified(find, facts_text, limit=20))
+        added = [n for n in numbers.unverified(new, facts_text, limit=20) if n not in old_nums]
+        if added:
+            dropped.append(f"자료에 없는 숫자를 새로 넣음({', '.join(added)}): {find[:30]}")
+            continue
+        if len(new) > 2 * len(lint.text_of(find)) + 80 or "<h" in new.lower():
+            dropped.append(f"고친 문장이 너무 길거나 소제목을 넣음: {find[:30]}")
+            continue
+        m = hits[0]
+        html = html[:m.start()] + new + html[m.end():]
+        applied += 1
+    html = re.sub(r"<p>\s*</p>", "", html)
+    if log:
+        log.step("부분 고침", applied=applied, dropped=dropped[:6])
+    return html, applied, dropped
+
+
 def write_article(*, kind_label, title_seed, facts_text, rules, category_label, log, memo="", recent_posts=None,
                   drawer=None, avoid_visuals=(), must_answer=None, visual_texts=()):
     """반환: {"html", "plan", "score", "issues", "clean"} 또는 None(실패 - 이유는 log에 있음).
@@ -496,6 +550,18 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
                 + [i for i in lint_issues if i not in hard_lint])[:MAX_TODO]
         if not todo:
             break                                     # 고칠 방향이 없다(검토 실패 등)
+        if os.environ.get("PATCH_MODE", "1") != "0" and patchable(found, hard_lint, nums, html):
+            items = [_issue_text(f) for f in ranked if f.get("quote")][:MAX_PATCH]
+            r = llm.call(prompt("patch", issues="\n".join(f"- {t}" for t in items), draft=html, max_edits=MAX_PATCH,
+                                **ctx["common"]),
+                         step=f"부분 고침 {round_no}", log=log, tier=WRITE_TIER, json_out=True, start_key=round_no * 2)
+            data = llm.parse_json(r.text) if r.text else None
+            edits = data.get("edits") if isinstance(data, dict) else data if isinstance(data, list) else None
+            patched, n_ok, _dropped = apply_patches(html, edits, facts_text, log)
+            if n_ok:
+                html = patched
+                continue                              # 고친 문장만 바뀐 글로 다음 판 검토
+            # 하나도 못 바꿨으면 아래 전체 고쳐쓰기로
         r = llm.call(prompt("rewrite", issues="\n".join(f"- {t}" for t in todo), draft=html, **ctx["common"]),
                      step=f"고쳐쓰기 {round_no}", log=log, tier=WRITE_TIER, start_key=round_no * 2)
         new = _clean_html(r.text) if r.text else ""
