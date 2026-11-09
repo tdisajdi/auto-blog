@@ -237,3 +237,16 @@ _seen.clear()
 assert be.wp_find_post_by_url("https://ondo99.com/2026/07/21/nasdaq-100-qqq/") is None and len(_seen) == 1   # 영어 주소는 한 번만
 be.requests.get, be.WP_OAUTH_TOKEN, be.WP_SITE_ID = _old_get, _old_tok, _old_id
 print("korean slug lookup ok")
+# 2026-11-09: 공개 글 목록(점검용) - 여러 쪽을 이어 받고, 실패하면 None
+class _RL:
+    def __init__(s, n, code=200): s.status_code, s._n = code, n
+    def json(s): return {"posts": [{"ID": i, "date": "2026-07-16T00:00:00", "title": "Q&amp;A", "URL": "u"} for i in range(s._n)]}
+be.WP_OAUTH_TOKEN, be.WP_SITE_ID = "t", "1"
+_pages = iter([_RL(50), _RL(3)])
+be.requests.get = lambda url, **k: next(_pages)
+_ps = be.wp_list_public_posts()
+assert len(_ps) == 53 and _ps[0]["title"] == "Q&A" and _ps[0]["date"] == "2026-07-16", _ps[:1]
+be.requests.get = lambda url, **k: _RL(0, 403)
+assert be.wp_list_public_posts() is None
+be.requests.get, be.WP_OAUTH_TOKEN, be.WP_SITE_ID = _old_get, _old_tok, _old_id
+print("list public posts ok")
