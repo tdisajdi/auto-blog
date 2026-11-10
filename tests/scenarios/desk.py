@@ -404,4 +404,9 @@ print("patch keeps headings ok")
 # 2026-11-09 밤: 답은 도입부에서 먼저 → 도입부 숫자가 본문에서 다시 나온다는 '중요' 지적은 '사소'로
 assert desk._summary_repeat("도입부의 이 문장은 바로 아래 섹션의 내용과 숫자를 그대로 되풀이하고 있습니다.")
 assert not desk._summary_repeat("계좌 선택 섹션에서 GLD 수치가 중복으로 되풀이되고 있습니다.")
+# 11-10: 소수점('7.5%')에서 판정이 끊겨 도입 답 되풀이 지적을 못 낮춤(환율 고정 시험)
+assert desk._summary_repeat("도입부에서 이미 다룬 7.5% 하락 및 7.5~8.3%p 차이의 내용을 본문 중간에서 그대로 다시 되풀이하고 있습니다.")
+assert not desk._summary_repeat("환노출의 개념을 같은 문단 안에서 불필요하게 반복하여 분량을 채웠습니다.")
+# 11-10: 사실 검증도 보는 꼭 답할 질문에 '되풀이 금지'를 넣지 않는다(기준의 숫자와 부딪힘)
+assert not any("되풀이" in q for q in desk.COMMON_MUST), desk.COMMON_MUST
 print("intro repeat downgrade ok")
