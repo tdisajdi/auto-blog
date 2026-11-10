@@ -216,6 +216,10 @@ def write_etf_article(etf_list, today_str, now):
                                       drawer_html, now.strftime("%Y년 %m월 %d일"), previous_analyses)
         # 거의 같이 움직이는 두 상품이면 필수 질문을 '얼마나 같고 무엇이 다른가'로(11-08 TIGER vs ACE)
         must_key = "comparison_twin" if kind == "comparison" and _analysis.is_twin(_facts) else kind
+        # 11-10 VOO 고정 시험 6: 비교 자료가 없는데 '비슷한 상품과 비교(비교 자료가 있을 때)'를 넘겨 사실 검증이 [누락] '중요' →
+        # 작가가 자료 없이 SPY 비교를 지어 쓰다 '일반론' '중요'(11-09 VOO도 [누락]). 조건이 안 맞으면 그 질문은 아예 넘기지 않는다.
+        _must = [q for q in _analysis.MUST_ANSWER[must_key]
+                 if not ("비교 자료가 있을 때" in q and not (drawer_html or {}).get("competition"))]
         produce_article(
             kind_label="ETF 비교" if kind == "comparison" else "ETF 분석",
             # 검색용 제목 최적화가 "환율과 금리가 S&P500 수익률에 미치는 영향"처럼 자료가 답하지 못하는 것을 약속해서
@@ -223,7 +227,7 @@ def write_etf_article(etf_list, today_str, now):
             title_seed=(f"{title_tickers} 비교: 수익·낙폭·보수·세금을 같은 기준으로 보기" if kind == "comparison"
                         else f"{title_tickers} 점검: 수익·낙폭·배당·세금을 숫자로 보기"),
             facts_text=_facts,
-            rules=_analysis.ANALYSIS_RULES, must_answer=_analysis.MUST_ANSWER[must_key],
+            rules=_analysis.ANALYSIS_RULES, must_answer=_must,
             category_label=f"ETF/{'비교' if kind == 'comparison' else '종목 분석'}", article_type=kind,
             topic_id=",".join(t.replace(".KS", "") for t in etf_list), memo=operator_memo,
             closing_html=_analysis.closing_html(recent_news), drawer=drawer, drawer_html=drawer_html,
