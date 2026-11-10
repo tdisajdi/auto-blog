@@ -232,13 +232,14 @@ DRUG_NAME = re.compile(r"(?:siran|mab|tug|bart|mig|ment|nib|parib|ciclib|lisib|t
 
 
 def english_words(html):
-    """한국어 문장 속 소문자 영어 단어(4글자 이상). 11-08: 'excess 금액', 'absolute한' 같은 단어가 검토에선 '사소'라 통과를 못 막음.
+    """한국어 문장 속 소문자 영어 단어(3글자 이상, 11-10까지는 4글자). 11-08: 'excess 금액', 'absolute한' 같은 단어가 검토에선 '사소'라 통과를 못 막음.
     지난 임시글 148개에 돌려 보니 'ondo'(블로그 이름) 말고는 모두 진짜 실수였다(fluctuations·distortion·intermediate 등).
     종목 코드는 대문자라 안 걸림. 링크 주소·태그 줄은 뺀다."""
     t = re.sub(r"태그:.*", " ", text_of(re.sub(r"<a\b[^>]*>", "", html)))
     t = re.sub(r"https?://\S+|\S+@\S+", " ", t)
     out = []
-    for m in re.finditer(r"(?<![A-Za-z./@#-])([a-z]{4,})(?![A-Za-z./@-])", t):
+    # 11-10: 3글자로 넓힘 - VOO 글 'low 보수'가 통과(지난 초안 전부에 돌려 보니 3글자는 'low' 1번과 '&amp;'의 amp뿐 → &는 앞에서 뺌)
+    for m in re.finditer(r"(?<![A-Za-z./@#&-])([a-z]{3,})(?![A-Za-z./@;-])", t):
         w = m.group(1)
         if w not in ENGLISH_OK and not DRUG_NAME.search(w) and re.search(r"[가-힣]", t[max(0, m.start() - 12):m.end() + 8]):
             out.append(w)

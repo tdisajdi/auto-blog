@@ -185,6 +185,8 @@ print("one-line summary ok")
 # 2026-11-08: 한국어 문장 속 영어 단어(4글자 이상)는 막음, 블로그 이름·종목 코드·링크 주소는 괜찮음
 assert lint.english_words("<p>공제를 받은 뒤 excess 금액에 대해 22%, absolute한 한도</p>") == ["excess", "absolute"]
 assert lint.english_words('<p>블로그 ondo 계산, SPY와 QQQ, <a href="https://x.com/page">기사</a></p><p>태그: etf</p>') == []
+# 11-10: 3글자 영어('low 보수')도 잡고, '&amp;'의 amp는 안 잡음
+assert lint.english_words("<p>VOO는 low 보수로 S&amp;P 500에 투자</p>") == ["low"], lint.english_words("<p>VOO는 low 보수로 S&amp;P 500에 투자</p>")
 _, iss10, _ = lint.fix_and_check("<h1>t</h1><p>환율 fluctuations에 따라</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
 assert [i for i in iss10 if i.startswith("영어 단어 'fluctuations'")], iss10
 print("english words ok")
