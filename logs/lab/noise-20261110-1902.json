@@ -1,0 +1,90 @@
+[
+ {
+  "id": "10-analysis-voo-4.json",
+  "runs": [
+   {
+    "score": 1.0,
+    "value": 1.0,
+    "serious": []
+   },
+   {
+    "score": 0.97,
+    "value": 0.8,
+    "serious": []
+   },
+   {
+    "score": 0.94,
+    "value": 0.8,
+    "serious": []
+   }
+  ]
+ },
+ {
+  "id": "10-energy-energy-bz-f-3.json",
+  "runs": [
+   {
+    "score": 0.97,
+    "value": 0.8,
+    "serious": []
+   },
+   {
+    "score": 0.97,
+    "value": 1.0,
+    "serious": []
+   },
+   {
+    "score": 0.97,
+    "value": 1.0,
+    "serious": []
+   }
+  ]
+ },
+ {
+  "id": "10-issue-fx-3.json",
+  "runs": [
+   {
+    "score": 0.53,
+    "value": 0.8,
+    "serious": [
+     "지수자체의상승폭보다환율로인한",
+     "환율이반대로같은폭만큼올랐다면"
+    ]
+   },
+   {
+    "score": 1.0,
+    "value": 0.8,
+    "serious": []
+   },
+   {
+    "score": 0.97,
+    "value": 1.0,
+    "serious": []
+   }
+  ]
+ },
+ {
+  "id": "09-bio-bio-vir-s-phase-3-hepatitis-delta-win-fuels-push-t-3.json",
+  "runs": [
+   {
+    "score": 0.88,
+    "value": 0.6,
+    "serious": [
+     "기존승인약물과비교했을때매우우"
+    ]
+   },
+   {
+    "score": 0.97,
+    "value": 0.6,
+    "serious": []
+   },
+   {
+    "score": 0.7,
+    "value": 0.6,
+    "serious": [
+     "매우우수한바이러스억제성능을시",
+     "미국국립보건원임상시험등록소링"
+    ]
+   }
+  ]
+ }
+]
