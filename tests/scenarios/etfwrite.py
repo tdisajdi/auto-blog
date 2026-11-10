@@ -48,3 +48,6 @@ assert "미국 10년물 국채 금리 {" not in open(os.path.join(sys.argv[1], "
 _ee_src = open(os.path.join(sys.argv[1], "explainer_engine.py")).read()
 assert 'rt = "금리" in str(news_query' in _ee_src and "if rt else" in _ee_src
 print("rate line only for rates ok")
+# 11-10: 비교 자료(competition)가 없으면 '비교 자료가 있을 때' 필수 질문을 넘기지 않음
+assert not any("비교 자료가 있을 때" in q for q in got["must_answer"]), got["must_answer"]
+print("conditional must ok")
