@@ -34,3 +34,12 @@ assert usd_amount_ko(1735.73e9)=="약 1조 7,357억 달러" and usd_amount_ko(12
 # 공포·탐욕 지수는 단일 분석 자료에서도 뺌(상관없는 일반론 문단을 끌어냄)
 assert "공포·탐욕 지수 {" not in open(os.path.join(sys.argv[1],"ondo/writing/analysis.py")).read()
 print("aum unit ok")
+# 11-10 이름표 점검: 보수 차이는 '보수만 떼는' 식, 5년이 안 된 ETF는 '5년 전'이라 하지 않음
+from ondo.etf.data import _estimate_fee_impact, _window_label
+fi = _estimate_fee_impact(100_000_000, "0.03%")
+assert fi.startswith("약 992,") and "수익률 0% 가정" in fi, fi
+assert _window_label(5.0) == "5년 전" and _window_label(2.3) == "상장 직후(약 2.3년 전)"
+from ondo.writing import analysis as _an2
+assert _an2._mdd_window({"cagr_years": 2.3}) == "상장 이후 약 2.3년" and _an2._mdd_window({"cagr_years": 5.0}) == "최근 5년"
+assert "'연평균 배당 증가율'로만 언급" not in open(os.path.join(sys.argv[1], "ondo/writing/analysis.py")).read()
+print("label audit ok")

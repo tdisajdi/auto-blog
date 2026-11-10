@@ -115,3 +115,8 @@ _ln2 = "- SPY (x): 해외 상장, 운용보수 0.09%, 배당수익률 1.03%, 배
 assert _xe.drop_overlapping_metrics(_ln2, "x") == "- SPY (x): 해외 상장, 운용보수 0.09%, 환율 영향 있음"
 assert _xe.drop_overlapping_metrics(_ln2, "x", keep_dividend=True) == _ln2
 print("dividend metrics only for dividend topics ok")
+# 11-10: 새 이름표(최근 1년 배당 합계 증가율)도 배당 주제가 아니면 뺌
+import explainer_engine as _ee3
+_o3 = _ee3.drop_overlapping_metrics("- SPY (x): 해외 상장, 배당수익률 1.03%, 최근 1년 배당 합계 증가율(전년 대비) 4.54%, 환율 영향 있음", "")
+assert "증가율" not in _o3 and "배당수익률" not in _o3, _o3
+print("dividend label drop ok")

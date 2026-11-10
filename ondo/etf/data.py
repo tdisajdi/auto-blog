@@ -451,6 +451,11 @@ def _get_upcoming_earnings(ticker_obj):
     return None
 
 
+def _window_label(years):
+    """11-10 점검: 5년 자료 창으로 계산한 값인데 상장 5년이 안 된 ETF에도 '5년 전'이라고 붙었다 → 실제 자료 길이대로."""
+    return "5년 전" if years >= 4.9 else f"상장 직후(약 {years:.1f}년 전)"
+
+
 def usd_amount_ko(amount):
     """달러 금액을 한국 독자가 읽는 단위로. 11-10 사람 읽기: '$1,735.73B'가 그대로 글에 옮겨져 사회초년생 독자가 못 읽음."""
     eok = amount / 1e8                       # 억 달러
@@ -622,9 +627,10 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                     
                     if len(df_5y) > 10:
                         start_price_5y = float(df_5y['Close'].iloc[0])
+                        years_span = len(df_5y) / 250.0
                         total_return_5y = (current_price - start_price_5y) / start_price_5y
                         final_amount = 10000000 * (1 + total_return_5y)
-                        simulated_result = f"5년 전 1,000만 원 투자 시 현재 가치 약 {int(final_amount/10000):,}만 원"
+                        simulated_result = f"{_window_label(years_span)} 1,000만 원 투자 시 현재 가치 약 {int(final_amount/10000):,}만 원"
                         # 실제 보유 기간(연 단위)을 반영한 CAGR 계산. 상장한 지 얼마 안 된
                         # ETF(예: 2년치 데이터만 있는 경우)에 5년 CAGR을 적용하면 왜곡되므로,
                         # 실제 데이터 기간(years_held)을 반영해 계산한다.
@@ -728,8 +734,9 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                     mdd_detail = _drawdown_detail(h_mdd['Close'])
                     if len(h_mdd) > 10:
                         total_return_5y = (current_price - h_mdd['Close'].iloc[0]) / h_mdd['Close'].iloc[0]
+                        years_span = len(h_mdd) / 250.0
                         final_amount = 10000000 * (1 + total_return_5y)
-                        simulated_result = f"5년 전 1,000만 원 투자 시 현재 가치 약 {int(final_amount/10000):,}만 원"
+                        simulated_result = f"{_window_label(years_span)} 1,000만 원 투자 시 현재 가치 약 {int(final_amount/10000):,}만 원"
                         # 실제 보유 기간(연 단위)을 반영한 CAGR 계산. IBIT처럼 상장한 지
                         # 2~3년밖에 안 된 ETF에 5년 CAGR을 그대로 적용하면 왜곡되므로,
                         # 실제로 확보된 데이터 기간(years_held)을 반영해 계산한다.
@@ -1009,11 +1016,13 @@ def _estimate_account_tax_impact(yield_str, d=None, overseas=False):
 def _estimate_fee_impact(principal, expense_ratio):
     try:
         er = float(str(expense_ratio).replace('%','').strip()) if expense_ratio and isinstance(expense_ratio, str) else float(expense_ratio or 0)
+        # 11-10 점검: 예전 식은 보수를 '불어나는 수익'처럼 (1+보수)^10으로 계산했다(숫자는 비슷하게 나와 안 보였음).
+        # 수익률 0%로 두고 매년 보수만 떼는 식으로 - 보수 0.1%p 더 높은 쪽이 10년 뒤 덜 남는 금액.
         diff_er = 0.1
-        future_value_base = principal * ((1 + (er/100)) ** 10)
-        future_value_lower = principal * ((1 + ((er - diff_er)/100)) ** 10)
-        loss = future_value_base - future_value_lower
-        return f"약 {loss:,.0f}원 (0.1% 포인트 차이로 10년 후 잠재 손실)"
+        kept_this = principal * ((1 - er / 100) ** 10)
+        kept_higher = principal * ((1 - (er + diff_er) / 100) ** 10)
+        loss = kept_this - kept_higher
+        return f"약 {loss:,.0f}원 (수익률 0% 가정, 보수 0.1%p 차이로 10년 뒤 덜 남는 금액)"
     except (ValueError, TypeError):
         return "정보 없음"
 

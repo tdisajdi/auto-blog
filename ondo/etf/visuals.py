@@ -96,7 +96,7 @@ def _add_competitive_comparison(etf_data_cache):
         div_growth = d.get('dividend_growth_rate', 'N/A')
         fx_exposure = d.get('fx_exposure', 'N/A')
         
-        html += f'<li><strong>{ticker_clean}</strong>: 보수({expense}), 배당성장({div_growth}), 환노출({fx_exposure})</li>'
+        html += f'<li><strong>{ticker_clean}</strong>: 보수({expense}), 1년 배당 증가({div_growth}), 환노출({fx_exposure})</li>'
     
     html += '</ul>'
     html += """

@@ -165,7 +165,7 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("순자산(규모)", d.get("aum_str")),
              _line(f"기간별 가격 수익률({today_label} 기준, 배당 제외)", rets or None),
              _line(cagr_label(d), f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
-             _line("최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
+             _line(f"최대 낙폭({_mdd_window(d)}, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
              _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),
              _line("배당 주기", d.get("div_cycle")),
              _line("최근 배당수익률(최근 1년 배당 ÷ 현재 가격)", d.get("yield") if not (code.isdigit() and _num(d.get("yield")) == 0) else None),
@@ -175,8 +175,9 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("배당 변화 결론(코드가 위 내역으로 계산 - 이 문장 그대로 인용)", d.get("dividend_stability_desc")),
              _line("배당 같은 시기 비교(코드 계산 - 분기마다 오르내리므로 직전 회차보다 이것으로 추세를 볼 것. "
                    "배당이 늘거나 준 이유는 자료에 없으니 짐작해 쓰지 말고, 줄어든 회차가 얼마나 흔한지는 여기 '줄어든 적 N회'로 설명)", d.get("dividend_yoy") or None),
-             _line("배당성장률(코드 계산값 - '연평균 배당 증가율'로만 언급)", d.get("dividend_growth_rate")),
-             _line("5년 전 1,000만 원을 한 번에 넣었다면(가격 기준 계산)", d.get("simulated_result")),
+             # 11-10 점검: 코드는 '최근 1년 합계 ÷ 그 전 1년 합계'(1년 변화)인데 '연평균 배당 증가율'로 쓰라고 해서 VOO 글이 '장기 연평균'으로 씀
+             _line("최근 1년 배당 합계 증가율(그 전 1년 합계 대비, 코드 계산 - 여러 해 평균이 아니라 한 해 변화)", d.get("dividend_growth_rate")),
+             _line("1,000만 원을 한 번에 넣었다면(가격 기준 계산, 배당 제외)", d.get("simulated_result")),
              _line("환율 영향", d.get("fx_exposure")),
              _line("계좌", ea.OVERSEAS_ACCOUNT_NOTE if overseas else "국내 상장 ETF라 ISA·연금저축·IRP 계좌로도 살 수 있음"),
              ]
@@ -202,7 +203,7 @@ def ticker_facts(ticker, d, ea, today_label):
                     else " (국내 상장 해외지수 ETF 매매차익은 배당소득으로 잡혀 포함됨)"))
     fee = d.get("fee_impact_100m_10y")
     if fee not in _EMPTY:
-        lines.append(f"- 보수 차이 예시(코드 계산): 운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 "
+        lines.append(f"- 보수 차이 예시(코드 계산, 수익률 0% 가정 - 보수만 비교): 운용보수가 0.1%p 더 높은 ETF와 비교하면 1억 원을 10년 둘 때 차이 "
                      f"{str(fee).split('(')[0].strip()}")
     return "\n".join(l for l in lines if l)
 
@@ -316,7 +317,7 @@ def _won_amount(text):
 # 쌍둥이 비교에서 빼는 줄: 상장일 기준 CAGR(같은 기간 비교와 숫자가 둘이라 혼란 - 11-08 '연평균 수익률 두 기준'), 가정 예시(0.1%p)
 # 11-08 재시험 4: 종목마다 붙은 세금 예시·계좌·종합과세 줄이 남아 있어 작가가 '같다' 한 문장 대신 세금 계산을 길게 씀('중요' 3번) →
 # 쌍둥이일 때는 이 줄들도 빼고, [두 ETF를 고를 때 남는 차이]의 '세금·계좌 조건이 같다' 한 줄만 남긴다.
-_TWIN_DROP = re.compile(r"^- ((?:상장 이후|최근 5년) 연평균 수익률|연평균 수익률\(CAGR|보수 차이 예시\(코드 계산\): 운용보수가 0\.1%p|매매차익 세금 예시|배당 세금 예시|"
+_TWIN_DROP = re.compile(r"^- ((?:상장 이후|최근 5년) 연평균 수익률|연평균 수익률\(CAGR|보수 차이 예시\(코드 계산[^)]*\): 운용보수가 0\.1%p|매매차익 세금 예시|배당 세금 예시|"
                         r"금융소득종합과세|계좌:)")
 
 
@@ -342,6 +343,11 @@ def twin_choice_block(etf_list, cache, ea):
         lines.append(f"- 세금·계좌 조건: 두 ETF 모두 {da.get('listing')}" + (f"이고 기초지수({da.get('index')})가 같아" if same_idx else "이라")
                      + " 세금 계산 방식과 쓸 수 있는 계좌가 같다 → 세금은 두 ETF를 가르는 기준이 아님(세금 섹션을 따로 만들지 말고 한 문장으로)")
     return "\n".join(lines) if len(lines) > 1 else ""
+
+
+def _mdd_window(d):
+    y = d.get("cagr_years")
+    return f"상장 이후 약 {y:.1f}년" if isinstance(y, (int, float)) and y < 4.9 else "최근 5년"
 
 
 def cagr_label(d):
