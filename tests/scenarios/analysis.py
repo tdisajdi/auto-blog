@@ -145,11 +145,14 @@ assert _an._won_amount("7,188억") == 7.188e11 and _an._won_amount("3.2조") == 
 _orig = _an.same_period_block
 _an.same_period_block = lambda pair, closes=None: f"[같은 기간 비교]\n- {_an.TWIN_MARK}: 거의 같이 움직였다"
 fs = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
-assert "[두 ETF를 고를 때 남는 차이" in fs and "상장 이후 연평균" not in fs and "0.1%p 더 높은" not in fs, fs
+assert "[두 ETF를 고를 때 남는 차이" in fs and "연평균 수익률" not in fs and "0.1%p 더 높은" not in fs, fs
 assert "매매차익 세금 예시" not in fs and "금융소득종합과세" not in fs and "- 계좌:" not in fs and "세금·계좌 조건" in fs, fs
 _an.same_period_block = lambda pair, closes=None: "[같은 기간 비교]\n- 차이 큼"
 fs2 = _an.fact_sheet(["360750.KS", "360200.KS"], _c, _ea, {}, [], {}, "11월 08일")
-assert "[두 ETF를 고를 때 남는 차이" not in fs2 and "상장 이후 연평균" in fs2
+assert "[두 ETF를 고를 때 남는 차이" not in fs2 and "연평균 수익률" in fs2
+# 11-10: CAGR은 최근 5년 창으로 재므로 이름표도 그 기간대로('상장 이후 2010-09-07부터'로 잘못 붙어 VOO 글이 틀리게 씀)
+assert _an.cagr_label({"cagr_years": 5.0, "inception_date": "2010-09-07"}).startswith("최근 5년 연평균"), _an.cagr_label({"cagr_years": 5.0})
+assert "약 2.3년치" in _an.cagr_label({"cagr_years": 2.3}) and "직접 비교 금지" in _an.cagr_label({"cagr_years": 2.3})
 _an.same_period_block = _orig
 print("twin choice block ok")
 
