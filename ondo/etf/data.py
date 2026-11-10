@@ -451,6 +451,17 @@ def _get_upcoming_earnings(ticker_obj):
     return None
 
 
+def usd_amount_ko(amount):
+    """달러 금액을 한국 독자가 읽는 단위로. 11-10 사람 읽기: '$1,735.73B'가 그대로 글에 옮겨져 사회초년생 독자가 못 읽음."""
+    eok = amount / 1e8                       # 억 달러
+    if eok >= 10000:
+        jo, rest = divmod(round(eok), 10000)
+        return f"약 {jo}조 {rest:,}억 달러" if rest else f"약 {jo}조 달러"
+    if eok >= 1:
+        return f"약 {eok:,.0f}억 달러"
+    return f"약 {amount / 1e4:,.0f}만 달러"
+
+
 def _get_aum_trend(ticker_symbol):
     """(신규 2) 야후 파이낸스에서 AUM(순자산) 가져오기"""
     try:
@@ -458,7 +469,7 @@ def _get_aum_trend(ticker_symbol):
         info = tick.info
         aum = info.get('totalAssets')
         if aum:
-            return f"${aum / 1_000_000_000:.2f}B"
+            return usd_amount_ko(aum)
     except Exception:
         pass
     return None

@@ -28,3 +28,9 @@ ea.write_etf_article(["VOO"],"오늘",datetime.now())
 assert got["quit"] and got["article_type"]=="analysis" and got["memo"]=="메모" and got["drawer"], got.keys()
 assert not os.path.exists("confirmed_topic_context.json")
 print("etf write path ok")
+# 11-10 사람 읽기(VOO): '$1,735.73B'를 독자가 못 읽음 → 한국 단위로
+from ondo.etf.data import usd_amount_ko
+assert usd_amount_ko(1735.73e9)=="약 1조 7,357억 달러" and usd_amount_ko(12.3e9)=="약 123억 달러", usd_amount_ko(1735.73e9)
+# 공포·탐욕 지수는 단일 분석 자료에서도 뺌(상관없는 일반론 문단을 끌어냄)
+assert "공포·탐욕 지수 {" not in open(os.path.join(sys.argv[1],"ondo/writing/analysis.py")).read()
+print("aum unit ok")
