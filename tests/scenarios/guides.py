@@ -67,6 +67,12 @@ assert r["y1"] == 2025 and abs(r["cagr"] - 10.0) < 1e-6 and abs(r["yield_now"] -
 assert r["yoc"] and r["px_then_date"].startswith("2021"), r
 f, v = gc.render_dividend({"SCHD": r, "VYM": dict(r, cagr=3.0)})
 assert "연평균 +10.0%" in f and "매입가의" in f and "<table" in v
+# 11-11(6-9): 증가율 높은 쪽(DGRO)이 매입가 대비 배당률은 낮으면 '순위가 엇갈리는 짝'을 사실로 줌
+_rd = dict(r, cagr=7.1, div0=1.03, div1=1.45, yoc=3.28); _rv = dict(r, cagr=3.8, div0=2.91, div1=3.50, yoc=3.87)
+_f2, _ = gc.render_dividend({"DGRO": _rd, "VYM": _rv})
+assert "순위가 엇갈리는 짝" in _f2 and "DGRO는 5년 연평균 배당 증가율(+7.1%)이 VYM(+3.8%)보다" in _f2 and "VYM 3.22%" in _f2, _f2
+_f3, _ = gc.render_dividend({"SCHD": r, "VYM": dict(r, cagr=3.0)})
+assert "순위가 엇갈리는" not in _f3 and "설명하세요" not in _f3
 print("dividend ok")
 
 # 6) 커버드콜: 가격은 제자리, 분배금 재투자하면 +10%

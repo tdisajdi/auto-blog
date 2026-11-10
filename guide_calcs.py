@@ -87,7 +87,7 @@ def render_expense(res):
     header = ["ETF", "총보수"] + [f"{n}년 뒤" for n in ys]
     table = charts.table_html("같은 원금·같은 수익률이라면, 총보수만 다를 때 차이", header, trows, note)
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              "- 총보수는 ETF 자산에서 매일 조금씩 빠져나가므로, 투자자가 따로 내는 돈이 아니라 수익률(가격)에 이미 반영된다.\n"
              "- 보수 차이는 원금이 크고 기간이 길수록 금액 차이가 커진다(복리).\n")
     return facts, table
@@ -147,7 +147,7 @@ def render_leverage(res, base_name, lev_name):
                                            {"name": f"{base_name}×{m}", "values": [round(w["naive"], 1) for w in res["windows"]]}],
                                 "source": "Yahoo Finance, ondo 계산"})
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              f"- 레버리지 ETF는 매일 기초지수 하루 수익률의 {m}배를 목표로 다시 맞춘다(일일 재조정). 그래서 오르내림이 반복되면 "
              "같은 기초 수익률이라도 결과가 달라지고, 변동성이 클수록 그 차이가 커지는 경향이 있다.\n"
              "- 한 방향으로 꾸준히 오른 기간에는 단순 계산보다 더 많이 오를 수도 있다(위 표의 '차이'가 양수인 경우).\n")
@@ -214,7 +214,7 @@ def render_dca(results, total=12_000_000):
                               ["ETF", "기간", "거치식", "적립식", f"{next(iter(results.values()))['window']}개월 구간 승패",
                                "거치식 최악 구간", "적립식 최악 구간"], rows, note)
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              # '유리'를 자료에 쓰면 작가가 그대로 가져가 정책 담당의 '단정 표현' 지적을 받는다(11-08 적립식 가이드) → 숫자로 비교하는 말만
              "- 거치식은 처음부터 전액이 투자돼 있고, 적립식은 나눠 넣는 동안 아직 안 넣은 돈이 남아 있어 평균 투자 기간이 더 짧다"
              "(이 계산처럼 매달 같은 금액이면 약 절반). 그래서 가격이 대체로 오른 기간에는 거치식 수익률이, 중간에 크게 떨어졌다 회복한 "
@@ -273,7 +273,7 @@ def render_drawdown(results, amount=10_000_000):
     table = charts.table_html("최근 5년, 가장 크게 떨어졌을 때와 회복까지 걸린 시간",
                               ["ETF", "최대 낙폭", "가장 낮을 때 평가액", "떨어진 기간", "고점 회복", "지금 고점 대비"], rows, note)
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              "- 최대 낙폭(MDD)은 고점에서 가장 낮은 지점까지 떨어진 비율이다. 같은 수익률이어도 낙폭이 클수록 중간에 버티기 어렵다.\n"
              "- 떨어진 만큼 되찾으려면 더 큰 상승이 필요하다(예: -50%면 +100%가 필요).\n")
     return facts, table
@@ -329,8 +329,22 @@ def render_dividend(results):
                                 "series": [{"name": t, "values": [v for _, v in r["series"]]} for t, r in results.items()
                                            if [y for y, _ in r["series"]] == [y for y, _ in next(iter(results.values()))["series"]]],
                                 "source": "Yahoo Finance 배당 기록, ondo 계산"})
-    facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+    # 11-11(백로그 6-9): 배당성장 가이드가 '배당성장률이 높으면 현금 흐름이 더 많다'고 단정했는데 자료는 DGRO(+7.1%)가 VYM(+3.8%)보다
+    # 증가율이 높아도 매입가 대비 배당률은 더 낮았음(시작 배당률 차이) - 검토 셋 다 못 잡음. 순위가 엇갈리는 짝을 코드가 사실로 준다.
+    cross = []
+    items = list(results.items())
+    for i, (ta, ra) in enumerate(items):
+        for tb, rb in items[i + 1:]:
+            if not (ra["yoc"] and rb["yoc"]):
+                continue
+            (hi, rh), (lo, rl) = ((ta, ra), (tb, rb)) if ra["cagr"] > rb["cagr"] else ((tb, rb), (ta, ra))
+            if rh["yoc"] < rl["yoc"]:
+                s0 = lambda r: r["div0"] / (r["div1"] / r["yoc"]) if r["yoc"] else 0     # 시작 해 배당 ÷ 그때 가격(%)
+                cross.append(f"- 순위가 엇갈리는 짝(코드 계산): {hi}는 {rh['years']}년 연평균 배당 증가율({rh['cagr']:+.1f}%)이 {lo}({rl['cagr']:+.1f}%)보다 "
+                             f"높지만 매입가 대비 배당률은 {rh['yoc']:.2f}%로 {lo}({rl['yoc']:.2f}%)보다 낮음 - 시작 배당률이 {lo} {s0(rl):.2f}%, {hi} {s0(rh):.2f}%로 "
+                             f"{lo}가 높았기 때문. 즉 증가율만으로 현금 흐름 순위가 정해지지 않음(이번 자료 기준)")
+    facts = (HEAD + "\n" + "\n".join(lines + cross) + f"\n- {note}\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              "- 배당률은 '지금 가격' 대비 배당이라 가격이 내리면 높아 보일 수 있다. 배당성장률은 배당 자체가 해마다 얼마나 늘었는지다.\n"
              "- 배당이 꾸준히 늘면 처음 산 가격 대비 받는 배당 비율(매입가 대비 배당률)이 시간이 갈수록 커진다.\n")
     return facts, table + chart
@@ -376,7 +390,7 @@ def render_covered(results):
     table = charts.table_html("분배금을 빼면 가격은 어떻게 됐나: 가격 수익률 vs 총수익률",
                               ["ETF", "기간", "가격만", "분배금 재투자 포함", "분배금 몫"], rows, note)
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              "- 커버드콜 ETF는 보유 자산에 대한 콜옵션을 팔아 받은 돈(옵션 프리미엄)을 분배금 재원으로 쓴다.\n"
              "- 그 대가로 기초자산이 크게 오를 때의 상승분 일부를 포기한다. 분배금이 높아도 가격이 내려가면 총수익은 낮을 수 있다.\n")
     return facts, table
@@ -420,7 +434,7 @@ def render_fx_hedge(r, asset, hedged_name):
             "환헤지 ETF는 운용 방식·비용·추적 대상이 달라 차이가 환율 효과만은 아님. " + PAST_NOTE)
     table = charts.table_html("같은 자산, 환율을 막았을 때와 그대로 뒀을 때(최근 1년)", ["구분", "수익률"], rows, note)
     facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
-             "[일반 원리 - 이 범위 안에서만 설명하세요]\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
              "- 환노출은 자산 가격 변화에 환율 변화가 더해지고(원화가 약해지면 이익), 환헤지는 환율 변화를 줄이려고 헤지 비용을 쓴다.\n"
              "- 이름 끝의 (H)는 환헤지를 뜻한다.\n"
              # 11-08 재시험: 독자가 실제로 묻는 '헤지 비용은 어디서 오나'를 작가가 맞게 썼는데 자료에 없어 '지어냄'으로 막힘 → 원리를 자료로
