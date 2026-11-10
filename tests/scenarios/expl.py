@@ -29,7 +29,7 @@ f, v = xe.fx_effect({"SPY": {"returns": {"1년": 12.0}}, "GLD": {"returns": {"1�
 assert "SPY: 달러 기준 1년 +12.0%, 원화 기준 +17.6%, 환율이 반대로 같은 폭 움직였다면 +6.4%" in f, f
 assert "360750" not in f.split("[계산")[1].split("- 원/달러")[0] and "<table" in v and "cdn.plot.ly" in v
 # 11-09: 공통 결론 한 줄 + 종목별은 '대표 1개만, 빠져도 누락 아님'(종목마다 되풀이하던 문제)
-assert "공통 결론(코드 계산): 환율이 +5.0% 움직여 2개 ETF 모두 원화 수익률이 달러 기준보다 +5.6~+6.5%p 달라짐" in f, f
+assert "공통 결론(코드 계산): 원/달러 환율이 5.0% 올라 2개 ETF 모두 원화 수익률이 달러 기준보다 5.6~6.5%p 높아짐" in f, f
 assert "대표 1개만" in f and "누락이 아님" in f, f
 print("fx effect ok")
 
