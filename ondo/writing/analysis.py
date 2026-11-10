@@ -365,6 +365,10 @@ def cagr_label(d):
 def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previous_analyses=None):
     parts = ["[사실 자료 - 종목 데이터. 항목 이름표의 기간·단위·기준을 그대로 지켜서 쓰세요]"]
     parts += [ticker_facts(t, cache[t], ea, today_label) for t in etf_list if t in cache]
+    # 11-10 VOO 고정 시험 5: '1,000만 원을 한 번에 넣었다면 1,741만 원'(실제 가격)과 시뮬레이션 상자의 'CAGR로 5년 → 약 1,739만 원'을
+    # 둘 다 써서 '거의 같은데 다른 숫자'로 독자 편집 '중요'. 상자가 서랍에 있으면 같은 뜻의 자료 줄은 뺀다(숫자는 한 기준만 - 원칙 12).
+    if any("scenario" in str(k) for k in (drawer_html or {})):
+        parts = ["\n".join(l for l in p.split("\n") if not l.startswith("- 1,000만 원을 한 번에 넣었다면")) for p in parts]
     if len(etf_list) >= 2:
         pair = [t for t in etf_list if t in cache][:2]
         parts.append(same_period_block(pair))

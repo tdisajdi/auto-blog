@@ -405,6 +405,9 @@ ns, nk2, ds = desk.apply_patches(h_sec, [{"find": "연평균 배당성장률이 
 assert "가장 큰 성과" not in ns and ns.count("4.97%") == 1 and any("같은 섹션" in x for x in ds), (ns, ds)
 # 숫자가 섹션에 새로운 것이면 그대로 둠
 assert not desk._restates_section("<h2>a</h2><p>x 1.5% y.</p>", re.search("y", "<h2>a</h2><p>x 1.5% y.</p>"), "z 1.5%와 3.2%")
+# 11-10: '1년'의 1은 숫자로 안 셈 - 숫자 1개(11.71%)짜리 고침은 그대로 둠
+_h1 = "<h2>a</h2><p>1년 수익률은 +11.71%였습니다. 단기 약세였으나 1년 성과는 양호합니다.</p>"
+assert not desk._restates_section(_h1, re.search("단기", _h1), "1년 단위 수익률은 +11.71%로 나타났습니다.")
 print("patch section restate ok")
 # 2026-11-09: 소제목 안은 부분 고침하지 않음(FAQ 질문 소제목이 지워진 사고)
 h_h = "<h4>🔸 VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?</h4><p>답 문장은 여기에 있고 길게 이어집니다 정말로요.</p>"

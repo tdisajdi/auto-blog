@@ -440,6 +440,8 @@ def _restates_section(html, m, new):
     """고친 문장(new)의 숫자가 2개 이상이고, 모두 같은 섹션의 나머지 글에 이미 있으면 True(되풀이)."""
     nums = {re.sub(r"[\s,+]", "", x) for x in _NUM.findall(lint.text_of(new)) if re.search(r"\d", x)}
     nums = {x for x in nums if not re.fullmatch(r"(19|20)\d\d", x)}       # 연도는 빼고 센다
+    # 11-10 VOO 5: '1년'의 1까지 숫자로 세어 숫자 1개짜리 고침을 2개로 봄 → 단위·소수점·쉼표 없는 한 자리~두 자리 맨 숫자는 뺌
+    nums = {x for x in nums if not re.fullmatch(r"\d{1,2}", x)}
     if len(nums) < 2:
         return False
     starts = [h.start() for h in re.finditer(r"<h[1-4]\b", html, flags=re.I)]
