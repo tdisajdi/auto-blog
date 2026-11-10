@@ -43,3 +43,8 @@ from ondo.writing import analysis as _an2
 assert _an2._mdd_window({"cagr_years": 2.3}) == "상장 이후 약 2.3년" and _an2._mdd_window({"cagr_years": 5.0}) == "최근 5년"
 assert "'연평균 배당 증가율'로만 언급" not in open(os.path.join(sys.argv[1], "ondo/writing/analysis.py")).read()
 print("label audit ok")
+# 11-10: 10년물 금리는 금리 글에만(환율·단일 분석 글에서 원인 단정·일반론을 끌어냄)
+assert "미국 10년물 국채 금리 {" not in open(os.path.join(sys.argv[1], "ondo/writing/analysis.py")).read()
+_ee_src = open(os.path.join(sys.argv[1], "explainer_engine.py")).read()
+assert 'rt = "금리" in str(news_query' in _ee_src and "if rt else" in _ee_src
+print("rate line only for rates ok")

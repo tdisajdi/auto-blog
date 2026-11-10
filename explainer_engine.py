@@ -548,8 +548,11 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
     # 공포/탐욕 지수는 투자심리 글에만(11-08: 환율 글·운용사 비교 글에서 '공포 지수 22 → 환율 변동성 확대·전략' 같은 지어낸 관계와
     # 투자 조언을 계속 끌어냄 - 그 글들의 질문에 필요한 숫자가 아니다)
     fg = "공포" in str(news_query or "") or "탐욕" in str(news_query or "")
-    macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')}{_day_move(macro_data)}\n"
-                   f"- 미국 10년물 금리: {macro_data.get('us_10y')}"
+    # 11-10: 미국 10년물 금리도 금리 글에만 - 환율 글에서 작가가 '금리 4.864% 등 대외 환경 변화'로 환율 원인처럼 끼워 넣어 사실 검증·독자 편집
+    # '중요'(환율 고정 시험 4, 두 판 연속), VOO 글에서도 '자산 배분 판단에 직결' 일반론. 공포지수와 같은 꼴(질문에 필요 없는 숫자).
+    rt = "금리" in str(news_query or "")
+    macro_block = (f"- 원/달러 환율: {macro_data.get('usd_krw')}{_day_move(macro_data)}"
+                   + (f"\n- 미국 10년물 금리: {macro_data.get('us_10y')}" if rt else "")
                    + (f"\n- 공포/탐욕 지수: {macro_data.get('fear_greed')}" if fg else ""))
     # 오늘의 시장 수치(환율·금리·공포지수)는 이슈 글에만. 기초 가이드는 오래 읽히는 글이라 도입에 넣으면 어색했다.
     market = f"[오늘의 시장 수치]\n{macro_block}\n\n" if news_query else ""
