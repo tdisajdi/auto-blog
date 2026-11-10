@@ -1237,7 +1237,6 @@ def discover_energy():
     group = [x for x in rows if _COMMODITY_GROUP.get(x["ticker"]) == _COMMODITY_GROUP.get(best["ticker"])]
     table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f} {_COMMODITY_UNIT.get(x['ticker'], '')}, "
                       f"1주 {x['w1']:+.1f}%, 한 달 {x['m1']:+.1f}%, 1년 {x['y1']:+.1f}%"
-                      + (f" (하루 {x['d1']:+.1f}%)" if abs(x["d1"]) >= 0.05 else "")
                       + (f"\n  · {x['stats']}" if x.get("stats") else "") for x in group)
     compare = _compare_lines(best["ticker"])
     news = google_news(f"{best['name']} 가격", 6)
@@ -1245,17 +1244,18 @@ def discover_energy():
         move = f"한 달 새 {abs(best['m1']):.0f}% {'오른' if best['m1'] > 0 else '내린'}"
     else:
         move = f"일주일 새 {abs(best['w1']):.0f}% {'오른' if best['w1'] > 0 else '내린'}"
+    # 11-10 사람 읽기(?p=334): '하루' 변화와 '제목·결론에 쓰지 말 것' 안내를 작가가 FAQ('하루 변화를 단정하지 않는 이유는?')로 만듦
+    # (배운 원칙 10 - 자료의 안내문도 글감이 된다) → 하루 변화 숫자와 안내를 자료에서 아예 뺀다(주제 고르기에는 원래 안 씀).
+    eia = _eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))
     facts = (f"[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
-             "- 주의: 괄호 안 '하루' 변화는 선물 만기 교체·집계 시차로 실제보다 크게 나올 수 있으니 제목·결론에 쓰지 말고, "
-             "뉴스와 숫자가 다르면 그 차이를 단정하지 마세요. 1주·한 달·1년 변화를 중심으로 쓰세요.\n"
              + (f"\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n{compare}" if compare else "")
-             + f"{_eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))}\n[관련 뉴스]\n{_news_block(news)}\n")
+             + f"{eia}\n[관련 뉴스]\n{_news_block(news)}\n")
+    # 11-10 사람 읽기(?p=334): 재고만 있고 비교 가격이 없는데 제목이 '해외 가격으로 보기'를 약속 → 실제로 받은 자료만 제목에
+    seen = ["1년 범위"] + (["재고"] if eia.strip() else []) + (["해외 가격"] if compare else [])
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news, "search_seed": f"{best['name']} 가격",
              # 제목은 자료로 답할 수 있는 것만 약속한다(국내 기름값 자료가 없어 '생활에 미치는 영향'에 답을 못 했음, 2026-11-03)
              # '배경'·'전망'도 약속하지 않는다: 원인 자료가 없어 독자 가치 검토가 '제목 질문에 답 못함'으로 지적(2026-11-03 ?p=257)
-             "title_seed": f"{best['name']} 가격 {move} 지금 위치: 1년 범위·재고·해외 가격으로 보기"
-                           if _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES or _COMPARE.get(best["ticker"])
-                           else f"{best['name']} 가격 {move} 지금 위치: 1년 범위로 보기",
+             "title_seed": f"{best['name']} 가격 {move} 지금 위치: {'·'.join(seen)}{'으로' if seen[-1].endswith('가격') else '로'} 보기",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
              "source_note": "원자재 가격: Yahoo Finance" + (", 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") and _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES else ""),
