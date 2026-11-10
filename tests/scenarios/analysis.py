@@ -155,6 +155,12 @@ assert _an.cagr_label({"cagr_years": 5.0, "inception_date": "2010-09-07"}).start
 assert "약 2.3년치" in _an.cagr_label({"cagr_years": 2.3}) and "직접 비교 금지" in _an.cagr_label({"cagr_years": 2.3})
 _an.same_period_block = _orig
 print("twin choice block ok")
+# 11-10: 시뮬레이션 상자가 서랍에 있으면 '1,000만 원을 한 번에 넣었다면' 줄은 뺌(같은 뜻 숫자 두 개)
+_c1 = {"VOO": dict(_c["360750.KS"], simulated_result="5년 전 1,000만 원 투자 시 현재 가치 약 1,741만 원")}
+_fs_a = _an.fact_sheet(["VOO"], _c1, _ea, {}, [], {"scenario": "<p>CAGR 11.7% 1,000만원 5년</p>"}, "11월 10일")
+_fs_b = _an.fact_sheet(["VOO"], _c1, _ea, {}, [], {}, "11월 10일")
+assert "한 번에 넣었다면" not in _fs_a and "한 번에 넣었다면" in _fs_b, _fs_b
+print("scenario dedupe ok")
 
 # 2026-11-09: 배당 같은 시기 비교 - 1년 전 같은 시기 대비, 지급 횟수가 같을 때만 1년 합계 비교
 import pandas as _pd
