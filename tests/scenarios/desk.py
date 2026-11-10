@@ -1,5 +1,5 @@
 """편집국 시험: 키 이름표, 모델 전환, 한 번에 쓰기 / 섹션별 나눠 쓰기, 교열, 숫자 대조, 고쳐쓰기, 편집 기록부."""
-import os, sys, json
+import os, sys, json, re
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
 os.environ["GEMINI_API_KEY"] = "aa@gmail.com:KEY1,KEY2,메인:KEY3,KEY4"
 os.environ["WRITER_MODEL_PRIORITY"] = "strong-a"
@@ -396,6 +396,16 @@ nd, n_ok, dr = desk.apply_patches(h_dup, [{"find": "한국 배당소득세율 14
     facts + "\n- 15% 원천징수\n- 2,000만 원")
 assert n_ok == 1 and "단정하는" not in nd and nd.count("원천징수") == 1 and any("옆 문장과 겹쳐" in x for x in dr), (nd, dr)
 print("patch neighbor dup ok")
+# 11-10: 고친 문장의 숫자가 모두 같은 섹션 다른 곳에 있으면 되풀이로 보고 지움(배당성장 가이드 사고 재현)
+h_sec = ("<h2>매입가 대비 배당</h2><p>SCHD의 주당 연간 배당은 5년간 연평균 +9.1% 늘었습니다. 2021년에 샀다면 2025년 배당은 매입가의 4.97%입니다. "
+         "DGRO는 연평균 +7.1%였고 매입가의 3.28%였습니다. VYM은 연평균 +3.8%였습니다. "
+         "연평균 배당성장률이 가장 높았던 SCHD가 매입가 대비 배당 효과에서도 가장 큰 성과를 보였습니다.</p><h2>다음</h2><p>다른 섹션 문장입니다 길게.</p>")
+ns, nk2, ds = desk.apply_patches(h_sec, [{"find": "연평균 배당성장률이 가장 높았던 SCHD가 매입가 대비 배당 효과에서도 가장 큰 성과를 보였습니다.",
+    "replace": "5년 연평균 배당성장률이 +9.1%인 SCHD는 매입가 대비 배당 효과가 4.97%로 나타났습니다."}], facts + "\n- 9.1%\n- 4.97%")
+assert "가장 큰 성과" not in ns and ns.count("4.97%") == 1 and any("같은 섹션" in x for x in ds), (ns, ds)
+# 숫자가 섹션에 새로운 것이면 그대로 둠
+assert not desk._restates_section("<h2>a</h2><p>x 1.5% y.</p>", re.search("y", "<h2>a</h2><p>x 1.5% y.</p>"), "z 1.5%와 3.2%")
+print("patch section restate ok")
 # 2026-11-09: 소제목 안은 부분 고침하지 않음(FAQ 질문 소제목이 지워진 사고)
 h_h = "<h4>🔸 VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?</h4><p>답 문장은 여기에 있고 길게 이어집니다 정말로요.</p>"
 nh, nk, drh = desk.apply_patches(h_h, [{"find": "VOO의 배당금이 직전 회차보다 감소했다면 걱정해야 하나요 정말로?", "replace": ""}], facts)

@@ -433,6 +433,23 @@ def _sentence_pattern(sentence):
     return re.compile(r"(?:<[^>]+>|\s)*".join(re.escape(c) for c in chars)) if len(chars) >= 8 else None
 
 
+_NUM = re.compile(r"[+-]?\d[\d,]*(?:\.\d+)?\s*(?:%p|%|만|억|조|원|달러|배)?")
+
+
+def _restates_section(html, m, new):
+    """고친 문장(new)의 숫자가 2개 이상이고, 모두 같은 섹션의 나머지 글에 이미 있으면 True(되풀이)."""
+    nums = {re.sub(r"[\s,+]", "", x) for x in _NUM.findall(lint.text_of(new)) if re.search(r"\d", x)}
+    nums = {x for x in nums if not re.fullmatch(r"(19|20)\d\d", x)}       # 연도는 빼고 센다
+    if len(nums) < 2:
+        return False
+    starts = [h.start() for h in re.finditer(r"<h[1-4]\b", html, flags=re.I)]
+    a = max([x for x in starts if x <= m.start()], default=0)
+    b = min([x for x in starts if x >= m.end()], default=len(html))
+    rest = lint.text_of(html[a:m.start()] + " " + html[m.end():b])
+    have = {re.sub(r"[\s,+]", "", x) for x in _NUM.findall(rest)}
+    return nums <= have
+
+
 def apply_patches(html, edits, facts_text, log=None):
     """edits: [{find, replace}]. 본문에 정확히 한 번 나오는 문장만, 새 확인 안 된 숫자를 들이지 않는 것만 바꾼다.
     반환: (고친 html, 적용 수, 버린 이유 목록)"""
@@ -472,6 +489,11 @@ def apply_patches(html, edits, facts_text, log=None):
             # 옆 문장 내용이 고친 문장 안에 얼마나 들어 있나(포함 비율). 실제 사례 0.39, 상관없는 문장 0.09~0.14 → 0.35
             if any(gn and len(gn & lint._grams(x)) / len(lint._grams(x)) >= 0.35 for x in near if lint._grams(x)):
                 dropped.append(f"고친 문장이 바로 옆 문장과 겹쳐 지움: {new[:30]}")
+                new = ""
+            # 11-10 배당성장 가이드: 고친 문장 '5년 연평균 +9.1%인 SCHD는 매입가 대비 4.97%'가 세 문장 앞의 두 숫자를 되풀이 →
+            # 다음 판 독자 편집 '중요'. 고친 문장의 숫자가 모두 같은 섹션(앞뒤 소제목 사이)의 다른 곳에 이미 있으면 되풀이로 보고 지운다.
+            elif _restates_section(html, m, new):
+                dropped.append(f"고친 문장의 숫자가 같은 섹션에 이미 모두 있어 지움: {new[:30]}")
                 new = ""
         html = html[:m.start()] + new + html[m.end():]
         applied += 1
