@@ -62,6 +62,45 @@ def _sentences(text):
     return [s.strip() for s in re.split(r"(?<=[.!?다요])\s+", text) if len(s.strip()) >= 25]
 
 
+_FAQ_NUM = re.compile(r"[+-]?\d[\d,]*(?:\.\d+)?\s*(?:%p|%|만|억|조|원|달러|배|가구|건|편)?")
+
+
+def _num_set(text):
+    out = {re.sub(r"[\s,+]", "", x) for x in _FAQ_NUM.findall(text) if re.search(r"\d", x)}
+    return {x for x in out if not re.fullmatch(r"(19|20)\d\d|\d{1,2}", x)}     # 연도·맨 한두 자리 숫자는 세지 않음
+
+
+def _drop_repeated_faq(h, fixes):
+    """11-11(백로그 6-8): FAQ 답이 본문 숫자만 다시 읽는 문답이면 뺀다. 11-10 에너지·VOO·인구사회 사람 읽기 셋 모두 'FAQ가 본문 되풀이',
+    기획 지시('본문에서 다루지 않은 각도')만으로는 안 고쳐짐. 답의 숫자가 2개 이상이고 모두 FAQ 앞 본문에 이미 있으면 되풀이로 본다.
+    빼서 본문이 MIN_CHARS+100자보다 짧아지면 멈춘다(11-10 환율 글이 2,497자로 '너무 얇음'에 걸림). 다 빠지면 FAQ 소제목도 뺀다."""
+    m = re.search(r"<h3[^>]*>[^<]*자주 묻는[^<]*</h3>", h)
+    if not m:
+        return h
+    nxt = re.search(r"<h[1-3]\b", h[m.end():])
+    end = m.end() + nxt.start() if nxt else len(h)
+    body_nums = _num_set(text_of(h[:m.start()]))
+    block = h[m.end():end]
+    items = re.findall(r"<h4[^>]*>.*?</h4>.*?(?=<h4\b|$)", block, flags=re.S)
+    if not items:
+        return h
+    keep, dropped = [], []
+    total = len(text_of(re.sub(r"<h1[^>]*>.*?</h1>", "", h, flags=re.S)))
+    for it in items:
+        ans = text_of(re.sub(r"<h4[^>]*>.*?</h4>", "", it, flags=re.S))
+        nums = _num_set(ans)
+        if len(nums) >= 2 and nums <= body_nums and total - len(text_of(it)) >= MIN_CHARS + 100:
+            total -= len(text_of(it))
+            dropped.append(text_of(re.search(r"<h4[^>]*>(.*?)</h4>", it, flags=re.S).group(1))[:30])
+        else:
+            keep.append(it)
+    if not dropped:
+        return h
+    fixes.append(f"본문 숫자만 되풀이한 FAQ {len(dropped)}개 삭제: {'; '.join(dropped)}")
+    new_block = "".join(keep)
+    return (h[:m.end()] + new_block + h[end:]) if keep else (h[:m.start()] + h[end:])
+
+
 def fix_and_check(html):
     fixes, issues = [], []
     h = html or ""
@@ -120,6 +159,7 @@ def fix_and_check(html):
         return m.group(0)
     h = re.sub(r"<p[^>]*>.*?</p>", _dedupe, h, flags=re.S)
     h = _drop_repeated_sentences(h, fixes)
+    h = _drop_repeated_faq(h, fixes)
 
     # 한 줄 정리(2026-11-08 사용자 제안): 표기를 하나로 맞추고, 반복 검사에서는 뺀다(정리 내용을 한 줄로 다시 짚는 게 원래 역할)
     new = ONE_LINE.sub(lambda m: f"<p><strong>{ONE_LINE_LABEL}:</strong> {m.group(1).strip()}</p>", h)

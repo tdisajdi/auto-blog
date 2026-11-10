@@ -265,3 +265,12 @@ from ondo.checks import lint as _lt2
 assert _lt2.english_words("<p>신약 elebsiran과 brelovitug를 함께 투여했다는 내용입니다.</p>") == []
 assert _lt2.english_words("<p>가격이 크게 fluctuate 하는 모습입니다.</p>") == ["fluctuate"]
 print("number conflicts / drug names ok")
+# 11-11(6-8): 본문 숫자만 되풀이한 FAQ는 코드가 뺌(숫자 2개 이상이 모두 본문에 있을 때), 새 숫자가 있는 FAQ는 둠, 너무 짧아지면 안 뺌
+_body = "<h1>t</h1><h2>a</h2><p>" + "재고는 409,760천 배럴로 1년 전보다 2.7% 줄었습니다. " * 120 + "</p>"
+_faq = ("<h3>자주 묻는 질문</h3><h4>🔸 재고는 얼마나 줄었나요?</h4><p>409,760천 배럴로 1년 전보다 2.7% 적습니다.</p>"
+        "<h4>🔸 4주 변화는?</h4><p>4주 전보다 14,374천 배럴, 3.4% 줄었습니다.</p><h3>정리</h3><p>끝.</p>")
+_fx = []; _out = lint._drop_repeated_faq(_body + _faq, _fx)
+assert "재고는 얼마나" not in _out and "4주 변화" in _out and "자주 묻는 질문" in _out and _fx, (_fx, _out[-300:])
+_short = "<h1>t</h1><h2>a</h2><p>재고는 409,760천 배럴로 1년 전보다 2.7% 줄었습니다.</p>"
+assert lint._drop_repeated_faq(_short + _faq, []) == _short + _faq
+print("faq repeat drop ok")

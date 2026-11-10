@@ -161,6 +161,11 @@ _fs_a = _an.fact_sheet(["VOO"], _c1, _ea, {}, [], {"scenario": "<p>CAGR 11.7% 1,
 _fs_b = _an.fact_sheet(["VOO"], _c1, _ea, {}, [], {}, "11월 10일")
 assert "한 번에 넣었다면" not in _fs_a and "한 번에 넣었다면" in _fs_b, _fs_b
 print("scenario dedupe ok")
+# 11-11(6-10): 사실 자료 이름표에는 명령문을 두지 않음(검토가 판정 규칙으로 읽음) - 안내는 ANALYSIS_RULES(작가 전용)로
+import re as _re2
+_cmd = [l for l in _fs_b.split("\n") if _re2.search(r"하세요|마세요|말 것|볼 것|쓰지 말|설명할 것|그대로 인용", l)]
+assert not _cmd, _cmd
+print("no command labels ok")
 
 # 2026-11-09: 배당 같은 시기 비교 - 1년 전 같은 시기 대비, 지급 횟수가 같을 때만 1년 합계 비교
 import pandas as _pd
