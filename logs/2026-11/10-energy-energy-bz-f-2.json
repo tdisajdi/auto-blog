@@ -1,0 +1,358 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:BZ=F",
+ "title_seed": "브렌트유 가격 한 달 새 12% 내린 지금 위치: 1년 범위·재고로 보기",
+ "category": "energy",
+ "started_at": "2026-11-10T13:23:01",
+ "mode": "sections",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.3,
+   "chars": 2123
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "13:23:14",
+   "title": "브렌트유 한 달 새 12% 하락, 지금 어디쯤일까?",
+   "sections": [
+    "브렌트유 하락 배경과 최근 변동",
+    "1년 범위로 보는 WTI와 브렌트유",
+    "미국 상업용 원유 재고 흐름",
+    "유가 뉴스를 읽을 때 확인할 기준"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "13:23:27",
+   "mode": "sections",
+   "reason": "한 번에 쓰기 실패: 좋은 모델이 모든 키에서 한도 초과(429)"
+  },
+  {
+   "step": "쓰기 실패",
+   "at": "13:23:31",
+   "part": "도입",
+   "reason": "좋은 모델이 모든 키에서 한도 초과"
+  }
+ ],
+ "result": {
+  "reason": "좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 5시쯤(서머타임 기간 4시) 한도가 풀린 뒤 다시 시도해 주세요",
+  "status": "failed"
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 2026-11-10 기준]\n- WTI 원유(CL=F): 최근가 85.97 달러/배럴, 1주 -10.9%, 한 달 -6.4%, 1년 +43.0%\n  · 1년 최고 112.95(2026-04-07), 1년 최저 55.27(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 53% 지점, 1년 평균 81.46 대비 +5.5%, 3개월 +3.3%\n- 브렌트유(BZ=F): 최근가 91.80 달러/배럴, 1주 -12.4%, 한 달 -12.3%, 1년 +43.3%\n  · 1년 최고 118.35(2026-03-31), 1년 최저 58.92(2025-12-16), 지금은 1년 범위(최저=0%, 최고=100%) 중 55% 지점, 1년 평균 87.22 대비 +5.2%, 3개월 +3.3%\n- 미국 상업용 원유 재고(EIA, 천 배럴, 코드 계산 - 주별 값을 나열하지 말고 이 요약으로): 최근(2026-10-30) 409,760, 최근 1주 변화 -865, 4주 전(2026-10-02) 대비 -14,374, 1년 전(2025-10-31) 421,168 대비 -2.7% (최근 값을 읽는 단위로: 약 4.10억 배럴 = 40,976만 배럴, 코드 계산)\n\n[관련 뉴스]\n- [국제유가] 트럼프, 이란 추가 공격 일축…브렌트유 7달러 급락 - 신아일보 (신아일보) https://news.google.com/rss/articles/CBMicEFVX3lxTFBRekdNSGEyNVRhT2Ziend0TUJVUFNSbFVwejF5WUhRdk5ZV3hIa2JsMkt6WEtxaWxOeGtfeXl6TFV1c09mTkdZYUpDckxoSmJsOWFUN1ljOHRUWDBKWm1PMVRFSHFIdktYNFpIb0V5RFA?oc=5\n- 국제유가, 트럼프 '공격 자제' 발언에 급락…브렌트유 장중 7.9%↓ - 머니투데이 - 머니투데이 (머니투데이) https://news.google.com/rss/articles/CBMiaEFVX3lxTFBqd2h1TlVHUDdsWHJhY094TC1aUTk3UlczOEVudFZIbE5hRkxlQ3ZmZU92cHVobHhFU3ZPdlhNQ0o3RF9TRWJlQVU2SDF5blZObGxWZmEzVE1KZjNfN1VKZktVMU9iQWhL0gFuQVVfeXFMTVBjR0ROdms3Y085MkRsU2hxWlViZV9pQ281aDNmQS1KQWdOMXZ0aEhSQXp2SFlNWHY3THBhSEFUZW9qUkZrSVZXTHQ0ejZBczJWbXRhZ01OWkNrWTdIOVhydjJYOGtwY2NYbVZCaWc?oc=5\n- 국제유가 하루 새 6% 가까이 급락… 브렌트유 배럴당 92달러대로 - 파이낸셜포스트 (파이낸셜포스트) https://news.google.com/rss/articles/CBMidEFVX3lxTE9PcUZ2YklxT2M2R1J5b3NIM1lGdWZnd3hnemJhMmYxeC1wQmdjaWVEQmg3VWhzSVJVY3JSSnRJQTlqMkMxZjcweDBlbFkyQ2xBOWNXejVOdGY4WWo2X0lRWFRnVGR6TGd3dnljbGg3bmo4Y0wx?oc=5\n- 트럼프, 이란 공격 위협 완화 후 유가 하락 - IDNFinancials (IDNFinancials) https://news.google.com/rss/articles/CBMioAJBVV95cUxOVWp1cmE4eXFxS2RHSjloUnk3R3NqdkcwYUZpbDI5VjdUM281TVV2czZ6dldHOWxaNEhqSjVCMTZ4LUJhVVZ1UVZOSk82OFJkUXFxRmItWkZWTktXbTVTZ3NjWEZjSWhVVnpvbk1vT3ZrRjVnNXFiZFhiUzlpZU5tWVJ5OGdHR3hyUUYyb1U5QTU3Zkd5TGo0WGJNenJQRmpGXzBvUWpDSE9LMnlmYTNGN3Q0YWVaVmZRUERtMGd4dFRJaFc1aEFfeW1fRHZ6T0JRSHI1SnlUNXFYR0UyOUsyRFRiZnVlT2pLSGFvZVc0M096Q0Y1S2lzU2tIUV9mTVpfWWppNEZRMnpzNllma3ByQjFqTVlCTzRrUVNpN2l0OFY?oc=5\n- 브렌트유 가격 전망: 유가 90달러선 향해 6% 가까이 급락, 80달러선까지 하락 위험 - TradingKey (TradingKey) https://news.google.com/rss/articles/CBMizgFBVV95cUxNQ3NEbXRlRDhfUVZtS1E3cmVuSlk3ZkttVUlPZzNHNzJZb0swMW04RmRPc3lKNklEZzZUcmh5cFhCYUJmYzdSMVk3RS1EMEp6THh6TTh1bzZkVXRDS3dQZFZaN2dYZWo0WUk1dU9Qc2pvQjVxYWdLWXJUZzlRWTA3TkN2dkh0T1RnUFNFQVNFenJoUWVIS3djTzVkT3M2QTZNSHYyVXZBOXlSdU1hdUpBSmFyX0NKZndLNzM4S3lCX2lCSHhXSk9IMDJoZXZvZw?oc=5\n- 도널드 트럼프 미국 대통령의 새로운 발언 이후 브렌트유 가격이 거의 6% 급락했다. - Vietnam.vn (Vietnam.vn) https://news.google.com/rss/articles/CBMiogFBVV95cUxPeFo4dEhOV3pYenB3NFVfVjlab2ZMTko4VjREVk5DMVMzUkNvY2laUmR5MlBwNGRCNGJNdVJVeWJiemlqQi1WYXpMSC05ZmFGNVlOektBTkJOQ240Q3p5NDMtemY0U3VUSGFfUjBpeHlxWWdDTWhrVHdiZm5jVENtNEc4NmtSbGptYkdkWXBJVDVDUGNpM09tSmUxaUlFazUwc0E?oc=5\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 선물: 미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약. 원자재 가격 뉴스의 숫자는 대개 가장 가까운 만기 선물 가격\n",
+ "minutes": 0.5
+}
