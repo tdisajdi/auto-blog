@@ -368,7 +368,7 @@ def _series_line(label, ys, unit):
     a, b = ys[0], ys[-1]
     hi, lo = max(ys, key=lambda x: x[1]), min(ys, key=lambda x: x[1])
     ch = "같음(변화 없음)" if a[1] == b[1] else f"{(b[1] / a[1] - 1) * 100:+.1f}%" if a[1] else "비교 불가"
-    return (f"- {label}({a[0]}~{b[0]}년, 코드 계산 - 해마다 나열하지 말고 이 요약으로): {a[0]}년 {a[1]:,}{unit} → {b[0]}년 {b[1]:,}{unit}"
+    return (f"- {label}({a[0]}~{b[0]}년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): {a[0]}년 {a[1]:,}{unit} → {b[0]}년 {b[1]:,}{unit}"
             f"({ch}), 가장 많던 해 {hi[0]}년 {hi[1]:,}{unit}, 가장 적던 해 {lo[0]}년 {lo[1]:,}{unit}")
 
 
@@ -597,7 +597,7 @@ def discover_trend():
             continue                   # 검색 관심도 자료가 없으면 뉴스 제목만으로는 쓰지 않는다(2026-11-08)
         momentum = interest["momentum_pct"]
         facts = (f"[사실 자료]\n- 구글 급상승 검색어(한국, {datetime.now():%Y-%m-%d})에 '{kw}'가 올랐습니다.\n{block}"
-                 + f"[관련 뉴스 - 제목만 확인됨, 제목에 없는 내용은 단정하지 마세요]\n{_news_block(news)}\n")
+                 + f"[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news)}\n")
         series = (interest or {}).get("series") or []
         chart = ({"title": f"'{kw}' 구글 검색 관심도 (최근 3개월)", "unit": "", "kind": "line",
                   "source": "Google Trends (기간 내 최고점 = 100인 상대지수)", "values": series,
@@ -741,7 +741,7 @@ def _eia_weekly(kind):
         vals = [(x["period"], float(x["value"])) for x in rows if x.get("value") not in (None, "")]
         recent = vals[:5]
         # 11-09: 5주 값을 나열해 주자 작가가 그대로 옮겨 교열 '날짜별 숫자 줄글 나열'에 막힘(에너지 고정 시험) → 최근 값·변화만
-        line = (f"- {name}(EIA, {unit}, 코드 계산 - 주별 값을 나열하지 말고 이 요약으로): 최근({recent[0][0]}) {recent[0][1]:,.0f}")
+        line = (f"- {name}(EIA, {unit}, 코드 요약 - 최근 값과 변화): 최근({recent[0][0]}) {recent[0][1]:,.0f}")
         if len(recent) >= 2:
             line += f", 최근 1주 변화 {recent[0][1] - recent[1][1]:+,.0f}"
         if len(recent) >= 5:
