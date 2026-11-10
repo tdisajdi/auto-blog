@@ -164,11 +164,7 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("운용보수(연)", d.get("expense_ratio")),
              _line("순자산(규모)", d.get("aum_str")),
              _line(f"기간별 가격 수익률({today_label} 기준, 배당 제외)", rets or None),
-             _line(f"상장 이후 연평균 수익률(CAGR, "
-                   # 국내 ETF는 상장일을 못 받아 '정보 없음부터'라는 이상한 이름표가 나왔다(11-08 TIGER vs ACE)
-                   + (f"{d['inception_date']}부터 - " if d.get("inception_date") not in _EMPTY else "")
-                   + "상장일이 다른 ETF와 직접 비교 금지)",
-                   f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
+             _line(cagr_label(d), f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
              _line("최대 낙폭(최근 5년, 고점 대비 가장 크게 떨어진 정도)", d.get("mdd")),
              _line("최대 낙폭의 경과(코드 계산 - 장기 보유 판단 기준)", _mdd_story(d.get("mdd_detail"))),
              _line("배당 주기", d.get("div_cycle")),
@@ -262,7 +258,7 @@ def same_period_block(etf_list, closes=None):
     start, end = df.index[0], df.index[-1]
     years = max((end - start).days / 365.25, 0.1)
     lines = [f"[같은 기간 비교 - 코드 계산, 두 ETF 모두 자료가 있는 {start:%Y-%m-%d}~{end:%Y-%m-%d}(약 {years:.1f}년), 배당 제외 가격 기준. "
-             "상장 이후 연평균(CAGR) 대신 이 숫자로 비교하세요]"]
+             "연평균(CAGR) 대신 이 숫자로 비교하세요]"]
     for t in (a, b):
         c = df[t]
         tot = c.iloc[-1] / c.iloc[0] - 1
@@ -320,7 +316,7 @@ def _won_amount(text):
 # 쌍둥이 비교에서 빼는 줄: 상장일 기준 CAGR(같은 기간 비교와 숫자가 둘이라 혼란 - 11-08 '연평균 수익률 두 기준'), 가정 예시(0.1%p)
 # 11-08 재시험 4: 종목마다 붙은 세금 예시·계좌·종합과세 줄이 남아 있어 작가가 '같다' 한 문장 대신 세금 계산을 길게 씀('중요' 3번) →
 # 쌍둥이일 때는 이 줄들도 빼고, [두 ETF를 고를 때 남는 차이]의 '세금·계좌 조건이 같다' 한 줄만 남긴다.
-_TWIN_DROP = re.compile(r"^- (상장 이후 연평균 수익률|보수 차이 예시\(코드 계산\): 운용보수가 0\.1%p|매매차익 세금 예시|배당 세금 예시|"
+_TWIN_DROP = re.compile(r"^- ((?:상장 이후|최근 5년) 연평균 수익률|연평균 수익률\(CAGR|보수 차이 예시\(코드 계산\): 운용보수가 0\.1%p|매매차익 세금 예시|배당 세금 예시|"
                         r"금융소득종합과세|계좌:)")
 
 
@@ -346,6 +342,18 @@ def twin_choice_block(etf_list, cache, ea):
         lines.append(f"- 세금·계좌 조건: 두 ETF 모두 {da.get('listing')}" + (f"이고 기초지수({da.get('index')})가 같아" if same_idx else "이라")
                      + " 세금 계산 방식과 쓸 수 있는 계좌가 같다 → 세금은 두 ETF를 가르는 기준이 아님(세금 섹션을 따로 만들지 말고 한 문장으로)")
     return "\n".join(lines) if len(lines) > 1 else ""
+
+
+def cagr_label(d):
+    """연평균 수익률 이름표. 11-10: 코드는 최근 5년 자료(5년이 안 되면 있는 만큼)로 CAGR을 재는데 이름표가 '상장 이후(2010-09-07부터)'여서
+    VOO 글이 '상장 이후 연평균 11.7%'라고 잘못 씀(실제는 최근 5년). 잰 기간을 그대로 이름표에 쓴다."""
+    y = d.get("cagr_years")
+    if isinstance(y, (int, float)) and y >= 4.9:
+        return "최근 5년 연평균 수익률(CAGR, 배당 제외 가격 기준 - 최근 5년 최대 낙폭·5년 시뮬레이션과 같은 기간)"
+    if isinstance(y, (int, float)) and y > 0:
+        return (f"상장 이후 연평균 수익률(CAGR, 약 {y:.1f}년치 자료" + (f" - {d['inception_date']} 상장" if d.get("inception_date") not in _EMPTY else "")
+                + ", 배당 제외 가격 기준. 기간이 다른 ETF와 직접 비교 금지)")
+    return "연평균 수익률(CAGR, 배당 제외 가격 기준. 기간이 다른 ETF와 직접 비교 금지)"
 
 
 def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previous_analyses=None):

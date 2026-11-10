@@ -572,6 +572,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
     mdd_detail = None   # 최대 낙폭의 고점·바닥·회복 날짜와 회복에 걸린 기간(2026-11-06)
     simulated_result = "정보 없음"
     cagr = None  # 실제 데이터로 계산 성공한 경우에만 값이 채워짐 (임의 기본값 없음)
+    cagr_years = None  # 11-10: CAGR을 잰 기간(년). 최근 5년 창으로 재는데 '상장 이후'로 이름 붙어 있었음
     current_price = 0.0
     calculated_yield = "0.00%"
     div_cycle = "정보 없음"
@@ -630,6 +631,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                         years_held = len(df_5y) / 250.0
                         if years_held > 0 and (1 + total_return_5y) > 0:
                             cagr = (1 + total_return_5y) ** (1 / years_held) - 1
+                            cagr_years = years_held
                         else:
                             cagr = None
         except Exception as e:
@@ -734,6 +736,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                         years_held = len(h_mdd) / 250.0
                         if years_held > 0 and (1 + total_return_5y) > 0:
                             cagr = (1 + total_return_5y) ** (1 / years_held) - 1
+                            cagr_years = years_held
 
                     # [신규] MA200(200일 이동평균) 대비 현재가 위치. 이미 받아온
                     # 5년치 데이터(h_mdd)를 재사용해 추가 API 호출 없이 계산.
@@ -887,6 +890,7 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
         "yield_gap": yield_gap,
         "aum_str": aum_str,
         "simulated_result": simulated_result,
+        "cagr_years": cagr_years,
         "cagr": cagr,  # 실제 데이터 기반 CAGR (계산 실패 시 None - 임의값으로 대체하지 않음)
         "div_history": dividends_list,
         "dividend_growth_rate": f"{div_growth_pct:.2f}%" if div_growth_pct is not None else "정보 없음",

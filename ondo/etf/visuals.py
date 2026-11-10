@@ -42,11 +42,13 @@ def _add_scenario_analysis(etf_data_cache, title_tickers):
         # 원금보다 줄어드는데도 빨강(국내 관행상 상승/이득 신호)으로 표시되어
         # 오해를 줄 수 있었음. 실제 손익 방향에 따라 동적으로 색을 결정.
         value_color = "#c0392b" if final_value_5y >= principal else "#2166ac"
+        _y = d.get("cagr_years")   # 11-10: '상장일부터 전체 기간'이라 적혀 있었지만 실제는 최근 5년(없으면 있는 만큼)
+        period_txt = "최근 5년 자료" if isinstance(_y, (int, float)) and _y >= 4.9 else (f"상장 이후 약 {_y:.1f}년치 자료" if isinstance(_y, (int, float)) else "확보된 자료 기간")
 
         html += f"""
 <div style="margin-top:20px;padding:15px;background:#fafafa;border:1px solid #e0e0e0;border-radius:6px;">
 <p style="margin:0 0 10px 0;font-weight:bold;color:#333;">{ticker_clean} - 실제 데이터 기반 연평균성장률(CAGR {annual_return_estimate*100:.1f}%) 기준: 1,000만원 5년 보유 시뮬레이션</p>
-<p style="margin:0 0 10px 0;font-size:12px;color:#888;">※ 이 CAGR은 상장일부터 지금까지 확보된 <strong>전체 기간</strong>을 기준으로 계산한 값으로, 앞서 본 최근 1년 수익률과는 <strong>기준 기간이 다릅니다</strong>. 최근 1년 성과가 나빠도 상장 이후 누적으로는 플러스일 수 있고, 그 반대도 가능합니다.</p>
+<p style="margin:0 0 10px 0;font-size:12px;color:#888;">※ 이 CAGR은 <strong>{period_txt}</strong>(배당 제외 가격 기준)으로 계산한 값으로, 앞서 본 최근 1년 수익률과는 <strong>기준 기간이 다릅니다</strong>. 과거 수익률을 5년 동안 똑같이 이어 간다고 가정한 계산일 뿐, 앞으로의 수익을 뜻하지 않습니다.</p>
 <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:10px;">
 <tr style="background:#f5f5f5;">
 <th style="border:1px solid #ddd;padding:10px;text-align:left;">항목</th>

@@ -190,8 +190,11 @@ def _ticker_fact_line(ticker, d):
         ("배당수익률", yld),
         ("배당성장률", d.get("dividend_growth_rate")),
         ("1년 수익률", f"{one_year:.2f}%" if isinstance(one_year, (int, float)) else None),
-        # CAGR은 상장일이 종목마다 달라 기간이 다르다 → 비교할 때 오해가 없도록 기간 기준을 같이 적는다
-        ("상장 이후 연평균(CAGR, 상장일이 달라 종목끼리 직접 비교하면 안 됨)",
+        # 11-10: 코드는 CAGR을 최근 5년 자료(5년이 안 되면 있는 만큼)로 재는데 '상장 이후'로 이름 붙어 있었다 → 잰 기간대로.
+        # 5년치가 다 있는 종목끼리는 기간이 같아 비교해도 된다. 기간이 짧은 종목만 비교 금지를 붙인다.
+        (("최근 5년 연평균(CAGR)" if isinstance(d.get("cagr_years"), (int, float)) and d["cagr_years"] >= 4.9
+          else f"상장 이후 연평균(CAGR, 약 {d['cagr_years']:.1f}년치 - 기간이 달라 다른 종목과 직접 비교하면 안 됨)"
+          if isinstance(d.get("cagr_years"), (int, float)) else "연평균(CAGR, 기간이 달라 종목끼리 직접 비교하면 안 됨)"),
          f"{cagr * 100:.1f}%" if isinstance(cagr, (int, float)) else None),
         ("최대 낙폭(5년)", d.get("mdd")),
         ("환율 영향", d.get("fx_exposure")),
@@ -204,7 +207,7 @@ def drop_overlapping_metrics(facts_text, calc_facts, keep_dividend=False):
     """계산표가 자기 기준으로 다시 계산한 숫자는 종목 기본 자료에서 뺀다 - 숫자는 한 기준만(11-08 배운 원칙 12).
     한 글에 '1년 수익률'(QQQ 8.11% vs +5.8%, 레버리지)·'최대 낙폭'(TLT -43.70% vs -50.0%, 최대 낙폭 가이드)이 두 개씩 나왔다.
     상장 이후 연평균(CAGR)은 "직접 비교 금지" 경고와 숫자를 같이 주니 작가가 비교해 모순(적립식 가이드) → 계산표가 있으면 늘 뺀다."""
-    out = re.sub(r", 상장 이후 연평균\(CAGR[^)]*\) -?[\d.]+%", "", facts_text)
+    out = re.sub(r", (?:상장 이후 |최근 5년 )?연평균\(CAGR[^)]*\) -?[\d.]+%", "", facts_text)
     if re.search(r"1년|수익률", calc_facts):
         out = re.sub(r", 1년 수익률 -?[\d.]+%", "", out)
     if "최대 낙폭" in calc_facts:
