@@ -188,7 +188,7 @@ def _ticker_fact_line(ticker, d):
         ("", d.get("listing")),
         ("운용보수", d.get("expense_ratio")),
         ("배당수익률", yld),
-        ("배당성장률", d.get("dividend_growth_rate")),
+        ("최근 1년 배당 합계 증가율(전년 대비)", d.get("dividend_growth_rate")),   # 11-10: 1년 변화인데 '배당성장률'로만 적혀 연평균처럼 읽힘
         ("1년 수익률", f"{one_year:.2f}%" if isinstance(one_year, (int, float)) else None),
         # 11-10: 코드는 CAGR을 최근 5년 자료(5년이 안 되면 있는 만큼)로 재는데 '상장 이후'로 이름 붙어 있었다 → 잰 기간대로.
         # 5년치가 다 있는 종목끼리는 기간이 같아 비교해도 된다. 기간이 짧은 종목만 비교 금지를 붙인다.
@@ -215,7 +215,7 @@ def drop_overlapping_metrics(facts_text, calc_facts, keep_dividend=False):
     # 배당 주제가 아니면 배당수익률·배당성장률도 뺀다 - 작가가 받은 숫자를 다 쓰려고 상관없는 문단에 끼워 넣음
     # (11-08 레버리지·적립식 가이드 두 번: "배당수익률 1.03%에 배당성장률 4.54%인 SPY…")
     if not keep_dividend:
-        out = re.sub(r", 배당(?:수익률|성장률) -?[\d.]+%", "", out)
+        out = re.sub(r", (?:배당(?:수익률|성장률)|최근 1년 배당 합계 증가율\(전년 대비\)) -?[\d.]+%", "", out)
     return out
 
 
