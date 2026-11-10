@@ -29,6 +29,9 @@ yf.Ticker=G
 g=te.discover_energy()[0]
 assert g["topic_key"]=="energy:NG=F" and "1년 최고 4.00(2025-11-03)" in g["facts_text"] and "3개월" in g["facts_text"], g["facts_text"]
 assert "유럽 천연가스(네덜란드 TTF)" in g["facts_text"] and "유로/MWh" in g["facts_text"], g["facts_text"]
+# 11-10: 받은 자료만 제목에(비교 가격 있으면 '해외 가격'), 하루 변화·안내문은 자료에서 뺌(작가가 FAQ로 만듦)
+assert g["title_seed"].endswith("해외 가격으로 보기") and "하루" not in g["facts_text"], (g["title_seed"], g["facts_text"])
+assert "해외 가격" not in e[0]["title_seed"] and e[0]["title_seed"].endswith("1년 범위로 보기"), e[0]["title_seed"]
 yf.Ticker=T
 # failed send -> no pending
 te.choose_topic=lambda: e[0]; te._telegram_send_message=lambda *a, **k: False
