@@ -354,8 +354,14 @@ def fx_effect(data_cache):
     # 11-09: 종목마다 같은 꼴의 줄을 주자 작가가 'SPY는…, QQQ는…, GLD는…'으로 세 번 되풀이해 독자 편집 '중요'(환율 고정 시험).
     # → 코드가 공통 결론(환율 때문에 생긴 차이의 범위)을 한 줄로 먼저 주고, 종목별 줄은 '표에 있음 - 대표 1개만, 빠져도 누락 아님'으로.
     gaps = [k - u for u, k in zip(usd, krw)]
-    summary = (f"- 공통 결론(코드 계산): 환율이 {fx_chg * 100:+.1f}% 움직여 {len(rows)}개 ETF 모두 원화 수익률이 달러 기준보다 "
-               f"{min(gaps):+.1f}~{max(gaps):+.1f}%p 달라짐" if len(rows) >= 2 else "")
+    # 11-10 사람 읽기: '-8.2~-7.4%p 달라짐'을 작가가 '-8.2~-7.4%p 낮아졌다'로 옮겨 이중 부정(오히려 높아졌다는 뜻으로 읽힘)
+    # → 방향은 말로, 크기는 부호 없이 준다
+    lo, hi = sorted(abs(g) for g in gaps)[0], sorted(abs(g) for g in gaps)[-1]
+    way = "낮아짐" if all(g < 0 for g in gaps) else "높아짐" if all(g > 0 for g in gaps) else None
+    summary = ((f"- 공통 결론(코드 계산): 원/달러 환율이 {abs(fx_chg) * 100:.1f}% {'내려' if fx_chg < 0 else '올라'} "
+                f"{len(rows)}개 ETF 모두 원화 수익률이 달러 기준보다 {lo:.1f}~{hi:.1f}%p {way} "
+                "(이 문장은 부호 없이 '%p 낮아짐/높아짐'으로 쓸 것 - '-%p 낮아짐'처럼 겹쳐 쓰지 말 것)")
+               if len(rows) >= 2 and way else "")
     facts = ("[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
              + (summary + "\n" if summary else "")
              + "- 종목별 값(표·그래프에 모두 들어감 - 본문에서는 대표 1개만 문장으로 풀고 나머지는 표를 가리키세요. 종목마다 같은 문장을 "
