@@ -493,30 +493,20 @@ def _build_advanced_sections(etf_data_cache):
     if not (earnings or yield_gap or aum):
         return html
 
-    html += '<h3 style="margin-top:30px; color:#2c3e50;">💡 온도(ondo)의 프리미엄 인사이트</h3>'
+    # 11-11: 판단 이름표 정리(원칙 10 - 이름표는 사실만). 예전 '프리미엄 인사이트'·'일드 갭(주식 기대수익률 vs 국채 금리)…(채권 대비 투자 매력 낮음)'을
+    # 작가가 읽고 일드 갭을 '주식 시장 기대수익률'로 설명해 사실 검증 '치명'(재개 시험 ② VOO). 일드 갭은 성장형 ETF엔 뜻이 약하고
+    # 10년물 금리를 글에 끌어들이므로(10년물은 금리 글에만 - 11-10) 카드·자료에서 뺀다.
+    if not (earnings or aum):
+        return html
+    html += '<h3 style="margin-top:30px; color:#2c3e50;">📎 참고 자료</h3>'
     html += '<div style="margin:20px 0; display:flex; flex-direction:column; gap:15px;">'
-
-    if yield_gap:
-        try:
-            val = float(str(yield_gap).replace('%', '').strip())
-        except Exception:
-            val = None
-        color = "#c0392b" if val is not None and val > 2.0 else "#e67e22" if val is not None and val > 0 else "#2166ac"
-        eval_text = "주식 투자 매력도 높음" if val is not None and val > 2.0 else "중립적 접근 필요" if val is not None and val > 0 else "채권 대비 투자 매력 낮음"
-        html += f'''
-            <div style="padding:15px; background:#f8f9fa; border-left:4px solid {color}; border-radius:4px;">
-                <h4 style="margin:0 0 5px 0; color:#333;">⚖️ 일드 갭 (주식 기대수익률 vs 국채 금리)</h4>
-                <p style="margin:0; font-size:13px; color:#555;">현재 일드 갭은 <strong style="color:{color};">{yield_gap}</strong> 수준입니다. ({eval_text})</p>
-                <p style="margin:5px 0 0 0; font-size:11px; color:#888;">*이 ETF의 배당수익률에서 미국 10년물 국채금리를 뺀 수치로, 배당 관점에서 채권 대비 상대적 매력도를 참고하는 지표입니다(주식 전체의 기대수익률과는 다른 개념입니다).</p>
-            </div>
-        '''
 
     if earnings:
         li_html = "".join([f"<li style='margin-bottom:3px;'>{e}</li>" for e in earnings])
         html += f'''
             <div style="padding:15px; background:#fffcf5; border-left:4px solid #f1c40f; border-radius:4px;">
                 <h4 style="margin:0 0 5px 0; color:#333;">📅 상위 종목 실적 발표 캘린더</h4>
-                <p style="margin:0 0 8px 0; font-size:13px; color:#555;">해당 ETF의 방향성을 결정할 핵심 기업들의 실적 발표일입니다. 단기 변동성에 유의하세요.</p>
+                <p style="margin:0 0 8px 0; font-size:13px; color:#555;">보유 비중 상위 기업의 실적 발표 예정일입니다.</p>
                 <ul style="margin:0; padding-left:20px; font-size:13px; color:#b7950b; font-weight:bold;">{li_html}</ul>
             </div>
         '''
@@ -524,8 +514,8 @@ def _build_advanced_sections(etf_data_cache):
     if aum:
         html += f'''
             <div style="padding:15px; background:#f0f8ff; border-left:4px solid #3498db; border-radius:4px;">
-                <h4 style="margin:0 0 5px 0; color:#333;">💸 스마트머니 동향 (총 운용자산)</h4>
-                <p style="margin:0; font-size:13px; color:#555;">현재 {ticker.replace('.US','')}의 총 순자산(AUM) 규모는 <strong>{aum}</strong>입니다. 시장의 거대한 자금이 머무르는 핵심 투자처임을 보여줍니다.</p>
+                <h4 style="margin:0 0 5px 0; color:#333;">💼 총 순자산(AUM)</h4>
+                <p style="margin:0; font-size:13px; color:#555;">현재 {ticker.replace('.US','')}의 총 순자산(AUM)은 <strong>{aum}</strong>입니다.</p>
             </div>
         '''
 
