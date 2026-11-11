@@ -1,0 +1,401 @@
+{
+ "article_type": "bio",
+ "topic_id": "bio:bayer-wins-fda-nod-for-a-new-kind-of-blood-thinner",
+ "title_seed": "바이엘, 차세대 혈전용해제 FDA 승인 획득",
+ "category": "bio",
+ "started_at": "2026-11-11T19:50:51",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 1985
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 22.1,
+   "chars": 3538
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.3,
+   "chars": 690
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.4,
+   "chars": 451
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.1,
+   "chars": 140
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.2,
+   "chars": 858
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.3,
+   "chars": 3312
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.4,
+   "chars": 440
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 135
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 147
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 833
+  },
+  {
+   "step": "부분 고침 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 179
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.2,
+   "chars": 176
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.7,
+   "chars": 520
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.8,
+   "chars": 110
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.3,
+   "chars": 922
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.6,
+   "chars": 239
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.9,
+   "chars": 403
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.9,
+   "chars": 135
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "19:51:06",
+   "title": "바이엘 신규 혈전용해제 선하르보, FDA 승인으로 무엇이 달라지나?",
+   "sections": [
+    "선하르보 임상 결과와 효과",
+    "차세대 기전과 출혈 위험",
+    "전 세계 혈전 임상과 개발 현황",
+    "연도별 임상 추이와 향후 과제"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "19:51:31",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "검토 1 일부 실패",
+   "at": "19:51:58",
+   "answered": 2,
+   "total": 3
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "19:52:06",
+   "score": 0.53,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "제목이 던진 질문 '무엇이 달라지나?'에 대해 구체적인 수치나 조건으로 바로 답하는 문장을 도입부에 추가하기",
+   "issues": [
+    "[치명·사실 검증] '미국 식품의약국(FDA)이 2026년 11월 9일 바이엘의 신규 혈전용해제 '선하르보(성분명 아순덱시안)'를' → 자료에는 FDA 승인 시점이 요일(on Monday)로만 기술되어 있으며 '2026년 11월 9일'이라는 구체적인 날짜 숫자는 나와 있지 않으나 지어내어 작성했습니다. / 고칠 방법: 자료에 없는 구체적 날짜인 '2026년 11월 9일'을 삭제하고 자료의 표현에 맞춰 수정하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 비슷한 유형의 숫자·뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 제시하면서 자료의 숫자를 함께 언급하지 않았습니다. / 고칠 방법: 글의 정리 부분에 확인 기준을 설명할 때 자료에 포함된 숫자(예: 3상 임상 132건, 13.8% 등)를 함께 포함하여 작성하세요."
+   ],
+   "lint": [
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '한편, 선하르보를 투여받은 환자들에게서 가장 자주 보고된 이상 반응은 설…' / '대규모 임상 연구에서 선하르보를 투여받은 환자들에게서 가장 흔하게 보고된…'",
+    "[참고] 같은 숫자 '26%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 3004
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "19:52:17",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "19:52:49",
+   "score": 0.65,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "이 글만의 정보"
+   ],
+   "value_tip": "본문에 언급된 아순덱시안 관련 임상 4건에 대한 세부 내용을 추가하여 독자에게 이 약의 구체적 위치를 보여주기",
+   "issues": [
+    "[치명·사실 검증] '미국 식품의약국(FDA)이 바이엘의 신규 혈전용해제 '선하르보(성분명 아순덱시안)'를 승인했습니다.' → 선하르보는 이미 형성된 혈전을 녹이는 '혈전용해제'가 아니라, 혈전 생성을 억제해 뇌졸중을 예방하는 '항응고제(혈액 희석제)'입니다. / 고칠 방법: '혈전용해제'라는 표현을 원문의 의미에 맞게 '항응고제' 또는 '혈액 희석제'로 고치세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '26%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 2677
+  },
+  {
+   "step": "부분 고침",
+   "at": "19:52:54",
+   "applied": 1
+  },
+  {
+   "step": "검토 3 일부 실패",
+   "at": "19:53:17",
+   "answered": 2,
+   "total": 3
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "19:53:51",
+   "score": 0.88,
+   "new_serious": [
+    "[중요·독자 편집] '미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 ' → 바이엘의 신약 승인 소식과 직접 관련이 없는 전 세계 전반의 혈전 임상시험 통계가 장황하게 포함되어 있습니다. / 고칠 방법: 전 세계 혈전 임상 건수와 관련된 문단을 삭제하거나 선하르보 관련 내용으로 대체하세요."
+   ]
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "19:53:51",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "초기 시장 안착의 제한 요인으로 언급된 환자 접근성(보험 적용 및 병원 약제 위원회 통과 등)과 관련하여 독자가 향후 확인해야 할 실질적인 체크포인트를 본문에 더 구체적으로 보완하기",
+   "issues": [
+    "[중요·독자 편집] '미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 ' → 바이엘의 신약 승인 소식과 직접 관련이 없는 전 세계 전반의 혈전 임상시험 통계가 장황하게 포함되어 있습니다. / 고칠 방법: 전 세계 혈전 임상 건수와 관련된 문단을 삭제하거나 선하르보 관련 내용으로 대체하세요."
+   ],
+   "lint": [
+    "[참고] 같은 숫자 '26%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 2676
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "바이엘 신규 혈전용해제 선하르보, FDA 승인으로 무엇이 달라지나?",
+  "url": "https://ondo99.com/?p=452",
+  "score": 0.88,
+  "issues": [
+   "[중요·독자 편집] '미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 ' → 바이엘의 신약 승인 소식과 직접 관련이 없는 전 세계 전반의 혈전 임상시험 통계가 장황하게 포함되어 있습니다. / 고칠 방법: 전 세계 혈전 임상 건수와 관련된 문단을 삭제하거나 선하르보 관련 내용으로 대체하세요.",
+   "[참고] 같은 숫자 '26%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+  ]
+ },
+ "facts": "[사실 자료 - 원문]\n제목: Bayer wins FDA nod for a new kind of blood thinner (BioPharma Dive - Latest News, https://www.biopharmadive.com/news/bayer-sunharbo-asundexian-fda-approve-stroke-factor-xi/872837/)\n본문 발췌: Let BioPharma Dive's free newsletter keep you informed, straight from your inbox.  Sunharbo’s U.S. approval is the first for a “Factor XIa” inhibitor, an anticipated class of medicines seen as a possible step forward in stroke prevention. The Food and Drug Administration on Monday approved a new kind of blood thinner meant to lower the risk of stroke in certain adults, marking a major milestone for cardiovascular research as well as the medicine’s developer, Bayer. The pill, which will be sold under the brand name Sunharbo, doesn’t work like established stroke prevention drugs. It inhibits a blood-clotting protein called Factor XIa. While this protein plays a minor role in sealing up blood vessels after an injury, it also amplifies a coagulation “cascade” that helps clots grow and makes them harder to break down, increasing the risk of strokes or heart attacks. Sunharbo is designed to strike a balance between preventing harmful clots and preserving the body’s ability to stop dangerous bleeding — a hazard associated with many existing treatments. The large study that led to its approval enrolled more than 12,000 adults who previously had either a “warning stroke” or a stroke caused by a blood clot that originated outside of the heart. About half of the participants got a placebo, the other half once-daily Sunharbo, and all received antiplatelet therapy. Results showed Bayer’s drug reduced the risk of the most common, “ischemic” form of stroke by 26% compared to the control arm. The study also found that the number of major bleeding cases was similar across the two groups. The most frequently reported adverse reaction among Sunharbo-treated patients was diarrhea. The FDA has now cleared Sunharbo, which is known scientifically as asundexian, for secondary stroke prevention in this patient population, to be used alongside antiplatelet therapy. Health authorities estimate more than 795,000 people in the U.S. have a stroke each year, with about a quarter having experienced one previously. “When you spend time with physicians in this space, they will tell you that they see asundexian [as] practice-changing,” said Sebastian Guth, chief operating officer of Bayer Pharmaceuticals and president of Bayer U.S. It has “very significant utility for the patients they serve.” The head of Bayer’s pharmaceuticals division, Stefan Oelrich, said during an earnings call in August that his team expects doctors, especially in the acute treatment setting, to “broadly welcome” Sunharbo. And if the launch has one “limiting factor,” it will be access. According to Guth, stroke neurologists will be a “very important part” of the drug’s early rollout, as they are often the first in line to treat these patients. Over time, primary care physicians will be a greater focus. While the company hasn’t disclosed what or how many treatment centers it plans to initially target, Guth said it has set up a “very robust” patient support program. Payers, he added, already recognize the meri\n\n[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '혈전', 2026-11-11 조회. 전 세계에서 등록된 임상 기준]\n- 등록된 임상시험 전체: 957건\n- 지금 참가자를 모집 중인 임상: 120건(전체의 12.5%, 코드 계산)\n- 3상(허가 신청 직전 단계) 임상: 132건(전체의 13.8%, 코드 계산)\n- 해마다 새로 시작한 임상 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 76건 → 2025년 68건(-10.5%), 가장 많던 해 2021년 76건, 가장 적던 해 2022년 47건\n- 이 약·치료법('아순덱시안')이 들어간 임상: 4건\n- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.\n\n[관련 뉴스]\n- 항응고제 분야 세계 매출 1위 국내선 3위 차지한 '엘리퀴스'[블록버스터 톺아보기] - 팜이데일리 (팜이데일리) https://news.google.com/rss/articles/CBMigwFBVV95cUxQV0FuYmZwTGYzb0JCZzhGM2JhNVA4YXFaLTltaG83d2RXUVpGYU5RZERUT0hWdElLeS1GQ0FWRW94ZFhVdi1rOUl6V1U5NlY5VjdRc1Fqd1M5Y09hTm15UW5EUnA5NUZIUHd1V1JBbV9HUVI4TkpyZHBsU3NSUFJBaTQtZw?oc=5\n- 뇌졸중 치료제 시장 규모 및 점유율 보고서, 2025~2034년 - Global Market Insights Inc. (Global Market Insights Inc.) https://news.google.com/rss/articles/CBMif0FVX3lxTE5KUEpjX3B1cHpKNFVoeHBvTVJFREFnZV9jZW1kNlkyZ2FnUW1KYVJJczJ0OHU0NGJ1NUNqVFNobGVyZzRNd0dRUmNIN1VzZ21FS1dNTVhTWldGczM0UnB5WnY2THJnamU4Z193MlZYQkFBc0tYcHRmdTlJMlVTVDQ?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>바이엘 신규 혈전용해제 선하르보, FDA 승인으로 무엇이 달라지나?</h1>\n<!-- 바이엘의 차세대 혈전용해제 선하르보가 FDA 승인을 획득했습니다. 12,000명 이상의 대규모 임상에서 허혈성 뇌졸중 위험을 26% 낮춘 주요 성과와 임상 데이터를 자세히 알아봅니다. -->\n\n<p>미국 식품의약국(FDA)이 2026년 11월 9일 바이엘의 신규 혈전용해제 '선하르보(성분명 아순덱시안)'를 최종 승인했습니다. 선하르보는 뇌졸중 예방을 목적으로 개발된 최초의 Factor XIa 억제제로, 기존 치료제와는 완전히 다른 작용 방식을 가집니다.</p>\n\n<p>12,000명이 넘는 환자를 대상으로 진행한 대규모 임상 연구에서 선하르보는 대조군 대비 허혈성 뇌졸중 발생 위험을 26% 줄이는 결과를 입증했습니다. 혈전 형성 위험을 낮추는 동시에 기존 치료제의 최대 단점이었던 심각한 출혈 위험을 크게 늘리지 않았다는 점이 핵심입니다.</p>\n\n<h3>선하르보 임상 결과와 효과</h3>\n\n<p>이번 FDA 승인은 이전에 경고성 뇌졸중이나 심장 외 부위에서 시작된 혈전으로 인한 뇌졸중을 겪은 성인 12,000명 이상을 대상으로 진행한 대규모 임상시험을 바탕으로 이루어졌습니다. 연구 참가자의 절반은 위약을, 나머지 절반은 1일 1회 복용하는 선하르보를 투여받았으며, 두 그룹 모두 항집소판 치료를 병행했습니다.</p>\n\n<p>임상 결과 선하르보 투여군은 대조군과 비교했을 때 가장 흔한 유형인 허혈성 뇌졸중의 발생 위험을 26% 낮춘 것으로 나타났습니다. 효율적인 혈전 예방 효과를 증명함과 동시에 환자 안전성 지표에서도 의미 있는 수치를 기록했습니다.</p>\n\n<table>\n<tr><th>구분</th><th>선하르보 임상 주요 지표</th></tr>\n<tr><td>임상 참여 인원</td><td>12,000명 이상</td></tr>\n<tr><td>허혈성 뇌졸중 위험 감소율</td><td>대조군 대비 26% 감소</td></tr>\n<tr><td>주요 출혈 사례 발생 건수</td><td>두 그룹 간 유사함</td></tr>\n<tr><td>가장 흔한 이상 반응</td><td>설사</td></tr>\n</table>\n\n<p>임상 데이터에 따르면 주요 출혈 사례 수는 선하르보 투여군과 대조군 사이에 서로 비슷하게 관찰되었습니다. 한편, 선하르보를 투여받은 환자들에게서 가장 자주 보고된 이상 반응은 설사였습니다. <a href=\"https://www.biopharmadive.com/news/bayer-sunharbo-asundexian-fda-approve-stroke-factor-xi/872837/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>의 보도에 따르면 이번 승인은 2차 뇌졸중 예방을 위한 항집소판 병용 요법으로 허가받았습니다.</p>\n\n<h3>차세대 기전과 출혈 위험</h3>\n\n<p>선하르보는 혈액 응고 단백질인 Factor XIa를 선택적으로 억제하는 기전을 가지고 있습니다. Factor XIa 단백질은 부상 후 혈관을 막는 데 보조적인 역할을 하지만, 동시에 응고 반응을 증폭시켜 혈전을 크게 만들고 잘 녹지 않게 하여 뇌졸중이나 심근경색 위험을 높입니다.</p>\n\n<p>기존의 혈전용해제나 항응고제들은 혈전 형성을 막는 과정에서 체내 정상적인 지혈 기능까지 억제하여 위험한 출혈 부작용을 유발하곤 했습니다. 반면 선하르보는 해로운 혈전 형성을 방지하면서도 신체가 치명적인 출혈을 스스로 멈추는 기능은 보존하도록 세심하게 설계되었습니다.</p>\n\n<p>미국 내에서는 매년 795,000명이 넘는 뇌졸중 환자가 발생하고 있으며, 이들 중 약 4분의 1은 이전에 뇌졸중을 이미 경험한 재발 환자입니다. 바이엘 측은 새로운 기전을 가진 선하르보가 출혈 위험으로 적극적인 치료가 어려웠던 환자들에게 중요한 치료 대안이 될 것으로 기대하고 있습니다.</p>\n\n<h3>전 세계 혈전 임상과 개발 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 세계에 등록된 혈전 관련 임상시험은 총 957건입니다. 이 가운데 현재 참가자를 모집하고 있는 임상시험은 120건으로 전체의 12.5%를 차지합니다.</p>\n\n<p>신약 허가 신청의 직전 단계에 해당하는 3상 임상시험은 132건이 등록되어 전체 연구의 13.8%를 기록하고 있습니다. 개발 단계가 막바지에 다다른 연구들이 시장 출시를 준비 중임을 보여줍니다.</p>\n\n<p>이 중 이번에 승인받은 성분인 아순덱시안이 포함된 임상시험은 총 4건으로 집계되었습니다. 해당 자료는 임상 연구가 얼마나 활발히 진행되는지 보여주는 지표이며, 개별 약물의 효과나 안전성을 직접 단정하는 기준은 아닙니다.</p>\n\n<h3>연도별 임상 추이와 향후 과제</h3>\n\n<p>전 세계 혈전 관련 신규 임상시험 개수는 2021년 76건에서 2025년 68건으로 감소하여 5년간 10.5% 줄어들었습니다. 조사 기간 중 가장 많은 신규 임상이 시작된 해는 2021년(76건)이었으며, 가장 적었던 해는 2022년(47건)이었습니다.</p>\n\n<p>약물이 FDA 승인을 획득했으나 초기에 시장에 안착하는 과정에서 가장 큰 제한 요인은 환자들의 실제 치료 접근성이 될 수 있습니다. 신약에 대한 보험 적용 및 병원 약제 위원회 통과 등 절차적 과제가 남아있기 때문입니다.</p>\n\n<p>바이엘 측은 뇌졸중 환자를 가장 먼저 만나는 뇌졸중 신경과 전문의들이 초기 약물 도입 과정에서 매우 중요한 역할을 할 것으로 보고 있습니다. 이후 치료 안정기에 접어들면 1차 진료의들로 중심이 이동할 전망입니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상 등록 건수가 많으면 약의 효과가 더 뛰어나다는 뜻인가요?</h4>\n<p>아닙니다. 미국 국립보건원 임상시험 등록소에 등록된 임상 건수는 해당 질환에 대한 연구 개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 수치일 뿐입니다. 특정 약물의 치료 효과나 안전성을 보장하는 지표가 아니므로 개별 임상 3상 결과와 FDA 승인 여부를 직접 확인해야 합니다.</p>\n\n<h4>🔸 선하르보 투여 환자에게 가장 자주 보고된 이상 반응은 무엇인가요?</h4>\n<p>대규모 임상 연구에서 선하르보를 투여받은 환자들에게서 가장 흔하게 보고된 이상 반응은 설사였습니다. 또한 치명적인 주요 출혈 사례 발생 건수는 위약 및 항집소판제를 투여받은 대조군과 비교했을 때 서로 비슷한 수준으로 나타났습니다.</p>\n\n<h3>정리</h3>\n\n<p>바이엘의 선하르보 승인은 기존 혈전 예방 치료에서 가장 큰 걸림돌이었던 심각한 출혈 위험을 늘리지 않으면서, 허혈성 뇌졸중 위험을 26% 낮추는 새로운 치료 길을 열었다는 데 의미가 있습니다.</p>\n\n<p>앞으로 유사한 신약 개발 뉴스나 임상 발표를 접할 때 독자가 스스로 살펴볼 기준은 다음과 같습니다. 먼저 임상 연구가 허가 직전 단계인 3상인지 확인하고, 1차 평가지표에서 대조군 대비 유의미한 위험 감소율을 기록했는지 파악해야 합니다. 또한 위약이나 기존 치료제 대비 주요 출혈과 같은 치명적 부작용 비율이 비슷하거나 낮게 유지되었는지를 비교해 보는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 선하르보는 출혈 위험을 높이지 않고 뇌졸중 위험을 26% 줄인 최초의 Factor XIa 억제제입니다.</p>\n\n태그: 바이엘 선하르보 아순덱시안 FDA승인 혈전용해제",
+  "2": "<h1>바이엘 신규 혈전용해제 선하르보, FDA 승인으로 무엇이 달라지나?</h1>\n<!-- 바이엘의 차세대 혈전용해제 선하르보가 FDA 승인을 획득했습니다. 12,000명 이상의 대규모 임상에서 허혈성 뇌졸중 위험을 26% 낮춘 주요 성과와 임상 데이터를 자세히 알아봅니다. -->\n\n<p>미국 식품의약국(FDA)이 바이엘의 신규 혈전용해제 '선하르보(성분명 아순덱시안)'를 승인했습니다. 선하르보는 뇌졸중 예방을 목적으로 개발된 최초의 Factor XIa 억제제로, 대조군 대비 허혈성 뇌졸중 발생 위험을 26% 낮추었습니다.</p>\n\n<p>12,000명이 넘는 환자를 대상으로 진행한 대규모 임상 연구에서 선하르보는 혈전 형성 위험을 낮추는 동시에 기존 치료제의 최대 단점이었던 심각한 출혈 위험을 크게 늘리지 않았다는 점이 핵심입니다.</p>\n\n<h3>선하르보 임상 결과와 효과</h3>\n\n<p>이번 FDA 승인은 이전에 경고성 뇌졸중이나 심장 외 부위에서 시작된 혈전으로 인한 뇌졸중을 겪은 성인 12,000명 이상을 대상으로 진행한 대규모 임상시험을 바탕으로 이루어졌습니다. 연구 참가자의 절반은 위약을, 나머지 절반은 1일 1회 복용하는 선하르보를 투여받았으며, 두 그룹 모두 항집소판 치료를 병행했습니다.</p>\n\n<p>임상 데이터에 따르면 허혈성 뇌졸중 위험 감소 효과 외에도 주요 출혈 사례 수는 선하르보 투여군과 대조군 사이에 서로 비슷하게 관찰되었습니다. <a href=\"https://www.biopharmadive.com/news/bayer-sunharbo-asundexian-fda-approve-stroke-factor-xi/872837/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>의 보도에 따르면 이번 승인은 2차 뇌졸중 예방을 위한 항집소판 병용 요법으로 허가받았습니다.</p>\n\n<table>\n<tr><th>구분</th><th>선하르보 임상 주요 지표</th></tr>\n<tr><td>임상 참여 인원</td><td>12,000명 이상</td></tr>\n<tr><td>허혈성 뇌졸중 위험 감소율</td><td>대조군 대비 26% 감소</td></tr>\n<tr><td>주요 출혈 사례 발생 건수</td><td>두 그룹 간 유사함</td></tr>\n<tr><td>가장 흔한 이상 반응</td><td>설사</td></tr>\n</table>\n\n<h3>차세대 기전과 출혈 위험</h3>\n\n<p>선하르보는 혈액 응고 단백질인 Factor XIa를 선택적으로 억제하는 기전을 가지고 있습니다. Factor XIa 단백질은 부상 후 혈관을 막는 데 보조적인 역할을 하지만, 동시에 응고 반응을 증폭시켜 혈전을 크게 만들고 잘 녹지 않게 하여 뇌졸중이나 심근경색 위험을 높입니다.</p>\n\n<p>기존의 혈전용해제나 항응고제들은 혈전 형성을 막는 과정에서 체내 정상적인 지혈 기능까지 억제하여 위험한 출혈 부작용을 유발하곤 했습니다. 반면 선하르보는 해로운 혈전 형성을 방지하면서도 신체가 치명적인 출혈을 스스로 멈추는 기능은 보존하도록 세심하게 설계되었습니다.</p>\n\n<p>미국 내에서는 매년 795,000명이 넘는 뇌졸중 환자가 발생하고 있으며, 이들 중 약 4분의 1은 이전에 뇌졸중을 이미 경험한 재발 환자입니다. 바이엘 측은 새로운 기전을 가진 선하르보가 출혈 위험으로 적극적인 치료가 어려웠던 환자들에게 중요한 치료 대안이 될 것으로 기대하고 있습니다.</p>\n\n<h3>전 세계 혈전 임상과 개발 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 세계에 등록된 혈전 관련 임상시험은 총 957건입니다. 이 가운데 현재 참가자를 모집하고 있는 임상시험은 120건으로 전체의 12.5%를 차지합니다.</p>\n\n<p>신약 허가 신청의 직전 단계에 해당하는 3상 임상시험은 132건이 등록되어 전체 연구의 13.8%를 기록하고 있습니다. 개발 단계가 막바지에 다다른 연구들이 시장 출시를 준비 중임을 보여줍니다.</p>\n\n<p>이 중 이번에 승인받은 성분인 아순덱시안이 포함된 임상시험은 총 4건으로 집계되었습니다. 해당 자료는 임상 연구가 얼마나 활발히 진행되는지 보여주는 지표이며, 개별 약물의 효과나 안전성을 직접 단정하는 기준은 아닙니다.</p>\n\n<h3>연도별 임상 추이와 향후 과제</h3>\n\n<p>전 세계 혈전 관련 신규 임상시험 개수는 2021년 76건에서 2025년 68건으로 감소하여 5년간 10.5% 줄어들었습니다. 조사 기간 중 가장 많은 신규 임상이 시작된 해는 2021년(76건)이었으며, 가장 적었던 해는 2022년(47건)이었습니다.</p>\n\n<p>약물이 FDA 승인을 획득했으나 초기에 시장에 안착하는 과정에서 가장 큰 제한 요인은 환자들의 실제 치료 접근성이 될 수 있습니다. 신약에 대한 보험 적용 및 병원 약제 위원회 통과 등 절차적 과제가 남아있기 때문입니다.</p>\n\n<p>바이엘 측은 뇌졸중 환자를 가장 먼저 만나는 뇌졸중 신경과 전문의들이 초기 약물 도입 과정에서 매우 중요한 역할을 할 것으로 보고 있습니다. 이후 치료 안정기에 접어들면 1차 진료의들로 중심이 이동할 전망입니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상 등록 건수가 많으면 약의 효과가 더 뛰어나다는 뜻인가요?</h4>\n<p>아닙니다. 미국 국립보건원 임상시험 등록소에 등록된 임상 건수는 해당 질환에 대한 연구 개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 수치일 뿐입니다. 특정 약물의 치료 효과나 안전성을 보장하는 지표가 아니므로 개별 임상 3상 결과와 FDA 승인 여부를 직접 확인해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>바이엘의 선하르보 승인은 기존 혈전 예방 치료에서 가장 큰 걸림돌이었던 심각한 출혈 위험을 늘리지 않으면서, 뇌졸중 치료 환경에 새로운 길을 열었다는 데 의미가 있습니다.</p>\n\n<p>앞으로 유사한 신약 개발 뉴스나 임상 발표를 접할 때 독자가 스스로 살펴볼 기준은 다음과 같습니다. 연구가 전체 임상 중 허가 신청 직전 단계인 3상(전체 957건 중 132건, 13.8%)에 해당하는지 확인하는 것이 첫 번째 기준입니다. 그리고 임상 결과에서 위약 대비 허혈성 뇌졸중 위험 감소율(선하르보의 경우 26% 낮춤)과 같은 1차 평가지표를 충족했는지 파악하고, 위약이나 기존 치료제 대비 주요 출혈 부작용 비율이 비슷하게 유지되었는지 비교해 보는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 선하르보는 출혈 위험을 높이지 않고 뇌졸중 위험을 26% 줄인 최초의 Factor XIa 억제제입니다.</p>\n\n태그: 바이엘 선하르보 아순덱시안 FDA승인 혈전용해제",
+  "3": "<h1>바이엘 신규 혈전용해제 선하르보, FDA 승인으로 무엇이 달라지나?</h1>\n<!-- 바이엘의 차세대 혈전용해제 선하르보가 FDA 승인을 획득했습니다. 12,000명 이상의 대규모 임상에서 허혈성 뇌졸중 위험을 26% 낮춘 주요 성과와 임상 데이터를 자세히 알아봅니다. -->\n\n<p>미국 식품의약국(FDA)이 바이엘의 신규 항응고제 '선하르보(성분명 아순덱시안)'를 승인했습니다. 선하르보는 뇌졸중 예방을 목적으로 개발된 최초의 Factor XIa 억제제로, 대조군 대비 허혈성 뇌졸중 발생 위험을 26% 낮추었습니다.</p>\n\n<p>12,000명이 넘는 환자를 대상으로 진행한 대규모 임상 연구에서 선하르보는 혈전 형성 위험을 낮추는 동시에 기존 치료제의 최대 단점이었던 심각한 출혈 위험을 크게 늘리지 않았다는 점이 핵심입니다.</p>\n\n<h3>선하르보 임상 결과와 효과</h3>\n\n<p>이번 FDA 승인은 이전에 경고성 뇌졸중이나 심장 외 부위에서 시작된 혈전으로 인한 뇌졸중을 겪은 성인 12,000명 이상을 대상으로 진행한 대규모 임상시험을 바탕으로 이루어졌습니다. 연구 참가자의 절반은 위약을, 나머지 절반은 1일 1회 복용하는 선하르보를 투여받았으며, 두 그룹 모두 항집소판 치료를 병행했습니다.</p>\n\n<p>임상 데이터에 따르면 허혈성 뇌졸중 위험 감소 효과 외에도 주요 출혈 사례 수는 선하르보 투여군과 대조군 사이에 서로 비슷하게 관찰되었습니다. <a href=\"https://www.biopharmadive.com/news/bayer-sunharbo-asundexian-fda-approve-stroke-factor-xi/872837/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>의 보도에 따르면 이번 승인은 2차 뇌졸중 예방을 위한 항집소판 병용 요법으로 허가받았습니다.</p>\n\n<table>\n<tr><th>구분</th><th>선하르보 임상 주요 지표</th></tr>\n<tr><td>임상 참여 인원</td><td>12,000명 이상</td></tr>\n<tr><td>허혈성 뇌졸중 위험 감소율</td><td>대조군 대비 26% 감소</td></tr>\n<tr><td>주요 출혈 사례 발생 건수</td><td>두 그룹 간 유사함</td></tr>\n<tr><td>가장 흔한 이상 반응</td><td>설사</td></tr>\n</table>\n\n<h3>차세대 기전과 출혈 위험</h3>\n\n<p>선하르보는 혈액 응고 단백질인 Factor XIa를 선택적으로 억제하는 기전을 가지고 있습니다. Factor XIa 단백질은 부상 후 혈관을 막는 데 보조적인 역할을 하지만, 동시에 응고 반응을 증폭시켜 혈전을 크게 만들고 잘 녹지 않게 하여 뇌졸중이나 심근경색 위험을 높입니다.</p>\n\n<p>기존의 혈전용해제나 항응고제들은 혈전 형성을 막는 과정에서 체내 정상적인 지혈 기능까지 억제하여 위험한 출혈 부작용을 유발하곤 했습니다. 반면 선하르보는 해로운 혈전 형성을 방지하면서도 신체가 치명적인 출혈을 스스로 멈추는 기능은 보존하도록 세심하게 설계되었습니다.</p>\n\n<p>미국 내에서는 매년 795,000명이 넘는 뇌졸중 환자가 발생하고 있으며, 이들 중 약 4분의 1은 이전에 뇌졸중을 이미 경험한 재발 환자입니다. 바이엘 측은 새로운 기전을 가진 선하르보가 출혈 위험으로 적극적인 치료가 어려웠던 환자들에게 중요한 치료 대안이 될 것으로 기대하고 있습니다.</p>\n\n<h3>전 세계 혈전 임상과 개발 현황</h3>\n\n<p>미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 기준 2026년 11월 11일 현재 전 세계에 등록된 혈전 관련 임상시험은 총 957건입니다. 이 가운데 현재 참가자를 모집하고 있는 임상시험은 120건으로 전체의 12.5%를 차지합니다.</p>\n\n<p>신약 허가 신청의 직전 단계에 해당하는 3상 임상시험은 132건이 등록되어 전체 연구의 13.8%를 기록하고 있습니다. 개발 단계가 막바지에 다다른 연구들이 시장 출시를 준비 중임을 보여줍니다.</p>\n\n<p>이 중 이번에 승인받은 성분인 아순덱시안이 포함된 임상시험은 총 4건으로 집계되었습니다. 해당 자료는 임상 연구가 얼마나 활발히 진행되는지 보여주는 지표이며, 개별 약물의 효과나 안전성을 직접 단정하는 기준은 아닙니다.</p>\n\n<h3>연도별 임상 추이와 향후 과제</h3>\n\n<p>전 세계 혈전 관련 신규 임상시험 개수는 2021년 76건에서 2025년 68건으로 감소하여 5년간 10.5% 줄어들었습니다. 조사 기간 중 가장 많은 신규 임상이 시작된 해는 2021년(76건)이었으며, 가장 적었던 해는 2022년(47건)이었습니다.</p>\n\n<p>약물이 FDA 승인을 획득했으나 초기에 시장에 안착하는 과정에서 가장 큰 제한 요인은 환자들의 실제 치료 접근성이 될 수 있습니다. 신약에 대한 보험 적용 및 병원 약제 위원회 통과 등 절차적 과제가 남아있기 때문입니다.</p>\n\n<p>바이엘 측은 뇌졸중 환자를 가장 먼저 만나는 뇌졸중 신경과 전문의들이 초기 약물 도입 과정에서 매우 중요한 역할을 할 것으로 보고 있습니다. 이후 치료 안정기에 접어들면 1차 진료의들로 중심이 이동할 전망입니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상 등록 건수가 많으면 약의 효과가 더 뛰어나다는 뜻인가요?</h4>\n<p>아닙니다. 미국 국립보건원 임상시험 등록소에 등록된 임상 건수는 해당 질환에 대한 연구 개발 활동이 얼마나 활발하게 이루어지고 있는지를 보여주는 수치일 뿐입니다. 특정 약물의 치료 효과나 안전성을 보장하는 지표가 아니므로 개별 임상 3상 결과와 FDA 승인 여부를 직접 확인해야 합니다.</p>\n\n<h3>정리</h3>\n\n<p>바이엘의 선하르보 승인은 기존 혈전 예방 치료에서 가장 큰 걸림돌이었던 심각한 출혈 위험을 늘리지 않으면서, 뇌졸중 치료 환경에 새로운 길을 열었다는 데 의미가 있습니다.</p>\n\n<p>앞으로 유사한 신약 개발 뉴스나 임상 발표를 접할 때 독자가 스스로 살펴볼 기준은 다음과 같습니다. 연구가 전체 임상 중 허가 신청 직전 단계인 3상(전체 957건 중 132건, 13.8%)에 해당하는지 확인하는 것이 첫 번째 기준입니다. 그리고 임상 결과에서 위약 대비 허혈성 뇌졸중 위험 감소율(선하르보의 경우 26% 낮춤)과 같은 1차 평가지표를 충족했는지 파악하고, 위약이나 기존 치료제 대비 주요 출혈 부작용 비율이 비슷하게 유지되었는지 비교해 보는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 선하르보는 출혈 위험을 높이지 않고 뇌졸중 위험을 26% 줄인 최초의 Factor XIa 억제제입니다.</p>\n\n태그: 바이엘 선하르보 아순덱시안 FDA승인 혈전용해제"
+ },
+ "minutes": 3.4
+}
