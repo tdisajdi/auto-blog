@@ -235,7 +235,8 @@ def _inject_table_of_contents(html):
         # HTML 태그 제거
         stripped_text = re.sub(r'<[^>]+>', '', inner_text).strip()
         # AI가 제목 앞에 임의로 붙인 숫자, 온점, 괄호 등 제거 (예: "1. ", "2) ")
-        clean_text = re.sub(r'^\d+[\.\-\)]?\s*', '', stripped_text)
+        # 2026-11-11: 구분 기호(. ) -)가 있을 때만 지움 - 예전엔 '1년 범위'의 1까지 지워 목차가 '년 범위'가 됨
+        clean_text = re.sub(r'^\d+(?:[\.\)]|\s*-)\s*', '', stripped_text)
         clean_text = re.sub(r'^part\s*\d+\s*[:.\-)]?\s*', '', clean_text, flags=re.IGNORECASE)
         
         headings.append((heading_id, clean_text))

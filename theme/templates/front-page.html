@@ -1,0 +1,42 @@
+<!-- wp:template-part {"slug":"header","theme":"bute","tagName":"header"} /-->
+<!-- wp:html -->
+<section class="o-hero"><div class="o-wrap"><div>
+<p class="o-hero-kick">DATA · TEMPERATURE</p>
+<h1>Read the <span>market</span> temperature</h1>
+<p class="o-hero-sub">시장 가격과 공식 통계를 코드로 직접 계산하고, 그 숫자가 무슨 뜻인지 쉬운 말로 풀어 씁니다. 과장도 권유도 없이, 숫자로 차분하게.</p>
+<a class="o-btn" href="https://ondo99.com/ondo-board/">OPEN BOARD</a><a class="o-btn is-ghost" href="#o-latest">LATEST</a>
+</div><div class="o-hero-thermo">{{THERMO}}</div></div></section>
+<!-- /wp:html -->
+<!-- wp:html -->
+<section class="o-sec"><div class="o-wrap">
+<div class="o-sec-head"><h2>무엇을 읽을까요</h2><span class="o-px">3 TOPICS</span></div>
+<div class="o-cats">
+<a class="o-cat t-etf" href="https://ondo99.com/category/etf/"><svg viewBox="0 0 8 8" aria-hidden="true"><g fill="#3d6dff"><rect x="0" y="6" width="2" height="2"/><rect x="3" y="4" width="2" height="4"/><rect x="6" y="1" width="2" height="7"/></g></svg><span class="o-px">ETF</span><h3>ETF·투자</h3><p>수익률·배당·보수를 같은 기간, 같은 기준으로 계산해 비교합니다.</p></a>
+<a class="o-cat t-energy" href="https://ondo99.com/category/energy/"><svg viewBox="0 0 8 8" aria-hidden="true"><g fill="#ff8a3d"><rect x="3" y="0" width="2" height="1"/><rect x="2" y="1" width="3" height="2"/><rect x="1" y="3" width="6" height="3"/><rect x="2" y="6" width="4" height="2"/></g><rect x="3" y="4" width="2" height="3" fill="#f4c44e"/></svg><span class="o-px">ENERGY</span><h3>에너지·원자재</h3><p>유가·재고·환율처럼 생활비에 닿는 숫자를 공식 자료로 읽습니다.</p></a>
+<a class="o-cat t-society" href="https://ondo99.com/category/society/"><svg viewBox="0 0 8 8" aria-hidden="true"><g fill="#2bb3c0"><rect x="1" y="0" width="2" height="2"/><rect x="5" y="0" width="2" height="2"/><rect x="0" y="3" width="4" height="5"/><rect x="4" y="3" width="4" height="5"/></g></svg><span class="o-px">SOCIETY</span><h3>인구·사회</h3><p>통계청·행정안전부 통계로 우리 사회가 어떻게 바뀌는지 봅니다.</p></a>
+</div></div></section>
+<!-- /wp:html -->
+<!-- wp:html -->
+<section class="o-boardband"><div class="o-wrap"><div><span class="o-px">ONDO BOARD</span><p>환율·금리·유가·금·주가지수 7개를 "지난 1년 중 지금 어디쯤인가"로 보여 주는 온도판. 매일 숫자만 갱신하고, 해석은 덧붙이지 않습니다.</p></div><div class="o-scale" aria-hidden="true"></div><a class="o-btn" href="https://ondo99.com/ondo-board/">BOARD</a></div></section>
+<!-- /wp:html -->
+<!-- wp:html -->
+<section class="o-sec" id="o-latest"><div class="o-wrap"><div class="o-sec-head"><h2>최근 글</h2><span class="o-px">LATEST</span></div>
+<!-- /wp:html -->
+<!-- wp:query {"queryId": 1, "query": {"perPage": 6, "pages": 0, "offset": 0, "postType": "post", "order": "desc", "orderBy": "date", "inherit": false}, "className": "o-list"} -->
+<div class="wp-block-query o-list"><!-- wp:post-template -->
+<!-- wp:post-featured-image {"isLink":true} /-->
+<!-- wp:post-terms {"term":"category"} /-->
+<!-- wp:post-title {"isLink":true,"level":3} /-->
+<!-- wp:post-excerpt {"excerptLength":36} /-->
+<!-- wp:post-date /-->
+<!-- /wp:post-template -->
+<!-- wp:query-no-results -->
+<!-- wp:html -->
+<div class="o-empty"><span class="o-px">COMING SOON</span>곧 첫 글이 올라옵니다. 공개 자료로 계산한 숫자를 쉬운 말로 풀어 쓴 글이 이곳에 쌓입니다.</div>
+<!-- /wp:html -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query -->
+<!-- wp:html -->
+</div></section>
+<!-- /wp:html -->
+<!-- wp:template-part {"slug":"footer","theme":"bute","tagName":"footer"} /-->

@@ -1,0 +1,25 @@
+<!-- wp:html -->
+<div class="o-head">
+  <div class="o-wrap">
+    <a class="o-logo" href="https://ondo99.com/" aria-label="ondo 첫 화면">
+      {{THERMO}}
+      <span><b>ONDO</b><small>DATA · TEMPERATURE</small></span>
+    </a>
+    <button class="o-menu-btn" type="button" aria-expanded="false" aria-controls="o-nav">MENU</button>
+    <nav class="o-nav" id="o-nav" aria-label="주 메뉴">
+      <a href="https://ondo99.com/category/etf/">ETF·투자</a>
+      <a href="https://ondo99.com/category/energy/">에너지·원자재</a>
+      <a href="https://ondo99.com/category/society/">인구·사회</a>
+      <a href="https://ondo99.com/about-ondo/">소개</a>
+      <a class="o-nav-board" href="https://ondo99.com/ondo-board/">BOARD</a>
+    </nav>
+  </div>
+  <div class="o-pxline"></div>
+</div>
+<script type="text/plain" id="o-head-js">
+(function(){var b=document.querySelector('.o-menu-btn'),n=document.getElementById('o-nav');if(b&&n){b.addEventListener('click',function(){var o=n.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');});}
+var p=location.pathname;document.querySelectorAll('.o-nav a').forEach(function(a){var h=new URL(a.href).pathname;if(h!=='/'&&p.indexOf(h)===0)a.classList.add('is-on');});
+document.querySelectorAll('.o-post-head .wp-block-post-terms a').forEach(function(a){var h=new URL(a.href).pathname;document.querySelectorAll('.o-nav a').forEach(function(x){if(new URL(x.href).pathname===h)x.classList.add('is-on');});});})();
+</script>
+<script>(function(){var s=document.getElementById('o-head-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&');(new Function(t))();}})();</script>
+<!-- /wp:html -->

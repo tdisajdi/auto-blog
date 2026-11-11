@@ -30,13 +30,23 @@ def css_block():
     return f"<!-- wp:html -->\n{CSS_MARK}{fonts}<style>{css}</style>\n<!-- /wp:html -->\n"
 
 
+def svg(ink=False):
+    path = os.path.join(ROOT, "theme", "snippets", "thermo.svg")
+    t = open(path, encoding="utf-8").read().strip()
+    return t.replace("<svg ", '<svg style="color:#18202c" ', 1) if ink else t
+
+
+def fill(content):
+    return content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg())
+
+
 def local_items():
     """(kind, slug, content) - kind는 templates 또는 template-parts."""
     out = []
     for kind, folder in (("templates", "templates"), ("template-parts", "parts")):
         for f in sorted(glob.glob(os.path.join(ROOT, "theme", folder, "*.html"))):
             slug = os.path.splitext(os.path.basename(f))[0]
-            content = open(f, encoding="utf-8").read()
+            content = fill(open(f, encoding="utf-8").read())
             if kind == "template-parts" and slug == "header":
                 content = css_block() + content
             out.append((kind, slug, content))

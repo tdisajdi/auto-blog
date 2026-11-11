@@ -1,0 +1,593 @@
+<!-- wp:template-part {"slug":"header","theme":"bute","tagName":"header"} /-->
+<!-- wp:group {"className": "o-post-head", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-post-head"><!-- wp:group {"className": "o-wrap", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-wrap"><!-- wp:post-terms {"term":"category"} /-->
+<!-- wp:post-title {"level":1} /-->
+<!-- wp:group {"className": "o-meta", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-meta"><!-- wp:post-date /-->
+<!-- wp:paragraph -->
+<p>글 · ondo</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- wp:group {"className": "o-post", "layout": {"type": "default"}, "tagName": "main"} -->
+<main class="wp-block-group o-post"><!-- wp:html -->
+<aside class="o-toc-col"><nav class="o-toc" aria-label="목차" hidden><span class="o-px">CONTENTS</span><ol></ol></nav></aside>
+<!-- /wp:html -->
+<!-- wp:group {"className": "o-read", "layout": {"type": "default"}, "tagName": "article"} -->
+<article class="wp-block-group o-read"><!-- wp:html -->
+<details class="o-toc-mob"><summary>CONTENTS</summary><ol></ol></details>
+<!-- /wp:html -->
+<!-- wp:post-content {"layout":{"type":"default"}} /-->
+<!-- wp:html -->
+<div class="o-byline">{{THERMO_INK}}<div><b>ONDO</b><p>공개 자료를 코드로 계산해 정리하는 블로그입니다. 글의 숫자가 자료와 다르면 고칩니다. 금융 전문가가 아닌 개인이 운영하며, 투자 권유가 아닙니다. <a href="https://ondo99.com/about-ondo/">소개 보기</a></p></div></div>
+<script type="text/plain" id="o-toc-js">
+(function(){var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var box=null;[].slice.call(c.querySelectorAll('h2')).forEach(function(h){if(/목차/.test(h.textContent)&&h.parentElement!==c){box=h.parentElement;}});if(box)box.classList.add('o-intoc');var hs=[].slice.call(c.querySelectorAll('h2,h3,h4')).filter(function(h){return h.textContent.trim().length>1&&!h.closest('.finq-tip')&&!h.closest('table')&&!(box&&box.contains(h));});
+if(hs.length<3)return;var side=document.querySelector('.o-toc'),mob=document.querySelector('.o-toc-mob');var so=side?side.querySelector('ol'):null,mo=mob?mob.querySelector('ol'):null;var links=[];
+hs.forEach(function(h,i){if(!h.id)h.id='o-s'+(i+1);var lv=h.tagName==='H4'?'lv4':'lv3';var t=h.textContent.trim();if(so){var li=document.createElement('li');li.className=lv;var a=document.createElement('a');a.href='#'+h.id;a.textContent=t;li.appendChild(a);so.appendChild(li);links.push([h,a]);}
+if(mo&&!box&&lv==='lv3'){var li2=document.createElement('li');var a2=document.createElement('a');a2.href='#'+h.id;a2.textContent=t;li2.appendChild(a2);mo.appendChild(li2);}});
+if(side)side.hidden=false;if(mob&&mo.children.length)mob.classList.add('has-items');
+if('IntersectionObserver' in window&&links.length){var cur=null;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(p){p[1].classList.toggle('is-on',p[0]===e.target);});}});},{rootMargin:'-90px 0px -70% 0px'});links.forEach(function(p){io.observe(p[0]);});}})();
+</script>
+<script>(function(){var s=document.getElementById('o-toc-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&');(new Function(t))();}})();</script>
+<!-- /wp:html --></article>
+<!-- /wp:group -->
+<!-- wp:group {"className": "o-side", "layout": {"type": "default"}, "tagName": "aside"} -->
+<aside class="wp-block-group o-side"><!-- wp:group {"className": "o-side-in", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-side-in"><!-- wp:html -->
+<div id="ondo-fx-center" style="max-width:320px;background:#fcfcfc;border:1px solid #e0e0e0;border-radius:14px;padding:14px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;">
+  <div id="ondoFcToggle" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+    <div style="font-size:15px;font-weight:700;color:#222;"> 환율 정보 센터</div>
+    <div id="ondoFcArrow" style="font-size:14px;color:#888;transition:transform 0.2s;transform:rotate(-90deg);">▼</div>
+  </div>
+
+  <div id="ondoFcBody" style="margin-top:12px;display:none;">
+    <div style="display:flex;gap:4px;margin-bottom:12px;border-bottom:1px solid #eee;padding-bottom:8px;">
+      <button class="ondoFcTab" data-tab="calc" style="flex:1;padding:6px 2px;font-size:11px;border:none;background:#eaf0fb;color:#1f3c88;border-radius:6px;cursor:pointer;">계산</button>
+      <button class="ondoFcTab" data-tab="trend" style="flex:1;padding:6px 2px;font-size:11px;border:none;background:transparent;color:#888;border-radius:6px;cursor:pointer;">추이</button>
+      <button class="ondoFcTab" data-tab="yoy" style="flex:1;padding:6px 2px;font-size:11px;border:none;background:transparent;color:#888;border-radius:6px;cursor:pointer;">1년비교</button>
+      <button class="ondoFcTab" data-tab="summary" style="flex:1;padding:6px 2px;font-size:11px;border:none;background:transparent;color:#888;border-radius:6px;cursor:pointer;">요약</button>
+    </div>
+
+    <div id="ondoPanelCalc">
+      <div style="margin-bottom:8px;">
+        <input type="number" id="ondoFcAmount" value="1000" style="width:100%;box-sizing:border-box;padding:7px 8px;border:1px solid #ddd;border-radius:8px;font-size:13px;">
+      </div>
+      <div style="display:flex;align-items:end;gap:4px;margin-bottom:10px;">
+        <select id="ondoFcFrom" style="flex:1;padding:6px 4px;border:1px solid #ddd;border-radius:8px;font-size:12px;">
+          <option value="USD">USD</option>
+          <option value="KRW" selected>KRW</option>
+          <option value="JPY">JPY</option>
+          <option value="EUR">EUR</option>
+          <option value="CNY">CNY</option>
+        </select>
+        <button id="ondoFcSwap" style="width:32px;height:32px;flex-shrink:0;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;">⇄</button>
+        <select id="ondoFcTo" style="flex:1;padding:6px 4px;border:1px solid #ddd;border-radius:8px;font-size:12px;">
+          <option value="USD" selected>USD</option>
+          <option value="KRW">KRW</option>
+          <option value="JPY">JPY</option>
+          <option value="EUR">EUR</option>
+          <option value="CNY">CNY</option>
+        </select>
+      </div>
+      <div style="background:#fff;border:1px solid #eee;border-radius:10px;padding:12px;text-align:center;">
+        <div id="ondoFcResult" style="font-size:20px;font-weight:700;color:#1f3c88;">계산 중...</div>
+        <div id="ondoFcRateInfo" style="font-size:11px;color:#999;margin-top:4px;"></div>
+      </div>
+    </div>
+
+    <div id="ondoPanelTrend" style="display:none;">
+      <div id="ondoFcChart" style="height:70px;display:flex;align-items:flex-end;gap:2px;margin-bottom:8px;"></div>
+      <div id="ondoFcTrendSummary" style="font-size:12px;color:#666;text-align:center;">불러오는 중...</div>
+    </div>
+
+    <div id="ondoPanelYoy" style="display:none;">
+      <div style="font-size:12px;color:#666;margin-bottom:6px;text-align:center;">1년 전 대비 (원/달러)</div>
+      <div id="ondoFcYoyResult" style="font-size:20px;font-weight:700;text-align:center;color:#1f3c88;">불러오는 중...</div>
+    </div>
+
+    <div id="ondoPanelSummary" style="display:none;">
+      <div id="ondoFcSummaryList" style="font-size:13px;color:#333;">불러오는 중...</div>
+    </div>
+
+    <div style="font-size:10px;color:#bbb;text-align:center;margin-top:10px;">데이터 제공: Frankfurter (ECB)</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var toggleEl = document.getElementById('ondoFcToggle');
+  var bodyEl = document.getElementById('ondoFcBody');
+  var arrowEl = document.getElementById('ondoFcArrow');
+  var isOpen = false;
+  var firstOpen = true;
+
+  toggleEl.addEventListener('click', function() {
+    isOpen = !isOpen;
+    bodyEl.style.display = isOpen ? 'block' : 'none';
+    arrowEl.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(-90deg)';
+    if (isOpen) {
+      if (firstOpen) {
+        firstOpen = false;
+        calc();
+      }
+    }
+  });
+
+  var tabs = document.querySelectorAll('.ondoFcTab');
+  var panels = {
+    calc: document.getElementById('ondoPanelCalc'),
+    trend: document.getElementById('ondoPanelTrend'),
+    yoy: document.getElementById('ondoPanelYoy'),
+    summary: document.getElementById('ondoPanelSummary')
+  };
+  var loadedTabs = { calc: true, trend: false, yoy: false, summary: false };
+
+  for (var t = 0; t < tabs.length; t++) {
+    tabs[t].addEventListener('click', function(e) {
+      var name = e.target.getAttribute('data-tab');
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].style.background = 'transparent';
+        tabs[i].style.color = '#888';
+      }
+      e.target.style.background = '#eaf0fb';
+      e.target.style.color = '#1f3c88';
+      for (var key in panels) {
+        panels[key].style.display = (key === name) ? 'block' : 'none';
+      }
+      if (!loadedTabs[name]) {
+        loadedTabs[name] = true;
+        if (name === 'trend') { loadTrend(); }
+        if (name === 'yoy') { loadYoy(); }
+        if (name === 'summary') { loadSummary(); }
+      }
+    });
+  }
+
+  var cache = {};
+  var CACHE_MS = 10 * 60 * 1000;
+
+  function fetchRate(from, to, cb) {
+    var key = from + '_' + to;
+    var now = Date.now();
+    if (cache[key]) {
+      if ((now - cache[key].time) < CACHE_MS) {
+        cb(cache[key].rate);
+        return;
+      }
+    }
+    fetch('https://api.frankfurter.dev/v1/latest?base=' + from + '&symbols=' + to)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var rate = data.rates ? data.rates[to] : null;
+        if (rate) {
+          cache[key] = { rate: rate, time: now };
+          cb(rate);
+        }
+      })
+      .catch(function() {});
+  }
+
+  function calc() {
+    var amountEl = document.getElementById('ondoFcAmount');
+    var fromEl = document.getElementById('ondoFcFrom');
+    var toEl = document.getElementById('ondoFcTo');
+    var resultEl = document.getElementById('ondoFcResult');
+    var rateInfoEl = document.getElementById('ondoFcRateInfo');
+
+    var amount = parseFloat(amountEl.value) || 0;
+    var from = fromEl.value;
+    var to = toEl.value;
+
+    if (from === to) {
+      resultEl.textContent = amount.toLocaleString() + ' ' + to;
+      rateInfoEl.textContent = '1 ' + from + ' = 1 ' + to;
+      return;
+    }
+
+    resultEl.textContent = '계산 중...';
+    fetchRate(from, to, function(rate) {
+      var result = amount * rate;
+      var formatted = (to === 'KRW' || to === 'JPY')
+        ? Math.round(result).toLocaleString()
+        : result.toLocaleString(undefined, { maximumFractionDigits: 2 });
+      resultEl.textContent = formatted + ' ' + to;
+      var rateFormatted = rate < 1 ? rate.toFixed(4) : rate.toLocaleString(undefined, { maximumFractionDigits: 2 });
+      rateInfoEl.textContent = '1 ' + from + ' = ' + rateFormatted + ' ' + to;
+    });
+  }
+
+  document.getElementById('ondoFcAmount').addEventListener('input', calc);
+  document.getElementById('ondoFcFrom').addEventListener('change', calc);
+  document.getElementById('ondoFcTo').addEventListener('change', calc);
+  document.getElementById('ondoFcSwap').addEventListener('click', function() {
+    var fromEl = document.getElementById('ondoFcFrom');
+    var toEl = document.getElementById('ondoFcTo');
+    var tmp = fromEl.value;
+    fromEl.value = toEl.value;
+    toEl.value = tmp;
+    calc();
+  });
+
+  function formatDate(d) {
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+
+  function loadTrend() {
+    var chartEl = document.getElementById('ondoFcChart');
+    var summaryEl = document.getElementById('ondoFcTrendSummary');
+    var end = new Date();
+    var start = new Date();
+    start.setDate(start.getDate() - 30);
+    var url = 'https://api.frankfurter.dev/v1/' + formatDate(start) + '..' + formatDate(end) + '?base=USD&symbols=KRW';
+
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var ratesByDate = data.rates || {};
+        var dates = Object.keys(ratesByDate).sort();
+        if (dates.length === 0) {
+          summaryEl.textContent = '데이터가 없습니다.';
+          return;
+        }
+        var values = [];
+        for (var i = 0; i < dates.length; i++) {
+          values.push(ratesByDate[dates[i]].KRW);
+        }
+        var min = Math.min.apply(null, values);
+        var max = Math.max.apply(null, values);
+        var range = max - min;
+        if (range === 0) { range = 1; }
+        var barsHtml = '';
+        for (var j = 0; j < values.length; j++) {
+          var heightPct = ((values[j] - min) / range) * 80 + 20;
+          barsHtml += '<div style="flex:1;background:#1f3c88;border-radius:2px 2px 0 0;height:' + heightPct + '%;"></div>';
+        }
+        chartEl.innerHTML = barsHtml;
+        var first = values[0];
+        var last = values[values.length - 1];
+        var diff = last - first;
+        var diffPct = (diff / first * 100).toFixed(2);
+        var arrow = diff >= 0 ? '▲' : '▼';
+        var color = diff >= 0 ? '#d64545' : '#1f6fd6';
+        summaryEl.innerHTML = Math.round(last).toLocaleString() + '원 <span style="color:' + color + ';">' + arrow + ' ' + Math.abs(diffPct) + '%</span> (30일 전 대비)';
+      })
+      .catch(function() {
+        summaryEl.textContent = '데이터를 불러오지 못했습니다.';
+      });
+  }
+
+  function loadYoy() {
+    var resultEl = document.getElementById('ondoFcYoyResult');
+    var today = new Date();
+    var yearAgo = new Date();
+    yearAgo.setFullYear(yearAgo.getFullYear() - 1);
+
+    fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=KRW')
+      .then(function(r) { return r.json(); })
+      .then(function(todayData) {
+        fetch('https://api.frankfurter.dev/v1/' + formatDate(yearAgo) + '?base=USD&symbols=KRW')
+          .then(function(r) { return r.json(); })
+          .then(function(pastData) {
+            var todayRate = todayData.rates.KRW;
+            var pastRate = pastData.rates.KRW;
+            var diff = todayRate - pastRate;
+            var diffPct = (diff / pastRate * 100).toFixed(2);
+            var arrow = diff >= 0 ? '▲' : '▼';
+            var color = diff >= 0 ? '#d64545' : '#1f6fd6';
+            resultEl.innerHTML = '<span style="color:' + color + ';">' + arrow + ' ' + Math.abs(diffPct) + '%</span>';
+            resultEl.innerHTML += '<div style="font-size:11px;color:#999;font-weight:400;margin-top:4px;">현재 ' + Math.round(todayRate).toLocaleString() + '원 · 작년 ' + Math.round(pastRate).toLocaleString() + '원</div>';
+          })
+          .catch(function() {
+            resultEl.textContent = '데이터를 불러오지 못했습니다.';
+          });
+      })
+      .catch(function() {
+        resultEl.textContent = '데이터를 불러오지 못했습니다.';
+      });
+  }
+
+  function loadSummary() {
+    var listEl = document.getElementById('ondoFcSummaryList');
+    fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=KRW,JPY,EUR,CNY')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var rates = data.rates || {};
+        var html = '';
+        if (rates.KRW) {
+          html += rowHtml('USD', Math.round(rates.KRW).toLocaleString() + '원');
+        }
+        if (rates.JPY) {
+        if (rates.KRW) {
+          var jpyKrw = Math.round((rates.KRW / rates.JPY) * 100);
+          html += rowHtml('JPY(100)', jpyKrw.toLocaleString() + '원');
+        }
+        }
+        if (rates.EUR) {
+        if (rates.KRW) {
+          var eurKrw = Math.round(rates.KRW / rates.EUR);
+          html += rowHtml('EUR', eurKrw.toLocaleString() + '원');
+        }
+        }
+        if (rates.CNY) {
+        if (rates.KRW) {
+          var cnyKrw = Math.round(rates.KRW / rates.CNY);
+          html += rowHtml('CNY', cnyKrw.toLocaleString() + '원');
+        }
+        }
+        listEl.innerHTML = html;
+      })
+      .catch(function() {
+        listEl.textContent = '데이터를 불러오지 못했습니다.';
+      });
+  }
+
+  function rowHtml(label, value) {
+    return '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f2f2f2;"><span style="color:#666;">' + label + '</span><span style="font-weight:700;color:#222;">' + value + '</span></div>';
+  }
+})();
+</script>
+<!-- /wp:html -->
+<!-- wp:html -->
+<div id="ondo-recent-posts" style="max-width:320px;background:#fcfcfc;border:1px solid #e0e0e0;border-radius:14px;padding:14px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;margin-top:12px;">
+  <div id="ondoRpToggle" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+    <div style="font-size:15px;font-weight:700;color:#222;">📰 최근 발행글</div>
+    <div id="ondoRpArrow" style="font-size:14px;color:#888;transition:transform 0.2s;transform:rotate(-90deg);">▼</div>
+  </div>
+
+  <div id="ondoRpBody" style="margin-top:12px;display:none;">
+    <div id="ondoRpList" style="font-size:13px;color:#666;">불러오는 중...</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var toggleEl = document.getElementById('ondoRpToggle');
+  var bodyEl = document.getElementById('ondoRpBody');
+  var arrowEl = document.getElementById('ondoRpArrow');
+  var listEl = document.getElementById('ondoRpList');
+
+  var isOpen = false;
+  var loaded = false;
+
+  toggleEl.addEventListener('click', function() {
+    isOpen = !isOpen;
+    bodyEl.style.display = isOpen ? 'block' : 'none';
+    arrowEl.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(-90deg)';
+    if (isOpen) {
+      if (!loaded) {
+        loadPosts();
+      }
+    }
+  });
+
+  function loadPosts() {
+    loaded = true;
+    var apiUrl = window.location.origin + '/wp-json/wp/v2/posts?per_page=5&_fields=title,link,date';
+
+    fetch(apiUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(posts) {
+        if (!posts || posts.length === 0) {
+          listEl.textContent = '발행된 글이 없습니다.';
+          return;
+        }
+        var html = '';
+        posts.forEach(function(post, i) {
+          var title = post.title ? (post.title.rendered ? post.title.rendered : '(제목 없음)') : '(제목 없음)';
+          var date = post.date ? post.date.slice(0, 10) : '';
+          var borderStyle = i === posts.length - 1 ? '' : 'border-bottom:1px solid #eee;';
+          html += '<a href="' + post.link + '" style="display:block;padding:8px 0;' + borderStyle + 'text-decoration:none;">' +
+                  '<div style="font-size:13px;color:#222;line-height:1.4;">' + title + '</div>' +
+                  '<div style="font-size:11px;color:#aaa;margin-top:2px;">' + date + '</div>' +
+                  '</a>';
+        });
+        listEl.innerHTML = html;
+      })
+      .catch(function() {
+        listEl.textContent = '목록을 불러오지 못했습니다.';
+      });
+  }
+})();
+</script>
+<!-- /wp:html -->
+<!-- wp:html -->
+<div id="ondo-glossary" style="max-width:320px;background:#fcfcfc;border:1px solid #e0e0e0;border-radius:14px;padding:14px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;box-sizing:border-box;margin-top:12px;">
+  <div id="ondoGlToggle" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+    <div style="font-size:15px;font-weight:700;color:#222;">📖 이 글의 용어사전</div>
+    <div id="ondoGlArrow" style="font-size:14px;color:#888;transition:transform 0.2s;transform:rotate(-90deg);">▼</div>
+  </div>
+
+  <div id="ondoGlBody" style="margin-top:12px;display:none;">
+    <div id="ondoGlList" style="font-size:13px;color:#666;">불러오는 중...</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var toggleEl = document.getElementById('ondoGlToggle');
+  var bodyEl = document.getElementById('ondoGlBody');
+  var arrowEl = document.getElementById('ondoGlArrow');
+  var listEl = document.getElementById('ondoGlList');
+
+  var isOpen = false;
+  var loaded = false;
+
+  toggleEl.addEventListener('click', function() {
+    isOpen = !isOpen;
+    bodyEl.style.display = isOpen ? 'block' : 'none';
+    arrowEl.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(-90deg)';
+    if (isOpen) {
+      if (!loaded) {
+        loadGlossary();
+      }
+    }
+  });
+
+  function loadGlossary() {
+    loaded = true;
+
+    var slug = window.location.pathname.split('/').filter(function(p) { return p; }).pop();
+    var apiUrl = window.location.origin + '/wp-json/wp/v2/posts?slug=' + slug + '&_fields=content';
+
+    fetch(apiUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(posts) {
+        if (!posts) {
+          listEl.textContent = '용어를 찾을 수 없습니다.';
+          return;
+        }
+        if (posts.length === 0) {
+          listEl.textContent = '용어를 찾을 수 없습니다.';
+          return;
+        }
+
+        var html = posts[0].content.rendered;
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(html, 'text/html');
+        var tips = doc.querySelectorAll('.finq-tip');
+
+        if (tips.length === 0) {
+          listEl.textContent = '이 글에는 용어 설명이 없습니다.';
+          return;
+        }
+
+        var seen = {};
+        var resultHtml = '';
+        for (var i = 0; i < tips.length; i++) {
+          var tipTextEl = tips[i].querySelector('.finq-tip-text');
+          var explanation = tipTextEl ? tipTextEl.textContent.trim() : '';
+          var termClone = tips[i].cloneNode(true);
+          var innerTip = termClone.querySelector('.finq-tip-text');
+          if (innerTip) {
+            innerTip.remove();
+          }
+          var term = termClone.textContent.trim();
+
+          if (seen[term]) {
+            continue;
+          }
+          seen[term] = true;
+
+          resultHtml += '<div style="padding:8px 0;border-bottom:1px solid #f2f2f2;">' +
+                        '<div style="font-weight:700;color:#1f3c88;font-size:13px;">' + term + '</div>' +
+                        '<div style="font-size:12px;color:#666;margin-top:2px;line-height:1.5;">' + explanation + '</div>' +
+                        '</div>';
+        }
+
+        if (resultHtml === '') {
+          listEl.textContent = '이 글에는 용어 설명이 없습니다.';
+        } else {
+          listEl.innerHTML = resultHtml;
+        }
+      })
+      .catch(function() {
+        listEl.textContent = '용어사전을 불러오지 못했습니다.';
+      });
+  }
+})();
+</script>
+<!-- /wp:html -->
+<!-- wp:html -->
+<!-- ===== ONDO 사이드바 투자 수익 계산기 (1회만 붙여넣기용, 접이식) =====
+사용법: 워드프레스 위젯 관리에서 사이드바에 "커스텀 HTML" 블록을 추가하고,
+이 코드 전체를 그대로 붙여넣으세요. 순수 HTML <details>/<summary> 태그로
+접었다 펼치는 걸 구현해서, 다른 위젯들(환율 정보 센터 등)처럼 처음엔 접혀
+있다가 클릭하면 펼쳐집니다 - <script> 없이도 항상 작동합니다(계산 버튼만
+JS 필요, 접고 펼치는 동작 자체는 순수 HTML).
+
+⚠️ 계산 버튼(입력값 계산)은 여전히 <script>/onclick이 필요합니다. 사이드바에서
+<script>가 막히는 요금제라면 접고 펼치는 건 되지만 "계산하기" 버튼은 안 눌릴 수
+있어요.
+-->
+
+<style>
+.ondo-calc-details { max-width: 100%; border: 1px solid #e3e6ea; border-radius: 10px; background: #ffffff; overflow: hidden; font-family: inherit; }
+.ondo-calc-details summary { list-style: none; cursor: pointer; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; font-weight: 700; color: #222; }
+.ondo-calc-details summary::-webkit-details-marker { display: none; }
+.ondo-calc-details summary::after { content: "▶"; font-size: 11px; color: #888; transition: transform 0.2s ease; }
+.ondo-calc-details[open] summary::after { transform: rotate(90deg); }
+.ondo-calc-details summary .ondo-calc-title-text { display:flex; align-items:center; gap:6px; }
+
+.ondo-calc-body { padding: 4px 16px 16px 16px; border-top: 1px solid #f0f1f3; }
+.ondo-calc-sub { font-size: 11.5px; color: #888; margin: 10px 0 14px 0; line-height:1.5; }
+.ondo-calc-field { margin-bottom: 10px; }
+.ondo-calc-label { display:block; font-size:11.5px; font-weight:700; color:#555; margin-bottom:4px; }
+.ondo-calc-input { width:100%; box-sizing:border-box; padding:9px 10px; border-radius:6px; border:1px solid #dcdfe4; background:#fff; color:#222; font-size:13px; }
+.ondo-calc-input:focus { outline:none; border-color:#1f3c88; }
+.ondo-calc-btn { width:100%; margin-top:6px; padding:10px; border:none; border-radius:6px; background:#1f3c88; color:#fff; font-weight:700; font-size:13px; cursor:pointer; }
+.ondo-calc-btn:hover { background:#16305f; }
+
+.ondo-calc-result { display:none; margin-top:14px; padding:16px; border-radius:8px; background:#eef3fb; text-align:center; }
+.ondo-calc-result-main { font-size: 20px; font-weight: 800; color: #1f3c88; }
+.ondo-calc-result-sub { font-size: 11.5px; color: #6b7685; margin-top: 4px; }
+.ondo-calc-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; margin-top:8px; border-top:1px solid #dde6f4; }
+.ondo-calc-row:first-of-type { border-top:none; }
+.ondo-calc-row span:first-child { color:#6b7685; }
+.ondo-calc-row span:last-child { font-weight:700; color:#333; }
+.ondo-calc-note { margin-top:10px; font-size:10.5px; color:#9aa2ad; line-height:1.5; }
+</style>
+
+<details class="ondo-calc-details">
+  <summary>
+    <span class="ondo-calc-title-text">🧮 ONDO 투자 수익 계산기</span>
+  </summary>
+  <div class="ondo-calc-body">
+    <p class="ondo-calc-sub">투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해드려요.</p>
+
+    <div class="ondo-calc-field">
+      <label class="ondo-calc-label">투자금액 (원)</label>
+      <input type="number" id="ondo_calc_investment" class="ondo-calc-input" value="10000000">
+    </div>
+    <div class="ondo-calc-field">
+      <label class="ondo-calc-label">연평균 예상 수익률 (%)</label>
+      <input type="number" id="ondo_calc_return" class="ondo-calc-input" value="8" step="0.1">
+    </div>
+    <div class="ondo-calc-field">
+      <label class="ondo-calc-label">투자 기간 (년)</label>
+      <input type="number" id="ondo_calc_years" class="ondo-calc-input" value="10">
+    </div>
+
+    <button class="ondo-calc-btn" onclick="ondoCalculateReturns()">계산하기</button>
+
+    <div id="ondo_calc_result" class="ondo-calc-result">
+      <div class="ondo-calc-result-main" id="ondo_calc_final"></div>
+      <div class="ondo-calc-result-sub">예상 최종 평가금액</div>
+      <div class="ondo-calc-row"><span>총 수익</span><span id="ondo_calc_profit"></span></div>
+      <div class="ondo-calc-row"><span>총 수익률</span><span id="ondo_calc_pct"></span></div>
+    </div>
+
+    <p class="ondo-calc-note">※ 세금·수수료·환율 변동은 반영되지 않은 단순 복리 계산이며, 투자 판단의 근거가 아닌 참고용입니다.</p>
+  </div>
+</details>
+
+<script>
+function ondoCalculateReturns() {
+  var investment = parseFloat(document.getElementById('ondo_calc_investment').value);
+  var annualReturn = parseFloat(document.getElementById('ondo_calc_return').value) / 100;
+  var years = parseInt(document.getElementById('ondo_calc_years').value, 10);
+
+  if (!(investment > 0) || annualReturn < 0 || !(years > 0)) {
+    alert('올바른 값을 입력해주세요.');
+    return;
+  }
+
+  var futureValue = investment * Math.pow(1 + annualReturn, years);
+  var totalReturn = futureValue - investment;
+  var totalReturnPct = ((futureValue / investment - 1) * 100);
+
+  document.getElementById('ondo_calc_final').textContent = Math.round(futureValue).toLocaleString() + '원';
+  document.getElementById('ondo_calc_profit').textContent = Math.round(totalReturn).toLocaleString() + '원';
+  document.getElementById('ondo_calc_pct').textContent = totalReturnPct.toFixed(1) + '%';
+  document.getElementById('ondo_calc_result').style.display = 'block';
+}
+</script>
+<!-- /wp:html --></div>
+<!-- /wp:group --></aside>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","theme":"bute","tagName":"footer"} /-->

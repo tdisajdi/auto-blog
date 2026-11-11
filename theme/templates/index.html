@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","theme":"bute","tagName":"header"} /-->
+<!-- wp:group {"className": "o-arch-head", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-arch-head"><!-- wp:group {"className": "o-wrap", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-wrap"><!-- wp:html -->
+<span class="o-px">LATEST</span>
+<!-- /wp:html -->
+<!-- wp:heading {"level":1} -->
+<h1 class="wp-block-heading">최신 글</h1>
+<!-- /wp:heading --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- wp:group {"className": "o-sec", "layout": {"type": "default"}, "tagName": "main"} -->
+<main class="wp-block-group o-sec"><!-- wp:group {"className": "o-wrap", "layout": {"type": "default"}} -->
+<div class="wp-block-group o-wrap"><!-- wp:query {"queryId": 2, "query": {"perPage": 12, "pages": 0, "offset": 0, "postType": "post", "order": "desc", "orderBy": "date", "inherit": true}, "className": "o-list"} -->
+<div class="wp-block-query o-list"><!-- wp:post-template -->
+<!-- wp:post-featured-image {"isLink":true} /-->
+<!-- wp:post-terms {"term":"category"} /-->
+<!-- wp:post-title {"isLink":true,"level":3} /-->
+<!-- wp:post-excerpt {"excerptLength":36} /-->
+<!-- wp:post-date /-->
+<!-- /wp:post-template -->
+<!-- wp:query-pagination -->
+<!-- wp:query-pagination-previous /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+<!-- wp:query-no-results -->
+<!-- wp:html -->
+<div class="o-empty"><span class="o-px">COMING SOON</span>아직 공개된 글이 없습니다. 곧 이 분야의 첫 글이 올라옵니다.</div>
+<!-- /wp:html -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group --></main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","theme":"bute","tagName":"footer"} /-->
