@@ -33,7 +33,11 @@ def css_block():
 def svg(ink=False):
     path = os.path.join(ROOT, "theme", "snippets", "thermo.svg")
     t = open(path, encoding="utf-8").read().strip()
-    return t.replace("<svg ", '<svg style="color:#18202c" ', 1) if ink else t
+    # 밝은 바탕용: 외곽선을 그림의 어두운 단계로(--t-lit/--t-shade), 유리 안쪽도 밝게
+    if ink:
+        t = t.replace("<svg ", '<svg style="--t-lit:#3a4a66;--t-shade:#18202c" ', 1)
+        t = t.replace("#22365e", "#e9eef7").replace("#34507f", "#ffffff").replace("#18284a", "#cfd8e8")
+    return t
 
 
 def fill(content):
