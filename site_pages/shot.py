@@ -12,7 +12,7 @@ sys.path.insert(0, ROOT)
 OUT = os.path.join(ROOT, "lab", "shots")
 SITE = "https://ondo99.com"
 PAGES = [("home", "/"), ("insights", "/insights/"), ("etf", "/etf/"), ("energy", "/energy/"),
-         ("society", "/society/"), ("category-etf", "/category/etf/"), ("404", "/no-such-page-ondo/")]
+         ("society", "/society/"), ("category-etf", "/category/etf/"), ("404", "/no-such-page-ondo/"), ("bio", "/bio/")]
 SIZES = [("desk", 1440, 900), ("mobile", 390, 844)]
 
 
