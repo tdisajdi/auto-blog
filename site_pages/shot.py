@@ -63,7 +63,7 @@ def main():
             page = ctx.new_page()
             for name, url in targets:
                 try:
-                    page.goto(url, wait_until="networkidle", timeout=45000)
+                    page.goto(url, wait_until=("domcontentloaded" if url.startswith("file:") else "networkidle"), timeout=45000)
                     page.wait_for_timeout(800)
                     path = os.path.join(OUT, f"{name}-{size}.png")
                     page.screenshot(path=path, full_page=True)
