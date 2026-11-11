@@ -1,0 +1,456 @@
+[
+ {
+  "url": "https://feelsogood90.tistory.com/198",
+  "kind": "blog",
+  "status": 200,
+  "ads_txt_google": [],
+  "html_pub": [
+   "pub-1217788291703574",
+   "pub-9527582522912841"
+  ],
+  "match": false,
+  "adsbygoogle_slots": 4,
+  "adfit": true,
+  "site_pages": [],
+  "post_count": 460,
+  "external_links": 1,
+  "features": {
+   "chars": 1411,
+   "n_headings": 11,
+   "tables": 6,
+   "images": 1,
+   "numbers": 5,
+   "faq": false,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 10,
+   "unfilled": 9
+  },
+  "verdict": "광고 코드만 있음(심사 중일 수 있음)"
+ },
+ {
+  "url": "https://mootk10.tistory.com/143",
+  "kind": "blog",
+  "status": 200,
+  "ads_txt_google": [],
+  "html_pub": [
+   "pub-4020480271119463",
+   "pub-9527582522912841"
+  ],
+  "match": false,
+  "adsbygoogle_slots": 1,
+  "adfit": true,
+  "site_pages": [],
+  "post_count": 232,
+  "external_links": 2,
+  "features": {
+   "chars": 3661,
+   "n_headings": 10,
+   "tables": 6,
+   "images": 8,
+   "numbers": 69,
+   "faq": false,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 2,
+   "unfilled": 1
+  },
+  "verdict": "광고 코드만 있음(심사 중일 수 있음)"
+ },
+ {
+  "url": "https://nowgnoy.tistory.com/9475",
+  "kind": "blog",
+  "status": 200,
+  "ads_txt_google": [],
+  "html_pub": [
+   "pub-6759763958857104",
+   "pub-9527582522912841"
+  ],
+  "match": false,
+  "adsbygoogle_slots": 1,
+  "adfit": true,
+  "site_pages": [],
+  "post_count": 7449,
+  "external_links": 1,
+  "features": {
+   "chars": 3362,
+   "n_headings": 1,
+   "tables": 1,
+   "images": 1,
+   "numbers": 5,
+   "faq": false,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 8,
+   "unfilled": 4
+  },
+  "verdict": "광고 코드만 있음(심사 중일 수 있음)"
+ },
+ {
+  "url": "https://bebeyam.com/%ec%9b%94%eb%b0%b0%eb%8b%b9-etf-tiger-%eb%af%b8%ea%b5%adsp500%eb%b0%b0%eb%8b%b9%ea%b7%80%ec%a1%b1-%eb%b0%b0%eb%8b%b9%ea%b8%88-%eb%b0%b0%eb%8b%b9%eb%a5%a0-%ec%84%b8%ea%b8%88-%ec%b4%9d%eb%b3%b4/",
+  "kind": "blog",
+  "status": 200,
+  "ads_txt_google": [
+   "pub-2906268619867137"
+  ],
+  "html_pub": [
+   "pub-2906268619867137"
+  ],
+  "match": true,
+  "adsbygoogle_slots": 6,
+  "adfit": false,
+  "site_pages": [],
+  "post_count": null,
+  "external_links": 4,
+  "features": {
+   "chars": 2084,
+   "n_headings": 7,
+   "tables": 1,
+   "images": 0,
+   "numbers": 21,
+   "faq": false,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 2,
+   "ins": 11,
+   "unfilled": 9
+  },
+  "verdict": "승인(구글 광고가 실제로 뜸)"
+ },
+ {
+  "url": "https://www.retirebeforedad.com/schd-vs-voo/",
+  "kind": "blog",
+  "status": 403,
+  "ads_txt_google": [
+   "pub-1601477034266482"
+  ],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [],
+  "post_count": null,
+  "external_links": 0,
+  "features": {
+   "chars": 0,
+   "n_headings": 0,
+   "tables": 0,
+   "images": 0,
+   "numbers": 0,
+   "faq": false,
+   "date": false,
+   "author": false
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 1,
+   "unfilled": 1
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://www.moneynestlab.com/dividend/guide/schd",
+  "kind": "data",
+  "status": 200,
+  "ads_txt_google": [
+   "pub-8066382466636269"
+  ],
+  "html_pub": [
+   "pub-8066382466636269"
+  ],
+  "match": true,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [
+   "개인정보처리방침",
+   "문의하기",
+   "서비스 소개",
+   "이용약관"
+  ],
+  "post_count": null,
+  "external_links": 2,
+  "features": {
+   "chars": 3732,
+   "n_headings": 26,
+   "tables": 0,
+   "images": 0,
+   "numbers": 62,
+   "faq": true,
+   "date": false,
+   "author": false
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 5,
+   "unfilled": 1
+  },
+  "verdict": "광고 코드·ads.txt 있음, 광고는 안 보임(승인 직후·차단·심사 중일 수 있음)"
+ },
+ {
+  "url": "https://bullstory.io/blog/tiger-sp-500-배당금-완전-정리-지급일배당률세금tr-비교-2026",
+  "kind": "data",
+  "status": 200,
+  "ads_txt_google": [],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [],
+  "post_count": null,
+  "external_links": 3,
+  "features": {
+   "chars": 12555,
+   "n_headings": 50,
+   "tables": 11,
+   "images": 11,
+   "numbers": 175,
+   "faq": true,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": false,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 0,
+   "unfilled": 0
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://etfshopping.com/etf/360750",
+  "kind": "data",
+  "status": 429,
+  "ads_txt_google": [
+   "pub-1060698073149187",
+   "pub-7635485024755960"
+  ],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [],
+  "post_count": null,
+  "external_links": 1,
+  "features": {
+   "chars": 61,
+   "n_headings": 0,
+   "tables": 0,
+   "images": 0,
+   "numbers": 0,
+   "faq": false,
+   "date": false,
+   "author": false
+  },
+  "render": {
+   "anchor": false,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 0,
+   "unfilled": 0
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://www.knowingasset.com/app/calculator/dividend/360750",
+  "kind": "data",
+  "status": 200,
+  "ads_txt_google": [
+   "pub-8321461172380186"
+  ],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [
+   "개인정보 처리방침",
+   "이용약관"
+  ],
+  "post_count": null,
+  "external_links": 2,
+  "features": {
+   "chars": 371,
+   "n_headings": 0,
+   "tables": 0,
+   "images": 0,
+   "numbers": 0,
+   "faq": false,
+   "date": false,
+   "author": true
+  },
+  "render": {
+   "anchor": false,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 0,
+   "unfilled": 0
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://www.xn--vj4b13a.com/oil/outlook/",
+  "kind": "data",
+  "status": 200,
+  "ads_txt_google": [
+   "pub-2601867143688224"
+  ],
+  "html_pub": [
+   "pub-2601867143688224"
+  ],
+  "match": true,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [
+   "개인정보처리방침",
+   "면책 안내",
+   "문의",
+   "사이트 소개",
+   "이용약관"
+  ],
+  "post_count": null,
+  "external_links": 11,
+  "features": {
+   "chars": 6920,
+   "n_headings": 25,
+   "tables": 7,
+   "images": 0,
+   "numbers": 170,
+   "faq": true,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 1,
+   "unfilled": 1
+  },
+  "verdict": "광고 코드·ads.txt 있음, 광고는 안 보임(승인 직후·차단·심사 중일 수 있음)"
+ },
+ {
+  "url": "https://tilnote.io/pages/698fd295c2c92b0e47f2ed35",
+  "kind": "platform",
+  "status": 200,
+  "ads_txt_google": [
+   "pub-7842958243910064"
+  ],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [
+   "개인정보처리방침",
+   "이용약관"
+  ],
+  "post_count": null,
+  "external_links": 23,
+  "features": {
+   "chars": 17175,
+   "n_headings": 7,
+   "tables": 3,
+   "images": 5,
+   "numbers": 111,
+   "faq": false,
+   "date": true,
+   "author": true
+  },
+  "render": {
+   "anchor": true,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 13,
+   "unfilled": 12
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://wikidocs.net/blog/@knarchive/15475/",
+  "kind": "platform",
+  "status": 403,
+  "ads_txt_google": [
+   "pub-9470517771012578"
+  ],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [],
+  "post_count": null,
+  "external_links": 0,
+  "features": {
+   "chars": 0,
+   "n_headings": 0,
+   "tables": 0,
+   "images": 0,
+   "numbers": 0,
+   "faq": false,
+   "date": false,
+   "author": false
+  },
+  "render": {
+   "anchor": false,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 0,
+   "unfilled": 0
+  },
+  "verdict": "광고 없음"
+ },
+ {
+  "url": "https://ondo99.com/",
+  "kind": "ours",
+  "status": 200,
+  "ads_txt_google": [],
+  "html_pub": [],
+  "match": false,
+  "adsbygoogle_slots": 0,
+  "adfit": false,
+  "site_pages": [
+   "About"
+  ],
+  "post_count": null,
+  "external_links": 3,
+  "features": {
+   "chars": 145,
+   "n_headings": 0,
+   "tables": 0,
+   "images": 1,
+   "numbers": 0,
+   "faq": false,
+   "date": false,
+   "author": true
+  },
+  "render": {
+   "anchor": false,
+   "filled": 0,
+   "iframes": 0,
+   "ins": 0,
+   "unfilled": 0
+  },
+  "verdict": "광고 없음"
+ }
+]
