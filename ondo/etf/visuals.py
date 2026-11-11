@@ -118,7 +118,7 @@ def _add_competitive_comparison(etf_data_cache):
 def _add_risk_scenarios(etf_data_cache, principal=100_000_000):
     """실제 MDD(최대 낙폭) 기반 위험 시나리오 분석"""
     html = '<h3 style="margin-top:30px;">⚠️ 위기 시나리오: 최악의 경우 내 계좌는?</h3>'
-    html += '<p style="color:#555;">각 ETF의 과거 실제 최대 낙폭(MDD)을 기준으로, 1억 원 투자 시 감내해야 할 최악의 손실 규모입니다.</p>'
+    html += '<p style="color:#555;">각 ETF의 과거 실제 최대 낙폭(MDD)을 기준으로, 1억 원에 적용한 손실 규모입니다.</p>'
 
     # [수정] 이전에는 <table width:100%>인데 각 셀에 폭 지정이 없어서, ETF가
     # 1~2개뿐일 때 브라우저가 셀 내용물 크기에 맞춰 열을 비정상적으로 좁게
@@ -210,7 +210,7 @@ def _add_risk_scenarios(etf_data_cache, principal=100_000_000):
 
     html += """
 <p style="font-size:11px;color:#555;margin-top:10px;line-height:1.5;">
-<strong>💡 시사점:</strong> 단순한 시장 하락 가정이 아닌, 해당 ETF가 역사적으로 겪었던 <b>실제 가장 깊은 하락폭(MDD)</b>을 적용한 팩트 데이터입니다. 투자 전 반드시 위 표의 최대 손실 금액을 감내할 수 있는지 점검하시기 바랍니다.
+※ 가정이 아니라 해당 ETF의 최근 5년 실제 최대 낙폭(MDD)을 1억 원에 적용한 값입니다. 과거 낙폭이 앞으로의 최대 손실을 뜻하지는 않습니다.
 </p>
 """
     if ticker_count < 3:
