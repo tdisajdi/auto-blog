@@ -233,20 +233,14 @@ def _add_sector_deep_analysis(etf_data_cache, macro_data):
     real_industry = primary_etf.get('industry', '종합 / 판단 불가')
     
     usd_krw = float(str(macro_data.get('usd_krw', '1300원')).replace('원', '').replace(',', ''))
-    us_10y = float(str(macro_data.get('us_10y', '4.0%')).replace('%', ''))
     
-    future_outlook = "긍정적" if (usd_krw < 1250 and us_10y < 3.8) else "보수적 접근 필요" if (usd_krw > 1380 or us_10y > 4.5) else "중립적"
-    future_color = "#c0392b" if future_outlook == "긍정적" else "#2166ac" if future_outlook == "보수적 접근 필요" else "#ffc107"
-    
+    # 11-11: '거시경제 연계 대응 전략 - 전망: 긍정적/보수적 접근 필요'는 환율·금리로 만든 전망(투자 판단)이고, '국채 금리는 밸류에이션에
+    # 영향' 같은 일반론을 작가가 따라 씀(재개 시험 ② VOO) → 사실만: 투자 영역 + 환노출 여부. 10년물 금리는 금리 글에만(11-10).
     html += f'''
-<p style="color:#555;">{ticker} ETF의 투자 영역(<strong>{real_sector} / {real_industry}</strong>)과 거시경제 분석입니다.</p>
+<p style="color:#555;">{ticker} ETF의 투자 영역: <strong>{real_sector} / {real_industry}</strong></p>
 <div style="margin:20px 0;padding:15px;border:1px solid #e9ecef;border-radius:8px;background:#f8f9fa;">
-<h4 style="margin:0 0 10px 0;color:#333;">🌍 거시경제 연계 대응 전략</h4>
-<p style="margin:0 0 10px 0;font-size:13px;">현재 환율(<strong>{usd_krw:,.0f}원</strong>)과 금리(<strong>{us_10y:.2f}%</strong>) 기준 전망: <span style="color:{future_color};font-weight:bold;">{future_outlook}</span></p>
-<ul style="margin:0;padding-left:20px;font-size:12px;line-height:1.6;">
-<li><strong>환율 영향:</strong> 현재 환율은 환노출(UH) 수익률에 직접적 영향을 미칩니다.</li>
-<li><strong>금리 영향:</strong> 국채 금리 {us_10y:.2f}% 수준은 주식 시장의 밸류에이션에 영향을 줍니다.</li>
-</ul>
+<h4 style="margin:0 0 10px 0;color:#333;">🌍 환율 노출</h4>
+<p style="margin:0;font-size:13px;">현재 원/달러 환율 <strong>{usd_krw:,.0f}원</strong>. 달러로 거래되는 해외 상장 ETF(환노출)는 환율 변화가 원화로 본 수익률에 그대로 반영됩니다.</p>
 </div>
 '''
 
