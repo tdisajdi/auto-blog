@@ -7,7 +7,7 @@
 :root {
   --o-ink: #18202c;
   --o-ink-2: #4a5568;
-  --o-ink-3: #7b8494;
+  --o-ink-3: #5c6575;
   --o-paper: #f7f4ec;
   --o-card: #fffdf7;
   --o-line: #e3dccb;
@@ -138,7 +138,7 @@ body.admin-bar .o-head { top: 32px; }
 .o-list .wp-block-post-excerpt__more-text { display: none; }
 .o-list .wp-block-post-date { padding: 0 18px; margin-top: auto !important; padding-top: 10px; font-size: 13px; color: var(--o-ink-3); }
 .o-empty { border: 2px dashed var(--o-line); padding: 32px; text-align: center; color: var(--o-ink-2); background: var(--o-card); }
-.o-empty .o-px { color: var(--o-warm); font-size: 14px; display: block; margin-bottom: 8px; }
+.o-empty .o-px { color: #b4471a; font-size: 14px; display: block; margin-bottom: 8px; }
 .wp-block-query-pagination { margin-top: 32px !important; font-family: var(--o-px); }
 @media (max-width: 960px) { .o-list .wp-block-post-template, ul.o-list { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .o-list .wp-block-post-template, ul.o-list { grid-template-columns: 1fr; } }
