@@ -14,10 +14,20 @@ def main(page_id="1"):
     url = f"https://public-api.wordpress.com/wp/v2/sites/{be.WP_SITE_ID}/pages/{page_id}/revisions"
     r = requests.get(url, headers=h, params={"per_page": 50, "context": "edit"}, timeout=30)
     print("이전 판 목록:", r.status_code)
-    if r.status_code != 200:
-        print(r.text[:300])
-        return 1
-    revs = sorted(r.json(), key=lambda x: x.get("date_gmt", ""))
+    if r.status_code == 200:
+        revs = sorted(r.json(), key=lambda x: x.get("date_gmt", ""))
+    else:
+        # 11-11: wp/v2는 'global' 권한이 필요(토큰은 posts만) → 글 API(v1.1)의 판 비교(diffs)로 다시 시도
+        print(r.text[:200])
+        r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/post/{page_id}/diffs", headers=h, timeout=30)
+        print("판 비교(v1.1):", r.status_code)
+        if r.status_code != 200:
+            print(r.text[:300])
+            return 1
+        raw = (r.json() or {}).get("revisions") or {}
+        revs = sorted(({"id": k, "date_gmt": (v.get("post_date_gmt") or "").replace(" ", "T"),
+                        "title": {"raw": v.get("post_title")}, "content": {"raw": v.get("post_content")}}
+                       for k, v in raw.items()), key=lambda x: x["date_gmt"])
     for x in revs:
         t = (x.get("title") or {}).get("raw") or (x.get("title") or {}).get("rendered")
         print(" -", x.get("id"), x.get("date_gmt"), str(t)[:40], len(((x.get("content") or {}).get("raw") or (x.get("content") or {}).get("rendered") or "")))
