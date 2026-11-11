@@ -29,3 +29,16 @@ n = len(calls); ok, msg = up.upsert_page(pages["about-ondo"], "draft", SP(True))
 assert not ok and "건드리지 않음" in msg and not any(c[0] == "post" for c in calls[n:]), (msg, calls[n:])
 assert up.main("public") == 1
 print("site pages ok")
+# 11-11: 온도판 시제품 - 1년 범위 위치 계산, 사실 묘사, 카드·계산 방법 들어감, 권유 말 없음
+import pandas as pd
+from ondo import board
+idx = pd.bdate_range("2025-11-10", periods=250)
+st = board.card_stats(pd.Series([100.0 + i * 0.2 for i in range(249)] + [160.0], index=idx))
+assert st["pos"] == 100 and st["lo"] == 100.0 and abs(st["w1"] - (160 / 148.8 - 1) * 100) < 1e-6 and board.band(st["pos"]) == "지난 1년 중 아주 높은 편", st
+st2 = board.card_stats(pd.Series([100.0] * 125 + [200.0] * 124 + [150.0], index=idx))
+assert st2["pos"] == 50 and board.band(50) == "지난 1년 중간쯤"
+assert board.card_stats(pd.Series([1.0] * 10)) is None
+pg = board.render([(board.ITEMS[0], st)], "2026-11-11")
+assert "100°" in pg and "계산 방법" in pg and "1년 최저" in pg and "/disclaimer" in pg
+assert not any(w in pg for w in ("매수", "매도", "추천", "사세요", "적기")), pg
+print("board ok")
