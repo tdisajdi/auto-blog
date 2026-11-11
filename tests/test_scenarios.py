@@ -32,6 +32,7 @@ def test_scenario(scenario, tmp_path):
     for f in ROOT.glob("*.py"):
         shutil.copy(f, work / f.name)
     shutil.copytree(ROOT / "ondo", work / "ondo", ignore=shutil.ignore_patterns("__pycache__"))
+    shutil.copytree(ROOT / "site_pages", work / "site_pages", ignore=shutil.ignore_patterns("__pycache__"))   # 11-11 기본 페이지
     env = {k: v for k, v in os.environ.items() if k not in BLOCKED}
     env.update(FAKE_ENV)
     env["MPLCONFIGDIR"] = str(tmp_path / "mpl")
