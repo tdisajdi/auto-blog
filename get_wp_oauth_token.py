@@ -17,7 +17,7 @@ WordPress.com OAuth2 access token 발급 도우미 (딱 한 번만 실행하면 
 실행:
   python get_wp_oauth_token.py
 """
-import requests
+import os
 import urllib.parse
 
 TOKEN_URL = "https://public-api.wordpress.com/oauth2/token"
@@ -61,6 +61,7 @@ def main():
         print("❌ code를 추출하지 못했습니다. URL 전체를 다시 붙여넣어보세요.")
         return
 
+    import requests  # 없으면 _run이 설치 안내를 보여 줌
     resp = requests.post(TOKEN_URL, data={
         "client_id": client_id,
         "client_secret": client_secret,
@@ -91,9 +92,25 @@ def main():
     print(f"WP_OAUTH_TOKEN={access_token}")
     print(f"WP_SITE_ID={blog_id}")
     print("=" * 60)
+    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wp_token_result.txt")
+    with open(out, "w", encoding="utf-8") as f:
+        f.write(f"WP_OAUTH_TOKEN={access_token}\nWP_SITE_ID={blog_id}\n")
+    print(f"\n(같은 내용을 {out} 에도 저장했습니다 - .env에 옮긴 뒤 이 파일은 지우세요)")
     print("\n참고: 기존 .env의 WP_USERNAME / WP_APP_PASSWORD 줄은 이제 필요 없으니 지워도 됩니다.")
     print("      WP_SITE_URL은 RSS 수집/URL 추정용으로 계속 필요하니 그대로 두세요.")
 
 
+def _run():
+    # 더블클릭으로 실행하면 끝나자마자 창이 닫혀 결과(토큰·오류)를 못 본다(2026-11-11 실제). 끝에서 멈추고,
+    # 결과는 같은 폴더의 wp_token_result.txt에도 남긴다.
+    try:
+        main()
+    except Exception as e:  # requests 미설치·네트워크 오류 등도 화면에 남김
+        print(f"\n❌ 오류: {type(e).__name__}: {e}")
+        if isinstance(e, ModuleNotFoundError):
+            print("   → 명령 창에서 'pip install requests' 실행 후 다시 시도하세요.")
+    input("\n창을 닫으려면 Enter를 누르세요...")
+
+
 if __name__ == "__main__":
-    main()
+    _run()

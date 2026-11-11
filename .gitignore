@@ -18,3 +18,4 @@ trend_cache.json
 
 # 로컬에서 시험 파일을 저장소 폴더에서 직접 돌렸을 때 생기는 가짜 사용량 기록(2026-11-06 실수로 커밋됨)
 default_api_usage_log.json
+wp_token_result.txt
