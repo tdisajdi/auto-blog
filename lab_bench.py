@@ -8,6 +8,7 @@
   python lab_bench.py exam --check         시험지(lab/exam.json) 점검
   python lab_bench.py exam --run           시험지를 실제 검토 담당에게 풀림(AI 호출 - 깃허브 실행 lab_exam으로)
   python lab_bench.py exam --report        지금까지 푼 시험지 결과 모아 보기
+  python lab_bench.py adsense              애드센스 승인 확인(lab/adsense_targets.json, 깃허브 lab_adsense로만 - 외부 접속 필요)
   python lab_bench.py compete [--fetch]    경쟁 글 비교(lab/compete.json의 검색 상위 글과 구조 비교. --fetch는 깃허브 lab_compete로)
 
 시험지 원칙(사용자와 정함 2026-11-08): 한 번 만든 자로만 재면 글이 자에 맞춰질 뿐이다 → 시험지도 계속 고친다. 단
@@ -747,6 +748,129 @@ def compete_report(conf, result):
     return "\n".join(lines)
 
 
+# ───────────────────────── ⑤ 애드센스 승인 블로그 확인 ─────────────────────────
+# 사용자 요청(2026-11-11): 승인받은 금융 블로그인지 판단하고 공통점을 본다. 광고 코드는 심사 중에도 넣으므로 코드만으로는 모름 →
+# ① ads.txt 구글 줄 ② 페이지 속 ca-pub 코드 ③ 크롬으로 열어 광고 칸이 실제로 채워졌는지(가장 확실) 세 단계로 판정.
+# 본문은 저장하지 않고 구조만 잰다(page_features). 깃허브 실행(lab_adsense)에서만 - 이 작업 환경은 외부 접속이 막힘.
+ADSENSE_FILE = os.path.join("lab", "adsense_targets.json")
+_SITE_PAGES = re.compile(r"소개|about|개인정보|privacy|문의|contact|면책|disclaimer|이용약관|terms", re.I)
+
+
+def _origin(url):
+    m = re.match(r"(https?://[^/]+)", url)
+    return m.group(1) if m else url
+
+
+def adsense_static(url, html, ads_txt):
+    """내려받은 글자만으로 판정할 수 있는 것."""
+    pubs_txt = sorted(set(re.findall(r"google\.com\s*,\s*(pub-\d+)\s*,\s*DIRECT", ads_txt or "", re.I)))
+    pubs_html = sorted(set(re.findall(r"ca-(pub-\d+)", html or "")))
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html or "", "html.parser")
+    links = [re.sub(r"\s+", " ", a.get_text(" ")).strip()[:20] for a in soup.find_all("a")]
+    site_pages = sorted(set(l for l in links if l and _SITE_PAGES.search(l)))[:10]
+    posts = re.findall(r"(?:분류 전체보기|전체 글|전체보기)\s*\(?\s*([\d,]+)\s*\)?", soup.get_text(" "))
+    f = page_features(html)
+    f.pop("_text", None)
+    return {"ads_txt_google": pubs_txt, "html_pub": pubs_html, "match": bool(set(pubs_txt) & set(pubs_html)),
+            "adsbygoogle_slots": len(re.findall(r'class="adsbygoogle', html or "")),
+            "adfit": bool(re.search(r"kakao_ad_area|adfit|t1\.daumcdn\.net/kas", html or "")),
+            "site_pages": site_pages, "post_count": int(posts[0].replace(",", "")) if posts else None,
+            "external_links": len([a for a in soup.find_all("a", href=True) if a["href"].startswith("http") and _origin(a["href"]) != _origin(url)]),
+            "features": {k: f[k] for k in ("chars", "n_headings", "tables", "images", "numbers", "faq", "date", "author")}}
+
+
+def adsense_render(driver, url, wait=8):
+    """크롬으로 열고 광고 칸이 채워졌는지 센다. filled: data-ad-status=filled 또는 높이 50px 넘는 구글 광고 iframe."""
+    import time
+    driver.get(url)
+    for y in (800, 1600, 2400, 3200):
+        driver.execute_script(f"window.scrollTo(0, {y});")
+        time.sleep(wait / 4)
+    js = """
+    const ins=[...document.querySelectorAll('ins.adsbygoogle')];
+    const filled=ins.filter(e=>e.getAttribute('data-ad-status')==='filled').length;
+    const unfilled=ins.filter(e=>e.getAttribute('data-ad-status')==='unfilled').length;
+    const ifr=[...document.querySelectorAll('iframe')].filter(f=>/googlesyndication|doubleclick|aswift_|google_ads_iframe/.test((f.src||'')+' '+(f.id||'')) && f.getBoundingClientRect().height>50).length;
+    const anchor=!!document.querySelector('ins.adsbygoogle-noablate, [id^="aswift"][style*="fixed"]');
+    return {ins:ins.length, filled:filled, unfilled:unfilled, iframes:ifr, anchor:anchor};"""
+    return driver.execute_script(js)
+
+
+def adsense_verdict(st, rd):
+    if rd and (rd.get("filled") or rd.get("iframes")):
+        return "승인(구글 광고가 실제로 뜸)"
+    if st["ads_txt_google"] and st["html_pub"]:
+        return "광고 코드·ads.txt 있음, 광고는 안 보임(승인 직후·차단·심사 중일 수 있음)"
+    if st["adfit"] and not st["html_pub"]:
+        return "카카오 애드핏만(애드센스 아님)"
+    if st["html_pub"]:
+        return "광고 코드만 있음(심사 중일 수 있음)"
+    return "광고 없음"
+
+
+def fetch_adsense(conf):
+    import requests
+    out = []
+    driver = None
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.chrome.service import Service
+        from webdriver_manager.chrome import ChromeDriverManager
+        o = Options()
+        for a in ("--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--window-size=1366,2000", f"--user-agent={_UA['User-Agent']}"):
+            o.add_argument(a)
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=o)
+        driver.set_page_load_timeout(30)
+    except Exception as e:
+        print(f"ℹ️ 크롬 못 띄움 - 글자 판정만: {type(e).__name__}")
+    for t in conf.get("sites", []):
+        u = t["url"]
+        row = {"url": u, "kind": t.get("kind")}
+        try:
+            r = requests.get(u, headers=_UA, timeout=(8, 20))
+            r.encoding = r.encoding if r.encoding and r.encoding.lower() != "iso-8859-1" else r.apparent_encoding
+            try:
+                a = requests.get(_origin(u) + "/ads.txt", headers=_UA, timeout=(8, 15))
+                ads_txt = a.text if a.ok else ""
+            except Exception:
+                ads_txt = ""
+            row["status"] = r.status_code
+            row.update(adsense_static(u, r.text, ads_txt))
+            rd = None
+            if driver:
+                try:
+                    rd = adsense_render(driver, u)
+                except Exception as e:
+                    rd = {"error": type(e).__name__}
+            row["render"] = rd
+            row["verdict"] = adsense_verdict(row, rd if rd and "error" not in rd else None)
+        except Exception as e:
+            row["status"] = type(e).__name__
+            row["verdict"] = "확인 못 함"
+        print(f"- {u[:70]} → {row['verdict']}")
+        out.append(row)
+    if driver:
+        driver.quit()
+    return out
+
+
+def adsense_report(rows):
+    lines = ["[애드센스 확인] 승인 판정과 구조(본문 저장 안 함)"]
+    for r in rows:
+        f = r.get("features") or {}
+        lines.append(f"- [{r.get('kind')}] {r['url'][:60]} → {r.get('verdict')} | 글 {f.get('chars')}자·소제목 {f.get('n_headings')}·표 {f.get('tables')}·그림 {f.get('images')}"
+                     f"·숫자 {f.get('numbers')}·날짜 {f.get('date')}·저자 {f.get('author')}·외부 링크 {r.get('external_links')}·글 수 {r.get('post_count')}"
+                     f"·기본 페이지 {r.get('site_pages')}")
+    ok = [r for r in rows if str(r.get("verdict", "")).startswith("승인")]
+    if ok:
+        med = lambda k: _median([(r.get("features") or {}).get(k) for r in ok])
+        lines.append(f"승인 {len(ok)}곳 가운데값: 글 {med('chars')}자, 소제목 {med('n_headings')}, 표 {med('tables')}, 그림 {med('images')}, 숫자 {med('numbers')}, "
+                     f"기본 페이지 링크 있는 곳 {sum(1 for r in ok if r.get('site_pages'))}/{len(ok)}")
+    return "\n".join(lines)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -765,6 +889,7 @@ def main(argv=None):
     nz.add_argument("--repeats", type=int, default=3)
     c = sub.add_parser("compete")
     c.add_argument("--fetch", action="store_true")
+    sub.add_parser("adsense")
     a = p.parse_args(argv)
     if a.cmd == "replay":
         print(replay(load_logs(since=a.since), lint, load_lint(a.vs) if a.vs else None))
@@ -788,6 +913,14 @@ def main(argv=None):
                 return 1
             res = json.load(open(runs[-1], encoding="utf-8"))
         print(compete_report(conf, res))
+    elif a.cmd == "adsense":
+        rows = fetch_adsense(json.load(open(ADSENSE_FILE, encoding="utf-8")))
+        from ondo.config import kst_now
+        os.makedirs(RESULT_DIR, exist_ok=True)
+        path = os.path.join(RESULT_DIR, f"adsense-{kst_now():%Y%m%d-%H%M}.json")
+        json.dump(rows, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(adsense_report(rows))
+        print("저장:", path)
     else:
         return exam_main(a)
     return 0

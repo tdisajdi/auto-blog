@@ -136,3 +136,14 @@ ns = lb.noise_summary(nres)
 assert "0.53 / 0.88 / 0.53" in ns and "매번 나오지 않은 것 1개" in ns and "점수 흔들림 평균 0.35" in ns and "1/2" in ns, ns
 assert "측정 못 함" in lb.noise_summary(lb.run_noise(items[:1], lambda h, f, c: (None, []), repeats=2))
 print("noise ok")
+# 11-11: 애드센스 확인 - 글자 판정(ads.txt 구글 줄·ca-pub·애드핏·기본 페이지)과 판정 단계
+_html = ('<html><body><script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-123"></script>'
+         '<article><h2>배당</h2><p>' + '배당률 3.2% 증가 ' * 80 + '</p><ins class="adsbygoogle" data-ad-client="ca-pub-123"></ins></article>'
+         '<a href="/about">블로그 소개</a><a href="/privacy">개인정보처리방침</a><a href="https://news.x/a">기사</a></body></html>')
+_st = lb.adsense_static("https://b.example/1", _html, "google.com, pub-123, DIRECT, f08c47fec0942fa0")
+assert _st["ads_txt_google"] == ["pub-123"] and _st["match"] and _st["adsbygoogle_slots"] == 1 and "블로그 소개" in _st["site_pages"], _st
+assert lb.adsense_verdict(_st, {"filled": 1, "iframes": 0}).startswith("승인")
+assert lb.adsense_verdict(_st, {"filled": 0, "iframes": 0}).startswith("광고 코드·ads.txt")
+_st2 = lb.adsense_static("https://c.example/1", '<div class="kakao_ad_area"></div>', "")
+assert lb.adsense_verdict(_st2, None).startswith("카카오") and lb.adsense_verdict(lb.adsense_static("u", "<p>x</p>", ""), None) == "광고 없음"
+print("adsense check ok")
