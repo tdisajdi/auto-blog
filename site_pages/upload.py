@@ -34,6 +34,9 @@ def upsert_page(page, status, session=None):
     r = s.get(base + "slug:" + page["slug"], headers=h, params={"fields": "ID,status,URL,type"}, timeout=20)
     data = {"title": page["title"], "content": page["html"], "type": "page", "status": status, "slug": page["slug"],
             "comment_status": "closed"}
+    if r.status_code == 200 and (r.json() or {}).get("type") == "page" and (r.json() or {}).get("status") == "publish":
+        # 2026-11-11 사고: 기존 공개 'About'(번호 1)을 초안으로 덮고 비공개로 바꿈 → 이미 공개된 페이지는 절대 건드리지 않는다
+        return False, f"{page['slug']}: 같은 주소의 공개 페이지가 이미 있어 건드리지 않음({r.json().get('URL')}) - 사용자에게 물을 것"
     if r.status_code == 200 and (r.json() or {}).get("type") == "page":
         pid = r.json()["ID"]
         r2 = s.post(base + str(pid), headers=h, data=data, timeout=60)

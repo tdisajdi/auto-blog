@@ -22,5 +22,10 @@ ok, msg = up.upsert_page(pages["about"], "draft", S(False))
 assert ok and calls[-1][1].endswith("/posts/new/") and calls[-1][2]["type"] == "page" and calls[-1][2]["status"] == "draft", calls[-1]
 ok, msg = up.upsert_page(pages["about"], "draft", S(True))
 assert ok and calls[-1][1].endswith("/posts/7") and "바꿈" in msg, (calls[-1], msg)
+# 11-11 사고 재발 방지: 같은 주소의 '공개' 페이지는 건드리지 않음
+class SP(S):
+    def get(s, url, **k): calls.append(("get", url)); return R(200, {"ID": 1, "type": "page", "status": "publish", "URL": "u"})
+n = len(calls); ok, msg = up.upsert_page(pages["about"], "draft", SP(True))
+assert not ok and "건드리지 않음" in msg and not any(c[0] == "post" for c in calls[n:]), (msg, calls[n:])
 assert up.main("public") == 1
 print("site pages ok")
