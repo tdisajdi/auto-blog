@@ -82,6 +82,10 @@ on:
         required: false
         type: boolean
         default: false
+      site_pages:
+        description: '사이트 기본 페이지(소개·개인정보처리방침·문의·면책 안내) 올리기 - draft(비공개 초안) 또는 publish(공개: 사용자가 초안 확인 후에만)'
+        required: false
+        default: ''
       lab_adsense:
         description: '애드센스 승인 확인 - lab/adsense_targets.json의 블로그가 승인받았는지(광고 실제 표시)와 구조를 잼 (발행 안 함, AI 호출 없음)'
         required: false
@@ -472,6 +476,10 @@ jobs:
           fi
           if [ "${{ github.event.inputs.lab_compete }}" = "true" ]; then
             python lab_bench.py compete --fetch || echo "경쟁 글 비교 실패"
+            exit 0
+          fi
+          if [ -n "${{ github.event.inputs.site_pages }}" ]; then
+            python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || echo "기본 페이지 올리기 실패"
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_adsense }}" = "true" ]; then
