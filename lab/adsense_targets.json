@@ -1,0 +1,18 @@
+{
+ "about": "애드센스 승인 여부 확인 대상(2026-11-11, 웹 검색으로 고름). kind: blog(개인 블로그) / data(정보·계산기 사이트) / platform(글쓰기 플랫폼) / ours(우리 사이트, 비교 기준). 본문은 저장하지 않고 구조만 잰다.",
+ "sites": [
+  {"url": "https://feelsogood90.tistory.com/198", "kind": "blog"},
+  {"url": "https://mootk10.tistory.com/143", "kind": "blog"},
+  {"url": "https://nowgnoy.tistory.com/9475", "kind": "blog"},
+  {"url": "https://bebeyam.com/%ec%9b%94%eb%b0%b0%eb%8b%b9-etf-tiger-%eb%af%b8%ea%b5%adsp500%eb%b0%b0%eb%8b%b9%ea%b7%80%ec%a1%b1-%eb%b0%b0%eb%8b%b9%ea%b8%88-%eb%b0%b0%eb%8b%b9%eb%a5%a0-%ec%84%b8%ea%b8%88-%ec%b4%9d%eb%b3%b4/", "kind": "blog"},
+  {"url": "https://www.retirebeforedad.com/schd-vs-voo/", "kind": "blog"},
+  {"url": "https://www.moneynestlab.com/dividend/guide/schd", "kind": "data"},
+  {"url": "https://bullstory.io/blog/tiger-sp-500-배당금-완전-정리-지급일배당률세금tr-비교-2026", "kind": "data"},
+  {"url": "https://etfshopping.com/etf/360750", "kind": "data"},
+  {"url": "https://www.knowingasset.com/app/calculator/dividend/360750", "kind": "data"},
+  {"url": "https://www.xn--vj4b13a.com/oil/outlook/", "kind": "data"},
+  {"url": "https://tilnote.io/pages/698fd295c2c92b0e47f2ed35", "kind": "platform"},
+  {"url": "https://wikidocs.net/blog/@knarchive/15475/", "kind": "platform"},
+  {"url": "https://ondo99.com/", "kind": "ours"}
+ ]
+}

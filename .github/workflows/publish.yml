@@ -82,6 +82,11 @@ on:
         required: false
         type: boolean
         default: false
+      lab_adsense:
+        description: '애드센스 승인 확인 - lab/adsense_targets.json의 블로그가 승인받았는지(광고 실제 표시)와 구조를 잼 (발행 안 함, AI 호출 없음)'
+        required: false
+        type: boolean
+        default: false
       lab_noise:
         description: '채점 흔들림 재기 - 최근 초안 4편을 3번씩 채점해 점수·지적이 얼마나 흔들리는지 (발행 안 함, AI 호출 약 50번)'
         required: false
@@ -467,6 +472,10 @@ jobs:
           fi
           if [ "${{ github.event.inputs.lab_compete }}" = "true" ]; then
             python lab_bench.py compete --fetch || echo "경쟁 글 비교 실패"
+            exit 0
+          fi
+          if [ "${{ github.event.inputs.lab_adsense }}" = "true" ]; then
+            python lab_bench.py adsense || echo "애드센스 확인 실패"
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_noise }}" = "true" ]; then
