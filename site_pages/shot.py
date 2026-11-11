@@ -31,7 +31,15 @@ def mock_post_html():
     single = os.path.join(ROOT, "theme", "mock_single.html")
     shell = open(single, encoding="utf-8").read() if os.path.exists(single) else "{{TITLE}}{{CONTENT}}"
     css = theme_push.css_block().replace("<!-- wp:html -->", "").replace("<!-- /wp:html -->", "")
-    body = shell.replace("{{TITLE}}", p["title"]).replace("{{CONTENT}}", p["content"])
+    import re
+    def part(name):
+        t = open(os.path.join(ROOT, "theme", "parts", name + ".html"), encoding="utf-8").read()
+        return theme_push.fill(re.sub(r"<!-- /?wp:html -->", "", t))
+    single_t = open(os.path.join(ROOT, "theme", "templates", "single.html"), encoding="utf-8").read()
+    m = re.search(r'(<div class="o-byline">.*?</script>\s*<script>.*?</script>)', single_t, re.S)
+    byline = theme_push.fill(m.group(1)) if m else ""
+    body = (shell.replace("{{HEADER}}", part("header")).replace("{{FOOTER}}", part("footer")).replace("{{BYLINE}}", byline)
+            .replace("{{TITLE}}", p["title"]).replace("{{CONTENT}}", p["content"]))
     return f"<!doctype html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>{css}</head><body class='single'>{body}</body></html>"
 
 
