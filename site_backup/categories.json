@@ -1,40 +1,8 @@
 {
  "categories": [
   {
-   "ID": 1380,
-   "description": "",
-   "feed_url": "https://ondo99.com/category/biotech/feed/",
-   "meta": {
-    "links": {
-     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech/help",
-     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech",
-     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
-    }
-   },
-   "name": "Biotech/New Drugs",
-   "parent": 0,
-   "post_count": 0,
-   "slug": "biotech"
-  },
-  {
-   "ID": 1386,
-   "description": "",
-   "feed_url": "https://ondo99.com/category/energy/feed/",
-   "meta": {
-    "links": {
-     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy/help",
-     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy",
-     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
-    }
-   },
-   "name": "Energy &amp; Climate",
-   "parent": 0,
-   "post_count": 0,
-   "slug": "energy"
-  },
-  {
    "ID": 1376,
-   "description": "",
+   "description": "ETF의 수익률·배당·보수를 같은 기간, 같은 기준으로 계산해 비교합니다. 투자 권유가 아니라 숫자를 읽는 법을 정리합니다.",
    "feed_url": "https://ondo99.com/category/etf/feed/",
    "meta": {
     "links": {
@@ -43,46 +11,30 @@
      "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
     }
    },
-   "name": "ETF",
+   "name": "ETF·투자",
    "parent": 0,
    "post_count": 0,
    "slug": "etf"
   },
   {
-   "ID": 1382,
-   "description": "",
-   "feed_url": "https://ondo99.com/category/market/feed/",
+   "ID": 1380,
+   "description": "임상 시험 결과와 승인 일정을 공개 자료로 정리합니다.",
+   "feed_url": "https://ondo99.com/category/biotech/feed/",
    "meta": {
     "links": {
-     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market/help",
-     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market",
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech",
      "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
     }
    },
-   "name": "Market",
+   "name": "바이오·신약",
    "parent": 0,
    "post_count": 0,
-   "slug": "market"
-  },
-  {
-   "ID": 1388,
-   "description": "",
-   "feed_url": "https://ondo99.com/category/society/feed/",
-   "meta": {
-    "links": {
-     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society/help",
-     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society",
-     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
-    }
-   },
-   "name": "Population &amp; Society",
-   "parent": 0,
-   "post_count": 0,
-   "slug": "society"
+   "slug": "biotech"
   },
   {
    "ID": 1378,
-   "description": "",
+   "description": "새 기술과 특허 소식을 정리합니다.",
    "feed_url": "https://ondo99.com/category/patents/feed/",
    "meta": {
     "links": {
@@ -91,14 +43,14 @@
      "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
     }
    },
-   "name": "Tech &amp; Patents",
+   "name": "기술·특허",
    "parent": 0,
    "post_count": 0,
    "slug": "patents"
   },
   {
    "ID": 1384,
-   "description": "",
+   "description": "검색 관심이 커진 주제를 자료로 살펴봅니다.",
    "feed_url": "https://ondo99.com/category/trend/feed/",
    "meta": {
     "links": {
@@ -107,10 +59,58 @@
      "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
     }
    },
-   "name": "Trend",
+   "name": "트렌드",
    "parent": 0,
    "post_count": 0,
    "slug": "trend"
+  },
+  {
+   "ID": 1382,
+   "description": "시장 전반의 숫자를 정리합니다.",
+   "feed_url": "https://ondo99.com/category/market/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "시장",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "market"
+  },
+  {
+   "ID": 1386,
+   "description": "유가·원유 재고·환율처럼 생활비에 닿는 숫자를 미국 에너지정보청(EIA) 같은 공식 자료로 읽습니다.",
+   "feed_url": "https://ondo99.com/category/energy/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "에너지·원자재",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "energy"
+  },
+  {
+   "ID": 1388,
+   "description": "통계청(KOSIS)·행정안전부 통계로 1인 가구, 외국인 주민처럼 우리 사회가 어떻게 바뀌는지 봅니다.",
+   "feed_url": "https://ondo99.com/category/society/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "인구·사회",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "society"
   },
   {
    "ID": 1,
