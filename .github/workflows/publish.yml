@@ -479,7 +479,11 @@ jobs:
             exit 0
           fi
           if [ -n "${{ github.event.inputs.site_pages }}" ]; then
-            if [ "${{ github.event.inputs.site_pages }}" = "restore-about" ]; then
+            if [ "${{ github.event.inputs.site_pages }}" = "token-check" ]; then
+              python site_pages/token_check.py || echo "토큰 권한 확인 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "board-draft" ]; then
+              python ondo/board.py draft || echo "온도판 올리기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "restore-about" ]; then
               python site_pages/restore.py 1 || echo "About 되돌리기 실패"
             else
               python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || echo "기본 페이지 올리기 실패"
