@@ -42,6 +42,10 @@ html body a { color: var(--o-navy-3); }
 .o-pxbox { position: relative; background: var(--o-card); border: 0; margin: 4px;
   box-shadow: 0 -4px 0 0 var(--o-ink), 0 4px 0 0 var(--o-ink), -4px 0 0 0 var(--o-ink), 4px 0 0 0 var(--o-ink), 0 0 0 4px var(--o-card) inset; }
 
+/* 테마 기본 블록 간격(머리말 아래 빈 띠) 없애기 - 간격은 각 구역 안쪽 여백으로만 */
+html body .wp-site-blocks > *, html body .wp-site-blocks > * + * { margin-block-start: 0 !important; margin-top: 0 !important; }
+html body header.wp-block-template-part, html body footer.wp-block-template-part { margin: 0 !important; padding: 0 !important; }
+
 /* ── 머리말 ─────────────────────────────────────── */
 .o-head { background: var(--o-navy); color: #fff; position: sticky; top: 0; z-index: 50; }
 body.admin-bar .o-head { top: 32px; }
@@ -65,7 +69,7 @@ body.admin-bar .o-head { top: 32px; }
 }
 
 /* ── 바닥글 ─────────────────────────────────────── */
-.o-foot { background: var(--o-navy); color: #b9c4da; margin-top: 80px; font-size: 14px; }
+.o-foot { background: var(--o-navy); color: #b9c4da; margin-top: 0; font-size: 14px; }
 .o-foot .o-wrap { padding-top: 40px; padding-bottom: 40px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
 .o-foot h4 { font-family: var(--o-px); color: var(--o-mild); font-size: 13px; letter-spacing: .1em; margin: 0 0 12px; font-weight: 400; }
 .o-foot a { color: #e3e9f5 !important; text-decoration: none !important; display: block; padding: 3px 0; }
@@ -155,7 +159,7 @@ body.admin-bar .o-head { top: 32px; }
 .o-post-head .o-meta > * { margin: 0 !important; }
 .o-post-head .wp-block-post-date, .o-post-head .wp-block-post-date time { color: #aebbd4 !important; }
 
-.o-post { display: grid; grid-template-columns: 220px minmax(0, var(--o-read)) 300px; gap: 40px; justify-content: center; max-width: 1400px; margin: 40px auto 0; padding: 0 24px; box-sizing: border-box; }
+.o-post { display: grid; grid-template-columns: 220px minmax(0, var(--o-read)) 300px; gap: 40px; justify-content: center; max-width: 1400px; margin: 0 auto; padding: 40px 24px 0; box-sizing: border-box; }
 .o-post > .o-toc-col { position: relative; }
 .o-post > .o-side { position: relative; }
 .o-post > .o-side > div { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 12px; }
@@ -219,7 +223,7 @@ body.admin-bar .o-head { top: 32px; }
 /* ── 일반 페이지 ────────────────────────────────── */
 .o-page-head { background: var(--o-navy); padding: 48px 0 40px; }
 .o-page-head .wp-block-post-title { color: #fff !important; font-size: clamp(28px, 4vw, 40px) !important; font-weight: 800 !important; margin: 0 !important; }
-.o-page { max-width: calc(var(--o-read) + 48px); margin: 40px auto 0; padding: 0 24px; box-sizing: border-box; }
+.o-page { max-width: calc(var(--o-read) + 48px); margin: 0 auto; padding: 40px 24px 0; box-sizing: border-box; }
 .o-page .wp-block-post-content { font-size: 17px; line-height: 1.85; }
 .o-page.is-wide { max-width: none; padding: 0; margin-top: 0; }
 /* 허브·분야·온도판처럼 자체 디자인을 가진 페이지(#ondo-* 뿌리)는 넓게, 나머지는 읽기 폭 */
@@ -245,3 +249,13 @@ html body.single-post .o-read .wp-block-post-content th { color: #fff !important
 html body.single-post .o-post-head .wp-block-post-title { color: #fff !important; }
 html body.single-post .o-read .wp-block-post-content blockquote { background: var(--o-card) !important; color: var(--o-ink-2) !important; }
 html body.single-post .o-read .wp-block-post-content hr { border-color: var(--o-line) !important; }
+
+/* 바닥글 위 여백(마지막 구역과 바닥글 사이) */
+html body .wp-site-blocks > main, html body .wp-site-blocks > .o-post, html body .wp-site-blocks > .o-page, html body .wp-site-blocks > .o-sec { padding-bottom: 80px !important; }
+
+/* 분야 허브 페이지(페이지 안 목록) */
+.o-hub-intro { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; margin: 0 0 32px; padding: 22px 24px; background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-line); }
+.o-hub-intro p { margin: 0; font-size: 16px; line-height: 1.75; color: var(--o-ink-2); }
+.o-hub-intro .o-px { font-size: 12px; color: var(--o-navy-3); display: block; margin-bottom: 6px; }
+.o-hub-intro svg { width: 48px; height: 48px; shape-rendering: crispEdges; }
+.o-hub-more { margin-top: 28px; text-align: center; }
