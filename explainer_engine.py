@@ -657,11 +657,9 @@ def run_explainer(topic, etf_module):
 
     from topic_engine import produce_article
     from ondo.media import charts
-    try:     # 글 맨 위 온도 서명 띠(숫자만). ETF·시장 글에만 들어간다.
-        top = charts.thermo_strip(ea.get_macro_thermometer_indicators(), datetime.now().strftime("%m월 %d일"))
-    except Exception as e:
-        print(f"ℹ️ 온도 띠 실패: {type(e).__name__}")
-        top = ""
+    # 2026-11-11: 글 맨 위 종합 온도 띠(변동성 30%·밸류 30%·환율 20%·물가 20% 임의 가중치)를 뺌.
+    # 온도판에서 같은 종합 온도를 '근거 설명이 어렵다'며 뺐는데 글에는 남아 있었음(lab/THINKING 11-11). thermo_strip 함수는 남겨 둠.
+    top = ""
     produce_article(top_html=top,
         kind_label=kind_label, title_seed=title_seed, facts_text=facts_text,
         # 코드가 만든 계산표가 들어가는 글은 작가가 표를 또 만들지 않는다(2026-11-06 금리 글: 손으로 만든 표의 칸이 어긋나 '치명')

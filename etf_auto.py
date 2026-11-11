@@ -231,7 +231,8 @@ def write_etf_article(etf_list, today_str, now):
             category_label=f"ETF/{'비교' if kind == 'comparison' else '종목 분석'}", article_type=kind,
             topic_id=",".join(t.replace(".KS", "") for t in etf_list), memo=operator_memo,
             closing_html=_analysis.closing_html(recent_news), drawer=drawer, drawer_html=drawer_html,
-            top_html=_charts.thermo_strip(macro_thermo_indicators, now.strftime("%m월 %d일")),
+            # 2026-11-11: 글 맨 위 종합 온도 띠(임의 가중치) 뺌 - 온도판에서 근거 설명이 어렵다며 뺀 것과 같은 이유
+            top_html="",
             extra_data=etf_data_cache, meta={"tickers": list(etf_list)},
         )
     finally:
