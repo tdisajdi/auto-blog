@@ -502,6 +502,10 @@ jobs:
               if [ "${{ github.event.inputs.site_pages }}" = "theme-push" ]; then python site_pages/theme_push.py push || echo "틀 올리기 실패"; fi
               if [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ]; then python site_pages/theme_push.py restore || echo "틀 되돌리기 실패"; fi
               (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == links:* ]]; then
+              # 사용자가 준 링크 내용 받기(lab/links) - 작업 환경에서 외부 사이트가 막혀서
+              L="${{ github.event.inputs.site_pages }}"
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/fetch_links.py "${L#links:}") || echo "링크 받기 실패"
             else
               python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || echo "기본 페이지 올리기 실패"
             fi
@@ -555,6 +559,7 @@ jobs:
           git add schedule_state.json 2>/dev/null || true
           git add site_backup 2>/dev/null || true
           git add lab/shots 2>/dev/null || true
+          git add lab/links 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
