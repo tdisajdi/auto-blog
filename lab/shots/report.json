@@ -1,65 +1,27 @@
 {
  "home-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "3 TOPICS",
-    3.4
-   ],
-   [
-    "LATEST",
-    3.4
-   ],
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "insights-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "etf-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "energy-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "society-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "category-etf-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "404-desk": {
   "overflow": 0,
@@ -67,48 +29,11 @@
  },
  "bio-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "post-mock-desk": {
   "overflow": 0,
   "lowContrast": [
-   [
-    "READ 0%",
-    3.4
-   ],
-   [
-    "CONTENTS",
-    3.4
-   ],
-   [
-    "🔸 세금 효율성을 판단하는 기준",
-    3.4
-   ],
-   [
-    "🔸 비용과 실질 수익의 관계",
-    3.4
-   ],
-   [
-    "🔸 환율 노출이 투자의 변수",
-    3.4
-   ],
-   [
-    "🔸 세금 성격에 따른 투자 판단 기준",
-    3.4
-   ],
-   [
-    "🔸 의사결정 프로세스: 무엇을 우선할까",
-    3.4
-   ],
-   [
-    "🔸 자주 묻는 질문(FAQ)",
-    3.4
-   ],
    [
     "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특",
     3.2
@@ -117,65 +42,27 @@
  },
  "home-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "3 TOPICS",
-    3.4
-   ],
-   [
-    "LATEST",
-    3.4
-   ],
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "insights-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "etf-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "energy-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "society-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "category-etf-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "404-mobile": {
   "overflow": 0,
@@ -183,12 +70,7 @@
  },
  "bio-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "COMING SOON",
-    2.3
-   ]
-  ]
+  "lowContrast": []
  },
  "post-mock-mobile": {
   "overflow": 0,
