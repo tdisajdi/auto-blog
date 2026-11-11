@@ -1,0 +1,445 @@
+{
+ "article_type": "society",
+ "topic_id": "society:달성군-출생아-수-지방자치단체-인구-통계-출생아-수-1위",
+ "title_seed": "대구 달성군 출생아 수 10년 연속 전국 군 단위 1위",
+ "category": "society",
+ "started_at": "2026-11-11T18:27:32",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.9,
+   "chars": 1412
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.7,
+   "chars": 3635
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 18.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 17.2,
+   "chars": 1137
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.5,
+   "chars": 676
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 359
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.2,
+   "chars": 912
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.4,
+   "chars": 4381
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 13.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.6,
+   "chars": 482
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.2,
+   "chars": 530
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 370
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.3,
+   "chars": 883
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.5,
+   "chars": 4571
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.5,
+   "chars": 795
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.2,
+   "chars": 525
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.7,
+   "chars": 117
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.1,
+   "chars": 834
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "18:27:38",
+   "title": "대구 달성군 출생아 수 10년 연속 전국 군 단위 1위 기록과 통계",
+   "sections": [
+    "달성군 10년 연속 1위의 기록",
+    "전국 출생아 수와 인구 통계 흐름",
+    "출생률과 장기 인구 흐름 분석"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "18:27:54",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "18:29:20",
+   "score": 0.0,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "달성군이 10년 연속 1위를 기록한 배경(산업단지, 주거 여건 등)을 자료에 있는 내용으로 조금 더 상세히 풀어주면 좋겠습니다.",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 제목이 던진 질문에 대한 답을 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 말하지 않았습니다. / 고칠 방법: 도입부 첫 문단에 달성군의 합계출산율(1.03)이나 2025년 전국 출생아 수(254,341명) 등 자료의 숫자를 명시하여 핵심 결과를 먼저 안내하세요.",
+    "[치명·사실 검증] '대구 달성군은 전국 82개 군 지자체 가운데 출생아 수 측면에서 독보적인 위치를 차지하고 있는 지역입니다.' → 자료에 없는 '82개'라는 숫자를 지어내어 썼습니다. / 고칠 방법: '82개'라는 숫자를 삭제하고 자료에 있는 표현대로 '전국 군 지자체 가운데'로 수정하세요.",
+    "[치명·사실 검증] '이 기간 중 직전 해 대비 감소 폭이 가장 컸던 때 Polaris는 2017년으로, 1년 만에 48,472명' → 자료에 없는 단어인 'Polaris'를 지어내어 썼습니다. / 고칠 방법: 'Polaris는'을 삭제하여 문장을 바르게 수정하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 지표를 다시 볼 때 확인할 기준을 제시하면서 자료의 구체적 숫자(예: 2025년 자연증가건수 -108,627명, 합계출산율 0.799)를 함께 제시하지 않았습니다. / 고칠 방법: 정리 문단의 확인 기준에 2025년 자연증가건수(-108,627명)와 합계출산율(0.799명) 등 자료의 구체적인 숫자를 함께 넣어 작성하세요.",
+    "[사소·독자 편집] '이 기간 중 직전 해 대비 감소 폭이 가장 컸던 때 Polaris는 2017년으로,' → 문맥에 어울리지 않는 'Polaris'라는 오탈자가 섞여 있습니다. / 고칠 방법: Polaris 단어를 삭제하고 문장을 자연스럽게 다듬어 주세요.",
+    "[사소·독자 편집] '지표명 2024년 수치 2025년 수치 전년 대비 증감률/증감량 출생아 수(명) 238,317 254,341' → 표 내용을 바로 다음 문장에서 그대로 다시 설명하고 있습니다. / 고칠 방법: 표에 있는 구체적인 수치를 본문에서 다시 반복하지 말고 표를 가리키는 내용으로 줄여 주세요.",
+    "[사소·정책·신뢰] '이 기간 중 직전 해 대비 감소 폭이 가장 컸던 때 Polaris는 2017년으로' → 문맥에 어울리지 않는 'Polaris는'라는 오탈자가 포함되어 있습니다. / 고칠 방법: 오탈자인 'Polaris는'를 삭제하여 자연스러운 문장으로 수정합니다."
+   ],
+   "lint": [
+    "너무 얇음: 본문 2353자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것",
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2391
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "18:29:49",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "18:31:16",
+   "score": 0.73,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "달성군이 10년 연속 1위를 차지한 비결(제2국가산단 선정 등)과 전국 인구 통계 흐름을 독자가 쉽게 비교할 수 있도록 요약 정리 추가",
+   "issues": [
+    "[중요·사실 검증] '지역 내 젊은 인구의 유입과 보육 여건 등이 복합적으로 작용하여 전국 군 단위 지역 중 가장 많은 아이가 태' → 제시된 사실 자료에 없는 원인(젊은 인구 유입, 보육 여건 등)을 임의로 단정하여 설명하고 있습니다. / 고칠 방법: 자료에 제시된 뉴스 제목 내용(제2국가산단 예비타당성조사 선정 등 산업 중심지로의 변화)을 바탕으로 수정하거나 주관적인 원인 단정을 삭제하세요.",
+    "[사소·독자 편집] '대구 달성군이 거둔 기록은 단기적인 반등이 아닌 10년에 걸친 연속적인 수치라는 점에서 주목받고 있습니다. ' → 도입부에서 이미 언급한 달성군의 10년 연속 1위 기록과 배경을 본문 섹션에서 거의 동일한 내용으로 되풀이하고 있습니다. / 고칠 방법: 중복되는 배경 설명 대신 달성군의 구체적인 인구 정책이나 연도별 수치 변화 등 새로운 세부 내용을 작성하십시오.",
+    "[중요·정책·신뢰] '이는 전국 평균 수치를 크게 웃도는 수치입니다.' → 구체적인 전국 평균 수치나 비교 기준 없이 '크게 웃도는'이라는 주관적이고 과장된 표현을 사용했습니다. / 고칠 방법: 전국 평균 수치(0.799)와 비교하여 0.231 높다는 식으로 구체적인 수치로 비교해 주세요."
+   ],
+   "lint": [
+    "연도별 숫자 줄글 나열(8개, 예: '2016년 280,827…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것",
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "chars": 2581
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "18:31:32",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "18:32:19",
+   "score": 0.5,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "달성군의 출생아 수 1위 요인으로 언급된 산업 중심지 변화 내용을 통계 수치와 더 유기적으로 연결하여 설명하기",
+   "issues": [
+    "[치명·사실 검증] '세명일보 보도에 따르면 2025년 전국 출생아 수가 254,341명을 기록한 가운데 달성군은 전국 군 단위 ' → 뉴스 제목 자료에 나와 있지 않은 '2025년 전국 출생아 수 254,341명'이라는 숫자를 세명일보 보도 내용으로 지어내어 인용했습니다. / 고칠 방법: 전국 출생아 수 254,341명은 국가통계포털(KOSIS) 수치로 밝히고, 세명일보는 10년 연속 출생아 수 1위 보도 출처로 구분해 작성하세요.",
+    "[중요·사실 검증] '대구 달성군이 10년 연속 군 단위 출생아 수 1위를 달성한 것은 지자체 차원의 인구 정주 여건 형성이 실제' → 사실 자료에 없는 '지자체 차원의 인구 정주 여건 형성'을 1위 달성의 원인으로 단정했습니다. / 고칠 방법: 원인을 직접 단정하는 문장을 지우고 자료에 제시된 달성군의 기록과 전국 인구 통계 사실 중심으로만 서술하세요.",
+    "[사소·독자 편집] '뉴스1[링크]과 시사저널[링크] 등에 따르면 대구 달성군은 전국 군 지역 중 출생아 수 1위 자리를 10년 ' → 도입부에서 이미 다룬 달성군의 출생아 수 10년 연속 1위와 합계출산율 1.03이라는 숫자와 내용을 본문 섹션에서 다시 그대로 되풀이하고 있습니다. / 고칠 방법: 달성군의 반복되는 수치 언급을 줄이고 다음 통계 흐름 내용으로 바로 이어지도록 문단을 압축하세요."
+   ],
+   "lint": [
+    "연도별 숫자 줄글 나열(5개, 예: '2016년 280,827…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것",
+    "너무 얇음: 본문 2342자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것",
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "chars": 2380
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "대구 달성군 출생아 수 10년 연속 전국 군 단위 1위 기록과 통계",
+  "url": "https://ondo99.com/?p=445",
+  "score": 0.73,
+  "issues": [
+   "[중요·사실 검증] '지역 내 젊은 인구의 유입과 보육 여건 등이 복합적으로 작용하여 전국 군 단위 지역 중 가장 많은 아이가 태' → 제시된 사실 자료에 없는 원인(젊은 인구 유입, 보육 여건 등)을 임의로 단정하여 설명하고 있습니다. / 고칠 방법: 자료에 제시된 뉴스 제목 내용(제2국가산단 예비타당성조사 선정 등 산업 중심지로의 변화)을 바탕으로 수정하거나 주관적인 원인 단정을 삭제하세요.",
+   "[중요·정책·신뢰] '이는 전국 평균 수치를 크게 웃도는 수치입니다.' → 구체적인 전국 평균 수치나 비교 기준 없이 '크게 웃도는'이라는 주관적이고 과장된 표현을 사용했습니다. / 고칠 방법: 전국 평균 수치(0.799)와 비교하여 0.231 높다는 식으로 구체적인 수치로 비교해 주세요.",
+   "연도별 숫자 줄글 나열(8개, 예: '2016년 280,827…') - 흐름은 그래프가 보여주니 시작·전환점·최근 값만 쓰고 그 뜻을 설명할 것",
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+   "[사소·독자 편집] '대구 달성군이 거둔 기록은 단기적인 반등이 아닌 10년에 걸친 연속적인 수치라는 점에서 주목받고 있습니다. ' → 도입부에서 이미 언급한 달성군의 10년 연속 1위 기록과 배경을 본문 섹션에서 거의 동일한 내용으로 되풀이하고 있습니다. / 고칠 방법: 중복되는 배경 설명 대신 달성군의 구체적인 인구 정책이나 연도별 수치 변화 등 새로운 세부 내용을 작성하십시오."
+  ]
+ },
+ "facts": "[공식 통계 - 국가통계포털(KOSIS) '인구동태건수 및 동태율 추이(출생사망혼인이혼)', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]\n- 출생아수(명): 2025년 254,341 (직전 2024년 238,317), 1년 전(2024년) 대비 +6.7%\n- 사망자수(명): 2025년 362,968 (직전 2024년 358,569), 1년 전(2024년) 대비 +1.2%\n- 자연증가건수(명): 2025년 -108,627 (직전 2024년 -120,252), 1년 전(2024년) 대비 -9.7%\n- 조출생률(천명당): 2025년 5 (직전 2024년 4.7), 1년 전(2024년)보다 +0.3\n- 조사망률(천명당): 2025년 7.1 (직전 2024년 7), 1년 전(2024년)보다 +0.1\n- 자연증가율(천명당): 2025년 -2.1 (직전 2024년 -2.4), 1년 전(2024년)보다 +0.3\n- 합계출산율(명): 2025년 0.799 (직전 2024년 0.748), 1년 전(2024년)보다 +0.051\n- 출생성비(명): 2025년 105.8 (직전 2024년 105), 1년 전(2024년)보다 +0.8\n[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]\n- 출생아수(명) 흐름: 2016년 406,243, 2017년 357,771, 2018년 326,822, 2019년 302,676, 2020년 272,337, 2021년 260,562, 2022년 249,186, 2023년 230,028, 2024년 238,317, 2025년 254,341 → 이 기간 최고 2016년 406,243, 최저 2023년 230,028, 직전 기간 대비 변화가 가장 컸던 때 2017년(-48,472)\n- 사망자수(명) 흐름: 2016년 280,827, 2017년 285,534, 2018년 298,820, 2019년 295,110, 2020년 304,948, 2021년 317,680, 2022년 372,939, 2023년 352,511, 2024년 358,569, 2025년 362,968 → 이 기간 최고 2022년 372,939, 최저 2016년 280,827, 직전 기간 대비 변화가 가장 컸던 때 2022년(+55,259)\n- 자연증가건수(명) 흐름: 2016년 125,416, 2017년 72,237, 2018년 28,002, 2019년 7,566, 2020년 -32,611, 2021년 -57,118, 2022년 -123,753, 2023년 -122,483, 2024년 -120,252, 2025년 -108,627 → 이 기간 최고 2016년 125,416, 최저 2022년 -123,753, 직전 기간 대비 변화가 가장 컸던 때 2022년(-66,635)\n- 조출생률(천명당) 흐름: 2016년 7.9, 2017년 7, 2018년 6.4, 2019년 5.9, 2020년 5.3, 2021년 5.1, 2022년 4.9, 2023년 4.5, 2024년 4.7, 2025년 5 → 이 기간 최고 2016년 7.9, 최저 2023년 4.5, 직전 기간 대비 변화가 가장 컸던 때 2017년(-0.9)\n\n[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n- 대구 달성 출생아 수 ‘전국 군 중에서 10년 연속 1위’ - 세명일보 (세명일보) https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2Q3ZXM2hlUXYxc1dxc3k5NS1Mb1VrM3lQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\n- 대구 달성 출생아 수 ‘전국 군 중에서 10년 연속 1위’ - 세명일보 (세명일보) https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2Q3ZXM2hlUXYxc1dxc3k5NS1Mb1VrM3lQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\n- 대구 달성군 출생아 수 '10년 연속 전국 1위' 비결은? - 뉴스1 (뉴스1) https://news.google.com/rss/articles/CBMiX0FVX3lxTE1ueldpTWdMcFBSX3hDUGx6NU9sTXRIVzNVbTRvT2J2RVIwVWFhQjN1RlpFRlRaYWZjQUQtX2lhWUhmekx2OFlIM0pFWmFURGd6ZFZCMzdXV1VYX1M3Z3VN?oc=5\n- 대구 달성군 합계출산율 1.03…전국 군 지자체 1위, 비결은? - 매일신문 (매일신문) https://news.google.com/rss/articles/CBMiYkFVX3lxTFB3OXhrd0U5b3RRLWp5QlQyNl9VVTNWYlkwT1dxUG5TcTVvYktiSlZKNVN4VnE5aUlwZDBQNTAzenJRY0t2eTdtb1E0dndoSHdmNEJLdHRHWGpDQXQtX2xNWGd3?oc=5\n- [대구24시] ‘아이 키우기 좋은 도시’ 달성군, 9년 연속 출생아 수 ‘1위’ 군 - 시사저널 (시사저널) https://news.google.com/rss/articles/CBMib0FVX3lxTE9fZTdwR3cwUkNmS0gxbndIZkM3eWNwc1VsOXZHQWN6aW5ST3R1dTdUd1dWQTlYa1FyMDNrUGhwblJkS2ZIZmJPRVduQ2pvck5PdHAtTk90eFN2WVdPaXl3SHd4azBYbE9TUm5NQXBsONIBc0FVX3lxTE9aZFlvT094Yzh4UXFxS0ZfZVIzWVJTYzNtSGVUVjUyOEFGMlY2ZWtXYXlELTVEZUkzakxQTHpJYzZuMHVYRHhrUjYySkVHYWFQa3ZrbnVSczBlTXFsZUdzNWtUX0xYZjluMGdCb1Z4Qm9ibVE?oc=5\n- 첨단산업 메카 달성군, 대구 미래경제 이끈다···제2국가산단 예비타당성조사 선정으로 달성군 경제 활력 기대 - 대경일보 (대경일보) https://news.google.com/rss/articles/CBMiaEFVX3lxTFB6bWw2OGhfbEdSTkFRY1pRYzdYRGlFblNnTE04aU9LdWpERFNabk55VkFPRUZnYXV0MUpFUnQ3SEg1LUxNX0FvZlYwelVXQnktOG9pYnloLUpxelUtei1jT1daNEt0cU15?oc=5\n- [우리지역 이렇게-달성군] 대구의 변방서 산업의 중심지로 거듭나다 - 대구신문 (대구신문) https://news.google.com/rss/articles/CBMia0FVX3lxTE9MTTM5UnJxUFU4S1dZR1ZvRWVoMXpVVThweUJjeDhqWHlQc3pidHM5MVlkTF9fUnRTVzNLZ0ZSbEtxcmZ2eGJwY09aMk9aNFVxODg3UklpZGpWcFlVbzVPN0ZIWmN2aWlTTF80?oc=5\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 자연증가: 출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻\n- 조출생률: 인구 1,000명당 1년 동안 태어난 아이 수\n- 합계출산율: 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수\n",
+ "drafts": {
+  "1": "<h1>대구 달성군 출생아 수 10년 연속 전국 군 단위 1위 기록과 통계</h1>\n<!-- 대구 달성군이 합계출산율 1.03을 기록하며 10년 연속 전국 군 단위 출생아 수 1위를 유지했습니다. 2025년 전국 인구 동태 통계 지표와 함께 장기 흐름을 살펴봅니다. -->\n\n<p>대구 달성군은 전국 82개 군 지자체 가운데 출생아 수 측면에서 독보적인 위치를 차지하고 있는 지역입니다. <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2Q3ZXM2hlUXYxc1dxc3k5NS1Mb1VrM3lQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\" target=\"_blank\" rel=\"noopener\">세명일보</a> 보도에 따르면 대구 달성군은 전국 군 지자체 중에서 10년 연속 출생아 수 1위를 달성했습니다.</p>\n\n<p>국가적인 인구 감소 흐름 속에서 특정 지자체가 10년이라는 장기간 동안 출생 지표 상위권을 유지하는 것은 이례적인 현상으로 평가받습니다. 이번 글에서는 달성군의 기록과 함께 국가통계포털(KOSIS)의 인구동태 통계를 바탕으로 전국적인 인구 흐름을 정리해 보겠습니다.</p>\n\n<h3>달성군 10년 연속 1위의 기록</h3>\n\n<p>대구 달성군이 거둔 기록은 단기적인 반등이 아닌 10년에 걸친 연속적인 수치라는 점에서 주목받고 있습니다. 지역 내 젊은 인구의 유입과 보육 여건 등이 복합적으로 작용하여 전국 군 단위 지역 중 가장 많은 아이가 태어나는 지역으로 자리 잡았습니다.</p>\n\n<h4>🔸 합계출산율 1.03 달성</h4>\n<a href=\"https://news.google.com/rss/articles/CBMiYkFVX3lxTFB3OXhrd0U5b3RRLWp5QlQyNl9VVTNWYlkwT1dxUG5TcTVvYktiSlZKNVN4VnE5aUlwZDBQNTAzenJRY0t2eTdtb1E0dndoSHdmNEJLdHRHWGpDQXQtX2xNWGd3?oc=5\" target=\"_blank\" rel=\"noopener\">매일신문</a>에 따르면 대구 달성군의 합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수)은 1.03을 기록하며 전국 군 지자체 1위를 차지했습니다. 이는 전국 평균 수치를 크게 웃도는 수치입니다.\n\n<a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE1ueldpTWdMcFBSX3hDUGx6NU9sTXRIVzNVbTRvT2J2RVIwVWFhQjN1RlpFRlRaYWZjQUQtX2lhWUhmekx2OFlIM0pFWmFURGd6ZFZCMzdXV1VYX1M3Z3VN?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a> 등 주요 언론에서도 달성군이 10년 연속 1위 자리를 지켜낸 배경과 인구 정책에 주목하고 있습니다. 산업단지 조성과 주거 여건 개선 등이 젊은 층의 정주 여건을 높이는 데 영향을 미친 것으로 해석됩니다.\n\n<h3>전국 출생아 수와 인구 통계 흐름</h3>\n\n<p>2025년 전국 인구 동태 수치를 살펴보면 출생아 수와 합계출산율 모두 직전 해인 2024년 대비 소폭 반등하는 모습을 보였습니다. 반면 사망자 수 역시 함께 증가하면서 인구 자연증가(출생아 수에서 사망자 수를 뺀 것)는 여전히 음수를 나타내고 있습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년 수치</th>\n    <th>2025년 수치</th>\n    <th>전년 대비 증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아 수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자 수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n</table>\n\n<p>2025년 전국 출생아 수는 254,341명으로 2024년 238,317명보다 16,024명(+6.7%) 증가했습니다. 그러나 사망자 수가 362,968명을 기록함에 따라 자연증가건수는 -108,627명으로 집계되어 태어난 사람보다 숨진 사람이 많은 인구 자연 감소 상태가 계속되고 있습니다.</p>\n\n<h3>출생률과 장기 인구 흐름 분석</h3>\n\n<p>2025년 조출생률(인구 1,000명당 1년 동안 태어난 아이 수)은 5.0명으로 2024년의 4.7명에 비해 0.3명 증가했습니다. 같은 기간 출생성비는 105.0명에서 105.8명으로 0.8명 상승했습니다.</p>\n\n<h4>🔸 10년간의 전국 출생아 수 변화</h4>\n<p>전국 출생아 수의 장기 흐름을 보면 2016년 406,243명에서 시작해 지속적으로 감소세를 보였습니다. 이 기간 중 직전 해 대비 감소 폭이 가장 컸던 때 Polaris는 2017년으로, 1년 만에 48,472명이 줄어든 357,771명을 기록했습니다.</p>\n\n<p>이후 감소세가 이어지며 2023년에는 230,028명으로 해당 기간 중 최저치를 기록했습니다. 2024년 238,317명에 이어 2025년 254,341명으로 회복세를 보이고 있으나, 2016년 수준과 비교하면 여전히 상당한 격차가 존재합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 대구 달성군의 합계출산율은 얼마인가요?</h4>\n<p>언론 보도에 따른 대구 달성군의 합계출산율은 1.03명입니다. 이는 전국 군 지자체 중 가장 높은 수치이며, 전국 평균인 0.799명을 크게 웃도는 기록입니다.</p>\n\n<h4>🔸 2025년 전국 출생아 수와 조출생률은 어떻게 되나요?</h4>\n<p>2025년 전국 출생아 수는 254,341명으로 직전 해 238,317명 대비 6.7% 증가했습니다. 인구 1,000명당 출생아 수를 뜻하는 조출생률은 5.0명으로 2024년의 4.7명보다 0.3명 늘어났습니다.</p>\n\n<h3>정리</h3>\n\n<p>대구 달성군이 10년 연속 군 단위 출생아 수 1위를 달성한 것은 지자체 차원의 인구 정주 여건 형성이 실제 출생 지표에 반영될 수 있음을 보여줍니다. 전국적인 출생아 수가 2023년 최저점을 찍은 후 소폭 반등하고 있지만, 전체적인 인구 자연 감소 흐름은 이어지고 있습니다.</p>\n\n<p>앞으로 인구 통계를 관찰할 때에는 단순 출생아 수뿐만 아니라 몇 가지 기준을 함께 살펴보는 것이 좋습니다. 첫째, 출생아 수와 사망자 수의 차이를 나타내는 자연증가건수의 음수 폭이 줄어드는지 확인해야 합니다. 둘째, 여성 1명이 낳을 것으로 기대되는 합계출산율이 0.8명 선을 안착하여 상승세를 이어가는지 볼 필요가 있습니다. 셋째, 지자체별 출산율과 전국 평균 수치의 격차가 어떻게 변화하는지 파악하는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 대구 달성군은 합계출산율 1.03으로 10년 연속 군 단위 출생아 수 1위를 기록했습니다.</p>\n\n태그: 대구달성군 출생아수 합계출산율 인구통계 조출생률",
+  "2": "<h1>대구 달성군 출생아 수 10년 연속 전국 군 단위 1위 기록과 통계</h1>\n<!-- 대구 달성군이 합계출산율 1.03을 기록하며 10년 연속 전국 군 단위 출생아 수 1위를 유지했습니다. 2025년 전국 인구 동태 통계 지표와 함께 장기 흐름을 살펴봅니다. -->\n\n<p>대구 달성군이 합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수) 1.03을 기록하며 전국 군 지자체 가운데 10년 연속 출생아 수 1위를 차지했습니다. <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2Q3ZXM2hlUXYxc1dxc3k5NS1Mb1VrM3lQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\" target=\"_blank\" rel=\"noopener\">세명일보</a> 보도에 따르면 2025년 전국 출생아 수가 254,341명을 기록한 가운데 달성군은 전국 군 단위 지자체 중 독보적인 출생 수치를 유지하고 있습니다.</p>\n\n<p>국가적인 인구 감소 흐름 속에서 특정 지자체가 10년이라는 장기간 동안 출생 지표 상위권을 유지하는 것은 이례적인 현상으로 평가받습니다. 이번 글에서는 달성군의 기록과 함께 국가통계포털(KOSIS)의 인구동태 통계를 바탕으로 전국적인 인구 흐름을 정리해 보겠습니다.</p>\n\n<h3>달성군 10년 연속 1위의 기록</h3>\n\n<p>대구 달성군이 거둔 기록은 단기적인 반등이 아닌 10년에 걸친 연속적인 수치라는 점에서 주목받고 있습니다. 지역 내 젊은 인구의 유입과 보육 여건 등이 복합적으로 작용하여 전국 군 단위 지역 중 가장 많은 아이가 태어나는 지역으로 자리 잡았습니다.</p>\n\n<h4>🔸 합계출산율 1.03 달성</h4>\n<p><a href=\"https://news.google.com/rss/articles/CBMiYkFVX3lxTFB3OXhrd0U5b3RRLWp5QlQyNl9VVTNWYlkwT1dxUG5TcTVvYktiSlZKNVN4VnE5aUlwZDBQNTAzenJRY0t2eTdtb1E0dndoSHdmNEJLdHRHWGpDQXQtX2xNWGd3?oc=5\" target=\"_blank\" rel=\"noopener\">매일신문</a>에 따르면 대구 달성군의 합계출산율은 1.03을 기록하며 전국 군 지자체 1위를 차지했습니다. 이는 전국 평균 수치를 크게 웃도는 수치입니다.</p>\n\n<p><a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE1ueldpTWdMcFBSX3hDUGx6NU9sTXRIVzNVbTRvT2J2RVIwVWFhQjN1RlpFRlRaYWZjQUQtX2lhWUhmekx2OFlIM0pFWmFURGd6ZFZCMzdXV1VYX1M3Z3VN?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a> 등 주요 언론에서도 달성군이 10년 연속 1위 자리를 지켜낸 배경과 인구 정책에 주목하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFB6bWw2OGhfbEdSTkFRY1pRYzdYRGlFblNnTE04aU9LdWpERFNabk55VkFPRUZnYXV0MUpFUnQ3SEg1LUxNX0FvZlYwelVXQnktOG9pYnloLUpxelUtei1jT1daNEt0cU15?oc=5\" target=\"_blank\" rel=\"noopener\">대경일보</a>와 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTE9MTTM5UnJxUFU4S1dZR1ZvRWVoMXpVVThweUJjeDhqWHlQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\" target=\"_blank\" rel=\"noopener\">대구신문</a>에 따르면 제2국가산단 예비타당성조사 선정 등 산업 중심지로 거듭나며 젊은 층의 정주 여건을 높인 점이 영향을 미친 것으로 풀이됩니다.</p>\n\n<h3>전국 출생아 수와 인구 통계 흐름</h3>\n\n<p>2025년 전국 인구 동태 수치를 살펴보면 출생아 수와 합계출산율 모두 직전 해인 2024년 대비 소폭 반등하는 모습을 보였습니다. 반면 사망자 수 역시 함께 증가하면서 인구 자연증가(출생아 수에서 사망자 수를 뺀 것)는 여전히 음수를 나타내고 있습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년 수치</th>\n    <th>2025년 수치</th>\n    <th>전년 대비 증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아 수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자 수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n</table>\n\n<p>2025년 전국 출생아 수는 254,341명으로 2024년 대비 6.7% 증가했으나, 사망자 수 증가로 자연증가건수가 음수를 기록하며 인구 자연 감소 상태가 계속되고 있습니다.</p>\n\n<h3>출생률과 장기 인구 흐름 분석</h3>\n\n<p>2025년 조출생률(인구 1,000명당 1년 동안 태어난 아이 수)은 5.0명으로 2024년의 4.7명에 비해 0.3명 증가했습니다. 조사망률은 2024년 7.0명에서 2025년 7.1명으로 0.1명 올랐으며, 자연증가율은 -2.4명에서 -2.1명으로 0.3명 늘었습니다. 같은 기간 출생성비는 105.0명에서 105.8명으로 0.8명 상승했습니다.</p>\n\n<h4>🔸 10년간의 전국 출생아 수 변화</h4>\n<p>전국 출생아 수의 장기 흐름을 보면 2016년 406,243명에서 시작해 지속적으로 감소세를 보였습니다. 이 기간 중 직전 해 대비 감소 폭이 가장 컸던 때 2017년으로, 1년 만에 48,472명이 줄어든 357,771명을 기록했습니다.</p>\n\n<p>사망자 수는 2016년 280,827명에서 2022년 372,939명으로 최고치를 나타냈으며, 자연증가건수 역시 2016년 125,416명에서 2020년 -32,611명으로 음수 전환된 뒤 2022년 -123,753명으로 최저를 기록했습니다. 조출생률은 2016년 7.9명에서 2023년 4.5명까지 낮아졌다가 2025년 5.0명으로 반등했습니다.</p>\n\n<p>이후 출생아 수는 2023년 230,028명으로 최저치를 기록한 뒤 회복세를 보이고 있으나, 최고치였던 2016년 수준과 비교하면 여전히 격차가 큽니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 대구 달성군의 합계출산율은 얼마인가요?</h4>\n<p>언론 보도에 따른 대구 달성군의 합계출산율은 1.03명입니다. 이는 전국 군 지자체 중 가장 높은 수치이며, 전국 평균인 0.799명을 크게 웃도는 기록입니다.</p>\n\n<h4>🔸 2025년 전국 출생아 수와 조출생률은 어떻게 되나요?</h4>\n<p>2025년 전국 출생아 수는 254,341명으로 직전 해 238,317명 대비 6.7% 증가했습니다. 조출생률은 5.0명으로 2024년의 4.7명보다 0.3명 늘어났습니다.</p>\n\n<h3>정리</h3>\n\n<p>대구 달성군이 10년 연속 군 단위 출생아 수 1위를 달성한 것은 지자체 차원의 인구 정주 여건 형성이 실제 출생 지표에 반영될 수 있음을 보여줍니다. 전국적인 출생아 수가 2023년 최저점을 찍은 후 소폭 반등하고 있지만, 전체적인 인구 자연 감소 흐름은 이어지고 있습니다.</p>\n\n<p>앞으로 인구 통계를 관찰할 때에는 다음 기준을 함께 살펴보는 것이 좋습니다. 첫째, 출생아 수와 사망자 수의 차이를 나타내는 2025년 자연증가건수(-108,627명)의 음수 폭이 축소되는지 확인해야 합니다. 둘째, 2025년 합계출산율(0.799명)이 상승세를 이어가며 반등 흐름을 지키는지 볼 필요가 있습니다. 셋째, 2025년 조출생률(5.0명)과 조사망률(7.1명)의 격차가 어떻게 변화하는지 파악하는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 대구 달성군은 합계출산율 1.03으로 10년 연속 군 단위 출생아 수 1위를 기록했습니다.</p>\n\n태그: 대구달성군 출생아수 합계출산율 인구통계 조출생률",
+  "3": "<h1>대구 달성군 출생아 수 10년 연속 전국 군 단위 1위 기록과 통계</h1>\n<!-- 대구 달성군이 합계출산율 1.03을 기록하며 10년 연속 전국 군 단위 출생아 수 1위를 유지했습니다. 2025년 전국 인구 동태 통계 지표와 함께 장기 흐름을 살펴봅니다. -->\n\n<p>대구 달성군이 합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수) 1.03을 기록하며 전국 군 지자체 가운데 10년 연속 출생아 수 1위를 차지했습니다. <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2Q3ZXM2hlUXYxc1dxc3k5NS1Mb1VrM3lQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\" target=\"_blank\" rel=\"noopener\">세명일보</a> 보도에 따르면 2025년 전국 출생아 수가 254,341명을 기록한 가운데 달성군은 전국 군 단위 지자체 중 독보적인 출생 수치를 유지하고 있습니다.</p>\n\n<p>국가적인 인구 감소 흐름 속에서 특정 지자체가 10년이라는 장기간 동안 출생 지표 상위권을 유지하는 것은 이례적인 현상으로 평가받습니다. 이번 글에서는 달성군의 기록과 함께 국가통계포털(KOSIS)의 인구동태 통계를 바탕으로 전국적인 인구 흐름을 정리해 보겠습니다.</p>\n\n<h3>달성군 10년 연속 1위의 기록</h3>\n\n<p><a href=\"https://news.google.com/rss/articles/CBMiX0FVX3lxTE1ueldpTWdMcFBSX3hDUGx6NU9sTXRIVzNVbTRvT2J2RVIwVWFhQjN1RlpFRlRaYWZjQUQtX2lhWUhmekx2OFlIM0pFWmFURGd6ZFZCMzdXV1VYX1M3Z3VN?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스1</a>과 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTE9fZTdwR3cwUkNmS0gxbndIZkM3eWNwc1VsOXZHQWN6aW5ST3R1dTdUd1dWQTlYa1FyMDNrUGhwblJkS2ZIZmJPRVduQ2pvck5PdHAtTk90eFN2WVdPaXl3SHd4azBYbE9TUm5NQXBsONIBc0FVX3lxTE9aZFlvT094Yzh4UXFxS0ZfZVIzWVJTYzNtSGVUVjUyOEFGMlY2ZWtXYXlELTVEZUkzakxQTHpJYzZuMHVYRHhrUjYySkVHYWFQa3ZrbnVSczBlTXFsZUdzNWtUX0xYZjluMGdCb1Z4Qm9ibVE?oc=5\" target=\"_blank\" rel=\"noopener\">시사저널</a> 등에 따르면 대구 달성군은 전국 군 지역 중 출생아 수 1위 자리를 10년 동안 이어오고 있습니다.</p>\n\n<h4>🔸 합계출산율 1.03 달성</h4>\n<p><a href=\"https://news.google.com/rss/articles/CBMiYkFVX3lxTFB3OXhrd0U5b3RRLWp5QlQyNl9VVTNWYlkwT1dxUG5TcTVvYktiSlZKNVN4VnE5aUlwZDBQNTAzenJRY0t2eTdtb1E0dndoSHdmNEJLdHRHWGpDQXQtX2xNWGd3?oc=5\" target=\"_blank\" rel=\"noopener\">매일신문</a>에 따르면 대구 달성군의 합계출산율은 1.03을 기록하며 전국 군 지자체 1위를 차지했습니다. 이는 전국 평균 수치인 0.799보다 0.231 높은 수준입니다.</p>\n\n<p><a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTFB6bWw2OGhfbEdSTkFRY1pRYzdYRGlFblNnTE04aU9LdWpERFNabk55VkFPRUZnYXV0MUpFUnQ3SEg1LUxNX0FvZlYwelVXQnktOG9pYnloLUpxelUtei1jT1daNEt0cU15?oc=5\" target=\"_blank\" rel=\"noopener\">대경일보</a>와 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTE9MTTM5UnJxUFU4S1dZR1ZvRWVoMXpVVThweUJjeDhqWHlQcW1NbE5meG04NWtwS1VObV9nc1BHVkVtYTAyYXZ4X2JuMnNZX21vN3FMWmxHbUUtcmZweA?oc=5\" target=\"_blank\" rel=\"noopener\">대구신문</a>은 달성군이 제2국가산단 예비타당성조사에 선정되는 등 대구의 변방에서 산업 중심지로 변화하고 있다는 점에 주목했습니다.</p>\n\n<h3>전국 출생아 수와 인구 통계 흐름</h3>\n\n<p>2025년 전국 인구 동태 수치를 살펴보면 출생아 수와 합계출산율 모두 직전 해인 2024년 대비 소폭 반등하는 모습을 보였습니다. 반면 사망자 수 역시 함께 증가하면서 인구 자연증가(출생아 수에서 사망자 수를 뺀 것)는 여전히 음수를 나타내고 있습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년 수치</th>\n    <th>2025년 수치</th>\n    <th>전년 대비 증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아 수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자 수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n</table>\n\n<p>2025년 전국 출생아 수는 2024년 대비 6.7% 증가했으나, 사망자 수 증가로 자연증가건수가 음수를 기록하며 인구 자연 감소 상태가 계속되고 있습니다.</p>\n\n<h3>출생률과 장기 인구 흐름 분석</h3>\n\n<p>2025년 조출생률(인구 1,000명당 1년 동안 태어난 아이 수)은 5.0명으로 2024년의 4.7명에 비해 0.3명 증가했습니다. 조사망률은 2024년 7.0명에서 2025년 7.1명으로 0.1명 올랐으며, 자연증가율은 -2.4명에서 -2.1명으로 0.3명 늘었습니다. 같은 기간 출생성비는 105.0명에서 105.8명으로 0.8명 상승했습니다.</p>\n\n<h4>🔸 10년간의 전국 출생아 수 변화</h4>\n<p>전국 출생아 수의 장기 흐름을 보면 2016년 406,243명으로 최고치를 기록한 이후 감소세를 이어가다 2023년 230,028명으로 최저점에 도달했습니다. 이 중 직전 해 대비 감소 폭이 가장 컸던 때 2017년으로 1년 만에 48,472명이 줄어들었으며, 가장 최근 수치인 2025년에는 254,341명으로 소폭 반등했습니다.</p>\n\n<p>사망자 수는 2016년 280,827명으로 가장 적었으나 2022년 372,939명으로 최고치를 기록했습니다. 자연증가건수 역시 2016년 125,416명에서 지속 감소해 2020년 음수로 전환되었으며, 2022년 -123,753명으로 최저치를 나타낸 뒤 2025년 -108,627명을 기록하고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 대구 달성군의 합계출산율은 얼마인가요?</h4>\n<p>언론 보도에 따른 대구 달성군의 합계출산율은 1.03명입니다. 이는 전국 군 지자체 중 가장 높은 수치이며, 전국 평균인 0.799명보다 0.231명 높습니다.</p>\n\n<h4>🔸 2025년 전국 출생아 수와 조출생률은 어떻게 되나요?</h4>\n<p>2025년 전국 출생아 수는 254,341명으로 직전 해 238,317명 대비 6.7% 증가했습니다. 조출생률은 5.0명으로 2024년의 4.7명보다 0.3명 늘어났습니다.</p>\n\n<h3>정리</h3>\n\n<p>대구 달성군이 10년 연속 군 단위 출생아 수 1위를 달성한 것은 지자체 차원의 인구 정주 여건 형성이 실제 출생 지표에 반영될 수 있음을 보여줍니다. 전국적인 출생아 수가 2023년 최저점을 찍은 후 소폭 반등하고 있지만, 전체적인 인구 자연 감소 흐름은 이어지고 있습니다.</p>\n\n<p>앞으로 인구 통계를 관찰할 때에는 다음 기준을 함께 살펴보는 것이 좋습니다. 첫째, 출생아 수와 사망자 수의 차이를 나타내는 2025년 자연증가건수(-108,627명)의 음수 폭이 축소되는지 확인해야 합니다. 둘째, 2025년 합계출산율(0.799명)이 상승세를 이어가며 반등 흐름을 지키는지 볼 필요가 있습니다. 셋째, 2025년 조출생률(5.0명)과 조사망률(7.1명)의 격차가 어떻게 변화하는지 파악하는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 대구 달성군은 합계출산율 1.03으로 10년 연속 군 단위 출생아 수 1위를 기록했습니다.</p>\n\n태그: 대구달성군 출생아수 합계출산율 인구통계 조출생률"
+ },
+ "minutes": 5.2
+}
