@@ -25,14 +25,7 @@ AUTHORIZE_URL = "https://public-api.wordpress.com/oauth2/authorize"
 REDIRECT_URI = "http://localhost"
 
 
-def main():
-    print("=" * 60)
-    print("WordPress.com OAuth2 토큰 발급 도우미")
-    print("=" * 60)
-
-    client_id = input("Client ID를 입력하세요: ").strip()
-    client_secret = input("Client Secret을 입력하세요: ").strip()
-
+def _code_flow(client_id, client_secret):
     # 권한 범위: 예전엔 scope=posts(글만)였는데, 그러면 그림 올리기(media)와 카테고리 찾기가 403으로 막혔다
     # (2026-10-31 실제 확인). 기본값은 scope를 비워서 "승인 화면에서 고른 블로그 1개"의 전체 권한을 받는 방식.
     # 다른 블로그에는 접근 못 한다. 안 되면 "posts media"를 입력해 다시 시도.
@@ -77,6 +70,44 @@ def main():
         if attempt < 3:
             print("   → 위 1)의 주소를 브라우저에서 다시 열어 Connect → 새 localhost 주소를 바로 붙여넣으세요(이 창은 닫지 마세요).")
     else:
+        return None
+
+    return resp
+
+
+def _password_flow(client_id, client_secret):
+    # 승인 주소 방식에서 code가 계속 'Invalid authorization_code'로 거절될 때의 예비 방식(2026-11-11).
+    # WordPress.com은 앱 주인 본인에 한해 아이디·비밀번호로 토큰을 주고, 이 토큰은 계정 전체(global) 권한이다.
+    # 2단계 인증을 켰다면 비밀번호 자리에 '애플리케이션 비밀번호'(WordPress.com 보안 설정에서 만듦)를 넣는다.
+    import getpass
+    import requests
+    username = input("WordPress.com 아이디(또는 이메일): ").strip()
+    password = getpass.getpass("비밀번호(입력해도 화면에 안 보입니다): ")
+    print(f"   (Client ID 길이 {len(client_id)}자 / Secret 길이 {len(client_secret)}자 / 비밀번호 길이 {len(password)}자)")
+    resp = requests.post(TOKEN_URL, data={
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "grant_type": "password",
+        "username": username,
+        "password": password,
+    })
+    if resp.status_code != 200:
+        print(f"❌ 토큰 발급 실패: HTTP {resp.status_code} - {resp.text[:500]}")
+        return None
+    return resp
+
+
+def main():
+    print("=" * 60)
+    print("WordPress.com OAuth2 토큰 발급 도우미")
+    print("=" * 60)
+
+    client_id = input("Client ID를 입력하세요: ").strip()
+    client_secret = input("Client Secret을 입력하세요: ").strip()
+
+    mode = input("방식 선택 (그냥 Enter = 승인 주소 방식 / 2 = 아이디·비밀번호 방식): ").strip()
+    resp = _password_flow(client_id, client_secret) if mode == "2" else _code_flow(client_id, client_secret)
+    if resp is None:
         return
 
     data = resp.json()
@@ -95,11 +126,14 @@ def main():
     print("아래 두 줄을 .env 파일에 그대로 추가하세요:")
     print("=" * 60)
     print(f"WP_OAUTH_TOKEN={access_token}")
-    print(f"WP_SITE_ID={blog_id}")
+    if blog_id:
+        print(f"WP_SITE_ID={blog_id}")
+    else:
+        print("(WP_SITE_ID는 이번 응답에 없음 - .env의 기존 값을 그대로 두세요)")
     print("=" * 60)
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "wp_token_result.txt")
     with open(out, "w", encoding="utf-8") as f:
-        f.write(f"WP_OAUTH_TOKEN={access_token}\nWP_SITE_ID={blog_id}\n")
+        f.write(f"WP_OAUTH_TOKEN={access_token}\n" + (f"WP_SITE_ID={blog_id}\n" if blog_id else ""))
     print(f"\n(같은 내용을 {out} 에도 저장했습니다 - .env에 옮긴 뒤 이 파일은 지우세요)")
     print("\n참고: 기존 .env의 WP_USERNAME / WP_APP_PASSWORD 줄은 이제 필요 없으니 지워도 됩니다.")
     print("      WP_SITE_URL은 RSS 수집/URL 추정용으로 계속 필요하니 그대로 두세요.")
