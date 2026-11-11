@@ -173,7 +173,7 @@ def closing_block(source_note, news, extra_note=""):
         '<div style="margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;">'
         f"<strong>📌 자료 출처</strong><br/>{source_note}"
         + (f'<ul style="margin:8px 0 0 18px;">{items}</ul>' if items else "") + "</div>"
-        '<p style="margin-top:20px;font-size:12px;color:#888;line-height:1.7;">'
+        '<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">'
         "이 글은 공개 자료를 정리한 정보 제공용 글이며, 특정 상품의 매수·매도나 의료적 판단을 권유하지 않습니다."
         f"{extra_note}</p>"
     )

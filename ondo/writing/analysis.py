@@ -86,7 +86,7 @@ def closing_html(news, tickers=None):
             "<strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융·KRX, "
             "그래프·표: ondo가 위 자료로 직접 계산" + check
             + (f'<ul style="margin:8px 0 0 18px;">{items}</ul>' if items else "") + "</div>"
-            '<p style="margin-top:20px;font-size:12px;color:#888;line-height:1.7;">이 글은 공개 데이터를 정리한 정보 제공용 글이며, '
+            '<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">이 글은 공개 데이터를 정리한 정보 제공용 글이며, '
             "특정 상품의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>")
 
 
