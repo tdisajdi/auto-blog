@@ -1,0 +1,13 @@
+{
+ "categories.json": "ok",
+ "menus.json": "ok",
+ "pages": {
+  "draft": 6,
+  "publish": 7
+ },
+ "posts": {
+  "draft": 49
+ },
+ "templates/template-parts.json": "ok",
+ "templates/templates.json": "ok"
+}

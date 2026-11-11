@@ -1,0 +1,133 @@
+{
+ "categories": [
+  {
+   "ID": 1380,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/biotech/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:biotech",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Biotech/New Drugs",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "biotech"
+  },
+  {
+   "ID": 1386,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/energy/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:energy",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Energy &amp; Climate",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "energy"
+  },
+  {
+   "ID": 1376,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/etf/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:etf/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:etf",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "ETF",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "etf"
+  },
+  {
+   "ID": 1382,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/market/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:market",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Market",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "market"
+  },
+  {
+   "ID": 1388,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/society/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:society",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Population &amp; Society",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "society"
+  },
+  {
+   "ID": 1378,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/patents/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:patents/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:patents",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Tech &amp; Patents",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "patents"
+  },
+  {
+   "ID": 1384,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/trend/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:trend/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:trend",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Trend",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "trend"
+  },
+  {
+   "ID": 1,
+   "description": "",
+   "feed_url": "https://ondo99.com/category/uncategorized/feed/",
+   "meta": {
+    "links": {
+     "help": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:uncategorized/help",
+     "self": "https://public-api.wordpress.com/rest/v1.1/sites/256050670/categories/slug:uncategorized",
+     "site": "https://public-api.wordpress.com/rest/v1.1/sites/256050670"
+    }
+   },
+   "name": "Uncategorized",
+   "parent": 0,
+   "post_count": 0,
+   "slug": "uncategorized"
+  }
+ ],
+ "found": 8
+}
