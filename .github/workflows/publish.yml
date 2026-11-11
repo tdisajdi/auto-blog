@@ -497,6 +497,11 @@ jobs:
               python site_pages/export.py || echo "사이트 백업 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "restore-about" ]; then
               python site_pages/restore.py 1 || echo "About 되돌리기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "theme-push" ] || [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ] || [ "${{ github.event.inputs.site_pages }}" = "shot" ]; then
+              # 사이트 틀 올리기/되돌리기 뒤 화면 캡처(lab/shots) - 2026-11-11 전체 개편
+              if [ "${{ github.event.inputs.site_pages }}" = "theme-push" ]; then python site_pages/theme_push.py push || echo "틀 올리기 실패"; fi
+              if [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ]; then python site_pages/theme_push.py restore || echo "틀 되돌리기 실패"; fi
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
             else
               python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || echo "기본 페이지 올리기 실패"
             fi
@@ -549,6 +554,7 @@ jobs:
           git add key_alerts.json 2>/dev/null || true
           git add schedule_state.json 2>/dev/null || true
           git add site_backup 2>/dev/null || true
+          git add lab/shots 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
