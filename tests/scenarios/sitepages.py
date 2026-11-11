@@ -7,6 +7,7 @@ assert set(pages) == {"about", "contact", "disclaimer", "privacy-policy"}, pages
 assert "운영자 확인 필요" not in pages["about"]["html"] and "<!--" not in pages["about"]["html"]
 assert "[contact-form" in pages["contact"]["html"] and "금융 전문가가 아닙니다" in pages["about"]["html"]
 assert "증권사" not in pages["about"]["html"]          # 확인 안 된 이력은 쓰지 않음
+assert "AI" not in pages["about"]["html"] and "사실 대조" in pages["about"]["html"]   # 11-11 사용자 결정: AI 언급은 빼고 사실만(1번)
 import blog_engine as be
 be.WP_OAUTH_TOKEN, be.WP_SITE_ID = "t", "1"
 calls = []
