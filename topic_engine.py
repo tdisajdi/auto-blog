@@ -17,6 +17,7 @@ import argparse
 import html
 import json
 import os
+from ondo.media import sources as _sources  # 2026-11-11 '직접 확인하는 곳' 링크
 import random
 import re
 import time
@@ -1258,7 +1259,9 @@ def discover_energy():
              "title_seed": f"{best['name']} 가격 {move} 지금 위치: {'·'.join(seen)}{'으로' if seen[-1].endswith('가격') else '로'} 보기",
              "facts_text": facts, "score": 1.0 + min(strength - 0.6, 1.0),
              "reason": f"{best['name']} 한 달 {best['m1']:+.1f}%, 하루 {best['d1']:+.1f}%",
-             "source_note": "원자재 가격: Yahoo Finance" + (", 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") and _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES else ""),
+             "source_note": "원자재 가격: Yahoo Finance" + (", 재고: 미국 에너지정보청(EIA)" if os.environ.get("EIA_API_KEY") and _COMMODITY_GROUP.get(best["ticker"]) in _EIA_SERIES else "")
+                            + _sources.check_line([_sources.ticker_link(best["ticker"]),
+                                                   _sources.eia_link(_COMMODITY_GROUP.get(best["ticker"])) if os.environ.get("EIA_API_KEY") else ""]),
              "chart": {"title": f"{best['name']} 선물 가격 1년 흐름 (주간)", "unit": "", "kind": "line",
                        "source": f"Yahoo Finance ({best['ticker']})", **best["chart"]}}]
 
@@ -1356,7 +1359,7 @@ def _kosis_candidates():
                       "title_seed": f"{period} {name} {value}, {_kosis_position(sm)}, 흐름과 의미 정리",
                       "facts_text": facts, "score": 1.2 + strength,
                       "reason": f"국가통계포털 {tb['name']} 새 자료 ({period} {name} {value})",
-                      "source_note": f"국가통계포털(KOSIS) '{tb['name']}'"})
+                      "source_note": f"국가통계포털(KOSIS) '{tb['name']}'" + _sources.check_line([_sources.kosis_link(tb["org"], tb["tbl"], tb["name"])])})
     cands.sort(key=lambda c: c["score"], reverse=True)
     return cands[:1]
 

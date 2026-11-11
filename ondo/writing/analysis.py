@@ -76,13 +76,15 @@ def recent_visual_combos(state, n=3):
     return out
 
 
-def closing_html(news):
+def closing_html(news, tickers=None):
+    from ondo.media import sources
     esc = _html.escape
+    check = sources.check_line([sources.ticker_link(t) for t in (tickers or [])])
     items = "".join(f'<li><a href="{esc(n["url"])}" target="_blank" rel="noopener">{esc(n["source"])}</a> - {esc(n["title"])}</li>'
                     for n in news or [] if n.get("url"))
     return ('<div style="margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;">'
             "<strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융·KRX, "
-            "그래프·표: ondo가 위 자료로 직접 계산"
+            "그래프·표: ondo가 위 자료로 직접 계산" + check
             + (f'<ul style="margin:8px 0 0 18px;">{items}</ul>' if items else "") + "</div>"
             '<p style="margin-top:20px;font-size:12px;color:#888;line-height:1.7;">이 글은 공개 데이터를 정리한 정보 제공용 글이며, '
             "특정 상품의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>")
