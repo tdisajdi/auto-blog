@@ -259,3 +259,28 @@ html body .wp-site-blocks > main, html body .wp-site-blocks > .o-post, html body
 .o-hub-intro .o-px { font-size: 12px; color: var(--o-navy-3); display: block; margin-bottom: 6px; }
 .o-hub-intro svg { width: 48px; height: 48px; shape-rendering: crispEdges; }
 .o-hub-more { margin-top: 28px; text-align: center; }
+
+/* 글 읽기 온도계(넓은 화면: 목차 위 / 좁은 화면: 머리말 아래 막대) - 읽은 만큼 수은이 10% 단위 계단으로 차오름 */
+.o-readtemp { position: sticky; top: 96px; display: flex; align-items: flex-end; gap: 10px; margin-bottom: 18px; }
+.o-readtemp svg { width: 18px; height: 40px; shape-rendering: crispEdges; }
+.o-readtemp .o-mercury { animation: none !important; transform: scaleY(var(--p, .08)); transition: transform .2s steps(3); }
+.o-readtemp .o-px { font-size: 11px; color: var(--o-ink-3); }
+.o-readtemp b { color: var(--o-hot); font-weight: 700; }
+.o-toc-col .o-toc { top: 160px; max-height: calc(100vh - 190px); }
+.o-readbar { display: none; position: fixed; left: 0; right: 0; top: 68px; height: 4px; z-index: 49; background: transparent; }
+body.admin-bar .o-readbar { top: 100px; }
+.o-readbar i { display: block; height: 100%; width: 0; background: var(--o-grad); background-size: 100vw 100%; }
+@media (max-width: 1100px) { .o-readbar { display: block; } }
+
+/* 404: 온도계가 녹아내려 0도가 됨(한 번만, 12프레임 계단) */
+.o-melt { position: relative; width: 60px; height: 170px; margin: 24px auto 8px; }
+.o-melt::after { content: ''; position: absolute; left: 12px; top: 160px; height: 6px; width: 36px; background: var(--o-hot); opacity: 0; animation: o-pool .3s steps(2) 3.2s forwards; }
+@keyframes o-pool { to { opacity: 1; } }
+.o-melt svg { width: 60px; height: 120px; margin: 0; }
+.o-melt .o-mercury { animation: o-melt 1.6s steps(8) .4s forwards !important; transform-origin: bottom; transform-box: fill-box; }
+@keyframes o-melt { from { transform: scaleY(1); } to { transform: scaleY(.04); } }
+.o-melt i { position: absolute; width: 6px; height: 6px; background: var(--o-hot); left: 27px; top: 112px; opacity: 0; animation: o-drip 1.2s steps(6) 1.8s forwards; }
+.o-melt i:nth-of-type(2) { left: 21px; animation-delay: 2.2s; background: var(--o-warm); }
+.o-melt i:nth-of-type(3) { left: 33px; animation-delay: 2.5s; background: #a8263a; }
+@keyframes o-drip { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 1; transform: translateY(36px); } }
+@media (prefers-reduced-motion: reduce) { .o-melt::after { animation: none; opacity: 1; } .o-melt .o-mercury { animation: none !important; transform: scaleY(.04); } .o-melt i { animation: none; opacity: 1; transform: translateY(36px); } .o-readtemp .o-mercury { transition: none; } }

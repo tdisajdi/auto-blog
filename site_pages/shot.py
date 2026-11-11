@@ -38,12 +38,61 @@ def mock_post_html():
     single_t = open(os.path.join(ROOT, "theme", "templates", "single.html"), encoding="utf-8").read()
     m = re.search(r'(<div class="o-byline">.*?</script>\s*<script>.*?</script>)', single_t, re.S)
     byline = theme_push.fill(m.group(1)) if m else ""
-    body = (shell.replace("{{HEADER}}", part("header")).replace("{{FOOTER}}", part("footer")).replace("{{BYLINE}}", byline)
+    body = theme_push.fill(shell.replace("{{HEADER}}", part("header")).replace("{{FOOTER}}", part("footer")).replace("{{BYLINE}}", byline)
             .replace("{{TITLE}}", p["title"]).replace("{{CONTENT}}", p["content"]))
     return f"<!doctype html><html lang='ko'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>{css}</head><body class='single'>{body}</body></html>"
 
 
+CHECK_JS = """() => {
+  const out = {overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth, lowContrast: []};
+  const lum = c => { const m = c.match(/[\\d.]+/g); if (!m) return null; const [r,g,b,a] = m.map(Number);
+    if (a === 0) return null; const f = v => { v /= 255; return v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); };
+    return 0.2126*f(r) + 0.7152*f(g) + 0.0722*f(b); };
+  const bgOf = el => { while (el) { const c = getComputedStyle(el).backgroundColor; const l = lum(c); if (l !== null) return l; el = el.parentElement; } return 1; };
+  const seen = new Set();
+  document.querySelectorAll('p,li,a,h1,h2,h3,h4,td,th,span,small,button').forEach(el => {
+    const t = (el.childNodes.length && [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim().length > 1));
+    if (!t || !el.offsetParent) return;
+    const fg = lum(getComputedStyle(el).color), bg = bgOf(el); if (fg === null) return;
+    const ratio = (Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05);
+    const size = parseFloat(getComputedStyle(el).fontSize); const need = size >= 18 ? 3 : 4.5;
+    if (ratio < need) { const k = el.textContent.trim().slice(0, 30); if (!seen.has(k)) { seen.add(k); out.lowContrast.push([k, Math.round(ratio*10)/10]); } }
+  });
+  out.lowContrast = out.lowContrast.slice(0, 12);
+  out.links = [...new Set([...document.querySelectorAll('a[href]')].map(a => a.href).filter(h => h.startsWith('https://ondo99.com/') && !h.includes('#')))];
+  return out;
+}"""
+
+
+def make_sheet(names):
+    """개편 확인용 한 장 비교판: 줄마다 화면 하나, 왼쪽 넓은 화면·오른쪽 휴대폰(첫 화면 높이만)."""
+    from PIL import Image, ImageDraw
+    rows = []
+    for n in names:
+        d, m = os.path.join(OUT, f"{n}-desk.png"), os.path.join(OUT, f"{n}-mobile.png")
+        if not (os.path.exists(d) and os.path.exists(m)):
+            continue
+        di = Image.open(d).convert("RGB"); mi = Image.open(m).convert("RGB")
+        di = di.crop((0, 0, di.width, min(di.height, 1400))).resize((480, int(min(di.height, 1400) * 480 / di.width)))
+        mi = mi.crop((0, 0, mi.width, min(mi.height, 1600))).resize((156, int(min(mi.height, 1600) * 156 / mi.width)))
+        rows.append((n, di, mi))
+    if not rows:
+        return
+    W = 480 + 156 + 48
+    H = sum(max(r[1].height, r[2].height) + 34 for r in rows) + 16
+    sheet = Image.new("RGB", (W, H), (247, 244, 236))
+    dr = ImageDraw.Draw(sheet)
+    y = 8
+    for n, di, mi in rows:
+        dr.text((16, y), n, fill=(24, 32, 44))
+        sheet.paste(di, (16, y + 18)); sheet.paste(mi, (16 + 480 + 16, y + 18))
+        y += max(di.height, mi.height) + 34
+    sheet.save(os.path.join(OUT, "_sheet.png"), optimize=True)
+    print("✅ 한 장 비교판 lab/shots/_sheet.png")
+
+
 def main():
+    import json
     from playwright.sync_api import sync_playwright
     os.makedirs(OUT, exist_ok=True)
     targets = [(n, SITE + p) for n, p in PAGES]
@@ -56,6 +105,7 @@ def main():
         mp = os.path.join(OUT, "_mock_post.html")
         open(mp, "w", encoding="utf-8").write(mock)
         targets.append(("post-mock", "file://" + mp))
+    report, links = {}, set()
     with sync_playwright() as pw:
         b = pw.chromium.launch()
         for size, w, hgt in SIZES:
@@ -65,16 +115,43 @@ def main():
                 try:
                     page.goto(url, wait_until=("domcontentloaded" if url.startswith("file:") else "networkidle"), timeout=45000)
                     page.wait_for_timeout(800)
-                    path = os.path.join(OUT, f"{name}-{size}.png")
-                    page.screenshot(path=path, full_page=True)
-                    # 너무 긴 화면은 위 3화면만(저장소 크기 관리)
-                    print(f"✅ {name}-{size}")
+                    page.screenshot(path=os.path.join(OUT, f"{name}-{size}.png"), full_page=True)
+                    chk = page.evaluate(CHECK_JS)
+                    links.update(chk.pop("links", []))
+                    report[f"{name}-{size}"] = chk
+                    warn = []
+                    if chk["overflow"] > 2:
+                        warn.append(f"가로 넘침 {chk['overflow']}px")
+                    if chk["lowContrast"]:
+                        warn.append(f"글자 대비 낮음 {len(chk['lowContrast'])}곳")
+                    print(f"{'⚠️' if warn else '✅'} {name}-{size} {' / '.join(warn)}")
                 except Exception as e:
                     print(f"❌ {name}-{size}: {type(e).__name__} {str(e)[:150]}")
             ctx.close()
+        # 깨진 링크: 우리 사이트 안 주소만 상태 확인(방문자 기준 - 로그인 없음)
+        broken = []
+        req = pw.request.new_context()
+        for u in sorted(links):
+            try:
+                r = req.get(u, timeout=30000, max_redirects=5)
+                if r.status >= 400:
+                    broken.append([u, r.status])
+            except Exception as e:
+                broken.append([u, type(e).__name__])
+        req.dispose()
         b.close()
+    report["_broken_links"] = broken
+    for u, st in broken:
+        print(f"⚠️ 깨진 링크 {st}: {u}")
+    print(f"링크 {len(links)}개 확인, 깨진 것 {len(broken)}개")
+    with open(os.path.join(OUT, "report.json"), "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=1)
     if mock:
         os.remove(os.path.join(OUT, "_mock_post.html"))
+    try:
+        make_sheet([n for n, _ in targets])
+    except Exception as e:
+        print("비교판 실패:", type(e).__name__, e)
     return 0
 
 
