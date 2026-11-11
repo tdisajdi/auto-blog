@@ -426,7 +426,9 @@ def clinical_trials_block(condition, intervention="", label="", intervention_lab
     if intervention:
         n = _ct_count(**{"query.intr": intervention})
         if n:
-            lines.append(f"- 이 약·치료법('{intervention_label or intervention}')이 들어간 임상: {n:,}건")
+            # 11-11: 특정 약 소식이면 질환 전체의 모집 중·3상·연도별 건수는 곁가지 - 작가가 다 옮겨 '신약 소식과 무관한 전 세계 임상 통계를
+            # 장황하게'(독자 편집 '중요', 바이오 재개 시험 ?p=452). 그 약 임상 수 + 질환 전체 건수(규모 비교용)만 남긴다.
+            lines = lines[:2] + [f"- 이 약·치료법('{intervention_label or intervention}')이 들어간 임상: {n:,}건"]
     lines.append("- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.")
     return "\n".join(lines) + "\n"
 
