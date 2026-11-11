@@ -567,6 +567,10 @@ def _collect_facts(tickers, macro_data, news_query=None, include_tax=False):
                    "- 미국 상장 ETF 매매차익은 양도소득세 대상이고 다음 해 5월에 직접 신고한다(세율·공제액은 세금 가이드에서 다룸)\n"
                    "- 미국 상장 ETF 배당은 미국에서 세금을 먼저 떼고(원천징수) 들어오며, 해외에서 낸 세금은 국내 세금에서 빼 준다(외국납부세액공제)\n"
                    "- 이자·배당 등 금융소득이 한 해 일정 금액을 넘으면 다른 소득과 합쳐 과세된다(금융소득종합과세, 기준 금액은 세금 가이드에서 다룸)\n\n")
+    # 11-11: 5년 최대 낙폭도 낙폭·위험을 다루는 이슈 글에만 - 환율 글에서 작가가 'SPY 최대 낙폭 -24.50%'와 1억 원 계산을 끼워 넣어
+    # 독자 편집 '중요'(분량 채우기, 재개 시험 ①). 공포지수·10년물 금리와 같은 꼴(질문에 필요 없는 숫자). 기초 가이드(news_query 없음)는 그대로.
+    if news_query and not re.search(r"낙폭|폭락|하락장|위험|변동성|손실", str(news_query)):
+        facts_lines = [re.sub(r", 최대 낙폭\(5년\) -?[\d.]+%", "", ln) for ln in facts_lines]
     text = ("[사실 자료 - 예시 ETF 실제 데이터]\n" + ("\n".join(facts_lines) or "- (데이터 수집 실패)") + "\n\n"
             f"{market}[최근 뉴스]\n{news_block}\n\n"
             + (_tax_fact_block() if include_tax else ""))
@@ -585,13 +589,15 @@ def _day_move(macro_data):
     return f" (전일 대비 {pct:.2f}% {macro_data.get('usd_krw_direction', '')})".rstrip(" )") + ")"
 
 
-def _closing_block(news, include_tax):
+def _closing_block(news, include_tax, tickers=None):
+    from ondo.media import sources    # 11-11 '직접 확인' 링크(예시 종목 페이지)
+    check = sources.check_line([sources.ticker_link(t) for t in (tickers or [])])
     news_items = "".join(
         f'<li><a href="{n["url"]}" target="_blank" rel="noopener">{n["source"]}</a> - {n["title"]}</li>' for n in news)
     tax_line = f"<br/>세금 관련 내용은 {ea.TAX_RULES_BASIS}이며, 세법은 바뀔 수 있으니 투자 전 최신 기준을 확인하세요." if include_tax else ""
     return (
         '<div style="margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;">'
-        '<strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융'
+        '<strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융' + check
         + (f'<ul style="margin:8px 0 0 18px;">{news_items}</ul>' if news_items else "")
         + "</div>"
         '<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">'
@@ -671,7 +677,7 @@ def run_explainer(topic, etf_module):
                  "필요하면 '해외 상장 ETF는 ISA·연금저축·IRP로 직접 살 수 없다'는 문장 하나와 '세금은 해외 상장 vs 국내 상장 ETF 세금 비교 "
                  "가이드에서 다룬다'는 문장 하나까지만 쓰세요. 이 내용은 글 전체에서 한 번만 - 세금·계좌 소제목이나 FAQ로 다시 다루지 마세요.\n" if not include_tax else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
-        closing_html=_closing_block(news, include_tax), visual_html=visual,
+        closing_html=_closing_block(news, include_tax, list(data_cache.keys())), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
         meta={"example_tickers": list(data_cache.keys())},
         search_seed=SEARCH_SEEDS.get(topic_id, ""),
