@@ -36,8 +36,11 @@ def fake_ct(**p):
 te._ct_count = fake_ct
 blk = te.clinical_trials_block("obesity", "semaglutide", "비만", "세마글루타이드")
 assert "질환 '비만'" in blk and "'세마글루타이드')" in blk and "obesity" not in blk, blk
-assert "등록된 임상시험 전체: 200건" in blk and "모집 중인 임상: 25건(전체의 12.5%, 코드 계산)" in blk and "3상(허가 신청 직전 단계) 임상: 50건(전체의 25.0%" in blk, blk
-assert "코드 요약" in blk.split("해마다 새로 시작한 임상 수")[1] and "가장 많던 해" in blk and "이 들어간 임상: 7건" in blk, blk
+# 11-11: 특정 약이 있으면 그 약 임상 수 + 질환 전체 건수만(곁가지 통계로 분량 채우기 방지)
+assert "등록된 임상시험 전체: 200건" in blk and "이 들어간 임상: 7건" in blk and "모집 중" not in blk and "해마다" not in blk and "읽는 법" in blk, blk
+blk2 = te.clinical_trials_block("obesity", "", "비만")
+assert "모집 중인 임상: 25건(전체의 12.5%, 코드 계산)" in blk2 and "3상(허가 신청 직전 단계) 임상: 50건(전체의 25.0%" in blk2, blk2
+assert "코드 요약" in blk2.split("해마다 새로 시작한 임상 수")[1] and "가장 많던 해" in blk2, blk2
 te._ct_count = lambda **p: None
 assert te.clinical_trials_block("obesity") == "" and te.clinical_trials_block("") == ""
 import datetime as _dt
