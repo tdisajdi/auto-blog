@@ -50,28 +50,33 @@ def main():
     print("\n2) 승인하면 http://localhost/?code=XXXXXXXX 같은 페이지로 이동합니다")
     print("   (페이지 자체는 '연결할 수 없음' 에러가 떠도 정상입니다 - 주소창의 URL만 보면 됩니다)")
 
-    redirected = input("\n3) 리다이렉트된 전체 URL(또는 code= 뒤의 값만)을 붙여넣으세요: ").strip()
-
-    if "code=" in redirected:
-        code = urllib.parse.parse_qs(urllib.parse.urlparse(redirected).query).get("code", [""])[0]
-    else:
-        code = redirected  # code 값만 붙여넣은 경우
-
-    if not code:
-        print("❌ code를 추출하지 못했습니다. URL 전체를 다시 붙여넣어보세요.")
-        return
-
     import requests  # 없으면 _run이 설치 안내를 보여 줌
-    resp = requests.post(TOKEN_URL, data={
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "redirect_uri": REDIRECT_URI,
-        "code": code,
-        "grant_type": "authorization_code",
-    })
-
-    if resp.status_code != 200:
+    # code는 한 번만 쓸 수 있고 몇 분 안에 써야 한다. 실패하면 창을 닫지 않고 같은 ID·Secret으로 다시 받게 한다(2026-11-11).
+    for attempt in range(1, 4):
+        redirected = input("\n3) 리다이렉트된 전체 URL(또는 code= 뒤의 값만)을 붙여넣으세요: ").strip().strip('"\'')
+        if "code=" in redirected:
+            code = urllib.parse.parse_qs(urllib.parse.urlparse(redirected).query).get("code", [""])[0]
+        else:
+            code = redirected  # code 값만 붙여넣은 경우
+        code = code.strip()
+        if not code:
+            print("❌ code를 추출하지 못했습니다. 주소창의 localhost/?code=... 주소 전체를 붙여넣으세요.")
+            continue
+        # 값 전체는 보이지 않게 앞 4글자와 길이만 - 주소창의 code와 같은지 눈으로 대조용
+        print(f"   (읽은 code: {code[:4]}… 길이 {len(code)}자 / Client ID 길이 {len(client_id)}자 / Secret 길이 {len(client_secret)}자)")
+        resp = requests.post(TOKEN_URL, data={
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "redirect_uri": REDIRECT_URI,
+            "code": code,
+            "grant_type": "authorization_code",
+        })
+        if resp.status_code == 200:
+            break
         print(f"❌ 토큰 교환 실패: HTTP {resp.status_code} - {resp.text[:500]}")
+        if attempt < 3:
+            print("   → 위 1)의 주소를 브라우저에서 다시 열어 Connect → 새 localhost 주소를 바로 붙여넣으세요(이 창은 닫지 마세요).")
+    else:
         return
 
     data = resp.json()
