@@ -423,3 +423,26 @@ assert not desk._summary_repeat("환노출의 개념을 같은 문단 안에서 
 # 11-10: 사실 검증도 보는 꼭 답할 질문에 '되풀이 금지'를 넣지 않는다(기준의 숫자와 부딪힘)
 assert not any("되풀이" in q for q in desk.COMMON_MUST), desk.COMMON_MUST
 print("intro repeat downgrade ok")
+
+# 11-12 백로그 13) 하루 한도(PerDay) 429는 같은 실행에서 그 (모델, 키)를 다시 안 부름 / 분당 한도는 다시 부름
+llm._excluded.clear(); llm._dead_models.clear(); llm._day_limited.clear()
+DAY = '{"error":{"code":429,"details":[{"violations":[{"quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}]}}'
+MIN = '{"error":{"code":429,"details":[{"violations":[{"quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier"}]}]}}'
+calls = []
+def post_day(url, payload, key):
+    calls.append((model_of(url), key))
+    if key in ("KEY1", "KEY2"):
+        return R(429, body=DAY)
+    if key == "KEY3":
+        return R(429, body=MIN)
+    return R(200, text="ok")
+llm._post = post_day
+assert llm.call("p", step="a", models=["m1"]).text == "ok"
+first = list(calls); calls.clear()
+assert llm.call("p", step="b", models=["m1"]).text == "ok"
+assert ("m1", "KEY1") not in calls and ("m1", "KEY2") not in calls, calls   # 하루 한도 짝은 건너뜀
+assert ("m1", "KEY3") in calls, calls                                         # 분당 한도는 다시 시도
+assert len(calls) == 2 and len(first) == 4, (first, calls)
+assert llm.is_day_limit(DAY) and not llm.is_day_limit(MIN) and not llm.is_day_limit("")
+llm._day_limited.clear()
+print("day-limit ok")

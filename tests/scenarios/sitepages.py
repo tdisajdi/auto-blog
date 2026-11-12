@@ -42,3 +42,20 @@ pg = board.render([(board.ITEMS[0], st)], "2026-11-11")
 assert "100°" in pg and "계산 방법" in pg and "1년 최저" in pg and "/disclaimer" in pg
 assert not any(w in pg for w in ("매수", "매도", "추천", "사세요", "적기")), pg
 print("board ok")
+
+# 11-12 백로그 21·31) 초안 종합 온도 띠 지우기 / 비공개 글 링크 찾기
+from site_pages.drafts_fix import strip_market_temp, find_private_links
+TEMP = ('<div class="ondo-thermo" style="x"><span>ONDO MARKET TEMP</span> <strong>51°</strong> '
+        '<span>(변동성 64°)</span> <span>· 자체 지표</span></div>\n')
+OTHER = '<div class="ondo-thermo"><b>다른 상자</b></div>'
+new, n = strip_market_temp(TEMP + "<p>본문</p>" + OTHER)
+assert n == 1 and new == "<p>본문</p>" + OTHER, new
+assert strip_market_temp("<p>없음</p>") == ("<p>없음</p>", 0)
+items = [
+    {"ID": 1, "slug": "pub", "status": "publish", "title": "공개", "content": '<a href="https://ondo99.com/?p=2">a</a> <a href="https://ondo99.com/etf/">허브</a> <a href="https://example.com/?p=2">밖</a>'},
+    {"ID": 2, "slug": "dr", "status": "draft", "title": "초안", "content": '<a href="https://ondo99.com/pub/">b</a> <a href="https://ondo99.com/dr/">c</a>'},
+]
+rep = find_private_links(items)
+assert [(r["ID"], r["status"]) for r in rep] == [(1, "publish"), (2, "draft")], rep
+assert rep[0]["links"] == [["https://ondo99.com/?p=2", "draft", 2]] and rep[1]["links"] == [["https://ondo99.com/dr/", "draft", 2]], rep
+print("drafts_fix ok")
