@@ -161,9 +161,9 @@ def _add_risk_scenarios(etf_data_cache, principal=100_000_000):
 <div style="padding:18px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;background:#fafafa;">
 <p style="margin:0 0 10px;font-weight:bold;color:#333;font-size:15px;">{ticker_clean}</p>
 <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-<div><span style="font-size:12px;color:#888;">실제 최대낙폭(MDD)</span><br/><span style="font-size:17px;font-weight:bold;color:#2166ac;">{mdd_val*100:.2f}%</span></div>
-<div><span style="font-size:12px;color:#888;">최대 손실 금액</span><br/><span style="font-size:17px;font-weight:bold;color:#c0392b;">{int(loss_amount/10000):,}만원</span></div>
-<div><span style="font-size:12px;color:#888;">잔여 자산</span><br/><span style="font-size:17px;font-weight:bold;color:#555;">{int(remaining/10000):,}만원</span></div>
+<div><span style="font-size:12px;color:#5c6575;">실제 최대낙폭(MDD)</span><br/><span style="font-size:17px;font-weight:bold;color:#2166ac;">{mdd_val*100:.2f}%</span></div>
+<div><span style="font-size:12px;color:#5c6575;">최대 손실 금액</span><br/><span style="font-size:17px;font-weight:bold;color:#c0392b;">{int(loss_amount/10000):,}만원</span></div>
+<div><span style="font-size:12px;color:#5c6575;">잔여 자산</span><br/><span style="font-size:17px;font-weight:bold;color:#555;">{int(remaining/10000):,}만원</span></div>
 </div>
 </div>
 """

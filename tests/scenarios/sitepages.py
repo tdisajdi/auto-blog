@@ -59,3 +59,12 @@ rep = find_private_links(items)
 assert [(r["ID"], r["status"]) for r in rep] == [(1, "publish"), (2, "draft")], rep
 assert rep[0]["links"] == [["https://ondo99.com/?p=2", "draft", 2]] and rep[1]["links"] == [["https://ondo99.com/dr/", "draft", 2]], rep
 print("drafts_fix ok")
+
+# 11-12) 온도판이 공개 전이면 머리·바닥·첫 화면의 온도판 링크는 '준비 중' 표시(방문자 404 막기)
+sys.path.insert(0, sys.argv[1])
+from site_pages import theme_push as tp
+html = '<a class="o-nav-board" href="https://ondo99.com/ondo-board/">BOARD</a><a href="https://ondo99.com/ondo-board/">온도판</a><a href="https://ondo99.com/etf/">ETF</a>'
+out = tp.board_links(html, live=False)
+assert "ondo-board" not in out and "BOARD SOON" in out and "온도판 (준비 중)" in out and 'href="https://ondo99.com/etf/"' in out, out
+assert tp.board_links(html, live=True) == html
+print("board soon ok")
