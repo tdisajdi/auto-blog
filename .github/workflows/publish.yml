@@ -152,6 +152,8 @@ jobs:
         run: printf '%s\n' "$DOTENV_CONTENTS" > .env
       - name: 발굴 + 토론 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
         run: python etf_auto.py --discover-and-notify --if-due
+      - name: 온도판 숫자 매일 갱신 (AI 없음, 공개 여부 그대로 - 11-12)
+        run: python ondo/board.py refresh || echo "⚠️ 온도판 갱신 실패 - 내일 다시"
       - name: 대기 상태 파일 커밋
         run: |
           git config user.name "github-actions[bot]"
