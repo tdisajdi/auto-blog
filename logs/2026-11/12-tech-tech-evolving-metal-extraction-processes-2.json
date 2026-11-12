@@ -1,0 +1,410 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:evolving-metal-extraction-processes",
+ "title_seed": "금속 추출 공정의 혁신적 발전",
+ "category": "tech",
+ "started_at": "2026-11-12T19:33:18",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.5,
+   "chars": 1980
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 53.5,
+   "chars": 2996
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 15.2,
+   "chars": 671
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 441
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 14.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.1,
+   "chars": 156
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.8,
+   "chars": 936
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 103.5,
+   "chars": 3076
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.8,
+   "chars": 160
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.8,
+   "chars": 682
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.9,
+   "chars": 145
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 829
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 24.2,
+   "chars": 3349
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.8,
+   "chars": 204
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.3,
+   "chars": 426
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 150
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.0,
+   "chars": 924
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "19:33:26",
+   "title": "금속 추출 공정은 왜 100년 만에 혁신을 맞이하고 있을까?",
+   "sections": [
+    "변화하는 금속 추출의 배경",
+    "새로운 화학적 경로의 모색",
+    "연구 동향과 논문 수 변화"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "19:34:23",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "모델 전환",
+   "at": "19:35:50",
+   "from_model": "gemini-3.5-flash-lite",
+   "to_model": "gemini-3.1-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 1(독자 가치)"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "19:35:53",
+   "score": 0.64,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "야금학, 페로크롬 등 독자가 생소할 수 있는 전문 용어에 대해 원문 내의 설명을 인용(예: 탄소 배출을 줄이는 방식)하여 쉬운 말로 풀이해주어야 함.",
+   "issues": [
+    "[중요·사실 검증] → [누락] 제목이 던진 질문에 대한 답을 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 제시하지 않았습니다. / 고칠 방법: 도입부 첫 문단 시작 부분에서 기존 대비 67% 낮은 탄소 발자국 달성 등 자료의 숫자를 활용하여 100년 만에 금속 추출 공정 혁신이 필요한 이유를 한두 문장으로 명확히 답하세요.",
+    "[중요·사실 검증] → [누락] 독자가 같은 종류의 숫자·뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 글 마무리 문단에서 독자가 참고할 기준을 제시할 때 자료에 포함된 숫자(예: 탄소 발자국 67% 감축 기준, 논문 수 증가율 61.9% 등)를 함께 기술하세요.",
+    "[중요·독자 편집] '2021년 3,678편이었던 논문 수량은 2025년 5,953편으로 집계되어 5년간 61.9% 증가하는 흐름' → 위쪽 표에 이미 제시된 2021년과 2025년의 논문 수 및 증가율 데이터를 문장에서 그대로 다시 풀어서 되풀이하고 있습니다. / 고칠 방법: 표에 있는 구체적인 수치를 반복하는 대신 학술적 관심이 전반적으로 확대되는 추세라는 점만 짧게 언급하십시오."
+   ],
+   "lint": [
+    "[참고] 꾸밈말 최선의 - 숫자나 사실로 바꿀 수 있으면 바꿀 것",
+    "너무 얇음: 본문 2389자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "numbers": [
+    "1,200"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2423
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "19:37:40",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "19:38:16",
+   "score": 0.94,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "처음 나오는 전문 용어(야금학, 페로크롬 등)에 대해 짧은 풀이말을 추가하기",
+   "issues": [
+    "[사소·독자 편집] '연구 동향과 논문 수 변화 학술 색인 OpenAlex에 따르면 금속 추출 관련 논문 발간 건수는 매년 꾸준한' → 소제목과 본문 첫 문장이 붙어 있어 가독성이 떨어집니다. / 고칠 방법: 소제목을 별도의 행으로 분리하여 작성하십시오.",
+    "[사소·독자 편집] 'Caspar Stinn은 현재의 제약을 넘어 현대의 과학 공학적 지식을 바탕으로 최선의 추출 방안을 찾고 있' → 문장 내 인용 표현과 서술어가 어색하게 연결되어 있습니다. / 고칠 방법: 인용문을 자연스럽게 다듬어 수정하십시오."
+   ],
+   "lint": [
+    "[참고] 꾸밈말 최선의 - 숫자나 사실로 바꿀 수 있으면 바꿀 것",
+    "너무 얇음: 본문 2392자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것"
+   ],
+   "chars": 2426
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "19:38:43",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "19:39:18",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "야금학이나 황화 기반 처리 등 생소한 전문 용어를 초보자가 이해하기 쉽게 풀이하는 설명을 추가하는 것",
+   "issues": [
+    "[중요·독자 편집] '동일한 학술 색인 자료에 따르면 2021년 3,678편으로 가장 적은 수치를 기록한 이후 2025년 5,95' → 표 전후로 동일한 연도별 논문 수와 최고치 내용이 반복되어 분량을 채우고 있습니다. / 고칠 방법: 표와 중복되는 해당 문단을 삭제하고 연구 트렌드의 배경을 설명하는 문장으로 대체하세요."
+   ],
+   "chars": 2681
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "금속 추출 공정은 왜 100년 만에 혁신을 맞이하고 있을까?",
+  "url": "https://ondo99.com/?p=503",
+  "score": 0.88,
+  "issues": [
+   "[중요·독자 편집] '동일한 학술 색인 자료에 따르면 2021년 3,678편으로 가장 적은 수치를 기록한 이후 2025년 5,95' → 표 전후로 동일한 연도별 논문 수와 최고치 내용이 반복되어 분량을 채우고 있습니다. / 고칠 방법: 표와 중복되는 해당 문단을 삭제하고 연구 트렌드의 배경을 설명하는 문장으로 대체하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: Evolving metal extraction processes (MIT Technology Review, https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/)\n본문 발췌: Sponsored Rethinking how metals are extracted could unlock lower-emission production, make better use of mineral resources, and strengthen critical-material supply chains. Provided by Outokumpu The metals industry has experienced transformational moments before: the Bessemer process, flash smelting, electric arc furnaces, and modern continuous casting all changed what was possible. Yet, for more than a century, most extraction processes rely on techniques and pathways that would be familiar to metallurgists from generations ago. Processes have become larger and control systems smarter, but the fundamental science behind separating metals from ores has changed less than many realize. Today’s materials challenges are different from those of the 20th century, but why are critical metals still produced using largely the same scientific foundations? EvoMaterials, a technology platform developed by Outokumpu—the global leader in sustainable stainless steel and the producer of ferrochrome with 67% lower carbon footprint than the industry average—is exploring that question by rethinking how metals can be extracted: “We decided to go beyond the current constraints and look fundamentally at what’s the best way to do this with the benefit of the scientific engineering knowledge and hindsight that we have today,” says Caspar Stinn, technical director for extractive metallurgy at Outokumpu. “We’re looking at how we can reimagine metals production.” As economies expand and the world becomes increasingly electrified, data and scientific models point to rising demand for many minerals, driven by technologies ranging from data centers to aerospace, water treatment, energy systems, and defence. According to Antoine Allanore, professor of metallurgy at the Massachusetts Institute of Technology (MIT) this coincides with many Western economies having reduced their domestic processing capacity for the very metals those industries depend on. Metallurgy is now strategically important, shaped not only by cost and availability but also by carbon footprint, geographic origin and supply-chain resilience. That reality is particularly relevant for chromium and other specialty metals used in high-temperature and extreme environments. Chromium-based materials play a critical role in aerospace systems, power generation, corrosion-resistant infrastructure and defense technologies, where materials must perform under demanding conditions. For decades, metallurgical innovation largely focused on improving yields, energy efficiency and process control. EvoMaterials is based on the idea that some metallurgical processes may benefit from entirely different chemical pathways. The platform originates from research into sulfidation-based processing technologies, initially pursued to reduce carbon emissions associated with ferrochrome production. Laboratory work revealed broader potential. Lab-scale trials demonstrated that these alternative process chemistries could potentially do more th\n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '금속 추출'(영어 논문의 제목·초록에서 찾음), 2026-11-12 조회]\n- 해마다 나온 논문 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 3,678편 → 2025년 5,953편(+61.9%), 가장 많던 해 2025년 5,953편, 가장 적던 해 2021년 3,678편\n- 올해 1월 1일~11월 12일 6,289편, 작년 같은 기간 5,083편 → +23.7%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- [전문] 고려아연 미국 프로젝트 관련 보도에 대한 영풍 입장 - 뉴스후플러스 (뉴스후플러스) https://news.google.com/rss/articles/CBMibkFVX3lxTE4ydUc0eGpJd19KRm40a1FIY0tyTGw0QndLS2F3SXBDdVZnNGV0b3luLU9Fa1g4WkpDaENSX1MtbU5wN0thbUYyWW80enhGS1FZN2lYNXpuRGRRZ01uZENOREdoT0o5eEZySEhzY1lR?oc=5\n- [강소기업_울산 울주] 이지마이닝, 사용후 배터리 재활용 혁신기술 ‘HiFLow’로 글로벌 승부수 띄워 - 솔라투데이 (솔라투데이) https://news.google.com/rss/articles/CBMicEFVX3lxTFBXckttYk9JVEt4bml5dUVuN3lqQnVpSVF3S1JleTJtWVE4RGVjcDB5ekh4cy1GRkltdzZqV1QxYnNOd3E2MG5KTTVQMTMwV3htZjNGVTVuemlGU2JaWGRCY19IU1RRcVdRdnFmN01Ielo?oc=5\n- [환경톡톡] 미생물로 푸는 폐배터리 재활용 문제 - 환경일보 (환경일보) https://news.google.com/rss/articles/CBMiaEFVX3lxTE9nMUJZbWtqekFZY2U2dUpEcFhjalpDZVNBUUJGUllFRlI4aUdNNm85eENkeUF1c0Y5d2JlTGhuckdIR3ZSbXo1NkliMURfeHNGazdFQ2RLWVZ3YS13VXQxcmhkeWlLWEhq?oc=5\n- 희토류 등 핵심광물 '친환경+자원재순환' 이루려면? - 이코리아 (이코리아) https://news.google.com/rss/articles/CBMib0FVX3lxTE9UOU9RTlRncHZndTBjOTlmMFhoMzlOdkVOWEdKcjFCV1BJSTJnOThMZlF6RHU2TTY5eDBXRVR1SkdGYW4yRl9wdVI5SG5DUTY5QnYxdG5HRzRHS0RGcDRWZ3FHSkhNOXN6ZGpBWHZnMA?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>금속 추출 공정은 왜 100년 만에 혁신을 맞이하고 있을까?</h1>\n<!-- 글로벌 스테인리스 스틸 리더 Outokumpu의 탄소 감축 시도와 공급망 재편 속에서 100년 넘게 유지되어 온 금속 추출 공정이 새로운 화학적 경로로 변화하는 이유를 학술 데이터와 함께 알아봅니다. -->\n\n<p>글로벌 스테인리스 스틸 리더인 Outokumpu는 산업 평균보다 67% 낮은 탄소 발자국으로 페로크롬을 생산하고 있습니다. 이 기업이 개발한 기술 플랫폼 EvoMaterials는 원래 페로크롬 생산 시 발생하는 탄소 배출을 줄이고자 진행된 황화 기반 처리 기술 연구에서 시작되었습니다. 1세기 이상 유지되어 온 금속 추출 기술이 탄소 감축과 공급망 재편 요구에 맞춰 어떤 변화를 맞이하고 있는지 그 배경을 다룹니다.</p>\n\n<h3>변화하는 금속 추출의 배경</h3>\n\n<p>현대 산업의 전기화가 급격히 진행되면서 데이터 센터, 항공우주, 수처리, 에너지 시스템, 국방 등 다양한 기술 분야에서 광물 수요가 지속적으로 증가하고 있습니다. 크롬 기반 소재는 항공우주 시스템과 발전 설비, 부식 방지 인프라처럼 열악한 환경에서 작동해야 하는 기술에 핵심적인 역할을 담당합니다.</p>\n\n<p>마사추세츠 공과대학교(MIT)의 야금학 교수인 Antoine Allanore에 따르면, 이러한 광물 수요 증가는 많은 서구 경제국이 주요 금속의 국내 가공 능력을 축소해 온 시점과 맞물려 발생하고 있습니다. 주요 산업이 의존하는 금속의 자체 생산 및 가공 기반이 약화된 상황입니다.</p>\n\n<p>이에 따라 야금술은 과거처럼 단순히 생산 비용과 가용성만으로 평가받지 않습니다. 이제는 탄소 발자국과 지리적 출처, 공급망의 탄력성까지 함께 고려해야 하는 전략적 중요성을 가지게 되었습니다.</p>\n\n<h3>새로운 화학적 경로의 모색</h3>\n\n<p>수십 년 동안 야금 분야의 기술 혁신은 주로 수율 향상, 에너지 효율 개선, 공정 제어 강화 등 기존 방식의 효율을 높이는 데 중점을 두었습니다. 그러나 전통적인 정제 체계는 과학적 기초 측면에서 지난 100년 이상 큰 틀의 변화 없이 유지되어 왔습니다.</p>\n\n<p>Outokumpu의 EvoMaterials 플랫폼은 일부 야금 공정이 기존과 전혀 다른 화학적 경로를 통해 개선될 수 있다는 아이디어에서 출발했습니다. 당초 페로크롬 생산의 탄소 배출을 줄이기 위한 황화 기반 처리 기술 연구로 시작되었으나, 실험실 규모의 시제품 시험을 통해 더 폭넓은 활용 잠재력이 확인되었습니다.</p>\n\n<p>Outokumpu의 추출 야금 기술 이사인 Caspar Stinn은 현재의 제약을 넘어 현대의 과학 공학적 지식을 바탕으로 최선의 추출 방안을 찾고 있다고 밝혔다며, <a href=\"https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/\" target=\"_blank\" rel=\"noopener\">MIT Technology Review</a> 기사를 통해 확인할 수 있습니다.</p>\n\n<h3>연구 동향과 논문 수 변화</h3>\n\n<p>학술 색인 OpenAlex에 따르면 금속 추출 관련 논문 발간 건수는 매년 꾸준한 증가세를 보였습니다. 2021년부터 2025년까지의 연도별 데이터와 올해 최근 집계 수치는 해당 분야에 대한 글로벌 연구진의 관심이 크게 늘어났음을 보여줍니다.</p>\n\n<table>\n<tr><th>구분</th><th>논문 수(편)</th><th>변화율 및 비고</th></tr>\n<tr><td>2021년</td><td>3,678</td><td>최저 수치 기록 연도</td></tr>\n<tr><td>2025년</td><td>5,953</td><td>2021년 대비 +61.9% (최대 수치)</td></tr>\n<tr><td>2025년 1월 1일~11월 12일</td><td>5,083</td><td>전년 동기 기준 비교군</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>6,289</td><td>전년 동기 대비 +23.7% 증가</td></tr>\n</table>\n\n<p>2021년 3,678편이었던 논문 수량은 2025년 5,953편으로 집계되어 5년간 61.9% 증가하는 흐름을 나타냈습니다. 올해 11월 12일까지 집계된 수치 역시 작년 같은 기간보다 1,200편 이상 많아 연구 활동이 한층 활발해졌음을 알 수 있습니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 늘어난 것은 금속 추출 기술이 이미 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 학술 논문 수의 증가 흐름은 해당 주제에 대한 연구진의 학술적 관심과 투자 규모가 커졌음을 의미할 뿐, 해당 기술의 완성도나 산업 현장의 상용화 시점을 직접 보증하는 수치는 아닙니다.</p>\n\n<h4>🔸 올해 1월부터 11월까지 집계된 논문 수는 앞으로 변하지 않나요?</h4>\n<p>숫자가 더 늘어날 수 있습니다. 학술 색인 데이터베이스의 특성상 발간된 논문이 시스템에 등록되고 색인화되는 데 일정 기간의 시차가 발생하므로, 최근 기간의 집계치는 시간이 지나면서 추가 업데이트됩니다.</p>\n\n<h3>정리</h3>\n\n<p>기존 금속 추출 공정은 생산 효율화 위주로 발전해 왔으나, 친환경 기준 강화와 국경 간 공급망 불안정이 겹치면서 근본적인 공정 화학의 재설계가 이루어지고 있습니다. 기초 연구 단계의 실험실 시제품 시험과 글로벌 기업의 플랫폼 구축이 이어지며 기존 야금학의 한계를 극복하려는 시도가 본격화되었습니다.</p>\n\n<p>향후 관련 기술 뉴스를 접할 때는 학술 연구 논문 수의 증가세와 실제 정제 현장의 상용화 적용 여부를 구분하여 확인하는 것이 좋습니다. 아울러 기업들이 제시하는 공정 변경 방식이 기존 제련 대비 탄소 발자국을 얼마나 줄이는지, 그리고 크롬 등 핵심 광물의 정제 능력 축소 문제를 해결할 수 있는지를 함께 살펴보아야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 금속 추출 기술은 공급망 탄력성과 탄소 감축이라는 새로운 환경 속에서 기초 화학 경로 자체를 바꾸는 혁신을 겪고 있습니다.</p>\n\n태그: 금속추출 야금학 EvoMaterials Outokumpu 친환경제련",
+  "2": "<h1>금속 추출 공정은 왜 100년 만에 혁신을 맞이하고 있을까?</h1>\n<!-- 글로벌 스테인리스 스틸 리더 Outokumpu의 탄소 감축 시도와 공급망 재편 속에서 100년 넘게 유지되어 온 금속 추출 공정이 새로운 화학적 경로로 변화하는 이유를 학술 데이터와 함께 알아봅니다. -->\n\n<p>글로벌 스테인리스 스틸 리더인 Outokumpu가 산업 평균보다 67% 낮은 탄소 발자국으로 페로크롬을 생산하듯, 100년 만의 금속 추출 혁신은 높은 탄소 배출을 억제하고 정제 기술 체계를 바꾸기 위해 추진되고 있습니다. 이 기업이 개발한 기술 플랫폼 EvoMaterials는 원래 페로크롬 생산 시 발생하는 탄소 배출을 줄이고자 진행된 황화 기반 처리 기술 연구에서 시작되었습니다. 1세기 이상 유지되어 온 금속 추출 기술이 탄소 감축과 공급망 재편 요구에 맞춰 어떤 변화를 맞이하고 있는지 그 배경을 다룹니다.</p>\n\n<h3>변화하는 금속 추출의 배경</h3>\n\n<p>현대 산업의 전기화가 급격히 진행되면서 데이터 센터, 항공우주, 수처리, 에너지 시스템, 국방 등 다양한 기술 분야에서 광물 수요가 지속적으로 증가하고 있습니다. 크롬 기반 소재는 항공우주 시스템과 발전 설비, 부식 방지 인프라처럼 열악한 환경에서 작동해야 하는 기술에 핵심적인 역할을 담당합니다.</p>\n\n<p>마사추세츠 공과대학교(MIT)의 야금학 교수인 Antoine Allanore에 따르면, 이러한 광물 수요 증가는 많은 서구 경제국이 주요 금속의 국내 가공 능력을 축소해 온 시점과 맞물려 발생하고 있습니다. 주요 산업이 의존하는 금속의 자체 생산 및 가공 기반이 약화된 상황입니다.</p>\n\n<p>이에 따라 야금술은 과거처럼 단순히 생산 비용과 가용성만으로 평가받지 않습니다. 이제는 탄소 발자국과 지리적 출처, 공급망의 탄력성까지 함께 고려해야 하는 전략적 중요성을 가지게 되었습니다.</p>\n\n<h3>새로운 화학적 경로의 모색</h3>\n\n<p>수십 년 동안 야금 분야의 기술 혁신은 주로 수율 향상, 에너지 효율 개선, 공정 제어 강화 등 기존 방식의 효율을 높이는 데 중점을 두었습니다. 그러나 전통적인 정제 체계는 과학적 기초 측면에서 지난 100년 이상 큰 틀의 변화 없이 유지되어 왔습니다.</p>\n\n<p>Outokumpu의 EvoMaterials 플랫폼은 일부 야금 공정이 기존과 전혀 다른 화학적 경로를 통해 개선될 수 있다는 아이디어에서 출발했습니다. 당초 페로크롬 생산의 탄소 배출을 줄이기 위한 황화 기반 처리 기술 연구로 시작되었으나, 실험실 규모의 시제품 시험을 통해 더 폭넓은 활용 잠재력이 확인되었습니다.</p>\n\n<p>Outokumpu의 추출 야금 기술 이사인 Caspar Stinn은 현재의 제약을 넘어 현대의 과학 공학적 지식을 바탕으로 최선의 추출 방안을 찾고 있다고 밝혔다며, <a href=\"https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/\" target=\"_blank\" rel=\"noopener\">MIT Technology Review</a> 기사를 통해 확인할 수 있습니다.</p>\n\n<h3>연구 동향과 논문 수 변화</h3>\n\n<p>학술 색인 OpenAlex에 따르면 금속 추출 관련 논문 발간 건수는 매년 꾸준한 증가세를 보였습니다. 2021년부터 2025년까지의 연도별 데이터와 올해 최근 집계 수치는 해당 분야에 대한 글로벌 연구진의 관심이 크게 늘어났음을 보여줍니다.</p>\n\n<table>\n<tr><th>구분</th><th>논문 수(편)</th><th>변화율 및 비고</th></tr>\n<tr><td>2021년</td><td>3,678</td><td>최저 수치 기록 연도</td></tr>\n<tr><td>2025년</td><td>5,953</td><td>2021년 대비 +61.9% (최대 수치)</td></tr>\n<tr><td>2025년 1월 1일~11월 12일</td><td>5,083</td><td>전년 동기 기준 비교군</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>6,289</td><td>전년 동기 대비 +23.7% 증가</td></tr>\n</table>\n\n<p>금속 추출 관련 분야는 최근 학술적 관심이 전반적으로 확대되는 추세를 보이고 있습니다. 2026년 동기 집계 수치 역시 전년 동기 대비 23.7% 증가하며 활발한 연구 활동이 이어지고 있음을 나타냅니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 늘어난 것은 금속 추출 기술이 이미 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 학술 논문 수의 증가 흐름은 해당 주제에 대한 연구진의 학술적 관심과 투자 규모가 커졌음을 의미할 뿐, 해당 기술의 완성도나 산업 현장의 상용화 시점을 직접 보증하는 수치는 아닙니다.</p>\n\n<h4>🔸 올해 1월부터 11월까지 집계된 논문 수는 앞으로 변하지 않나요?</h4>\n<p>숫자가 더 늘어날 수 있습니다. 학술 색인 데이터베이스의 특성상 발간된 논문이 시스템에 등록되고 색인화되는 데 일정 기간의 시차가 발생하므로, 최근 기간의 집계치는 시간이 지나면서 추가 업데이트됩니다.</p>\n\n<h3>정리</h3>\n\n<p>기존 금속 추출 공정은 생산 효율화 위주로 발전해 왔으나, 친환경 기준 강화와 국경 간 공급망 불안정이 겹치면서 근본적인 공정 화학의 재설계가 이루어지고 있습니다. 기초 연구 단계의 실험실 시제품 시험과 글로벌 기업의 플랫폼 구축이 이어지며 기존 야금학의 한계를 극복하려는 시도가 본격화되었습니다.</p>\n\n<p>독자가 향후 관련 기술이나 뉴스를 접할 때는 페로크롬 감축 사례와 같은 탄소 발자국 67% 감축 기준 달성 여부, 5년간 61.9% 증가한 논문 수와 같은 학술적 관심도 추이, 그리고 전년 동기 대비 23.7% 증가한 최근 연구 증가율을 스스로 확인할 기준으로 참고할 수 있습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 금속 추출 기술은 공급망 탄력성과 탄소 감축이라는 새로운 환경 속에서 기초 화학 경로 자체를 바꾸는 혁신을 겪고 있습니다.</p>\n\n태그: 금속추출 야금학 EvoMaterials Outokumpu 친환경제련",
+  "3": "<h1>금속 추출 공정은 왜 100년 만에 혁신을 맞이하고 있을까?</h1>\n<!-- 글로벌 스테인리스 스틸 리더 Outokumpu의 탄소 감축 시도와 공급망 재편 속에서 100년 넘게 유지되어 온 금속 추출 공정이 새로운 화학적 경로로 변화하는 이유를 학술 데이터와 함께 알아봅니다. -->\n\n<p>글로벌 스테인리스 스틸 리더인 Outokumpu가 산업 평균보다 67% 낮은 탄소 발자국으로 페로크롬을 생산하듯, 100년 만의 금속 추출 혁신은 높은 탄소 배출을 억제하고 정제 기술 체계를 바꾸기 위해 추진되고 있습니다. 이 기업이 개발한 기술 플랫폼 EvoMaterials는 원래 페로크롬 생산 시 발생하는 탄소 배출을 줄이고자 진행된 황화 기반 처리 기술 연구에서 시작되었습니다. 1세기 이상 유지되어 온 금속 추출 기술이 탄소 감축과 공급망 재편 요구에 맞춰 어떤 변화를 맞이하고 있는지 그 배경을 다룹니다.</p>\n\n<h3>변화하는 금속 추출의 배경</h3>\n\n<p>현대 산업의 전기화가 급격히 진행되면서 데이터 센터, 항공우주, 수처리, 에너지 시스템, 국방 등 다양한 기술 분야에서 광물 수요가 지속적으로 증가하고 있습니다. 크롬 기반 소재는 항공우주 시스템과 발전 설비, 부식 방지 인프라처럼 열악한 환경에서 작동해야 하는 기술에 핵심적인 역할을 담당합니다.</p>\n\n<p>마사추세츠 공과대학교(MIT)의 야금학 교수인 Antoine Allanore에 따르면, 이러한 광물 수요 증가는 많은 서구 경제국이 주요 금속의 국내 가공 능력을 축소해 온 시점과 맞물려 발생하고 있습니다. 주요 산업이 의존하는 금속의 자체 생산 및 가공 기반이 약화된 상황입니다.</p>\n\n<p>이에 따라 야금술은 과거처럼 단순히 생산 비용과 가용성만으로 평가받지 않습니다. 이제는 탄소 발자국과 지리적 출처, 공급망의 탄력성까지 함께 고려해야 하는 전략적 중요성을 가지게 되었습니다.</p>\n\n<h3>새로운 화학적 경로의 모색</h3>\n\n<p>수십 년 동안 야금 분야의 기술 혁신은 주로 수율 향상, 에너지 효율 개선, 공정 제어 강화 등 기존 방식의 효율을 높이는 데 중점을 두었습니다. 그러나 베세머 공정, 플래시 제련, 전기로, 현대적 연속 주조 등 과거의 기술 혁신 이후에도 정제 체계의 기본 과학 구조는 1세기가 넘도록 큰 틀의 변화 없이 유지되어 왔습니다.</p>\n\n<p>Outokumpu의 EvoMaterials 플랫폼은 일부 야금 공정이 기존과 전혀 다른 화학적 경로를 통해 개선될 수 있다는 아이디어에서 출발했습니다. 당초 페로크롬 생산의 탄소 배출을 줄이기 위한 황화 기반 처리 기술 연구로 시작되었으나, 실험실 규모의 시제품 시험을 통해 더 폭넓은 활용 잠재력이 확인되었습니다.</p>\n\n<p>Outokumpu의 추출 야금 기술 이사인 Caspar Stinn은 현재의 제약을 넘어 현대의 과학 공학적 지식을 활용하여 금속 생산 방식을 재구상하고 있다고 <a href=\"https://www.technologyreview.com/2026/11/10/1147726/evolving-metal-extraction-processes/\" target=\"_blank\" rel=\"noopener\">MIT Technology Review</a>를 통해 밝혔습니다.</p>\n\n<h3>연구 동향과 논문 수 변화</h3>\n\n<h4>🔸 학술 색인을 통해 본 금속 추출 연구 동향</h4>\n\n<p>학술 색인 OpenAlex에 따르면 금속 추출 관련 논문 발간 건수는 2021년 3,678편에서 2025년 5,953편으로 61.9% 증가하며 매년 꾸준한 증가세를 보였습니다. 2021년부터 2025년까지의 연도별 데이터와 올해 최근 집계 수치는 해당 분야에 대한 글로벌 연구진의 관심이 크게 늘어났음을 보여줍니다.</p>\n\n<table>\n<tr><th>구분</th><th>논문 수(편)</th><th>변화율 및 비고</th></tr>\n<tr><td>2021년</td><td>3,678</td><td>최저 수치 기록 연도</td></tr>\n<tr><td>2025년</td><td>5,953</td><td>2021년 대비 +61.9% (최대 수치)</td></tr>\n<tr><td>2025년 1월 1일~11월 12일</td><td>5,083</td><td>전년 동기 기준 비교군</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>6,289</td><td>전년 동기 대비 +23.7% 증가</td></tr>\n</table>\n\n<p>금속 추출 관련 분야는 최근 학술적 관심이 전반적으로 확대되는 추세를 보이고 있습니다. 2026년 동기 집계 수치는 6,289편으로, 전년 동기의 5,083편 대비 23.7% 증가하며 활발한 연구 활동이 이어지고 있음을 나타냅니다.</p>\n\n<p>동일한 학술 색인 자료에 따르면 2021년 3,678편으로 가장 적은 수치를 기록한 이후 2025년 5,953편으로 조사 기간 중 최고 수치를 기록했습니다. 이러한 연구 활성화는 기존 제련 공정이 지닌 탄소 배출 한계를 극복하려는 학계의 움직임을 반영합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 늘어난 것은 금속 추출 기술이 이미 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 학술 논문 수의 증가 흐름은 해당 주제에 대한 연구진의 학술적 관심과 투자 규모가 커졌음을 의미할 뿐, 해당 기술의 완성도나 산업 현장의 상용화 시점을 직접 보증하는 수치는 아닙니다.</p>\n\n<h4>🔸 올해 1월부터 11월까지 집계된 논문 수는 앞으로 변하지 않나요?</h4>\n<p>숫자가 더 늘어날 수 있습니다. 학술 색인 데이터베이스의 특성상 발간된 논문이 시스템에 등록되고 색인화되는 데 일정 기간의 시차가 발생하므로, 최근 기간의 집계치는 시간이 지나면서 추가 업데이트됩니다.</p>\n\n<h3>정리</h3>\n\n<p>기존 금속 추출 공정은 생산 효율화 위주로 발전해 왔으나, 친환경 기준 강화와 국경 간 공급망 불안정이 겹치면서 근본적인 공정 화학의 재설계가 이루어지고 있습니다. 기초 연구 단계의 실험실 시제품 시험과 글로벌 기업의 플랫폼 구축이 이어지며 기존 야금학의 한계를 극복하려는 시도가 본격화되었습니다.</p>\n\n<p>독자가 향후 관련 기술이나 뉴스를 접할 때는 페로크롬 감축 사례와 같은 탄소 발자국 67% 감축 기준 달성 여부, 5년간 61.9% 증가한 논문 수와 같은 학술적 관심도 추이, 그리고 전년 동기 대비 23.7% 증가한 최근 연구 증가율을 스스로 확인할 기준으로 참고할 수 있습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 금속 추출 기술은 공급망 탄력성과 탄소 감축이라는 새로운 환경 속에서 기초 화학 경로 자체를 바꾸는 혁신을 겪고 있습니다.</p>\n\n태그: 금속추출 야금학 EvoMaterials Outokumpu 친환경제련"
+ },
+ "minutes": 6.5
+}
