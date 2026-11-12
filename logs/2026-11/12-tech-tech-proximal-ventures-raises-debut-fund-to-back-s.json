@@ -1,0 +1,538 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:proximal-ventures-raises-debut-fund-to-back-startups-bringin",
+ "title_seed": "AI를 신약 개발에 접목하는 스타트업에 투자하는 Proximal Ventures",
+ "category": "tech",
+ "started_at": "2026-11-12T20:38:12",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.7,
+   "chars": 2594
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.6,
+   "chars": 3753
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.8,
+   "chars": 645
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 730
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 193
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.5,
+   "chars": 816
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.7,
+   "chars": 3502
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.1,
+   "chars": 489
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 521
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.1,
+   "chars": 380
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.2,
+   "chars": 785
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 3643
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.9,
+   "chars": 226
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 762
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.8,
+   "chars": 139
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.4,
+   "chars": 783
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 158.3,
+   "chars": 224
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.3,
+   "chars": 759
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.3,
+   "chars": 333
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:38:24",
+   "title": "AI 신약 개발에 투자하는 Proximal Ventures의 펀드 규모와 현황",
+   "sections": [
+    "Proximal Ventures와 2,750만 달러 펀드",
+    "제약 서비스 시장과 AI 자동화의 기회",
+    "학술 연구로 보는 AI 신약 개발 논문 추이",
+    "운용사의 경력과 주요 투자자 네트워크"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:38:38",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:40:02",
+   "score": 0.47,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "본문에 등장하는 프리시드나 LP 같은 낯선 투자 용어를 처음 나올 때 쉬운 말로 덧붙여 설명하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 같은 종류의 뉴스를 다시 볼 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 글 상단의 본문이나 정리 부분의 확인 기준에 OpenAlex 논문 증가율(+669.1%, +50.0%) 등 자료의 숫자를 함께 기재하세요.",
+    "[치명·사실 검증] '구분 2021년 2025년 2025년 대비 변동률' → 2021년 대비 2025년의 변동률(+669.1%)을 표에서 '2025년 대비 변동률'로 잘못 표기했습니다. / 고칠 방법: 표 열 항목명을 '2021년 대비 변동률'로 고치세요.",
+    "[사소·독자 편집] 'Proximal Ventures와 2,750만 달러 펀드 Proximal Ventures는 바이오 및 헬스케' → 도입부에서 이미 다룬 펀드 규모와 투자 대상 내용을 소제목 아래에서 거의 그대로 되풀이하고 있습니다. / 고칠 방법: 소제목 아래에서 도입부의 내용을 반복하지 말고, 투자 단계와 수표 발행 규모 같은 세부 내용으로 바로 이어가세요.",
+    "[사소·독자 편집] '구분 2021년 2025년 2025년 대비 변동률 연간 논문 수 446편 3,430편 +669.1%' → 표에 제시된 연간 논문 수와 변동률 수치를 바로 앞 문장에서 그대로 다시 풀어서 설명하고 있습니다. / 고칠 방법: 표를 가리키며 추세의 의미만 간략히 언급하고 세부 수치는 표를 참고하도록 하세요."
+   ],
+   "numbers": [
+    "2,750만",
+    "150만",
+    "19억"
+   ],
+   "fixes": [
+    "한국어 용어 뒤 괄호 속 영어 원어 지움",
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 2개 삭제: 🔸 Proximal Ventures는 어떤 단계의 스타; 🔸 OpenAlex 색인 기준으로 AI 신약 개발 논문"
+   ],
+   "chars": 3086
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "20:40:17",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:40:54",
+   "score": 0.64,
+   "passed": false,
+   "value": 0.4,
+   "value_missing": [
+    "제목 질문에 답함",
+    "이 글만의 정보",
+    "용어 풀이"
+   ],
+   "value_tip": "프리시드, 시드, LP 등 본문에 등장하는 낯선 투자 용어에 대해 초보자를 위한 쉬운 풀이를 추가합니다.",
+   "issues": [
+    "[중요·사실 검증] 'Proximal Ventures는 신약 후보물질 자체를 처음부터 개발하는 방식보다 제약 개발 과정에 필요한 ' → 자료에 없는 '신약 후보물질 직접 개발과의 비교 및 위험 감축 전략'에 관한 추측성 분석이 포함되었습니다. / 고칠 방법: 원문 자료에 기재된 대로 AI를 활용해 신약 개발을 지원하는 도구·인프라·서비스 스타트업에 투자한다는 사실 위주로 작성해야 합니다.",
+    "[중요·독자 편집] '벤처캐피털인 SignalFire, Kleiner Perkins, Bertelsmann Healthcare I' → 본문 운용사 경력 섹션에서 이미 상세히 다룬 주요 투자자 명단을 Q&A 섹션에서 거의 동일하게 되풀이하고 있습니다. / 고칠 방법: Q&A 섹션에는 이미 언급된 투자자 명단 대신 펀드 운용 규모나 추가 투자 집행 조건 등 다른 정보를 배치하세요.",
+    "[중요·정책·신뢰] '파악하는 것이 중요합니다.' → 조건이나 숫자로 판단 기준을 제시하지 않고 중요하다고 단정적으로 강조함 / 고칠 방법: 현장 경험이 있는 운용사를 확인할 때는 '제약 바이오 기업과의 실질적인 파트너십 이력' 등의 기준을 참고할 수 있습니다."
+   ],
+   "numbers": [
+    "2,750만",
+    "150만",
+    "19억"
+   ],
+   "chars": 3048
+  },
+  {
+   "step": "모델 전환",
+   "at": "20:41:10",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "고쳐쓰기 2"
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "20:41:13",
+   "model": "gemini-3.5-flash",
+   "todo": 4
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "20:44:57",
+   "score": 0.91
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "20:44:57",
+   "score": 0.94,
+   "passed": true,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "관련 뉴스에 언급된 임상 2상의 한계나 동물실험 대체(NAMs) 트렌드 내용을 본문에 추가하여 시장 분석의 깊이를 보완해야 합니다.",
+   "issues": [
+    "[사소·독자 편집] 'Proximal Ventures는 AI를 활용해 신약 개발을 지원하는 도구, 인프라, 서비스 스타트업에 투자' → 도입부 및 앞선 문단에서 이미 언급한 펀드의 투자 목표와 외주 서비스 혁신 내용을 본문 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 설명을 생략하고 구체적인 투자 집행 사례나 스타트업의 역할 설명으로 대체하세요.",
+    "[사소·독자 편집] '인공지능 신약 개발 관련 논문은 아래 표와 같이 지속적인 증가세를 보이고 있으며, 조사 기간 내 가장 적었던' → 표를 단순히 가리키고 수치를 문장 안에서 풀어쓰는 과정이 다소 길어져 간결성을 떨어뜨립니다. / 고칠 방법: 표의 주요 수치를 문장에서 길게 풀지 말고 표 자체를 참고하도록 간략히 언급하세요."
+   ],
+   "numbers": [
+    "2,750만",
+    "150만",
+    "19억"
+   ],
+   "fixes": [
+    "본문 숫자만 되풀이한 FAQ 1개 삭제: 🔸 Proximal Ventures의 펀드 운용 및 투"
+   ],
+   "chars": 2855
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "Proximal Ventures의 AI 신약 개발 투자 펀드 규모와 시장 분석",
+  "url": "https://ondo99.com/?p=509",
+  "score": 0.94,
+  "issues": [
+   "[사소·독자 편집] 'Proximal Ventures는 AI를 활용해 신약 개발을 지원하는 도구, 인프라, 서비스 스타트업에 투자' → 도입부 및 앞선 문단에서 이미 언급한 펀드의 투자 목표와 외주 서비스 혁신 내용을 본문 섹션에서 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 설명을 생략하고 구체적인 투자 집행 사례나 스타트업의 역할 설명으로 대체하세요.",
+   "[사소·독자 편집] '인공지능 신약 개발 관련 논문은 아래 표와 같이 지속적인 증가세를 보이고 있으며, 조사 기간 내 가장 적었던' → 표를 단순히 가리키고 수치를 문장 안에서 풀어쓰는 과정이 다소 길어져 간결성을 떨어뜨립니다. / 고칠 방법: 표의 주요 수치를 문장에서 길게 풀지 말고 표 자체를 참고하도록 간략히 언급하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: Proximal Ventures raises debut fund to back startups bringing AI to drug development (TechCrunch, https://techcrunch.com/2026/11/10/proximal-ventures-raises-debut-fund-to-back-startups-bringing-ai-to-drug-development/)\n본문 발췌: Latest AI Amazon Apps Biotech & Health Climate Cloud Computing Commerce Crypto Enterprise EVs Fintech Fundraising Gadgets Gaming Google Government & Policy Hardware Instagram Layoffs Media & Entertainment Meta Microsoft Privacy Robotics Security Social Space Startups TikTok Transportation Venture Staff Events Startup Battlefield StrictlyVC Newsletters Podcasts Videos Partner Content TechCrunch Brand Studio Contact Us While established venture firms continue to attract capital, first-time fund managers are facing one of the toughest fundraising environments in years. But that didn’t stop Sahir Raoof, a former SignalFire investor and executive at two healthcare startups, from raising $27.5 million for his first solo VC fund. Raoof’s firm, Proximal Ventures , is betting that AI can transform the tools, infrastructure, and services that support drug development. Pharmaceutical companies have historically outsourced various stages of drug development to specialized service providers, from synthesizing thousands of molecular compounds and figuring out how to manufacture drugs at scale to analyzing clinical trial data. “For a long time, the assumption was that pharma is not a great buyer of software, but a really good buyer of services,” Raoof told TechCrunch. Raoof believes AI could automate much of that work, creating an opportunity for startups to capture billions of dollars in pharmaceutical industry spending. By using AI, these companies could deliver the same services at a lower cost and in significantly less time, he said. Some of the most valuable applications of AI so far have been in service-oriented industries like law and finance, Raoof said. He sees similar opportunities in pharmaceutical services. Proximal plans to invest in pre-seed and seed-stage startups, writing checks from $500,000 to $1.5 million. The firm has already backed seven startups, including ChronicleBio, co-founded by former OpenAI executive Fidji Simo, which uses AI to analyze biological and medical data to better understand chronic diseases and identify potential treatments. Before spending two years as a principal at SignalFire, Raoof led business development at clinical trial recruitment startup Iterative Health and previously oversaw partnerships at Flatiron Health, an oncology data company acquired by Roche for $1.9 billion in 2018. “If you’re building a company that’s selling into the life sciences, one of the hardest things to do is starting that initial commercial flywheel,” Raoof said. His sales chops, deep understanding of the healthcare ecosystem, and extensive industry relationships gave limited partners, the investors in VC funds, the confidence that he could spot strong startups and help them land customers. Proximal’s backers include VC firms SignalFire and Kleiner Perkins, Bertelsmann Healthcare Investments, and individual investors such as Dimension Capital co-founders Nan Li and Zavain Dar. Amy Abernethy, co-founder of Highlander Health and former princip\n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '인공지능 신약 개발'(영어 논문의 제목·초록에서 찾음), 2026-11-12 조회]\n- 해마다 나온 논문 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 446편 → 2025년 3,430편(+669.1%), 가장 많던 해 2025년 3,430편, 가장 적던 해 2021년 446편\n- 올해 1월 1일~11월 12일 4,198편, 작년 같은 기간 2,799편 → +50.0%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- 세계적 인공지능바이오 강국 도약을 위한 소버린 바이오 전략 모색...바이오 분야 유공자 과기정통부 부총리표창 수여 - BRIC (BRIC) https://news.google.com/rss/articles/CBMifkFVX3lxTE9iSkVySTFjVTFEMURPVnFjenVHTUxkdG5yVWRPQkgyUVFCWWctTjRiQTVqQ2Rvay1XM1dxNUdPQlFnM1NzWng0ODU4MzMtODBfRm5JdUhaYXFlU3VnbHlBR01Cb2tzUlplcmVpQ1JNd0VxT3NuWUs2MXpZWnBDQQ?oc=5\n- AI신약, 1상 넘어도 2상서 와르르…개발해본 사람 말은? '더 낫게' - 히트뉴스 (히트뉴스) https://news.google.com/rss/articles/CBMia0FVX3lxTE1GR1FWeFQxTHByVHE5YkpwaXpBVnl1ZzByeTc5cGYtd0VQdXJESjd4bVhsQ3VER2tpZjdpVWQtM3NxOUZ2VjFmeFF0ZTdXTEwwNl92M3gwVWtwRzdObGpPelJvTl9FUjJHZUg0?oc=5\n- 동물실험 시대 저물고 'NAMs' 뜬다… 국내 제약바이오 산업 생존 전략은? - 약업닷컴 (약업닷컴) https://news.google.com/rss/articles/CBMiZkFVX3lxTE40eElVUlRfNHR3MTdPMU9venVjZXlyd1d2TjRFS2JHY29RZWhEX1A3elNSVE9xZkpzanNGYlVBdHY5dy1sdHdhSWJxRG9IZFpKRHMzSVBJcWU5NVVpX1ZsSjFaQVVWdw?oc=5\n- '데이터' 대웅 vs '인체근거' 한미…AI 신약 개발, \"정답 아닌 해답을 찾다\" - 팜뉴스 (팜뉴스) https://news.google.com/rss/articles/CBMibEFVX3lxTFB6Wi1iMHJtdW5DM3JEeXF0YXlkZE1fRm9wOFFOT04wQzVJY3FQOERRQThSbkFlRGZhVDh3R2ZuYzIyY044SnZMdmR3ZDhCbmRTejAwck40MzUzQUVsc0lPZWU4dmRmTVBvbEh4Vg?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>Proximal Ventures의 AI 신약 개발 투자 펀드 규모와 시장 분석</h1>\n<!-- AI 신약 개발 인프라에 투자하는 Proximal Ventures의 2,750만 달러 펀드 운용 현황과 관련 연구 논문 추이를 통해 바이오 자동화 시장의 흐름을 정리합니다. -->\n\n<p>신규 자산운용사의 펀딩 환경이 경색된 가운데, 전직 투자자이자 헬스케어 스타트업 임원 출신인 Sahir Raoof가 2,750만 달러 규모의 첫 솔로 벤처캐피털 펀드 Proximal Ventures를 조성했습니다. 이 펀드는 신약 개발을 지원하는 도구, 인프라, 서비스를 AI로 혁신하는 초기 스타트업에 중점적으로 투자할 계획입니다.</p>\n\n<p>바이오 스타트업과 연구 동향을 평가할 때는 단순 기술 개발 여부뿐만 아니라 실제 제약 산업의 외주 서비스 시장을 어떻게 대체하는지, 그리고 관련 기술의 학술적 연구 관심도가 지속해서 상승하고 있는지를 함께 확인해야 합니다.</p>\n\n<h3>Proximal Ventures와 2,750만 달러 펀드</h3>\n\n<p>Proximal Ventures는 바이오 및 헬스케어 분야의 초기 단계 기업을 주요 타깃으로 설정하고 있습니다. 프리시드 및 시드 단계 스타트업을 대상으로 회당 50만 달러에서 150만 달러의 투자 수표를 발행하는 전략을 취합니다.</p>\n\n<p>이 펀드는 현재까지 7개 스타트업에 투자를 완료했습니다. 주요 투자 기업 중 하나인 ChronicleBio는 전 OpenAI 임원 Fidji Simo가 공동 창업한 곳으로, 생물학 및 의료 데이터를 AI로 분석하여 만성 질환을 이해하고 새로운 치료법을 발굴하는 데 집중하고 있습니다.</p>\n\n<h4>🔸 초기 투자의 핵심 방향</h4>\n<p>Proximal Ventures는 신약 후보물질 자체를 처음부터 개발하는 방식보다 제약 개발 과정에 필요한 인프라와 분석 도구를 공급하는 스타트업을 선호합니다. 이는 약물 발굴의 위험 요소를 줄이면서 안정적인 수익 모델을 확보하려는 전략으로 풀이됩니다.</p>\n\n<h3>제약 서비스 시장과 AI 자동화의 기회</h3>\n\n<p>역사적으로 제약회사들은 수천 개의 분자 화합물을 합성하거나 대규모 약물 제조 방법을 설계하고 임상 시험 데이터를 분석하는 등 개발의 다양한 단계를 외부 전문 서비스 업체에 아웃소싱해 왔습니다.</p>\n\n<p>Sahir Raoof는 과거 제약 산업이 소프트웨어를 직접 구매하는 데는 소극적이었지만, 외주 서비스 형태의 지출에는 매우 적극적이었다고 설명합니다. AI 기술은 이러한 전통적인 외주 작업을 자동화함으로써 제약 산업이 지출하는 수십억 달러 규모의 비용 구조를 재편할 기회를 제공합니다.</p>\n\n<p>AI 기반 자동화 서비스를 도입하는 스타트업은 기존 외주업체와 비교해 동일한 수준의 개발 지원 서비스를 더 낮은 비용과 크게 단축된 시간 안에 제약사에 제공할 수 있습니다. 이미 법률이나 금융 등 서비스 중심 산업에서 입증된 AI의 효율성이 제약 서비스 분야에서도 동일하게 나타날 것이라는 분석입니다.</p>\n\n<h3>학술 연구로 보는 AI 신약 개발 논문 추이</h3>\n\n<p>학술 연구 공개 색인 OpenAlex 데이터에 따르면, 인공지능 신약 개발 관련 연도별 논문 수는 2021년 446편에서 2025년 3,430편으로 669.1% 증가했습니다. 조사 기간 내 논문 수가 가장 적었던 해는 2021년(446편)이었으며, 가장 많았던 해는 2025년(3,430편)으로 집계되었습니다.</p>\n\n<p>올해 흐름을 살펴보면 1월 1일부터 11월 12일까지 등록된 논문 수는 4,198편으로, 작년 같은 기간 기록된 2,799편과 비교해 50.0% 늘어났습니다.</p>\n\n<table>\n<tr><th>구분</th><th>2021년</th><th>2025년</th><th>2025년 대비 변동률</th></tr>\n<tr><td>연간 논문 수</td><td>446편</td><td>3,430편</td><td>+669.1%</td></tr>\n</table>\n\n<p>논문 수의 증가가 곧바로 기술의 완벽한 상용화나 즉각적인 제품 출시를 보장하는 것은 아니며, 연구진의 관심도와 학술적 활성도를 보여주는 지표로 읽어야 합니다. 또한 최근 발행된 논문은 색인 시스템에 늦게 반영되는 경향이 있어 올해 전체 수치는 향후 더 늘어날 수 있습니다.</p>\n\n<h3>운용사의 경력과 주요 투자자 네트워크</h3>\n\n<p>Proximal Ventures를 이끄는 Sahir Raoof는 SignalFire에서 2년 동안 프린시펄로 근무한 전직 투자자입니다. 그전에는 임상 시험 모집 스타트업 Iterative Health에서 사업 개발을 총괄했고, 2018년 로슈에 19억 달러로 인수된 종양학 데이터 기업 Flatiron Health에서 파트너십을 이끈 경력을 보유하고 있습니다.</p>\n\n<p>이러한 현장 경험과 영업 역량, 헬스케어 생태계 전반에 걸친 네트워크는 LP(출자자)들에게 신뢰를 제공하여 이번 펀드 조성을 끌어내는 기반이 되었습니다.</p>\n\n<p>Proximal’s 펀드에는 SignalFire, Kleiner Perkins, Bertelsmann Healthcare Investments 등 주요 벤처캐피털이 후원사로 합류했습니다. 이외에도 Dimension Capital의 공동 창업자인 Nan Li와 Zavain Dar, 그리고 Highlander Health의 공동 창업자 Amy Abernethy 등 헬스케어 분야의 주요 개인 투자자들이 참여했습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 Proximal Ventures의 후원사 및 주요 투자자에는 어떤 곳들이 포함되어 있나요?</h4>\n<p>벤처캐피털인 SignalFire, Kleiner Perkins, Bertelsmann Healthcare Investments가 후원사로 참여했으며, 개인 투자자로 Nan Li, Zavain Dar, Amy Abernethy 등이 출자했습니다.</p>\n<h3>정리</h3>\n\n<p>제약 산업 내 AI 도입은 단순한 약물 디자인을 넘어, 대규모 외주 서비스 단계를 자동화하는 방식으로 확장되고 있습니다. 신규 펀드 자금이 이러한 인프라 및 서비스 스타트업으로 흘러 들어가면서 신약 개발 프로세스의 효율화가 가속화되는 흐름입니다.</p>\n\n<p>독자가 향후 AI 신약 개발 및 헬스케어 투자 뉴스를 분석할 때는 몇 가지 기준을 직접 점검해 볼 수 있습니다. 첫째, 스타트업이 직접 후보물질을 개발하는 방식인지 아니면 제약사의 외주 비용을 절감해 주는 서비스·도구형 모델인지 확인해야 합니다. 둘째, OpenAlex와 같은 공인 색인 기관에서 관련 기술 분야의 연간 논문 수가 전년 동기 대비 지속해서 증가하는지 지표를 관찰해야 합니다. 셋째, 펀드 운용진이 제약 바이오 기업과의 실질적인 상업 파트너십을 이끌어낸 현장 경험이 있는지 파악하는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> Proximal Ventures는 2,750만 달러 펀드로 AI 기반 제약 개발 서비스와 인프라 자동화 시장에 집중 투자합니다.</p>\n\n태그: ProximalVentures AI신약개발 벤처캐피털 신약개발자동화 바이오테크",
+  "2": "<h1>Proximal Ventures의 AI 신약 개발 투자 펀드 규모와 시장 분석</h1>\n<!-- AI 신약 개발 인프라에 투자하는 Proximal Ventures의 2,750만 달러 펀드 운용 현황과 관련 연구 논문 추이를 통해 바이오 자동화 시장의 흐름을 정리합니다. -->\n\n<p>신규 자산운용사의 펀딩 환경이 경색된 가운데, 전직 투자자이자 헬스케어 스타트업 임원 출신인 Sahir Raoof가 2,750만 달러 규모의 첫 솔로 벤처캐피털 펀드 Proximal Ventures를 조성했습니다. 이 펀드는 신약 개발을 지원하는 도구, 인프라, 서비스를 AI로 혁신하는 초기 스타트업에 중점적으로 투자할 계획입니다.</p>\n\n<p>바이오 스타트업과 연구 동향을 평가할 때는 단순 기술 개발 여부뿐만 아니라 실제 제약 산업의 외주 서비스 시장을 어떻게 대체하는지, 그리고 관련 기술의 학술적 연구 관심도가 지속해서 상승하고 있는지를 함께 확인해야 합니다.</p>\n\n<h3>Proximal Ventures와 2,750만 달러 펀드</h3>\n\n<p>Proximal Ventures는 프리시드 및 시드 단계 스타트업을 대상으로 회당 50만 달러에서 150만 달러의 투자 수표를 발행하는 전략을 취합니다. 이 펀드는 현재까지 7개 스타트업에 투자를 완료했습니다.</p>\n\n<p>주요 투자 기업 중 하나인 ChronicleBio는 전 OpenAI 임원 Fidji Simo가 공동 창업한 곳으로, 생물학 및 의료 데이터를 AI로 분석하여 만성 질환을 이해하고 새로운 치료법을 발굴하는 데 집중하고 있습니다.</p>\n\n<h4>🔸 초기 투자의 핵심 방향</h4>\n<p>Proximal Ventures는 신약 후보물질 자체를 처음부터 개발하는 방식보다 제약 개발 과정에 필요한 인프라와 분석 도구를 공급하는 스타트업을 선호합니다. 이는 약물 발굴의 위험 요소를 줄이면서 안정적인 수익 모델을 확보하려는 전략으로 풀이됩니다.</p>\n\n<h3>제약 서비스 시장과 AI 자동화의 기회</h3>\n\n<p>역사적으로 제약회사들은 수천 개의 분자 화합물을 합성하거나 대규모 약물 제조 방법을 설계하고 임상 시험 데이터를 분석하는 등 개발의 다양한 단계를 외부 전문 서비스 업체에 아웃소싱해 왔습니다.</p>\n\n<p>Sahir Raoof는 과거 제약 산업이 소프트웨어를 직접 구매하는 데는 소극적이었지만, 외주 서비스 형태의 지출에는 매우 적극적이었다고 설명합니다. AI 기술은 이러한 전통적인 외주 작업을 자동화함으로써 제약 산업이 지출하는 수십억 달러 규모의 비용 구조를 재편할 기회를 제공합니다.</p>\n\n<p>AI 기반 자동화 서비스를 도입하는 스타트업은 기존 외주업체와 비교해 동일한 수준의 개발 지원 서비스를 더 낮은 비용과 크게 단축된 시간 안에 제약사에 제공할 수 있습니다. 이미 법률이나 금융 등 서비스 중심 산업에서 입증된 AI의 효율성이 제약 서비스 분야에서도 동일하게 나타날 것이라는 분석입니다.</p>\n\n<h3>학술 연구로 보는 AI 신약 개발 논문 추이</h3>\n\n<p>학술 연구 공개 색인 OpenAlex 데이터에 따르면, 인공지능 신약 개발 관련 논문은 아래 표와 같이 지속적인 증가세를 보이고 있으며, 조사 기간 내 가장 적었던 해는 2021년, 가장 많았던 해는 2025년이었습니다.</p>\n\n<p>올해 흐름을 살펴보면 1월 1일부터 11월 12일까지 등록된 논문 수는 4,198편으로, 작년 같은 기간 기록된 2,799편과 비교해 50.0% 늘어났습니다.</p>\n\n<table>\n<tr><th>구분</th><th>2021년</th><th>2025년</th><th>2021년 대비 변동률</th></tr>\n<tr><td>연간 논문 수</td><td>446편</td><td>3,430편</td><td>+669.1%</td></tr>\n</table>\n\n<p>논문 수의 증가가 곧바로 기술의 완벽한 상용화나 즉각적인 제품 출시를 보장하는 것은 아니며, 연구진의 관심도와 학술적 활성도를 보여주는 지표로 읽어야 합니다. 또한 최근 발행된 논문은 색인 시스템에 늦게 반영되는 경향이 있어 올해 전체 수치는 향후 더 늘어날 수 있습니다.</p>\n\n<h3>운용사의 경력과 주요 투자자 네트워크</h3>\n\n<p>Proximal Ventures를 이끄는 Sahir Raoof는 SignalFire에서 2년 동안 프린시펄로 근무한 전직 투자자입니다. 그전에는 임상 시험 모집 스타트업 Iterative Health에서 사업 개발을 총괄했고, 2018년 로슈에 19억 달러로 인수된 종양학 데이터 기업 Flatiron Health에서 파트너십을 이끈 경력을 보유하고 있습니다.</p>\n\n<p>이러한 현장 경험과 영업 역량, 헬스케어 생태계 전반에 걸친 네트워크는 LP(출자자)들에게 신뢰를 제공하여 이번 펀드 조성을 끌어내는 기반이 되었습니다.</p>\n\n<p>Proximal Ventures의 펀드에는 SignalFire, Kleiner Perkins, Bertelsmann Healthcare Investments 등 주요 벤처캐피털이 후원사로 합류했습니다. 이외에도 Dimension Capital의 공동 창업자인 Nan Li와 Zavain Dar, 그리고 Highlander Health의 공동 창업자 Amy Abernethy 등 헬스케어 분야의 주요 개인 투자자들이 참여했습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 Proximal Ventures의 후원사 및 주요 투자자에는 어떤 곳들이 포함되어 있나요?</h4>\n<p>벤처캐피털인 SignalFire, Kleiner Perkins, Bertelsmann Healthcare Investments가 후원사로 참여했으며, 개인 투자자로 Nan Li, Zavain Dar, Amy Abernethy 등이 출자했습니다.</p>\n<h3>정리</h3>\n\n<p>제약 산업 내 AI 도입은 단순한 약물 디자인을 넘어, 대규모 외주 서비스 단계를 자동화하는 방식으로 확장되고 있습니다. 신규 펀드 자금이 이러한 인프라 및 서비스 스타트업으로 흘러 들어가면서 신약 개발 프로세스의 효율화가 가속화되는 흐름입니다.</p>\n\n<p>독자가 향후 AI 신약 개발 및 헬스케어 투자 뉴스를 분석할 때는 몇 가지 기준을 직접 점검해 볼 수 있습니다. 첫째, OpenAlex 색인 기준 2021년 446편에서 2025년 3,430편으로 늘어난 연간 논문 수(+669.1%)처럼 관련 연구의 학술적 관심도가 장기적으로 늘고 있는지 확인해야 합니다. 둘째, 올해 1월 1일~11월 12일 기준 4,198편을 기록하며 전년 동기 대비 +50.0% 증가한 것과 같이 단기적인 논문 단기 증가세가 유지되는지 관찰해야 합니다. 셋째, 펀드 운용진이 제약 바이오 기업과의 실질적인 상업 파트너십을 이끌어낸 현장 경험이 있는지 파악하는 것이 중요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> Proximal Ventures는 2,750만 달러 펀드로 AI 기반 제약 개발 서비스와 인프라 자동화 시장에 집중 투자합니다.</p>\n\n태그: ProximalVentures AI신약개발 벤처캐피털 신약개발자동화 바이오테크",
+  "3": "<h1>Proximal Ventures의 AI 신약 개발 투자 펀드 규모와 시장 분석</h1>\n<!-- AI 신약 개발 인프라에 투자하는 Proximal Ventures의 2,750만 달러 펀드 운용 현황과 관련 연구 논문 추이를 통해 바이오 자동화 시장의 흐름을 정리합니다. -->\n\n<p>신규 자산운용사의 펀딩 환경이 경색된 가운데, 전직 투자자이자 헬스케어 스타트업 임원 출신인 Sahir Raoof가 2,750만 달러 규모의 첫 솔로 벤처캐피털 펀드 Proximal Ventures를 조성했습니다. 이 펀드는 신약 개발을 지원하는 도구, 인프라, 서비스를 AI로 혁신하는 초기 스타트업에 중점적으로 투자할 계획입니다.</p>\n\n<p>바이오 스타트업과 연구 동향을 평가할 때는 단순 기술 개발 여부뿐만 아니라 실제 제약 산업의 외주 서비스 시장을 어떻게 대체하는지, 그리고 관련 기술의 학술적 연구 관심도가 지속해서 상승하고 있는지를 함께 확인해야 합니다.</p>\n\n<h3>Proximal Ventures와 2,750만 달러 펀드</h3>\n\n<p><a href=\"https://techcrunch.com/2026/11/10/proximal-ventures-raises-debut-fund-to-back-startups-bringing-ai-to-drug-development/\" target=\"_blank\" rel=\"noopener\">TechCrunch</a> 보도에 따르면 Proximal Ventures는 프리시드 및 시드 단계 스타트업을 대상으로 회당 50만 달러에서 150만 달러의 투자 수표를 발행하는 전략을 취합니다. 이 펀드는 현재까지 7개 스타트업에 투자를 완료했습니다.</p>\n\n<p>주요 투자 기업 중 하나인 ChronicleBio는 전 OpenAI 임원 Fidji Simo가 공동 창업한 곳으로, 생물학 및 의료 데이터를 AI로 분석하여 만성 질환을 이해하고 새로운 치료법을 발굴하는 데 집중하고 있습니다.</p>\n\n<h4>🔸 초기 투자의 핵심 방향</h4>\n<p>Proximal Ventures는 AI를 활용해 신약 개발을 지원하는 도구, 인프라, 서비스 스타트업에 투자하는 전략을 취합니다. 이는 제약사들이 그동안 아웃소싱해 온 외주 서비스 영역을 AI 기술로 혁신하는 데 목적을 둡니다.</p>\n\n<h3>제약 서비스 시장과 AI 자동화의 기회</h3>\n\n<p>역사적으로 제약회사들은 수천 개의 분자 화합물을 합성하거나 대규모 약물 제조 방법을 설계하고 임상 시험 데이터를 분석하는 등 개발의 다양한 단계를 외부 전문 서비스 업체에 아웃소싱해 왔습니다.</p>\n\n<p>Sahir Raoof는 과거 제약 산업이 소프트웨어를 직접 구매하는 데는 소극적이었지만, 외주 서비스 형태의 지출에는 매우 적극적이었다고 설명합니다. AI 기술은 이러한 전통적인 외주 작업을 자동화함으로써 제약 산업이 지출하는 수십억 달러 규모의 비용 구조를 재편할 기회를 제공합니다.</p>\n\n<p>AI 기반 자동화 서비스를 도입하는 스타트업은 기존 외주업체와 비교해 동일한 수준의 개발 지원 서비스를 더 낮은 비용과 크게 단축된 시간 안에 제약사에 제공할 수 있습니다. 이미 법률이나 금융 등 서비스 중심 산업에서 입증된 AI의 효율성이 제약 서비스 분야에서도 동일하게 나타날 것이라는 분석입니다.</p>\n\n<h3>학술 연구로 보는 AI 신약 개발 논문 추이</h3>\n\n<p>학술 연구 공개 색인 OpenAlex 데이터에 따르면, 인공지능 신약 개발 관련 논문은 아래 표와 같이 지속적인 증가세를 보이고 있으며, 조사 기간 내 가장 적었던 해는 2021년, 가장 많았던 해는 2025년이었습니다.</p>\n\n<p>올해 흐름을 살펴보면 1월 1일부터 11월 12일까지 등록된 논문 수는 4,198편으로, 작년 같은 기간 기록된 2,799편과 비교해 50.0% 늘어났습니다.</p>\n\n<table>\n<tr><th>구분</th><th>2021년</th><th>2025년</th><th>2021년 대비 변동률</th></tr>\n<tr><td>연간 논문 수</td><td>446편</td><td>3,430편</td><td>+669.1%</td></tr>\n</table>\n\n<p>논문 수의 증가가 곧바로 기술의 완벽한 상용화나 즉각적인 제품 출시를 보장하는 것은 아니며, 연구진의 관심도와 학술적 활성도를 보여주는 지표로 읽어야 합니다. 또한 최근 발행된 논문은 색인 시스템에 늦게 반영되는 경향이 있어 올해 전체 수치는 향후 더 늘어날 수 있습니다.</p>\n\n<h3>운용사의 경력과 주요 투자자 네트워크</h3>\n\n<p>Proximal Ventures를 이끄는 Sahir Raoof는 SignalFire에서 2년 동안 프린시펄로 근무한 전직 투자자입니다. 그전에는 임상 시험 모집 스타트업 Iterative Health에서 사업 개발을 총괄했고, 2018년 로슈에 19억 달러로 인수된 종양학 데이터 기업 Flatiron Health에서 파트너십을 이끈 경력을 보유하고 있습니다.</p>\n\n<p>이러한 현장 경험과 영업 역량, 헬스케어 생태계 전반에 걸친 네트워크는 LP(출자자)들에게 신뢰를 제공하여 이번 펀드 조성을 끌어내는 기반이 되었습니다.</p>\n\n<p>Proximal Ventures의 펀드에는 SignalFire, Kleiner Perkins, Bertelsmann Healthcare Investments 등 주요 벤처캐피털이 후원사로 합류했습니다. 이외에도 Dimension Capital의 공동 창업자인 Nan Li와 Zavain Dar, 그리고 Highlander Health의 공동 창업자 Amy Abernethy 등 헬스케어 분야의 주요 개인 투자자들이 참여했습니다.</p>\n\n<h3>정리</h3>\n\n<p>제약 산업 내 AI 도입은 단순한 약물 디자인을 넘어, 대규모 외주 서비스 단계를 자동화하는 방식으로 확장되고 있습니다. 신규 펀드 자금이 이러한 인프라 및 서비스 스타트업으로 흘러 들어가면서 신약 개발 프로세스의 효율화가 가속화되는 흐름입니다.</p>\n\n<p>독자가 향후 AI 신약 개발 및 헬스케어 투자 뉴스를 분석할 때는 몇 가지 기준을 직접 점검해 볼 수 있습니다. 첫째, OpenAlex 색인 기준 2021년 446편에서 2025년 3,430편으로 늘어난 연간 논문 수(+669.1%)처럼 관련 연구의 학술적 관심도가 장기적으로 늘고 있는지 확인해야 합니다. 둘째, 올해 1월 1일~11월 12일 기준 4,198편을 기록하며 전년 동기 대비 +50.0% 증가한 것과 같이 단기적인 논문 단기 증가세가 유지되는지 관찰해야 합니다. 셋째, 현장 경험이 있는 운용사를 확인할 때는 제약 바이오 기업과의 실질적인 파트너십 이력 등의 기준을 참고할 수 있습니다.</p>\n\n<p><strong>한 줄 정리:</strong> Proximal Ventures는 2,750만 달러 펀드로 AI 기반 제약 개발 서비스와 인프라 자동화 시장에 집중 투자합니다.</p>\n\n태그: ProximalVentures AI신약개발 벤처캐피털 신약개발자동화 바이오테크"
+ },
+ "minutes": 7.3
+}
