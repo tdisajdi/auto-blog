@@ -21,12 +21,7 @@
  },
  "category-etf-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "ETF·투자",
-    1.1
-   ]
-  ]
+  "lowContrast": []
  },
  "404-desk": {
   "overflow": 0,
@@ -83,12 +78,7 @@
  },
  "category-etf-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "ETF·투자",
-    1.1
-   ]
-  ]
+  "lowContrast": []
  },
  "404-mobile": {
   "overflow": 0,
