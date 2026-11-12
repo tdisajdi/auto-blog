@@ -293,7 +293,7 @@ body.admin-bar .o-readbar { top: 100px; }
    어두운 덩어리는 바닥글만. 온도계도 밝은 유리(THERMO_INK)로 - 사용자 '남색 온도계가 혼자 튀어 어수선'. */
 :root { --o-paper: #f6f7f9; --o-card: #ffffff; --o-line: #e2e6ee; --o-head: Galmuri11, var(--o-sans);
   --t-etf: #3d6dff; --t-etf-bg: #eaf0ff; --t-energy: #ff8a3d; --t-energy-bg: #fff0e5; --t-society: #2bb3c0; --t-society-bg: #e5f6f7; }
-.o-sec-head h2, .o-cat h3, .o-list .wp-block-post-title, .o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title,
+.o-sec-head h2, .o-cat h3, .o-list .wp-block-post-title, .o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title, .o-arch-head .wp-block-query-title,
 .o-arch-head h1, .o-read h2, .o-read h3, .obp-sec h3, .obp-name { font-family: var(--o-head) !important; font-weight: 700 !important; letter-spacing: 0 !important; }
 .o-read h2 { font-size: 24px !important; }
 /* 머리말: 흰 바탕 */
@@ -334,7 +334,7 @@ body.admin-bar .o-readbar { top: 100px; }
 .o-post-head:has(a[href*="/category/etf/"]) { background: var(--t-etf-bg); border-top-color: var(--t-etf); }
 .o-post-head:has(a[href*="/category/energy/"]) { background: var(--t-energy-bg); border-top-color: var(--t-energy); }
 .o-post-head:has(a[href*="/category/society/"]) { background: var(--t-society-bg); border-top-color: var(--t-society); }
-.o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title, .o-arch-head h1 { color: var(--o-ink) !important; }
+.o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title, .o-arch-head h1, .o-arch-head .wp-block-query-title { color: var(--o-ink) !important; }
 .o-post-head .wp-block-post-terms a { color: #c2410c !important; }
 .o-post-head .o-meta, .o-post-head .wp-block-post-date, .o-post-head .wp-block-post-date time, .o-post-head .o-meta p { color: var(--o-ink-3) !important; }
 /* 온도판: 카드 머리띠가 자기 온도색 */
