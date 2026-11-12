@@ -109,11 +109,21 @@ def fetch_feed(url, max_age_days=3):
             summary = re.sub(r"<[^>]+>", " ", e.get("summary", "") or "")
             # 제목에 링크 태그가 섞여 오는 RSS가 있다(2026-11-08 Fierce Biotech: 주제 이름이 'a-href-https-…'가 됨)
             title = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", e.get("title", "") or ""))).strip()
+            if is_sponsored(title) or is_sponsored(summary.strip()):
+                continue               # 광고 기사(아래 is_sponsored) - 모든 분야 RSS에 공통
             out.append({"title": title, "url": e.get("link", ""), "summary": re.sub(r"\s+", " ", summary)[:600],
                         "source": source})
     except Exception as e:
         print(f"ℹ️ RSS 읽기 실패({url}): {type(e).__name__}")
     return out
+
+
+# 광고 기사(업체가 돈 내고 실은 글)는 독립 보도가 아니라 쓰지 않는다(11-12 시험: MIT Tech Review 'Sponsored … Provided by Outokumpu'
+# 기사로 글을 써서 회사 홍보 문구가 자료가 됨, 가치 0.6). 기사 앞부분에 붙는 표시만 본다(본문 속 'sponsored by' 언급은 무시).
+def is_sponsored(text):
+    head = (text or "")[:300]
+    return bool(re.search(r"^\W*(sponsored|partner content|paid content|advertorial|promoted)\b", head, re.I)
+                or re.search(r"\b(?:Provided by|In partnership with|Brought to you by)\s+[A-Z]", head))
 
 
 def scrape_text(url, limit=3000):
@@ -616,10 +626,9 @@ _TECH_FEEDS = ["https://www.technologyreview.com/feed/", "https://spectrum.ieee.
                "https://feeds.arstechnica.com/arstechnica/technology-lab", "https://techcrunch.com/feed/"]
 
 
-def discover_tech():
-    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3)][:40]
+def _pick_tech(items):
     if not items:
-        return []
+        return None, {}
     listing = "\n".join(f"{i}. [{it['source']}] {it['title']}" for i, it in enumerate(items))
     pick = _ask_json(
         "아래 기술 기사 중 '신기술·특허' 블로그 글로 가장 좋은 1개를 고르세요. 신제품 할인·리뷰·인사 소식보다 "
@@ -630,12 +639,25 @@ def discover_tech():
         '"keyword_label_ko": "그 용어의 한국어 이름(예: 고체 배터리)", "why": "이유 한 문장"}') or {}
     try:
         idx = int(pick.get("index"))
-        it = items[idx] if idx >= 0 else None
+        return (items[idx] if idx >= 0 else None), pick
     except (TypeError, ValueError, IndexError):
-        it = None
-    if not it:
+        return None, pick
+
+
+def discover_tech():
+    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3)][:40]
+    # 요약에 광고 표시가 없어도 본문 첫머리에 있을 수 있다 → 고른 기사가 광고면 빼고 한 번 더 고른다(최대 2번)
+    for _ in range(2):
+        it, pick = _pick_tech(items)
+        if not it:
+            return []
+        body = scrape_text(it["url"]) or it["summary"]
+        if not is_sponsored(body):
+            break
+        print(f"ℹ️ 신기술: 광고 기사라 빼고 다시 고름 - {it['title']}")
+        items = [x for x in items if x is not it]
+    else:
         return []
-    body = scrape_text(it["url"]) or it["summary"]
     # 검색어가 기사와 맞는지 코드가 확인(11-08 첫 시험: 화성 위성 착륙 기사에 'lunar landing' 논문 수 → '주제와 무관한 일반론'·'치명')
     kw = str(pick.get("keyword_en") or "").strip()
     src = f"{it['title']} {it.get('summary', '')} {body}".lower()
