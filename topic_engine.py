@@ -1305,12 +1305,22 @@ def discover_energy():
                        "source": f"Yahoo Finance ({best['ticker']})", **best["chart"]}}]
 
 
+# 인구사회 자료는 한국 통계(KOSIS)라 외국 소식은 계기·관련 뉴스에서 뺀다(11-12 시험: '1인가구 통계' 검색에 '브라질 1인가구 1560만…
+# [글로벌 1인가구]'가 섞여 주제 씨앗이 '브라질 1인 가구'가 됨 - 자료로 뒷받침 못 하는 외국 숫자가 작가에게 감).
+# '세계'는 뺌: '한국 출산율 세계 최저'처럼 한국 이야기에 자주 붙음.
+_FOREIGN = re.compile(r"글로벌|해외|브라질|미국|일본|중국|영국|프랑스|독일|이탈리아|스페인|캐나다|호주|인도|대만|베트남|러시아|유럽|북한|日|美|中")
+
+
+def _domestic(news):
+    return [n for n in news or [] if not _FOREIGN.search(n.get("title", ""))]
+
+
 def discover_society():
     news = []
     for q in ["통계청 발표 인구", "국가데이터처 발표", "출생아 수 통계", "1인 가구 통계", "고령인구 비율 통계"]:
         news += google_news(q + " when:3d", 4)
     seen, uniq = set(), []
-    for n in news:
+    for n in _domestic(news):
         if n["title"] not in seen:
             seen.add(n["title"])
             uniq.append(n)
@@ -1336,7 +1346,7 @@ def discover_society():
     block, sm = kosis_fact_block(tb) if tb else ("", None)
     if not block:
         return out
-    related = google_news(pick.get("keywords_ko") or it["title"], 6)
+    related = _domestic(google_news(pick.get("keywords_ko") or it["title"], 6))
     facts = block + "\n" + f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n"
     note = "국가통계포털(KOSIS) 공식 통계, 통계 발표 관련 보도(구글 뉴스)"
     chart = _kosis_chart(tb, sm)
@@ -1391,7 +1401,7 @@ def _kosis_candidates():
             strength = min(move / 2, 0.6)
         else:
             strength = min(abs(sm["rel"] or 0) / 10, 0.6)
-        news = google_news(f"{tb['name']} 통계", 5)
+        news = _domestic(google_news(f"{tb['name']} 통계", 5))
         facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
         cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm), "search_seed": tb["name"],
                       # 어느 글에나 붙는 꼬리('숫자로 본 우리 사회의 변화') 대신 자료가 답하는 사실을 제목에(2026-11-03)
