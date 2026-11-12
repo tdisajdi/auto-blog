@@ -80,3 +80,15 @@ assert ok and sr.posted == [{"content": "<p>새 숫자</p>"}], (msg, sr.posted)
 sr = SR(None); ok, msg = up.refresh_page({"slug": "ondo-board", "html": "x"}, sr)
 assert not ok and sr.posted == [], msg
 print("board refresh ok")
+
+# 11-12) 3년·5년 위치: 5년 자료면 둘 다, 1년 자료면 없음(None) / 1년 값은 최근 1년만으로 계산
+idx5 = pd.bdate_range("2021-11-12", "2026-11-12")
+vals = [200.0 if i < 300 else 100.0 + (i % 50) for i in range(len(idx5))]
+vals[-1] = 150.0
+st5 = board.card_stats(pd.Series(vals, index=idx5))
+assert st5["long"][5] == 50 and st5["long"][3] is not None and st5["hi"] < 200, st5   # 1년 최고에 5년 전 200이 섞이지 않음
+assert st["long"] == {3: None, 5: None}, st["long"]
+pg5 = board.render([(board.ITEMS[0], st5)], "x")
+assert "3Y" in pg5 and "5Y" in pg5 and pg5.count('<i class="obp-m') == 40, pg5.count('<i class="obp-m')
+assert "<div class=\"obp-mrow" not in board.render([(board.ITEMS[0], st)], "x")
+print("board 3y 5y ok")

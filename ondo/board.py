@@ -21,11 +21,28 @@ ITEMS = [
 ]
 
 
-def card_stats(close):
-    """close: 최근 1년 일별 종가(pandas Series). 반환: 지금 값·1년 최저/최고(날짜)·위치·평균 대비·1주·1달 변화. 자료가 짧으면 None."""
+def long_pos(close, years):
+    """최근 N년 범위 속 지금 위치(0~100). 자료가 그 기간의 90%를 못 덮으면 None(11-12 3년·5년 추가)."""
+    import pandas as pd
     c = close.dropna()
-    if len(c) < 60:
+    if c.empty:
         return None
+    start = c.index[-1] - pd.Timedelta(days=round(365.25 * years))
+    w = c[c.index >= start]
+    if (w.index[-1] - w.index[0]).days < 365.25 * years * 0.9:
+        return None
+    lo, hi, last = float(w.min()), float(w.max()), float(w.iloc[-1])
+    return round((last - lo) / (hi - lo) * 100) if hi > lo else 50
+
+
+def card_stats(close):
+    """close: 일별 종가(pandas Series, 최대 5년). 1년 기준: 지금 값·1년 최저/최고(날짜)·위치·평균 대비·1주·1달 변화.
+    더 긴 자료가 있으면 3년·5년 범위 속 위치도(long). 자료가 짧으면 None."""
+    import pandas as pd
+    full = close.dropna()
+    if len(full) < 60:
+        return None
+    c = full[full.index >= full.index[-1] - pd.Timedelta(days=365)]
     last = float(c.iloc[-1])
     lo, hi = float(c.min()), float(c.max())
     pos = (last - lo) / (hi - lo) * 100 if hi > lo else 50.0
@@ -34,7 +51,8 @@ def card_stats(close):
     w, m = pick(5), pick(21)
     return {"last": last, "lo": lo, "hi": hi, "lo_date": f"{c.idxmin():%Y-%m-%d}", "hi_date": f"{c.idxmax():%Y-%m-%d}",
             "pos": round(pos), "vs_avg": (last / avg - 1) * 100, "w1": (last / w - 1) * 100 if w else None,
-            "m1": (last / m - 1) * 100 if m else None, "as_of": f"{c.index[-1]:%Y-%m-%d}"}
+            "m1": (last / m - 1) * 100 if m else None, "as_of": f"{c.index[-1]:%Y-%m-%d}",
+            "long": {y: long_pos(full, y) for y in (3, 5)}}
 
 
 def band(pos):
@@ -58,6 +76,15 @@ CELLS = 20
 
 def temp_color(pos):
     return TEMP_COLORS[min(4, max(0, int(pos) // 20))]
+
+
+def mini_bar(label, pos):
+    """3년·5년 위치: 작은 20칸 막대 한 줄(지금 칸만 진하게)."""
+    if pos is None:
+        return ""
+    now = min(CELLS - 1, max(0, round(pos / 100 * (CELLS - 1))))
+    cells = "".join(f'<i class="obp-m{" is-now" if i == now else ""}" style="{("background:" + TEMP_COLORS[min(4, i * 5 // CELLS)]) if i <= now else ""}"></i>' for i in range(CELLS))
+    return f'<div class="obp-mrow"><span class="obp-ml">{label}</span><div class="obp-mbar">{cells}</div><span class="obp-mv">{pos}<b class="obp-deg">°</b></span></div>'
 
 
 def pixel_bar(pos):
@@ -93,6 +120,11 @@ def render(cards, updated):
 .obp-c.is-now{outline:2px solid #18202c;outline-offset:1px;height:12px}
 .obp-scale{display:flex;justify-content:space-between;font-family:var(--o-px,'Courier New',monospace);font-size:10px;color:#5c6575;margin:0 0 8px}
 .obp-temp{font-family:var(--o-px,'Courier New',monospace);font-size:18px;font-weight:700;color:#18202c}
+.obp-long{margin:4px 0 8px;display:grid;gap:4px}
+.obp-mrow{display:grid;grid-template-columns:28px 1fr 40px;align-items:center;gap:8px}
+.obp-ml,.obp-mv{font-family:var(--o-px,'Courier New',monospace);font-size:11px;color:#5c6575}.obp-mv{text-align:right;color:#18202c}
+.obp-mbar{display:grid;grid-template-columns:repeat(20,1fr);gap:2px}
+.obp-m{display:block;height:6px;background:#e3dccb}.obp-m.is-now{outline:1px solid #18202c;outline-offset:1px}
 .obp-deg{font-family:var(--o-sans,sans-serif);font-weight:700}
 .obp-band{font-size:13px;color:#4a5568}
 .obp-row{font-size:12.5px;color:#4a5568;line-height:1.7;font-variant-numeric:tabular-nums}
@@ -112,7 +144,8 @@ def render(cards, updated):
             f'<p class="obp-name">{html.escape(name)}</p>'
             f'<div class="obp-val">{_fmt(s["last"], d)} <span class="obp-unit">{html.escape(unit)}</span></div>'
             f'{pixel_bar(s["pos"])}<div class="obp-scale"><span>LOW 0<b class="obp-deg">°</b></span><span>HIGH 100<b class="obp-deg">°</b></span></div>'
-            f'<div><span class="obp-temp">{s["pos"]}<b class="obp-deg">°</b></span> <span class="obp-band">· {band(s["pos"])}</span></div>'
+            + (f'<div class="obp-long">{mini_bar("3Y", s.get("long", {}).get(3))}{mini_bar("5Y", s.get("long", {}).get(5))}</div>' if any(v is not None for v in (s.get("long") or {}).values()) else "")
+            + f'<div><span class="obp-temp">{s["pos"]}<b class="obp-deg">°</b></span> <span class="obp-band">· {band(s["pos"])}</span></div>'
             f'<div class="obp-row">1년 최저 {_fmt(s["lo"], d)} ({s["lo_date"]}) · 최고 {_fmt(s["hi"], d)} ({s["hi_date"]})</div>'
             f'<div class="obp-row">1년 평균 대비 {_pct(s["vs_avg"])} · 1주 {_pct(s["w1"])} · 1달 {_pct(s["m1"])}</div>'
             f'<div class="obp-note">{html.escape(meaning)} · {s["as_of"]} 종가</div></div></div>')
@@ -123,7 +156,7 @@ def render(cards, updated):
     out.append('<div class="obp-sec"><h3><span>METHOD</span>계산 방법</h3>'
                '<p>온도 = (지금 값 − 1년 최저) ÷ (1년 최고 − 1년 최저) × 100. 1년 평균 대비 = 지금 값 ÷ 최근 1년 일별 종가 평균 − 1. '
                '1주·1달 변화 = 5거래일·21거래일 전 종가와 비교. 원유·금은 가장 가까운 만기 선물이라 만기 교체 시점에 값이 튈 수 있습니다. '
-               '지수는 배당을 뺀 가격입니다. 자료를 받지 못한 지표는 그날 빠집니다. 막대 20칸은 0°~100°를 5° 남짓씩 나눈 것입니다.</p>'
+               '지수는 배당을 뺀 가격입니다. 자료를 받지 못한 지표는 그날 빠집니다. 막대 20칸은 0°~100°를 5° 남짓씩 나눈 것입니다. 큰 막대와 온도 숫자는 1년 기준이고, 아래 작은 막대(3Y·5Y)는 같은 계산을 최근 3년·5년 범위로 한 것입니다 - 기간이 길수록 범위가 넓어져 같은 값이라도 온도가 달라질 수 있습니다.</p>'
                '<p>이 페이지는 투자 권유가 아닙니다(<a href="/disclaimer/">면책 안내</a>).</p></div>')
     out.append('</div>')
     return "\n".join(out)
@@ -134,7 +167,7 @@ def build():
     cards = []
     for it in ITEMS:
         try:
-            s = card_stats(yf.Ticker(it[0]).history(period="1y")["Close"])
+            s = card_stats(yf.Ticker(it[0]).history(period="5y")["Close"])
             if s:
                 cards.append((it, s))
             else:
