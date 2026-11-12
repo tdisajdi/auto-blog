@@ -107,7 +107,7 @@ def render(cards, updated):
            '<div class="obp-grid">']
     for (tk, name, unit, d, meaning), s in cards:
         out.append(
-            f'<div class="obp-card"><div class="obp-head"><span class="obp-code">{html.escape(CODE.get(tk, tk))}</span>'
+            f'<div class="obp-card" data-t="{min(4, int(s["pos"]) // 20)}"><div class="obp-head"><span class="obp-code">{html.escape(CODE.get(tk, tk))}</span>'
             f'<span class="obp-chip" style="background:{temp_color(s["pos"])}"></span></div><div class="obp-body">'
             f'<p class="obp-name">{html.escape(name)}</p>'
             f'<div class="obp-val">{_fmt(s["last"], d)} <span class="obp-unit">{html.escape(unit)}</span></div>'
