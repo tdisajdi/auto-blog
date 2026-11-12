@@ -230,7 +230,7 @@ body.admin-bar .o-head { top: 32px; }
 .o-page .wp-block-post-content { font-size: 17px; line-height: 1.85; }
 .o-page.is-wide { max-width: none; padding: 0; margin-top: 0; }
 /* 허브·분야·온도판처럼 자체 디자인을 가진 페이지(#ondo-* 뿌리)는 넓게, 나머지는 읽기 폭 */
-.o-page:has(.wp-block-post-content > [id^="ondo-"]), .o-page:has(.wp-block-post-content > .ob) { max-width: var(--o-wrap); }
+.o-page:has(.wp-block-post-content > [id^="ondo-"]), .o-page:has(.wp-block-post-content > .ob), .o-page:has(.wp-block-post-content .obp) { max-width: var(--o-wrap); }
 
 /* ── 404 ────────────────────────────────────────── */
 .o-404 { text-align: center; padding: 96px 24px 40px; }
