@@ -40,8 +40,26 @@ def svg(ink=False):
     return t
 
 
+BOARD_URL = "https://ondo99.com/ondo-board/"
+BOARD_LIVE = False   # 온도판(353)이 아직 비공개 초안 → 링크를 누르면 방문자에게 404(11-12 화면 검사). 공개하면 True로.
+
+
+def board_links(content, live=None):
+    """온도판이 공개 전이면 그 링크를 '준비 중' 표시(링크 아님)로 바꾼다."""
+    import re
+    if BOARD_LIVE if live is None else live:
+        return content
+
+    def soon(m):
+        attrs, label = m.group(1), m.group(2)
+        cls = re.search(r'class="([^"]*)"', attrs)
+        suffix = " SOON" if re.fullmatch(r"[A-Z ]+", label.strip()) else " (준비 중)"
+        return f'<span class="{(cls.group(1) + " ") if cls else ""}o-soon" aria-disabled="true">{label}{suffix}</span>'
+    return re.sub(r'<a([^>]*?)href="' + re.escape(BOARD_URL) + r'"[^>]*>(.*?)</a>', soon, content)
+
+
 def fill(content):
-    return content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg())
+    return board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg()))
 
 
 def local_items():

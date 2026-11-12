@@ -74,6 +74,9 @@ body.admin-bar .o-head { top: 32px; }
 .o-foot h4 { font-family: var(--o-px); color: var(--o-mild); font-size: 13px; letter-spacing: .1em; margin: 0 0 12px; font-weight: 400; }
 .o-foot a { color: #e3e9f5 !important; text-decoration: none !important; display: block; padding: 3px 0; }
 .o-foot a:hover { color: var(--o-mild) !important; }
+.o-foot .o-soon { display: block; padding: 3px 0; color: #b9c4da; }
+.o-soon { cursor: default; }
+.o-nav .o-soon.o-nav-board { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 2px; }
 .o-foot p { margin: 0 0 8px; line-height: 1.7; }
 .o-foot .o-copy { border-top: 1px solid var(--o-navy-3); padding: 16px 24px; text-align: center; font-size: 12px; color: #8391ad; }
 @media (max-width: 760px) { .o-foot .o-wrap { grid-template-columns: 1fr; gap: 20px; } }
