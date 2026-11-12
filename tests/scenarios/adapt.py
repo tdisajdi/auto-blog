@@ -133,4 +133,6 @@ te._suggest_naver = lambda q: []
 qf = te.search_questions_block("레버리지 ETF", facts="QQQ 변동성 21% 세금 22% 원리")
 assert "환전 시점" not in qf and "- 레버리지 ETF 변동성" in qf, qf     # 자료에 근거 낱말이 없는 검색어는 뺌
 print("search questions ok")
+# 11-12: 인구사회는 외국 소식을 계기·관련 뉴스에서 뺌('한국 … 세계 최저'는 남김)
+assert [n["title"] for n in te._domestic([{"title": "브라질 1인가구 1560만…[글로벌 1인가구]"}, {"title": "한국 출산율 세계 최저"}, {"title": "1인 가구 36% 돌파"}])] == ["한국 출산율 세계 최저", "1인 가구 36% 돌파"]
 print("adapters ok")
