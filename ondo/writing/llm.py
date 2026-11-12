@@ -26,6 +26,13 @@ PAUSE_AFTER_OK = 3            # 같은 키를 연달아 두드리지 않도록 �
 
 _excluded = set()             # 이번 실행 동안 뺀 키(403·잘못된 키)
 _dead_models = set()          # 이번 실행 동안 없는 모델(404)
+_day_limited = set()          # 이번 실행 동안 하루 한도(429 PerDay)에 막힌 (모델, 키) - 11-12 백로그 13
+
+
+def is_day_limit(body):
+    """429 본문이 '하루 한도'인가. 분당 한도(PerMinute)·알 수 없음은 False(다시 시도할 가치 있음)."""
+    t = (body or "").lower().replace("_", "").replace(" ", "")
+    return "perday" in t and "perminute" not in t
 
 
 @dataclass
@@ -86,10 +93,11 @@ def call(prompt, *, step, log=None, tier="fast", json_out=False, thinking=0, sta
         n = len(all_keys)
         order = [all_keys[(start_key + i) % n] for i in range(n)]
         for key_no, key in order:
-            if key in _excluded:
+            if key in _excluded or (model, key) in _day_limited:
                 continue
             t0 = time.time()
             status, reason, text, finish = "error", "", None, ""
+            body = ""
             try:
                 r = _post(API.format(model=model), payload, key)
                 if r.status_code == 400 and "thinking" in r.text.lower() and "thinkingConfig" in cfg:
@@ -101,7 +109,8 @@ def call(prompt, *, step, log=None, tier="fast", json_out=False, thinking=0, sta
                     if finish == "MAX_TOKENS":
                         status, reason = "truncated", "답이 길이 한도에서 잘림"
                 else:
-                    status, reason = str(r.status_code), r.text[:160].replace("\n", " ")
+                    body = r.text or ""
+                    status, reason = str(r.status_code), body[:160].replace("\n", " ")
             except requests.exceptions.Timeout:
                 status, reason = "timeout", f"{TIMEOUT}초 안에 답이 없음"
             except Exception as e:
@@ -124,6 +133,8 @@ def call(prompt, *, step, log=None, tier="fast", json_out=False, thinking=0, sta
             print(f"⚠️ [{step}] {model} 키{key_no}: {status} {reason[:80]}")
             if status == "429":
                 saw_limit = True
+                if is_day_limit(body):            # 하루 한도: 이번 실행에서 이 짝은 다시 안 부름(헛호출 줄이기)
+                    _day_limited.add((model, key))
                 continue                           # 다음 키(다른 계정)로
             if status == "truncated":
                 saw_truncated = True

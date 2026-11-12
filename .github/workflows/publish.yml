@@ -83,7 +83,7 @@ on:
         type: boolean
         default: false
       site_pages:
-        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·export(사이트 내용 백업)'
+        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
         required: false
         default: ''
       lab_adsense:
@@ -508,6 +508,10 @@ jobs:
               if [ "${{ github.event.inputs.site_pages }}" = "theme-push" ]; then python site_pages/theme_push.py push || echo "틀 올리기 실패"; fi
               if [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ]; then python site_pages/theme_push.py restore || echo "틀 되돌리기 실패"; fi
               (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ] || [ "${{ github.event.inputs.site_pages }}" = "link-check" ]; then
+              # 11-12: 초안 종합 온도 띠 정리(백업 먼저) + 비공개 글 링크 확인 → lab/link_check.json
+              python site_pages/export.py || { echo "백업 실패 - 고치지 않음"; exit 0; }
+              if [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ]; then python site_pages/drafts_fix.py fix || echo "초안 정리 실패"; else python site_pages/drafts_fix.py check || echo "링크 확인 실패"; fi
             elif [[ "${{ github.event.inputs.site_pages }}" == links:* ]]; then
               # 사용자가 준 링크 내용 받기(lab/links) - 작업 환경에서 외부 사이트가 막혀서
               L="${{ github.event.inputs.site_pages }}"
@@ -566,6 +570,7 @@ jobs:
           git add site_backup 2>/dev/null || true
           git add lab/shots 2>/dev/null || true
           git add lab/links 2>/dev/null || true
+          git add lab/link_check.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
