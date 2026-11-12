@@ -31,6 +31,10 @@
   "overflow": 0,
   "lowContrast": []
  },
+ "board-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
  "post-mock-desk": {
   "overflow": 0,
   "lowContrast": [
@@ -81,6 +85,10 @@
   "lowContrast": []
  },
  "bio-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "board-mobile": {
   "overflow": 0,
   "lowContrast": []
  },
