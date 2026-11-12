@@ -84,7 +84,8 @@ def mini_bar(label, pos):
         return ""
     now = min(CELLS - 1, max(0, round(pos / 100 * (CELLS - 1))))
     cells = "".join(f'<i class="obp-m{" is-now" if i == now else ""}" style="{("background:" + TEMP_COLORS[min(4, i * 5 // CELLS)]) if i <= now else ""}"></i>' for i in range(CELLS))
-    return f'<div class="obp-mrow"><span class="obp-ml">{label}</span><div class="obp-mbar">{cells}</div><span class="obp-mv">{pos}<b class="obp-deg">°</b></span></div>'
+    # 글자 칸도 div로: 워드프레스 자동 문단이 div 옆 span을 <p>로 감싸 줄이 깨졌음(11-12 실제 화면)
+    return f'<div class="obp-mrow"><div class="obp-ml">{label}</div><div class="obp-mbar">{cells}</div><div class="obp-mv">{pos}<b class="obp-deg">°</b></div></div>'
 
 
 def pixel_bar(pos):
@@ -121,6 +122,7 @@ def render(cards, updated):
 .obp-scale{display:flex;justify-content:space-between;font-family:var(--o-px,'Courier New',monospace);font-size:10px;color:#5c6575;margin:0 0 8px}
 .obp-temp{font-family:var(--o-px,'Courier New',monospace);font-size:18px;font-weight:700;color:#18202c}
 .obp-long{margin:4px 0 8px;display:grid;gap:4px}
+.obp-mrow p{margin:0}
 .obp-mrow{display:grid;grid-template-columns:28px 1fr 40px;align-items:center;gap:8px}
 .obp-ml,.obp-mv{font-family:var(--o-px,'Courier New',monospace);font-size:11px;color:#5c6575}.obp-mv{text-align:right;color:#18202c}
 .obp-mbar{display:grid;grid-template-columns:repeat(20,1fr);gap:2px}
