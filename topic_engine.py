@@ -82,16 +82,24 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
 def google_news(query, max_results=5):
     """구글 뉴스 RSS 검색(한국어). 링크는 구글 뉴스 주소라 본문 수집은 안 되고 제목·매체만 쓴다."""
     url = f"https://news.google.com/rss/search?q={urllib.parse.quote_plus(query)}&hl=ko&gl=KR&ceid=KR:ko"
-    try:
-        r = requests.get(url, headers=UA, timeout=12)
-        r.raise_for_status()
-        root = ET.fromstring(r.content)
-        return [{"title": i.findtext("title", "").strip(), "url": i.findtext("link", "").strip(),
-                 "source": i.findtext("source", "Google News").strip(), "date": i.findtext("pubDate", "").strip()}
-                for i in root.findall(".//item")[:max_results]]
-    except Exception as e:
-        print(f"ℹ️ 뉴스 검색 실패({query}): {type(e).__name__}")
-        return []
+    # 11-12: 10:13Z 실행에서 5번 모두 HTTPError(상태 코드 모름) → 인구사회 후보 0, 다음 실행엔 정상(일시 막힘).
+    # 상태 코드를 남기고, 일시 막힘(429·5xx·연결 오류)이면 잠깐 쉬고 한 번 더 시도한다.
+    for attempt in (1, 2):
+        try:
+            r = requests.get(url, headers=UA, timeout=12)
+            r.raise_for_status()
+            root = ET.fromstring(r.content)
+            return [{"title": i.findtext("title", "").strip(), "url": i.findtext("link", "").strip(),
+                     "source": i.findtext("source", "Google News").strip(), "date": i.findtext("pubDate", "").strip()}
+                    for i in root.findall(".//item")[:max_results]]
+        except Exception as e:
+            code = getattr(getattr(e, "response", None), "status_code", None)
+            retry = attempt == 1 and (code is None or code == 429 or code >= 500) and not isinstance(e, ET.ParseError)
+            print(f"ℹ️ 뉴스 검색 실패({query}): {type(e).__name__}{f' {code}' if code else ''}{' - 다시 시도' if retry else ''}")
+            if not retry:
+                return []
+            time.sleep(3)
+    return []
 
 
 def fetch_feed(url, max_age_days=3):
