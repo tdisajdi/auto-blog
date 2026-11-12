@@ -92,3 +92,12 @@ pg5 = board.render([(board.ITEMS[0], st5)], "x")
 assert "3Y" in pg5 and "5Y" in pg5 and pg5.count('<i class="obp-m') == 40, pg5.count('<i class="obp-m')
 assert "<div class=\"obp-mrow" not in board.render([(board.ITEMS[0], st)], "x")
 print("board 3y 5y ok")
+
+# 11-12) 글 소제목 장식: 아이콘 고르기 규칙 / CSS에 8개 아이콘 / JS에 '&' 없음(o-toc-js 안에서 실행)
+sys.path.insert(0, os.path.join(sys.argv[1], "theme"))
+import icons
+assert [icons.pick(t) for t in ("분기 배당의 흐름과 최근 변화", "비용, 환율 및 세금 구조의 모든 것", "자주 묻는 질문", "정리", "투자 대상과 기간별 수익 및 최대 낙폭", "원/달러 환율 1년 흐름", "숫자로 보는 개념")] == ["coin", "tax", "faq", "flag", "risk", "fx", "info"]
+css = tp.css_block()
+assert all(f'[data-ic="{k}"]' in css for k in icons.SIL) and "--h3-line" in css and 'height:1px"] { display: none' in css
+assert "&" not in icons.js() and "data-ic" in tp.fill("{{ICON_JS}}")
+print("h3 icons ok")

@@ -33,6 +33,7 @@ def test_scenario(scenario, tmp_path):
         shutil.copy(f, work / f.name)
     shutil.copytree(ROOT / "ondo", work / "ondo", ignore=shutil.ignore_patterns("__pycache__"))
     shutil.copytree(ROOT / "site_pages", work / "site_pages", ignore=shutil.ignore_patterns("__pycache__"))   # 11-11 기본 페이지
+    shutil.copytree(ROOT / "theme", work / "theme", ignore=shutil.ignore_patterns("__pycache__"))   # 11-12 글 소제목 장식
     env = {k: v for k, v in os.environ.items() if k not in BLOCKED}
     env.update(FAKE_ENV)
     env["MPLCONFIGDIR"] = str(tmp_path / "mpl")
