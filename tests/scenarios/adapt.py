@@ -2,6 +2,19 @@ import os, sys, json, types
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
 import pandas as pd
 import topic_engine as te
+# 11-12: 구글 뉴스가 일시 막히면(503) 한 번 더 시도, 404 같은 건 바로 포기
+class _R:
+    def __init__(s, code, body=b"<rss><channel><item><title>t</title><link>l</link></item></channel></rss>"): s.status_code, s.content = code, body
+    def raise_for_status(s):
+        if s.status_code >= 400:
+            import requests as _rq; raise _rq.HTTPError(response=s)
+_seq = []
+_rg, _sl = te.requests.get, te.time.sleep
+te.time.sleep = lambda x: None
+te.requests.get = lambda *a, **k: _seq.pop(0)
+_seq[:] = [_R(503), _R(200)]; assert te.google_news("q")[0]["title"] == "t" and not _seq
+_seq[:] = [_R(404), _R(200)]; assert te.google_news("q") == [] and len(_seq) == 1
+te.requests.get, te.time.sleep = _rg, _sl
 te.google_news=lambda q,n=5:[{"title":f"{q} 뉴스{i} <b>","url":f"http://n/{i}","source":"매체","date":""} for i in range(n)]
 te.scrape_text=lambda u, limit=3000: "본문"*100
 te.fetch_feed=lambda url,d=3:[{"title":"FDA approves new drug X","url":"http://f/1","summary":"approval","source":"FDA"},
