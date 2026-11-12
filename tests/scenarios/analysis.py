@@ -180,3 +180,9 @@ assert _dividend_yoy(_pd.Series([1.0, 1.1], index=_idx[:2])) == ""
 assert "최근 8회 지급 중 직전 회차보다 줄어든 적 2회" in _y2, _y2      # 1.81→1.74, 1.96→1.82 (같은 값은 안 셈)
 assert "줄어든 적" not in _y                                            # 7회뿐이면 안 셈
 print("dividend yoy ok")
+
+# 11-12 백로그 35) 분석 자료에 뉴스 제목을 넣지 않음(제목만으로 뜻 없는 인용 문장이 생김) - 출처 상자에는 남음
+_fs_n = _an.fact_sheet(["VOO"], _c1, _ea, {}, [{"title": "VOO가 현명한 투자처인 이유", "source": "TradingKey", "url": "https://x"}], {}, "11월 12일")
+assert "TradingKey" not in _fs_n and "관련 뉴스" not in _fs_n, _fs_n
+assert "TradingKey" in _an.closing_html([{"title": "t", "source": "TradingKey", "url": "https://x"}])
+print("analysis no news in facts ok")

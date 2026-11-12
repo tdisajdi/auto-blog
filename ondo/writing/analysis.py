@@ -390,8 +390,9 @@ def fact_sheet(etf_list, cache, ea, macro, news, drawer_html, today_label, previ
     if len(etf_list) < 2:
         parts.append(f"[오늘 시장 수치 - 이 ETF 설명과 직접 관련 있을 때만 쓰기]\n"
                      f"- 원/달러 환율 {macro.get('usd_krw')}")
-    if news:
-        parts.append("[관련 뉴스 - 인용할 때 매체명에 링크]\n" + "\n".join(f"- {n['title']} ({n['source']}) {n['url']}" for n in news))
+    # 11-12 사람 읽기(VOO ?p=251, 백로그 35): 뉴스는 제목만 있어 쓸 수 있는 사실이 없음 → 작가가 'IDNFinancials 보도에서도 … 분석이
+    # 이어졌습니다' 같은 뜻 없는 문장을 만듦(11-07 TradingKey도 같은 꼴). 분석·비교 글의 가치는 코드 계산 숫자라 본문 자료에서 뺀다.
+    # 기사 링크는 글 끝 출처 상자(closing_html)에 그대로 남는다.
     vis = []
     for sid, h in (drawer_html or {}).items():
         t = re.sub(r"\s+", " ", re.sub(r"<(script|style)[^>]*>.*?</\1>|<[^>]+>", " ", h, flags=re.S)).strip()
