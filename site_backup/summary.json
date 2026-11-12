@@ -2,11 +2,11 @@
  "categories.json": "ok",
  "menus.json": "ok",
  "pages": {
-  "draft": 2,
-  "publish": 11
+  "draft": 1,
+  "publish": 12
  },
  "posts": {
-  "draft": 52
+  "draft": 56
  },
  "templates/template-parts.json": "ok",
  "templates/templates.json": "ok"
