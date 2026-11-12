@@ -626,13 +626,16 @@ _TECH_FEEDS = ["https://www.technologyreview.com/feed/", "https://spectrum.ieee.
                "https://feeds.arstechnica.com/arstechnica/technology-lab", "https://techcrunch.com/feed/"]
 
 
+_MONEY_NEWS = re.compile(r"\b(raises?|raised|funding|debut fund|new fund|series [a-e]\b|valuation|acquires?|acquisition|ipo|layoffs?)\b", re.I)
+
+
 def _pick_tech(items):
     if not items:
         return None, {}
     listing = "\n".join(f"{i}. [{it['source']}] {it['title']}" for i, it in enumerate(items))
     pick = _ask_json(
         "아래 기술 기사 중 '신기술·특허' 블로그 글로 가장 좋은 1개를 고르세요. 신제품 할인·리뷰·인사 소식보다 "
-        "AI·로봇·우주·반도체·에너지 기술·바이오 기술·특허처럼 의미가 오래가는 기술 변화를 우선하세요.\n"
+        "AI·로봇·우주·반도체·에너지 기술·바이오 기술·특허처럼 의미가 오래가는 기술 변화를 우선하세요. 투자 유치·펀드·인수 소식은 피하세요.\n"
         f"{listing}\n"
         'JSON으로만: {"index": 번호, "title_ko": "한국어 주제 한 줄", "keywords_ko": "한국어 뉴스 검색어", '
         '"keyword_en": "이 기사의 핵심 기술을 가리키는 영어 용어 1~3단어 - 기사 제목·요약에 실제로 나온 단어로(논문 검색용, 예: solid-state battery)", '
@@ -645,7 +648,11 @@ def _pick_tech(items):
 
 
 def discover_tech():
-    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3)][:40]
+    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3)]
+    # 투자 유치·펀드 결성·인수 소식은 '돈 얘기'라 기술 설명 자료가 얇다(11-12 시험: TechCrunch 'Proximal Ventures raises debut fund' →
+    # 통과했지만 가치 0.6 - '제목 질문에 답함'·'용어 풀이' 빠짐). 기술 소식이 하나라도 있으면 뺀다.
+    tech_only = [i for i in items if not _MONEY_NEWS.search(i["title"])]
+    items = (tech_only or items)[:40]
     # 요약에 광고 표시가 없어도 본문 첫머리에 있을 수 있다 → 고른 기사가 광고면 빼고 한 번 더 고른다(최대 2번)
     for _ in range(2):
         it, pick = _pick_tech(items)

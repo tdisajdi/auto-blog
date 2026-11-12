@@ -32,6 +32,13 @@ t = te.discover_tech(); assert t and "http://f/2" in t[0]["facts_text"] and "Acm
 te.scrape_text = lambda u, limit=3000: "Sponsored text. Provided by Acme new drug " * 30
 assert te.discover_tech() == []
 te.scrape_text = _sc
+# 11-12: 투자 유치·펀드 소식은 기술 소식이 있으면 뺌(없으면 그대로)
+_ff = te.fetch_feed
+te.fetch_feed = lambda url, d=3: [{"title": "Proximal Ventures raises debut fund", "url": "http://f/9", "summary": "new drug", "source": "TC"},
+                                  {"title": "New drug robot arm", "url": "http://f/8", "summary": "new drug", "source": "IEEE"}]
+t = te.discover_tech(); assert t and "http://f/8" in t[0]["facts_text"] and "f/9" not in t[0]["facts_text"], t
+assert te._MONEY_NEWS.search("Startup raises $20M Series A") and not te._MONEY_NEWS.search("Fundamental physics of batteries")
+te.fetch_feed = _ff
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
 te.clinical_trials_block, te.papers_block = _ct, _ax
 def fake_ct(**p):
