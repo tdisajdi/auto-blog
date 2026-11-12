@@ -21,7 +21,12 @@
  },
  "category-etf-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [
+   [
+    "ETF·투자",
+    1.1
+   ]
+  ]
  },
  "404-desk": {
   "overflow": 0,
@@ -52,7 +57,7 @@
    ],
    [
     "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특",
-    3.2
+    3.3
    ]
   ]
  },
@@ -78,7 +83,12 @@
  },
  "category-etf-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [
+   [
+    "ETF·투자",
+    1.1
+   ]
+  ]
  },
  "404-mobile": {
   "overflow": 0,
@@ -109,7 +119,7 @@
    ],
    [
     "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특",
-    3.2
+    3.3
    ]
   ]
  },
