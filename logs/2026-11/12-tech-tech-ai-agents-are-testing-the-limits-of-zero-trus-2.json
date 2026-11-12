@@ -1,0 +1,375 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:ai-agents-are-testing-the-limits-of-zero-trust-security",
+ "title_seed": "AI 에이전트와 제로 트러스트 보안의 한계 시험",
+ "category": "tech",
+ "started_at": "2026-11-12T21:03:44",
+ "mode": "sections",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.4,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 21.5,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.8,
+   "chars": 3200
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.3,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "21:04:28",
+   "title": "AI 에이전트와 제로 트러스트 보안의 한계: 논문 52,301편 시대의 실태",
+   "sections": [
+    "급증하는 연구와 논문 동향",
+    "제로 트러스트 보안과 정책 집행",
+    "문맥 복구 공격과 바이브 코딩 위험"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "21:04:46",
+   "mode": "sections",
+   "reason": "한 번에 쓰기 실패: 답이 없음"
+  },
+  {
+   "step": "쓰기 실패",
+   "at": "21:04:57",
+   "part": "도입",
+   "reason": "좋은 모델이 모든 키에서 한도 초과"
+  }
+ ],
+ "result": {
+  "reason": "좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 5시쯤(서머타임 기간 4시) 한도가 풀린 뒤 다시 시도해 주세요",
+  "status": "failed"
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: AI Agents Are Testing the Limits of Zero-Trust Security (IEEE Spectrum, https://spectrum.ieee.org/zero-trust-agentic-ai-architecture)\n본문 발췌: As autonomous AI agents work together, verifying their actions, enforcing security policies, and maintaining accountability becomes increasingly difficult Vishal Sharma is a Reader in the School of Electronics, Electrical Engineering, and Computer Science at Queen's University Belfast, Northern Ireland, United Kingdom. In a de-authentication attack on an aerial vehicle using a human- and agent-in-the-loop approach, an AI agent can quickly scan the active channel and autonomously intercept traffic, thus reducing the time to react and regain control. This article is brought to you by Queen’s University Belfast . Several teams around the globe are leveraging AI by creating a task force of agents managed by an orchestrator and creating applications to support risk assessment , client profiling, match making, and information yield with a slight overview of decision making. One of the important components for these agents is to ensure that the logs are managed and historic relevance is not being used to avoid skewing towards same decision making. Thus, the system is expected to keep checkpoints in place where agents are prompted to delete such historic relevance. However, despite such methodology in place, a future prompt could make the agents bring forward the information that was supposed to be deleted and can be tricked into revealing more information, which is a classic case of context recovery attack. So, the question raised here is: How can we trust that our instructions have been followed? And where is the proof? There is an element of utilizing zero-trust architectures (ZTA) for orchestrating and managing agentic activity, which simply means all agentic interactions use the core principle of “never trust,” “always verify.” ZTA components include a policy enforcement point (PEP) that has to be trusted to maintain trust across the system, so the question that remains is where is the component of zero-trust, and shall we trust the policies enforced by PEP? Having a pro-agentic approach and utilizing agents could be helpful with the right guardrails in place. Opening our systems to random agents that are being trained on off-the-shelf models and blindly relying on them can pose significant cyber risks. For example, vibe coding by using an AI model to help develop software, giving away the entire codebase to an untrusted entity outside the organization can lead to vulnerability sweeping across multiple surfaces. Vibe coding by using an AI model to help develop software, giving away the entire codebase to an untrusted entity outside the organization can lead to vulnerability sweeping across multiple surfaces. This opens critical discussions towards how vibe coding could interfere with the positioning and implementation of trusted execution of the agentic queries. Consider an autonomous web of agents that relies on agents’ inputs to drive the operations. When the system is operating under low tolerance of failure and with non-tracking based agentic wo\n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '인공지능 에이전트'(영어 논문의 제목·초록에서 찾음), 2026-11-12 조회]\n- 해마다 나온 논문 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 1,584편 → 2025년 17,878편(+1028.7%), 가장 많던 해 2025년 17,878편, 가장 적던 해 2021년 1,584편\n- 올해 1월 1일~11월 12일 52,301편, 작년 같은 기간 13,565편 → +285.6%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- AI 에이전트의 자율 행동까지 보안 검증…정부, 에이전틱 AI 제로트러스트 안내서 발간 - 인공지능신문 (인공지능신문) https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wYUM5WlpoSExRV3diUGhJWWZycVlsLUt1c2J4bVJsQmw3c2lmUjhRZzRicFBiZklOaFVHZ21mRnpoTlBXRzFSNGVVRHVBeDdWMUZnd3dQZ0g5Vnhkb245TnM5S1RHRE0?oc=5\n- 제로트러스트 기반 AI 에이전트 업무 환경 이렇게 구축... 과기정통부 안내서 발간 - 보안뉴스 (보안뉴스) https://news.google.com/rss/articles/CBMia0FVX3lxTE01b1dOcmRzSWwxYm1YS0JNNmllWFNiUmJvOG9JZkt0ZG82RnNVVlhkN09DMFktMzcxa0UwM1FpTkI4OUtCbGE2VDFkNkwwV0JpeG56bkMwOXQxN1M3UVFKQjl3Nlc3aWszTUJn?oc=5\n- “AI 에이전트, 믿지 말고 검증”…정부, 제로트러스트 안내서 발간 - 디지털데일리 (디지털데일리) https://news.google.com/rss/articles/CBMiZEFVX3lxTFBGTkJXaldGRmRfT0JraE9LTnZ1Z0VZcTd4eDBWSnVtc3BrUGlkbDhQWUpBWnpReFlJZTZvanRuS3dSWHg0R0p0T0wzMmlVQmUxMFoyNlA0WER6YmRReHFESFpoZVE?oc=5\n- \"AI 에이전트 행동, 단계별로 검증해야\" 정부, 제로트러스트 안내서 마련 - 파이낸셜뉴스 (파이낸셜뉴스) https://news.google.com/rss/articles/CBMiWkFVX3lxTE1sN2QtZ29oNEs5VDF2cDJtWE5OVDBNT0NtNDh2eTQwSmpjSk4xMHJXQWxZeEh3UGMwOGhtd1J6alVmb3k3YThEWWZKRTZhZzZQTXYzNlRpb2VQUQ?oc=5\n\n",
+ "minutes": 1.2
+}
