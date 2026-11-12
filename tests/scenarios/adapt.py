@@ -24,6 +24,14 @@ _aj = te._ask_json
 te._ask_json = lambda p, thinking_budget=0: {"index":0,"title_ko":"x","keywords_ko":"x","keyword_en":"lunar drug","why":"x"}
 assert te.discover_tech() == []          # 기사에 없는 검색어(달 착륙)면 자료가 안 맞으니 쓰지 않음(11-08)
 te._ask_json = _aj
+# 11-12: 광고 기사(Sponsored … Provided by 회사)는 빼고 다시 고름, 둘 다 광고면 쓰지 않음
+assert te.is_sponsored("Sponsored Rethinking metals. Provided by Outokumpu The") and not te.is_sponsored("The probe, sponsored by NASA, flew")
+_sc = te.scrape_text
+te.scrape_text = lambda u, limit=3000: ("Sponsored text. Provided by Acme " if u.endswith("/1") else "new drug 본문 ") * 30
+t = te.discover_tech(); assert t and "http://f/2" in t[0]["facts_text"] and "Acme" not in t[0]["facts_text"], t
+te.scrape_text = lambda u, limit=3000: "Sponsored text. Provided by Acme new drug " * 30
+assert te.discover_tech() == []
+te.scrape_text = _sc
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
 te.clinical_trials_block, te.papers_block = _ct, _ax
 def fake_ct(**p):
