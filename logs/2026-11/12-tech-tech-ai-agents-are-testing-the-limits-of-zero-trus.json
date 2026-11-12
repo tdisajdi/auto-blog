@@ -1,0 +1,358 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:ai-agents-are-testing-the-limits-of-zero-trust-security",
+ "title_seed": "AI 에이전트와 제로 트러스트 보안의 상호작용 및 한계 탐구",
+ "category": "tech",
+ "started_at": "2026-11-12T20:11:14",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.4,
+   "chars": 3766
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 233.1,
+   "chars": 4079
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.1,
+   "chars": 743
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.8,
+   "chars": 499
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.8,
+   "chars": 178
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.2,
+   "chars": 966
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.5,
+   "chars": 4826
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.1,
+   "chars": 213
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.9,
+   "chars": 739
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.1,
+   "chars": 189
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.5,
+   "chars": 923
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 201.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 12.6,
+   "chars": 4648
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.1,
+   "chars": 202
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.9,
+   "chars": 691
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.5,
+   "chars": 185
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 13.1,
+   "chars": 1017
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:11:30",
+   "title": "AI 에이전트와 제로 트러스트: 논문 842편 폭증 속 보안의 한계",
+   "sections": [
+    "연구 동향과 정부의 제로 트러스트",
+    "에이전틱 AI와 드론 공격 시나리오",
+    "로그 삭제와 문맥 복구 공격의 허점",
+    "제로 트러스트 아키텍처와 바이브 코딩"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:19:35",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:20:32",
+   "score": 0.5,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "문맥 복구 공격이나 바이브 코딩 위험에 대응하기 위해 독자가 실무에서 확인할 수 있는 구체적인 확인법을 본문에 추가하기",
+   "issues": [
+    "[치명·사실 검증] '이러한 에이전틱 AI의 빠른 반응 속도는 공격에 대응하고 통제권을 회복하는 데 걸리는 시간을 줄여주는 역할을' → 자료 원문은 AI 에이전트가 공격에 악용될 경우 채널 스캔 및 트래픽 차단으로 방어자가 반응하여 통제권을 회복할 시간을 줄여버린다는 위협을 설명하는데, 이를 방어 측면의 긍정적 역할로 반대로 해석했습니다. / 고칠 방법: AI 에이전트가 공격에 활용되면 채널 스캔과 트래픽 차단을 통해 피해자의 반응 및 통제권 회복 시간을 단축시키는 보안 위협이 된다고 수정하세요.",
+    "[중요·사실 검증] → [누락] 질문: 제목에서 제시한 '보안의 한계'에 대한 답을 자료의 숫자와 함께 도입부 첫 문단에서 한두 문장으로 먼저 설명하지 않았습니다. / 고칠 방법: 도입부 첫 문단에 논문 수(842편 등)와 함께 문맥 복구 공격이나 정책 집행점(PEP)의 역설적 신뢰 문제 등 보안의 한계에 대한 결론을 한두 문장으로 명확히 밝히세요.",
+    "[사소·독자 편집] '국내 정책 현장에서도 이러한 흐름을 반영하고 있습니다. 과기정통부는 AI 에이전트가 업무 환경에 도입됨에 따' → 도입부에서 이미 언급한 과기정통부 안내서 발간 내용이 중간 본문 섹션에서 거의 동일한 내용으로 되풀이되고 있습니다. / 고칠 방법: 중복되는 과기정통부 안내서 언급 문단을 삭제하고 연구 동향 내용만 남기세요."
+   ],
+   "lint": [
+    "영어 문구 'context recovery attack' - 한국어 글이므로 한국어로 바꿀 것(종목 코드·고유명사는 괜찮음)",
+    "표에 빈칸 표시('-') 1곳 - 값이 없는 줄·칸은 표에서 빼거나 표 구성을 바꿀 것"
+   ],
+   "numbers": [
+    "20.0%"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 3622
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "20:20:46",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:21:28",
+   "score": 0.94,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "문맥 복구 공격이나 정책 집행점(PEP)의 역설 같은 복잡한 보안 개념을 초보자가 이해하기 쉽게 한 줄 요약이나 도식 형태의 설명을 보완하기",
+   "issues": [
+    "[사소·독자 편집] '연구 동향과 정부의 제로 트러스트 AI 에이전트와 제로 트러스트 관련 학술 논문은 연도별 추이에서도 가파른 ' → 제목이나 도입부의 핵심 내용과 중복되며, '제로 트러스트'라는 단어가 중복 사용되어 매끄럽지 않은 일반론 문단입니다. / 고칠 방법: 해당 문단을 삭제하거나 학술 논문 수치 증가 추이로 바로 연결하세요.",
+    "[사소·독자 편집] '연도 및 기간 논문 수 증가율(비교 기준) 2021년 5편 기준년도 2022년 4편 2021년 대비 -20.' → 표 데이터를 본문에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표 내용을 반복 설명하는 문장을 줄이고 핵심 수치만 언급하세요."
+   ],
+   "lint": [
+    "영어 단어 'attack' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "numbers": [
+    "20.0%"
+   ],
+   "chars": 3748
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "20:25:05",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "20:25:56",
+   "score": 0.94,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "문맥 복구 공격이나 정책 집행점(PEP) 신뢰 문제 등 본문에 등장하는 보안 한계점에 대해 자료 안에서 파악할 수 있는 방어적 대책이나 정부 안내서의 실천 지침을 한두 줄 더 보강하기",
+   "issues": [
+    "[사소·독자 편집] '연구 동향과 정부의 제로 트러스트 AI 에이전트와 제로 트러스트 관련 학술 논문 수치는 2021년 5편에서 ' → 앞서 도입부에서 다룬 학술 논문 수치와 정부 안내서 발간 내용을 본문 중간에서 다시 되풀이하고 있습니다. / 고칠 방법: 중복되는 학술 논문 연도별 수치 및 정부 안내서 관련 문단을 삭제하십시오.",
+    "[사소·독자 편집] '문헌상 집계된 연도별 가장 낮은 수치는 2022년 4편이며, 2026년 들어 800편을 넘어서는 등 관련 논' → 표에 제시된 수치와 데이터를 본문 문장에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표의 전체적인 추세 요약만 간단히 한 문장으로 남기십시오."
+   ],
+   "lint": [
+    "영어 단어 'and' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)",
+    "제목(<h1>) 없음"
+   ],
+   "numbers": [
+    "20.0%"
+   ],
+   "chars": 3579
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "AI 에이전트와 제로 트러스트: 논문 842편 폭증 속 보안의 한계",
+  "url": "https://ondo99.com/?p=507",
+  "score": 0.94,
+  "issues": [
+   "영어 단어 'attack' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)",
+   "[사소·독자 편집] '연구 동향과 정부의 제로 트러스트 AI 에이전트와 제로 트러스트 관련 학술 논문은 연도별 추이에서도 가파른 ' → 제목이나 도입부의 핵심 내용과 중복되며, '제로 트러스트'라는 단어가 중복 사용되어 매끄럽지 않은 일반론 문단입니다. / 고칠 방법: 해당 문단을 삭제하거나 학술 논문 수치 증가 추이로 바로 연결하세요.",
+   "[사소·독자 편집] '연도 및 기간 논문 수 증가율(비교 기준) 2021년 5편 기준년도 2022년 4편 2021년 대비 -20.' → 표 데이터를 본문에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표 내용을 반복 설명하는 문장을 줄이고 핵심 수치만 언급하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: AI Agents Are Testing the Limits of Zero-Trust Security (IEEE Spectrum, https://spectrum.ieee.org/zero-trust-agentic-ai-architecture)\n본문 발췌: As autonomous AI agents work together, verifying their actions, enforcing security policies, and maintaining accountability becomes increasingly difficult Vishal Sharma is a Reader in the School of Electronics, Electrical Engineering, and Computer Science at Queen's University Belfast, Northern Ireland, United Kingdom. In a de-authentication attack on an aerial vehicle using a human- and agent-in-the-loop approach, an AI agent can quickly scan the active channel and autonomously intercept traffic, thus reducing the time to react and regain control. This article is brought to you by Queen’s University Belfast . Several teams around the globe are leveraging AI by creating a task force of agents managed by an orchestrator and creating applications to support risk assessment , client profiling, match making, and information yield with a slight overview of decision making. One of the important components for these agents is to ensure that the logs are managed and historic relevance is not being used to avoid skewing towards same decision making. Thus, the system is expected to keep checkpoints in place where agents are prompted to delete such historic relevance. However, despite such methodology in place, a future prompt could make the agents bring forward the information that was supposed to be deleted and can be tricked into revealing more information, which is a classic case of context recovery attack. So, the question raised here is: How can we trust that our instructions have been followed? And where is the proof? There is an element of utilizing zero-trust architectures (ZTA) for orchestrating and managing agentic activity, which simply means all agentic interactions use the core principle of “never trust,” “always verify.” ZTA components include a policy enforcement point (PEP) that has to be trusted to maintain trust across the system, so the question that remains is where is the component of zero-trust, and shall we trust the policies enforced by PEP? Having a pro-agentic approach and utilizing agents could be helpful with the right guardrails in place. Opening our systems to random agents that are being trained on off-the-shelf models and blindly relying on them can pose significant cyber risks. For example, vibe coding by using an AI model to help develop software, giving away the entire codebase to an untrusted entity outside the organization can lead to vulnerability sweeping across multiple surfaces. Vibe coding by using an AI model to help develop software, giving away the entire codebase to an untrusted entity outside the organization can lead to vulnerability sweeping across multiple surfaces. This opens critical discussions towards how vibe coding could interfere with the positioning and implementation of trusted execution of the agentic queries. Consider an autonomous web of agents that relies on agents’ inputs to drive the operations. When the system is operating under low tolerance of failure and with non-tracking based agentic wo\n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 'AI 에이전트, 제로 트러스트'(영어 논문의 제목·초록에서 찾음), 2026-11-12 조회]\n- 해마다 나온 논문 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 5편 → 2025년 125편(+2400.0%), 가장 많던 해 2025년 125편, 가장 적던 해 2022년 4편\n- 올해 1월 1일~11월 12일 842편, 작년 같은 기간 80편 → +952.5%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- AI 에이전트의 자율 행동까지 보안 검증…정부, 에이전틱 AI 제로트러스트 안내서 발간 - 인공지능신문 (인공지능신문) https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wYUM5WlpoSExRV3diUGhJWWZycVlsLUt1c2J4bVJsQmw3c2lmUjhRZzRicFBiZklOaFVHZ21mRnpoTlBXRzFSNGVVRHVBeDdWMUZnd3dQZ0g5Vnhkb245TnM5S1RHRE0?oc=5\n- 제로트러스트 기반 AI 에이전트 업무 환경 이렇게 구축... 과기정통부 안내서 발간 - 보안뉴스 (보안뉴스) https://news.google.com/rss/articles/CBMia0FVX3lxTE01b1dOcmRzSWwxYm1YS0JNNmllWFNiUmJvOG9JZkt0ZG82RnNVVlhkN09DMFktMzcxa0UwM1FpTkI4OUtCbGE2VDFkNkwwV0JpeG56bkMwOXQxN1M3UVFKQjl3Nlc3aWszTUJn?oc=5\n- “AI 에이전트, 믿지 말고 검증”…정부, 제로트러스트 안내서 발간 - 디지털데일리 (디지털데일리) https://news.google.com/rss/articles/CBMiZEFVX3lxTFBGTkJXaldGRmRfT0JraE9LTnZ1Z0VZcTd4eDBWSnVtc3BrUGlkbDhQWUpBWnpReFlJZTZvanRuS3dSWHg0R0p0T0wzMmlVQmUxMFoyNlA0WER6YmRReHFESFpoZVE?oc=5\n- \"AI 에이전트 행동, 단계별로 검증해야\" 정부, 제로트러스트 안내서 마련 - 파이낸셜뉴스 (파이낸셜뉴스) https://news.google.com/rss/articles/CBMiWkFVX3lxTE1sN2QtZ29oNEs5VDF2cDJtWE5OVDBNT0NtNDh2eTQwSmpjSk4xMHJXQWxZeEh3UGMwOGhtd1J6alVmb3k3YThEWWZKRTZhZzZQTXYzNlRpb2VQUQ?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>AI 에이전트와 제로 트러스트: 논문 842편 폭증 속 보안의 한계</h1>\n<!-- AI 에이전트와 제로 트러스트 보안 연구가 올해 842편으로 늘어났지만, 문맥 복구 공격과 정책 집행점의 신뢰 이슈 등 구조적 한계가 드러나고 있습니다. 최신 연구 동향과 보안 리스크를 정리했습니다. -->\n\n<p>학술 논문 색인 서비스 OpenAlex 분석 결과, 2026년 1월 1일부터 11월 12일까지 AI 에이전트와 제로 트러스트를 함께 다룬 논문은 842편으로 집계되었습니다. 이는 작년 같은 기간 80편 대비 952.5% 증가한 수치로, 자율적으로 작동하는 AI 에이전트의 보안 검증이 새로운 학술적 과제로 부상했음을 보여줍니다.</p>\n\n<p>이처럼 기술 연구가 급증함에 따라 AI 에이전트의 자율 행동까지 보안을 검증하기 위한 노력이 이어지고 있으며, 이에 발맞춰 과학기술정보통신부에서도 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 발간했습니다.</p>\n\n<h3>연구 동향과 정부의 제로 트러스트</h3>\n\n<p>AI 에이전트와 제로 트러스트 관련 학술 논문은 연도별 추이에서도 가파른 상승세를 보였습니다. 2021년 5편에 불과했던 연간 논문 수는 2025년 125편으로 늘어나며 2,400.0%의 증가율을 기록했습니다. 가장 적은 논문이 등록되었던 해는 2022년의 4편이었으며, 가장 많았던 해는 2025년의 125편입니다.</p>\n\n<p>다만 이 논문 수의 증가가 기술의 완벽한 상용화나 완성도를 의미하는 것은 아닙니다. OpenAlex 측에 따르면 논문 수는 연구자들의 관심 크기를 나타낼 뿐이며, 최근 발표된 논문은 색인 반영이 늦어져 향후 올해 수치가 더 늘어날 수 있습니다.</p>\n\n<p>국내 정책 현장에서도 이러한 흐름을 반영하고 있습니다. 과기정통부는 AI 에이전트가 업무 환경에 도입됨에 따라 발생할 수 있는 보안 위협에 대응하고자 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 마련하여 배포했습니다.</p>\n\n<table>\n<tr><th>연도 및 기간</th><th>논문 수</th><th>증가율(전년/전년 동기 대비)</th></tr>\n<tr><td>2021년</td><td>5편</td><td>-</td></tr>\n<tr><td>2022년</td><td>4편</td><td>-20.0%</td></tr>\n<tr><td>2025년</td><td>125편</td><td>+2,400.0% (2021년 대비)</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>842편</td><td>+952.5% (작년 동기 80편 대비)</td></tr>\n</table>\n\n<p>문헌상 집계된 연도별 가장 낮은 수치는 2022년 4편이며, 2026년 들어 800편을 넘어서는 등 관련 논문 생산 속도가 크게 빨라졌음을 알 수 있습니다.</p>\n\n<h3>에이전틱 AI와 드론 공격 시나리오</h3>\n\n<p>영국 퀸즈 대학교 벨파스트(Queen's University Belfast) 전자·전기공학·컴퓨터과학대학의 비살 샤르마(Vishal Sharma) 리더(Reader)는 비행체에 대한 인증 해제 공격(de-authentication attack) 시나리오를 설명합니다. 인간과 에이전트가 개입하는 구조(human- and agent-in-the-loop)를 활용할 때, AI 에이전트는 활성 채널을 빠르게 스캔하고 자율적으로 트래픽을 도청 및 차단할 수 있습니다.</p>\n\n<p>이러한 에이전틱 AI의 빠른 반응 속도는 공격에 대응하고 통제권을 회복하는 데 걸리는 시간을 줄여주는 역할을 수행합니다. 하지만 이러한 자율성이 무단으로 악용될 경우 제어 권한을 순식간에 빼앗기는 위협이 될 수도 있습니다.</p>\n\n<p>자율 비행체나 네트워크 환경에서 에이전트가 판단을 내리는 과정에 적절한 제어장치가 없다면, 빠른 응답 속도가 오히려 보안 허점으로 작용할 위험을 내포하고 있습니다.</p>\n\n<h3>로그 삭제와 문맥 복구 공격의 허점</h3>\n\n<p>글로벌 연구진은 오케스트레이터가 관리하는 에이전트 태스크포스를 구성하여 위험 평가, 고객 프로파일링, 매칭, 정보 수집 등을 지원하는 애플리케이션을 개발하고 있습니다. 이들 에이전트 시스템에서 핵심적인 요소는 로그를 적절히 관리하여 과거의 연관성이 특정 의사결정으로 편향되지 않도록 방지하는 것입니다.</p>\n\n<p>따라서 시스템 내부에 체크포인트를 두어 에이전트가 이러한 과거 연관성 데이터를 삭제하도록 유도하는 방식을 사용합니다. 기록된 로그와 이전 맥락이 지속적으로 누적되면 동일한 결정을 반복 내리는 문제가 발생할 수 있기 때문입니다.</p>\n\n<p>그러나 이러한 삭제 메커니즘이 존재함에도 불구하고, 향후 프롬프트 입력에 따라 에이전트가 이미 삭제되었어야 할 정보를 다시 불러오는 현상이 발생할 수 있습니다. 입력값을 조작해 지워진 정보를 다시 드러내도록 속이는 이 현상은 전형적인 '문맥 복구 공격(context recovery attack)'에 해당합니다.</p>\n\n<p>결국 지침에 따라 삭제 명령을 내렸더라도 해당 데이터가 완전히 소멸되어 보안이 유지되었는지를 증명하는 데는 구조적인 한계가 나타납니다.</p>\n\n<h3>제로 트러스트 아키텍처와 바이브 코딩</h3>\n\n<p>에이전트의 활동을 관리하기 위해 '절대 신뢰하지 않고, 항상 검증한다'는 핵심 원칙을 가진 제로 트러스트 아키텍처(ZTA)를 도입하는 시도가 이루어지고 있습니다. 그러나 ZTA를 구성하는 핵심 요소인 정책 집행점(PEP, Policy Enforcement Point) 자체가 전체 시스템의 신뢰를 유지하기 위해 역설적으로 먼저 신뢰받아야 하는 대상이 된다는 점이 문제로 지적됩니다.</p>\n\n<p>결국 PEP가 시행하는 정책을 그대로 신뢰할 수 있는지, 그리고 제로 트러스트의 진정한 범위가 어디까지인지에 대한 근본적인 질문이 남게 됩니다. 검증되지 않은 시중의 모델로 학습된 외부 에이전트를 시스템에 무분별하게 개방하고 이를 맹신하는 행위는 심각한 사이버 리스크를 초래할 수 있습니다.</p>\n\n<p>최근 확산되는 '바이브 코딩(vibe coding)' 역시 보안 위협 요소로 꼽힙니다. AI 모델을 활용해 소프트웨어를 개발하면서 전체 코드베이스를 조직 외부의 신뢰할 수 없는 주체에게 넘기는 방식은 다양한 접점에서 보안 약점을 노출시킬 수 있습니다.</p>\n\n<p>이러한 바이브 코딩 방식은 에이전트 쿼리의 신뢰할 수 있는 실행 환경을 배치하고 구현하는 과정에서 큰 차질을 불러올 수 있으므로 신중한 접근이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 올해 842편으로 늘어났는데, 이는 AI 에이전트 기술이 완전히 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 논문 수의 증가 추이는 관련 기술에 대한 학계와 산업계의 연구 관심도가 커졌음을 의미할 뿐, 기술의 완성도나 완전한 상용화 시점을 직접 보증하지 않습니다. 또한 최신 논문은 인덱싱 시스템 반영 시차로 인해 추후 집계 수치가 변동될 수 있습니다.</p>\n\n<h4>🔸 로그 관리 체크포인트를 통해 과거 데이터를 삭제하면 정보가 완전히 사라지나요?</h4>\n<p>그렇지 않을 수 있습니다. 시스템에 로그 삭제 체크포인트를 설정하더라도, 교묘하게 설계된 프롬프트를 입력하면 에이전트가 삭제 대상이었던 과거 정보를 다시 불러오는 '문맥 복구 공격'에 노출될 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>AI 에이전트 연구가 빠르게 늘어나고 정부 차원의 보안 안내서가 나오는 등 안전한 운용을 위한 기준 마련이 진행 중입니다. 하지만 정책 집행점(PEP)에 대한 역설적인 신뢰 필요성과 문맥 복구 공격처럼 기술적으로 완전히 해결되지 않은 허점들이 여전히 존재합니다.</p>\n\n<p>앞으로 관련 보안 기사나 기술 자료를 검토할 때 독자가 스스로 확인할 수 있는 기준은 다음과 같습니다.</p>\n<p>1. 학술 논문 수치(올해 1월~11월 842편 등)를 볼 때 단순 관심도 증가인지 상용화 완료인지를 구분해서 읽는 기준</p>\n<p>2. 과거 로그 삭제 체크포인트를 둔 시스템이라도 문맥 복구 공격에 대비한 별도의 검증 방식이 존재하는지 확인하는 기준</p>\n<p>3. 제로 트러스트 구조 적용 시 정책 집행점(PEP) 및 외부 AI 모델로의 코드베이스 유출(바이브 코딩 리스크) 통제 여부를 살피는 기준</p>\n\n<p><strong>한 줄 정리:</strong> AI 에이전트에 제로 트러스트를 적용하더라도 정책 집행점 신뢰와 문맥 복구 공격의 보안 한계는 지속적으로 검증해야 합니다.</p>\n\n태그: AI에이전트 제로트러스트 문맥복구공격 바이브코딩 보안아키텍처",
+  "2": "<h1>AI 에이전트와 제로 트러스트: 논문 842편 폭증 속 보안의 한계</h1>\n<!-- AI 에이전트와 제로 트러스트 보안 연구가 올해 842편으로 늘어났지만, 문맥 복구 공격과 정책 집행점의 신뢰 이슈 등 구조적 한계가 드러나고 있습니다. 최신 연구 동향과 보안 리스크를 정리했습니다. -->\n\n<p>학술 논문 색인 서비스 OpenAlex 분석 결과, 2026년 1월 1일부터 11월 12일까지 AI 에이전트와 제로 트러스트를 함께 다룬 논문은 842편으로 집계되었습니다. 이는 작년 같은 기간 80편 대비 952.5% 증가한 수치로, 자율적으로 작동하는 AI 에이전트의 보안 검증이 새로운 학술적 과제로 부상했음을 보여줍니다. 다만 이러한 연구 증가에도 불구하고, 삭제된 정보를 다시 불러오는 문맥 복구 공격이나 시스템 검증의 주체인 정책 집행점(PEP)을 다시 신뢰해야 하는 역설적 문제 등 보안의 한계가 명확히 존재합니다.</p>\n\n<p>이처럼 기술 연구가 급증함에 따라 AI 에이전트의 자율 행동까지 보안을 검증하기 위한 노력이 이어지고 있으며, 이에 발맞춰 과기정통부에서도 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 발간했습니다.</p>\n\n<h3>연구 동향과 정부의 제로 트러스트</h3>\n\n<p>AI 에이전트와 제로 트러스트 관련 학술 논문은 연도별 추이에서도 가파른 상승세를 보였습니다. 2021년 5편에 불과했던 연간 논문 수는 2025년 125편으로 늘어나며 2,400.0%의 증가율을 기록했습니다. 가장 적은 논문이 등록되었던 해는 2022년의 4편이었으며, 가장 많았던 해는 2025년의 125편입니다.</p>\n\n<p>다만 이 논문 수의 증가가 기술의 완벽한 상용화나 완성도를 의미하는 것은 아닙니다. OpenAlex 측에 따르면 논문 수는 연구자들의 관심 크기를 나타낼 뿐이며, 최근 발표된 논문은 색인 반영이 늦어져 향후 올해 수치가 더 늘어날 수 있습니다.</p>\n\n<p>국내 정책 현장에서도 이러한 흐름을 반영하고 있습니다. 과기정통부는 AI 에이전트가 업무 환경에 도입됨에 따라 발생할 수 있는 보안 위협에 대응하고자 <a href=\"https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wYUM5WlpoSExRV3diUGhJWWZycVlsLUt1c2J4bVJsQmw3c2lmUjhRZzRicFBiZklOaFVHZ21mRnpoTlBXRzFSNGVVRHVBeDdWMUZnd3dQZ0g5Vnhkb245TnM5S1RHRE0?oc=5\" target=\"_blank\" rel=\"noopener\">인공지능신문</a> 및 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTE01b1dOcmRzSWwxYm1YS0JNNmllWFNiUmJvOG9JZkt0ZG82RnNVVlhkN09DMFktMzcxa0UwM1FpTkI4OUtCbGE2VDFkNkwwV0JpeG56bkMwOXQxN1M3UVFKQjl3Nlc3aWszTUJn?oc=5\" target=\"_blank\" rel=\"noopener\">보안뉴스</a> 보도처럼 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 마련하여 배포했습니다.</p>\n\n<table>\n<tr><th>연도 및 기간</th><th>논문 수</th><th>증가율(비교 기준)</th></tr>\n<tr><td>2021년</td><td>5편</td><td>기준년도</td></tr>\n<tr><td>2022년</td><td>4편</td><td>2021년 대비 -20.0% (수식: (4-5)/5*100)</td></tr>\n<tr><td>2025년</td><td>125편</td><td>2021년 대비 +2,400.0%</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>842편</td><td>작년 동기(80편) 대비 +952.5%</td></tr>\n</table>\n\n<p>문헌상 집계된 연도별 가장 낮은 수치는 2022년 4편이며, 2026년 들어 800편을 넘어서는 등 관련 논문 생산 속도가 크게 빨라졌음을 알 수 있습니다.</p>\n\n<h3>에이전틱 AI와 드론 공격 시나리오</h3>\n\n<p>영국 퀸즈 대학교 벨파스트(Queen's University Belfast) 전자·전기공학·컴퓨터과학대학의 비살 샤르마(Vishal Sharma) 리더(Reader)는 비행체에 대한 인증 해제 공격(de-authentication attack) 시나리오를 설명합니다. 인간과 에이전트가 개입하는 구조(human- and agent-in-the-loop)를 활용할 때, AI 에이전트는 활성 채널을 빠르게 스캔하고 자율적으로 트래픽을 도청 및 차단할 수 있습니다.</p>\n\n<p>AI 에이전트가 공격에 활용되면 채널 스캔과 트래픽 차단을 통해 피해자의 반응 및 통제권 회복 시간을 단축시키는 보안 위협이 됩니다. 이러한 자율성이 무단으로 악용될 경우 제어 권한을 순식간에 빼앗기는 위협이 될 수도 있습니다.</p>\n\n<p>자율 비행체나 네트워크 환경에서 에이전트가 판단을 내리는 과정에 적절한 제어장치가 없다면, 빠른 응답 속도가 오히려 보안 허점으로 작용할 위험을 내포하고 있습니다.</p>\n\n<h3>로그 삭제와 문맥 복구 공격의 허점</h3>\n\n<p>글로벌 연구진은 오케스트레이터가 관리하는 에이전트 태스크포스를 구성하여 위험 평가, 고객 프로파일링, 매칭, 정보 수집 등을 지원하는 애플리케이션을 개발하고 있습니다. 이들 에이전트 시스템에서 핵심적인 요소는 로그를 적절히 관리하여 과거의 연관성이 특정 의사결정으로 편향되지 않도록 방지하는 것입니다.</p>\n\n<p>따라서 시스템 내부에 체크포인트를 두어 에이전트가 이러한 과거 연관성 데이터를 삭제하도록 유도하는 방식을 사용합니다. 기록된 로그와 이전 맥락이 지속적으로 누적되면 동일한 결정을 반복 내리는 문제가 발생할 수 있기 때문입니다.</p>\n\n<p>그러나 이러한 삭제 메커니즘이 존재함에도 불구하고, 향후 프롬프트 입력에 따라 에이전트가 이미 삭제되었어야 할 정보를 다시 불러오는 현상이 발생할 수 있습니다. 입력값을 조작해 지워진 정보를 다시 드러내도록 속이는 이 현상은 전형적인 '문맥 복구 공격'에 해당합니다.</p>\n\n<p>결국 지침에 따라 삭제 명령을 내렸더라도 해당 데이터가 완전히 소멸되어 보안이 유지되었는지를 증명하는 데는 구조적인 한계가 나타납니다.</p>\n\n<h3>제로 트러스트 아키텍처와 바이브 코딩</h3>\n\n<p>에이전트의 활동을 관리하기 위해 '절대 신뢰하지 않고, 항상 검증한다'는 핵심 원칙을 가진 제로 트러스트 아키텍처(ZTA)를 도입하는 시도가 이루어지고 있습니다. 그러나 ZTA를 구성하는 핵심 요소인 정책 집행점(PEP, Policy Enforcement Point) 자체가 전체 시스템의 신뢰를 유지하기 위해 역설적으로 먼저 신뢰받아야 하는 대상이 된다는 점이 문제로 지적됩니다.</p>\n\n<p>결국 PEP가 시행하는 정책을 그대로 신뢰할 수 있는지, 그리고 제로 트러스트의 진정한 범위가 어디까지인지에 대한 근본적인 질문이 남게 됩니다. 검증되지 않은 시중의 모델로 학습된 외부 에이전트를 시스템에 무분별하게 개방하고 이를 맹신하는 행위는 심각한 사이버 리스크를 초래할 수 있습니다.</p>\n\n<p>최근 확산되는 '바이브 코딩(vibe coding)' 역시 보안 위협 요소로 꼽힙니다. AI 모델을 활용해 소프트웨어를 개발하면서 전체 코드베이스를 조직 외부의 신뢰할 수 없는 주체에게 넘기는 방식은 다양한 접점에서 보안 약점을 노출시킬 수 있습니다.</p>\n\n<p>이러한 바이브 코딩 방식은 에이전트 쿼리의 신뢰할 수 있는 실행 환경을 배치하고 구현하는 과정에서 큰 차질을 불러올 수 있으므로 신중한 접근이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 올해 842편으로 늘어났는데, 이는 AI 에이전트 기술이 완전히 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 논문 수의 증가 추이는 관련 기술에 대한 학계와 산업계의 연구 관심도가 커졌음을 의미할 뿐, 기술의 완성도나 완전한 상용화 시점을 직접 보증하지 않습니다. 또한 최신 논문은 인덱싱 시스템 반영 시차로 인해 추후 집계 수치가 변동될 수 있습니다.</p>\n\n<h4>🔸 로그 관리 체크포인트를 통해 과거 데이터를 삭제하면 정보가 완전히 사라지나요?</h4>\n<p>그렇지 않을 수 있습니다. 시스템에 로그 삭제 체크포인트를 설정하더라도, 교묘하게 설계된 프롬프트를 입력하면 에이전트가 삭제 대상이었던 과거 정보를 다시 불러오는 '문맥 복구 공격'에 노출될 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>AI 에이전트 연구가 빠르게 늘어나고 정부 차원의 보안 안내서가 나오는 등 안전한 운용을 위한 기준 마련이 진행 중입니다. 하지만 정책 집행점(PEP)에 대한 역설적인 신뢰 필요성과 문맥 복구 공격처럼 기술적으로 완전히 해결되지 않은 허점들이 여전히 존재합니다.</p>\n\n<p>앞으로 관련 보안 기사나 기술 자료를 검토할 때 독자가 스스로 확인할 수 있는 기준은 다음과 같습니다.</p>\n<p>1. 학술 논문 수치(올해 1월~11월 842편 등)를 볼 때 단순 관심도 증가인지 상용화 완료인지를 구분해서 읽는 기준</p>\n<p>2. 과거 로그 삭제 체크포인트를 둔 시스템이라도 문맥 복구 공격에 대비한 별도의 검증 방식이 존재하는지 확인하는 기준</p>\n<p>3. 제로 트러스트 구조 적용 시 정책 집행점(PEP) 및 외부 AI 모델로의 코드베이스 유출(바이브 코딩 리스크) 통제 여부를 살피는 기준</p>\n\n<p><strong>한 줄 정리:</strong> AI 에이전트에 제로 트러스트를 적용하더라도 정책 집행점 신뢰와 문맥 복구 공격의 보안 한계는 지속적으로 검증해야 합니다.</p>\n\n태그: AI에이전트 제로트러스트 문맥복구공격 바이브코딩 보안아키텍처",
+  "3": "<!-- AI 에이전트와 제로 트러스트 보안 연구가 올해 842편으로 늘어났지만, 문맥 복구 공격과 정책 집행점의 신뢰 이슈 등 구조적 한계가 드러나고 있습니다. 최신 연구 동향과 보안 리스크를 정리했습니다. -->\n\n<p>학술 논문 색인 서비스 OpenAlex 분석 결과, 2026년 1월 1일부터 11월 12일까지 AI 에이전트와 제로 트러스트를 함께 다룬 논문은 842편으로 집계되었습니다. 이는 작년 같은 기간 80편 대비 952.5% 증가한 수치로, 자율적으로 작동하는 AI 에이전트의 보안 검증이 새로운 학술적 과제로 부상했음을 보여줍니다. 다만 이러한 연구 증가에도 불구하고, 삭제된 정보를 다시 불러오는 문맥 복구 공격이나 시스템 검증의 주체인 정책 집행점(PEP)을 다시 신뢰해야 하는 역설적 문제 등 보안의 한계가 명확히 존재합니다.</p>\n\n<p>이처럼 기술 연구가 급증함에 따라 AI 에이전트의 자율 행동까지 보안을 검증하기 위한 노력이 이어지고 있으며, 이에 발맞춰 과기정통부에서도 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 발간했습니다.</p>\n\n<h3>연구 동향과 정부의 제로 트러스트</h3>\n\n<p>AI 에이전트와 제로 트러스트 관련 학술 논문 수치는 2021년 5편에서 2025년 125편으로 급격한 증가 추세를 나타냈습니다.</p>\n\n<p>다만 이 논문 수의 증가가 기술의 완벽한 상용화나 완성도를 의미하는 것은 아닙니다. OpenAlex 측에 따르면 논문 수는 연구자들의 관심 크기를 나타낼 뿐이며, 최근 발표된 논문은 색인 반영이 늦어져 향후 올해 수치가 더 늘어날 수 있습니다.</p>\n\n<p>국내 정책 현장에서도 이러한 흐름을 반영하고 있습니다. 과기정통부는 AI 에이전트가 업무 환경에 도입됨에 따라 발생할 수 있는 보안 위협에 대응하고자 <a href=\"https://news.google.com/rss/articles/CBMiZ0FVX3lxTE8wYUM5WlpoSExRV3diUGhJWWZycVlsLUt1c2J4bVJsQmw3c2lmUjhRZzRicFBiZklOaFVHZ21mRnpoTlBXRzFSNGVVRHVBeDdWMUZnd3dQZ0g5Vnhkb245TnM5S1RHRE0?oc=5\" target=\"_blank\" rel=\"noopener\">인공지능신문</a> 및 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTE01b1dOcmRzSWwxYm1YS0JNNmllWFNiUmJvOG9JZkt0ZG82RnNVVlhkN09DMFktMzcxa0UwM1FpTkI4OUtCbGE2VDFkNkwwV0JpeG56bkMwOXQxN1M3UVFKQjl3Nlc3aWszTUJn?oc=5\" target=\"_blank\" rel=\"noopener\">보안뉴스</a> 보도처럼 제로트러스트 기반 AI 에이전트 업무 환경 안내서를 마련하여 배포했습니다.</p>\n\n<table>\n<tr><th>연도 및 기간</th><th>논문 수</th><th>증가율(비교 기준)</th></tr>\n<tr><td>2021년</td><td>5편</td><td>기준년도</td></tr>\n<tr><td>2022년</td><td>4편</td><td>2021년 대비 -20.0% (수식: (4-5)/5*100)</td></tr>\n<tr><td>2025년</td><td>125편</td><td>2021년 대비 +2,400.0%</td></tr>\n<tr><td>2026년 1월 1일~11월 12일</td><td>842편</td><td>작년 동기(80편) 대비 +952.5%</td></tr>\n</table>\n\n<p>문헌상 집계된 연도별 가장 낮은 수치는 2022년 4편이며, 2026년 들어 800편을 넘어서는 등 관련 논문 생산 속도가 크게 빨라졌음을 알 수 있습니다.</p>\n\n<h3>에이전틱 AI와 드론 공격 시나리오</h3>\n\n<p>영국 퀸즈 대학교 벨파스트(Queen's University Belfast) 전자·전기공학·컴퓨터과학대학의 비살 샤르마(Vishal Sharma) 리더(Reader)는 비행체에 대한 인증 해제 공격 시나리오를 설명합니다. 인간과 에이전트가 개입하는 구조(human- and agent-in-the-loop)를 활용할 때, AI 에이전트는 활성 채널을 빠르게 스캔하고 자율적으로 트래픽을 도청 및 차단할 수 있습니다.</p>\n\n<p>AI 에이전트가 공격에 활용되면 채널 스캔과 트래픽 차단을 통해 피해자의 반응 및 통제권 회복 시간을 단축시키는 보안 위협이 됩니다. 이러한 자율성이 무단으로 악용될 경우 제어 권한을 순식간에 빼앗기는 위협이 될 수도 있습니다.</p>\n\n<p>자율 비행체나 네트워크 환경에서 에이전트가 판단을 내리는 과정에 적절한 제어장치가 없다면, 빠른 응답 속도가 오히려 보안 허점으로 작용할 위험을 내포하고 있습니다.</p>\n\n<h3>로그 삭제와 문맥 복구 공격의 허점</h3>\n\n<p>글로벌 연구진은 오케스트레이터가 관리하는 에이전트 태스크포스를 구성하여 위험 평가, 고객 프로파일링, 매칭, 정보 수집 등을 지원하는 애플리케이션을 개발하고 있습니다. 이들 에이전트 시스템에서 핵심적인 요소는 로그를 적절히 관리하여 과거의 연관성이 특정 의사결정으로 편향되지 않도록 방지하는 것입니다.</p>\n\n<p>따라서 시스템 내부에 체크포인트를 두어 에이전트가 이러한 과거 연관성 데이터를 삭제하도록 유도하는 방식을 사용합니다. 기록된 로그와 이전 맥락이 지속적으로 누적되면 동일한 결정을 반복 내리는 문제가 발생할 수 있기 때문입니다.</p>\n\n<p>그러나 이러한 삭제 메커니즘이 존재함에도 불구하고, 향후 프롬프트 입력에 따라 에이전트가 이미 삭제되었어야 할 정보를 다시 불러오는 현상이 발생할 수 있습니다. 입력값을 조작해 지워진 정보를 다시 드러내도록 속이는 이 현상은 전형적인 '문맥 복구 공격'에 해당합니다.</p>\n\n<p>결국 지침에 따라 삭제 명령을 내렸더라도 해당 데이터가 완전히 소멸되어 보안이 유지되었는지를 증명하는 데는 구조적인 한계가 나타납니다.</p>\n\n<h3>제로 트러스트 아키텍처와 바이브 코딩</h3>\n\n<p>에이전트의 활동을 관리하기 위해 '절대 신뢰하지 않고, 항상 검증한다'는 핵심 원칙을 가진 제로 트러스트 아키텍처(ZTA)를 도입하는 시도가 이루어지고 있습니다. 그러나 ZTA를 구성하는 핵심 요소인 정책 집행점(PEP, Policy Enforcement Point) 자체가 전체 시스템의 신뢰를 유지하기 위해 역설적으로 먼저 신뢰받아야 하는 대상이 된다는 점이 문제로 지적됩니다.</p>\n\n<p>결국 PEP가 시행하는 정책을 그대로 신뢰할 수 있는지, 그리고 제로 트러스트의 진정한 범위가 어디까지인지에 대한 근본적인 질문이 남게 됩니다. 검증되지 않은 시중의 모델로 학습된 외부 에이전트를 시스템에 무분별하게 개방하고 이를 맹신하는 행위는 심각한 사이버 리스크를 초래할 수 있습니다.</p>\n\n<p>최근 확산되는 '바이브 코딩(vibe coding)' 역시 보안 위협 요소로 꼽힙니다. AI 모델을 활용해 소프트웨어를 개발하면서 전체 코드베이스를 조직 외부의 신뢰할 수 없는 주체에게 넘기는 방식은 다양한 접점에서 보안 약점을 노출시킬 수 있습니다.</p>\n\n<p>이러한 바이브 코딩 방식은 에이전트 쿼리의 신뢰할 수 있는 실행 환경을 배치하고 구현하는 과정에서 큰 차질을 불러올 수 있으므로 신중한 접근이 필요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 논문 수가 올해 842편으로 늘어났는데, 이는 AI 에이전트 기술이 완전히 상용화되었다는 뜻인가요?</h4>\n<p>아닙니다. 논문 수의 증가 추이는 관련 기술에 대한 학계와 산업계의 연구 관심도가 커졌음을 의미할 뿐, 기술의 완성도나 완전한 상용화 시점을 직접 보증하지 않습니다. 또한 최신 논문은 인덱싱 시스템 반영 시차로 인해 추후 집계 수치가 변동될 수 있습니다.</p>\n\n<h4>🔸 로그 관리 체크포인트를 통해 과거 데이터를 삭제하면 정보가 완전히 사라지나요?</h4>\n<p>그렇지 않을 수 있습니다. 시스템에 로그 삭제 체크포인트를 설정하더라도, 교묘하게 설계된 프롬프트를 입력하면 에이전트가 삭제 대상이었던 과거 정보를 다시 불러오는 '문맥 복구 공격'에 노출될 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>AI 에이전트 연구가 빠르게 늘어나고 정부 차원의 보안 안내서가 나오는 등 안전한 운용을 위한 기준 마련이 진행 중입니다. 하지만 정책 집행점(PEP)에 대한 역설적인 신뢰 필요성과 문맥 복구 공격처럼 기술적으로 완전히 해결되지 않은 허점들이 여전히 존재합니다.</p>\n\n<p>앞으로 관련 보안 기사나 기술 자료를 검토할 때 독자가 스스로 확인할 수 있는 기준은 다음과 같습니다.</p>\n<p>1. 학술 논문 수치(올해 1월~11월 842편 등)를 볼 때 단순 관심도 증가인지 상용화 완료인지를 구분해서 읽는 기준</p>\n<p>2. 과거 로그 삭제 체크포인트를 둔 시스템이라도 문맥 복구 공격에 대비한 별도의 검증 방식이 존재하는지 확인하는 기준</p>\n<p>3. 제로 트러스트 구조 적용 시 정책 집행점(PEP) 및 외부 AI 모델로의 코드베이스 유출(바이브 코딩 리스크) 통제 여부를 살피는 기준</p>\n\n<p><strong>한 줄 정리:</strong> AI 에이전트에 제로 트러스트를 적용하더라도 정책 집행점 신뢰와 문맥 복구 공격의 보안 한계는 지속적으로 검증해야 합니다.</p>\n\n태그: AI에이전트 제로트러스트 문맥복구공격 바이브코딩 보안아키텍처"
+ },
+ "minutes": 15.4
+}
