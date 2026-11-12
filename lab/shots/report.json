@@ -35,6 +35,18 @@
   "overflow": 0,
   "lowContrast": [
    [
+    "실제 최대낙폭(MDD)",
+    3.4
+   ],
+   [
+    "최대 손실 금액",
+    3.4
+   ],
+   [
+    "잔여 자산",
+    3.4
+   ],
+   [
     "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특",
     3.2
    ]
@@ -76,16 +88,24 @@
   "overflow": 0,
   "lowContrast": [
    [
+    "실제 최대낙폭(MDD)",
+    3.4
+   ],
+   [
+    "최대 손실 금액",
+    3.4
+   ],
+   [
+    "잔여 자산",
+    3.4
+   ],
+   [
     "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특",
     3.2
    ]
   ]
  },
  "_broken_links": [
-  [
-   "https://ondo99.com/2026/07/21/qqq-2026-performance-review-dividend-exchange-rate-impact/",
-   404
-  ],
   [
    "https://ondo99.com/ondo-board/",
    404
