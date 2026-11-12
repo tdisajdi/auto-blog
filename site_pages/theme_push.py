@@ -41,7 +41,7 @@ def svg(ink=False):
 
 
 BOARD_URL = "https://ondo99.com/ondo-board/"
-BOARD_LIVE = False   # 온도판(353)이 아직 비공개 초안 → 링크를 누르면 방문자에게 404(11-12 화면 검사). 공개하면 True로.
+BOARD_LIVE = True    # 11-12 사용자 결정으로 온도판(353) 공개. 다시 비공개로 돌리면 False(방문자 404 막기).
 
 
 def board_links(content, live=None):
