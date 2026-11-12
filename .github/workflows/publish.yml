@@ -495,6 +495,9 @@ jobs:
               python site_pages/token_check.py || echo "토큰 권한 확인 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "board-draft" ]; then
               python ondo/board.py draft || echo "온도판 올리기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "board-refresh" ]; then
+              python ondo/board.py refresh || echo "온도판 갱신 실패"
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "board-publish" ]; then
               # 11-12 사용자 '공개해': 온도판 공개 + 머리·바닥글 링크 복원(BOARD_LIVE) + 화면 확인
               python ondo/board.py publish || echo "온도판 공개 실패"
