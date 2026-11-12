@@ -24,6 +24,12 @@ def css_block():
     if not os.path.exists(path):
         return ""
     css = open(path, encoding="utf-8").read()
+    try:   # 11-12 글 소제목 장식(분야색 줄 + 말랑 아이콘)
+        sys.path.insert(0, os.path.join(ROOT, "theme"))
+        import icons
+        css += "\n" + icons.css_rules()
+    except Exception as e:
+        print("소제목 장식 CSS 못 만듦:", type(e).__name__, e)
     fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">'
              '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">'
@@ -60,7 +66,17 @@ def board_links(content, live=None):
     return re.sub(r'<a([^>]*?)href="' + re.escape(BOARD_URL) + r'"[^>]*>(.*?)</a>', soon, content)
 
 
+def icon_js():
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "theme"))
+        import icons
+        return icons.js()
+    except Exception:
+        return ""
+
+
 def fill(content):
+    content = content.replace("{{ICON_JS}}", icon_js())
     return board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg()))
 
 

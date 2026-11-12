@@ -249,7 +249,7 @@ html body.single-post .o-read .wp-block-post-content p { color: var(--o-ink) !im
 html body.single-post .o-read .wp-block-post-content a { color: var(--o-navy-3) !important; }
 html body.single-post .o-read .wp-block-post-content td { color: var(--o-ink) !important; background: transparent !important; border-color: var(--o-line) !important; }
 html body.single-post .o-read .wp-block-post-content th { color: #fff !important; background: var(--o-navy) !important; }
-html body.single-post .o-post-head .wp-block-post-title { color: #fff !important; }
+html body.single-post .o-post-head .wp-block-post-title { color: var(--o-ink) !important; }   /* 11-12 컨셉 D: 글 머리 밝은 바탕 */
 html body.single-post .o-read .wp-block-post-content blockquote { background: var(--o-card) !important; color: var(--o-ink-2) !important; }
 html body.single-post .o-read .wp-block-post-content hr { border-color: var(--o-line) !important; }
 
