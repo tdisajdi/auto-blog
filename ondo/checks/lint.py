@@ -143,6 +143,14 @@ def fix_and_check(html):
     if new != h:
         fixes.append("AI가 넣은 <img> 제거(그림은 시스템이 넣음)")
         h = new
+    # 한국어 용어 뒤 괄호 속 소문자 영어 원어('인증 해제 공격(de-authentication attack)')는 지운다(11-12 신기술: 0.94 글이 이 'attack'
+    # 하나로 고쳐쓰기 3판 내내 막힘). 한국어 이름이 이미 있어 뜻은 그대로. 대문자로 시작하는 고유명사('비살 샤르마(Vishal Sharma)')는 둔다.
+    # 약 일반명(brelovitug 등)·블로그 이름은 독자가 찾아볼 이름이라 둔다(english_words와 같은 예외 - 지난 초안 21곳 돌려 보고 정함)
+    new = re.sub(r"(?<=[가-힣])\s?\(((?:[a-z][a-z-]*)(?:\s+[a-z][a-z-]*)*)\)",
+                 lambda m: m.group(0) if (m.group(1) in ENGLISH_OK or DRUG_NAME.search(m.group(1))) else "", h)
+    if new != h:
+        fixes.append("한국어 용어 뒤 괄호 속 영어 원어 지움")
+        h = new
 
     # <p> 없이 맨 글자로 쓴 줄은 문단으로 감싼다(2026-11-06: 정리 부분이 맨 글자라 반복 문장 자동 삭제가 못 잡음)
     new = _wrap_bare_lines(h)

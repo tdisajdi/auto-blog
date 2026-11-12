@@ -189,6 +189,11 @@ assert lint.english_words('<p>블로그 ondo 계산, SPY와 QQQ, <a href="https:
 assert lint.english_words("<p>VOO는 low 보수로 S&amp;P 500에 투자</p>") == ["low"], lint.english_words("<p>VOO는 low 보수로 S&amp;P 500에 투자</p>")
 _, iss10, _ = lint.fix_and_check("<h1>t</h1><p>환율 fluctuations에 따라</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
 assert [i for i in iss10 if i.startswith("영어 단어 'fluctuations'")], iss10
+# 11-12: 한국어 용어 뒤 괄호 속 소문자 영어 원어는 코드가 지움, 고유명사(대문자)는 둠
+h12, iss12, fx12 = lint.fix_and_check("<h1>t</h1><p>비살 샤르마(Vishal Sharma)는 인증 해제 공격(de-authentication attack)과 문맥 복구 공격 (context recovery attack)을 설명합니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
+assert "(Vishal Sharma)" in h12 and "attack" not in h12 and "공격과" in h12 and "공격을" in h12, h12
+assert not [i for i in iss12 if i.startswith("영어")] and [f for f in fx12 if "영어 원어" in f], (iss12, fx12)
+assert "(brelovitug)" in lint.fix_and_check("<p>브레로비투그(brelovitug) 승인</p>")[0]
 print("english words ok")
 # 2026-11-08: '우월'도 과장 표현(커버드콜 가이드 정책 지적)
 _, iss11, _ = lint.fix_and_check("<h1>t</h1><p>지수형 상품의 성과가 우월했습니다.</p><h3>정리</h3><p><strong>한 줄 정리:</strong> 짧다.</p><p>태그: a</p>")
