@@ -345,7 +345,7 @@ body.admin-bar .o-readbar { top: 100px; }
 .obp-card[data-t="2"] .obp-head { background: #9a6b00; }
 .obp-card[data-t="3"] .obp-head { background: #c2410c; }
 .obp-card[data-t="4"] .obp-head { background: #c62f1e; }
-.obp-chip { display: none; }
+.obp-chip { display: none !important; }
 .o-foot { background: var(--o-ink); }
 .o-arch-head .o-px { color: #c2410c; }
 .o-arch-head .wp-block-term-description, .o-arch-head p { color: #3d4757; }
