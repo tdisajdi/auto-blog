@@ -116,7 +116,9 @@ def main(status="draft"):
         return 1
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "site_pages"))
     import upload
-    ok, msg = upload.upsert_page({"slug": "ondo-board", "title": "ONDO BOARD · 1년 범위로 보는 지금", "html": page}, status)
+    pg = {"slug": "ondo-board", "title": "ONDO BOARD · 1년 범위로 보는 지금", "html": page}
+    # refresh: 매일 아침 숫자만 바꿈(공개 여부 그대로 - 11-12). draft: 처음 만들 때(공개 페이지는 안 건드림)
+    ok, msg = upload.refresh_page(pg) if status == "refresh" else upload.upsert_page(pg, status)
     print(("✅ " if ok else "❌ ") + msg)
     return 0 if ok else 1
 

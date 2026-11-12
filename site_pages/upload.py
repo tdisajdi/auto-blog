@@ -25,6 +25,25 @@ def load_pages():
     return out
 
 
+def refresh_page(page, session=None):
+    """이미 있는 페이지의 본문만 새로 바꾼다(공개 여부·제목·주소는 그대로). 없으면 아무것도 안 함.
+    온도판(ondo-board) 매일 숫자 갱신 전용(11-12) - 공개 페이지라도 본문 숫자만 바뀜."""
+    import requests
+    import blog_engine as be
+    s = session or requests
+    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/"
+    r = s.get(base + "slug:" + page["slug"], headers=h, params={"fields": "ID,status,URL,type"}, timeout=20)
+    if r.status_code != 200 or (r.json() or {}).get("type") != "page":
+        return False, f"{page['slug']}: 페이지가 없어 갱신 안 함"
+    j = r.json()
+    r2 = s.post(base + str(j["ID"]), headers=h, data={"content": page["html"]}, timeout=60)
+    if r2.status_code != 200:
+        return False, f"{page['slug']}: 갱신 실패 {r2.status_code} {r2.text[:160]}"
+    after = (r2.json() or {}).get("status")
+    return after == j.get("status"), f"{page['slug']}: 숫자 갱신 - {after} (번호 {j['ID']})"
+
+
 def upsert_page(page, status, session=None):
     import requests
     import blog_engine as be

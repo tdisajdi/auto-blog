@@ -68,3 +68,14 @@ out = tp.board_links(html, live=False)
 assert "ondo-board" not in out and "BOARD SOON" in out and "온도판 (준비 중)" in out and 'href="https://ondo99.com/etf/"' in out, out
 assert tp.board_links(html, live=True) == html
 print("board soon ok")
+
+# 11-12) 온도판 매일 갱신: 본문만 보내고 공개 여부는 그대로(status를 보내지 않음), 페이지 없으면 아무것도 안 함
+class SR:
+    def __init__(s, st): s.st = st; s.posted = []
+    def get(s, url, **k): return R(200, {"ID": 353, "type": "page", "status": s.st}) if s.st else R(404, {})
+    def post(s, url, data=None, **k): s.posted.append(data); return R(200, {"ID": 353, "status": s.st})
+sr = SR("publish"); ok, msg = up.refresh_page({"slug": "ondo-board", "html": "<p>새 숫자</p>"}, sr)
+assert ok and sr.posted == [{"content": "<p>새 숫자</p>"}], (msg, sr.posted)
+sr = SR(None); ok, msg = up.refresh_page({"slug": "ondo-board", "html": "x"}, sr)
+assert not ok and sr.posted == [], msg
+print("board refresh ok")
