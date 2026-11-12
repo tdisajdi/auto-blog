@@ -287,3 +287,68 @@ body.admin-bar .o-readbar { top: 100px; }
 .o-melt i:nth-of-type(3) { left: 33px; animation-delay: 2.5s; background: #a8263a; }
 @keyframes o-drip { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 1; transform: translateY(36px); } }
 @media (prefers-reduced-motion: reduce) { .o-melt::after { animation: none; opacity: 1; } .o-melt .o-mercury { animation: none !important; transform: scaleY(.04); } .o-melt i { animation: none; opacity: 1; transform: translateY(36px); } .o-readtemp .o-mercury { transition: none; } }
+
+/* ══ 11-12 컨셉 D '온도가 색이 되는' + 한국어 제목 도트(Galmuri) - 사용자 선택 ══════════
+   바탕은 밝게, 분야·지표가 자기 온도색을 입는다(ETF 파랑·에너지 주황·인구사회 청록).
+   어두운 덩어리는 바닥글만. 온도계도 밝은 유리(THERMO_INK)로 - 사용자 '남색 온도계가 혼자 튀어 어수선'. */
+:root { --o-paper: #f6f7f9; --o-card: #ffffff; --o-line: #e2e6ee; --o-head: Galmuri11, var(--o-sans);
+  --t-etf: #3d6dff; --t-etf-bg: #eaf0ff; --t-energy: #ff8a3d; --t-energy-bg: #fff0e5; --t-society: #2bb3c0; --t-society-bg: #e5f6f7; }
+.o-sec-head h2, .o-cat h3, .o-list .wp-block-post-title, .o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title,
+.o-arch-head h1, .o-read h2, .o-read h3, .obp-sec h3, .obp-name { font-family: var(--o-head) !important; font-weight: 700 !important; letter-spacing: 0 !important; }
+.o-read h2 { font-size: 24px !important; }
+/* 머리말: 흰 바탕 */
+.o-head { background: #fff; color: var(--o-ink); box-shadow: 0 1px 0 var(--o-line); }
+.o-logo, .o-nav a { color: var(--o-ink) !important; }
+.o-logo small { color: #c2410c; }
+.o-nav a:hover, .o-nav a.is-on { background: #eef1f6; color: var(--o-ink) !important; box-shadow: inset 0 -3px 0 var(--o-hot); }
+.o-menu-btn { color: var(--o-ink); }
+@media (max-width: 860px) { .o-nav { background: #fff; box-shadow: 0 8px 0 rgba(24,32,44,.06); } }
+.o-head .o-pxline { height: 6px; }
+/* 첫 화면: 차가움 → 뜨거움 옅은 색띠 + 도트 격자 */
+.o-hero { background: linear-gradient(90deg, #e9f0ff 0%, #e6f7f8 30%, #fff6dc 55%, #ffeadb 78%, #ffe1dc 100%); color: var(--o-ink); }
+.o-hero::before { opacity: .5; background-image: linear-gradient(rgba(24,32,44,.06) 2px, transparent 2px), linear-gradient(90deg, rgba(24,32,44,.06) 2px, transparent 2px); background-size: 16px 16px; }
+.o-hero h1 { color: var(--o-ink) !important; }
+.o-hero h1 span { color: var(--o-hot); }
+.o-hero p.o-hero-sub { color: #3d4757; }
+.o-hero-kick { color: #c2410c; }
+.o-btn { background: var(--o-ink); color: #fff !important; box-shadow: 0 -4px 0 0 var(--o-ink), 0 4px 0 0 var(--o-ink), -4px 0 0 0 var(--o-ink), 4px 0 0 0 var(--o-ink), 4px 8px 0 0 var(--o-hot); }
+.o-btn:hover { background: var(--o-hot); box-shadow: 0 -4px 0 0 var(--o-hot), 0 4px 0 0 var(--o-hot), -4px 0 0 0 var(--o-hot), 4px 0 0 0 var(--o-hot), 2px 4px 0 0 var(--o-ink); }
+.o-btn.is-ghost { background: #fff; color: var(--o-ink) !important; box-shadow: inset 0 0 0 2px var(--o-ink); }
+/* 분야 카드: 자기 온도색 바탕 */
+.o-cat { border: 0; box-shadow: none; padding-top: 28px; }
+.o-cat:hover { box-shadow: 6px 6px 0 var(--o-line); }
+.o-cat.t-etf { background: var(--t-etf-bg); border-top: 10px solid var(--t-etf); }
+.o-cat.t-energy { background: var(--t-energy-bg); border-top: 10px solid var(--t-energy); }
+.o-cat.t-society { background: var(--t-society-bg); border-top: 10px solid var(--t-society); }
+/* 온도판 띠: 밝게 */
+.o-boardband { background: #fff; color: var(--o-ink); border-top: 1px solid var(--o-line); border-bottom: 1px solid var(--o-line); }
+.o-boardband p { color: #3d4757; }
+.o-boardband .o-px { color: #c2410c; }
+/* 글 목록 카드: 분야 색 왼쪽 띠 */
+.o-list .wp-block-post { border: 0; border-left: 8px solid var(--o-line); }
+.o-list .wp-block-post.category-etf { border-left-color: var(--t-etf); }
+.o-list .wp-block-post.category-energy { border-left-color: var(--t-energy); }
+.o-list .wp-block-post.category-society { border-left-color: var(--t-society); }
+/* 글 머리: 분야 색 옅은 바탕 + 굵은 윗선(어두운 남색 띠 대신) */
+.o-post-head, .o-page-head, .o-arch-head { background: #fff; color: var(--o-ink); border-top: 8px solid var(--o-mild); border-bottom: 1px solid var(--o-line); }
+.o-post-head:has(a[href*="/category/etf/"]) { background: var(--t-etf-bg); border-top-color: var(--t-etf); }
+.o-post-head:has(a[href*="/category/energy/"]) { background: var(--t-energy-bg); border-top-color: var(--t-energy); }
+.o-post-head:has(a[href*="/category/society/"]) { background: var(--t-society-bg); border-top-color: var(--t-society); }
+.o-post-head .wp-block-post-title, .o-page-head .wp-block-post-title, .o-arch-head h1 { color: var(--o-ink) !important; }
+.o-post-head .wp-block-post-terms a { color: #c2410c !important; }
+.o-post-head .o-meta, .o-post-head .wp-block-post-date, .o-post-head .wp-block-post-date time, .o-post-head .o-meta p { color: var(--o-ink-3) !important; }
+/* 온도판: 카드 머리띠가 자기 온도색 */
+.obp-card { border: 0; box-shadow: 4px 4px 0 #d5dae4; }
+.obp-head { color: #fff; }
+.obp-card[data-t="0"] .obp-head { background: #2f5ae0; }
+.obp-card[data-t="1"] .obp-head { background: #17818b; }
+.obp-card[data-t="2"] .obp-head { background: #9a6b00; }
+.obp-card[data-t="3"] .obp-head { background: #c2410c; }
+.obp-card[data-t="4"] .obp-head { background: #c62f1e; }
+.obp-chip { display: none; }
+.o-foot { background: var(--o-ink); }
+.o-arch-head .o-px { color: #c2410c; }
+.o-arch-head .wp-block-term-description, .o-arch-head p { color: #3d4757; }
+.o-arch-head:has(.t-etf), body.category-etf .o-arch-head { border-top-color: var(--t-etf); background: var(--t-etf-bg); }
+body.category-energy .o-arch-head { border-top-color: var(--t-energy); background: var(--t-energy-bg); }
+body.category-society .o-arch-head { border-top-color: var(--t-society); background: var(--t-society-bg); }

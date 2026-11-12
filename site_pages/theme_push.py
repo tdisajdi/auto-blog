@@ -26,7 +26,9 @@ def css_block():
     css = open(path, encoding="utf-8").read()
     fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">'
-             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">')
+             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">'
+             # 11-12 한국어 제목 도트 글꼴 Galmuri(SIL OFL 1.1, 무료 공개)
+             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css">')
     return f"<!-- wp:html -->\n{CSS_MARK}{fonts}<style>{css}</style>\n<!-- /wp:html -->\n"
 
 
