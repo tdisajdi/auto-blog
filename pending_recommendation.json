@@ -5,12 +5,13 @@
   "reason": "최근 10편 중 가이드 비율 10% (목표 20%)",
   "candidates": [],
   "created_at": "2026-11-11T22:31:13.225028",
-  "reminder_count": 1,
-  "message_id": 432,
+  "reminder_count": 2,
+  "message_id": 434,
   "message_ids": [
     394,
-    432
+    432,
+    434
   ],
-  "sent_at": "2026-11-12T22:31:05.679679",
-  "last_reminded_at": "2026-11-12T22:31:05.165552"
+  "sent_at": "2026-11-13T22:31:15.027007",
+  "last_reminded_at": "2026-11-13T22:31:14.553512"
 }
