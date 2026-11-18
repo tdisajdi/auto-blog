@@ -1,7 +1,7 @@
 """초안 정리·링크 확인(2026-11-12, 백로그 21·31).
 
   python site_pages/drafts_fix.py check   읽기만: 비공개 글을 가리키는 링크 목록 → lab/link_check.json
-  python site_pages/drafts_fix.py fix     비공개 초안의 'ONDO MARKET TEMP'(종합 온도, 임의 가중치) 띠를 지우고, check도 함
+  python site_pages/drafts_fix.py fix     비공개 초안의 'ONDO MARKET TEMP'(종합 온도, 임의 가중치) 띠를 지우고, 목차 글자로 된 요약을 소개 문장으로 바꾸고, check도 함
 
 - 고치는 것은 status가 draft인 글뿐. 공개 글·페이지는 건드리지 않고 상태(공개 여부)도 바꾸지 않는다.
 - 띠 div 하나만 지운다: 지운 뒤 길이 차이가 그 div 길이와 정확히 같을 때만 올림.
@@ -85,6 +85,23 @@ def main(mode):
             if ok:
                 it["content"] = new
         print(f"종합 온도 띠 정리: {done}편")
+        # 11-18: 요약(excerpt)이 비었거나 목차 글자('📑 핵심 목차 …')인 초안 글에 제목 아래 설명·첫 소개 문단을 요약으로 넣음
+        fixed = 0
+        for it in items:
+            if it.get("status") != "draft" or it.get("type", "post") != "post":
+                continue
+            cur = re.sub(r"<[^>]+>", "", it.get("excerpt") or "").strip()
+            if cur and not cur.startswith("📑") and "핵심 목차" not in cur[:20]:
+                continue
+            ex = be.make_excerpt(it.get("content"))
+            if not ex:
+                continue
+            r = requests.post(f"{v1}/posts/{it['ID']}", headers=h, json={"excerpt": ex}, timeout=60)
+            ok = r.status_code == 200 and (r.json().get("status") == "draft")
+            fixed += ok
+            if not ok:
+                print(f"❌ {it['ID']} 요약 넣기 실패 ({r.status_code})")
+        print(f"초안 요약 넣기: {fixed}편")
     report = find_private_links(items)
     pub = [r for r in report if r["status"] == "publish"]
     print(f"비공개 글을 가리키는 링크가 있는 글: 공개 {len(pub)}편(방문자 404) / 초안 {len(report) - len(pub)}편(공개할 때 확인)")

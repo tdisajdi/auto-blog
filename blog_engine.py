@@ -973,6 +973,26 @@ def _wp_category_id(category_slug):
     return cat_id
 
 
+def make_excerpt(html, limit=150):
+    """목록 카드·검색 설명용 요약. 작가가 제목 아래 숨김 주석으로 쓴 설명을 먼저 쓰고, 없으면 목차 상자를 뺀 첫 소개 문단.
+    2026-11-18: 요약을 비워 두면 워드프레스가 본문 첫 글자를 잘라 써서 초안 60편 중 55편 카드가 '📑 핵심 목차 …'로 보였음."""
+    import html as _h
+    h = html or ""
+    m = re.search(r"</h1>\s*<!--(.*?)-->", h, flags=re.S)
+    text = m.group(1) if m else ""
+    if len(re.sub(r"\s+", "", text)) < 20:
+        body = re.sub(r"<div[^>]*>\s*<h2[^>]*>[^<]*핵심 목차.*?</div>", " ", h, flags=re.S)
+        body = re.sub(r"<!--.*?-->", " ", body, flags=re.S)
+        text = next((t for t in (re.sub(r"<[^>]+>", " ", p) for p in re.findall(r"<p[^>]*>(.*?)</p>", body, flags=re.S))
+                     if len(re.findall(r"[가-힣]", t)) >= 20), "")
+    text = re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", " ", text))).strip()
+    if len(text) > limit:
+        cut = text[:limit]
+        end = max(cut.rfind("다. "), cut.rfind("다."), cut.rfind(". "))
+        text = cut[:end + 2].strip() if end > limit // 2 else cut.rstrip() + "…"
+    return text
+
+
 def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=None, category_slug=None,
                          featured_image=None):
     """[수정] 워드프레스 발행 함수.
@@ -1018,6 +1038,9 @@ def publish_to_wordpress(title, html_content, tags=None, status="publish", slug=
     }
     if slug:
         payload["slug"] = slug
+    excerpt = make_excerpt(html_content)
+    if excerpt:
+        payload["excerpt"] = excerpt
     if featured_image:
         # 대표 이미지(썸네일) - 미디어 라이브러리 첨부파일 ID. 허브·카테고리 페이지 카드에 보인다.
         payload["featured_image"] = str(featured_image)
