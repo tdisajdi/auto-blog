@@ -685,7 +685,7 @@ def discover_tech():
         return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
-             + f"{papers}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
+             + f"{papers}\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news[1:])}\n")
     return [{"category": "tech", "topic_key": f"tech:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": 1.0, "reason": pick.get("why", ""), "source_note": it["source"]}]
@@ -737,7 +737,7 @@ def discover_bio():
         return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
     facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
-             + f"{trials}\n[관련 뉴스]\n{_news_block(news[1:])}\n")
+             + f"{trials}\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news[1:])}\n")
     return [{"category": "bio", "topic_key": f"bio:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),
              "facts_text": facts, "news": news, "score": strength(it), "reason": pick.get("why", ""), "source_note": it["source"]}]
@@ -1289,7 +1289,7 @@ def discover_energy():
     eia = _eia_weekly(_COMMODITY_GROUP.get(best['ticker'], ''))
     facts = (f"[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 {datetime.now():%Y-%m-%d} 기준]\n{table}\n"
              + (f"\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n{compare}" if compare else "")
-             + f"{eia}\n[관련 뉴스]\n{_news_block(news)}\n")
+             + f"{eia}\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news)}\n")
     # 11-10 사람 읽기(?p=334): 재고만 있고 비교 가격이 없는데 제목이 '해외 가격으로 보기'를 약속 → 실제로 받은 자료만 제목에
     seen = ["1년 범위"] + (["재고"] if eia.strip() else []) + (["해외 가격"] if compare else [])
     return [{"category": "energy", "topic_key": f"energy:{best['ticker']}", "news": news, "search_seed": f"{best['name']} 가격",
@@ -1402,7 +1402,7 @@ def _kosis_candidates():
         else:
             strength = min(abs(sm["rel"] or 0) / 10, 0.6)
         news = _domestic(google_news(f"{tb['name']} 통계", 5))
-        facts = block + (f"\n[관련 뉴스]\n{_news_block(news)}\n" if news else "")
+        facts = block + (f"\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news)}\n" if news else "")
         cands.append({"category": "society", "topic_key": key, "news": news, "chart": _kosis_chart(tb, sm), "search_seed": tb["name"],
                       # 어느 글에나 붙는 꼬리('숫자로 본 우리 사회의 변화') 대신 자료가 답하는 사실을 제목에(2026-11-03)
                       "title_seed": f"{period} {name} {value}, {_kosis_position(sm)}, 흐름과 의미 정리",
