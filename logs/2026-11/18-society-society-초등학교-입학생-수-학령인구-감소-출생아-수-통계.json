@@ -1,0 +1,1175 @@
+{
+ "article_type": "society",
+ "topic_id": "society:초등학교-입학생-수-학령인구-감소-출생아-수-통계",
+ "title_seed": "저출생에 따른 초등 입학생 감소 현황",
+ "category": "society",
+ "started_at": "2026-11-18T21:46:15",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.8,
+   "chars": 2627
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 90.3,
+   "chars": 4479
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 157.1,
+   "chars": 163
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.8,
+   "chars": 593
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.3,
+   "chars": 158
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 951
+  },
+  {
+   "step": "검토 11(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 64.6,
+   "chars": 394
+  },
+  {
+   "step": "검토 11(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.4,
+   "chars": 646
+  },
+  {
+   "step": "검토 11(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 126
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 71.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 29.5,
+   "chars": 4253
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 30.5,
+   "chars": 194
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 179
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 160
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.5,
+   "chars": 1023
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 49.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 15.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 15.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.5,
+   "chars": 355
+  },
+  {
+   "step": "검토 12(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.3,
+   "chars": 408
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 22.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 17.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 15.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.4,
+   "chars": 252
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 129.0,
+   "chars": 4179
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 143
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.5,
+   "chars": 442
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.5,
+   "chars": 164
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.2,
+   "chars": 951
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 36.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 6,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 7,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 10,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"Resource has been exhausted (e.g. check quota).\",     \"status\": \"RESOURCE_EXHAUSTED\"   } } ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.4,
+   "chars": 469
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.3,
+   "chars": 145
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "21:46:35",
+   "title": "초등 입학생 감소와 2025년 출생 통계로 보는 인구 흐름",
+   "sections": [
+    "2025년 출생·사망 인구동태",
+    "출생아수와 사망자수의 장기 흐름",
+    "자연증가와 조출생률의 추이"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "21:48:08",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "21:52:33",
+   "score": 0.82,
+   "new_serious": [
+    "[중요·사실 검증] '초등 입학생 감소와 같은 학령인구 축소는 당분간 계속될 수밖에 없습니다.' → 자료에 없는 미래 인구 전망을 확정적으로 단정했습니다. / 고칠 방법: '당분간 지속될 가능성이 높습니다' 또는 '지속될 것으로 전망됩니다'와 같이 단정적 표현을 완화하여 작성하세요."
+   ]
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "21:52:33",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "본문에 등장하는 초등 입학생 감소 수치(27.2만 명)가 어떤 연도 출생아 수와 연결되는지 표나 단락으로 명확하게 1대 1 대응 시켜 설명하면 독자가 시차를 더 직관적으로 이해할 수 있습니다.",
+   "issues": [
+    "[사소·독자 편집] '지표명 2024년 2025년 증감률/증감량 출생아수(명) 238,317 254,341 +6.7% 사망자수(명' → 표의 내용을 바로 이어지는 문장에서 그대로 다시 나열하여 읽어주고 있습니다. / 고칠 방법: 표에서 다룬 구체적인 수치를 반복하지 말고 전체 증감 추세만 간단히 요약하도록 수정하세요.",
+    "[중요·사실 검증] '초등 입학생 감소와 같은 학령인구 축소는 당분간 계속될 수밖에 없습니다.' → 자료에 없는 미래 인구 전망을 확정적으로 단정했습니다. / 고칠 방법: '당분간 지속될 가능성이 높습니다' 또는 '지속될 것으로 전망됩니다'와 같이 단정적 표현을 완화하여 작성하세요."
+   ],
+   "numbers": [
+    "82,000명"
+   ],
+   "fixes": [
+    "본문 숫자만 되풀이한 FAQ 1개 삭제: 🔸 자연증가건수와 조출생률은 2016년 이후 어떤 흐름"
+   ],
+   "chars": 2659
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "21:54:17",
+   "model": "gemini-3.6-flash",
+   "todo": 3
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:01:12",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 12(사실 검증)"
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:03:20",
+   "from_model": "gemini-3.5-flash-lite",
+   "to_model": "gemini-3.1-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 12(정책·신뢰)"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "22:03:23",
+   "score": 0.85,
+   "new_serious": [
+    "[중요·사실 검증] → [누락] 질문: 제목이 던진 질문(또는 약속)에 대한 답을 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 말하기 / 고칠 방법: 도입부 첫 문단에 2025년 출생아 수(254,341명)와 내년 초등 입학생 수(27.2만 명) 등의 자료 숫자를 넣어 먼저 답변을 작성하세요."
+   ]
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "22:03:23",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "이 글만의 정보"
+   ],
+   "value_tip": "본문의 장기 흐름과 FAQ 내용을 연결하여, 단년도 출생아 수 반등과 6~7년 뒤 학령인구 변화의 인과관계를 독자가 더 직관적으로 비교할 수 있도록 표나 요약 단락을 보완하는 것",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 제목이 던진 질문(또는 약속)에 대한 답을 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 말하기 / 고칠 방법: 도입부 첫 문단에 2025년 출생아 수(254,341명)와 내년 초등 입학생 수(27.2만 명) 등의 자료 숫자를 넣어 먼저 답변을 작성하세요."
+   ],
+   "chars": 2638
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "22:05:35",
+   "model": "gemini-3.6-flash",
+   "todo": 1
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:09:54",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 3(사실 검증)"
+  },
+  {
+   "step": "검토 13 정리",
+   "at": "22:12:37",
+   "dropped": 1,
+   "reason": "본문에 없는 문장을 인용한 지적은 버림"
+  },
+  {
+   "step": "검토 13 일부 실패",
+   "at": "22:12:37",
+   "answered": 2,
+   "total": 3
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "22:12:37",
+   "score": 1.0
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "22:12:37",
+   "score": 0.97,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목을 '2025년 출생아가 늘었는데 왜 초등 입학생은 줄어들까?'와 같은 질문형으로 변경하여 독자의 궁금증을 유발하고 본문에서 6~7년의 시차와 숫자로 명확히 답하도록 구성하기",
+   "issues": [
+    "[사소·독자 편집] '지표명 2024년 2025년 증감률/증감량 출생아수(명) 238,317 254,341 +6.7% 사망자수(명' → 표가 본문에 삽입되어 있으나 문장 안에서 표의 수치를 그대로 다시 나열하고 있습니다. / 고칠 방법: 표는 시각 자료로 두고 문장에서는 증감 추세의 핵심만 간단히 요약하도록 수정하십시오."
+   ],
+   "chars": 2576
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "초등 입학생 감소와 2025년 출생 통계로 보는 인구 흐름",
+  "url": "https://ondo99.com/?p=532",
+  "score": 0.97,
+  "issues": [
+   "[사소·독자 편집] '지표명 2024년 2025년 증감률/증감량 출생아수(명) 238,317 254,341 +6.7% 사망자수(명' → 표가 본문에 삽입되어 있으나 문장 안에서 표의 수치를 그대로 다시 나열하고 있습니다. / 고칠 방법: 표는 시각 자료로 두고 문장에서는 증감 추세의 핵심만 간단히 요약하도록 수정하십시오."
+  ]
+ },
+ "facts": "[공식 통계 - 국가통계포털(KOSIS) '인구동태건수 및 동태율 추이(출생사망혼인이혼)', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]\n- 출생아수(명): 2025년 254,341 (직전 2024년 238,317), 1년 전(2024년) 대비 +6.7%\n- 사망자수(명): 2025년 362,968 (직전 2024년 358,569), 1년 전(2024년) 대비 +1.2%\n- 자연증가건수(명): 2025년 -108,627 (직전 2024년 -120,252), 1년 전(2024년) 대비 -9.7%\n- 조출생률(천명당): 2025년 5 (직전 2024년 4.7), 1년 전(2024년)보다 +0.3\n- 조사망률(천명당): 2025년 7.1 (직전 2024년 7), 1년 전(2024년)보다 +0.1\n- 자연증가율(천명당): 2025년 -2.1 (직전 2024년 -2.4), 1년 전(2024년)보다 +0.3\n- 합계출산율(명): 2025년 0.799 (직전 2024년 0.748), 1년 전(2024년)보다 +0.051\n- 출생성비(명): 2025년 105.8 (직전 2024년 105), 1년 전(2024년)보다 +0.8\n[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]\n- 출생아수(명) 흐름: 2016년 406,243, 2017년 357,771, 2018년 326,822, 2019년 302,676, 2020년 272,337, 2021년 260,562, 2022년 249,186, 2023년 230,028, 2024년 238,317, 2025년 254,341 → 이 기간 최고 2016년 406,243, 최저 2023년 230,028, 직전 기간 대비 변화가 가장 컸던 때 2017년(-48,472)\n- 사망자수(명) 흐름: 2016년 280,827, 2017년 285,534, 2018년 298,820, 2019년 295,110, 2020년 304,948, 2021년 317,680, 2022년 372,939, 2023년 352,511, 2024년 358,569, 2025년 362,968 → 이 기간 최고 2022년 372,939, 최저 2016년 280,827, 직전 기간 대비 변화가 가장 컸던 때 2022년(+55,259)\n- 자연증가건수(명) 흐름: 2016년 125,416, 2017년 72,237, 2018년 28,002, 2019년 7,566, 2020년 -32,611, 2021년 -57,118, 2022년 -123,753, 2023년 -122,483, 2024년 -120,252, 2025년 -108,627 → 이 기간 최고 2016년 125,416, 최저 2022년 -123,753, 직전 기간 대비 변화가 가장 컸던 때 2022년(-66,635)\n- 조출생률(천명당) 흐름: 2016년 7.9, 2017년 7, 2018년 6.4, 2019년 5.9, 2020년 5.3, 2021년 5.1, 2022년 4.9, 2023년 4.5, 2024년 4.7, 2025년 5 → 이 기간 최고 2016년 7.9, 최저 2023년 4.5, 직전 기간 대비 변화가 가장 컸던 때 2017년(-0.9)\n\n[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n- 저출생 심화에 내년 초등 입학생 27.2만 명…59년 만에 4분의1로 > 뉴스포커스 - SeattleN (SeattleN) https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\n- 초등 입학생 내년 30만명 붕괴…3년 만에 10만명 감소 - 매일일보 (매일일보) https://news.google.com/rss/articles/CBMiZEFVX3lxTFBIMWgwUDU4WE85bUhKT3VmU2FOSFVOTWZkYkd3ei04ZUpFWGNrQ1NFT2Q4MXhja01odkFOZ0s1WXdpWGc3b0VXUW53MkF4anNmSmlmR3BaTWhDRlA4V1VVZWdUVGM?oc=5\n- “한 반 채우기도 어렵다”...초등 입학생 ‘20만명대’ 진입 초읽기 - 에너지경제신문 (에너지경제신문) https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zSlpHTUt4N1JaYWgxOHZYUGpGV0o1cE5wNGs5RjlVVUs4Sm10N1VTd19fcUJlNG4wcGMtVC13bnRXZ1J1dm9GdTZMUlhfZ0NmSTA5bHlNSy1UQm8?oc=5\n- 초등학교 입학생 20만 명 시대 충격, ‘백년대계’ 교육·인구 정책의 판 새로 짜야 - 산경일보 (산경일보) https://news.google.com/rss/articles/CBMicEFVX3lxTE9DdjkxYmptV2g2WThETENFSm1Ud3FyX2VSX3I2ZHV1QVlzdjRpdnFtd0dxOS1ic081bC05c0kzM2FZS3VlRkV1RjNaaEhqX3hvR0I5N0hzX09EWjhwdFRHX3c2YnBfdXlnV1R1Z0RXdVE?oc=5\n- 초등 신입생 30만명선 붕괴 눈앞…저출생에 교육 현장 비상 - https://www.seoulilbo.co.kr/ (https://www.seoulilbo.co.kr/) https://news.google.com/rss/articles/CBMibkFVX3lxTE1HN0lTSFp1c2lIRjYyVFZNRmNGY01iNUsxX1oyLUUtU0xQbTdOeUk0ZGlGT3Q3anNvUjZ0Q0FibU95OHhOWWw5SGYxRVBoZmk2QWNsSUZNWkxIczJoVE5oTGw0ZmJlTkhwLWlWWEFn?oc=5\n- 내년 초등 입학생 첫 20만명대 전망…저출생 충격 현실화 - 애드뉴스인천 (애드뉴스인천) https://news.google.com/rss/articles/CBMia0FVX3lxTFBHNXQtWlZTZnUwMnRUVUlOVHJ5UmtoQTNLN3cyQnJyQ2hDaXZNR0syREc3T2o0VnB4RUthamtxWV9pd1NRQjFyTHRwcXdnLWs3NkVkdk1MQUdGN01hUnp1SmJ6WU56Z0s4SUJR?oc=5\n- 내년 초등학교 입학생 첫 20만명대 전망…학령인구 감소 가속 - 대경일보 (대경일보) https://news.google.com/rss/articles/CBMiaEFVX3lxTFBIU0NHM3owSVJpNnV2aGVRdWVYLXV3aF9xNld5dUNxVEpHUndXYnczbzJzTkJMMUVYSHZsU1dlMUcwVzJHWXc5T21vRHF6bDB0MTZXdWxWUGtkc1F5UF81cG5rU0V6ZEFj?oc=5\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 자연증가: 출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻\n- 조출생률: 인구 1,000명당 1년 동안 태어난 아이 수\n- 합계출산율: 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수\n",
+ "drafts": {
+  "1": "<h1>초등 입학생 감소와 2025년 출생 통계로 보는 인구 흐름</h1>\n<!-- 국가통계포털의 2025년 인구동태 통계를 바탕으로 출생아 수와 사망자 수의 변화, 조출생률 및 자연증가 추이를 종합적으로 정리하여 전달합니다. -->\n<p><a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\" target=\"_blank\" rel=\"noopener\">SeattleN</a> 보도에 따르면 내년 초등 입학생 수가 27.2만 명을 기록하며 59년 만에 4분의 1 수준으로 줄어들 것이라는 전망이 나왔습니다. 2025년 전국 출생아 수는 254,341명으로 2024년 238,317명에 비해 증가했으나 교육 현장에서 체감하는 학령인구 감소 흐름은 지속되고 있습니다.</p>\n<p><a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTFBIMWgwUDU4WE85bUhKT3VmU2FOSFVOTWZkYkd3ei04ZUpFWGNrQ1NFT2Q4MXhja01odkFOZ0s1WXdpWGc3b0VXUW53MkF4anNmSmlmR3BaTWhDRlA4V1VVZWdUVGM?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>가 전한 초등 입학생 30만 명선 붕괴 소식과 같이 최근 입학 인구의 변화는 과거 출생아 수 수치와 밀접하게 연관되어 있습니다. 최근 반등한 출생 수치와 수년간 이어진 인구동태 건수의 전체 흐름을 함께 파악해야 향후 인구 구조 변화를 명확히 이해할 수 있습니다.</p>\n\n<h3>2025년 출생·사망 인구동태</h3>\n<p>2025년 국가통계포털(KOSIS) 인구동태건수 통계에 따르면 출생아 수는 전년 대비 6.7% 증가한 254,341명으로 집계되었습니다. 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수인 합계출산율은 0.799명으로 2024년 0.748명보다 0.051명 늘어났습니다.</p>\n<p>사망자 수는 362,968명으로 2024년 358,569명과 비교해 1.2% 증가했습니다. 출생아 수에서 사망자 수를 뺀 자연증가(음수면 태어난 사람보다 숨진 사람이 많다는 뜻) 건수는 -108,627명으로 2024년 -120,252명에 비해 감소 폭이 9.7% 줄었습니다.</p>\n<p>인구 1,000명당 1년 동안 태어난 아이 수인 조출생률은 5명으로 전년 대비 0.3명 늘었으며, 조사망률은 7.1명으로 0.1명 증가했습니다. 출생성비는 105.8명으로 전년보다 0.8명 높아졌습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년</th>\n    <th>2025년</th>\n    <th>증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>조출생률(천명당)</td>\n    <td>4.7</td>\n    <td>5.0</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>조사망률(천명당)</td>\n    <td>7.0</td>\n    <td>7.1</td>\n    <td>+0.1</td>\n  </tr>\n  <tr>\n    <td>자연증가율(천명당)</td>\n    <td>-2.4</td>\n    <td>-2.1</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n  <tr>\n    <td>출생성비(명)</td>\n    <td>105.0</td>\n    <td>105.8</td>\n    <td>+0.8</td>\n  </tr>\n</table>\n\n<p>출생아 수가 2024년 238,317명에서 2025년 254,341명으로 16,024명 늘어나면서 자연증가율도 -2.4명에서 -2.1명으로 0.3명 늘어 인구 감소 속도가 소폭 완화되었습니다.</p>\n\n<h3>출생아수와 사망자수의 장기 흐름</h3>\n<p>2016년부터 2025년까지의 출생아 수를 살펴보면 2016년 406,243명으로 해당 기간 중 최고치를 기록한 이후 지속적인 감소세를 보였습니다. 직전 기간 대비 출생아 수 감소 폭이 가장 컸던 시점은 2017년으로 전년 대비 48,472명이 줄었습니다.</p>\n<p>이후 감소 흐름이 이어지며 2023년에는 230,028명으로 10년 중 최저치를 기록했습니다. 2024년 238,317명에 이어 2025년 254,341명으로 반등했으나, 2016년 수치와 비교하면 약 15만 명 이상 적은 수치입니다.</p>\n<p>반면 사망자 수는 2016년 280,827명으로 최저치를 기록한 뒤 꾸준히 증가했습니다. 직전 기간 대비 가장 크게 변동한 시기는 2022년으로 55,259명이 늘었으며, 2022년에는 372,939명으로 10년 중 가장 많은 사망자 수를 기록했습니다.</p>\n<p>2025년 사망자 수는 362,968명으로 2022년 최고치보다는 적지만, 2016년 대비 약 82,000명 이상 증가한 높은 수준을 유지하고 있습니다.</p>\n\n<h3>자연증가와 조출생률의 추이</h3>\n<p>자연증가건수는 2016년 125,416명으로 가장 높은 수치를 보였으나 2020년부터 마이너스로 전환되었습니다. 2022년에는 직전 해 대비 66,635명이 줄어들며 -123,753명으로 최저치를 기록했습니다.</p>\n<p>2023년 -122,483명, 2024년 -120,252명, 2025년 -108,627명으로 음수 폭이 조금씩 줄어들고 있으나 여전히 사망자 수가 출생아 수를 크게 앞지르는 상황이 계속되고 있습니다.</p>\n<p>조출생률은 2016년 7.9명으로 최고치를 나타낸 후 2017년 전년 대비 0.9명 줄어드는 등 하락세를 이어갔습니다. 2023년 4.5명으로 최저를 기록한 후 2024년 4.7명, 2025년 5명으로 다소 회복되었습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 2025년 출생아 수가 전년보다 늘었는데 초등 입학생 감소 뉴스가 나오는 이유는 무엇인가요?</h4>\n<p>초등학교 입학 대상은 해당 연도에 태어난 아이가 아니라 약 6~7년 전에 태어난 아이들이기 때문입니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zSlpHTUt4N1JaYWgxOHZYUGpGV0o1cE5wNGs5RjlVVUs4Sm10N1VTd19fcUJlNG4wcGMtVC13bnRXZ1J1dm9GdTZMUlhfZ0NmSTA5bHlNSy1UQm8?oc=5\" target=\"_blank\" rel=\"noopener\">에너지경제신문</a>이 다룬 입학생 감소 현상은 2025년의 출생아 수 반등과 달리 2017년 이후 급격히 줄어든 과거 출생아 수가 교육 현장에 시차를 두고 반영된 결과입니다.</p>\n<h3>정리</h3>\n<p>2025년 출생아 수가 254,341명으로 2024년 대비 6.7% 증가했더라도 과거 2016년의 406,243명에 비하면 현저히 적은 수준이므로 초등 입학생 감소와 같은 학령인구 축소는 당분간 계속될 수밖에 없습니다.</p>\n<p>앞으로 인구 뉴스나 통계를 접할 때는 단년도의 출생아 수 반등 수치에만 주목하기보다 6~7년 전의 출생아 수 규모를 확인해야 교육 현장의 변화를 정확히 예측할 수 있습니다. 또한 사망자 수가 36만 명대를 유지하는 상황에서 자연증가건수가 여전히 음수(-108,627명)에 머물러 있는지 파악하는 것이 전체 인구 규모를 판단하는 주요 기준이 됩니다.</p>\n<p><strong>한 줄 정리:</strong> 2025년 출생아 수가 254,341명으로 소폭 늘었지만 학령인구 감소세는 지속됩니다.</p>\n\n태그: 인구통계 저출생 초등입학생 합계출산율 인구동태",
+  "2": "<h1>초등 입학생 감소와 2025년 출생 통계로 보는 인구 흐름</h1>\n<!-- 국가통계포털의 2025년 인구동태 통계를 바탕으로 출생아 수와 사망자 수의 변화, 조출생률 및 자연증가 추이를 종합적으로 정리하여 전달합니다. -->\n<p><a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\" target=\"_blank\" rel=\"noopener\">SeattleN</a> 보도에 따르면 내년 초등 입학생 수가 27.2만 명을 기록하며 59년 만에 4분의 1 수준으로 줄어들 것이라는 전망이 나왔습니다. 2025년 전국 출생아 수는 254,341명으로 2024년 238,317명에 비해 증가했으나 교육 현장에서 체감하는 학령인구 감소 흐름은 지속되고 있습니다.</p>\n<p><a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTFBIMWgwUDU4WE85bUhKT3VmU2FOSFVOTWZkYkd3ei04ZUpFWGNrQ1NFT2Q4MXhja01odkFOZ0s1WXdpWGc3b0VXUW53MkF4anNmSmlmR3BaTWhDRlA4V1VVZWdUVGM?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>가 전한 초등 입학생 30만 명선 붕괴 소식과 같이 최근 입학 인구의 변화는 과거 출생아 수 수치와 밀접하게 연관되어 있습니다. 최근 반등한 출생 수치와 수년간 이어진 인구동태 건수의 전체 흐름을 함께 파악해야 향후 인구 구조 변화를 명확히 이해할 수 있습니다.</p>\n\n<h3>2025년 출생·사망 인구동태</h3>\n<p>2025년 국가통계포털(KOSIS) 인구동태건수 통계에 따르면 출생아 수는 전년 대비 6.7% 증가한 254,341명으로 집계되었습니다. 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수인 합계출산율은 0.799명으로 2024년 0.748명보다 0.051명 늘어났습니다.</p>\n<p>사망자 수는 362,968명으로 2024년 358,569명과 비교해 1.2% 증가했습니다. 출생아 수에서 사망자 수를 뺀 자연증가(음수면 태어난 사람보다 숨진 사람이 많다는 뜻) 건수는 -108,627명으로 2024년 -120,252명에 비해 감소 폭이 9.7% 줄었습니다.</p>\n<p>인구 1,000명당 1년 동안 태어난 아이 수인 조출생률은 5명으로 전년 대비 0.3명 늘었으며, 조사망률은 7.1명으로 0.1명 증가했습니다. 출생성비는 105.8명으로 전년보다 0.8명 높아졌습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년</th>\n    <th>2025년</th>\n    <th>증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>조출생률(천명당)</td>\n    <td>4.7</td>\n    <td>5.0</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>조사망률(천명당)</td>\n    <td>7.0</td>\n    <td>7.1</td>\n    <td>+0.1</td>\n  </tr>\n  <tr>\n    <td>자연증가율(천명당)</td>\n    <td>-2.4</td>\n    <td>-2.1</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n  <tr>\n    <td>출생성비(명)</td>\n    <td>105.0</td>\n    <td>105.8</td>\n    <td>+0.8</td>\n  </tr>\n</table>\n\n<p>2025년에는 출생아 수 반등과 함께 자연증가율이 -2.1명으로 전년보다 0.3명 올라 인구 감소 속도가 소폭 완화되는 경향을 보였습니다.</p>\n\n<h3>출생아수와 사망자수의 장기 흐름</h3>\n<p>2016년부터 2025년까지의 출생아 수를 살펴보면 2016년 406,243명으로 해당 기간 중 최고치를 기록한 이후 지속적인 감소세를 보였습니다. 직전 기간 대비 출생아 수 감소 폭이 가장 컸던 시점은 2017년으로 전년 대비 48,472명이 줄었습니다.</p>\n<p>이후 감소 흐름이 이어지며 2023년에는 230,028명으로 10년 중 최저치를 기록했습니다. 2024년 238,317명에 이어 2025년 254,341명으로 반등했으나, 2016년 수치와 비교하면 약 15만 명 이상 적은 수치입니다.</p>\n<p>반면 사망자 수는 2016년 280,827명으로 최저치를 기록한 뒤 꾸준히 증가했습니다. 직전 기간 대비 가장 크게 변동한 시기는 2022년으로 55,259명이 늘었으며, 2022년에는 372,939명으로 10년 중 가장 많은 사망자 수를 기록했습니다.</p>\n<p>2025년 사망자 수는 362,968명으로 2022년 최고치보다는 적지만, 2016년(280,827명)과 비교하면 82,141명 늘어난 높은 수준을 유지하고 있습니다.</p>\n\n<h3>자연증가와 조출생률의 추이</h3>\n<p>자연증가건수는 2016년 125,416명으로 가장 높은 수치를 보였으나 2020년부터 마이너스로 전환되었습니다. 2022년에는 직전 해 대비 66,635명이 줄어들며 -123,753명으로 최저치를 기록했습니다.</p>\n<p>2023년 -122,483명, 2024년 -120,252명, 2025년 -108,627명으로 음수 폭이 조금씩 줄어들고 있으나 여전히 사망자 수가 출생아 수를 크게 앞지르는 상황이 계속되고 있습니다.</p>\n<p>조출생률은 2016년 7.9명으로 최고치를 나타낸 후 2017년 전년 대비 0.9명 줄어드는 등 하락세를 이어갔습니다. 2023년 4.5명으로 최저를 기록한 후 2024년 4.7명, 2025년 5명으로 다소 회복되었습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 2025년 출생아 수가 전년보다 늘었는데 초등 입학생 감소 뉴스가 나오는 이유는 무엇인가요?</h4>\n<p>초등학교 입학 대상은 해당 연도에 태어난 아이가 아니라 약 6~7년 전에 태어난 아이들이기 때문입니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zSlpHTUt4N1JaYWgxOHZYUGpGV0o1cE5wNGs5RjlVVUs4Sm10N1VTd19fcUJlNG4wcGMtVC13bnRXZ1J1dm9GdTZMUlhfZ0NmSTA5bHlNSy1UQm8?oc=5\" target=\"_blank\" rel=\"noopener\">에너지경제신문</a>이 다룬 입학생 감소 현상은 2025년의 출생아 수 반등과 달리 2017년 이후 급격히 줄어든 과거 출생아 수가 교육 현장에 시차를 두고 반영된 결과입니다.</p>\n<h3>정리</h3>\n<p>2025년 출생아 수가 254,341명으로 2024년 대비 6.7% 증가했더라도 과거 2016년의 406,243명에 비하면 현저히 적은 수준이므로 초등 입학생 감소와 같은 학령인구 축소는 당분간 지속될 것으로 전망됩니다.</p>\n<p>앞으로 인구 뉴스나 통계를 접할 때는 단년도의 출생아 수 반등 수치에만 주목하기보다 6~7년 전의 출생아 수 규모를 확인해야 교육 현장의 변화를 정확히 예측할 수 있습니다. 또한 사망자 수가 36만 명대를 유지하는 상황에서 자연증가건수가 여전히 음수(-108,627명)에 머물러 있는지 파악하는 것이 전체 인구 규모를 판단하는 주요 기준이 됩니다.</p>\n<p><strong>한 줄 정리:</strong> 2025년 출생아 수가 254,341명으로 소폭 늘었지만 학령인구 감소세는 지속됩니다.</p>\n\n태그: 인구통계 저출생 초등입학생 합계출산율 인구동태",
+  "3": "<h1>초등 입학생 감소와 2025년 출생 통계로 보는 인구 흐름</h1>\n<!-- 국가통계포털의 2025년 인구동태 통계를 바탕으로 출생아 수와 사망자 수의 변화, 조출생률 및 자연증가 추이를 종합적으로 정리하여 전달합니다. -->\n<p>2025년 전국 출생아 수는 254,341명으로 반등했으나, 내년 초등 입학생 수 전망치는 27.2만 명으로 학령인구 감소 흐름이 계속되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\" target=\"_blank\" rel=\"noopener\">SeattleN</a> 보도에 따르면 내년 초등 입학생 수는 59년 만에 4분의 1 수준으로 줄어들 것으로 전망되었습니다.</p>\n<p><a href=\"https://news.google.com/rss/articles/CBMiZEFVX3lxTFBIMWgwUDU4WE85bUhKT3VmU2FOSFVOTWZkYkd3ei04ZUpFWGNrQ1NFT2Q4MXhja01odkFOZ0s1WXdpWGc3b0VXUW53MkF4anNmSmlmR3BaTWhDRlA4V1VVZWdUVGM?oc=5\" target=\"_blank\" rel=\"noopener\">매일일보</a>가 전한 초등 입학생 30만 명선 붕괴 소식과 같이 최근 입학 인구의 변화는 과거 출생아 수 수치와 밀접하게 연관되어 있습니다. 최근 반등한 출생 수치와 수년간 이어진 인구동태 건수의 전체 흐름을 함께 파악해야 향후 인구 구조 변화를 명확히 이해할 수 있습니다.</p>\n\n<h3>2025년 출생·사망 인구동태</h3>\n<p>2025년 국가통계포털(KOSIS) 인구동태건수 통계에 따르면 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수인 합계출산율은 0.799명으로 2024년 0.748명보다 0.051명 늘어났습니다.</p>\n<p>출생아 수에서 사망자 수를 뺀 자연증가(음수면 태어난 사람보다 숨진 사람이 많다는 뜻) 건수는 2025년 -108,627명으로 2024년 -120,252명에 비해 음수 폭이 9.7% 줄었습니다. 인구 1,000명당 1년 동안 태어난 아이 수인 조출생률은 2025년 5명으로 2024년 4.7명보다 0.3명 증가했습니다.</p>\n<p>조사망률은 2024년 7명에서 2025년 7.1명으로 0.1명 증가했습니다. 출생성비는 2025년 105.8명으로 2024년 105명보다 0.8명 높아졌습니다.</p>\n\n<table>\n  <tr>\n    <th>지표명</th>\n    <th>2024년</th>\n    <th>2025년</th>\n    <th>증감률/증감량</th>\n  </tr>\n  <tr>\n    <td>출생아수(명)</td>\n    <td>238,317</td>\n    <td>254,341</td>\n    <td>+6.7%</td>\n  </tr>\n  <tr>\n    <td>사망자수(명)</td>\n    <td>358,569</td>\n    <td>362,968</td>\n    <td>+1.2%</td>\n  </tr>\n  <tr>\n    <td>자연증가건수(명)</td>\n    <td>-120,252</td>\n    <td>-108,627</td>\n    <td>-9.7%</td>\n  </tr>\n  <tr>\n    <td>조출생률(천명당)</td>\n    <td>4.7</td>\n    <td>5.0</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>조사망률(천명당)</td>\n    <td>7.0</td>\n    <td>7.1</td>\n    <td>+0.1</td>\n  </tr>\n  <tr>\n    <td>자연증가율(천명당)</td>\n    <td>-2.4</td>\n    <td>-2.1</td>\n    <td>+0.3</td>\n  </tr>\n  <tr>\n    <td>합계출산율(명)</td>\n    <td>0.748</td>\n    <td>0.799</td>\n    <td>+0.051</td>\n  </tr>\n  <tr>\n    <td>출생성비(명)</td>\n    <td>105.0</td>\n    <td>105.8</td>\n    <td>+0.8</td>\n  </tr>\n</table>\n\n<p>2025년에는 출생아 수 반등과 함께 자연증가율이 -2.1명으로 전년보다 0.3명 올라 인구 감소 속도가 소폭 완화되는 경향을 보였습니다.</p>\n\n<h3>출생아수와 사망자수의 장기 흐름</h3>\n<p>2016년부터 2025년까지의 출생아 수를 살펴보면 2016년 406,243명으로 해당 기간 중 최고치를 기록한 이후 지속적인 감소세를 보였습니다. 직전 기간 대비 출생아 수 감소 폭이 가장 컸던 시점은 2017년으로 전년 대비 48,472명이 줄었습니다.</p>\n<p>이후 감소 흐름이 이어지며 2023년에는 230,028명으로 10년 중 최저치를 기록했습니다. 2024년 238,317명에 이어 2025년 254,341명으로 반등했으나, 2016년 수치와 비교하면 약 15만 명 이상 적은 수치입니다.</p>\n<p>반면 사망자 수는 2016년 280,827명으로 최저치를 기록한 뒤 꾸준히 증가했습니다. 직전 기간 대비 가장 크게 변동한 시기는 2022년으로 55,259명이 늘었으며, 2022년에는 372,939명으로 10년 중 가장 많은 사망자 수를 기록했습니다.</p>\n<p>2025년 사망자 수는 362,968명으로 2022년 최고치보다는 적지만, 2016년(280,827명)과 비교하면 82,141명 늘어난 높은 수준을 유지하고 있습니다.</p>\n\n<h3>자연증가와 조출생률의 추이</h3>\n<p>자연증가건수는 2016년 125,416명으로 가장 높은 수치를 보였으나 2020년부터 마이너스로 전환되었습니다. 2022년에는 직전 해 대비 66,635명이 줄어들며 -123,753명으로 최저치를 기록했습니다.</p>\n<p>2023년 -122,483명, 2024년 -120,252명, 2025년 -108,627명으로 음수 폭이 조금씩 줄어들고 있으나 여전히 사망자 수가 출생아 수를 크게 앞지르는 상황이 계속되고 있습니다.</p>\n<p>조출생률은 2016년 7.9명으로 최고치를 나타낸 후 2017년 전년 대비 0.9명 줄어드는 등 하락세를 이어갔습니다. 2023년 4.5명으로 최저를 기록한 후 2024년 4.7명, 2025년 5명으로 다소 회복되었습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 2025년 출생아 수가 전년보다 늘었는데 초등 입학생 감소 뉴스가 나오는 이유는 무엇인가요?</h4>\n<p>초등학교 입학 대상은 해당 연도에 태어난 아이가 아니라 약 6~7년 전에 태어난 아이들이기 때문입니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zSlpHTUt4N1JaYWgxOHZYUGpGV0o1cE5wNGs5RjlVVUs4Sm10N1VTd19fcUJlNG4wcGMtVC13bnRXZ1J1dm9GdTZMUlhfZ0NmSTA5bHlNSy1UQm8?oc=5\" target=\"_blank\" rel=\"noopener\">에너지경제신문</a>이 다룬 입학생 감소 현상은 2025년의 출생아 수 반등과 달리 2017년 이후 급격히 줄어든 과거 출생아 수가 교육 현장에 시차를 두고 반영된 결과입니다.</p>\n<h3>정리</h3>\n<p>2025년 출생아 수가 254,341명으로 2024년 대비 6.7% 증가했더라도 과거 2016년의 406,243명에 비하면 현저히 적은 수준이므로 초등 입학생 감소와 같은 학령인구 축소는 당분간 지속될 것으로 전망됩니다.</p>\n<p>앞으로 인구 뉴스나 통계를 접할 때는 단년도의 출생아 수 반등 수치에만 주목하기보다 6~7년 전의 출생아 수 규모를 확인해야 교육 현장의 변화를 정확히 예측할 수 있습니다. 또한 사망자 수가 36만 명대를 유지하는 상황에서 자연증가건수가 여전히 음수(-108,627명)에 머물러 있는지 파악하는 것이 전체 인구 규모를 판단하는 주요 기준이 됩니다.</p>\n<p><strong>한 줄 정리:</strong> 2025년 출생아 수가 254,341명으로 소폭 늘었지만 학령인구 감소세는 지속됩니다.</p>\n\n태그: 인구통계 저출생 초등입학생 합계출산율 인구동태"
+ },
+ "minutes": 26.8
+}
