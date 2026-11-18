@@ -118,6 +118,11 @@ class T:
 yf.Ticker=T
 e=te.discover_energy(); assert e and e[0]["topic_key"]=="energy:KC=F", e
 print(e[0]["title_seed"], e[0]["score"])
+# 11-18: 최근 21일 안에 쓴 종목(KC=F)은 빼고 고름 → 움직임이 약한 나머지만 남아 쉼(같은 주제 반복 대신)
+_rk2 = te._recent_keys
+te._recent_keys = lambda code: {"energy:KC=F"}
+assert te.discover_energy() == []
+te._recent_keys = _rk2
 yf.Ticker=lambda t: type("X",(),{"history":lambda s,period: pd.DataFrame({"Close":[100.0]*250})})()
 assert te.discover_energy()==[]
 # trend
