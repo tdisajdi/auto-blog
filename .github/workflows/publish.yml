@@ -35,7 +35,7 @@ on:
         type: boolean
         default: false
       topic2_test:
-        description: '두 번째 글 시험 1편(승인 없이, 임시글): trend / tech / bio / energy / society 중 하나'
+        description: '두 번째 글 시험 1편(승인 없이, 임시글): trend / tech / bio / energy / society 중 하나, 에너지 종목 지정은 energy:NG=F'
         required: false
         default: ''
       unpublish_url:
@@ -466,8 +466,8 @@ jobs:
             exit $?
           fi
           if [ -n "$TOPIC2_TEST" ]; then
-            case "$TOPIC2_TEST" in trend|tech|bio|energy|society) ;; *) echo "❌ 분야 이름 확인: $TOPIC2_TEST"; exit 1;; esac
-            BLOG_CATEGORY="$TOPIC2_TEST" python topic_engine.py --test "$TOPIC2_TEST"
+            case "$TOPIC2_TEST" in trend|tech|bio|energy|society|energy:*) ;; *) echo "❌ 분야 이름 확인: $TOPIC2_TEST"; exit 1;; esac
+            BLOG_CATEGORY="${TOPIC2_TEST%%:*}" python topic_engine.py --test "$TOPIC2_TEST"
             exit $?
           fi
           if [ "${{ github.event.inputs.list_public }}" = "true" ]; then
