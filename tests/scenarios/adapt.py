@@ -51,6 +51,13 @@ te.fetch_feed = lambda url, d=3: [{"title": "Proximal Ventures raises debut fund
                                   {"title": "New drug robot arm", "url": "http://f/8", "summary": "new drug", "source": "IEEE"}]
 t = te.discover_tech(); assert t and "http://f/8" in t[0]["facts_text"] and "f/9" not in t[0]["facts_text"], t
 assert te._MONEY_NEWS.search("Startup raises $20M Series A") and not te._MONEY_NEWS.search("Fundamental physics of batteries")
+# 11-18: 이미 쓴 기사(반복 금지 기간 안)는 고르기 전에 뺌 → 다음 기사가 골라짐
+_rk = te._recent_keys
+te._recent_keys = lambda code: {"tech:" + te._slug("New drug robot arm")}
+te.fetch_feed = lambda url, d=3: [{"title": "New drug robot arm", "url": "http://f/8", "summary": "new drug", "source": "IEEE"},
+                                  {"title": "Another new drug chip", "url": "http://f/7", "summary": "new drug", "source": "IEEE"}]
+t = te.discover_tech(); assert t and "http://f/7" in t[0]["facts_text"] and "http://f/8" not in t[0]["facts_text"], t
+te._recent_keys = _rk
 te.fetch_feed = _ff
 # 자료 블록 계산이 맞는지(인터넷 대신 가짜 건수)
 te.clinical_trials_block, te.papers_block = _ct, _ax

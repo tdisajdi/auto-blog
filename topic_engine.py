@@ -315,6 +315,7 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         # 자동 발행이 꺼져 있으면 다시 쓴 글도 임시글로 둔다(기록부에 "발행됨"으로 잘못 남던 문제도 함께 해결)
         blog_engine.LAST_FORCED_DRAFT = not blog_engine.auto_publish_enabled()
         ok = wp_update_post(post_id, title=title, content=body, tags=tags, featured_image=featured,
+                            excerpt=blog_engine.make_excerpt(body) or None,
                             status="draft" if blog_engine.LAST_FORCED_DRAFT else None)
         url = replace_url if ok else "글 바꾸기 실패(위 로그 참고)"
         blog_engine.LAST_PUBLISHED_POST_ID = post_id
@@ -657,6 +658,13 @@ def ko_amounts(text):
     return _EN_AMOUNT.sub(lambda m: f"{m.group(0)}(약 {_ko_amount(float(m.group(1).replace(',', '')) * scale[m.group(2).lower()])})", text or "")
 
 
+def _recent_keys(code):
+    """반복 금지 기간 안에 이미 쓴 topic_key 집합(시험 임시글 포함)."""
+    _, keys = _category_history(code)
+    days = CATEGORIES[code]["repeat_days"]
+    return {k for k, dt in keys.items() if (datetime.now() - dt).days < days}
+
+
 def _pick_tech(items):
     if not items:
         return None, {}
@@ -676,7 +684,10 @@ def _pick_tech(items):
 
 
 def discover_tech():
-    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3)]
+    # 이미 쓴 기사는 AI가 고르기 전에 뺀다(11-18: 쓴 기사를 또 골라 choose_topic이 반복 금지로 버리면 그날 신기술 후보가 0 -
+    # 시험에서도 같은 광학 컴퓨팅 기사만 거듭 골라짐). 다음으로 좋은 기사가 골라지게.
+    recent = _recent_keys("tech")
+    items = [i for f in _TECH_FEEDS for i in fetch_feed(f, 3) if f"tech:{_slug(i['title'])}" not in recent]
     # 투자 유치·펀드 결성·인수 소식은 '돈 얘기'라 기술 설명 자료가 얇다(11-12 시험: TechCrunch 'Proximal Ventures raises debut fund' →
     # 통과했지만 가치 0.6 - '제목 질문에 답함'·'용어 풀이' 빠짐). 기술 소식이 하나라도 있으면 뺀다.
     tech_only = [i for i in items if not _MONEY_NEWS.search(i["title"])]
@@ -716,7 +727,8 @@ _BIO_FEEDS = ["https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds
 
 
 def discover_bio():
-    items = [i for f in _BIO_FEEDS for i in fetch_feed(f, 3)]
+    recent = _recent_keys("bio")      # 이미 쓴 기사는 고르기 전에 뺀다(신기술과 같은 이유, 11-18)
+    items = [i for f in _BIO_FEEDS for i in fetch_feed(f, 3) if f"bio:{_slug(i['title'])}" not in recent]
     if not items:
         return []
 

@@ -59,6 +59,12 @@ items = [
 rep = find_private_links(items)
 assert [(r["ID"], r["status"]) for r in rep] == [(1, "publish"), (2, "draft")], rep
 assert rep[0]["links"] == [["https://ondo99.com/?p=2", "draft", 2]] and rep[1]["links"] == [["https://ondo99.com/dr/", "draft", 2]], rep
+# 11-18: 목록 카드 요약 - 제목 아래 숨김 설명 먼저, 없으면 목차 상자를 뺀 첫 소개 문단
+import blog_engine as _be
+_h1 = '<h1>T</h1>\n<!-- 로슈의 유방암 신약이 FDA 승인을 받았습니다. 임상 수치를 정리했습니다. -->\n<div style="x"><h2>📑 핵심 목차</h2><ul><li>a</li></ul></div><p>본문 첫 문단입니다 아주 길게 씁니다 한글이 스무 자를 넘어야 합니다.</p>'
+assert _be.make_excerpt(_h1).startswith("로슈의 유방암 신약이"), _be.make_excerpt(_h1)
+_h2 = '<h1>T</h1><div style="x"><h2>📑 핵심 목차</h2><ul><li>목차 항목 하나 둘 셋 넷 다섯 여섯 일곱 여덟</li></ul></div><p>짧음</p><p>천연가스 가격이 한 달 새 8% 올랐습니다. 1년 범위에서 어디쯤인지 봅니다.</p>'
+assert _be.make_excerpt(_h2).startswith("천연가스 가격이"), _be.make_excerpt(_h2)
 print("drafts_fix ok")
 
 # 11-12) 온도판이 공개 전이면 머리·바닥·첫 화면의 온도판 링크는 '준비 중' 표시(방문자 404 막기)
