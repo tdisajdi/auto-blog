@@ -1,0 +1,430 @@
+{
+ "article_type": "energy",
+ "topic_id": "energy:NG=F",
+ "title_seed": "천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기",
+ "category": "energy",
+ "started_at": "2026-11-18T20:48:24",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.7,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 16.7,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 65.8,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.8,
+   "chars": 1867
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 43.8,
+   "chars": 4142
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 118.9,
+   "chars": 702
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.0,
+   "chars": 904
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.5,
+   "chars": 568
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.4,
+   "chars": 829
+  },
+  {
+   "step": "부분 고침 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.4,
+   "chars": 0
+  },
+  {
+   "step": "부분 고침 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.9,
+   "chars": 0
+  },
+  {
+   "step": "부분 고침 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 174.5,
+   "chars": 1488
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.1,
+   "chars": 505
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.4,
+   "chars": 356
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 174
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.0,
+   "chars": 860
+  },
+  {
+   "step": "부분 고침 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 32.2,
+   "chars": 296
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 23.9,
+   "chars": 201
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.7,
+   "chars": 355
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 125
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.4,
+   "chars": 975
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.3,
+   "chars": 256
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.7,
+   "chars": 156
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 154
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:50:06",
+   "title": "천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기",
+   "sections": [
+    "미국 천연가스 가격 최근 흐름",
+    "1년 범위로 보는 가격 위치",
+    "미국 천연가스 저장량 변화",
+    "유럽 천연가스 가격 비교"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:50:55",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:53:20",
+   "score": 0.46,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 위치에 대한 궁금증에 대해 조건별 판단 기준을 본문 도입부에 더 명확히 제시하기",
+   "issues": [
+    "[중요·사실 검증] '다만 계절적 요인으로 인해 1년 전과 비교한 재고는 다소 줄어든 상태입니다.' → 자료에 없는 감소 원인('계절적 요인')을 지어내어 단정했습니다. / 고칠 방법: 자료에 없는 원인 단정을 삭제하고 1년 전 대비 저장량이 감소한 수치 사실만 기술하세요.",
+    "[중요·사실 검증] '유럽 가격의 상승 원인에 대해 에너지데일리[링크]는 중동 지역의 수송로 불안 등 지정학적 위험으로 인해 가스' → 자료에는 기사 제목만 확인되고 본문은 제공되지 않았음에도 기사 본문의 세부 내용인 것처럼 지어내어 작성했습니다. / 고칠 방법: 확인되지 않은 기사 본문 내용을 인용하지 말고, 뉴스 제목 수준의 정보 범위 내에서 인용하세요.",
+    "[사소·독자 편집] '최근 한 달 사이 7.7% 오르는 단기 반등세를 보였으나 장기 흐름을 보면 양상이 다릅니다. 1년 전 가격과' → 한 달 새 7.7% 상승, 3개월 16.8% 상승, 1년 전 대비 -27.0% 하락이라는 수치와 설명이 도입부 및 다른 본문 섹션과 중복되어 분량을 채우고 있습니다. / 고칠 방법: 중복되는 단기 및 장기 변동률 수치 설명 중 하나를 생략하거나 간결하게 압축하여 서술하세요.",
+    "[사소·독자 편집] '최근 원자재 시장에서 가스 가격의 움직임이 주목받으면서 가격 수치에 대한 관심이 늘었습니다. 오늘 글에서는 ' → 주제 이름만 바꾸면 다른 원자재 관련 글에도 그대로 들어갈 수 있는 일반적인 도입 문단입니다. / 고칠 방법: 미국 천연가스 가격과 14% 지점이라는 고유한 상황에 맞춘 문장으로 수정하세요.",
+    "[중요·정책·신뢰] '현재 가격이 1년 중에서 최저점 부근에 훨씬 가깝다는 뜻입니다.' → 결론을 과장하는 비교 표현('훨씬')이 포함되어 있습니다. / 고칠 방법: 조건과 숫자를 사용하여 현재 가격이 1년 범위 중 14% 지점에 위치함을 객관적으로 서술하세요.",
+    "[중요·정책·신뢰] '미국 천연가스 가격이 1년 평균값인 3.25 달러를 확실하게 넘어서 유지되는지 확인해야 합니다.' → 단정적인 표현('확실하게')이 포함되어 있습니다. / 고칠 방법: 단정적 표현을 제외하고 1년 평균값인 3.25 달러를 상회하여 유지되는지 확인하는 기준으로 서술하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '7.7%'를 7번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '14%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '74%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 2개 삭제: 🔸 미국 천연가스 가격의 1년 최고가와 최저가는 각각 ; 🔸 미국 천연가스 저장량은 1년 전과 비교해 얼마나 변"
+   ],
+   "chars": 2900
+  },
+  {
+   "step": "부분 고침",
+   "at": "20:56:23",
+   "applied": 5,
+   "dropped": [
+    "고친 문장의 숫자가 같은 섹션에 이미 모두 있어 지움: 미국 천연가스 가격이 한 달 새 7.7% 올랐으나 1년",
+    "고친 문장의 숫자가 같은 섹션에 이미 모두 있어 지움: 이는 현재 가격이 1년 최저가인 2.52 달러와 최고가",
+    "고친 문장이 바로 옆 문장과 겹쳐 지움: 1년 전인 2025년 11월 7일의 저장량(3,950 ",
+    "고친 문장이 너무 길거나 소제목을 넣음: 유럽 가격의 상승 원인에 대해 <a href=\"http"
+   ]
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:57:07",
+   "score": 0.76,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "미국과 유럽의 1년 범위 위치 격차가 시사하는 바를 본문에서 더 직접적으로 비교해주면 좋겠습니다.",
+   "issues": [
+    "[중요·사실 검증] '🔸 유럽 천연가스 가격의 최근가와 1년 범위 내 위치는 어디인가요?' → '자주 묻는 질문'은 제시된 [독자가 실제로 검색하는 말] 목록에서 고른 키워드로 질문을 구성해야 하나, 목록에 없는 질문을 임의로 만들어 작성했습니다. / 고칠 방법: [독자가 실제로 검색하는 말] 목록에 포함된 검색어(예: '미국 천연가스 가격', '천연가스 가격 상승 이유' 등)를 바탕으로 자료로 답할 수 있는 자연스러운 질문을 구성하세요.",
+    "[중요·독자 편집] '비교하면 여전히 -27.0% 떨어진 상태로, 장기적으로는 하강 국면에서 벗어나지 못했습니다.' → 앞 문장에 무엇과 비교하는지 대상이 빠져 있어 문맥이 통하지 않습니다. / 고칠 방법: 1년 전과 비교하면 여전히 -27.0% 떨어진 상태로 수정하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '7.7%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '14%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '74%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 2693
+  },
+  {
+   "step": "부분 고침",
+   "at": "20:57:42",
+   "applied": 1,
+   "dropped": [
+    "소제목은 고치지 않음: 🔸 유럽 천연가스 가격의 최근가와 1년 범위 내 위치는"
+   ]
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "20:59:04",
+   "score": 1.0
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "20:59:04",
+   "score": 0.97,
+   "passed": true,
+   "value": 1.0,
+   "value_tip": "유럽 천연가스와 미국 천연가스의 가격 차이가 발생하는 이유를 본문 내 자료의 지정학적 리스크와 연계하여 한두 문장 더 보강하면 좋겠습니다.",
+   "issues": [
+    "[사소·독자 편집] '유럽 시장의 기준이 되는 네덜란드 TTF 선물(TTF=F) 가격은 최근가 83.56 유로/MWh를 기록 중입' → '최근가'라는 표현이 문맥상 다소 어색합니다. / 고칠 방법: 최근 가격은 83.56 유로/MWh로 수정하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '7.7%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '14%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '74%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 2699
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기",
+  "url": "https://ondo99.com/?p=526",
+  "score": 0.97,
+  "issues": [
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+   "[참고] 같은 숫자 '7.7%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[참고] 같은 숫자 '14%'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[참고] 같은 숫자 '74%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '유럽 시장의 기준이 되는 네덜란드 TTF 선물(TTF=F) 가격은 최근가 83.56 유로/MWh를 기록 중입' → '최근가'라는 표현이 문맥상 다소 어색합니다. / 고칠 방법: 최근 가격은 83.56 유로/MWh로 수정하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원자재 선물 가격(가장 가까운 만기 계약), 야후 파이낸스 2026-11-18 기준]\n- 천연가스(NG=F): 최근가 3.19 달러/MMBtu(열량 단위), 1주 -0.7%, 한 달 +7.7%, 1년 -27.0%\n  · 1년 최고 7.46(2026-01-28), 1년 최저 2.52(2026-04-24), 지금은 1년 범위(최저=0%, 최고=100%) 중 14% 지점, 1년 평균 3.25 대비 -1.7%, 3개월 +16.8%\n\n[비교 가격 - 같은 기준일, 단위가 다르니 가격 수준을 직접 비교하지 말고 변화율만 비교]\n- 유럽 천연가스(네덜란드 TTF)(TTF=F): 최근가 83.56 유로/MWh, 1주 -3.6%, 한 달 -1.8%, 1년 +163.6%\n  · 1년 최고 103.94(2026-10-30), 1년 최저 26.60(2025-12-10), 지금은 1년 범위(최저=0%, 최고=100%) 중 74% 지점, 1년 평균 52.72 대비 +58.5%, 3개월 +28.0%\n- 미국 천연가스 저장량(본토 48개 주)(EIA, 십억 입방피트(Bcf), 코드 요약 - 최근 값과 변화): 최근(2026-11-06) 3,862, 최근 1주 변화 +61, 4주 전(2026-10-09) 대비 +295, 1년 전(2025-11-07) 3,950 대비 -2.2%\n\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n- 3배 폭등한 천연가스…유럽이 사고치게 된 이유 - 네이버페이 머니스토리 (네이버페이 머니스토리) https://news.google.com/rss/articles/CBMiWEFVX3lxTE9tV08tSlp4dl9ZSFVidHVsNmdQd1ZnbUFkNDBEREw4MzV6TGJCZlBHeVA5aDhnZzByNm53YU9wZldQTzJTeW9YQ3VBNnQ0WVBnQVVLQkdfMEY?oc=5\n- 유럽 가스 가격 하락세, 이란의 공격 확대로 낙폭 제한 - Investing.com 한국어 (Investing.com 한국어) https://news.google.com/rss/articles/CBMib0FVX3lxTFBBMFBEM0JCbUxCLVBBNExOR2pSVlRvRWo1TE9hTGR4UHN1NllkVl9Gc19xVUtlZ2lTTzhxVkRUT2tKQmh6UG4wbHZKRnhnNlhXanA2dGlFLURZX05SWHFUYUZQaUVIN1RaOGN1c0trQQ?oc=5\n- 호르무즈 리스크에 유럽 가스값 다시 86유로…한국 LNG 조달도 ‘경고등’ - 에너지데일리 (에너지데일리) https://news.google.com/rss/articles/CBMickFVX3lxTFA0Unp1SFpKeVFUdGZLekdwb2I0WDM3NTAwc2xxN21SajNNV0ZKd0pXVVMwRzQ0M3A4MVBrMWpXQ2pBNnUyUEFHZ0t4UVRXTmtiSmVEQ0IzQ3FaYk9taFJ1VjhUR2NrU3lXVXpjMmVwaXJSUQ?oc=5\n- 홍의락 “가스는 곧 전기”...가스공사, 'AI·반도체 전력 LNG로 뒷받침 한다' - BBS불교방송 (BBS불교방송) https://news.google.com/rss/articles/CBMia0FVX3lxTE5COHcybkdXZ0JkUVIwUEpIanhjd1Y3QlRoam9aTmo3NGNfUTlLMXdLZWI3RHBybzhieUhRYjJUZ2MyRmVKVmNzRG5ZQllkZU5HREJVRllHc0hqbHN4Q2VZdGtMTDFJcFBpMXBj?oc=5\n- 미래기술교육硏, ‘2027 LNG 시장 대전환과 산업의 새로운 기회‘ 세미나 개최 - 기후에너지경제 (기후에너지경제) https://news.google.com/rss/articles/CBMiZEFVX3lxTE5MSWQ5SHBCWmphYlhEemhKN0VHTFpRZG50cUlQZUg1dDQxR0JtSnY1a2VERnZPV2NULVRzSjJIaWxpeDhZMmpKNnVwQmtwdFN3ZnBzZU95MGFEZjR3WDh0YnVIMWU?oc=5\n- 가스公 사장 \"가구당 月2000원만 올려도 연 5000억 재무 개선\" - 한국경제 (한국경제) https://news.google.com/rss/articles/CBMiWkFVX3lxTE1KT3JCSEVmSFJCUDg0cFRpcF9GTXNOd0c4cTR6VFdvQ1NTTTB6VXg4ZWpheWdmZ0FEcmVlanB3VjYyc3JrbkxjRzEtY2V6VDRwM29EUlZ4R2xaQQ?oc=5\n\n[독자가 실제로 검색하는 말 - 구글·네이버 자동완성 '천연가스 가격', 2026-11-18. 사실 자료가 아님. '자주 묻는 질문'은 여기서 고르되 위 자료로 답할 수 있는 것만 자연스러운 질문 문장으로 쓰고, 답할 자료가 없으면 넣지 마세요. 검색어 문구를 그대로 제목·본문에 끼워 넣지 마세요]\n- 천연가스 가격 하락 이유\n- 천연가스 가격 하락\n- 천연가스 가격 상승 이유\n- 천연가스 가격 폭등\n- 미국 천연가스 가격\n- 천연가스 가격 선물\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 선물: 미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약. 원자재 가격 뉴스의 숫자는 대개 가장 가까운 만기 선물 가격\n- MMBtu: 천연가스 가격에 쓰는 열량 단위(100만 BTU)\n- MWh: 메가와트시. 유럽 가스 가격에 쓰는 에너지 단위\n- Bcf: 십억 입방피트. 천연가스 부피(저장량) 단위\n",
+ "drafts": {
+  "1": "<h1>천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기</h1>\n<!-- 2026년 11월 18일 기준 미국 천연가스 선물 가격의 단기 상승세와 1년 범위 내 실제 위치, 미국 저장량 추이, 유럽 TTF 가격 변동률을 비교 정리한 정보 글입니다. -->\n\n<p>2026년 11월 18일 기준 미국 천연가스 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 가격은 최근 한 달 동안 7.7% 올랐으나, 1년 전체 범위와 평균 대비로는 여전히 최저점에 가까운 14% 지점에 머물러 있습니다. 단기적인 반등 소식만 보고 가격이 크게 치솟은 것으로 오인하기 쉽지만, 실제 데이터는 여전히 낮은 수치임을 보여줍니다.</p>\n\n<p>최근 원자재 시장에서 가스 가격의 움직임이 주목받으면서 가격 수치에 대한 관심이 늘었습니다. 오늘 글에서는 공개된 원자재 수치와 저장량 통계, 해외 시장 지표를 통해 현재 위치를 객관적으로 살펴보겠습니다.</p>\n\n<h3>미국 천연가스 가격 최근 흐름</h3>\n\n<p>미국 천연가스 선물(NG=F)의 최근 가격은 MMBtu(천연가스 가격에 쓰는 열량 단위)당 3.19 달러를 기록하고 있습니다. 기간별 흐름을 보면 최근 1주 동안은 -0.7% 하락하며 숨 고르기에 들어갔으나, 3개월 기준으로는 +16.8% 올랐고 한 달 전과 비교하면 +7.7% 상승했습니다.</p>\n\n<p>최근 한 달 사이 7.7% 오르는 단기 반등세를 보였으나 장기 흐름을 보면 양상이 다릅니다. 1년 전 가격과 비교하면 여전히 -27.0% 떨어진 상태로, 장기적으로는 하강 국면에서 벗어나지 못했습니다.</p>\n\n<p>단기 변동만 보면 3개월간 +16.8% 오르며 강세를 보이는 것처럼 느껴지지만, 연간 단위의 큰 흐름에서는 하락 폭이 여전히 크게 남아 있는 상태입니다. 따라서 최근의 가격 상승은 장기적인 하락세 속에서 나타난 단기적인 반등 구간으로 해석할 수 있습니다.</p>\n\n<h3>1년 범위로 보는 가격 위치</h3>\n\n<p>현재의 3.19 달러가 어느 정도 수준인지 파악하기 위해 지난 1년간의 최고가와 최저가를 비교해볼 필요가 있습니다. 지난 1년간 미국 천연가스 가격의 최고가는 2026년 1월 28일에 기록한 7.46 달러였으며, 최저가는 2026년 4월 24일에 기록한 2.52 달러였습니다.</p>\n\n<p>최저가를 0%, 최고가를 100%로 두고 현재 가격의 위치를 계산하면 정확히 14% 지점에 위치합니다. 이는 현재 가격이 1년 중에서 최저점 부근에 훨씬 가깝다는 뜻입니다.</p>\n\n<p>또한 지난 1년간의 평균 가격인 3.25 달러와 비교하더라도 현재 가격은 -1.7% 낮은 수준입니다. 한 달 사이 7.7% 오른 수치만 떼어놓고 보면 높아 보이지만, 1년 평균이나 연중 최고가 7.46 달러에 비하면 여전히 부담이 적은 하단 영역에 머물러 있습니다.</p>\n\n<h3>미국 천연가스 저장량 변화</h3>\n\n<p>가격의 흐름을 이해하려면 공급 체계의 핵심인 재고 지표를 확인해야 합니다. 미국 에너지정보청(EIA)이 집계한 미국 본토 48개 주의 천연가스 저장량은 2026년 11월 6일 기준 3,862 Bcf(십억 입방피트, 천연가스 부피 단위)를 기록했습니다.</p>\n\n<p>저장량은 지속적으로 쌓이는 흐름을 보였습니다. 최근 1주 동안 저장량은 +61 Bcf 늘어났으며, 4주 전인 2026년 10월 9일과 비교하면 +295 Bcf 증가하며 공급이 꾸준히 이어진 것으로 나타났습니다.</p>\n\n<p>다만 계절적 요인으로 인해 1년 전과 비교한 재고는 다소 줄어든 상태입니다. 1년 전인 2025년 11월 7일의 저장량인 3,950 Bcf와 비교하면 현재 저장량은 -2.2% 감소한 수치입니다. 단기적으로 재고가 채워지고 있으나 작년 동일 시점보다는 다소 적은 규모입니다.</p>\n\n<h3>유럽 천연가스 가격 비교</h3>\n\n<p>미국 시장과 달리 유럽 시장은 거친 가격 변동을 겪었습니다. 유럽 시장의 기준이 되는 네덜란드 TTF 선물(TTF=F) 가격은 최근가 83.56 유로/MWh(메가와트시, 유럽 가스 가격 단위)를 기록 중입니다.</p>\n\n<table>\n<tr><th>구분</th><th>미국 천연가스 (NG=F)</th><th>유럽 천연가스 (TTF=F)</th></tr>\n<tr><td>최근가</td><td>3.19 달러/MMBtu</td><td>83.56 유로/MWh</td></tr>\n<tr><td>1주 변동률</td><td>-0.7%</td><td>-3.6%</td></tr>\n<tr><td>한 달 변동률</td><td>+7.7%</td><td>-1.8%</td></tr>\n<tr><td>3개월 변동률</td><td>+16.8%</td><td>+28.0%</td></tr>\n<tr><td>1년 변동률</td><td>-27.0%</td><td>+163.6%</td></tr>\n<tr><td>1년 범위 내 위치</td><td>14%</td><td>74%</td></tr>\n</table>\n\n<p>두 시장의 가장 큰 차이는 1년 변동률과 연간 범위 내 위치에서 드러납니다. 미국 천연가스가 1년 전보다 -27.0% 하락해 1년 범위 중 14% 지점에 있는 것과 달리, 유럽 TTF는 1년 전보다 +163.6% 폭등하여 1년 범위 중 74% 지점의 높은 위치에 형성되어 있습니다.</p>\n\n<p>유럽 가격의 상승 원인에 대해 <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFA0Unp1SFpKeVFUdGZLekdwb2I0WDM3NTAwc2xxN21SajNNV0ZKd0pXVVMwRzQ0M3A4MVBrMWpXQ2pBNnUyUEFHZ0t4UVRXTmtiSmVEQ0IzQ3FaYk9taFJ1VjhUR2NrU3lXVXpjMmVwaXJSUQ?oc=5\" target=\"_blank\" rel=\"noopener\">에너지데일리</a>는 중동 지역의 수송로 불안 등 지정학적 위험으로 인해 가스 가격이 다시 상승세를 보였다고 설명합니다. 또한 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTFBBMFBEM0JCbUxCLVBBNExOR2pSVlRvRWo1TE9hTGR4UHN1NllkVl9Gc19xVUtlZ2lTTzhxVkRUT2tKQmh6UG4wbHZKRnhnNlhXanA2dGlFLURZX05SWHFUYUZQaUVIN1RaOGN1c0trQQ?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>는 지정학적 갈등 확대로 인해 가격 낙폭이 제한되는 흐름이 나타나고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 유럽 천연가스 가격의 최근가와 1년 범위 내 위치는 어디인가요?</h4>\n<p>유럽 천연가스(네덜란드 TTF)의 최근가는 83.56 유로/MWh이며, 지난 1년간의 최저가(26.60 유로)와 최고가(103.94 유로)를 기준으로 했을 때 74% 지점에 위치하고 있습니다.</p>\n<h3>정리</h3>\n\n<p>미국 천연가스 가격이 한 달 사이 7.7% 올랐다는 소식이 전해졌지만, 1년 전체 지표로 넓혀보면 여전히 연중 하단 영역인 14% 지점에 머물러 있음을 알 수 있습니다. 단기 변동률 수치 하나만 보고 전체 시장이 과열되었다고 판단하기에는 이릅니다.</p>\n\n<p>향후 가스 시장의 변화를 살필 때는 단기 상승률에만 현혹되지 않고 스스로 확인할 수 있는 세 가지 기준을 두는 것이 좋습니다. 첫째, 미국 천연가스 가격이 1년 평균값인 3.25 달러를 확실하게 넘어서 유지되는지 확인해야 합니다. 둘째, 미국 저장량이 1년 전 수치인 3,950 Bcf 수준과의 격차를 얼마나 줄여나가는지 지켜보아야 합니다. 셋째, 1년 범위 74% 지점에 위치한 유럽 TTF 가격과의 변동률 격차가 유지되는지 비교해보는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 미국 천연가스는 한 달 새 7.7% 반등했으나 1년 범위 14% 위치로 여전히 낮은 수준입니다.</p>\n\n태그: 천연가스가격 미국천연가스 유럽TTF 천연가스저장량 원자재선물",
+  "2": "<h1>천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기</h1>\n<!-- 2026년 11월 18일 기준 미국 천연가스 선물 가격의 단기 상승세와 1년 범위 내 실제 위치, 미국 저장량 추이, 유럽 TTF 가격 변동률을 비교 정리한 정보 글입니다. -->\n\n<p>2026년 11월 18일 기준 미국 천연가스 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 가격은 최근 한 달 동안 7.7% 올랐으나, 1년 전체 범위와 평균 대비로는 여전히 최저점에 가까운 14% 지점에 머물러 있습니다. 단기적인 반등 소식만 보고 가격이 크게 치솟은 것으로 오인하기 쉽지만, 실제 데이터는 여전히 낮은 수치임을 보여줍니다.</p>\n\n<p> 공개된 원자재 수치와 저장량 통계, 해외 시장 지표를 통해 현재 위치를 객관적으로 살펴보겠습니다.</p>\n\n<h3>미국 천연가스 가격 최근 흐름</h3>\n\n<p>미국 천연가스 선물(NG=F)의 최근 가격은 MMBtu(천연가스 가격에 쓰는 열량 단위)당 3.19 달러를 기록하고 있습니다. 기간별 흐름을 보면 최근 1주 동안은 -0.7% 하락하며 숨 고르기에 들어갔으나, 3개월 기준으로는 +16.8% 올랐고 한 달 전과 비교하면 +7.7% 상승했습니다.</p>\n\n<p> 비교하면 여전히 -27.0% 떨어진 상태로, 장기적으로는 하강 국면에서 벗어나지 못했습니다.</p>\n\n<p>단기 변동만 보면 3개월간 +16.8% 오르며 강세를 보이는 것처럼 느껴지지만, 연간 단위의 큰 흐름에서는 하락 폭이 여전히 크게 남아 있는 상태입니다. 따라서 최근의 가격 상승은 장기적인 하락세 속에서 나타난 단기적인 반등 구간으로 해석할 수 있습니다.</p>\n\n<h3>1년 범위로 보는 가격 위치</h3>\n\n<p>현재의 3.19 달러가 어느 정도 수준인지 파악하기 위해 지난 1년간의 최고가와 최저가를 비교해볼 필요가 있습니다. 지난 1년간 미국 천연가스 가격의 최고가는 2026년 1월 28일에 기록한 7.46 달러였으며, 최저가는 2026년 4월 24일에 기록한 2.52 달러였습니다.</p>\n\n<p>최저가를 0%, 최고가를 100%로 두고 현재 가격의 위치를 계산하면 정확히 14% 지점에 위치합니다. </p>\n\n<p>또한 지난 1년간의 평균 가격인 3.25 달러와 비교하더라도 현재 가격은 -1.7% 낮은 수준입니다. 한 달 사이 7.7% 오른 수치만 떼어놓고 보면 높아 보이지만, 1년 평균이나 연중 최고가 7.46 달러에 비하면 여전히 부담이 적은 하단 영역에 머물러 있습니다.</p>\n\n<h3>미국 천연가스 저장량 변화</h3>\n\n<p>가격의 흐름을 이해하려면 공급 체계의 핵심인 재고 지표를 확인해야 합니다. 미국 에너지정보청(EIA)이 집계한 미국 본토 48개 주의 천연가스 저장량은 2026년 11월 6일 기준 3,862 Bcf(십억 입방피트, 천연가스 부피 단위)를 기록했습니다.</p>\n\n<p>저장량은 지속적으로 쌓이는 흐름을 보였습니다. 최근 1주 동안 저장량은 +61 Bcf 늘어났으며, 4주 전인 2026년 10월 9일과 비교하면 +295 Bcf 증가하며 공급이 꾸준히 이어진 것으로 나타났습니다.</p>\n\n<p> 1년 전인 2025년 11월 7일의 저장량인 3,950 Bcf와 비교하면 현재 저장량은 -2.2% 감소한 수치입니다. 단기적으로 재고가 채워지고 있으나 작년 동일 시점보다는 다소 적은 규모입니다.</p>\n\n<h3>유럽 천연가스 가격 비교</h3>\n\n<p>미국 시장과 달리 유럽 시장은 거친 가격 변동을 겪었습니다. 유럽 시장의 기준이 되는 네덜란드 TTF 선물(TTF=F) 가격은 최근가 83.56 유로/MWh(메가와트시, 유럽 가스 가격 단위)를 기록 중입니다.</p>\n\n<table>\n<tr><th>구분</th><th>미국 천연가스 (NG=F)</th><th>유럽 천연가스 (TTF=F)</th></tr>\n<tr><td>최근가</td><td>3.19 달러/MMBtu</td><td>83.56 유로/MWh</td></tr>\n<tr><td>1주 변동률</td><td>-0.7%</td><td>-3.6%</td></tr>\n<tr><td>한 달 변동률</td><td>+7.7%</td><td>-1.8%</td></tr>\n<tr><td>3개월 변동률</td><td>+16.8%</td><td>+28.0%</td></tr>\n<tr><td>1년 변동률</td><td>-27.0%</td><td>+163.6%</td></tr>\n<tr><td>1년 범위 내 위치</td><td>14%</td><td>74%</td></tr>\n</table>\n\n<p>두 시장의 가장 큰 차이는 1년 변동률과 연간 범위 내 위치에서 드러납니다. 미국 천연가스가 1년 전보다 -27.0% 하락해 1년 범위 중 14% 지점에 있는 것과 달리, 유럽 TTF는 1년 전보다 +163.6% 폭등하여 1년 범위 중 74% 지점의 높은 위치에 형성되어 있습니다.</p>\n\n<p>유럽 가격의 상승 원인에 대해 <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFA0Unp1SFpKeVFUdGZLekdwb2I0WDM3NTAwc2xxN21SajNNV0ZKd0pXVVMwRzQ0M3A4MVBrMWpXQ2pBNnUyUEFHZ0t4UVRXTmtiSmVEQ0IzQ3FaYk9taFJ1VjhUR2NrU3lXVXpjMmVwaXJSUQ?oc=5\" target=\"_blank\" rel=\"noopener\">에너지데일리</a>는 중동 지역의 수송로 불안 등 지정학적 위험으로 인해 가스 가격이 다시 상승세를 보였다고 설명합니다. 또한 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTFBBMFBEM0JCbUxCLVBBNExOR2pSVlRvRWo1TE9hTGR4UHN1NllkVl9Gc19xVUtlZ2lTTzhxVkRUT2tKQmh6UG4wbHZKRnhnNlhXanA2dGlFLURZX05SWHFUYUZQaUVIN1RaOGN1c0trQQ?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>는 지정학적 갈등 확대로 인해 가격 낙폭이 제한되는 흐름이 나타나고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 유럽 천연가스 가격의 최근가와 1년 범위 내 위치는 어디인가요?</h4>\n<p>유럽 천연가스(네덜란드 TTF)의 최근가는 83.56 유로/MWh이며, 지난 1년간의 최저가(26.60 유로)와 최고가(103.94 유로)를 기준으로 했을 때 74% 지점에 위치하고 있습니다.</p>\n<h3>정리</h3>\n\n<p>미국 천연가스 가격이 한 달 사이 7.7% 올랐다는 소식이 전해졌지만, 1년 전체 지표로 넓혀보면 여전히 연중 하단 영역인 14% 지점에 머물러 있음을 알 수 있습니다. 단기 변동률 수치 하나만 보고 전체 시장이 과열되었다고 판단하기에는 이릅니다.</p>\n\n<p>향후 가스 시장의 변화를 살필 때는 단기 상승률에만 현혹되지 않고 스스로 확인할 수 있는 세 가지 기준을 두는 것이 좋습니다. 첫째, 미국 천연가스 가격이 1년 평균값인 3.25 달러를 상회하여 유지되는지 확인해야 합니다. 둘째, 미국 저장량이 1년 전 수치인 3,950 Bcf 수준과의 격차를 얼마나 줄여나가는지 지켜보아야 합니다. 셋째, 1년 범위 74% 지점에 위치한 유럽 TTF 가격과의 변동률 격차가 유지되는지 비교해보는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 미국 천연가스는 한 달 새 7.7% 반등했으나 1년 범위 14% 위치로 여전히 낮은 수준입니다.</p>\n\n태그: 천연가스가격 미국천연가스 유럽TTF 천연가스저장량 원자재선물",
+  "3": "<h1>천연가스 가격 한 달 새 8% 오른 지금 위치: 1년 범위·재고·해외 가격으로 보기</h1>\n<!-- 2026년 11월 18일 기준 미국 천연가스 선물 가격의 단기 상승세와 1년 범위 내 실제 위치, 미국 저장량 추이, 유럽 TTF 가격 변동률을 비교 정리한 정보 글입니다. -->\n\n<p>2026년 11월 18일 기준 미국 천연가스 선물(미래의 정해진 날에 정해진 값으로 사고팔기로 한 계약) 가격은 최근 한 달 동안 7.7% 올랐으나, 1년 전체 범위와 평균 대비로는 여전히 최저점에 가까운 14% 지점에 머물러 있습니다. 단기적인 반등 소식만 보고 가격이 크게 치솟은 것으로 오인하기 쉽지만, 실제 데이터는 여전히 낮은 수치임을 보여줍니다.</p>\n\n<p> 공개된 원자재 수치와 저장량 통계, 해외 시장 지표를 통해 현재 위치를 객관적으로 살펴보겠습니다.</p>\n\n<h3>미국 천연가스 가격 최근 흐름</h3>\n\n<p>미국 천연가스 선물(NG=F)의 최근 가격은 MMBtu(천연가스 가격에 쓰는 열량 단위)당 3.19 달러를 기록하고 있습니다. 기간별 흐름을 보면 최근 1주 동안은 -0.7% 하락하며 숨 고르기에 들어갔으나, 3개월 기준으로는 +16.8% 올랐고 한 달 전과 비교하면 +7.7% 상승했습니다.</p>\n\n<p> 1년 전과 비교하면 여전히 -27.0% 떨어진 상태로, 장기적으로는 하강 국면에서 벗어나지 못했습니다.</p>\n\n<p>단기 변동만 보면 3개월간 +16.8% 오르며 강세를 보이는 것처럼 느껴지지만, 연간 단위의 큰 흐름에서는 하락 폭이 여전히 크게 남아 있는 상태입니다. 따라서 최근의 가격 상승은 장기적인 하락세 속에서 나타난 단기적인 반등 구간으로 해석할 수 있습니다.</p>\n\n<h3>1년 범위로 보는 가격 위치</h3>\n\n<p>현재의 3.19 달러가 어느 정도 수준인지 파악하기 위해 지난 1년간의 최고가와 최저가를 비교해볼 필요가 있습니다. 지난 1년간 미국 천연가스 가격의 최고가는 2026년 1월 28일에 기록한 7.46 달러였으며, 최저가는 2026년 4월 24일에 기록한 2.52 달러였습니다.</p>\n\n<p>최저가를 0%, 최고가를 100%로 두고 현재 가격의 위치를 계산하면 정확히 14% 지점에 위치합니다. </p>\n\n<p>또한 지난 1년간의 평균 가격인 3.25 달러와 비교하더라도 현재 가격은 -1.7% 낮은 수준입니다. 한 달 사이 7.7% 오른 수치만 떼어놓고 보면 높아 보이지만, 1년 평균이나 연중 최고가 7.46 달러에 비하면 여전히 부담이 적은 하단 영역에 머물러 있습니다.</p>\n\n<h3>미국 천연가스 저장량 변화</h3>\n\n<p>가격의 흐름을 이해하려면 공급 체계의 핵심인 재고 지표를 확인해야 합니다. 미국 에너지정보청(EIA)이 집계한 미국 본토 48개 주의 천연가스 저장량은 2026년 11월 6일 기준 3,862 Bcf(십억 입방피트, 천연가스 부피 단위)를 기록했습니다.</p>\n\n<p>저장량은 지속적으로 쌓이는 흐름을 보였습니다. 최근 1주 동안 저장량은 +61 Bcf 늘어났으며, 4주 전인 2026년 10월 9일과 비교하면 +295 Bcf 증가하며 공급이 꾸준히 이어진 것으로 나타났습니다.</p>\n\n<p> 1년 전인 2025년 11월 7일의 저장량인 3,950 Bcf와 비교하면 현재 저장량은 -2.2% 감소한 수치입니다. 단기적으로 재고가 채워지고 있으나 작년 동일 시점보다는 다소 적은 규모입니다.</p>\n\n<h3>유럽 천연가스 가격 비교</h3>\n\n<p>미국 시장과 달리 유럽 시장은 거친 가격 변동을 겪었습니다. 유럽 시장의 기준이 되는 네덜란드 TTF 선물(TTF=F) 가격은 최근가 83.56 유로/MWh(메가와트시, 유럽 가스 가격 단위)를 기록 중입니다.</p>\n\n<table>\n<tr><th>구분</th><th>미국 천연가스 (NG=F)</th><th>유럽 천연가스 (TTF=F)</th></tr>\n<tr><td>최근가</td><td>3.19 달러/MMBtu</td><td>83.56 유로/MWh</td></tr>\n<tr><td>1주 변동률</td><td>-0.7%</td><td>-3.6%</td></tr>\n<tr><td>한 달 변동률</td><td>+7.7%</td><td>-1.8%</td></tr>\n<tr><td>3개월 변동률</td><td>+16.8%</td><td>+28.0%</td></tr>\n<tr><td>1년 변동률</td><td>-27.0%</td><td>+163.6%</td></tr>\n<tr><td>1년 범위 내 위치</td><td>14%</td><td>74%</td></tr>\n</table>\n\n<p>두 시장의 가장 큰 차이는 1년 변동률과 연간 범위 내 위치에서 드러납니다. 미국 천연가스가 1년 전보다 -27.0% 하락해 1년 범위 중 14% 지점에 있는 것과 달리, 유럽 TTF는 1년 전보다 +163.6% 폭등하여 1년 범위 중 74% 지점의 높은 위치에 형성되어 있습니다.</p>\n\n<p>유럽 가격의 상승 원인에 대해 <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTFA0Unp1SFpKeVFUdGZLekdwb2I0WDM3NTAwc2xxN21SajNNV0ZKd0pXVVMwRzQ0M3A4MVBrMWpXQ2pBNnUyUEFHZ0t4UVRXTmtiSmVEQ0IzQ3FaYk9taFJ1VjhUR2NrU3lXVXpjMmVwaXJSUQ?oc=5\" target=\"_blank\" rel=\"noopener\">에너지데일리</a>는 중동 지역의 수송로 불안 등 지정학적 위험으로 인해 가스 가격이 다시 상승세를 보였다고 설명합니다. 또한 <a href=\"https://news.google.com/rss/articles/CBMib0FVX3lxTFBBMFBEM0JCbUxCLVBBNExOR2pSVlRvRWo1TE9hTGR4UHN1NllkVl9Gc19xVUtlZ2lTTzhxVkRUT2tKQmh6UG4wbHZKRnhnNlhXanA2dGlFLURZX05SWHFUYUZQaUVIN1RaOGN1c0trQQ?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a>는 지정학적 갈등 확대로 인해 가격 낙폭이 제한되는 흐름이 나타나고 있다고 전했습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 유럽 천연가스 가격의 최근가와 1년 범위 내 위치는 어디인가요?</h4>\n<p>유럽 천연가스(네덜란드 TTF)의 최근가는 83.56 유로/MWh이며, 지난 1년간의 최저가(26.60 유로)와 최고가(103.94 유로)를 기준으로 했을 때 74% 지점에 위치하고 있습니다.</p>\n<h3>정리</h3>\n\n<p>미국 천연가스 가격이 한 달 사이 7.7% 올랐다는 소식이 전해졌지만, 1년 전체 지표로 넓혀보면 여전히 연중 하단 영역인 14% 지점에 머물러 있음을 알 수 있습니다. 단기 변동률 수치 하나만 보고 전체 시장이 과열되었다고 판단하기에는 이릅니다.</p>\n\n<p>향후 가스 시장의 변화를 살필 때는 단기 상승률에만 현혹되지 않고 스스로 확인할 수 있는 세 가지 기준을 두는 것이 좋습니다. 첫째, 미국 천연가스 가격이 1년 평균값인 3.25 달러를 상회하여 유지되는지 확인해야 합니다. 둘째, 미국 저장량이 1년 전 수치인 3,950 Bcf 수준과의 격차를 얼마나 줄여나가는지 지켜보아야 합니다. 셋째, 1년 범위 74% 지점에 위치한 유럽 TTF 가격과의 변동률 격차가 유지되는지 비교해보는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 미국 천연가스는 한 달 새 7.7% 반등했으나 1년 범위 14% 위치로 여전히 낮은 수준입니다.</p>\n\n태그: 천연가스가격 미국천연가스 유럽TTF 천연가스저장량 원자재선물"
+ },
+ "minutes": 11.2
+}
