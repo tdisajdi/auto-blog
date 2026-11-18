@@ -1305,7 +1305,13 @@ def discover_energy():
         return []
     # 주제 고르기·제목은 1주·1개월 변화로(2026-11-02). 하루 변화는 선물 만기 교체(롤오버)·시차 때문에 크게 튀는 일이 있어
     # (브렌트유 '하루 -10.5%'인데 같은 날 뉴스는 '-5.8%') 그것만으로 주제를 고르거나 제목을 달지 않는다.
-    best = max(rows, key=lambda x: abs(x["m1"]) / 10 + abs(x["w1"]) / 5)
+    # 반복 금지 기간(21일) 안에 쓴 종목은 고르기 전에 뺀다(11-18: 가장 많이 움직인 종목을 이미 썼으면 choose_topic이 버려
+    # 그날 에너지 후보가 0 - 신기술·바이오와 같은 문제). 시험에서 종목을 정했으면(TEST_TICKER) 그대로.
+    recent = set() if only else _recent_keys("energy")
+    fresh = [x for x in rows if f"energy:{x['ticker']}" not in recent]
+    if not fresh:
+        return []
+    best = max(fresh, key=lambda x: abs(x["m1"]) / 10 + abs(x["w1"]) / 5)
     strength = abs(best["m1"]) / 10 + abs(best["w1"]) / 5
     if strength < 0.6 and not only:
         return []
