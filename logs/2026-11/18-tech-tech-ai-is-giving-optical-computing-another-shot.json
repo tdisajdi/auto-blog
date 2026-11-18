@@ -1,0 +1,277 @@
+{
+ "article_type": "tech",
+ "topic_id": "tech:ai-is-giving-optical-computing-another-shot",
+ "title_seed": "AI 연산을 혁신하는 광학 컴퓨팅 기술의 재조명",
+ "category": "tech",
+ "started_at": "2026-11-18T20:12:15",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.5,
+   "chars": 2870
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 23.8,
+   "chars": 4160
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 45.9,
+   "chars": 763
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.9,
+   "chars": 378
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.4,
+   "chars": 140
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.3,
+   "chars": 974
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 48.6,
+   "chars": 4119
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 27.2,
+   "chars": 233
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.8,
+   "chars": 425
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.4,
+   "chars": 173
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.5,
+   "chars": 855
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 35.1,
+   "chars": 208
+  },
+  {
+   "step": "검토 12(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.3,
+   "chars": 450
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 191
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:12:29",
+   "title": "광학 컴퓨팅 시장 22.2억 달러 돌파... AI 연산 혁신의 실체는",
+   "sections": [
+    "시장 규모와 급성장 요인",
+    "학술 연구와 논문 동향",
+    "데이터센터와 통신 경로의 기술 적용",
+    "글로벌 투자의 실제 사례"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:12:56",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:14:11",
+   "score": 0.73,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "학술 논문 수와 시장 가치 숫자를 제시한 부분에 대해, 독자가 기술의 상용화 시점을 혼동하지 않도록 해석 기준을 본문 전반에 더 직관적으로 연결하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 제목이 던진 질문('AI 연산 혁신의 실체는')에 대한 직접적인 답을 자료의 숫자와 함께 도입부 첫 문단 한두 문장에서 먼저 제시하지 않았습니다. / 고칠 방법: 도입부 첫 문장에 전력 소모 한계 극복 및 시장 가치(2022년 4억 달러→22억 2,000만 달러) 급성장 등 제목 질문에 대한 핵심 답을 자료의 숫자와 함께 작성하세요.",
+    "[중요·사실 검증] → [누락] 질문: 독자가 향후 유사한 숫자의 뉴스를 접할 때 스스로 확인할 기준 2~3개를 자료의 숫자와 함께 제시하지 않았습니다. / 고칠 방법: 기술 뉴스 확인 기준 2~3개를 제시할 때 시장 가치 급증(2022년 4억 달러→22억 2,000만 달러)이나 연간 논문 증가율(78.6%) 등 자료의 숫자를 함께 포함하여 정리하세요.",
+    "[사소·독자 편집] '2021년 3,405편이었던 연간 논문 수는 2025년 6,083편으로 늘어나 78.6%의 증가율을 기록했습' → 표에 제시된 수치를 본문 문장에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표의 모든 수치를 반복하는 대신 전체적인 증가 추세만 문장으로 요약하세요."
+   ],
+   "lint": [
+    "[참고] 숫자 없는 판단 비교 1곳('전기 대신 빛을 사용해 연산하는 광학 컴퓨팅은 기존 연산 장치보다 훨씬 적은 전력으로 대량의 계산을 처리할 …') - '유리하다·훨씬' 대신 두 숫자를 나란히 쓸 것(예: '거치식 -32.6%, 적립식 -14.9%로 적립식의 하락 폭이 작았다')",
+    "영어 단어 'hynix' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "numbers": [
+    "22억 2,000만 달러",
+    "22.2억"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 1개 삭제: 🔸 광학 컴퓨팅 시장 valuation은 2022년에 "
+   ],
+   "chars": 2719
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "20:15:02",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "20:16:47",
+   "score": 0.97
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:16:47",
+   "score": 0.97,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "추론 연산의 핵심인 행렬-벡터 곱셈과 도파관의 작동 원리를 독자가 이해하기 쉽게 풀어서 설명하기",
+   "issues": [
+    "[사소·독자 편집] '시장 가치가 2022년 4억 달러에서 최근 22억 2,000만 달러로 5.55배 급성장했습니다.' → 도입부에서 언급한 시장 가치 관련 수치와 내용이 본문 첫 섹션(시장 규모와 급성장 요인)에서 거의 그대로 되풀이되고 있습니다. / 고칠 방법: 시장 규모 섹션에서는 2022년과 최근의 수치 대신 전력 소모 문제로 인한 산업 성장 배경에 집중하여 다르게 서술하세요."
+   ],
+   "numbers": [
+    "22억 2,000만 달러",
+    "22.2억",
+    "5.55배"
+   ],
+   "chars": 2697
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "광학 컴퓨팅 시장 22.2억 달러 돌파... AI 연산 혁신의 실체는",
+  "url": "https://ondo99.com/?p=520",
+  "score": 0.97,
+  "issues": [
+   "[사소·독자 편집] '시장 가치가 2022년 4억 달러에서 최근 22억 2,000만 달러로 5.55배 급성장했습니다.' → 도입부에서 언급한 시장 가치 관련 수치와 내용이 본문 첫 섹션(시장 규모와 급성장 요인)에서 거의 그대로 되풀이되고 있습니다. / 고칠 방법: 시장 규모 섹션에서는 2022년과 최근의 수치 대신 전력 소모 문제로 인한 산업 성장 배경에 집중하여 다르게 서술하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문 기사]\n제목: AI Is Giving Optical Computing Another Shot (IEEE Spectrum, https://spectrum.ieee.org/optical-computing-ai)\n본문 발췌: The push to cut AI inference’s energy use could pay off in unexpected ways Data centers already use light in networking. Startup Optalysis aims to use specially engineered waveguides to add computational capacity to the networking path, doing math while data is in transit. The idea of computing with light has been around for over 70 years, but until recently it’s remained largely in the realm of research. Over the past few years, though, optical computing has emerged as a fast-growing industry: Market valuation of companies in this sector now totals US $2.22 billion, up from $0.4 billion in 2022. One projection suggests that the market will continue to grow exponentially in the coming years. The reason for this sudden surge will surprise no one: AI. In particular, AI inference—the process of using AI models to respond to user queries—has driven much of the construction of huge, power-hungry data centers , and relatively energy-efficient optical systems are seen as a potential way forward. “Most of the interest in [ photonics ] is driven by the fact that AI inference has literally become limited by power, and in a rather striking manner,” says Peter McMahon , associate professor of applied and engineering physics at Cornell University , in Ithaca, N.Y., who has researched optical computing for over a decade. Optics , at least on paper, carries the promise of doing the same math as today’s GPUs at a drastically lower level of power. Switching from electronics to optics would be a pretty radical solution. Nevertheless, like mushrooms after a rainstorm, optical-computing startups are popping up in the United States, China, Germany, and Israel. And while competing against such GPU makers as Nvidia is an ambitious goal, the investment in optical computing has spurred development of complementary approaches, such as designing alternative AI algorithms , taking on scientific computing , and enhancing in-network computing. Optalysys, based in England, is inserting optical-computing elements into the networking path, where data centers already use light. The company’s basic on-chip optical element, shown in the inset, is a Fourier transform calculator. Optalysys “I think it would be good for the technology if many of these companies made a good run at it,” says Logan Wright , assistant professor of applied physics at Yale University, in New Haven, Conn., and a former postdoc in McMahon’s lab. “I think that the technology that will be developed through this would be really, really useful, and enable photonic systems that maybe don’t get on this wave of AI but would be capable of doing really quite special things.” Inference makes up the bulk of AI energy use. The industry is already spending billions of dollars designing advanced GPUs and other chips to run inference as efficiently as possible. At the heart of the inference computation is one operation, done countless times a second: matrix-vector multiplication. Back in 1978, optical-computing pioneer Jose\n\n[공식 자료 - 학술 논문 공개 색인 OpenAlex, 주제 '광학 컴퓨팅'(영어 논문의 제목·초록에서 찾음), 2026-11-18 조회]\n- 해마다 나온 논문 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 3,405편 → 2025년 6,083편(+78.6%), 가장 많던 해 2025년 6,083편, 가장 적던 해 2021년 3,405편\n- 올해 1월 1일~11월 18일 7,772편, 작년 같은 기간 5,270편 → +47.5%(코드 계산)\n- 읽는 법: 논문 수는 연구 관심의 크기일 뿐 기술의 완성도나 상용화 시점을 뜻하지 않습니다. 최근 논문은 색인에 늦게 올라와 올해 숫자는 나중에 늘어날 수 있습니다.\n\n[관련 뉴스]\n- 美, 글로벌파운드리스에 AI 데이터센터용 광반도체 개발비 3억달러 지원 - Chosunbiz (Chosunbiz) https://news.google.com/rss/articles/CBMingFBVV95cUxNd1puY2pDbmxHdmxWbFFrQ3VUelpiRVBIMXVYVk55LTRESkF5YUc2LVZZN1ZiMU03Ty01eGw3U1J2OU9zM1p1N2cyYWJ1ZW93TDNyLXNFelpyMGhsU2xwUmRLSnlUTEViLWdaWWdsdGJiaTNWTXVNSDNCeF9tbWlhRGZubnp6RmJmSnpGNGlQYWVvSy1LSTRzeXI0NEdBd9IBsgFBVV95cUxPc0x2SEZWWjZIUnVlWDl2S0ZtZlhNX0w4UVU5NWpETDFWV2ZnU2tHOEFKeVNweUltWGZqZC1QREE5M2dZbjRuRzlKWkZENk4xQ2ZWcFVaZjAyS2R6cEhpMG1adEJySlN3Z3lCdU5PdlVRVkpOejlXaHVVYTZFQ1UxUVFWSXRMUmx4cl9mWnZBNDgtSG5JS2xiN1ltVkp0Zjkxbi1fakRQQk5KTlc2TVQzSUlR?oc=5\n- AI 전장은 ‘칩’에서 ‘시스템’으로… SK하이닉스, 네이처 일렉트로닉스 논문으로 ‘랙 · 포드 · 시스템’ CPO 상용화 청사진 증명 - SK hynix (SK hynix) https://news.google.com/rss/articles/CBMiY0FVX3lxTE55OV9RbC1VdS1jdHIyaDB0OHFlZHQ0R1I2c2F1T09mR0xRR1JYUHAtV19sbjdLaU9uZFpOTlNCUTFVVWRJSTg1Y3hjOUR4OTNiSHdsVjNrWEJzMUJ5NUJXQ3NCTQ?oc=5\n- SK하이닉스, CPO 청사진 공개…\"메모리도 빛으로 연결\" - 디일렉 (디일렉) https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqRmhKUHo5RkxfRG9JVFFGa2UzY3JqWFI1ZndKZnptenpMR3ZZTmZHOVJOTkM4SWdVdVdlbTJXa0I3RWxWM0ZONVdQVmUtcjZKd3lPVExiY21OdnllWFl0eXZvajJBQQ?oc=5\n- “AI가 반도체 기판을 바꾼다”…내달 17일 전자신문 '테크데이' 개최 - 전자신문 (전자신문) https://news.google.com/rss/articles/CBMiTkFVX3lxTE12alV4VFE0UXVaNzAxMVozQzRRaV9BaWg4QmRYNlBCOFVzTEtHbDJsRTVxMjFOenI0a0RWQW9RUkZjTTh3d1k1RjZTNFMwdw?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>광학 컴퓨팅 시장 22.2억 달러 돌파... AI 연산 혁신의 실체는</h1>\n<!-- AI 추론의 전력 한계를 극복하기 위해 광학 컴퓨팅 관련 기업 시장 가치가 22.2억 달러로 급성장했습니다. 급증하는 학술 연구와 글로벌 투자 동향을 정리해 전달합니다. -->\n\n<p>인공지능 모델이 사용자 질문에 답하는 추론 과정에서 거대한 데이터센터의 전력 소모가 한계에 다다르며 광학 컴퓨팅 기술이 새롭게 떠오르고 있습니다. 관련 기업의 시장 가치는 2022년 4억 달러에서 최근 22억 2,000만 달러 규모로 급격하게 늘어났습니다.</p>\n\n<p>전기 대신 빛을 사용해 연산하는 광학 컴퓨팅은 기존 연산 장치보다 훨씬 적은 전력으로 대량의 계산을 처리할 수 있는 잠재력을 지녔습니다. 독자가 이 기술의 흐름을 다룬 뉴스를 읽을 때는 시장 가치의 변화 추이와 학술 연구 논문 수의 증가세를 종합해서 확인할 필요가 있습니다.</p>\n\n<h3>시장 규모와 급성장 요인</h3>\n\n<p>빛을 이용해 계산을 수행하는 광학 컴퓨팅 개념은 이미 70년 이상 존재해 왔으나 그동안은 대부분 연구 영역에만 머물러 있었습니다. 그러나 최근 수년간 광학 컴퓨팅 관련 기업들의 전체 시장 가치가 2022년 4억 달러에서 22억 2,000만 달러로 급증하며 빠르게 성장하는 산업으로 자리 잡았습니다.</p>\n\n<p>이처럼 시장이 갑작스럽게 성장한 가장 큰 원인은 인공지능 기술의 확산과 이로 인한 데이터센터의 전력 소모 문제입니다. 이타카 코넬 대학교의 응용 및 공학 물리학 부교수로 10년 이상 광학 컴퓨팅을 연구해 온 피터 맥마혼은 인공지능 추론 과정이 전력 한계에 부딪히면서 광학 기술에 대한 관심이 늘어났다고 설명했습니다.</p>\n\n<p>기존 전자기기 방식에서 광학 방식으로 전환하는 것은 거대한 구조적 변화를 의미합니다. 현재 미국, 중국, 독일, 이스라엘 등 세계 각국에서는 전력 효율성이 높은 광학 시스템을 개발하기 위한 스타트업들이 활발하게 등장해 새로운 기술 경쟁을 펼치고 있습니다.</p>\n\n<h3>학술 연구와 논문 동향</h3>\n\n<p>광학 컴퓨팅 분야에 대한 연구진의 관심은 공개 학술 색인 데이터를 통해서도 명확히 확인할 수 있습니다. 연도별 연구 논문 발행 수의 변화를 보면 이 기술에 대한 학계의 주목도가 얼마나 빠르게 증가하고 있는지 파악할 수 있습니다.</p>\n\n<table><tr><th>연도</th><th>논문 발행 수(편)</th><th>증감률</th></tr><tr><td>2021년</td><td>3,405</td><td>기준해</td></tr><tr><td>2025년</td><td>6,083</td><td>+78.6%</td></tr><tr><td>2026년(1월 1일~11월 18일)</td><td>7,772</td><td>전년 동기 대비 +47.5%</td></tr></table>\n\n<p>2021년 3,405편이었던 연간 논문 수는 2025년 6,083편으로 늘어나 78.6%의 증가율을 기록했습니다. 2026년 1월 1일부터 11월 18일까지 집계된 논문 수는 7,772편으로, 작년 같은 기간의 5,270편과 비교하면 47.5% 증가한 수치입니다.</p>\n\n<p>다만 이러한 학술 논문 수의 증가는 해당 기술에 대한 연구진의 전반적인 관심 크기를 보여줄 뿐, 기술의 완성도나 상용화 시점을 직접적으로 보증하는 것은 아닙니다. 데이터 수집 특성상 최근 발행된 논문은 시스템 반영에 시간이 걸려 향후 수치가 늘어날 가능성도 존재합니다.</p>\n\n<h3>데이터센터와 통신 경로의 기술 적용</h3>\n\n<p>인공지능 추론 연산의 핵심에는 초당 수없이 반복되는 행렬과 벡터의 곱셈 연산이 위치해 있습니다. 스타트업들은 이러한 연산 부담을 줄이기 위해 데이터가 이동하는 네트워크 통신 경로 자체에 광학 연산 요소를 도입하는 방식을 연구하고 있습니다.</p>\n\n<p>영국의 스타트업 옵탈리시스는 데이터센터가 이미 네트워크 전송에 빛을 사용하고 있다는 점에 착안했습니다. 이 기업은 정밀하게 설계된 도파관을 네트워크 경로에 추가하여 데이터가 전송되는 동안 계산을 함께 수행하는 방식을 목표로 삼고 있습니다.</p>\n\n<p>옵탈리시스가 칩 위에 구현한 기본 광학 요소는 푸리에 변환 계산기 구조를 갖추고 있습니다. 기존 장치들과 경쟁하거나 이를 보완하는 방식으로 네트워크 내부 연산 능력을 높이려는 시도가 속속 이어지고 있습니다.</p>\n\n<h3>글로벌 투자의 실제 사례</h3>\n\n<p>세계 각국 정부와 주요 반도체 기업들도 광학 기술을 연산과 데이터 전송에 접목하기 위해 대규모 투자를 집행하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNd1puY2pDbmxHdmxWbFFrQ3VUelpiRVBIMXVYVk55LTRESkF5YUc2LVZZN1ZiMU03Ty01eGw3U1J2OU9zM1p1N2cyYWJ1ZW93TDNyLXNFelpyMGhsU2xwUmRLJnI0NEdBd9IBsgFBVV95cUxPc0x2SEZWWjZIUnVlWDl2S0ZtZlhNX0w4UVU5NWpETDFWV2ZnU2tHOEFKeVNweUltWGZqZC1QREE5M2dZbjRuRzlKWkZENk4xQ2ZWcFVaZjAyS2R6cEhpMG1adEJySlN3Z3lCdU5PdlVRVkpOejlXaHVVYTZFQ1UxUVFWSXRMUmx4cl9mWnZBNDgtSG5JS2xiN1ltVkp0Zjkxbi1fakRQQk5KTlc2TVQzSUlR?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a> 보도에 따르면 미국 정부는 글로벌파운드리스에 인공지능 데이터센터용 광반도체 개발 비용으로 3억 달러를 지원하기로 결정했습니다.</p>\n\n<p>메모리 분야에서도 빛을 활용한 데이터 연결 기술 개발이 시도되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqRmhKUHo5RkxfRG9JVFFGa2UzY3JqWFI1ZndKZnptenpMR3ZZTmZHOVJOTkM4SWdVdVdlbTJXa0I3RWxWM0ZONVdQVmUtcjZKd3lPVExiY21OdnllWFl0eXZvajJBQQ?oc=5\" target=\"_blank\" rel=\"noopener\">디일렉</a> 보도에 따르면 SK하이닉스는 메모리 반도체까지 빛으로 연결하는 공동 광학 패키징 청사진을 공개했습니다.</p>\n\n<p>아울러 <a href=\"https://news.google.com/rss/articles/CBMiY0FVX3lxTE55OV9RbC1VdS1jdHIyaDB0OHFlZHQ0R1I2c2F1T09mR0xRR1JYUHAtV19sbjdLaU9uZFpOTlNCUTFVVWRJSTg1Y3hjOUR4OTNiSHdsVjNrWEJzMUJ5NUJXQ3NCTQ?oc=5\" target=\"_blank\" rel=\"noopener\">SK hynix</a>는 학술지 네이처 일렉트로닉스에 게재한 논문을 통해 랙, 포드, 시스템 단위까지 확장되는 공동 광학 패키징 상용화 가능성을 증명했다고 밝혔습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 학술 논문 수 증가가 기술 상용화 시점을 직접 의미하나요?</h4>\n<p>논문 수의 증가세는 기술에 대한 학계와 산업계의 연구 관심도를 나타내는 지표일 뿐, 제품의 완성과 시장 상용화 시점을 직접 나타내지는 않습니다.</p>\n<h3>정리</h3>\n\n<p>인공지능 추론 연산 과정에서 발생하는 데이터센터의 전력 부족 현상이 심화되면서, 빛을 이용해 에너지를 절감하는 광학 컴퓨팅 기술이 주요 대안으로 부상했습니다. 산업 전체의 시장 가치 증가와 함께 글로벌 정부 지원 및 반도체 기업들의 기술 개발 노력이 병행되는 추세입니다.</p>\n\n<p>앞으로 관련된 기술 뉴스나 시장 발표를 접할 때는 발표된 기업의 자산 가치 변화와 함께, 해당 기술이 연산 자체를 대체하는 구조인지 아니면 네트워크 전송 경로를 보완하는 방식인지 구체적인 기술 적용 위치를 점검하는 것이 중요합니다. 또한 정부의 개발 지원금 규모와 학술 색인 시스템에 집계되는 실제 연구 논문 증감세를 함께 비교해 볼 수 있습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 전력 한계에 부딪힌 AI 추론을 해결하기 위해 광학 컴퓨팅 시장이 22.2억 달러 규모로 빠르게 성장하고 있습니다.</p>\n\n태그: 광학컴퓨팅 AI전력 인공지능반도체 데이터센터 CPO",
+  "2": "<h1>광학 컴퓨팅 시장 22.2억 달러 돌파... AI 연산 혁신의 실체는</h1>\n<!-- AI 추론의 전력 한계를 극복하기 위해 광학 컴퓨팅 관련 기업 시장 가치가 22.2억 달러로 급성장했습니다. 급증하는 학술 연구와 글로벌 투자 동향을 정리해 전달합니다. -->\n\n<p>인공지능 모델이 사용자 질문에 답하는 추론 과정에서 데이터센터 전력 소모 한계가 부딪히자, 빛으로 계산을 수행하는 광학 컴퓨팅 관련 기업들의 시장 가치가 2022년 4억 달러에서 최근 22억 2,000만 달러로 5.55배 급성장했습니다. IEEE Spectrum 기사에 따르면 전력 소비 절감 욕구가 기존 GPU 대비 연산 전력을 획기적으로 낮추는 광학 기술의 재조명을 이끌어내고 있습니다.</p>\n\n<p>전기 대신 빛을 사용해 연산하는 광학 컴퓨팅은 기존 연산 장치보다 적은 전력으로 대량의 계산을 처리할 수 있는 잠재력을 지녔습니다. 독자가 이 기술의 흐름을 다룬 뉴스를 읽을 때는 시장 가치의 변화 추이와 학술 연구 논문 수의 증가세를 종합해서 확인할 필요가 있습니다.</p>\n\n<h3>시장 규모와 급성장 요인</h3>\n\n<p>빛을 이용해 계산을 수행하는 광학 컴퓨팅 개념은 이미 70년 이상 존재해 왔으나 그동안은 대부분 연구 영역에만 머물러 있었습니다. 그러나 최근 수년간 광학 컴퓨팅 관련 기업들의 전체 시장 가치가 2022년 4억 달러에서 22억 2,000만 달러로 급증하며 빠르게 성장하는 산업으로 자리 잡았습니다.</p>\n\n<p>이처럼 시장이 갑작스럽게 성장한 가장 큰 원인은 인공지능 기술의 확산과 이로 인한 데이터센터의 전력 소모 문제입니다. 이타카 코넬 대학교의 응용 및 공학 물리학 부교수로 10년 이상 광학 컴퓨팅을 연구해 온 피터 맥마혼은 인공지능 추론 과정이 전력 한계에 부딪히면서 광학 기술에 대한 관심이 늘어났다고 설명했습니다.</p>\n\n<p>기존 전자기기 방식에서 광학 방식으로 전환하는 것은 구조적 변화를 의미합니다. 현재 미국, 중국, 독일, 이스라엘 등 세계 각국에서는 전력 효율성이 높은 광학 시스템을 개발하기 위한 스타트업들이 활발하게 등장해 기술 경쟁을 펼치고 있습니다.</p>\n\n<h3>학술 연구와 논문 동향</h3>\n\n<p>광학 컴퓨팅 분야에 대한 연구진의 관심은 공개 학술 색인 데이터를 통해서도 확인할 수 있습니다. 연도별 연구 논문 발행 수의 변화를 보면 이 기술에 대한 학계의 주목도가 빠르게 증가하고 있음을 보여줍니다.</p>\n\n<table><tr><th>연도</th><th>논문 발행 수(편)</th><th>증감률</th></tr><tr><td>2021년</td><td>3,405</td><td>기준해</td></tr><tr><td>2025년</td><td>6,083</td><td>+78.6%</td></tr><tr><td>2026년(1월 1일~11월 18일)</td><td>7,772</td><td>전년 동기 대비 +47.5%</td></tr></table>\n\n<p>학술 논문 색인 OpenAlex 자료에 따르면 2021년 3,405편이었던 연구 논문 수가 2025년 6,083편으로 꾸준히 늘어나는 우상향 추세를 보였습니다. 2026년 1월 1일부터 11월 18일까지는 7,772편이 집계되어 연구진의 관심이 한층 커진 것으로 드러났습니다.</p>\n\n<p>다만 이러한 학술 논문 수의 증가는 해당 기술에 대한 연구진의 전반적인 관심 크기를 보여줄 뿐, 기술의 완성도나 상용화 시점을 직접적으로 보증하는 것은 아닙니다. 데이터 수집 특성상 최근 발행된 논문은 시스템 반영에 시간이 걸려 향후 수치가 늘어날 가능성도 존재합니다.</p>\n\n<h3>데이터센터와 통신 경로의 기술 적용</h3>\n\n<p>인공지능 추론 연산의 핵심에는 초당 수없이 반복되는 행렬과 벡터의 곱셈 연산이 위치해 있습니다. 스타트업들은 이러한 연산 부담을 줄이기 위해 데이터가 이동하는 네트워크 통신 경로 자체에 광학 연산 요소를 도입하는 방식을 연구하고 있습니다.</p>\n\n<p>영국의 스타트업 옵탈리시스는 데이터센터가 이미 네트워크 전송에 빛을 사용하고 있다는 점에 착안했습니다. 이 기업은 정밀하게 설계된 도파관을 네트워크 경로에 추가하여 데이터가 전송되는 동안 계산을 함께 수행하는 방식을 목표로 삼고 있습니다.</p>\n\n<p>옵탈리시스가 칩 위에 구현한 기본 광학 요소는 푸리에 변환 계산기 구조를 갖추고 있습니다. 기존 장치들과 경쟁하거나 이를 보완하는 방식으로 네트워크 내부 연산 능력을 높이려는 시도가 속속 이어지고 있습니다.</p>\n\n<h3>글로벌 투자의 실제 사례</h3>\n\n<p>세계 각국 정부와 주요 반도체 기업들도 광학 기술을 연산과 데이터 전송에 접목하기 위해 투자를 집행하고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMingFBVV95cUxNd1puY2pDbmxHdmxWbFFrQ3VUelpiRVBIMXVYVk55LTRESkF5YUc2LVZZN1ZiMU03Ty01eGw3U1J2OU9zM1p1N2cyYWJ1ZW93TDNyLXNFelpyMGhsU2xwUmRLJnI0NEdBd9IBsgFBVV95cUxPc0x2SEZWWjZIUnVlWDl2S0ZtZlhNX0w4UVU5NWpETDFWV2ZnU2tHOEFKeVNweUltWGZqZC1QREE5M2dZbjRuRzlKWkZENk4xQ2ZWcFVaZjAyS2R6cEhpMG1adEJySlN3Z3lCdU5PdlVRVkpOejlXaHVVYTZFQ1UxUVFWSXRMUmx4cl9mWnZBNDgtSG5JS2xiN1ltVkp0Zjkxbi1fakRQQk5KTlc2TVQzSUlR?oc=5\" target=\"_blank\" rel=\"noopener\">Chosunbiz</a> 보도에 따르면 미국 정부는 글로벌파운드리스에 인공지능 데이터센터용 광반도체 개발 비용으로 3억 달러를 지원하기로 결정했습니다.</p>\n\n<p>메모리 분야에서도 빛을 활용한 데이터 연결 기술 개발이 시도되고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqRmhKUHo5RkxfRG9JVFFGa2UzY3JqWFI1ZndKZnptenpMR3ZZTmZHOVJOTkM4SWdVdVdlbTJXa0I3RWxWM0ZONVdQVmUtcjZKd3lPVExiY21OdnllWFl0eXZvajJBQQ?oc=5\" target=\"_blank\" rel=\"noopener\">디일렉</a> 보도에 따르면 에스케이하이닉스는 메모리 반도체까지 빛으로 연결하는 공동 광학 패키징 청사진을 공개했습니다.</p>\n\n<p>아울러 <a href=\"https://news.google.com/rss/articles/CBMiY0FVX3lxTE55OV9RbC1VdS1jdHIyaDB0OHFlZHQ0R1I2c2F1T09mR0xRR1JYUHAtV19sbjdLaU9uZFpOTlNCUTFVVWRJSTg1Y3hjOUR4OTNiSHdsVjNrWEJzMUJ5NUJXQ3NCTQ?oc=5\" target=\"_blank\" rel=\"noopener\">에스케이하이닉스</a>는 학술지 네이처 일렉트로닉스에 게재한 논문을 통해 랙, 포드, 시스템 단위까지 확장되는 공동 광학 패키징 상용화 가능성을 증명했다고 밝혔습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 학술 논문 수 증가가 기술 상용화 시점을 직접 의미하나요?</h4>\n<p>논문 수의 증가세는 기술에 대한 학계와 산업계의 연구 관심도를 나타내는 지표일 뿐, 제품의 완성과 시장 상용화 시점을 직접 나타내지는 않습니다.</p>\n<h3>정리</h3>\n\n<p>인공지능 추론 연산 과정에서 발생하는 데이터센터의 전력 부족 현상이 심화되면서, 빛을 이용해 에너지를 절감하는 광학 컴퓨팅 기술이 주요 대안으로 부상했습니다.</p>\n\n<p>향후 광학 기술 관련 뉴스를 접할 때는 시장 가치의 급증세(2022년 4억 달러에서 22억 2,000만 달러로 확대)를 통해 산업계의 자금 유입 단계를 점검하고, 학술 연구 논문의 연간 증가율(2021년 대비 2025년 78.6% 증가)을 통해 관련 연구가 활발히 이뤄지고 있는지 스스로 확인해 볼 수 있습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 전력 한계에 부딪힌 AI 추론을 해결하기 위해 광학 컴퓨팅 시장이 22억 2,000만 달러 규모로 빠르게 성장하고 있습니다.</p>\n\n태그: 광학컴퓨팅 AI전력 인공지능반도체 데이터센터 CPO"
+ },
+ "minutes": 5.0
+}
