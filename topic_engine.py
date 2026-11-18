@@ -637,6 +637,26 @@ _TECH_FEEDS = ["https://www.technologyreview.com/feed/", "https://spectrum.ieee.
 _MONEY_NEWS = re.compile(r"\b(raises?|raised|funding|debut fund|new fund|series [a-e]\b|valuation|acquires?|acquisition|ipo|layoffs?)\b", re.I)
 
 
+_EN_AMOUNT = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(trillion|billion|million)\b", re.I)
+
+
+def _ko_amount(n):
+    """1_234_500_000 → '12억 3,450만'(만 단위 아래는 버림)."""
+    n = int(round(n))
+    jo, rest = divmod(n, 10 ** 12)
+    eok, rest = divmod(rest, 10 ** 8)
+    man = rest // 10 ** 4
+    parts = [f"{jo:,}조" if jo else "", f"{eok:,}억" if eok else "", f"{man:,}만" if man else ""]
+    return " ".join(p for p in parts if p) or f"{n:,}"
+
+
+def ko_amounts(text):
+    """영어 원문의 '$0.4 billion' 뒤에 '(약 4억)'처럼 한국식 읽기를 붙인다(11-18 신기술: 작가가 $0.4 billion을 '0.4억 달러'로
+    잘못 옮겨 '치명' - 원유 재고 '천 배럴'에 읽는 단위를 붙여 막은 것과 같은 방법). 원문 숫자는 그대로 둔다."""
+    scale = {"trillion": 10 ** 12, "billion": 10 ** 9, "million": 10 ** 6}
+    return _EN_AMOUNT.sub(lambda m: f"{m.group(0)}(약 {_ko_amount(float(m.group(1).replace(',', '')) * scale[m.group(2).lower()])})", text or "")
+
+
 def _pick_tech(items):
     if not items:
         return None, {}
@@ -684,7 +704,7 @@ def discover_tech():
     if not papers:
         return []                      # 논문 수 자료가 없으면 기사 한 편 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
-    facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
+    facts = (f"[사실 자료 - 원문 기사]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {ko_amounts(body)}\n\n" + _conflict_note(body)
              + f"{papers}\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news[1:])}\n")
     return [{"category": "tech", "topic_key": f"tech:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),
@@ -736,7 +756,7 @@ def discover_bio():
     if not trials:
         return []                      # 임상 등록 자료가 없으면 보도자료 옮겨 쓰기가 되므로 쓰지 않는다(2026-11-08)
     news = [{"title": it["title"], "url": it["url"], "source": it["source"]}] + google_news(pick.get("keywords_ko") or it["title"], 4)
-    facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {body}\n\n" + _conflict_note(body)
+    facts = (f"[사실 자료 - 원문]\n제목: {it['title']} ({it['source']}, {it['url']})\n본문 발췌: {ko_amounts(body)}\n\n" + _conflict_note(body)
              + f"{trials}\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n{_news_block(news[1:])}\n")
     return [{"category": "bio", "topic_key": f"bio:{_slug(it['title'])}", "title_seed": pick.get("title_ko") or it["title"],
              "search_seed": pick.get("keywords_ko", ""),

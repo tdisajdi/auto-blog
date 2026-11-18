@@ -138,4 +138,6 @@ assert "환전 시점" not in qf and "- 레버리지 ETF 변동성" in qf, qf   
 print("search questions ok")
 # 11-12: 인구사회는 외국 소식을 계기·관련 뉴스에서 뺌('한국 … 세계 최저'는 남김)
 assert [n["title"] for n in te._domestic([{"title": "브라질 1인가구 1560만…[글로벌 1인가구]"}, {"title": "한국 출산율 세계 최저"}, {"title": "1인 가구 36% 돌파"}])] == ["한국 출산율 세계 최저", "1인 가구 36% 돌파"]
+# 11-18: 영어 원문 금액 뒤에 한국식 읽기를 붙임($0.4 billion을 '0.4억'으로 잘못 옮기는 실수 막기)
+assert te.ko_amounts("from $0.4 billion to $2.22 billion, raised $27.5 million") == "from $0.4 billion(약 4억) to $2.22 billion(약 22억 2,000만), raised $27.5 million(약 2,750만)", te.ko_amounts("from $0.4 billion to $2.22 billion, raised $27.5 million")
 print("adapters ok")
