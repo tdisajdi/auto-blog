@@ -4,14 +4,11 @@
   "article_type": "기초 가이드",
   "reason": "최근 10편 중 가이드 비율 10% (목표 20%)",
   "candidates": [],
-  "created_at": "2026-11-15T22:31:07.371226",
-  "reminder_count": 2,
-  "message_id": 444,
+  "created_at": "2026-11-18T22:31:19.478021",
+  "reminder_count": 0,
+  "message_id": 471,
   "message_ids": [
-    438,
-    442,
-    444
+    471
   ],
-  "sent_at": "2026-11-17T22:31:18.443538",
-  "last_reminded_at": "2026-11-17T22:31:17.905485"
+  "sent_at": "2026-11-18T22:31:19.992312"
 }
