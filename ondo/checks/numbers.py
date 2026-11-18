@@ -33,6 +33,11 @@ def _compounds(text):
     return out
 
 
+_EN_NUM = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*(trillion|billion|million|bn)\b", re.I)
+_EN_SCALE = {"trillion": 1e12, "billion": 1e9, "bn": 1e9, "million": 1e6}
+_KO_SCALE = {"조": 1e12, "억": 1e8, "만": 1e4}
+
+
 def _numbers(text):
     out = []
     spans = []
@@ -80,12 +85,19 @@ def _rounded_eq(target, v):
 def unverified(body_text, facts_text, limit=8):
     """자료에 없는 본문 숫자 목록(중복 제거, 최대 limit개)."""
     facts = [v for _, v, _, _ in _numbers(facts_text)]
+    # 영어 원문의 '$2.22 billion'은 22억 2,000만 달러로 옮겨진다(11-18 신기술: 맞게 옮긴 숫자를 '자료에 없음'으로 경고 → 고쳐쓰기 AI에게 감)
+    facts += [float(n.replace(",", "")) * _EN_SCALE[u.lower()] for n, u in _EN_NUM.findall(facts_text or "")]
     small = [f for f in facts if abs(f) < 1e7][:300]
     pair_sums = {abs(a - b) for a in small for b in small} | {a + b for a in small[:80] for b in small[:80]}
     today = kst_now()
     skip = {today.year, today.year - 1, today.month, today.day}
     out = []
-    for raw, v, decimals, unit in _numbers(body_text):
+    nums = _numbers(body_text)
+    # 본문에 함께 나온 두 숫자의 비율('22억 2,000만 달러 … 4억 달러 … 5.55배')은 계산한 값 - 둘 다 자료에 있을 때만 맞는 것으로 본다
+    absolute = [v * _KO_SCALE.get(u, 1) for _, v, d, u in nums if u != "배" and _matches(v, d, facts, set())]
+    for raw, v, decimals, unit in nums:
+        if unit == "배" and any(b and round(a / b, decimals) == v for a in absolute for b in absolute):
+            continue
         is_year = decimals == 0 and not unit and 1990 <= v <= today.year + 10
         if is_year or v in skip and not unit or (decimals == 0 and not unit and v <= 12):
             continue
