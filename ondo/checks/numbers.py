@@ -82,11 +82,22 @@ def _rounded_eq(target, v):
     return round(target, -z) == v if z else abs(target - v) < 1e-6
 
 
+def _scale_slip(v, unit, en_raw, facts):
+    """'$0.4 billion'(4억)을 '0.4억'으로 옮긴 단위 실수: 원문 숫자(0.4)는 같지만 크기가 다르다(11-18 신기술 '치명').
+    억·만·조가 붙은 본문 숫자가 영어 원문의 billion·million 숫자와 같고, 실제 크기는 어느 자료 숫자와도 안 맞을 때만 참."""
+    if unit not in _KO_SCALE or v not in en_raw:
+        return False
+    size = v * _KO_SCALE[unit]
+    return not any(abs(f - size) <= max(1.0, abs(size) * 0.005) for f in facts)
+
+
 def unverified(body_text, facts_text, limit=8):
     """자료에 없는 본문 숫자 목록(중복 제거, 최대 limit개)."""
     facts = [v for _, v, _, _ in _numbers(facts_text)]
     # 영어 원문의 '$2.22 billion'은 22억 2,000만 달러로 옮겨진다(11-18 신기술: 맞게 옮긴 숫자를 '자료에 없음'으로 경고 → 고쳐쓰기 AI에게 감)
-    facts += [float(n.replace(",", "")) * _EN_SCALE[u.lower()] for n, u in _EN_NUM.findall(facts_text or "")]
+    en = [(float(n.replace(",", "")), float(n.replace(",", "")) * _EN_SCALE[u.lower()]) for n, u in _EN_NUM.findall(facts_text or "")]
+    facts += [a for _, a in en]
+    en_raw = {r: a for r, a in en}
     small = [f for f in facts if abs(f) < 1e7][:300]
     pair_sums = {abs(a - b) for a in small for b in small} | {a + b for a in small[:80] for b in small[:80]}
     today = kst_now()
@@ -103,7 +114,7 @@ def unverified(body_text, facts_text, limit=8):
             continue
         if decimals == 0 and not unit and v < 1000:
             continue                                     # 단위 없는 작은 정수는 개수·순서일 때가 많다
-        if _matches(v, decimals, facts, pair_sums):
+        if _matches(v, decimals, facts, pair_sums) and not _scale_slip(v, unit, en_raw, facts):
             continue
         if raw not in out:
             out.append(raw)
