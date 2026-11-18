@@ -1,0 +1,314 @@
+{
+ "article_type": "society",
+ "topic_id": "society:초등학교-입학생-수-장래인구추계-학령인구-변화",
+ "title_seed": "저출생 심화에 따른 초등 입학생 감소 현황",
+ "category": "society",
+ "started_at": "2026-11-18T20:35:46",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.3,
+   "chars": 3094
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.3,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.3,
+   "chars": 3149
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 50.3,
+   "chars": 6002
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 59.7,
+   "chars": 203
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.2,
+   "chars": 616
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.7,
+   "chars": 161
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 1048
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 26.4,
+   "chars": 5815
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 19.4,
+   "chars": 179
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.1,
+   "chars": 434
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.7,
+   "chars": 178
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.1,
+   "chars": 850
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 39.0,
+   "chars": 195
+  },
+  {
+   "step": "검토 12(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.8,
+   "chars": 407
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.1,
+   "chars": 183
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획 실패",
+   "at": "20:36:00",
+   "attempt": 1,
+   "reason": "설계도 형식이 맞지 않음"
+  },
+  {
+   "step": "기획",
+   "at": "20:36:22",
+   "title": "통계로 본 저출생: 2025년 출생아 수와 초등 입학생 감소 현황",
+   "sections": [
+    "2025년 인구 동태 지표",
+    "장기 흐름으로 보는 인구 변화",
+    "초등 입학생과 학령인구 감소 현황"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:37:15",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "검토 1 정리",
+   "at": "20:38:34",
+   "dropped": 1,
+   "reason": "본문에 없는 문장을 인용한 지적은 버림"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:38:39",
+   "score": 0.97,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "본문에 제시된 6년 시차 기준(예: 2025년 출생아 반등과 6년 전인 2019년 출생아 수 비교)을 표나 수치로 한 번 더 대비해 주면 독자가 시차 개념을 훨씬 직관적으로 이해할 수 있을 것입니다.",
+   "issues": [
+    "[사소·독자 편집] '2025년 자연증가(출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻)건수는' → 표에 제시된 수치와 내용을 본문 문장에서 그대로 다시 읽어주고 있습니다. / 고칠 방법: 표의 수치를 직접 반복하는 대신 표가 보여주는 증감의 방향과 흐름을 중심으로 서술하십시오."
+   ],
+   "lint": [
+    "영어 단어 'past' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 1개 삭제: 🔸 뉴스 기사마다 초등 입학생 감소 수치나 학령인구 전"
+   ],
+   "chars": 3311
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "20:39:09",
+   "model": "gemini-3.6-flash",
+   "todo": 2
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "20:41:12",
+   "score": 0.97
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "20:41:12",
+   "score": 0.97,
+   "passed": true,
+   "value": 0.4,
+   "value_missing": [
+    "제목 질문에 답함",
+    "이 글만의 정보",
+    "숫자 해석"
+   ],
+   "value_tip": "제목을 구체적인 의문문 형태로 수정하고, 6년 전 출생아 수와 현재 입학생 수의 차이를 독자가 쉽게 체감할 수 있도록 비교 설명을 보강하기",
+   "issues": [
+    "[사소·독자 편집] '합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수)은 2025년 0.799명으로 2024년 0' → 표에 이미 제시된 수치와 내용을 본문 문장에서 그대로 다시 풀어서 설명하고 있습니다. / 고칠 방법: 표에 있는 상세한 수치를 본문에서 반복하지 말고 전체적인 변화 방향만 언급하세요."
+   ],
+   "chars": 3271
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "통계로 본 저출생: 2025년 출생아 수와 초등 입학생 감소 현황",
+  "url": "https://ondo99.com/?p=524",
+  "score": 0.97,
+  "issues": [
+   "[사소·독자 편집] '합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수)은 2025년 0.799명으로 2024년 0' → 표에 이미 제시된 수치와 내용을 본문 문장에서 그대로 다시 풀어서 설명하고 있습니다. / 고칠 방법: 표에 있는 상세한 수치를 본문에서 반복하지 말고 전체적인 변화 방향만 언급하세요."
+  ]
+ },
+ "facts": "[공식 통계 - 국가통계포털(KOSIS) '인구동태건수 및 동태율 추이(출생사망혼인이혼)', 전국 기준. 숫자와 기간은 이 자료 그대로만 쓰세요]\n- 출생아수(명): 2025년 254,341 (직전 2024년 238,317), 1년 전(2024년) 대비 +6.7%\n- 사망자수(명): 2025년 362,968 (직전 2024년 358,569), 1년 전(2024년) 대비 +1.2%\n- 자연증가건수(명): 2025년 -108,627 (직전 2024년 -120,252), 1년 전(2024년) 대비 -9.7%\n- 조출생률(천명당): 2025년 5 (직전 2024년 4.7), 1년 전(2024년)보다 +0.3\n- 조사망률(천명당): 2025년 7.1 (직전 2024년 7), 1년 전(2024년)보다 +0.1\n- 자연증가율(천명당): 2025년 -2.1 (직전 2024년 -2.4), 1년 전(2024년)보다 +0.3\n- 합계출산율(명): 2025년 0.799 (직전 2024년 0.748), 1년 전(2024년)보다 +0.051\n- 출생성비(명): 2025년 105.8 (직전 2024년 105), 1년 전(2024년)보다 +0.8\n[긴 흐름 - 위 숫자를 되풀이하지 말고, 지금 값이 이 흐름에서 어디쯤인지 설명할 때 쓰세요]\n- 출생아수(명) 흐름: 2016년 406,243, 2017년 357,771, 2018년 326,822, 2019년 302,676, 2020년 272,337, 2021년 260,562, 2022년 249,186, 2023년 230,028, 2024년 238,317, 2025년 254,341 → 이 기간 최고 2016년 406,243, 최저 2023년 230,028, 직전 기간 대비 변화가 가장 컸던 때 2017년(-48,472)\n- 사망자수(명) 흐름: 2016년 280,827, 2017년 285,534, 2018년 298,820, 2019년 295,110, 2020년 304,948, 2021년 317,680, 2022년 372,939, 2023년 352,511, 2024년 358,569, 2025년 362,968 → 이 기간 최고 2022년 372,939, 최저 2016년 280,827, 직전 기간 대비 변화가 가장 컸던 때 2022년(+55,259)\n- 자연증가건수(명) 흐름: 2016년 125,416, 2017년 72,237, 2018년 28,002, 2019년 7,566, 2020년 -32,611, 2021년 -57,118, 2022년 -123,753, 2023년 -122,483, 2024년 -120,252, 2025년 -108,627 → 이 기간 최고 2016년 125,416, 최저 2022년 -123,753, 직전 기간 대비 변화가 가장 컸던 때 2022년(-66,635)\n- 조출생률(천명당) 흐름: 2016년 7.9, 2017년 7, 2018년 6.4, 2019년 5.9, 2020년 5.3, 2021년 5.1, 2022년 4.9, 2023년 4.5, 2024년 4.7, 2025년 5 → 이 기간 최고 2016년 7.9, 최저 2023년 4.5, 직전 기간 대비 변화가 가장 컸던 때 2017년(-0.9)\n\n[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n- 저출생 심화에 내년 초등 입학생 27.2만 명…59년 만에 4분의1로 > 뉴스포커스 - SeattleN (SeattleN) https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\n- 학령인구 감소 가속…초1 입학생 20만 명대 진입·전체 학생 500만 밑돌아 - 일간투데이 (일간투데이) https://news.google.com/rss/articles/CBMia0FVX3lxTFBIdkFOdjFJNkN6U3N5TDhJSjEwNU9hSk9MckhRZy1ELXlqemFTU3JRT1R3TG1Ob1dzLUlSWHRzNlZ0a1BQd1o3N3ljbS1LTTVfLVJpWnp2aS0xR3ZiYlVSZ2xGMXIxRDVCT29r?oc=5\n- 올해 초등 입학생 30만명 아래로…정부 추계 1년 당겨져 - 한겨레 (한겨레) https://news.google.com/rss/articles/CBMiakFVX3lxTFBfQndwNllpZjNDdjYtTk5NaE9JWEpYNmlSbWtHblhfd1R6N2hTLXIwdDYwWHdaZjdqQWFVaEc3WnhmQ1lOcDUtN25KOUdJQjBtaThBaWY4aDk1Q0lyMmRIWVV1bnFyaDI2ZXc?oc=5\n- 초등 1학년, 첫 30만명선 무너져…대학·교원·지역 도미노 파장 - 투데이신문 (투데이신문) https://news.google.com/rss/articles/CBMia0FVX3lxTFBoTUNzbGdBbDRfTzREVU5yRS1lVUVxX0p5bFRjRnRjaGJwTUF0ak5HWG55XzRfQ1V3YUVxcmhEbFN5b2pjVHRyTEJYOTRGVF9MbzJfSkVSVDQxY0ZLV05lN0ZlYWhwM3Q0b29v0gFvQVVfeXFMT0ZoU1R4NWxsMW44ZzlzR2ExYjBZSUZ2ejE3NDRIazNqOE8ycThNZlEwaGtZWWZDTnBqUTVpbGdWcHJZb052c00yTUdGa3NJTWN1WWhSRUx0MGp3NjJvOU5sNU8xNjFnendPNWRKN2M0?oc=5\n- 학령인구 500만 명 붕괴 초읽기... 2026년 483만 명으로 급감 - 교육을 비추다 (교육을 비추다) https://news.google.com/rss/articles/CBMiZkFVX3lxTE9Da1I2MzdPSzdGUjZtZnVLRVpFS3hZUmd6UVoyajFKVmduckJqZFZrWE9VQi0wUjJnWkw5S2t6QlBQcGJTSVFPWUx5ZEcwNWgwazY4QUpHNFZnU0NPYWpmRFZmTVNDUQ?oc=5\n- 초등 입학생 첫 30만 명 붕괴…학교·교원·대학까지 연쇄 파장 [종합] - 이투데이 (이투데이) https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ScW1XZFpxWnZ4TUo3aGo0ZUdNZkowSEpuSXZfS0xJU2xxcHNfaVZ4WUdSQUNTQllaQXNlenFlOTdxVlktcnpIMXQ1ZGZqb3h3SXYyVA?oc=5\n- [영상] 부산 초등학교 신입생 4년 새 33% 줄었다 - 부산일보 (부산일보) https://news.google.com/rss/articles/CBMidEFVX3lxTE80c2lWa2toeWZZQ0ZBcjZ3UXAzVmNGQVhFWE1taUZKT241M2oyY3VrSTdkZEhtQV83dGNKMFF5N09SNHg2eTFjaG12LXE0NW1wZ0VNUUdvc1AwRVRFdWNhbGJnampIdXFNbmhyYk94VDNPU2Rw?oc=5\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 자연증가: 출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻\n- 조출생률: 인구 1,000명당 1년 동안 태어난 아이 수\n- 합계출산율: 여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수\n",
+ "drafts": {
+  "1": "<h1>통계로 본 저출생: 2025년 출생아 수와 초등 입학생 감소 현황</h1>\n<!-- 2025년 출생아 수가 전년 대비 6.7% 증가하며 반등했으나, 지난 10년간 이어진 저출생 여파로 초등학교 입학생 30만 명선이 무너지는 등 학령인구 감소세는 지속되고 있습니다. -->\n\n<p>국가통계포털(KOSIS)의 인구동태 통계에 따르면 2025년 출생아 수는 254,341명으로, 2024년 238,317명에 비해 6.7% 증가했습니다. 하지만 최근 출생아 수의 소폭 반등에도 불구하고 past 저출생의 누적 효과로 인해 초등학교 1학년 입학생이 30만 명 아래로 떨어지는 등 현장의 학령인구 감소 추세는 이어지는 모습입니다.</p>\n\n<p>이러한 수치 간의 차이는 통계 지표가 반영하는 시차에서 발생합니다. 앞으로 관련 인구 및 교육 통계를 확인할 때는 당해 연도의 단기적인 출생아 수 변화뿐만 아니라, 최소 6년에서 10년 전의 누적 인구 흐름을 함께 살펴볼 필요가 있습니다.</p>\n\n<h3>2025년 인구 동태 지표</h3>\n\n<p>국가통계포털(KOSIS)이 발표한 2025년 인구동태건수 및 동태율 추이에 따르면, 인구 이동과 자연 변화를 나타내는 주요 지표들이 전년 대비 일부 변화를 보였습니다. 출생과 사망, 합계출산율 등의 핵심 통계를 통해 현재 대한민국 인구 구조의 단면을 확인할 수 있습니다.</p>\n\n<p>2025년 한 해 동안 태어난 아이와 사망한 사람의 수, 그리고 이로 인한 자연증가 규모는 아래 표와 같습니다.</p>\n\n<table>\n<tr><th>지표명</th><th>2024년</th><th>2025년</th><th>증감(율)</th></tr>\n<tr><td>출생아수(명)</td><td>238,317</td><td>254,341</td><td>+6.7%</td></tr>\n<tr><td>사망자수(명)</td><td>358,569</td><td>362,968</td><td>+1.2%</td></tr>\n<tr><td>자연증가건수(명)</td><td>-120,252</td><td>-108,627</td><td>-9.7%</td></tr>\n<tr><td>조출생률(천명당)</td><td>4.7</td><td>5.0</td><td>+0.3</td></tr>\n<tr><td>조사망률(천명당)</td><td>7.0</td><td>7.1</td><td>+0.1</td></tr>\n<tr><td>자연증가율(천명당)</td><td>-2.4</td><td>-2.1</td><td>+0.3</td></tr>\n<tr><td>합계출산율(명)</td><td>0.748</td><td>0.799</td><td>+0.051</td></tr>\n<tr><td>출생성비(명)</td><td>105.0</td><td>105.8</td><td>+0.8</td></tr>\n</table>\n\n<p>2025년 자연증가(출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻)건수는 -108,627명으로 집계되었습니다. 사망자 수가 출생아 수를 웃돌면서 전체 인구의 자연 감소 추세는 계속되었으나, 감소 폭 자체는 2024년 -120,252명에서 9.7% 줄어들었습니다.</p>\n\n<p>합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수)은 2025년 0.799명으로 2024년 0.748명보다 0.051명 상승했습니다. 조출생률(인구 1,000명당 1년 동안 태어난 아이 수) 역시 2025년 5.0명으로 2024년 4.7명 대비 0.3명 증가한 수치를 나타냈습니다.</p>\n\n<h3>장기 흐름으로 보는 인구 변화</h3>\n\n<p>최근 10년간의 출생아 수 추이를 돌아보면, 2016년 406,243명이었던 출생아 수는 2017년에 357,771명으로 줄어들며 가장 큰 폭(-48,472명)의 감소를 기록했습니다. 이후 지속적으로 감소해 2023년에는 230,028명으로 해당 기간 중 최저치를 기록했고, 2025년 254,341명으로 반등했으나 여전히 2016년 수준에는 미치지 못하고 있습니다.</p>\n\n<p>사망자 수의 경우 2016년 280,827명에서 출발하여 지속적인 증가세를 보였습니다. 지난 10년간 가장 높은 수치를 기록한 해는 2022년 372,939명이었으며, 이때 직전 해 대비 증가 폭(+55,259명)도 가장 컸습니다. 2025년 사망자 수는 362,968명으로 집계되어 2016년 최저치 이후 높은 수준을 유지하고 있습니다.</p>\n\n<p>이러한 출생과 사망의 흐름이 교차하면서 자연증가건수는 2016년 125,416명에서 2020년 -32,611명으로 전환되어 음의 영역에 진입했습니다. 가장 감소 폭이 컸던 해는 2022년으로 -123,753명을 기록하며 10년 중 최저치를 나타냈습니다.</p>\n\n<p>조출생률 변화 역시 장기 하락 흐름을 반영합니다. 2016년 7.9명으로 가장 높았던 조출생률은 2017년 7.0명으로 가장 크게 떨어진 후(-0.9명), 2023년 4.5명으로 최저점에 도달했다가 2025년 5.0명으로 소폭 회복된 상태입니다.</p>\n\n<h3>초등 입학생과 학령인구 감소 현황</h3>\n\n<p>출생 통계의 단기적인 반등에도 불구하고, 과거 누적된 출생 감소의 영향이 교육 현장에 본격적으로 나타나고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTFBfQndwNllpZjNDdjYtTk5NaE9JWEpYNmlSbWtHblhfd1R6N2hTLXIwdDYwWHdaZjdqQWFVaEc3WnhmQ1lOcDUtN25KOUdJQjBtaThBaWY4aDk1Q0lyMmRIWVV1bnFyaDI2ZXc?oc=5\" target=\"_blank\" rel=\"noopener\">한겨레</a>의 보도에 따르면 올해 초등 입학생 수가 30만 명 아래로 떨어지며 정부의 기존 추계보다 1년 당겨진 것으로 나타났습니다.</p>\n\n<p>이러한 초등 1학년 30만 명선 무너짐은 교육 및 지역 사회에 직접적인 영향을 미치고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTFBoTUNzbGdBbDRfTzREVU5yRS1lVUVxX0p5bFRjRnRjaGJwTUF0ak5HWG55XzRfQ1V3YUVxcmhEbFN5b2pjVHRyTEJYOTRGVF9MbzJfSkVSVDQxY0ZLV05lN0ZlYWhwM3Q0b29v0gFvQVVfeXFMT0ZoU1R4NWxsMW44ZzlzR2ExYjBZSUZ2ejE3NDRIazNqOE8ycThNZlEwaGtZWWZDTnBqUTVpbGdWcHJZb052c00yTUdGa3NJTWN1WWhSRUx0MGp3NjJvOU5sNU8xNjFnendPNWRKN2M0?oc=5\" target=\"_blank\" rel=\"noopener\">투데이신문</a>과 <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTENScW1XZFpxWnZ4TUo3aGo0ZUdNZkowSEpuSXZfS0xJU2xxcHNfaVZ4WUdSQUNTQllaQXNlenFlOTdxVlktcnpIMXQ1ZGZqb3h3SXYyVA?oc=5\" target=\"_blank\" rel=\"noopener\">이투데이</a>는 초등 입학생 감소가 학교 신설 및 유지, 교원 수급, 향후 대학 입시와 지역 사회 구조 변화로까지 연쇄적인 파장을 일으키고 있다고 분석했습니다.</p>\n\n<p>지역별 감소세도 구체적인 수치로 확인됩니다. <a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE80c2lWa2toeWZZQ0ZBcjZ3UXAzVmNGQVhFWE1taUZKT241M2oyY3VrSTdkZEhtQV83dGNKMFF5N09SNHg2eTFjaG12LXE0NW1wZ0VNUUdvc1AwRVRFdWNhbGJnampIdXFNbmhyYk94VDNPU2Rw?oc=5\" target=\"_blank\" rel=\"noopener\">부산일보</a> 보도에 따르면 부산 지역 초등학교 신입생 수의 경우 4년 만에 33%가 감소한 것으로 집계되었습니다.</p>\n\n<p>학령인구 전체의 감소 속도 역시 점차 빨라지는 추세입니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\" target=\"_blank\" rel=\"noopener\">SeattleN</a> 보도에 따르면 저출생 심화로 인해 내년 초등 입학생 규모는 27.2만 명 수준으로 떨어져 59년 만에 4분의 1 수준으로 축소될 것으로 전망되었습니다.</p>\n\n<p>또한 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTFBIdkFOdjFJNkN6U3N5TDhJSjEwNU9hSk9MckhRZy1ELXlqemFTU3JRT1R3TG1Ob1dzLUlSWHRzNlZ0a1BQd1o3N3ljbS1LTTVfLVJpWnp2aS0xR3ZiYlVSZ2xGMXIxRDVCT29r?oc=5\" target=\"_blank\" rel=\"noopener\">일간투데이</a>는 초1 입학생의 20만 명대 진입과 함께 전체 초·중·고 학생 수가 500만 명을 밑돌게 되었다고 전달했으며, <a href=\"https://news.google.com/rss/articles/CBMiZkFVX3lxTE9Da1I2MzdPSzdGUjZtZnVLRVpFS3hZUmd6UVoyajFKVmduckJqZFZrWE9VQi0wUjJnWkw5S2t6QlBQcGJTSVFPWUx5ZEcwNWgwazY4QUpHNFZnU0NPYWpmRFZmTVNDUQ?oc=5\" target=\"_blank\" rel=\"noopener\">교육을 비추다</a> 보도에 따르면 2026년 학령인구가 483만 명으로 급감하면서 전체 학령인구 500만 명 붕괴가 가시화되고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 2025년 출생아 수와 합계출산율이 전년보다 증가했는데, 왜 초등 입학생은 30만 명 아래로 떨어지며 계속 감소하나요?</h4>\n<p>초등학교에 입학하는 아동은 당해 연도가 아닌 약 6년 전에 태어난 인구이기 때문입니다. 2025년에 출생아 수가 반등했더라도 2018년(326,822명)부터 2023년(230,028명)까지 이어진 출생아 수의 가파른 감소 흐름이 6년의 시차를 두고 현재 초등학교 입학 인구 감소로 반영되고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>2025년 출생아 수가 반등 통계를 기록했음에도 현장의 학령인구 감소가 지속되는 것은 인구 지표가 사회적 현상으로 나타나기까지 시차가 존재함을 보여줍니다. 단기 수치 변동에 착시를 겪지 않으려면 장기적인 인구 흐름을 병행해서 살펴봐야 합니다.</p>\n\n<p>앞으로 관련 뉴스를 파악할 때는 다음 기준을 활용할 수 있습니다. 첫째, 당해 출생아 수 통계와 6년 전 출생아 수(2018년 326,822명, 2023년 230,028명 등)를 비교하여 초등 교육 현장에 적용될 시차를 계산해 보는 것입니다. 둘째, 전국 단위 수치와 함께 보도된 지역별 변동 폭(부산 4년 새 33% 감소 등)을 확인하여 지역 간 격차를 점검하는 것입니다. 셋째, 단년도 입학생 수와 전체 학령인구 추계(2026년 483만 명 전망)를 구분하여 장기적인 사회 구조 변화 방향을 읽어내는 것입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 2025년 출생아 수가 반등했으나 Past 저출생의 시차 영향으로 초등 입학생 30만 명선이 무너지는 등 학령인구 감소는 지속되고 있습니다.</p>\n\n태그: 저출생 초등입학생 학령인구 인구통계 합계출산율",
+  "2": "<h1>통계로 본 저출생: 2025년 출생아 수와 초등 입학생 감소 현황</h1>\n<!-- 2025년 출생아 수가 전년 대비 6.7% 증가하며 반등했으나, 지난 10년간 이어진 저출생 여파로 초등학교 입학생 30만 명선이 무너지는 등 학령인구 감소세는 지속되고 있습니다. -->\n\n<p>국가통계포털(KOSIS)의 인구동태 통계에 따르면 2025년 출생아 수는 254,341명으로, 2024년 238,317명에 비해 6.7% 증가했습니다. 하지만 최근 출생아 수의 소폭 반등에도 불구하고 지난 저출생의 누적 효과로 인해 초등학교 1학년 입학생이 30만 명 아래로 떨어지는 등 현장의 학령인구 감소 추세는 이어지는 모습입니다.</p>\n\n<p>이러한 수치 간의 차이는 통계 지표가 반영하는 시차에서 발생합니다. 앞으로 관련 인구 및 교육 통계를 확인할 때는 당해 연도의 단기적인 출생아 수 변화뿐만 아니라, 최소 6년에서 10년 전의 누적 인구 흐름을 함께 살펴볼 필요가 있습니다.</p>\n\n<h3>2025년 인구 동태 지표</h3>\n\n<p>국가통계포털(KOSIS)이 발표한 2025년 인구동태건수 및 동태율 추이에 따르면, 인구 이동과 자연 변화를 나타내는 주요 지표들이 전년 대비 일부 변화를 보였습니다. 출생과 사망, 합계출산율 등의 핵심 통계를 통해 현재 대한민국 인구 구조의 단면을 확인할 수 있습니다.</p>\n\n<p>2025년 한 해 동안 태어난 아이와 사망한 사람의 수, 그리고 이로 인한 자연증가 규모는 아래 표와 같습니다.</p>\n\n<table>\n<tr><th>지표명</th><th>2024년</th><th>2025년</th><th>증감(율)</th></tr>\n<tr><td>출생아수(명)</td><td>238,317</td><td>254,341</td><td>+6.7%</td></tr>\n<tr><td>사망자수(명)</td><td>358,569</td><td>362,968</td><td>+1.2%</td></tr>\n<tr><td>자연증가건수(명)</td><td>-120,252</td><td>-108,627</td><td>-9.7%</td></tr>\n<tr><td>조출생률(천명당)</td><td>4.7</td><td>5.0</td><td>+0.3</td></tr>\n<tr><td>조사망률(천명당)</td><td>7.0</td><td>7.1</td><td>+0.1</td></tr>\n<tr><td>자연증가율(천명당)</td><td>-2.4</td><td>-2.1</td><td>+0.3</td></tr>\n<tr><td>합계출산율(명)</td><td>0.748</td><td>0.799</td><td>+0.051</td></tr>\n<tr><td>출생성비(명)</td><td>105.0</td><td>105.8</td><td>+0.8</td></tr>\n</table>\n\n<p>2025년 자연증가(출생아 수에서 사망자 수를 뺀 것. 음수면 태어난 사람보다 숨진 사람이 많다는 뜻) 지표는 사망자 수가 출생아 수를 웃돌면서 인구 자연 감소세가 계속되었으나, 감소 폭 자체는 전년 대비 줄어드는 흐름을 보였습니다.</p>\n\n<p>합계출산율(여성 1명이 평생 낳을 것으로 예상되는 평균 자녀 수)은 2025년 0.799명으로 2024년 0.748명보다 0.051명 상승했습니다. 조출생률(인구 1,000명당 1년 동안 태어난 아이 수) 역시 2025년 5.0명으로 2024년 4.7명 대비 0.3명 증가한 수치를 나타냈습니다.</p>\n\n<h3>장기 흐름으로 보는 인구 변화</h3>\n\n<p>최근 10년간의 출생아 수 추이를 돌아보면, 2016년 406,243명이었던 출생아 수는 2017년에 357,771명으로 줄어들며 가장 큰 폭(-48,472명)의 감소를 기록했습니다. 이후 지속적으로 감소해 2023년에는 230,028명으로 해당 기간 중 최저치를 기록했고, 2025년 254,341명으로 반등했으나 여전히 2016년 수준에는 미치지 못하고 있습니다.</p>\n\n<p>사망자 수의 경우 2016년 280,827명에서 출발하여 지속적인 증가세를 보였습니다. 지난 10년간 가장 높은 수치를 기록한 해는 2022년 372,939명이었으며, 이때 직전 해 대비 증가 폭(+55,259명)도 가장 컸습니다. 2025년 사망자 수는 362,968명으로 집계되어 2016년 최저치 이후 높은 수준을 유지하고 있습니다.</p>\n\n<p>이러한 출생과 사망의 흐름이 교차하면서 자연증가건수는 2016년 125,416명에서 2020년 -32,611명으로 전환되어 음의 영역에 진입했습니다. 가장 감소 폭이 컸던 해는 2022년으로 -123,753명을 기록하며 10년 중 최저치를 나타냈습니다.</p>\n\n<p>조출생률 변화 역시 장기 하락 흐름을 반영합니다. 2016년 7.9명으로 가장 높았던 조출생률은 2017년 7.0명으로 가장 크게 떨어진 후(-0.9명), 2023년 4.5명으로 최저점에 도달했다가 2025년 5.0명으로 소폭 회복된 상태입니다.</p>\n\n<h3>초등 입학생과 학령인구 감소 현황</h3>\n\n<p>출생 통계의 단기적인 반등에도 불구하고, 과거 누적된 출생 감소의 영향이 교육 현장에 본격적으로 나타나고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiakFVX3lxTFBfQndwNllpZjNDdjYtTk5NaE9JWEpYNmlSbWtHblhfd1R6N2hTLXIwdDYwWHdaZjdqQWFVaEc3WnhmQ1lOcDUtN25KOUdJQjBtaThBaWY4aDk1Q0lyMmRIWVV1bnFyaDI2ZXc?oc=5\" target=\"_blank\" rel=\"noopener\">한겨레</a>의 보도에 따르면 올해 초등 입학생 수가 30만 명 아래로 떨어지며 정부의 기존 추계보다 1년 당겨진 것으로 나타났습니다.</p>\n\n<p>이러한 초등 1학년 30만 명선 무너짐은 교육 및 지역 사회에 직접적인 영향을 미치고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTFBoTUNzbGdBbDRfTzREVU5yRS1lVUVxX0p5bFRjRnRjaGJwTUF0ak5HWG55XzRfQ1V3YUVxcmhEbFN5b2pjVHRyTEJYOTRGVF9MbzJfSkVSVDQxY0ZLV05lN0ZlYWhwM3Q0b29v0gFvQVVfeXFMT0ZoU1R4NWxsMW44ZzlzR2ExYjBZSUZ2ejE3NDRIazNqOE8ycThNZlEwaGtZWWZDTnBqUTVpbGdWcHJZb052c00yTUdGa3NJTWN1WWhSRUx0MGp3NjJvOU5sNU8xNjFnendPNWRKN2M0?oc=5\" target=\"_blank\" rel=\"noopener\">투데이신문</a>과 <a href=\"https://news.google.com/rss/articles/CBMiVEFVX3lxTENScW1XZFpxWnZ4TUo3aGo0ZUdNZkowSEpuSXZfS0xJU2xxcHNfaVZ4WUdSQUNTQllaQXNlenFlOTdxVlktcnpIMXQ1ZGZqb3h3SXYyVA?oc=5\" target=\"_blank\" rel=\"noopener\">이투데이</a>는 초등 입학생 감소가 학교 신설 및 유지, 교원 수급, 향후 대학 입시와 지역 사회 구조 변화로까지 연쇄적인 파장을 일으키고 있다고 분석했습니다.</p>\n\n<p>지역별 감소세도 구체적인 수치로 확인됩니다. <a href=\"https://news.google.com/rss/articles/CBMidEFVX3lxTE80c2lWa2toeWZZQ0ZBcjZ3UXAzVmNGQVhFWE1taUZKT241M2oyY3VrSTdkZEhtQV83dGNKMFF5N09SNHg2eTFjaG12LXE0NW1wZ0VNUUdvc1AwRVRFdWNhbGJnampIdXFNbmhyYk94VDNPU2Rw?oc=5\" target=\"_blank\" rel=\"noopener\">부산일보</a> 보도에 따르면 부산 지역 초등학교 신입생 수의 경우 4년 만에 33%가 감소한 것으로 집계되었습니다.</p>\n\n<p>학령인구 전체의 감소 속도 역시 점차 빨라지는 추세입니다. <a href=\"https://news.google.com/rss/articles/CBMic0FVX3lxTE02bDVKT1pGVkxDVjc4OU0zUzU2VS1rM242ZXRTZExYZWUtejJhRFZ4ZUhmS3diV3A0elVlNWRsMVI2d09MaTRZWEZnT3FpeUJDRnd2cnBabFVINl81S2FCZnV0clF5MFJQX3NRU0Z3Q0dmenc?oc=5\" target=\"_blank\" rel=\"noopener\">SeattleN</a> 보도에 따르면 저출생 심화로 인해 내년 초등 입학생 규모는 27.2만 명 수준으로 떨어져 59년 만에 4분의 1 수준으로 축소될 것으로 전망되었습니다.</p>\n\n<p>또한 <a href=\"https://news.google.com/rss/articles/CBMia0FVX3lxTFBIdkFOdjFJNkN6U3N5TDhJSjEwNU9hSk9MckhRZy1ELXlqemFTU3JRT1R3TG1Ob1dzLUlSWHRzNlZ0a1BQd1o3N3ljbS1LTTVfLVJpWnp2aS0xR3ZiYlVSZ2xGMXIxRDVCT29r?oc=5\" target=\"_blank\" rel=\"noopener\">일간투데이</a>는 초1 입학생의 20만 명대 진입과 함께 전체 초·중·고 학생 수가 500만 명을 밑돌게 되었다고 전달했으며, <a href=\"https://news.google.com/rss/articles/CBMiZkFVX3lxTE9Da1I2MzdPSzdGUjZtZnVLRVpFS3hZUmd6UVoyajFKVmduckJqZFZrWE9VQi0wUjJnWkw5S2t6QlBQcGJTSVFPWUx5ZEcwNWgwazY4QUpHNFZnU0NPYWpmRFZmTVNDUQ?oc=5\" target=\"_blank\" rel=\"noopener\">교육을 비추다</a> 보도에 따르면 2026년 학령인구가 483만 명으로 급감하면서 전체 학령인구 500만 명 붕괴가 가시화되고 있습니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 2025년 출생아 수와 합계출산율이 전년보다 증가했는데, 왜 초등 입학생은 30만 명 아래로 떨어지며 계속 감소하나요?</h4>\n<p>초등학교에 입학하는 아동은 당해 연도가 아닌 약 6년 전에 태어난 인구이기 때문입니다. 2025년에 출생아 수가 반등했더라도 2018년(326,822명)부터 2023년(230,028명)까지 이어진 출생아 수의 가파른 감소 흐름이 6년의 시차를 두고 현재 초등학교 입학 인구 감소로 반영되고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>2025년 출생아 수가 반등 통계를 기록했음에도 현장의 학령인구 감소가 지속되는 것은 인구 지표가 사회적 현상으로 나타나기까지 시차가 존재함을 보여줍니다. 단기 수치 변동에 착시를 겪지 않으려면 장기적인 인구 흐름을 병행해서 살펴봐야 합니다.</p>\n\n<p>앞으로 관련 뉴스를 파악할 때는 다음 기준을 활용할 수 있습니다. 첫째, 당해 출생아 수 통계와 6년 전 출생아 수(2018년 326,822명, 2023년 230,028명 등)를 비교하여 초등 교육 현장에 적용될 시차를 계산해 보는 것입니다. 둘째, 전국 단위 수치와 함께 보도된 지역별 변동 폭(부산 4년 새 33% 감소 등)을 확인하여 지역 간 격차를 점검하는 것입니다. 셋째, 단년도 입학생 수와 전체 학령인구 추계(2026년 483만 명 전망)를 구분하여 장기적인 사회 구조 변화 방향을 읽어내는 것입니다.</p>\n\n<p><strong>한 줄 정리:</strong> 2025년 출생아 수가 반등했으나 과거 저출생의 시차 영향으로 초등 입학생 30만 명선이 무너지는 등 학령인구 감소는 지속되고 있습니다.</p>\n\n태그: 저출생 초등입학생 학령인구 인구통계 합계출산율"
+ },
+ "minutes": 5.9
+}
