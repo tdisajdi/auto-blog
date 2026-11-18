@@ -99,6 +99,7 @@ te._kosis_table_for=lambda q: {"name":"출생"}
 te.kosis_fact_block=lambda tb: ("[공식 통계 - KOSIS]\n- 출생아 수: 2025년 1명", {"series":[]})
 te._kosis_chart=lambda tb, sm: None
 s=te.discover_society(); assert s and s[0]["score"]==1.1 and s[0]["facts_text"].startswith("[공식 통계"), s
+assert "뉴스" in s[0]["topic_key"], s[0]["topic_key"]     # 11-18: 주제 이름은 AI 검색어('출생아 수')가 아니라 뉴스 제목으로
 # energy
 import yfinance as yf
 class T:
