@@ -67,6 +67,10 @@ assert numbers.unverified(body, facts) == ["27.5%"], numbers.unverified(body, fa
 f2 = "- 1인가구 2025년 8,244,308가구\n- 원유 재고(천 배럴): 409,760, 410,625"
 b2 = "1인 가구는 824만 4,308가구, 금액 1억 2,000만 원. 재고 4억 976만 배럴, 1주 86만 5천 배럴 감소. 일반가구 2,249만 5,097가구."
 assert numbers.unverified(b2, f2) == ["1억 2,000만 원", "2,249만 5,097가구"], numbers.unverified(b2, f2)
+# 11-18: 영어 원문 'billion/million'을 억·만으로 옮긴 숫자, 본문 두 숫자의 비율(배)은 맞는 것으로, 틀린 비율은 잡음
+f3 = "Market valuation now totals US $2.22 billion, up from $0.4 billion in 2022. The fund raised $27.5 million."
+b3 = "시장은 4억 달러에서 22억 2,000만 달러로 5.55배 커졌고(22.2억), 펀드는 2,750만 달러. 다른 곳은 7.1배."
+assert numbers.unverified(b3, f3) == ["7.1배"], numbers.unverified(b3, f3)
 _, iss2, _ = lint.fix_and_check("<h1>t</h1><p>양도세는 250만 원 공제 후 22%입니다. 250만 원 공제, 22%. 250만 원과 22%. 다시 250만 원.</p>"
                                 "<p>국내 주식형 ETF의 매매차익은 비과세 혜택이 적용됩니다.</p><p>단, 국내 주식형 ETF의 매매차익은 비과세 혜택입니다.</p>"
                                 "<table><tr><td>보수</td><td>확인 필요</td></tr></table>")
