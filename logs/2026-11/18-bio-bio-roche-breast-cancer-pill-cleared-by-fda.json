@@ -1,0 +1,408 @@
+{
+ "article_type": "bio",
+ "topic_id": "bio:roche-breast-cancer-pill-cleared-by-fda",
+ "title_seed": "로슈의 유방암 치료제 FDA 승인",
+ "category": "bio",
+ "started_at": "2026-11-18T21:05:58",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.4,
+   "chars": 1974
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 175.9,
+   "chars": 4382
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 21.8,
+   "chars": 212
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.0,
+   "chars": 396
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.4,
+   "chars": 146
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.7,
+   "chars": 802
+  },
+  {
+   "step": "검토 11(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 11(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 32.0,
+   "chars": 225
+  },
+  {
+   "step": "검토 11(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.9,
+   "chars": 663
+  },
+  {
+   "step": "검토 11(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.6,
+   "chars": 190
+  },
+  {
+   "step": "부분 고침 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.9,
+   "chars": 386
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 64.7,
+   "chars": 465
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.2,
+   "chars": 758
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.2,
+   "chars": 190
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.1,
+   "chars": 957
+  },
+  {
+   "step": "부분 고침 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 50.2,
+   "chars": 769
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 126.9,
+   "chars": 196
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 889
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.8,
+   "chars": 210
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.0,
+   "chars": 854
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 51.3,
+   "chars": 175
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.0,
+   "chars": 444
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.9,
+   "chars": 198
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "21:06:12",
+   "title": "로슈의 경구용 유방암 신약 '윌서들리' FDA 승인과 전 세계 임상 현황은?",
+   "sections": [
+    "미국 FDA 승인과 신약의 위상",
+    "전 세계 유방암 임상시험 수치 분석",
+    "관련 보도로 본 신약의 주요 특징",
+    "블록버스터 기대감과 임상 수치의 올바른 해석"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "21:09:11",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "21:15:11",
+   "score": 0.76,
+   "new_serious": [
+    "[중요·독자 편집] '이번 승인은 글로벌 제약 시장에서 로슈가 추진하는 주요 제품 출시 과정의 중요한 첫 단계로 평가받고 있습니다' → 신약 승인 기사라면 다른 약물에도 그대로 적용될 수 있는 일반적인 내용의 문단입니다. / 고칠 방법: 윌서들리의 구체적인 치료 영역과 시장성에 집중하여 내용을 작성하세요."
+   ]
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "21:15:11",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "ESR1 변이 환자군에서의 62% 위험 감소 수치와 임상 건수의 해석 기준을 독자가 상황별로 적용할 수 있게 조건별로 연결하기",
+   "issues": [
+    "[사소·독자 편집] '전 세계에서 진행 중인 전체 유방암 임상시험 1만 7,022건과 비교하면 로슈 관련 임상 337건은 전체 연' → 표에 있는 내용을 문장에서 그대로 다시 설명하고 있습니다. / 고칠 방법: 표 내용을 반복하는 대신 표의 수치가 전체 연구에서 차지하는 맥락만 간략히 언급하세요.",
+    "[중요·독자 편집] '이번 승인은 글로벌 제약 시장에서 로슈가 추진하는 주요 제품 출시 과정의 중요한 첫 단계로 평가받고 있습니다' → 신약 승인 기사라면 다른 약물에도 그대로 적용될 수 있는 일반적인 내용의 문단입니다. / 고칠 방법: 윌서들리의 구체적인 치료 영역과 시장성에 집중하여 내용을 작성하세요."
+   ],
+   "fixes": [
+    "마크다운 표기를 HTML로 변환",
+    "마크다운 목록을 HTML 목록으로 변환",
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2782
+  },
+  {
+   "step": "부분 고침",
+   "at": "21:15:16",
+   "applied": 2
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "21:16:45",
+   "score": 0.73,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "ESR1 변이군 질병 진행 위험 62% 감소라는 구체적인 임상 유효성 수치를 본문에 표나 세부 설명으로 더 상세히 다루기.",
+   "issues": [
+    "[중요·사실 검증] '경구용 제제라는 특성은 환자의 복약 편의성을 높일 수 있는 요소로 꼽힙니다.' → [사실 자료]에 언급되지 않은 경구용 제제의 복약 편의성에 대한 일반적인 통념을 사실처럼 단정하여 기술했습니다. / 고칠 방법: 자료에 없는 주장을 삭제하거나 [사실 자료]에 있는 내용만을 바탕으로 문장을 작성하세요.",
+    "[중요·독자 편집] '시장 분석가들은 윌서들리의 미국 승인이 상업적 성공을 위한 핵심 기반이 될 것으로 보고 있습니다. 로슈 측은' → 앞선 문단에서 이미 언급된 시장 분석가들의 평가와 로슈 측의 기대감 내용이 반복되고 있습니다. / 고칠 방법: 중복되는 분석가 평가와 매출 기대감 문장을 삭제하고 단일 문단으로 통합하세요.",
+    "[사소·독자 편집] '구체적인 유효성 지표와 관련해 더바이오[링크]는 윌서들리가 질병 진행 및 사망 위험을 62% 감소시켰다고 보' → 바로 다음 문단에서 동일한 62% 감소 수치와 ESR1 변이 환자군에 대한 내용이 다시 설명되고 있습니다. / 고칠 방법: 두 문단에 나뉘어 있는 질병 진행 위험 62% 감소와 ESR1 변이 관련 내용을 하나의 문단으로 합치세요."
+   ],
+   "chars": 2773
+  },
+  {
+   "step": "부분 고침",
+   "at": "21:17:38",
+   "applied": 3
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "21:21:58",
+   "score": 0.97
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "21:21:58",
+   "score": 0.91,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 질문에 대해 본문에서 조건과 숫자를 포함한 명확한 종합 결론을 직접 답하도록 수정하기",
+   "issues": [
+    "[사소·독자 편집] '2026년 11월 18일 기준 미국 국립보건원 임상시험 등록소에 집계된 전 세계 유방암 관련 임상시험 1만 ' → 도입부의 숫자(17,022건, 337건)와 설명이 '전 세계 유방암 임상시험 수치 분석' 섹션에 그대로 되풀이되어 있습니다. / 고칠 방법: 본문 섹션의 중복 설명 문장을 압축하거나 생략하세요.",
+    "[사소·독자 편집] '이 수치는 전 세계 유방암 연구 현황 속에서 로슈 관련 임상이 차지하는 연관성과 활성화 정도를 보여줍니다. ' → 같은 의미의 문장이 연속으로 배치되어 분량이 늘어났습니다. / 고칠 방법: 두 문장을 하나로 합쳐서 간결하게 수정하세요.",
+    "[사소·독자 편집] '구분 임상시험 등록 건수 전 세계 유방암 임상시험 전체 17,022건 로슈 관련 임상시험 337건' → 표의 내용을 바로 앞이나 뒤 문장에서 수치와 함께 그대로 다시 읽어주고 있습니다. / 고칠 방법: 문장 내에서 세부 수치를 반복하는 대신 표를 가리키는 표현으로 대체하세요."
+   ],
+   "chars": 2570
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "로슈의 경구용 유방암 신약 윌서들리 FDA 승인과 전 세계 임상 현황은?",
+  "url": "https://ondo99.com/?p=528",
+  "score": 0.91,
+  "issues": [
+   "[사소·독자 편집] '2026년 11월 18일 기준 미국 국립보건원 임상시험 등록소에 집계된 전 세계 유방암 관련 임상시험 1만 ' → 도입부의 숫자(17,022건, 337건)와 설명이 '전 세계 유방암 임상시험 수치 분석' 섹션에 그대로 되풀이되어 있습니다. / 고칠 방법: 본문 섹션의 중복 설명 문장을 압축하거나 생략하세요.",
+   "[사소·독자 편집] '이 수치는 전 세계 유방암 연구 현황 속에서 로슈 관련 임상이 차지하는 연관성과 활성화 정도를 보여줍니다. ' → 같은 의미의 문장이 연속으로 배치되어 분량이 늘어났습니다. / 고칠 방법: 두 문장을 하나로 합쳐서 간결하게 수정하세요.",
+   "[사소·독자 편집] '구분 임상시험 등록 건수 전 세계 유방암 임상시험 전체 17,022건 로슈 관련 임상시험 337건' → 표의 내용을 바로 앞이나 뒤 문장에서 수치와 함께 그대로 다시 읽어주고 있습니다. / 고칠 방법: 문장 내에서 세부 수치를 반복하는 대신 표를 가리키는 표현으로 대체하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 원문]\n제목: Roche breast cancer pill cleared by FDA (BioPharma Dive - Latest News, https://www.biopharmadive.com/news/roche-fda-approve-wilserdly-giredestrant-breast-cancer/874884/)\n본문 발췌:  Wilserdly&rsquo;s U.S. approval is seen by analysts as a &ldquo;key first step&rdquo; in an important launch for Roche, which has claimed the drug could become its top-selling product. \n\n[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '유방암', 2026-11-18 조회. 전 세계에서 등록된 임상 기준]\n- 등록된 임상시험 전체: 17,022건\n- 이 약·치료법('로슈')이 들어간 임상: 337건\n- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.\n\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n- FDA, 로슈 경구용 유방암 신약 ‘윌서들리’ 승인 - 의약뉴스 (의약뉴스) https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KWk1LRk8zVFF2WExCOVdPakhVdWl5ZGxDdHVfVVpEMU1LNTl3ekxYZUtqQW9jczhqTG42VnNIUjZDcVFHbzBiSXB0RE1HU1hrNUZlV19PNE5TZjRKMUNEdUU5aVJZNU5o?oc=5\n- 로슈, 경구용 유방암 신약 ‘윌서들리’ 美 승인…질병 진행·사망 위험 62% 감소 - 더바이오 (더바이오) https://news.google.com/rss/articles/CBMibEFVX3lxTE1UZjk4Q3REdm50Zi1OMmdURGM1OXM3RXJqX3hBd2c1VWFRZnpnaE1yYlc1a0t5NGRkSFAxWEFEX0QzTDJXaUFhckdIZFp4SjFYVENJeTBoM3FJS0VmbV9Ic19uenhUVE5vYW5aMtIBcEFVX3lxTFBSSFVCeEVGT01hZDlwWW53d0F3ZDJ5TFNfS2hsUUNrMjhHWHo3dXJMel8ySmZlc0pSdWc1VlJjQ0M2TUEyRlpqT09iaTZmdDFSSXVpczBySnZxbXNYX3ZsLXpkY0JUX1lUSV8tV3lYQW8?oc=5\n- 로슈 경구 유방암 신약 美 FDA 승인…ESR1 변이군 진행위험 62% 감소 - 메디코파마 (메디코파마) https://news.google.com/rss/articles/CBMickFVX3lxTE1TMXlDWUpBN0hvcVh5MTA3UVA2Z3NYQlhkcTFBWDRiTkNRRlUtcmhXQUR5eGhWVHd0eGpxcEd6SFlDcjBIQnZFOXBOSEpsQjNaRnBac3BDckdFVjEyTXV0R2NPU1kzNkgzejlHcnRRWkZjZw?oc=5\n- 로슈, 먹는 유방암 치료제 美 FDA 승인…블록버스터 신약 기대감↑｜Global Money Club - 중앙일보 (중앙일보) https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sRllkTFU0UTNxYnFNWXpQT0o5U1Y0RUM1Skl1MHJRUXpHQ1RLMVI4cUJZV01GWS1wNk9mSmdQRkZxZU1sc2RvZFJ3VXBRc2JuS19jV3l5ZjJpNXM?oc=5\n\n",
+ "drafts": {
+  "1": "<h1>로슈의 경구용 유방암 신약 윌서들리 FDA 승인과 전 세계 임상 현황은?</h1>\n<!-- 글로벌 제약사 로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 획득했습니다. 전 세계 1만 7,022건의 유방암 임상 중 로슈 관련 임상 수치와 주요 보도 내용을 정리했습니다. -->\n\n<p>스위스계 글로벌 제약사 로슈의 경구용 유방암 치료제 윌서들리가 미국 식품의약국(FDA) 승인을 받았습니다. 2026년 11월 18일 기준 미국 국립보건원 임상시험 등록소에 집계된 전 세계 유방암 관련 임상시험 1만 7,022건 가운데 로슈의 약물이나 치료법이 포함된 임상은 총 337건입니다.</p>\n\n<p>이번 승인은 주사제가 아닌 먹는 형태의 유방암 신약이 공식 치료 옵션으로 진입했다는 점에서 주목을 받고 있습니다. 개발사와 시장 분석가들이 바라보는 평가부터 공개된 임상 데이터의 규모까지 핵심 사실을 살펴봅니다.</p>\n\n<h3>미국 FDA 승인과 신약의 위상</h3>\n\n<a href=\"https://www.biopharmadive.com/news/roche-fda-approve-wilserdly-giredestrant-breast-cancer/874884/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>에 따르면 로슈의 경구용 유방암 치료제 윌서들리가 미국 FDA 승인을 획득했습니다. 이번 승인은 글로벌 제약 시장에서 로슈가 추진하는 주요 제품 출시 과정의 중요한 첫 단계로 평가받고 있습니다.\n\n<p>시장 분석가들은 윌서들리의 미국 승인이 상업적 성공을 위한 핵심 기반이 될 것으로 보고 있습니다. 로슈 측은 해당 약물이 향후 자사 내에서 가장 높은 매출을 기록하는 대표 제품으로 자리 잡을 수 있다는 기대감을 밝혀왔습니다.</p>\n\n<p>경구용 제제라는 특성은 환자의 복약 편의성을 높일 수 있는 요소로 꼽힙니다. FDA의 이번 결정으로 로슈는 유방암 치료제 시장에서 독자적인 입지를 강화할 수 있는 계기를 마련하게 되었습니다.</p>\n\n<h3>전 세계 유방암 임상시험 수치 분석</h3>\n\n<p>유방암 치료 분야의 전체 연구 활동 현황을 파악하기 위해 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료를 확인했습니다. 2026년 11월 18일 조회 기준, 전 세계에 등록된 유방암 관련 임상시험은 총 17,022건으로 집계되었습니다.</p>\n\n<p>이 가운데 로슈의 약물이나 치료법이 포함된 유방암 임상시험은 337건을 기록하고 있습니다. 개발사의 연구 개발 역량이 전 세계 유방암 치료제 연구 시장에서 차지하는 비중을 수치로 파악할 수 있는 지표입니다.</p>\n\n<table>\n<tr><th>구분</th><th>임상시험 등록 건수</th></tr>\n<tr><td>전 세계 유방암 임상시험 전체</td><td>17,022건</td></tr>\n<tr><td>로슈 관련 임상시험</td><td>337건</td></tr>\n</table>\n\n<p>전 세계에서 진행 중인 전체 유방암 임상시험 1만 7,022건과 비교하면 로슈 관련 임상 337건은 전체 연구의 일부 비중을 차지합니다. 이러한 등록 수치는 해당 연구진과 제약사가 해당 질환 영역에서 지속적인 임상 연구를 전개하고 있음을 보여줍니다.</p>\n\n<h3>관련 보도로 본 신약의 주요 특징</h3>\n\n<p>국내 주요 언론에서도 윌서들리의 FDA 승인 소식과 주요 임상 결과를 일제히 보도했습니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KWk1LRk8zVFF2WExCOVdPakhVdWl5ZGxDdHVfVVpEMU1LNTl3ekxYZUtqQW9jczhqTG42VnNIUjZDcVFHbzBiSXB0RE1HU1hrNUZlV19PNE5TZjRKMUNEdUU5aVJZNU5o?oc=5\" target=\"_blank\" rel=\"noopener\">의약뉴스</a>는 로슈의 경구용 유방암 신약 윌서들리가 FDA 승인을 획득했다는 사실을 전달했습니다.</p>\n\n<p>구체적인 유효성 지표와 관련해 <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1UZjk4Q3REdm50Zi1OMmdURGM1OXM3RXJqX3hBd2c1VWFRZnpnaE1yYlc1a0t5NGRkSFAxWEFEX0QzTDJXaUFhckdIZFp4SjFYVENJeTBoM3FJS0VmbV9Ic19uenhUVE5vYW5aMtIBcEFVX3lxTFBSSFVCeEVGT01hZDlwWW53d0F3ZDJ5TFNfS2hsUUNrMjhHWHo3dXJMel8ySmZlc0pSdWc1VlJjQ0M2TUEyRlpqT09iaTZmdDFSSXVpczByJnZxbXNYX3ZsLXpkY0JUX1lUSV8tV3lYQW8?oc=5\" target=\"_blank\" rel=\"noopener\">더바이오</a>는 윌서들리가 질병 진행 및 사망 위험을 62% 감소시켰다고 보도했습니다. 신약이 임상 단계에서 입증한 유익성을 수치로 제시한 대목입니다.</p>\n\n<p>특정 변이 환자군에 대한 효과도 확인되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE1TMXlDWUpBN0hvcVh5MTA3UVA2Z3NYQlhkcTFBWDRiTkNRRlUtcmhXQUR5eGhWVHd0xGpxcEd6SFlDcjBIQnZFOXBOSEpsQjNaRnBac3BDckdFVjEyTXV0R2NPU1kzNkgzejlHcnRRWkZjZw?oc=5\" target=\"_blank\" rel=\"noopener\">메디코파마</a>는 윌서들리가 ESR1 변이 환자군에서 질병 진행 위험을 62% 낮췄다는 보도 내용을 통해 세부 표적 치료 효과를 설명했습니다.</p>\n\n<h3>블록버스터 기대감과 임상 수치의 올바른 해석</h3>\n\n<p>편의성을 갖춘 경구용 항암제 승인에 따라 시장의 기대감도 높아지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sRllkTFU0UTNxYnFNWXpQT0o5U1Y0RUM1Skl1MHJRUXpHQ1RLMVI4cUJZV01GWS1wNk9mSmdQRkZxZU1sc2RvZFJ3VXBRc2JuS19jV3l5ZjJpNXM?oc=5\" target=\"_blank\" rel=\"noopener\">중앙일보</a>는 이번 승인으로 먹는 유방암 치료제에 대한 블록버스터 신약 기대감이 커지고 있다고 전했습니다.</p>\n\n<p>다만 공식 임상시험 등록소에 기재된 수치를 읽을 때는 명확한 기준이 필요합니다. 등록된 임상시험 건수는 해당 질환에 대해 연구가 얼마나 활발하게 이루어지고 있는지를 보여주는 지표일 뿐입니다.</p>\n\n<p>임상시험 건수가 많다는 사실 자체가 해당 약물의 최종 치료 효과나 안전성을 직접 보증하는 것은 아닙니다. 데이터 분석 시 연구의 양적 규모와 개별 임상 결과의 질적 가치를 구분하여 파악하는 태도가 중요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 약의 효과와 안전성이 더 뛰어나다는 뜻인가요?</h4>\n<p>그렇지 않습니다. 등록 건수는 해당 약물이나 치료법에 대한 연구 개발 활동이 얼마나 활발하게 진행 중인지를 나타내는 지표입니다. 임상 건수 자체가 개별 약물의 최종 치료 효과나 안전성을 보증하지는 않으므로 개별 임상 데이터를 확인해야 합니다.</p>\n\n<h4>🔸 로슈의 신약 윌서들리의 미국 FDA 승인은 회사 내부에서 어떤 단계로 평가받고 있나요?</h4>\n<p>분석가들은 윌서들리의 미국 승인을 주요 신약 출시 과정에서 거쳐야 할 핵심적인 첫 단계로 평가하고 있습니다. 로슈 측은 해당 약물이 자사 내 최고 매출을 올리는 대표 제품으로 성장할 가능성이 있다고 보고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 받으며 상업화의 첫 단추를 꿰었습니다. 글로벌 임상 등록소 자료에 집계된 337건의 로슈 관련 임상 수치는 활발한 치료제 연구 개발 현황을 숫자로 보여줍니다.</p>\n\n<p>앞으로 관련 신약 뉴스나 제약 바이오 자료를 검토할 때는 몇 가지 기준을 나누어 살펴보는 것이 좋습니다. 데이터와 보도를 객관적으로 읽기 위한 기준은 다음과 같습니다.</p>\n\n\n<ul><li><strong>임상 등록 건수와 유효성의 구분</strong>: 등록 건수는 연구 활성도를 뜻하며, 약물의 치료 효과와 위험 감소율(예: 62% 감소)은 별도의 임상 결과 수치로 판단합니다.</li><li><strong>표적 환자군 조건 확인</strong>: 임상 결과가 특정 변이(예: ESR1 변이)를 가진 환자군을 대상으로 도출된 수치인지 조건 범위를 파악합니다.</li><li><strong>제형과 승인 단계</strong>: 경구용 등 복용 제형의 특성과 함께 승인받은 국가의 규제 기관(FDA 등) 및 승인 단계를 확인합니다.</li></ul>\n\n<p><strong>한 줄 정리:</strong> 윌서들리의 FDA 승인은 경구용 신약의 치료 가능성을 열었으며, 임상 등록 건수는 효과가 아닌 연구 활성도의 지표입니다.</p>\n\n태그: 로슈 윌서들리 유방암신약 FDA승인 ClinicalTrials",
+  "2": "<h1>로슈의 경구용 유방암 신약 윌서들리 FDA 승인과 전 세계 임상 현황은?</h1>\n<!-- 글로벌 제약사 로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 획득했습니다. 전 세계 1만 7,022건의 유방암 임상 중 로슈 관련 임상 수치와 주요 보도 내용을 정리했습니다. -->\n\n<p>스위스계 글로벌 제약사 로슈의 경구용 유방암 치료제 윌서들리가 미국 식품의약국(FDA) 승인을 받았습니다. 2026년 11월 18일 기준 미국 국립보건원 임상시험 등록소에 집계된 전 세계 유방암 관련 임상시험 1만 7,022건 가운데 로슈의 약물이나 치료법이 포함된 임상은 총 337건입니다.</p>\n\n<p>이번 승인은 주사제가 아닌 먹는 형태의 유방암 신약이 공식 치료 옵션으로 진입했다는 점에서 주목을 받고 있습니다. 개발사와 시장 분석가들이 바라보는 평가부터 공개된 임상 데이터의 규모까지 핵심 사실을 살펴봅니다.</p>\n\n<h3>미국 FDA 승인과 신약의 위상</h3>\n\n<a href=\"https://www.biopharmadive.com/news/roche-fda-approve-wilserdly-giredestrant-breast-cancer/874884/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>에 따르면 로슈의 경구용 유방암 치료제 윌서들리가 미국 FDA 승인을 획득했습니다. 이번 승인은 경구용 유방암 치료제인 윌서들리가 글로벌 시장에서 상업적 성과를 내기 위한 중요한 첫 단계로 평가받고 있습니다.\n\n<p>시장 분석가들은 윌서들리의 미국 승인이 상업적 성공을 위한 핵심 기반이 될 것으로 보고 있습니다. 로슈 측은 해당 약물이 향후 자사 내에서 가장 높은 매출을 기록하는 대표 제품으로 자리 잡을 수 있다는 기대감을 밝혀왔습니다.</p>\n\n<p>경구용 제제라는 특성은 환자의 복약 편의성을 높일 수 있는 요소로 꼽힙니다. FDA의 이번 결정으로 로슈는 유방암 치료제 시장에서 독자적인 입지를 강화할 수 있는 계기를 마련하게 되었습니다.</p>\n\n<h3>전 세계 유방암 임상시험 수치 분석</h3>\n\n<p>유방암 치료 분야의 전체 연구 활동 현황을 파악하기 위해 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료를 확인했습니다. 2026년 11월 18일 조회 기준, 전 세계에 등록된 유방암 관련 임상시험은 총 17,022건으로 집계되었습니다.</p>\n\n<p>이 가운데 로슈의 약물이나 치료법이 포함된 유방암 임상시험은 337건을 기록하고 있습니다. 개발사의 연구 개발 역량이 전 세계 유방암 치료제 연구 시장에서 차지하는 비중을 수치로 파악할 수 있는 지표입니다.</p>\n\n<table>\n<tr><th>구분</th><th>임상시험 등록 건수</th></tr>\n<tr><td>전 세계 유방암 임상시험 전체</td><td>17,022건</td></tr>\n<tr><td>로슈 관련 임상시험</td><td>337건</td></tr>\n</table>\n\n<p>이 수치는 전 세계 유방암 연구 현황 속에서 로슈 관련 임상이 차지하는 연관성과 활성화 정도를 보여줍니다. 이러한 등록 수치는 해당 연구진과 제약사가 해당 질환 영역에서 지속적인 임상 연구를 전개하고 있음을 보여줍니다.</p>\n\n<h3>관련 보도로 본 신약의 주요 특징</h3>\n\n<p>국내 주요 언론에서도 윌서들리의 FDA 승인 소식과 주요 임상 결과를 일제히 보도했습니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KWk1LRk8zVFF2WExCOVdPakhVdWl5ZGxDdHVfVVpEMU1LNTl3ekxYZUtqQW9jczhqTG42VnNIUjZDcVFHbzBiSXB0RE1HU1hrNUZlV19PNE5TZjRKMUNEdUU5aVJZNU5o?oc=5\" target=\"_blank\" rel=\"noopener\">의약뉴스</a>는 로슈의 경구용 유방암 신약 윌서들리가 FDA 승인을 획득했다는 사실을 전달했습니다.</p>\n\n<p>구체적인 유효성 지표와 관련해 <a href=\"https://news.google.com/rss/articles/CBMibEFVX3lxTE1UZjk4Q3REdm50Zi1OMmdURGM1OXM3RXJqX3hBd2c1VWFRZnpnaE1yYlc1a0t5NGRkSFAxWEFEX0QzTDJXaUFhckdIZFp4SjFYVENJeTBoM3FJS0VmbV9Ic19uenhUVE5vYW5aMtIBcEFVX3lxTFBSSFVCeEVGT01hZDlwWW53d0F3ZDJ5TFNfS2hsUUNrMjhHWHo3dXJMel8ySmZlc0pSdWc1VlJjQ0M2TUEyRlpqT09iaTZmdDFSSXVpczByJnZxbXNYX3ZsLXpkY0JUX1lUSV8tV3lYQW8?oc=5\" target=\"_blank\" rel=\"noopener\">더바이오</a>는 윌서들리가 질병 진행 및 사망 위험을 62% 감소시켰다고 보도했습니다. 신약이 임상 단계에서 입증한 유익성을 수치로 제시한 대목입니다.</p>\n\n<p>특정 변이 환자군에 대한 효과도 확인되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE1TMXlDWUpBN0hvcVh5MTA3UVA2Z3NYQlhkcTFBWDRiTkNRRlUtcmhXQUR5eGhWVHd0xGpxcEd6SFlDcjBIQnZFOXBOSEpsQjNaRnBac3BDckdFVjEyTXV0R2NPU1kzNkgzejlHcnRRWkZjZw?oc=5\" target=\"_blank\" rel=\"noopener\">메디코파마</a>는 윌서들리가 ESR1 변이 환자군에서 질병 진행 위험을 62% 낮췄다는 보도 내용을 통해 세부 표적 치료 효과를 설명했습니다.</p>\n\n<h3>블록버스터 기대감과 임상 수치의 올바른 해석</h3>\n\n<p>편의성을 갖춘 경구용 항암제 승인에 따라 시장의 기대감도 높아지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sRllkTFU0UTNxYnFNWXpQT0o5U1Y0RUM1Skl1MHJRUXpHQ1RLMVI4cUJZV01GWS1wNk9mSmdQRkZxZU1sc2RvZFJ3VXBRc2JuS19jV3l5ZjJpNXM?oc=5\" target=\"_blank\" rel=\"noopener\">중앙일보</a>는 이번 승인으로 먹는 유방암 치료제에 대한 블록버스터 신약 기대감이 커지고 있다고 전했습니다.</p>\n\n<p>다만 공식 임상시험 등록소에 기재된 수치를 읽을 때는 명확한 기준이 필요합니다. 등록된 임상시험 건수는 해당 질환에 대해 연구가 얼마나 활발하게 이루어지고 있는지를 보여주는 지표일 뿐입니다.</p>\n\n<p>임상시험 건수가 많다는 사실 자체가 해당 약물의 최종 치료 효과나 안전성을 직접 보증하는 것은 아닙니다. 데이터 분석 시 연구의 양적 규모와 개별 임상 결과의 질적 가치를 구분하여 파악하는 태도가 중요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 약의 효과와 안전성이 더 뛰어나다는 뜻인가요?</h4>\n<p>그렇지 않습니다. 등록 건수는 해당 약물이나 치료법에 대한 연구 개발 활동이 얼마나 활발하게 진행 중인지를 나타내는 지표입니다. 임상 건수 자체가 개별 약물의 최종 치료 효과나 안전성을 보증하지는 않으므로 개별 임상 데이터를 확인해야 합니다.</p>\n\n<h4>🔸 로슈의 신약 윌서들리의 미국 FDA 승인은 회사 내부에서 어떤 단계로 평가받고 있나요?</h4>\n<p>분석가들은 윌서들리의 미국 승인을 주요 신약 출시 과정에서 거쳐야 할 핵심적인 첫 단계로 평가하고 있습니다. 로슈 측은 해당 약물이 자사 내 최고 매출을 올리는 대표 제품으로 성장할 가능성이 있다고 보고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 받으며 상업화의 첫 단추를 꿰었습니다. 글로벌 임상 등록소 자료에 집계된 337건의 로슈 관련 임상 수치는 활발한 치료제 연구 개발 현황을 숫자로 보여줍니다.</p>\n\n<p>앞으로 관련 신약 뉴스나 제약 바이오 자료를 검토할 때는 몇 가지 기준을 나누어 살펴보는 것이 좋습니다. 데이터와 보도를 객관적으로 읽기 위한 기준은 다음과 같습니다.</p>\n\n\n<ul><li><strong>임상 등록 건수와 유효성의 구분</strong>: 등록 건수는 연구 활성도를 뜻하며, 약물의 치료 효과와 위험 감소율(예: 62% 감소)은 별도의 임상 결과 수치로 판단합니다.</li><li><strong>표적 환자군 조건 확인</strong>: 임상 결과가 특정 변이(예: ESR1 변이)를 가진 환자군을 대상으로 도출된 수치인지 조건 범위를 파악합니다.</li><li><strong>제형과 승인 단계</strong>: 경구용 등 복용 제형의 특성과 함께 승인받은 국가의 규제 기관(FDA 등) 및 승인 단계를 확인합니다.</li></ul>\n\n<p><strong>한 줄 정리:</strong> 윌서들리의 FDA 승인은 경구용 신약의 치료 가능성을 열었으며, 임상 등록 건수는 효과가 아닌 연구 활성도의 지표입니다.</p>\n\n태그: 로슈 윌서들리 유방암신약 FDA승인 ClinicalTrials",
+  "3": "<h1>로슈의 경구용 유방암 신약 윌서들리 FDA 승인과 전 세계 임상 현황은?</h1>\n<!-- 글로벌 제약사 로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 획득했습니다. 전 세계 1만 7,022건의 유방암 임상 중 로슈 관련 임상 수치와 주요 보도 내용을 정리했습니다. -->\n\n<p>스위스계 글로벌 제약사 로슈의 경구용 유방암 치료제 윌서들리가 미국 식품의약국(FDA) 승인을 받았습니다. 2026년 11월 18일 기준 미국 국립보건원 임상시험 등록소에 집계된 전 세계 유방암 관련 임상시험 1만 7,022건 가운데 로슈의 약물이나 치료법이 포함된 임상은 총 337건입니다.</p>\n\n<p>이번 승인은 주사제가 아닌 먹는 형태의 유방암 신약이 공식 치료 옵션으로 진입했다는 점에서 주목을 받고 있습니다. 개발사와 시장 분석가들이 바라보는 평가부터 공개된 임상 데이터의 규모까지 핵심 사실을 살펴봅니다.</p>\n\n<h3>미국 FDA 승인과 신약의 위상</h3>\n\n<a href=\"https://www.biopharmadive.com/news/roche-fda-approve-wilserdly-giredestrant-breast-cancer/874884/\" target=\"_blank\" rel=\"noopener\">BioPharma Dive</a>에 따르면 로슈의 경구용 유방암 치료제 윌서들리가 미국 FDA 승인을 획득했습니다. 이번 승인은 경구용 유방암 치료제인 윌서들리가 글로벌 시장에서 상업적 성과를 내기 위한 중요한 첫 단계로 평가받고 있습니다.\n\n<p> 해당 약물이 향후 자사 내에서 가장 높은 매출을 기록하는 대표 제품으로 자리 잡을 수 있다는 기대감을 밝혀왔습니다.</p>\n\n<p> FDA의 이번 결정으로 로슈는 유방암 치료제 시장에서 독자적인 입지를 강화할 수 있는 계기를 마련하게 되었습니다.</p>\n\n<h3>전 세계 유방암 임상시험 수치 분석</h3>\n\n<p>유방암 치료 분야의 전체 연구 활동 현황을 파악하기 위해 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov) 자료를 확인했습니다. 2026년 11월 18일 조회 기준, 전 세계에 등록된 유방암 관련 임상시험은 총 17,022건으로 집계되었습니다.</p>\n\n<p>이 가운데 로슈의 약물이나 치료법이 포함된 유방암 임상시험은 337건을 기록하고 있습니다. 개발사의 연구 개발 역량이 전 세계 유방암 치료제 연구 시장에서 차지하는 비중을 수치로 파악할 수 있는 지표입니다.</p>\n\n<table>\n<tr><th>구분</th><th>임상시험 등록 건수</th></tr>\n<tr><td>전 세계 유방암 임상시험 전체</td><td>17,022건</td></tr>\n<tr><td>로슈 관련 임상시험</td><td>337건</td></tr>\n</table>\n\n<p>이 수치는 전 세계 유방암 연구 현황 속에서 로슈 관련 임상이 차지하는 연관성과 활성화 정도를 보여줍니다. 이러한 등록 수치는 해당 연구진과 제약사가 해당 질환 영역에서 지속적인 임상 연구를 전개하고 있음을 보여줍니다.</p>\n\n<h3>관련 보도로 본 신약의 주요 특징</h3>\n\n<p>국내 주요 언론에서도 윌서들리의 FDA 승인 소식과 주요 임상 결과를 일제히 보도했습니다. <a href=\"https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KWk1LRk8zVFF2WExCOVdPakhVdWl5ZGxDdHVfVVpEMU1LNTl3ekxYZUtqQW9jczhqTG42VnNIUjZDcVFHbzBiSXB0RE1HU1hrNUZlV19PNE5TZjRKMUNEdUU5aVJZNU5o?oc=5\" target=\"_blank\" rel=\"noopener\">의약뉴스</a>는 로슈의 경구용 유방암 신약 윌서들리가 FDA 승인을 획득했다는 사실을 전달했습니다.</p>\n\n\n\n<p>특정 변이 환자군에 대한 효과도 확인되었습니다. <a href=\"https://news.google.com/rss/articles/CBMickFVX3lxTE1TMXlDWUpBN0hvcVh5MTA3UVA2Z3NYQlhkcTFBWDRiTkNRRlUtcmhXQUR5eGhWVHd0xGpxcEd6SFlDcjBIQnZFOXBOSEpsQjNaRnBac3BDckdFVjEyTXV0R2NPU1kzNkgzejlHcnRRWkZjZw?oc=5\" target=\"_blank\" rel=\"noopener\">메디코파마</a>는 윌서들리가 ESR1 변이 환자군에서 질병 진행 위험을 62% 낮췄다는 보도 내용을 통해 세부 표적 치료 효과를 설명했습니다.</p>\n\n<h3>블록버스터 기대감과 임상 수치의 올바른 해석</h3>\n\n<p>편의성을 갖춘 경구용 항암제 승인에 따라 시장의 기대감도 높아지고 있습니다. <a href=\"https://news.google.com/rss/articles/CBMiW0FVX3lxTE5sRllkTFU0UTNxYnFNWXpQT0o5U1Y0RUM1Skl1MHJRUXpHQ1RLMVI4cUJZV01GWS1wNk9mSmdQRkZxZU1sc2RvZFJ3VXBRc2JuS19jV3l5ZjJpNXM?oc=5\" target=\"_blank\" rel=\"noopener\">중앙일보</a>는 이번 승인으로 먹는 유방암 치료제에 대한 블록버스터 신약 기대감이 커지고 있다고 전했습니다.</p>\n\n<p>다만 공식 임상시험 등록소에 기재된 수치를 읽을 때는 명확한 기준이 필요합니다. 등록된 임상시험 건수는 해당 질환에 대해 연구가 얼마나 활발하게 이루어지고 있는지를 보여주는 지표일 뿐입니다.</p>\n\n<p>임상시험 건수가 많다는 사실 자체가 해당 약물의 최종 치료 효과나 안전성을 직접 보증하는 것은 아닙니다. 데이터 분석 시 연구의 양적 규모와 개별 임상 결과의 질적 가치를 구분하여 파악하는 태도가 중요합니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 임상시험 등록 건수가 많으면 해당 약의 효과와 안전성이 더 뛰어나다는 뜻인가요?</h4>\n<p>그렇지 않습니다. 등록 건수는 해당 약물이나 치료법에 대한 연구 개발 활동이 얼마나 활발하게 진행 중인지를 나타내는 지표입니다. 임상 건수 자체가 개별 약물의 최종 치료 효과나 안전성을 보증하지는 않으므로 개별 임상 데이터를 확인해야 합니다.</p>\n\n<h4>🔸 로슈의 신약 윌서들리의 미국 FDA 승인은 회사 내부에서 어떤 단계로 평가받고 있나요?</h4>\n<p>분석가들은 윌서들리의 미국 승인을 주요 신약 출시 과정에서 거쳐야 할 핵심적인 첫 단계로 평가하고 있습니다. 로슈 측은 해당 약물이 자사 내 최고 매출을 올리는 대표 제품으로 성장할 가능성이 있다고 보고 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>로슈의 경구용 유방암 신약 윌서들리가 미국 FDA 승인을 받으며 상업화의 첫 단추를 꿰었습니다. 글로벌 임상 등록소 자료에 집계된 337건의 로슈 관련 임상 수치는 활발한 치료제 연구 개발 현황을 숫자로 보여줍니다.</p>\n\n<p>앞으로 관련 신약 뉴스나 제약 바이오 자료를 검토할 때는 몇 가지 기준을 나누어 살펴보는 것이 좋습니다. 데이터와 보도를 객관적으로 읽기 위한 기준은 다음과 같습니다.</p>\n\n\n<ul><li><strong>임상 등록 건수와 유효성의 구분</strong>: 등록 건수는 연구 활성도를 뜻하며, 약물의 치료 효과와 위험 감소율(예: 62% 감소)은 별도의 임상 결과 수치로 판단합니다.</li><li><strong>표적 환자군 조건 확인</strong>: 임상 결과가 특정 변이(예: ESR1 변이)를 가진 환자군을 대상으로 도출된 수치인지 조건 범위를 파악합니다.</li><li><strong>제형과 승인 단계</strong>: 경구용 등 복용 제형의 특성과 함께 승인받은 국가의 규제 기관(FDA 등) 및 승인 단계를 확인합니다.</li></ul>\n\n<p><strong>한 줄 정리:</strong> 윌서들리의 FDA 승인은 경구용 신약의 치료 가능성을 열었으며, 임상 등록 건수는 효과가 아닌 연구 활성도의 지표입니다.</p>\n\n태그: 로슈 윌서들리 유방암신약 FDA승인 ClinicalTrials"
+ },
+ "minutes": 16.5
+}
