@@ -231,6 +231,9 @@ def template_report(reps, th=0.5):
     return out
 
 
+RECENT_TOPICS = 3
+
+
 def representatives(arts):
     """주제마다 지금 남아 있는 대표 글(통과한 마지막 기록, 없으면 마지막 기록)."""
     by_topic = defaultdict(list)
@@ -258,12 +261,16 @@ def scorecard(arts):
     tested = {a["type"] for a in reps if passed(a)}
     miss = [t for t in REQUIRED_TYPES if t not in tested]
     lines.append(f"\n① 글 종류 시험: {len(REQUIRED_TYPES) - len(miss)}/{len(REQUIRED_TYPES)}" + (f" - 아직: {', '.join(miss)}" if miss else " ✔"))
-    lines.append("\n② 종류별 대표 글(통과한 것) 최저 점수 / 최저 독자 가치  (기준 0.9 / 0.8)")
+    # 11-18(백로그 38): 규칙이 크게 바뀌기 전 옛 주제(11-03 천연가스 등)가 최저값으로 남아 '지금 글 만드는 능력'을 못 보여 줌 →
+    # ②는 종류마다 최근 주제 3개의 대표 글로 본다. 옛 주제 중 기준 미달 글은 아래 '공개 전 다시 쓸 초안'에 따로 적는다(공개는 사용자가 정함).
+    lines.append(f"\n② 종류별 최근 {RECENT_TOPICS}개 주제 대표 글(통과한 것) 최저 점수 / 최저 독자 가치  (기준 0.9 / 0.8)")
     per = defaultdict(list)
-    for a in reps:
+    for a in sorted(reps, key=lambda x: x["file"]):
         if passed(a):
             st = a["rounds"].get(final_round(a)) or {}
             per[a["type"]].append((a["result"].get("score", st.get("score")), st.get("value"), a))
+    stale = [x for t in per for x in per[t][:-RECENT_TOPICS] if (x[0] or 0) < 0.9 or (x[1] is not None and x[1] < 0.8)]
+    per = {t: lst[-RECENT_TOPICS:] for t, lst in per.items()}
     for t in REQUIRED_TYPES:
         if t not in per:
             continue
@@ -272,6 +279,8 @@ def scorecard(arts):
         ok = s is not None and s >= 0.9 and (v is None or v >= 0.8)
         lows = [os.path.basename(x[2]["file"]) for x in per[t] if (x[0] or 0) < 0.9 or (x[1] is not None and x[1] < 0.8)]
         lines.append(f"- {t}: {s} / {v} {'✔' if ok else '✘ ' + ', '.join(lows[:3])}")
+    lines.append(f"- [공개 전 다시 쓸 옛 초안] 최근 {RECENT_TOPICS}개 밖 기준 미달 {len(stale)}편"
+                 + (": " + ", ".join(os.path.basename(x[2]["file"]) for x in stale[:6]) if stale else ""))
     lines.append("\n③ 연달아 통과(같은 주제 마지막 두 번이 모두 통과)")
     twice = [k[1] for k, lst in by_topic.items() if len(lst) >= 2 and all(passed(a) for a in lst[-2:])]
     lines.append(f"- {len(twice)}개 주제: {', '.join(twice[:8]) or '없음'}")
