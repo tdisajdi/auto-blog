@@ -1375,7 +1375,8 @@ def discover_society():
     facts = block + "\n" + f"[사실 자료 - 관련 뉴스, 제목만 확인됨. 숫자는 제목에 나온 것만 쓰세요]\n{_news_block([it] + related)}\n"
     note = "국가통계포털(KOSIS) 공식 통계, 통계 발표 관련 보도(구글 뉴스)"
     chart = _kosis_chart(tb, sm)
-    out.append({"category": "society", "topic_key": f"society:{_slug(pick.get('keywords_ko') or it['title'])}",
+    # 주제 이름은 뉴스 제목으로(11-18: AI 검색어로 만들었더니 같은 '초등 입학생' 뉴스가 세 번 다른 주제로 집계됨 - 반복 금지 검사도 못 막음)
+    out.append({"category": "society", "topic_key": f"society:{_slug(it['title'])}",
                 "search_seed": pick.get("keywords_ko") or "",
                 "title_seed": pick.get("title_ko") or it["title"], "facts_text": facts, "news": [it] + related,
                 "score": 1.1, "reason": pick.get("why", ""), "source_note": note, "chart": chart})
