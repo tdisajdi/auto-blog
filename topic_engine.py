@@ -1345,7 +1345,9 @@ def discover_society():
         return out
     # 공식 통계(KOSIS) 표를 못 찾으면 이 뉴스로는 쓰지 않는다. 2026-11-08 성적표: 뉴스 제목만으로 쓴 인구사회 글은
     # 점수 1.0이어도 독자 가치 2/5·코드 계산 숫자 0개 - '가치 없는 콘텐츠'(뉴스 정리)에 가장 가까움.
-    tb = _kosis_table_for(f"{pick.get('title_ko', '')} {pick.get('keywords_ko', '')} {it['title']}")
+    # 표는 실제 뉴스 제목으로만 고른다(11-18 시험: 뉴스 '초등 입학생 첫 30만 명 붕괴'인데 AI 요약 '저출생 심화에 따른…'의 '출생'이
+    # 출생아 표를 불러와 제목-자료가 어긋남, 가치 0.4). 뉴스 제목에 맞는 표가 없으면 이 뉴스로는 안 쓴다(KOSIS 새 자료 후보는 그대로).
+    tb = _kosis_table_for(it["title"])
     block, sm = kosis_fact_block(tb) if tb else ("", None)
     if not block:
         return out

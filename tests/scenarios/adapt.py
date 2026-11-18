@@ -92,6 +92,9 @@ te._ask_json=lambda *a, **k: {"index":-1}
 assert te.discover_bio()==[] and te.discover_tech()==[] and te.discover_society()==[]
 te._ask_json=lambda *a, **k: {"index":2,"title_ko":"출생아 수","keywords_ko":"출생아 수","why":"발표"}
 assert te.discover_society()==[]          # 공식 통계 표가 없으면 뉴스 제목만으로는 쓰지 않음(2026-11-08)
+# 11-18: 표는 뉴스 제목으로만 고름 - '초등 입학생 30만 명 붕괴'에 출생아 표를 붙이지 않음
+assert te._kosis_table_for("초등 입학생 첫 30만 명 붕괴…학교 연쇄 파장") is None
+assert te._kosis_table_for("올해 출생아 수 반등")["key"] == "vital"
 te._kosis_table_for=lambda q: {"name":"출생"}
 te.kosis_fact_block=lambda tb: ("[공식 통계 - KOSIS]\n- 출생아 수: 2025년 1명", {"series":[]})
 te._kosis_chart=lambda tb, sm: None
