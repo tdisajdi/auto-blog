@@ -1244,7 +1244,10 @@ def _compare_lines(ticker):
 def discover_energy():
     import yfinance as yf
     rows = []
+    only = os.environ.get("TEST_TICKER", "")      # 시험용: 'energy:NG=F'처럼 종목을 정해 그 주제로 다시 쓰기(11-18 성적표: 천연가스 재시험)
     for t, name in _COMMODITIES.items():
+        if only and t != only:
+            continue
         try:
             h = yf.Ticker(t).history(period="1y")["Close"].dropna()
             if len(h) < 30:
@@ -1272,7 +1275,7 @@ def discover_energy():
     # (브렌트유 '하루 -10.5%'인데 같은 날 뉴스는 '-5.8%') 그것만으로 주제를 고르거나 제목을 달지 않는다.
     best = max(rows, key=lambda x: abs(x["m1"]) / 10 + abs(x["w1"]) / 5)
     strength = abs(best["m1"]) / 10 + abs(best["w1"]) / 5
-    if strength < 0.6:
+    if strength < 0.6 and not only:
         return []
     group = [x for x in rows if _COMMODITY_GROUP.get(x["ticker"]) == _COMMODITY_GROUP.get(best["ticker"])]
     table = "\n".join(f"- {x['name']}({x['ticker']}): 최근가 {x['last']:,.2f} {_COMMODITY_UNIT.get(x['ticker'], '')}, "
@@ -1533,6 +1536,9 @@ def run_confirmed():
 def run_test(category):
     """시험용: 승인 없이 그 분야 후보 중 가장 강한 것으로 바로 글을 쓴다(공개 안 됨 - 자동 발행이 꺼져 있으면 임시글).
     두 번째 글(에너지·사회 등)을 텔레그램 승인을 기다리지 않고 시험하려고 만들었다(2026-11-02)."""
+    category, _, ticker = category.partition(":")
+    if ticker:
+        os.environ["TEST_TICKER"] = ticker
     if category not in ADAPTERS:
         print(f"❌ 알 수 없는 분야: {category} (가능: {', '.join(ADAPTERS)})")
         return
