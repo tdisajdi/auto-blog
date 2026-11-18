@@ -71,6 +71,8 @@ assert numbers.unverified(b2, f2) == ["1억 2,000만 원", "2,249만 5,097가구
 f3 = "Market valuation now totals US $2.22 billion, up from $0.4 billion in 2022. The fund raised $27.5 million."
 b3 = "시장은 4억 달러에서 22억 2,000만 달러로 5.55배 커졌고(22.2억), 펀드는 2,750만 달러. 다른 곳은 7.1배."
 assert numbers.unverified(b3, f3) == ["7.1배"], numbers.unverified(b3, f3)
+# 11-18: '$0.4 billion'을 '0.4억'으로 옮긴 단위 실수는 숫자가 같아도 잡음
+assert numbers.unverified("시장은 0.4억 달러에서 22.2억 달러로", f3) == ["0.4억"], numbers.unverified("시장은 0.4억 달러에서 22.2억 달러로", f3)
 _, iss2, _ = lint.fix_and_check("<h1>t</h1><p>양도세는 250만 원 공제 후 22%입니다. 250만 원 공제, 22%. 250만 원과 22%. 다시 250만 원.</p>"
                                 "<p>국내 주식형 ETF의 매매차익은 비과세 혜택이 적용됩니다.</p><p>단, 국내 주식형 ETF의 매매차익은 비과세 혜택입니다.</p>"
                                 "<table><tr><td>보수</td><td>확인 필요</td></tr></table>")
