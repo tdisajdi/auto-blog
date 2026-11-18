@@ -180,6 +180,10 @@ assert _dividend_yoy(_pd.Series([1.0, 1.1], index=_idx[:2])) == ""
 assert "최근 8회 지급 중 직전 회차보다 줄어든 적 2회" in _y2, _y2      # 1.81→1.74, 1.96→1.82 (같은 값은 안 셈)
 assert "줄어든 적" not in _y                                            # 7회뿐이면 안 셈
 print("dividend yoy ok")
+# 11-18 백로그 16: 기간 수익률 이상값 경고(막지 않고 기록만)
+from ondo.etf.data import return_anomalies
+assert return_anomalies({"1개월": 1.234, "3개월": 1.2341, "6개월": 5, "1년": 95}, "X") == ["X 1개월·3개월 수익률이 똑같이 +1.23%", "X 1년 수익률 +95.00% - 분할·합병 반영 여부 확인"]
+assert return_anomalies({"1개월": 1, "3개월": 2, "1년": 10}) == [] and return_anomalies({}) == []
 
 # 11-12 백로그 35) 분석 자료에 뉴스 제목을 넣지 않음(제목만으로 뜻 없는 인용 문장이 생김) - 출처 상자에는 남음
 _fs_n = _an.fact_sheet(["VOO"], _c1, _ea, {}, [{"title": "VOO가 현명한 투자처인 이유", "source": "TradingKey", "url": "https://x"}], {}, "11월 12일")

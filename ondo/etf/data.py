@@ -716,6 +716,8 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                     returns[p_name] = ((current_price - h['Close'].iloc[0]) / h['Close'].iloc[0] * 100) if not h.empty else 0.0
                 except Exception as e:
                     print(f"   ⚠️ 수익률(history {p_key}) 계산 실패: {type(e).__name__}: {e}")
+            for w in return_anomalies(returns, raw_code):
+                print(f"   ⚠️ 자료 이상(확인 필요): {w}")
             
             try:
                 h_mdd = ticker.history(period="5y")
@@ -1226,3 +1228,17 @@ def get_macro_thermometer_indicators():
     return result
 
 __all__ = [k for k in dir() if not k.startswith('__')]
+
+def return_anomalies(returns, code=""):
+    """기간 수익률에서 이상해 보이는 값(백로그 16): 서로 다른 기간이 소수 둘째 자리까지 같음(같은 시작가를 두 번 받은 흔적),
+    1년 변화가 ±80%를 넘음(분할·합병을 반영 못 한 가격일 수 있음). 막지는 않고 실행 기록에 남긴다."""
+    out = []
+    vals = {k: round(float(v), 2) for k, v in (returns or {}).items() if isinstance(v, (int, float)) and v}
+    seen = {}
+    for k, v in vals.items():
+        if v in seen:
+            out.append(f"{code} {seen[v]}·{k} 수익률이 똑같이 {v:+.2f}%")
+        seen.setdefault(v, k)
+    if abs(vals.get("1년", 0)) > 80:
+        out.append(f"{code} 1년 수익률 {vals['1년']:+.2f}% - 분할·합병 반영 여부 확인")
+    return out
