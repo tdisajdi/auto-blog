@@ -1,0 +1,358 @@
+{
+ "article_type": "bio",
+ "topic_id": "bio:roche-breast-cancer-pill-cleared-by-fda",
+ "title_seed": "로슈의 유방암 치료제, 미국 FDA 승인 획득",
+ "category": "bio",
+ "started_at": "2026-11-18T22:26:07",
+ "mode": "sections",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.4,
+   "chars": 1857
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 17.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 14.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(도입)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 14.9,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "22:26:20",
+   "title": "로슈 경구용 유방암 신약 '윌서들리' 미국 FDA 승인 획득",
+   "sections": [
+    "로슈 '윌서들리' FDA 승인 의미",
+    "임상 및 질병 위험 감소 소식",
+    "전 세계 유방암 임상시험 현황",
+    "연도별 신규 임상 시작 추이"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "22:27:07",
+   "mode": "sections",
+   "reason": "한 번에 쓰기 실패: 답이 없음"
+  },
+  {
+   "step": "쓰기 실패",
+   "at": "22:27:46",
+   "part": "도입",
+   "reason": "좋은 모델이 모든 키에서 한도 초과"
+  }
+ ],
+ "result": {
+  "reason": "좋은 모델(글쓰기용)이 모든 키에서 오늘 한도를 다 씀 - 한국 시간 오후 5시쯤(서머타임 기간 4시) 한도가 풀린 뒤 다시 시도해 주세요",
+  "status": "failed"
+ },
+ "facts": "[사실 자료 - 원문]\n제목: Roche breast cancer pill cleared by FDA (BioPharma Dive - Latest News, https://www.biopharmadive.com/news/roche-fda-approve-wilserdly-giredestrant-breast-cancer/874884/)\n본문 발췌:  Wilserdly&rsquo;s U.S. approval is seen by analysts as a &ldquo;key first step&rdquo; in an important launch for Roche, which has claimed the drug could become its top-selling product. \n\n[공식 자료 - 미국 국립보건원 임상시험 등록소(ClinicalTrials.gov), 질환 '유방암', 2026-11-18 조회. 전 세계에서 등록된 임상 기준]\n- 등록된 임상시험 전체: 17,022건\n- 지금 참가자를 모집 중인 임상: 2,447건(전체의 14.4%, 코드 계산)\n- 3상(허가 신청 직전 단계) 임상: 1,566건(전체의 9.2%, 코드 계산)\n- 해마다 새로 시작한 임상 수(2021~2025년, 코드 요약 - 처음·마지막·가장 많던 해·적던 해): 2021년 985건 → 2025년 1,098건(+11.5%), 가장 많던 해 2025년 1,098건, 가장 적던 해 2021년 985건\n- 읽는 법: 등록 건수는 연구가 얼마나 활발한지를 보여 줄 뿐, 효과나 안전성을 뜻하지 않습니다.\n\n[관련 뉴스 - 제목만 확인됨(기사 본문은 확인 안 됨)]\n- FDA, 로슈 경구용 유방암 신약 ‘윌서들리’ 승인 - 의약뉴스 (의약뉴스) https://news.google.com/rss/articles/CBMiaEFVX3lxTE9KWk1LRk8zVFF2WExCOVdPakhVdWl5ZGxDdHVfVVpEMU1LNTl3ekxYZUtqQW9jczhqTG42VnNIUjZDcVFHbzBiSXB0RE1HU1hrNUZlV19PNE5TZjRKMUNEdUU5aVJZNU5o?oc=5\n- 로슈 내성 대응 경구용 유방암 치료제 FDA 허가 - 약업신문 (약업신문) https://news.google.com/rss/articles/CBMidkFVX3lxTE1CUEg5dkF3aVB1NkZHM0FZRGtHSzdidnJNWjBvWGN6ZjZvTkx5TTlDSkFiVzZaeXA0ZGUzbS1XVW9XWnR2VHhjYURpYnNydm1mc2R4RFRlZUx5bFlBd01Dc3djS21BdFpmbTB5NGFpMlFIckJETWc?oc=5\n- 로슈, 경구용 유방암 신약 ‘윌서들리’ 美 승인…질병 진행·사망 위험 62% 감소 - 더바이오 (더바이오) https://news.google.com/rss/articles/CBMibEFVX3lxTE1UZjk4Q3REdm50Zi1OMmdURGM1OXM3RXJqX3hBd2c1VWFRZnpnaE1yYlc1a0t5NGRkSFAxWEFEX0QzTDJXaUFhckdIZFp4SjFYVENJeTBoM3FJS0VmbV9Ic19uenhUVE5vYW5aMtIBcEFVX3lxTFBSSFVCeEVGT01hZDlwWW53d0F3ZDJ5TFNfS2hsUUNrMjhHWHo3dXJMel8ySmZlc0pSdWc1VlJjQ0M2TUEyRlpqT09iaTZmdDFSSXVpczBySnZxbXNYX3ZsLXpkY0JUX1lUSV8tV3lYQW8?oc=5\n- 로슈 경구 유방암 신약 美 FDA 승인…ESR1 변이군 진행위험 62% 감소 - 메디코파마 (메디코파마) https://news.google.com/rss/articles/CBMickFVX3lxTE1TMXlDWUpBN0hvcVh5MTA3UVA2Z3NYQlhkcTFBWDRiTkNRRlUtcmhXQUR5eGhWVHd0eGpxcEd6SFlDcjBIQnZFOXBOSEpsQjNaRnBac3BDckdFVjEyTXV0R2NPU1kzNkgzejlHcnRRWkZjZw?oc=5\n\n",
+ "minutes": 1.6
+}
