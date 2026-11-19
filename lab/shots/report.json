@@ -55,6 +55,40 @@
   "overflow": 0,
   "lowContrast": []
  },
+ "post-tax-desk": {
+  "overflow": 0,
+  "lowContrast": [
+   [
+    "핵심 숫자",
+    2.3
+   ],
+   [
+    "CHECK",
+    4.3
+   ],
+   [
+    "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
+    3.5
+   ],
+   [
+    "※ 세금·수수료·환율 변동은 반영되지 않은 단순 복리 ",
+    2.6
+   ]
+  ]
+ },
+ "post-tax-en-desk": {
+  "overflow": 0,
+  "lowContrast": [
+   [
+    "KEY NUMBER",
+    2.3
+   ],
+   [
+    "CHECK",
+    4.3
+   ]
+  ]
+ },
  "home-mobile": {
   "overflow": 0,
   "lowContrast": []
@@ -111,5 +145,48 @@
   "overflow": 0,
   "lowContrast": []
  },
- "_broken_links": []
+ "post-tax-mobile": {
+  "overflow": 0,
+  "lowContrast": [
+   [
+    "핵심 숫자",
+    2.3
+   ],
+   [
+    "CHECK",
+    4.3
+   ],
+   [
+    "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
+    3.5
+   ],
+   [
+    "※ 세금·수수료·환율 변동은 반영되지 않은 단순 복리 ",
+    2.6
+   ]
+  ]
+ },
+ "post-tax-en-mobile": {
+  "overflow": 0,
+  "lowContrast": [
+   [
+    "KEY NUMBER",
+    2.3
+   ],
+   [
+    "CHECK",
+    4.3
+   ]
+  ]
+ },
+ "_broken_links": [
+  [
+   "https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/?share=twitter&nb=1",
+   403
+  ],
+  [
+   "https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/?share=twitter&nb=1",
+   403
+  ]
+ ]
 }
