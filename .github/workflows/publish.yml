@@ -88,7 +88,7 @@ on:
         type: boolean
         default: false
       site_pages:
-        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·plugin-audit(플러그인 점검, 읽기만)·pll-push(전용 언어 플러그인 올리기)·site-tune / site-tune-undo(Jetpack 정리·태그라인)·refresh:SLUG(공개 기본 페이지 본문만 갱신)·tr:export|check|push:글번호(영어판 번역)·pll:check / pll:set:ID:en / pll:link:ko=ID:en=ID·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·drafts-trash(연습 초안 모두 휴지통)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
+        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·plugin-audit(플러그인 점검, 읽기만)·pll-push(전용 언어 플러그인 올리기)·site-tune / site-tune-undo(Jetpack 정리·태그라인)·refresh:SLUG(공개 기본 페이지 본문만 갱신)·tr:export|check|push:글번호(영어판 번역)·patch:SLUG(공개 글 문장 고치기)·pll:check / pll:set:ID:en / pll:link:ko=ID:en=ID·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·drafts-trash(연습 초안 모두 휴지통)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
         required: false
         default: ''
       lab_adsense:
@@ -517,6 +517,10 @@ jobs:
               # 11-19 영어판 번역: tr:export:글번호 / tr:check:글번호 / tr:push:글번호
               ARGS=$(echo "${{ github.event.inputs.site_pages }}" | cut -c4- | tr -cd 'a-z0-9:' | tr ':' ' ')
               python site_pages/translate.py $ARGS || echo "번역 작업 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == patch:* ]]; then
+              # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
+              SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
+              python site_pages/patch_post.py "$SLUG" || echo "글 고치기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "pll-push" ]; then
               python site_pages/pll_plugin.py push || echo "전용 플러그인 올리기 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == pll:* ]]; then
