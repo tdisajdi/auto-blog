@@ -49,7 +49,9 @@ def main():
              ("검색 성과(페이지)", f"/google-site-kit/v1/modules/search-console/data/searchanalytics?{sc}"),
              ("검색 성과(검색어)", f"/google-site-kit/v1/modules/search-console/data/searchanalytics?{sc_q}"),
              ("GA4 보고서", f"/google-site-kit/v1/modules/analytics-4/data/report?{ga}"),
-             ("애드센스 설정", "/google-site-kit/v1/modules/adsense/data/settings")]
+             ("애드센스 설정", "/google-site-kit/v1/modules/adsense/data/settings"),
+             ("서치콘솔 설정", "/google-site-kit/v1/modules/search-console/data/settings"),
+             ("서치콘솔 속성 목록", "/google-site-kit/v1/modules/search-console/data/matched-sites")]
     for name, path in tests:
         try:
             code, j = call("GET", path)
