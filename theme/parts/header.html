@@ -1,25 +1,39 @@
 <!-- wp:html -->
 <div class="o-head">
   <div class="o-wrap">
-    <a class="o-logo" href="https://ondo99.com/" aria-label="ondo 첫 화면">
+    <a class="o-logo o-ko" href="https://ondo99.com/" aria-label="ondo 첫 화면">
+      {{THERMO_INK}}
+      <span><b>ONDO</b><small>DATA · TEMPERATURE</small></span>
+    </a>
+    <a class="o-logo o-en" href="https://ondo99.com/en/" aria-label="ondo home">
       {{THERMO_INK}}
       <span><b>ONDO</b><small>DATA · TEMPERATURE</small></span>
     </a>
     <button class="o-menu-btn" type="button" aria-expanded="false" aria-controls="o-nav">MENU</button>
-    <nav class="o-nav" id="o-nav" aria-label="주 메뉴">
-      <a href="https://ondo99.com/category/etf/">ETF·투자</a>
-      <a href="https://ondo99.com/category/energy/">에너지·원자재</a>
-      <a href="https://ondo99.com/category/society/">인구·사회</a>
-      <a href="https://ondo99.com/about-ondo/">소개</a>
-      <a class="o-nav-board" href="https://ondo99.com/ondo-board/">BOARD</a>
+    <nav class="o-nav" id="o-nav" aria-label="주 메뉴 / Main menu">
+      <a class="o-ko" href="https://ondo99.com/category/etf/">ETF·투자</a>
+      <a class="o-ko" href="https://ondo99.com/category/energy/">에너지·원자재</a>
+      <a class="o-ko" href="https://ondo99.com/category/society/">인구·사회</a>
+      <a class="o-ko" href="https://ondo99.com/about-ondo/">소개</a>
+      <a class="o-ko o-nav-board" href="https://ondo99.com/ondo-board/">BOARD</a>
+      <a class="o-en" href="https://ondo99.com/en/category/etf-en/">ETFs &amp; Investing</a>
+      <a class="o-en" href="https://ondo99.com/en/category/energy-en/">Energy</a>
+      <a class="o-en" href="https://ondo99.com/en/category/society-en/">Society</a>
+      <a class="o-en" href="https://ondo99.com/en/about-ondo-en/">About</a>
+      <span class="o-lang" aria-label="언어 / Language"></span>
     </nav>
   </div>
   <div class="o-pxline"></div>
 </div>
 <script type="text/plain" id="o-head-js">
 (function(){var b=document.querySelector('.o-menu-btn'),n=document.getElementById('o-nav');if(b&&n){b.addEventListener('click',function(){var o=n.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');});}
-var p=location.pathname;document.querySelectorAll('.o-nav a').forEach(function(a){var h=new URL(a.href).pathname;if(h!=='/'&&p.indexOf(h)===0)a.classList.add('is-on');});
-document.querySelectorAll('.o-post-head .wp-block-post-terms a').forEach(function(a){var h=new URL(a.href).pathname;document.querySelectorAll('.o-nav a').forEach(function(x){if(new URL(x.href).pathname===h)x.classList.add('is-on');});});})();
+var p=location.pathname;document.querySelectorAll('.o-nav a').forEach(function(a){var h=new URL(a.href).pathname;if(h!=='/'&&h!=='/en/'&&p.indexOf(h)===0)a.classList.add('is-on');});
+document.querySelectorAll('.o-post-head .wp-block-post-terms a').forEach(function(a){var h=new URL(a.href).pathname;document.querySelectorAll('.o-nav a').forEach(function(x){if(new URL(x.href).pathname===h)x.classList.add('is-on');});});
+var box=document.querySelector('.o-lang'),L=window.ondoLang||[];
+var flag={ko:'<svg viewBox="0 0 12 8" aria-hidden="true"><rect width="12" height="8" fill="#fff"/><circle cx="6" cy="4" r="2" fill="#cd2e3a"/><path d="M4 4a2 2 0 0 0 4 0a1 1 0 0 0-2 0a1 1 0 0 1-2 0z" fill="#0047a0"/><g fill="#000"><rect x="1" y="1" width="1.6" height=".35"/><rect x="1" y="1.6" width="1.6" height=".35"/><rect x="9.4" y="6" width="1.6" height=".35"/><rect x="9.4" y="6.6" width="1.6" height=".35"/></g></svg>',
+en:'<svg viewBox="0 0 12 8" aria-hidden="true"><rect width="12" height="8" fill="#b22234"/><g fill="#fff"><rect y="1.23" width="12" height=".62"/><rect y="2.46" width="12" height=".62"/><rect y="3.69" width="12" height=".62"/><rect y="4.92" width="12" height=".62"/><rect y="6.15" width="12" height=".62"/></g><rect width="5" height="4.3" fill="#3c3b6e"/></svg>'};
+var name={ko:'한국어',en:'English'};
+if(box&&L.length>1){L.forEach(function(l){if(!flag[l.slug])return;var a=document.createElement('a');a.href=l.url;a.className='o-flag'+(l.current?' is-cur':'');a.setAttribute('hreflang',l.slug);a.setAttribute('lang',l.slug);a.title=name[l.slug];a.innerHTML=flag[l.slug]+'<span>'+l.slug.toUpperCase()+'</span>';if(l.current)a.setAttribute('aria-current','true');box.appendChild(a);});}})();
 </script>
 <script>(function(){var s=document.getElementById('o-head-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&');(new Function(t))();}})();</script>
 <!-- /wp:html -->

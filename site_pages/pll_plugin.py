@@ -139,6 +139,59 @@ def en_pages():
     return 1 if bad else 0
 
 
+EN_CATS = [  # (한국어 분류 주소, 영어 이름, 영어 주소, 영어 설명)
+    ("etf", "ETFs & Investing", "etf-en", "Returns, dividends and fees of ETFs, calculated over the same period and on the same basis."),
+    ("energy", "Energy & Commodities", "energy-en", "Oil, inventories and exchange rates that reach everyday costs, read from official data."),
+    ("society", "Population & Society", "society-en", "How Korean society is changing, through official statistics."),
+]
+
+
+def en_cats():
+    """영어 분류를 만들고(없으면) 영어로 지정해 한국어 분류와 연결."""
+    import requests
+    h, S = _auth()
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/categories"
+    bad = 0
+    for ko_slug, name, slug, desc in EN_CATS:
+        ko = requests.get(f"{base}/slug:{ko_slug}", headers=h, timeout=20).json()
+        en = requests.get(f"{base}/slug:{slug}", headers=h, timeout=20)
+        if en.status_code != 200 or not en.json().get("ID"):
+            en = requests.post(f"{base}/new", headers=h, data={"name": name, "slug": slug, "description": desc}, timeout=30)
+            print(f"- {slug}: 새로 만듦", en.status_code)
+        en = en.json()
+        if not (ko.get("ID") and en.get("ID")):
+            print("  번호 못 찾음:", ko_slug, slug, str(en)[:150])
+            bad += 1
+            continue
+        code, j = call("POST", "/ondo/v1/term-link", {"translations": {"ko": ko["ID"], "en": en["ID"]}})
+        print(f"  연결 {ko_slug}({ko['ID']}) ↔ {slug}({en['ID']}):", code, "linked=", (j or {}).get("linked") if isinstance(j, dict) else j)
+        bad += not (code == 200 and isinstance(j, dict) and j.get("linked"))
+    return 1 if bad else 0
+
+
+def en_publish():
+    """영어 기본 페이지(site_pages/en)를 공개로(11-19 사용자: '영어 화면도 미리 만들어 보여줘')."""
+    import glob
+    import re
+    import requests
+    h, S = _auth()
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/"
+    bad = 0
+    for path in sorted(glob.glob(os.path.join(ROOT, "site_pages", "en", "*.html"))):
+        m = re.match(r"\s*<!--\s*slug:\s*([\w-]+)", open(path, encoding="utf-8").read())
+        if not m:
+            continue
+        j = requests.get(base + "slug:" + m.group(1), headers=h, params={"fields": "ID,status,type"}, timeout=20).json()
+        if j.get("type") != "page":
+            print("- 없음:", m.group(1)); bad += 1; continue
+        if j.get("status") == "publish":
+            print("- 이미 공개:", m.group(1)); continue
+        r = requests.post(base + str(j["ID"]), headers=h, data={"status": "publish"}, timeout=30)
+        print(f"- {m.group(1)}: {r.status_code} {(r.json() or {}).get('status') if r.ok else r.text[:150]} {(r.json() or {}).get('URL', '') if r.ok else ''}")
+        bad += not r.ok
+    return 1 if bad else 0
+
+
 def main(argv):
     mode = argv[1] if len(argv) > 1 else "check"
     if mode == "push":
@@ -147,6 +200,12 @@ def main(argv):
         return check()
     if mode == "en-pages":
         return en_pages()
+    if mode == "en-cats":
+        return en_cats()
+    if mode == "en-publish":
+        return en_publish()
+    if mode == "en-all":                 # 플러그인 올리기 → 영어 분류 → 영어 페이지 올리기·연결 → 공개
+        return push() or en_cats() or en_pages() or en_publish()
     if mode == "set" and len(argv) == 4:
         code, j = call("POST", f"/ondo/v1/lang/{int(argv[2])}", {"lang": argv[3]})
         print("언어 지정:", code, json.dumps(j, ensure_ascii=False)[:400])
