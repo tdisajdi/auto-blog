@@ -415,3 +415,28 @@ html[lang^="en"] .o-side { display: none !important; }
 .o-list .wp-block-post-template > li { margin-top: 0 !important; margin-block-start: 0 !important; }
 .o-list .wp-block-post-featured-image:not(:has(img)) { display: none !important; }
 .o-list .wp-block-post-featured-image:not(:has(img)) + .wp-block-post-terms { padding-top: 18px; }
+
+/* 11-19: KEY NUMBER는 결론 카드가 화면 밖으로 지나간 뒤에만(한 화면에 같은 숫자 두 번 방지) - 스르륵 나타남 */
+@media (min-width: 1101px) { .o-keyn { max-height: 0; overflow: hidden; padding-top: 0 !important; padding-bottom: 0 !important; border-top-width: 0 !important; opacity: 0; transition: max-height .25s, opacity .25s; }
+  .o-keyn.o-on { max-height: 120px; padding-top: 12px !important; padding-bottom: 14px !important; border-top-width: 2px !important; opacity: 1; } }
+
+/* ══ 11-19 글꼴 정리(사용자: '글꼴만 바꿔도 느낌이 달라짐' → 비교 시안 A·E·F·G 중 E) ══
+   큰 것만 도트: 글 제목·분야 머리·첫 화면 섹션 제목·큰 숫자(결론 카드·KEY NUMBER) = Galmuri11 Bold.
+   작은 제목(본문 소제목·목록 카드 제목·온도판 이름)은 도트가 빽빽해 보여 Wanted Sans 800으로. 본문은 Pretendard 그대로. */
+:root { --o-sub: 'Wanted Sans Variable', 'Wanted Sans', var(--o-sans); }
+.o-read h2, .o-read h3, .o-list .wp-block-post-title, .o-cat h3, .obp-sec h3, .obp-name { font-family: var(--o-sub) !important; font-weight: 800 !important; letter-spacing: -.01em !important; }
+.o-read h2 { font-size: 25px !important; } .o-read h3 { font-size: 22px !important; }
+.o-answer-n b, .o-keyn b { font-family: var(--o-head) !important; font-weight: 700 !important; letter-spacing: 0 !important; }
+.o-answer-n b { font-size: 44px; }
+
+/* ══ 11-19 글 화면 오른쪽 옛 위젯 4개(환율 정보 센터·최근 발행글·용어사전·투자 수익 계산기) 걷어냄 ══
+   왜: 새 디자인과 따로 놀고(흰 상자), 휴대폰에선 글 끝에 쌓임. 용어사전은 본문 용어 풍선이, 최근 글은 글 끝 '함께 읽을 글'(Jetpack)이 대신함.
+   계산기는 '예상 수익률'을 넣게 하는 일반 계산기라 이 블로그의 '자료로 계산' 원칙과 맞지 않음 → 글마다 자료로 그리는 계산기(백로그 25)로.
+   원래 틀은 lab/backup 대신 git 기록(11-19 이전 single.html)에 있음. 2단 = 왼쪽 계기판(목차 위치 그대로) + 본문. */
+@media (min-width: 1101px) { .o-post { grid-template-columns: 240px minmax(0, var(--o-read)) !important; gap: 40px; } }
+.o-post > .o-side { display: none !important; }
+
+/* 11-19: 글이 아직 없는 분야 카드(첫 화면) - 링크 없이 'COMING SOON'. 메뉴(머리·바닥)에선 숨김(theme_push.hide_empty) */
+.o-cat.o-cat-soon { opacity: .55; cursor: default; position: relative; }
+.o-cat.o-cat-soon::after { content: "COMING SOON"; position: absolute; right: 14px; bottom: 12px; font-family: var(--o-px); font-size: 10px; letter-spacing: .1em; color: var(--o-ink-3); }
+html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }

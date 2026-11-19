@@ -525,6 +525,12 @@ jobs:
               # 11-19 기준 통과했는데 임시글로 남은 글 공개(로그에 통과 기록 있을 때만)
               PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c16- | tr -cd '0-9')
               python site_pages/publish_passed.py "$PID" || echo "공개 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == cover:* ]]; then
+              # 11-19 공개 글 대표 이미지를 새 표지로(cover:번호 또는 cover:번호:GUIDE). 여러 개는 cover:701:GUIDE,705:GUIDE
+              for item in $(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr ',' ' '); do
+                PID=$(echo "$item" | cut -d: -f1 | tr -cd '0-9'); KICK=$(echo "$item" | cut -s -d: -f2 | tr -cd 'A-Za-z')
+                python site_pages/cover_post.py "$PID" ${KICK:-DATA} || echo "표지 바꾸기 실패 $PID"
+              done
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
               python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
