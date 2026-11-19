@@ -515,7 +515,7 @@ jobs:
               python site_pages/upload.py refresh "$SLUG" || echo "페이지 본문 갱신 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == tr:* ]]; then
               # 11-19 영어판 번역: tr:export:글번호 / tr:check:글번호 / tr:push:글번호
-              ARGS=$(echo "${{ github.event.inputs.site_pages }}" | cut -c4- | tr -cd 'a-z0-9:' | tr ':' ' ')
+              ARGS=$(echo "${{ github.event.inputs.site_pages }}" | cut -c4- | tr -cd 'a-z0-9:-' | tr ':' ' ')
               python site_pages/translate.py $ARGS || echo "번역 작업 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == patch:* ]]; then
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)

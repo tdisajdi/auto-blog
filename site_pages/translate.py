@@ -101,13 +101,13 @@ def compare(ko_html, en_html):
         n2 = len(re.findall(rf"<{tag}\b", en_html or "", re.I))
         if n1 != n2:
             probs.append(f"<{tag}> 개수 다름: 원문 {n1} / 번역 {n2}")
-    # 차트 숫자 데이터: 스크립트 안 숫자 배열은 그대로여야 함(이름표만 번역)
-    nums = lambda s: re.findall(r"-?\d+(?:\.\d+)?", s)
+    # 차트 숫자 데이터: 스크립트 안 '숫자만 든 배열'(그래프 값)은 그대로여야 함(이름표·축 글자는 번역하며 단위 표기가 바뀔 수 있음)
+    arrays = lambda s: re.findall(r"\[\s*-?\d[\d.,\s-]*\]", s)
     for i, (a, b) in enumerate(zip(_scripts(ko_html), _scripts(en_html))):
-        if nums(a) != nums(b):
-            probs.append(f"{i + 1}번째 스크립트(차트 등)의 숫자가 다름")
-    if re.search(r"[가-힣]", _text(en_html)):
-        left = sorted(set(re.findall(r"[가-힣]+", _text(en_html))))[:8]
+        if arrays(a) != arrays(b):
+            probs.append(f"{i + 1}번째 스크립트(차트 등)의 숫자 배열이 다름")
+    if re.search(r"[가-힣]", en_html or ""):            # 본문·속성·차트 이름표·숨은 요약 어디든
+        left = sorted(set(re.findall(r"[가-힣]+", en_html)))[:8]
         probs.append(f"번역에 한글이 남음: {left}")
     return probs
 
@@ -120,12 +120,14 @@ def _auth():
 def export(pid):
     import requests
     h, S = _auth()
-    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/{pid}", headers=h,
+    ref = pid if str(pid).isdigit() else f"slug:{pid}"   # 글번호 또는 글 주소(slug)
+    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/{ref}", headers=h,
                      params={"context": "edit", "fields": "ID,title,slug,status,excerpt,content,categories,URL"}, timeout=30)
     if not r.ok:
         print("받기 실패:", r.status_code, r.text[:200])
         return 1
     j = r.json()
+    pid = j["ID"]
     os.makedirs(DIR, exist_ok=True)
     cats = [c.get("slug") for c in (j.get("categories") or {}).values()]
     meta = {"ID": j["ID"], "title": j["title"], "slug": j["slug"], "status": j["status"], "URL": j.get("URL"),
@@ -201,8 +203,10 @@ def push(pid):
 
 
 def main(argv):
-    if len(argv) == 3 and argv[1] in ("export", "check", "push") and argv[2].isdigit():
-        return {"export": export, "check": check, "push": push}[argv[1]](int(argv[2]))
+    if len(argv) == 3 and argv[1] == "export":
+        return export(argv[2])
+    if len(argv) == 3 and argv[1] in ("check", "push") and argv[2].isdigit():
+        return {"check": check, "push": push}[argv[1]](int(argv[2]))
     print(__doc__)
     return 1
 
