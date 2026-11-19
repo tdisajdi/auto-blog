@@ -171,6 +171,9 @@
 
 
 [2026-11-19]
+■ 운영 - 다국어 확인
+- 무엇: 플러그인 점검에 Polylang 글 언어 API 확인을 넣고 실행 - 무료판은 글을 영어판으로 지정·연결하는 API가 없음.
+- 왜: 사용자 아이디어(국기 누르면 /en/ 영어판). 자동화 가능 여부를 먼저 확인. 생각 사슬은 lab/THINKING.txt, 백로그 51.
 ■ 운영 - 플러그인 점검(읽기만)
 - 무엇: site_pages/plugin_audit.py + 수동 실행 'plugin-audit' 추가, 결과 lab/plugin_audit.txt.
 - 왜: 사용자 질문(플러그인 최적화). 사이트를 바꾸지 않고 머리말 메타 중복·사이트맵·Jetpack 모듈·Polylang·Site Kit 상태를 먼저 봄.
