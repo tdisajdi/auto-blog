@@ -456,3 +456,27 @@ assert len(calls) == 2 and len(first) == 4, (first, calls)
 assert llm.is_day_limit(DAY) and not llm.is_day_limit(MIN) and not llm.is_day_limit("")
 llm._day_limited.clear()
 print("day-limit ok")
+
+# 11-19) 사실 검증이 좋은 모델로 안 되면(503 → 가벼운 모델로 내려감) 한 번 더 좋은 모델로, 그래도 안 되면 'weak'
+desk.FACT_RETRY_PAUSE = 0
+def post_fact(strong_ok_on_retry):
+    tries = {"n": 0}
+    def post(url, payload, key):
+        p = payload["contents"][0]["parts"][0]["text"]
+        if "독자 가치 담당" in p:
+            return R(200, json.dumps(VALUE_ANSWER))
+        if "사실 검증 담당" in p and model_of(url) == "strong-a":
+            tries["n"] += 1
+            if strong_ok_on_retry and tries["n"] > 4:          # 첫 시도(키 4개) 모두 503, 다시 부를 때 성공
+                return R(200, json.dumps({"issues": []}))
+            return R(503, body="high demand")
+        return R(200, json.dumps({"issues": []}))
+    return post
+for ok_retry, want in ((False, "weak"), (True, "strong")):
+    llm._excluded.clear()
+    llm._post = post_fact(ok_retry)
+    log = editlog.EditLog("guide", "fact", "시험")
+    score, found = desk.review(body10, facts, "c", log, 1)
+    assert desk.review.fact == want, (ok_retry, desk.review.fact)
+    assert any(c[0].endswith("다시") for c in [(x["step"],) for x in log.data["calls"]]), "다시 부르기 기록 없음"
+print("fact strong-only ok")

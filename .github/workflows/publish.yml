@@ -525,6 +525,10 @@ jobs:
               # 11-19 기준 통과했는데 임시글로 남은 글 공개(로그에 통과 기록 있을 때만)
               PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c16- | tr -cd '0-9')
               python site_pages/publish_passed.py "$PID" || echo "공개 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
+              # 11-19 공개 글 사실 검증을 좋은 모델로만 다시(글은 안 바꿈, 결과 lab/recheck)
+              PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c14- | tr -cd '0-9')
+              python site_pages/fact_recheck.py "$PID" || echo "사실 다시 검증 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "pll-push" ]; then
               python site_pages/pll_plugin.py push || echo "전용 플러그인 올리기 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == pll:* ]]; then
@@ -626,6 +630,7 @@ jobs:
           git add lab/link_check.json 2>/dev/null || true
           git add lab/plugin_audit.txt 2>/dev/null || true
           git add lab/translate 2>/dev/null || true
+          git add lab/recheck 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else

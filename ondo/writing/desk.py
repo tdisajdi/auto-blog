@@ -11,6 +11,7 @@ write_article(...)이 글 한 편의 HTML을 만든다. 발행은 하지 않는�
 """
 import os
 import random
+import time
 import re
 from pathlib import Path
 
@@ -259,6 +260,7 @@ REVIEWERS = [
     ("정책·신뢰", "review_policy", "fast"),
 ]
 SEVERITY_WEIGHT = {"치명": 0.35, "중요": 0.12, "사소": 0.03}
+FACT_RETRY_PAUSE = int(os.environ.get("FACT_RETRY_PAUSE", "20"))   # 사실 검증 다시 부르기 전 쉬는 초(503은 잠깐 뒤 풀리는 일이 많음)
 POLICY_WORDS = re.compile(r"권유|보장|확정|단정|과장|전문가|경험|출처|매수|매도|의료|치료")
 
 
@@ -307,10 +309,22 @@ def review(html, facts_text, category_label, log, round_no, must=None):
     text_norm = _norm(text)
     common = prompt("review_common", today=_today(), text=text)
     found, answered, dropped = [], 0, 0
+    review.fact = "missing"
+    strong = set(llm.models_for("strong_only"))
     for i, (role, name, tier) in enumerate(REVIEWERS):
-        r = llm.call(prompt(name, category_label=category_label, facts=facts_text, must=_must_review(must)) + common,
-                     step=f"검토 {round_no}({role})", log=log, tier=tier, json_out=True, thinking=8192,
+        p = prompt(name, category_label=category_label, facts=facts_text, must=_must_review(must)) + common
+        r = llm.call(p, step=f"검토 {round_no}({role})", log=log, tier=tier, json_out=True, thinking=8192,
                      start_key=4 + round_no * 3 + i)
+        # 2026-11-19: 좋은 모델이 503으로 막히면 사실 검증이 가벼운 모델로 내려가거나 아예 빠진 채 통과가 나왔다
+        # (11-10 이후 통과 28판 중 6곳, 공개 글 701도 - 사람 읽기에서 틀린 곳 2개). 사실 검증만 잠깐 쉬고 좋은 모델로 한 번 더.
+        if role == "사실 검증" and (not r.text or r.model not in strong):
+            time.sleep(FACT_RETRY_PAUSE)
+            r2 = llm.call(p, step=f"검토 {round_no}({role}) 다시", log=log, tier="strong_only", json_out=True,
+                          thinking=8192, start_key=5 + round_no * 3 + i)
+            if r2.text:
+                r = r2
+        if role == "사실 검증" and r.text:
+            review.fact = "strong" if r.model in strong else "weak"
         data = llm.parse_json(r.text)
         if not isinstance(data, dict):
             continue
@@ -573,6 +587,7 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
         serious = [f for f in found if f["severity"] in ("치명", "중요")]
         hard_lint = lint.blocking(lint_issues)
         passed = score is not None and score >= min_q and not serious and not hard_lint
+        fact_main = getattr(review, "fact", "strong")
         if os.environ.get("VALUE_BLOCKING") == "1" and value is not None and value < VALUE_MIN:
             passed = False
         # 통과 직전 확인 채점(2026-11-09): 같은 글을 3번 채점해 보니 치명·중요 지적 7개 중 4개가 매번 나오지 않았다(lab_bench noise).
@@ -590,6 +605,12 @@ def write_article(*, kind_label, title_seed, facts_text, rules, category_label, 
                     serious = serious + extra
                     score = round(max(0.0, 1.0 - sum(SEVERITY_WEIGHT[f["severity"]] for f in found)), 2)
                     passed = False
+            if getattr(review, "fact", "strong") != "strong":
+                fact_main = fact_main if fact_main != "strong" else "confirm-" + getattr(review, "fact", "")
+        # 사실 검증을 좋은 모델이 못 한 판은 통과로 치지 않는다(임시글로 남고, 다음 실행·다시 쓰기에서 다시 봄)
+        if passed and fact_main != "strong":
+            passed = False
+            log.step("통과 보류", reason="사실 검증을 좋은 모델이 하지 못함(가벼운 모델이거나 빠짐)", fact=fact_main)
         log.data.setdefault("drafts", {})[str(round_no)] = html      # 판마다 원문 보관(사람이 읽고 평가할 수 있게)
         missing = [name for key, name in VALUE_KEYS if marks and not marks.get(key)]
         log.step(f"편집장 검토 {round_no}", score=score, passed=passed, value=value, value_missing=missing,
