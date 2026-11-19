@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 
-def passed_log(pid):
+def passed_log(pid, slug=None):
     """그 글의 기록 중 가장 늦게 시작한 것(started_at) - 깃허브에선 파일 시각이 모두 같아 시각 정렬은 못 씀."""
     best = None
     for f in glob.glob(os.path.join(ROOT, "logs", "*", "*.json")):
@@ -24,7 +24,9 @@ def passed_log(pid):
         res = d.get("result") or {}
         if not isinstance(res, dict):
             continue
-        if f"?p={pid}" not in str(res.get("url", "")) and str(pid) != str(res.get("post_id", "")):
+        url = str(res.get("url", ""))
+        if (f"?p={pid}" not in url and str(pid) != str(res.get("post_id", ""))
+                and not (slug and url.rstrip("/").endswith("/" + slug))):   # 공개 글은 주소가 slug로 남음(11-19)
             continue
         if best is None or str(d.get("started_at", "")) > str(best[1].get("started_at", "")):
             best = (f, d)
@@ -33,7 +35,7 @@ def passed_log(pid):
     reviews = [s for s in best[1].get("steps", []) if str(s.get("step", "")).startswith("편집장 검토")]
     ok = bool(reviews and reviews[-1].get("passed"))
     if ok and not strong_fact(best[1], reviews[-1]["step"].split()[-1]):
-        print("사실 검증(본 검토·확인 검토)을 좋은 모델이 하지 않은 통과라 공개 안 함(11-19 규칙)")
+        print("주의: 통과 기록이지만 사실 검증(본·확인)을 좋은 모델이 하지 않음 - 통과로 치지 않음(11-19 규칙)")
         ok = False
     return best[0], ok, reviews[-1].get("score") if reviews else None
 

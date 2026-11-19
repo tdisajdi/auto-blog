@@ -19,19 +19,19 @@ def main(pid):
     from ondo.writing import desk, llm
     from ondo.checks import editlog
     from site_pages.publish_passed import passed_log
-    f, _ok, _score = passed_log(pid)
+    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
+    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
+                     params={"context": "edit", "fields": "ID,title,status,content,slug"}, timeout=30)
+    if not r.ok:
+        print("글 받기 실패:", r.status_code)
+        return 1
+    j = r.json()
+    f, _ok, _score = passed_log(pid, j.get("slug"))
     if not f:
         print("기록(logs) 없음 - 사실 자료를 몰라 검증 못 함")
         return 1
     d = json.load(open(f, encoding="utf-8"))
     facts = d.get("facts") or ""
-    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
-    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
-                     params={"context": "edit", "fields": "ID,title,status,content"}, timeout=30)
-    if not r.ok:
-        print("글 받기 실패:", r.status_code)
-        return 1
-    j = r.json()
     html = f"<h1>{j['title']}</h1>" + j["content"]
     text = desk.review_text(html)
     common = desk.prompt("review_common", today=desk._today(), text=text)
