@@ -83,7 +83,7 @@ on:
         type: boolean
         default: false
       site_pages:
-        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
+        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·drafts-trash(연습 초안 모두 휴지통)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
         required: false
         default: ''
       lab_adsense:
@@ -294,6 +294,9 @@ jobs:
 
       - name: 승인된 티커로 발행 파이프라인 실행
         if: steps.check.outputs.ticker != ''
+        env:
+          # 11-19 사용자 결정 '본격 공개': 텔레그램으로 승인한 글 중 품질 기준을 통과한 글만 공개(미달은 임시글). 시험(manual-run)은 계속 임시글.
+          AUTO_PUBLISH: "1"
         run: python etf_auto.py --topic "${{ steps.check.outputs.ticker }}"
 
       - name: 발행 상태 파일 커밋
@@ -321,6 +324,7 @@ jobs:
         if: steps.check.outputs.topic2 != ''
         env:
           BLOG_CATEGORY: ${{ steps.check.outputs.topic2 }}
+          AUTO_PUBLISH: "1"     # 11-19 '본격 공개' - 기준 통과 글만 공개
         run: python topic_engine.py --run
 
       - name: 두 번째 글 상태 파일 커밋
@@ -522,6 +526,10 @@ jobs:
               # 11-12: 초안 종합 온도 띠 정리(백업 먼저) + 비공개 글 링크 확인 → lab/link_check.json
               python site_pages/export.py || { echo "백업 실패 - 고치지 않음"; exit 0; }
               if [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ]; then python site_pages/drafts_fix.py fix || echo "초안 정리 실패"; else python site_pages/drafts_fix.py check || echo "링크 확인 실패"; fi
+            elif [ "${{ github.event.inputs.site_pages }}" = "drafts-trash" ]; then
+              # 11-19 사용자 결정: 연습 초안 모두 휴지통으로(30일 안 복구 가능) - 백업이 안 되면 지우지 않음
+              python site_pages/export.py || { echo "백업 실패 - 지우지 않음"; exit 0; }
+              python site_pages/drafts_fix.py trash || echo "초안 휴지통 옮기기 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == links:* ]]; then
               # 사용자가 준 링크 내용 받기(lab/links) - 작업 환경에서 외부 사이트가 막혀서
               L="${{ github.event.inputs.site_pages }}"

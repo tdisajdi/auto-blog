@@ -1,6 +1,7 @@
 """초안 정리·링크 확인(2026-11-12, 백로그 21·31).
 
   python site_pages/drafts_fix.py check   읽기만: 비공개 글을 가리키는 링크 목록 → lab/link_check.json
+  python site_pages/drafts_fix.py trash   (11-19) 비공개 초안 글을 모두 휴지통으로 - 페이지·공개 글은 그대로
   python site_pages/drafts_fix.py fix     비공개 초안의 'ONDO MARKET TEMP'(종합 온도, 임의 가중치) 띠를 지우고, 목차 글자로 된 요약을 소개 문장으로 바꾸고, check도 함
 
 - 고치는 것은 status가 draft인 글뿐. 공개 글·페이지는 건드리지 않고 상태(공개 여부)도 바꾸지 않는다.
@@ -102,6 +103,21 @@ def main(mode):
             if not ok:
                 print(f"❌ {it['ID']} 요약 넣기 실패 ({r.status_code})")
         print(f"초안 요약 넣기: {fixed}편")
+    if mode == "trash":
+        # 11-19 사용자 결정: 지금까지의 글은 연습용 - 비공개 초안 글을 모두 휴지통으로(30일 안에 되살릴 수 있음).
+        # 페이지(소개·문의·온도판 등)와 공개 글은 건드리지 않는다. 원본은 같은 실행에서 먼저 돈 export 백업(site_backup/)에 남는다.
+        done = fail = 0
+        for it in items:
+            if it.get("type", "post") != "post" or it.get("status") not in ("draft", "private", "pending"):
+                continue
+            r = requests.post(f"{v1}/posts/{it['ID']}/delete", headers=h, timeout=60)
+            ok = r.status_code == 200 and r.json().get("status") == "trash"
+            done += ok
+            fail += not ok
+            if not ok:
+                print(f"❌ {it['ID']} 휴지통 옮기기 실패 ({r.status_code})")
+        print(f"연습 초안 휴지통으로: {done}편, 실패 {fail}편")
+        return 0
     report = find_private_links(items)
     pub = [r for r in report if r["status"] == "publish"]
     print(f"비공개 글을 가리키는 링크가 있는 글: 공개 {len(pub)}편(방문자 404) / 초안 {len(report) - len(pub)}편(공개할 때 확인)")
@@ -115,7 +131,7 @@ def main(mode):
 
 if __name__ == "__main__":
     m = sys.argv[1] if len(sys.argv) > 1 else ""
-    if m not in ("check", "fix"):
-        print("사용: drafts_fix.py check|fix")
+    if m not in ("check", "fix", "trash"):
+        print("사용: drafts_fix.py check|fix|trash")
         sys.exit(2)
     sys.exit(main(m))
