@@ -299,11 +299,43 @@
  },
  "post-tax-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "answerGap": [
+   [
+    "DIV.o-answer",
+    0,
+    "0px",
+    "0px",
+    "DIV.o-intoc h0 mb20px"
+   ],
+   [
+    "DIV.entry-content.wp-block-post-content",
+    0,
+    "0px",
+    "0px",
+    "DETAILS.o-toc-mob h0 mb28px"
+   ]
+  ]
  },
  "post-tax-en-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "answerGap": [
+   [
+    "DIV.o-answer",
+    0,
+    "0px",
+    "0px",
+    "DIV.o-intoc h0 mb20px"
+   ],
+   [
+    "DIV.entry-content.wp-block-post-content",
+    0,
+    "0px",
+    "0px",
+    "DETAILS.o-toc-mob h0 mb28px"
+   ]
+  ]
  },
  "home-mobile": {
   "overflow": 0,
@@ -605,11 +637,43 @@
  },
  "post-tax-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "answerGap": [
+   [
+    "DIV.o-answer",
+    316,
+    "0px",
+    "0px",
+    "DIV.o-intoc h276 mb20px"
+   ],
+   [
+    "DIV.entry-content.wp-block-post-content",
+    0,
+    "0px",
+    "0px",
+    "DETAILS.o-toc-mob h0 mb28px"
+   ]
+  ]
  },
  "post-tax-en-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "answerGap": [
+   [
+    "DIV.o-answer",
+    380,
+    "0px",
+    "0px",
+    "DIV.o-intoc h340 mb20px"
+   ],
+   [
+    "DIV.entry-content.wp-block-post-content",
+    0,
+    "0px",
+    "0px",
+    "DETAILS.o-toc-mob h0 mb28px"
+   ]
+  ]
  },
  "_broken_links": [
   [
