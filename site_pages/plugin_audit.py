@@ -57,7 +57,9 @@ def main():
     import blog_engine as be
     ua = {"User-Agent": "Mozilla/5.0 (compatible; ondo-audit/1.0)"}
     say("=== 1. 공개 사이트 ===")
-    for path in ["/", "/about-ondo/", "/etf/", "/privacy-policy/"]:
+    # 11-19 추가: 빈 분야 목록이 검색에서 빠지는지(noindex), 공개 글·영어 글에 hreflang(번역 짝)이 붙는지
+    for path in ["/", "/about-ondo/", "/etf/", "/privacy-policy/", "/category/energy/", "/en/category/energy-commodities/",
+                 "/2026/11/19/overseas-vs-domestic-etf-tax/", "/en/2026/11/19/overseas-vs-korea-listed-etf-tax/"]:
         try:
             r = requests.get(SITE + path, headers=ua, timeout=25)
             say(f"- {path}: {r.status_code} 최종주소 {r.url}")
