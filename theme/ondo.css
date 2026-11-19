@@ -352,3 +352,13 @@ body.admin-bar .o-readbar { top: 100px; }
 .o-arch-head:has(.t-etf), body.category-etf .o-arch-head { border-top-color: var(--t-etf); background: var(--t-etf-bg); }
 body.category-energy .o-arch-head { border-top-color: var(--t-energy); background: var(--t-energy-bg); }
 body.category-society .o-arch-head { border-top-color: var(--t-society); background: var(--t-society-bg); }
+
+/* 11-19 한/영 두 벌: Polylang이 <html lang>을 바꿈 - 맞는 언어만 보임 */
+html[lang^="en"] .o-ko { display: none !important; }
+html:not([lang^="en"]) .o-en { display: none !important; }
+html[lang^="en"] .o-side { display: none !important; }
+.o-lang { display: inline-flex; gap: 4px; margin-left: 8px; align-items: center; }
+.o-nav .o-flag { display: inline-flex; align-items: center; gap: 5px; padding: 6px 8px; font-family: var(--o-px); font-size: 12px; letter-spacing: .05em; opacity: .65; }
+.o-nav .o-flag svg { width: 18px; height: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); image-rendering: pixelated; }
+.o-nav .o-flag.is-cur, .o-nav .o-flag:hover { opacity: 1; }
+@media (max-width: 860px) { .o-lang { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid rgba(127,127,127,.25); } }

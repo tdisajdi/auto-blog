@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -13,7 +13,10 @@
  *   POST /ondo/v1/lang/<id>  {lang}    - 글 언어 지정
  *   POST /ondo/v1/link {translations:{ko:1,en:2}} - 번역 연결 후 실제로 연결됐는지 다시 읽어 돌려줌
  *   GET  /ondo/v1/unassigned/<post|page> - 언어가 안 정해진 글 목록
- * 권한: 해당 글을 고칠 수 있는 로그인 사용자만.
+ *   GET/POST /ondo/v1/term-lang/<id> {lang} - 분류(카테고리) 언어 읽기·지정
+ *   POST /ondo/v1/term-link {translations:{ko:3,en:9}} - 분류 번역 연결
+ *   (화면) 모든 페이지 <head>에 window.ondoLang = [{slug,url,current,missing}] - 머리글 국기 버튼이 씀
+ * 권한: 해당 글을 고칠 수 있는 로그인 사용자만(분류는 분류 관리 권한).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -136,3 +139,80 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 } );
+
+function ondo_term_state( $id ) {
+	$id = (int) $id;
+	return array(
+		'id'           => $id,
+		'lang'         => pll_get_term_language( $id, 'slug' ) ?: null,
+		'translations' => (object) pll_get_term_translations( $id ),
+	);
+}
+
+function ondo_terms_ready() {
+	return function_exists( 'pll_set_term_language' ) && function_exists( 'pll_save_term_translations' )
+		&& function_exists( 'pll_get_term_language' ) && function_exists( 'pll_get_term_translations' );
+}
+
+add_action( 'rest_api_init', function () {
+	$can = function () { return current_user_can( 'manage_categories' ); };
+	register_rest_route( 'ondo/v1', '/term-lang/(?P<id>\d+)', array(
+		array(
+			'methods' => 'GET', 'permission_callback' => $can,
+			'callback' => function ( $request ) {
+				if ( ! ondo_terms_ready() ) { return ondo_pll_missing(); }
+				return ondo_term_state( $request['id'] );
+			},
+		),
+		array(
+			'methods' => 'POST', 'permission_callback' => $can,
+			'args' => array( 'lang' => array( 'required' => true, 'type' => 'string' ) ),
+			'callback' => function ( $request ) {
+				if ( ! ondo_terms_ready() ) { return ondo_pll_missing(); }
+				$lang = sanitize_key( $request['lang'] );
+				if ( ! get_term( (int) $request['id'] ) || ! in_array( $lang, pll_languages_list( array( 'fields' => 'slug' ) ), true ) ) {
+					return new WP_Error( 'ondo_bad_term', '분류나 언어가 없습니다.', array( 'status' => 400 ) );
+				}
+				pll_set_term_language( (int) $request['id'], $lang );
+				return ondo_term_state( $request['id'] );
+			},
+		),
+	) );
+	register_rest_route( 'ondo/v1', '/term-link', array(
+		'methods' => 'POST', 'permission_callback' => $can,
+		'args' => array( 'translations' => array( 'required' => true ) ),
+		'callback' => function ( $request ) {
+			if ( ! ondo_terms_ready() ) { return ondo_pll_missing(); }
+			$langs = pll_languages_list( array( 'fields' => 'slug' ) );
+			$pairs = array();
+			foreach ( (array) $request['translations'] as $lang => $id ) {
+				$lang = sanitize_key( $lang );
+				$id   = (int) $id;
+				if ( ! in_array( $lang, $langs, true ) || ! get_term( $id ) ) {
+					return new WP_Error( 'ondo_bad_pair', '연결할 수 없는 짝: ' . $lang . '=' . $id, array( 'status' => 400 ) );
+				}
+				if ( pll_get_term_language( $id, 'slug' ) !== $lang ) { pll_set_term_language( $id, $lang ); }
+				$pairs[ $lang ] = $id;
+			}
+			if ( count( $pairs ) < 2 ) { return new WP_Error( 'ondo_need_two', '두 언어 이상이 필요합니다.', array( 'status' => 400 ) ); }
+			pll_save_term_translations( $pairs );
+			$out = array(); $ok = true;
+			foreach ( $pairs as $lang => $id ) {
+				$st = ondo_term_state( $id ); $out[] = $st;
+				foreach ( $pairs as $l2 => $i2 ) { $t = (array) $st['translations']; if ( ! isset( $t[ $l2 ] ) || (int) $t[ $l2 ] !== $i2 ) { $ok = false; } }
+			}
+			return array( 'linked' => $ok, 'terms' => $out );
+		},
+	) );
+} );
+
+// 머리글 국기 버튼용: 지금 보는 화면의 각 언어판 주소(번역이 없으면 그 언어 첫 화면)
+add_action( 'wp_head', function () {
+	if ( ! function_exists( 'pll_the_languages' ) ) { return; }
+	$list = pll_the_languages( array( 'raw' => 1, 'hide_if_empty' => 0, 'hide_if_no_translation' => 0 ) );
+	$out  = array();
+	foreach ( (array) $list as $l ) {
+		$out[] = array( 'slug' => $l['slug'], 'url' => $l['url'], 'current' => ! empty( $l['current_lang'] ), 'missing' => ! empty( $l['no_translation'] ) );
+	}
+	echo '<script>window.ondoLang=' . wp_json_encode( $out ) . ';</script>' . "\n";
+}, 1 );

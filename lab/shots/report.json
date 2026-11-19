@@ -35,7 +35,19 @@
   "overflow": 0,
   "lowContrast": []
  },
- "post-mock-desk": {
+ "en-home-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-about-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-category-etf-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-404-desk": {
   "overflow": 0,
   "lowContrast": []
  },
@@ -75,7 +87,19 @@
   "overflow": 0,
   "lowContrast": []
  },
- "post-mock-mobile": {
+ "en-home-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-about-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-category-etf-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-404-mobile": {
   "overflow": 0,
   "lowContrast": []
  },
