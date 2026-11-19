@@ -35,7 +35,19 @@
   "overflow": 0,
   "lowContrast": []
  },
- "post-mock-desk": {
+ "en-home-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-about-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-category-etf-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-404-desk": {
   "overflow": 0,
   "lowContrast": []
  },
@@ -75,9 +87,34 @@
   "overflow": 0,
   "lowContrast": []
  },
- "post-mock-mobile": {
+ "en-home-mobile": {
   "overflow": 0,
   "lowContrast": []
  },
- "_broken_links": []
+ "en-about-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-category-etf-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-404-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "_broken_links": [
+  [
+   "https://ondo99.com/en/category/energy-en/",
+   404
+  ],
+  [
+   "https://ondo99.com/en/category/etf-en/",
+   404
+  ],
+  [
+   "https://ondo99.com/en/category/society-en/",
+   404
+  ]
+ ]
 }
