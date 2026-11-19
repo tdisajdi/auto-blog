@@ -202,6 +202,13 @@ def main(argv):
         return en_pages()
     if mode == "en-cats":
         return en_cats()
+    if mode == "urls":                   # 분류·페이지의 실제 주소 확인(읽기)
+        for cid in (1376, 1836, 1386, 1839, 1388, 1842):
+            code, j = call("GET", f"/wp/v2/categories/{cid}")
+            print(f"- 분류 {cid}:", code, (j or {}).get("link") if isinstance(j, dict) else str(j)[:200], (j or {}).get("count") if isinstance(j, dict) else "")
+            code, j = call("GET", f"/ondo/v1/term-lang/{cid}")
+            print("   언어:", code, json.dumps(j, ensure_ascii=False)[:200])
+        return 0
     if mode == "en-publish":
         return en_publish()
     if mode == "en-all":                 # 플러그인 올리기 → 영어 분류 → 영어 페이지 올리기·연결 → 공개
