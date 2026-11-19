@@ -320,7 +320,8 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         blog_engine.LAST_FORCED_DRAFT = not blog_engine.auto_publish_enabled()
         ok = wp_update_post(post_id, title=title, content=body, tags=tags, featured_image=featured,
                             excerpt=blog_engine.make_excerpt(body) or None,
-                            status="draft" if blog_engine.LAST_FORCED_DRAFT else None)
+                            # 11-19: 임시글 자리에 다시 써서 기준을 통과하면 공개로(전엔 None이라 임시글로 남았는데 기록엔 '공개'로 찍힘 - 보수 가이드 ?p=705)
+                            status="draft" if blog_engine.LAST_FORCED_DRAFT else "publish")
         url = replace_url if ok else "글 바꾸기 실패(위 로그 참고)"
         blog_engine.LAST_PUBLISHED_POST_ID = post_id
         log.step("다시 쓰기", post_id=post_id, url=replace_url, ok=ok)

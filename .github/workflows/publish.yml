@@ -521,6 +521,10 @@ jobs:
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
               python site_pages/patch_post.py "$SLUG" || echo "글 고치기 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == publish-passed:* ]]; then
+              # 11-19 기준 통과했는데 임시글로 남은 글 공개(로그에 통과 기록 있을 때만)
+              PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c16- | tr -cd '0-9')
+              python site_pages/publish_passed.py "$PID" || echo "공개 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "pll-push" ]; then
               python site_pages/pll_plugin.py push || echo "전용 플러그인 올리기 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == pll:* ]]; then
