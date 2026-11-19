@@ -98,14 +98,45 @@ def check():
         print("  → 플러그인이 아직 동작하지 않음(설치·켜기 확인)")
         return 1
     for t in ("page", "post"):
-        code, j = call("GET", f"/ondo/v1/unassigned?type={t}")
-        if code != 200:                    # 대리 호출이 path 안의 ?를 못 넘기면 기본값(page)
-            code, j = call("GET", "/ondo/v1/unassigned")
+        code, j = call("GET", f"/ondo/v1/unassigned/{t}")
         print(f"- 언어 없는 {t}:", code, json.dumps(j, ensure_ascii=False)[:400])
     for pid in (349, 344, 343, 342):
         code, j = call("GET", f"/ondo/v1/lang/{pid}")
         print(f"- 페이지 {pid}:", code, json.dumps(j, ensure_ascii=False)[:300])
     return 0
+
+
+def en_pages():
+    """site_pages/en/*.html 영어 페이지를 임시(draft) 페이지로 올리고 한국어 페이지와 연결. 공개 페이지는 건드리지 않는다."""
+    import glob
+    import re
+    import requests
+    from site_pages import upload
+    h, S = _auth()
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/"
+    bad = 0
+    for path in sorted(glob.glob(os.path.join(ROOT, "site_pages", "en", "*.html"))):
+        raw = open(path, encoding="utf-8").read()
+        m = re.match(r"\s*<!--\s*slug:\s*([\w-]+)\s*\|\s*title:\s*(.+?)\s*\|\s*ko:\s*([\w-]+)\s*-->", raw)
+        if not m:
+            print("머리줄 없음:", path)
+            bad += 1
+            continue
+        slug, title, ko_slug = m.groups()
+        body = re.sub(r"<!--.*?-->\s*", "", raw[m.end():], flags=re.S).strip()
+        ok, msg = upload.upsert_page({"slug": slug, "title": title, "html": body}, "draft")
+        print("-", msg)
+        en = requests.get(base + "slug:" + slug, headers=h, params={"fields": "ID,status,type"}, timeout=20).json()
+        ko = requests.get(base + "slug:" + ko_slug, headers=h, params={"fields": "ID,status,type"}, timeout=20).json()
+        if not (en.get("ID") and ko.get("ID")):
+            print("  번호 못 찾음:", slug, ko_slug)
+            bad += 1
+            continue
+        code, j = call("POST", "/ondo/v1/link", {"translations": {"ko": ko["ID"], "en": en["ID"]}})
+        print(f"  연결 ko {ko['ID']}({ko.get('status')}) ↔ en {en['ID']}({en.get('status')}):", code, "linked=", (j or {}).get("linked") if isinstance(j, dict) else j)
+        if not (code == 200 and isinstance(j, dict) and j.get("linked")):
+            bad += 1
+    return 1 if bad else 0
 
 
 def main(argv):
@@ -114,6 +145,8 @@ def main(argv):
         return push()
     if mode == "check":
         return check()
+    if mode == "en-pages":
+        return en_pages()
     if mode == "set" and len(argv) == 4:
         code, j = call("POST", f"/ondo/v1/lang/{int(argv[2])}", {"lang": argv[3]})
         print("언어 지정:", code, json.dumps(j, ensure_ascii=False)[:400])

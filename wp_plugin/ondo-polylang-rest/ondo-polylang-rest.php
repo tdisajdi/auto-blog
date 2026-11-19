@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -12,7 +12,7 @@
  *   GET  /ondo/v1/lang/<id>            - 글(페이지)의 언어와 번역 연결 읽기
  *   POST /ondo/v1/lang/<id>  {lang}    - 글 언어 지정
  *   POST /ondo/v1/link {translations:{ko:1,en:2}} - 번역 연결 후 실제로 연결됐는지 다시 읽어 돌려줌
- *   GET  /ondo/v1/unassigned?type=page - 언어가 안 정해진 글 목록
+ *   GET  /ondo/v1/unassigned/<post|page> - 언어가 안 정해진 글 목록
  * 권한: 해당 글을 고칠 수 있는 로그인 사용자만.
  */
 
@@ -121,7 +121,7 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 
-	register_rest_route( 'ondo/v1', '/unassigned', array(
+	register_rest_route( 'ondo/v1', '/unassigned/(?P<type>post|page)', array(
 		'methods'             => 'GET',
 		'permission_callback' => function () { return current_user_can( 'edit_posts' ); },
 		'callback'            => function ( $request ) {
