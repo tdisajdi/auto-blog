@@ -66,6 +66,14 @@ CHECK_JS = """() => {
   if (card) out.card = [...card.children].map(c => [c.tagName + '.' + (c.className || '').toString().split(' ').slice(0, 2).join('.'),
       Math.round(c.getBoundingClientRect().height), getComputedStyle(c).marginTop, (c.querySelector('img') ? [c.querySelector('img').currentSrc || c.querySelector('img').src, c.querySelector('img').complete, c.querySelector('img').naturalWidth, c.querySelector('img').loading].join(' | ') : '')]).concat(
       [...document.querySelectorAll('.o-list .wp-block-post')].slice(0, 3).map(c => ['li-top', Math.round(c.getBoundingClientRect().top), getComputedStyle(c).marginTop]));
+  // 11-19: 글 화면 결론 카드 위 빈 여백 원인(카드와 그 위 형제·부모의 위치·여백)
+  const ans = document.querySelector('.o-read .o-answer');
+  if (ans) { const rd = document.querySelector('.o-read').getBoundingClientRect().top; const rows = [];
+    let el = ans; while (el && !el.classList.contains('o-read')) { const cs = getComputedStyle(el);
+      rows.push([el.tagName + '.' + (el.className || '').toString().split(' ').slice(0, 2).join('.'), Math.round(el.getBoundingClientRect().top - rd), cs.marginTop, cs.paddingTop,
+        el.previousElementSibling ? (el.previousElementSibling.tagName + '.' + (el.previousElementSibling.className || '').toString().split(' ')[0] + ' h' + Math.round(el.previousElementSibling.getBoundingClientRect().height) + ' mb' + getComputedStyle(el.previousElementSibling).marginBottom) : '-']);
+      el = el.parentElement; }
+    out.answerGap = rows; }
   out.links = [...new Set([...document.querySelectorAll('a[href]')].map(a => a.href).filter(h => h.startsWith('https://ondo99.com/') && !h.includes('#')))];
   return out;
 }"""
