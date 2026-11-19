@@ -7,16 +7,18 @@
     hreflang: <link rel="alternate" href="https://ondo99.com/en/" hreflang="en" />
     구조화 데이터 종류: ['CollectionPage', 'Person', 'SearchAction', 'WebSite'] | JSON-LD 블록 1 개
     generator: ['Site Kit by Google 1.192.0']
-    흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
-    title: ondo99 - | <html lang>: ko-KR
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: ondo99 - 공개 자료로 직접 계산해 숫자를 풀어 쓰는 블로그 | <html lang>: ko-KR
     설명 내용: ['온도(ondo) - 공개된 시장 데이터를 리서치·정리해 ETF 분석과 투자 인사이트를 제공하는 콘텐츠 채널입니다.']
 - /about-ondo/: 200 최종주소 https://ondo99.com/about-ondo/
-  [/about-ondo/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+  [/about-ondo/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 2개 · robots 메타 1개 · twitter:card 1개
     robots: <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
     canonical: <link rel="canonical" href="https://ondo99.com/about-ondo/" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/about-ondo/" hreflang="ko" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/en/about-ondo-en/" hreflang="en" />
     구조화 데이터 종류: ['BlogPosting', 'ImageObject', 'Person', 'WebPage', 'WebSite'] | JSON-LD 블록 1 개
     generator: ['Site Kit by Google 1.192.0']
-    흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
     title: ondo 소개 - ondo99 | <html lang>: ko-KR
     설명 내용: ['ondo는 투자와 생활에 쓰이는 숫자를 공개 자료로 직접 계산해, 그 숫자가 무슨 뜻인지 풀어 쓰는 블로그입니다.']
 - /etf/: 200 최종주소 https://ondo99.com/etf/
@@ -25,36 +27,78 @@
     canonical: <link rel="canonical" href="https://ondo99.com/etf/" />
     구조화 데이터 종류: ['BlogPosting', 'ImageObject', 'Person', 'WebPage', 'WebSite'] | JSON-LD 블록 1 개
     generator: ['Site Kit by Google 1.192.0']
-    흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
     title: ETF·투자 - ondo99 | <html lang>: ko-KR
     설명 내용: ['ETF의 수익률·배당·보수를 같은 기간, 같은 기준으로 계산해 비교합니다. 투자 권유가 아니라, 숫자를 스스로 읽는 데 필요한 것만 정리합니다.']
 - /privacy-policy/: 200 최종주소 https://ondo99.com/privacy-policy/
-  [/privacy-policy/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+  [/privacy-policy/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 2개 · robots 메타 1개 · twitter:card 1개
     robots: <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
     canonical: <link rel="canonical" href="https://ondo99.com/privacy-policy/" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/privacy-policy/" hreflang="ko" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/en/privacy-policy-en/" hreflang="en" />
+    구조화 데이터 종류: ['BlogPosting', 'ImageObject', 'Person', 'WebPage', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: 개인정보처리방침 - ondo99 | <html lang>: ko-KR
+    설명 내용: ['ondo(이하 &quot;이 블로그&quot;)는 방문하시는 분의 개인정보를 소중히 다루며, 아래와 같이 처리합니다. 시행일: 2026년 11월 11일']
+- /category/energy/: 200 최종주소 https://ondo99.com/category/energy/
+  [/category/energy/] 메타 설명 1개 · og:title 1개 · canonical 0개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, noindex"/>
+    구조화 데이터 종류: ['CollectionPage', 'Person', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: 에너지·원자재 - ondo99 | <html lang>: ko-KR
+    설명 내용: ['유가·원유 재고·환율처럼 생활비에 닿는 숫자를 미국 에너지정보청(EIA) 같은 공식 자료로 읽습니다.']
+- /en/category/energy-commodities/: 200 최종주소 https://ondo99.com/en/category/energy-commodities/
+  [/en/category/energy-commodities/] 메타 설명 1개 · og:title 1개 · canonical 0개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, noindex"/>
+    구조화 데이터 종류: ['CollectionPage', 'Person', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: Energy &amp; Commodities - ondo99 | <html lang>: en-US
+    설명 내용: ['Oil, inventories and exchange rates that reach everyday costs, read from official data.']
+- /2026/11/19/overseas-vs-domestic-etf-tax/: 200 최종주소 https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/
+  [/2026/11/19/overseas-vs-domestic-etf-tax/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 2개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+    canonical: <link rel="canonical" href="https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/" hreflang="ko" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/" hreflang="en" />
     구조화 데이터 종류: ['BlogPosting', 'ImageObject', 'Person', 'WebPage', 'WebSite'] | JSON-LD 블록 1 개
     generator: ['Site Kit by Google 1.192.0']
     흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
-    title: 개인정보처리방침 - ondo99 | <html lang>: ko-KR
-    설명 내용: ['ondo(이하 &quot;이 블로그&quot;)는 방문하시는 분의 개인정보를 소중히 다루며, 아래와 같이 처리합니다. 시행일: 2026년 11월 11일']
-- /robots.txt: 200 → https://ondo99.com/robots.txt | Sitemap: https://ondo99.com/sitemap.xml / Sitemap: https://ondo99.com/news-sitemap.xml / User-agent: * / Disallow: /wp-admin/ / Allow: /wp-admin/admin-ajax.php / Sitemap: https://ondo99.com/sitemap_index.xml
-- /ads.txt: 404 → https://ondo99.com/ads.txt | <!DOCTYPE html> / <html lang="ko-KR" prefix="og: https://ogp.me/ns#"> / <head> / 	<meta charset="UTF-8" /> / 	<meta name="viewport" content="width=device-width, initial-scale=1" /> /  / <!-- Rank Math 검색 엔진 최적화 -
-- /sitemap.xml: 200 → https://ondo99.com/sitemap.xml | loc 2개: https://ondo99.com/sitemap-1.xml; https://ondo99.com/image-sitemap-1.xml | 생성: Jetpack
+    title: 해외 상장 ETF vs 국내 상장 ETF, 한 해 이익 833만 원이 가르는 세금 차이 - ondo99 | <html lang>: ko-KR
+    설명 내용: ['일반계좌에서 동일한 해외 지수를 추종하는 상품에 투자할 때, 한 해 이익이 약 833만 원이면 해외 상장 ETF와 국내 상장 해외지수 ETF의 세금이 같습니다.']
+- /en/2026/11/19/overseas-vs-korea-listed-etf-tax/: 200 최종주소 https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/
+  [/en/2026/11/19/overseas-vs-korea-listed-etf-tax/] 메타 설명 1개 · og:title 1개 · canonical 1개 · hreflang 2개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+    canonical: <link rel="canonical" href="https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/" hreflang="ko" />
+    hreflang: <link rel="alternate" href="https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/" hreflang="en" />
+    구조화 데이터 종류: ['BlogPosting', 'ImageObject', 'Person', 'WebPage', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
+    title: Overseas-listed vs Korea-listed ETFs: the KRW 8.33 million gain that decides the tax difference - ondo99 | <html lang>: en-US
+    설명 내용: ['For a Korean investor in a regular account, the tax on an overseas-listed ETF and a Korea-']
+- /robots.txt: 200 → https://ondo99.com/robots.txt | User-agent: * / Disallow: /wp-admin/ / Allow: /wp-admin/admin-ajax.php / Sitemap: https://ondo99.com/sitemap_index.xml
+- /ads.txt: 404 → https://ondo99.com/ads.txt | <!DOCTYPE html> / <html lang="ko-KR" prefix="og: https://ogp.me/ns#"> / <head> / 	<meta charset="UTF-8" /> / 	<meta name="viewport" content="width=device-width, initial-scale=1" /> / <script>window.ondoLang=[{"
+- /sitemap.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
 - /sitemap_index.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
-- /news-sitemap.xml: 200 → https://ondo99.com/news-sitemap.xml | loc 1개: https://ondo99.com/ | 생성: Jetpack
+- /post-sitemap.xml: 200 → https://ondo99.com/post-sitemap.xml | loc 3개: https://ondo99.com/; https://ondo99.com/2026/07/17/%eb%82%98%ec%8a%a4%eb%8b%a5-100%ec%9d%98-%eb%b9%9b%ea%b3%bc-%ea%b7%b8%eb%a6%bc%ec%9e%90-qqq-%ed%99%98%ec%9c%a8-%ec%95%95%eb%b0%95-%ec%86%8d-%eb%b0%b0%eb%8b%b9-%eb%a7%a4%eb%a0%a5%ec%9d%80/; https://ondo99.com/2026/07/11/hello/ | 생성: Rank Math
+- /category-sitemap.xml: 200 → https://ondo99.com/category-sitemap.xml | loc 2개: https://ondo99.com/category/uncategorized/; https://ondo99.com/category/etf/ | 생성: Rank Math
+- /news-sitemap.xml: 404 → https://ondo99.com/news-sitemap.xml
 - /ko/: 404 → https://ondo99.com/ko/
-- /en/: 200 → https://ondo99.com/en/ | 길이 178447
-- /feed/: 200 → https://ondo99.com/feed/ | 길이 971
+- /en/: 200 → https://ondo99.com/en/ | 길이 195210
+- /feed/: 200 → https://ondo99.com/feed/ | 길이 21955
 === 2. 플러그인 설정(API, 읽기) ===
-- REST 이름공간: 200 | ['oembed/1.0', 'jetpack/v4', 'wpcomsh/v1', 'akismet/v1', 'crowdsignal-forms/v1', 'wp/v2', 'wp-block-editor/v1', 'wpcom/v2', 'rankmath/v1', 'rankmath/v1/setupWizard', 'jetpack-premium-analytics/v1', 'jetpack/v4/woocommerce-stats', 'pll/v1', 'jetpack/v4/stats-app', 'jetpack/v4/explat', 'rest/v1.1', 'agents-manager', 'newspack-blocks/v1', 'jetpack/v4/blaze-app', 'jetpack/v4/blaze', 'rankmath/v1/ai-visibility', 'rankmath/v1/ca', 'rankmath/v1/an', 'rankmath/v1/in', 'rankmath/v1/status', 'google-site-kit/v1', 'help-center', 'jetpack-global-styles/v1', 'jetpack/v4/import', 'videopress/v1', 'jetpack/v4/videopress', 'wpcom/v3', 'jetpack-boost/v1', 'my-jetpack/v1', 'wp-site-health/v1', 'wp-abilities/v1']
-- Jetpack 모듈: 200 | 켜짐 39: ['account-protection', 'activity-log', 'ai', 'backup', 'blaze', 'blocks', 'carousel', 'comment-likes', 'comments', 'contact-form', 'copy-post', 'custom-content-types', 'gravatar-hovercards', 'infinite-scroll', 'json-api', 'latex', 'likes', 'notes', 'photon', 'photon-cdn', 'podcast', 'post-by-email', 'protect', 'publicize', 'related-posts', 'seo-tools', 'sharedaddy', 'shortcodes', 'shortlinks', 'sitemaps', 'sso', 'stats', 'subscriptions', 'tiled-gallery', 'verification-tools', 'videopress', 'widget-visibility', 'widgets', 'wpcom-reader']
-  꺼짐 9: ['canonical-urls', 'google-fonts', 'markdown', 'monitor', 'post-list', 'search', 'vaultpress', 'woocommerce-analytics', 'wordads']
+- REST 이름공간: 200 | ['oembed/1.0', 'jetpack/v4', 'wpcomsh/v1', 'akismet/v1', 'crowdsignal-forms/v1', 'wp/v2', 'wp-block-editor/v1', 'wpcom/v2', 'ondo/v1', 'rankmath/v1', 'rankmath/v1/setupWizard', 'jetpack-premium-analytics/v1', 'jetpack/v4/woocommerce-stats', 'pll/v1', 'jetpack/v4/stats-app', 'jetpack/v4/explat', 'rest/v1.1', 'agents-manager', 'newspack-blocks/v1', 'jetpack/v4/blaze-app', 'jetpack/v4/blaze', 'rankmath/v1/ai-visibility', 'rankmath/v1/ca', 'rankmath/v1/an', 'rankmath/v1/in', 'rankmath/v1/status', 'google-site-kit/v1', 'help-center', 'jetpack-global-styles/v1', 'jetpack/v4/import', 'videopress/v1', 'jetpack/v4/videopress', 'wpcom/v3', 'jetpack-boost/v1', 'my-jetpack/v1', 'wp-site-health/v1', 'wp-abilities/v1']
+- Jetpack 모듈: 200 | 켜짐 31: ['account-protection', 'activity-log', 'ai', 'backup', 'blaze', 'blocks', 'carousel', 'comments', 'contact-form', 'copy-post', 'custom-content-types', 'json-api', 'notes', 'photon', 'photon-cdn', 'podcast', 'protect', 'publicize', 'related-posts', 'sharedaddy', 'shortcodes', 'shortlinks', 'sso', 'stats', 'subscriptions', 'tiled-gallery', 'verification-tools', 'videopress', 'widget-visibility', 'widgets', 'wpcom-reader']
+  꺼짐 17: ['canonical-urls', 'comment-likes', 'google-fonts', 'gravatar-hovercards', 'infinite-scroll', 'latex', 'likes', 'markdown', 'monitor', 'post-by-email', 'post-list', 'search', 'seo-tools', 'sitemaps', 'vaultpress', 'woocommerce-analytics', 'wordads']
 - Polylang 언어: 200 | [{"name": "한국어", "slug": "ko", "term_group": 0, "term_id": 1364, "locale": "ko_KR", "is_rtl": false, "w3c": "ko-KR", "facebook": "ko_KR", "home_url": "https://ondo99.com/", "search_url": "https://ondo99.com/", "host": "", "page_on_front": 0, "page_for_posts": 0, "flag_code": "kr", "flag_url": "https://ondo99.com/wp-content/plugins/polylang/vendor/wpsyntex/flags/kr.svg", "flag": "<img src=\"data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20900%20600'%3E%3Cpath%20fill='%23fff'%20d='M0%200h900v600H0'/%3E%3Cg%20transform='matrix(6.25%200%200%206.25%20450%20300)'%3E%3Cpath%20stroke='%23000'%20stroke-width='4'%20d='m-35-37-13%2020m5%203%2013-20m5%203-13%2020m63%2042%206-9m1-2%206-9m5%203-6%209m-1%202-6%209m5%203%206-9m1-2%206-9m-96%200%2013%2020m5-3-6-9m-1-2-6-9m5-3%2013%2020m63-42-6-9m-1-2-6-9m5-3%2013%2020m5-3-6-9m-1-2-6-9'/%3E%3Ccircle%20r='24'%20fill='%23cd2
 - Polylang 설정: 200 | {"force_lang": 1, "domains": [], "hide_default": true, "rewrite": true, "redirect_lang": false, "browser": false, "media_support": false, "post_types": [], "taxonomies": [], "sync": [], "default_lang": "ko", "nav_menus": [], "first_activation": 1784371833, "previous_version": "3.9.1", "version": "3.9.2"}
 - Rank Math 이름공간: 200 | 경로 /rankmath/v1, /rankmath/v1/dashboardWidget, /rankmath/v1/disconnectSite, /rankmath/v1/getFeaturedImageId, /rankmath/v1/links/links, /rankmath/v1/links/links-stats, /rankmath/v1/links/posts, /rankmath/v1/links/posts-stats, /rankmath/v1/saveModule, /rankmath/v1/searchPage, /rankmath/v1/toolsAction, /rankmath/v1/updateMeta, /rankmath/v1/updateMetaBulk, /rankmath/v1/updateMode, /rankmath/v1/updateRedirection, /rankmath/v1/updateSchemas, /rankmath/v1/updateSeoScore, /rankmath/v1/updateSettings
 - Site Kit 연결: 200 | {"connected": true, "resettable": true, "setupCompleted": true, "hasConnectedAdmins": true, "hasMultipleAdmins": false}
 - Site Kit 모듈: 200 | site-verification(켜짐=True,연결=True); search-console(켜짐=True,연결=True); ads(켜짐=False,연결=False); analytics-4(켜짐=True,연결=True); tagmanager(켜짐=False,연결=False); adsense(켜짐=False,연결=False); pagespeed-insights(켜짐=True,연결=True); sign-in-with-google(켜짐=False,연결=False); reader-revenue-manager(켜짐=False,연결=False)
-- 사이트 설정: 200 | {"title": "ondo99", "description": "", "language": "ko_KR", "timezone": "Asia/Seoul", "date_format": "F j, Y", "posts_per_page": 10, "default_comment_status": "open"}
+- 사이트 설정: 200 | {"title": "ondo99", "description": "공개 자료로 직접 계산해 숫자를 풀어 쓰는 블로그", "language": "ko_KR", "timezone": "Asia/Seoul", "date_format": "F j, Y", "posts_per_page": 10, "default_comment_status": "open"}
 === 3. Polylang API로 글 언어 다룰 수 있나(읽기) ===
 - /wp/v2/posts 입력값 중 언어 관련: 없음
 - /wp/v2/pages 입력값 중 언어 관련: 없음

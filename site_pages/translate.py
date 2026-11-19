@@ -17,7 +17,7 @@ sys.path.insert(0, ROOT)
 DIR = os.path.join(ROOT, "lab", "translate")
 _HEAD = re.compile(r"^\s*<!--\s*title:\s*(.+?)\s*\|\s*slug:\s*([\w-]+)\s*\|\s*excerpt:\s*(.*?)\s*-->\s*", re.S)
 
-_EN_NUM = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*(%p|%|percentage points?|trillion|billion|million|thousand)?", re.I)
+_EN_NUM = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*(%p|%|percentage points?|trillion|billion|million|thousand|times\b)?", re.I)   # times = 한국어 '배'(11-19)
 _EN_SCALE = {"trillion": 1e12, "billion": 1e9, "million": 1e6, "thousand": 1e3}
 _KO_SCALE = {"조": 1e12, "억": 1e8, "만": 1e4}
 
@@ -92,7 +92,8 @@ def compare(ko_html, en_html):
         probs.append(f"원문 숫자가 번역에 없음: {m1[:10]}")
     if m2:
         probs.append(f"번역에만 있는 숫자: {m2[:10]}")
-    links = lambda h: sorted(re.findall(r'href="(https?://[^"]+)"', h or ""))
+    # 우리 사이트 안 링크는 번역판 주소(영어 글)로 바뀔 수 있어 비교에서 뺀다(11-19, 705 → 703 영어 세금 글)
+    links = lambda h: sorted(u for u in re.findall(r'href="(https?://[^"]+)"', h or "") if "ondo99.com" not in u)
     if links(ko_html) != links(en_html):
         a, b = set(links(ko_html)), set(links(en_html))
         probs.append(f"링크 다름 - 빠짐 {sorted(a - b)[:5]} / 더해짐 {sorted(b - a)[:5]}")
@@ -199,6 +200,14 @@ def push(pid):
     code, l = call("POST", "/ondo/v1/link", {"translations": {"ko": meta["ID"], "en": j["ID"]}})
     linked = isinstance(l, dict) and l.get("linked")
     print(f"영어 글 {verb}: {j.get('status')} {j.get('URL')} (번호 {j['ID']}) / 연결 {linked}")
+    try:   # 11-19: 영어 글에도 새 표지(영어 제목·숫자) - 실패해도 글은 그대로
+        import blog_engine as be
+        from ondo.media.cover import make_cover
+        path = make_cover(en["title"], (meta.get("categories") or ["etf"])[0], "GUIDE")
+        mid = be._upload_media(path, "image/png")[0] if path else None
+        print("표지:", "붙임" if mid and be.wp_set_featured_image(j["ID"], mid) else "못 붙임")
+    except Exception as e:
+        print("표지 실패:", type(e).__name__, e)
     return 0 if linked else 1
 
 
