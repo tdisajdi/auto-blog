@@ -130,6 +130,26 @@ def main():
             say(f"- {name}: {code} | {txt[:900]}")
         except Exception as e:
             say(f"- {name}: 오류 {type(e).__name__}")
+
+    say("=== 3. Polylang API로 글 언어 다룰 수 있나(읽기) ===")
+    try:
+        code, j = via("/")
+        routes = (j or {}).get("routes", {}) if isinstance(j, dict) else {}
+        for rt in ("/wp/v2/posts", "/wp/v2/pages"):
+            args = set()
+            for ep in (routes.get(rt) or {}).get("endpoints", []):
+                args |= set((ep.get("args") or {}).keys())
+            say(f"- {rt} 입력값 중 언어 관련:", sorted(a for a in args if a in ("lang", "translations", "pll_lang", "language")) or "없음")
+        say("- pll 경로:", sorted(r for r in routes if r.startswith("/pll")))
+    except Exception as e:
+        say(f"- 경로 확인 오류 {type(e).__name__}")
+    for name, path in [("페이지 언어 필드", "/wp/v2/pages?per_page=5&_fields=id,slug,lang,translations"),
+                       ("en 페이지", "/wp/v2/pages?lang=en&per_page=5&_fields=id,slug,lang")]:
+        try:
+            code, j = via(path)
+            say(f"- {name}: {code} | {json.dumps(j, ensure_ascii=False)[:500]}")
+        except Exception as e:
+            say(f"- {name}: 오류 {type(e).__name__}")
     os.makedirs("lab", exist_ok=True)
     with open("lab/plugin_audit.txt", "w", encoding="utf-8") as f:
         f.write("\n".join(OUT) + "\n")
