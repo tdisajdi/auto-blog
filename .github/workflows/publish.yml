@@ -29,6 +29,11 @@ on:
         description: '다시 쓰기: 이 글 주소를 새로 쓴 글로 바꿈 (topic과 같이 사용, 예: GUIDE:... + 글 주소)'
         required: false
         default: ''
+      publish:
+        description: '공개 실행(11-19 사용자 허락): topic과 같이 쓰면 품질 기준을 통과한 글은 바로 공개, 미달은 임시글. 끄면 시험(임시글)'
+        required: false
+        type: boolean
+        default: false
       health_report:
         description: '주간 상태 점검 리포트를 지금 보내기(키·워드프레스·자료원·사이트 화면 캡처)'
         required: false
@@ -460,6 +465,8 @@ jobs:
 
       - name: 수동 실행
         env:
+          # 11-19 사용자 허락: Claude가 고른 상록 글(가이드·비교 등)은 기준을 통과하면 승인 없이 공개. publish를 켠 실행만.
+          AUTO_PUBLISH: ${{ github.event.inputs.publish == 'true' && '1' || '' }}
           REPLACE_URL: ${{ github.event.inputs.replace_url }}
           UNPUBLISH_URL: ${{ github.event.inputs.unpublish_url }}
           TOPIC2_TEST: ${{ github.event.inputs.topic2_test }}
