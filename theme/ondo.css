@@ -385,7 +385,7 @@ html[lang^="en"] .o-side { display: none !important; }
 .o-answer-h { display: flex; justify-content: space-between; gap: 10px; background: var(--o-navy); color: #fff; padding: 8px 14px; font-family: var(--o-px); font-size: 12px; letter-spacing: .12em; }
 .o-answer-n { padding: 14px 18px 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .o-answer-n b { font-size: 40px; font-weight: 800; line-height: 1.1; color: var(--o-ink); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
-.o-answer-n small { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: var(--o-warm); }
+.o-answer-n small { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: #b8430f; }
 .o-read .o-answer > p { margin: 0 !important; padding: 10px 18px 18px; font-size: 18px; line-height: 1.8; }
 /* 형광펜(제목의 핵심 숫자만, 최대 5곳) */
 .o-read mark.o-hl { background: linear-gradient(transparent 58%, #ffe08a 58%); color: inherit; font-weight: 800; padding: 0 1px; }
@@ -398,7 +398,7 @@ html[lang^="en"] .o-side { display: none !important; }
 /* 스스로 확인할 것(체크리스트) */
 .o-read .o-check { background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-line); margin: 1.2em 0 1.6em; }
 .o-check-h { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 2px dashed var(--o-line); font-weight: 800; font-size: 16px; }
-.o-check-h span { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: #fff; background: var(--o-cold); padding: 3px 7px; font-weight: 400; }
+.o-check-h span { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: #fff; background: #2450d4; padding: 3px 7px; font-weight: 400; }
 .o-read .o-check ul { list-style: none !important; margin: 0 !important; padding: 8px 16px 12px !important; }
 .o-read .o-check li { display: flex; gap: 12px; align-items: flex-start; margin: 8px 0; line-height: 1.7; }
 .o-read .o-check li::before { content: ''; flex: none; width: 16px; height: 16px; margin-top: 6px; border: 2px solid var(--o-ink); box-shadow: 2px 2px 0 var(--o-cold); background: #fff; }
