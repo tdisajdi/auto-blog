@@ -11,6 +11,7 @@ fix_and_check(html) → (고친 html, 남은 문제 목록, 고친 것 목록)
 import re
 
 MIN_CHARS = 2500          # 이보다 짧으면 '얇은 글'. 분량을 채우라고 몰면 반복이 생겨서 낮게 둔다
+HARD_MIN_CHARS = 2200     # 11-19: 2,200~2,500자는 [참고](안 막음), 2,200자 미만만 막음 - 보수 가이드가 되풀이 줄이다 2,446자로 막힌 일
 # 투자 권유·근거 없는 순위·과장 표현: AI 검토자가 가끔 놓쳐서(2026-10-31 VOO "핵심 자산", "최저 수준") 코드가 막는다.
 BANNED = [
     (r"(핵심|주력|필수)\s*자산", "투자 권유처럼 읽힘('핵심/주력 자산') - 특징을 사실로만 설명"),
@@ -249,8 +250,10 @@ def fix_and_check(html):
     if n_tables > 1:
         issues.append(f"표가 {n_tables}개: 표는 1개만, 나머지는 문장으로")
     body_chars = len(text_of(re.sub(r"<h1[^>]*>.*?</h1>", "", h, flags=re.S)))
-    if body_chars < MIN_CHARS:
+    if body_chars < HARD_MIN_CHARS:
         issues.append(f"너무 얇음: 본문 {body_chars}자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것")
+    elif body_chars < MIN_CHARS:
+        issues.append(f"{SOFT}조금 얇음: 본문 {body_chars}자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실이 있으면 보탤 것")
     if not re.search(r"<h1[^>]*>.*?</h1>", h, flags=re.S):
         issues.append("제목(<h1>) 없음")
     if not re.search(r"태그:\s*\S", h):
