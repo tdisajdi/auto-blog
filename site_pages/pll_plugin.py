@@ -143,6 +143,10 @@ EN_CATS = [  # (한국어 분류 주소, 영어 이름, 영어 주소, 영어 �
     ("etf", "ETFs & Investing", "etfs-investing", "Returns, dividends and fees of ETFs, calculated over the same period and on the same basis."),
     ("energy", "Energy & Commodities", "energy-commodities", "Oil, inventories and exchange rates that reach everyday costs, read from official data."),
     ("society", "Population & Society", "population-society", "How Korean society is changing, through official statistics."),
+    ("biotech", "Biotech & Drugs", "biotech-drugs", "Clinical trial results and approval schedules, organized from public records."),
+    ("patents", "Technology & Patents", "technology-patents", "New technology and patent news, organized from public sources."),
+    ("trend", "Trends", "trends", "Topics drawing more search interest, looked at with data."),
+    ("market", "Markets", "markets", "Market-wide numbers, organized."),
 ]
 
 
