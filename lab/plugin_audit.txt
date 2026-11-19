@@ -83,6 +83,8 @@
 - /ads.txt: 404 → https://ondo99.com/ads.txt | <!DOCTYPE html> / <html lang="ko-KR" prefix="og: https://ogp.me/ns#"> / <head> / 	<meta charset="UTF-8" /> / 	<meta name="viewport" content="width=device-width, initial-scale=1" /> / <script>window.ondoLang=[{"
 - /sitemap.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
 - /sitemap_index.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
+- /post-sitemap.xml: 200 → https://ondo99.com/post-sitemap.xml | loc 3개: https://ondo99.com/; https://ondo99.com/2026/07/17/%eb%82%98%ec%8a%a4%eb%8b%a5-100%ec%9d%98-%eb%b9%9b%ea%b3%bc-%ea%b7%b8%eb%a6%bc%ec%9e%90-qqq-%ed%99%98%ec%9c%a8-%ec%95%95%eb%b0%95-%ec%86%8d-%eb%b0%b0%eb%8b%b9-%eb%a7%a4%eb%a0%a5%ec%9d%80/; https://ondo99.com/2026/07/11/hello/ | 생성: Rank Math
+- /category-sitemap.xml: 200 → https://ondo99.com/category-sitemap.xml | loc 2개: https://ondo99.com/category/uncategorized/; https://ondo99.com/category/etf/ | 생성: Rank Math
 - /news-sitemap.xml: 404 → https://ondo99.com/news-sitemap.xml
 - /ko/: 404 → https://ondo99.com/ko/
 - /en/: 200 → https://ondo99.com/en/ | 길이 195210
