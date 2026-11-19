@@ -200,6 +200,14 @@ def push(pid):
     code, l = call("POST", "/ondo/v1/link", {"translations": {"ko": meta["ID"], "en": j["ID"]}})
     linked = isinstance(l, dict) and l.get("linked")
     print(f"영어 글 {verb}: {j.get('status')} {j.get('URL')} (번호 {j['ID']}) / 연결 {linked}")
+    try:   # 11-19: 영어 글에도 새 표지(영어 제목·숫자) - 실패해도 글은 그대로
+        import blog_engine as be
+        from ondo.media.cover import make_cover
+        path = make_cover(en["title"], (meta.get("categories") or ["etf"])[0], "GUIDE")
+        mid = be._upload_media(path, "image/png")[0] if path else None
+        print("표지:", "붙임" if mid and be.wp_set_featured_image(j["ID"], mid) else "못 붙임")
+    except Exception as e:
+        print("표지 실패:", type(e).__name__, e)
     return 0 if linked else 1
 
 
