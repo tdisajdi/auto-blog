@@ -131,7 +131,7 @@ env:
   NONINTERACTIVE: "1"
   PLATFORM: wordpress
   CHART_MODE: script
-  MIN_PUBLISH_INTERVAL_HOURS: "20"
+  MIN_PUBLISH_INTERVAL_HOURS: "4"    # 11-19: 20→4 (첫 주 하루 3~4편 계획 - lab/THINKING 운영 사슬, 몰아 올리기는 막음)
   # blog_engine.py가 이 값으로 상태 파일 이름을 접두어(etf_)로 구분한다.
   # 두 번째 슬롯 카테고리(잡에서 BLOG_CATEGORY를 덮어씀)와 상태 파일이 섞이지 않게 하는 용도.
   BLOG_CATEGORY: etf
