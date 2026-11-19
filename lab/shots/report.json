@@ -59,14 +59,6 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "핵심 숫자",
-    2.3
-   ],
-   [
-    "CHECK",
-    4.3
-   ],
-   [
     "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
     3.5
    ],
@@ -78,16 +70,7 @@
  },
  "post-tax-en-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "KEY NUMBER",
-    2.3
-   ],
-   [
-    "CHECK",
-    4.3
-   ]
-  ]
+  "lowContrast": []
  },
  "home-mobile": {
   "overflow": 0,
@@ -149,14 +132,6 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "핵심 숫자",
-    2.3
-   ],
-   [
-    "CHECK",
-    4.3
-   ],
-   [
     "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
     3.5
    ],
@@ -168,16 +143,7 @@
  },
  "post-tax-en-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "KEY NUMBER",
-    2.3
-   ],
-   [
-    "CHECK",
-    4.3
-   ]
-  ]
+  "lowContrast": []
  },
  "_broken_links": [
   [
