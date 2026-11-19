@@ -101,13 +101,13 @@ def compare(ko_html, en_html):
         n2 = len(re.findall(rf"<{tag}\b", en_html or "", re.I))
         if n1 != n2:
             probs.append(f"<{tag}> 개수 다름: 원문 {n1} / 번역 {n2}")
-    # 차트 숫자 데이터: 스크립트 안 숫자 배열은 그대로여야 함(이름표만 번역)
-    nums = lambda s: re.findall(r"-?\d+(?:\.\d+)?", s)
+    # 차트 숫자 데이터: 스크립트 안 '숫자만 든 배열'(그래프 값)은 그대로여야 함(이름표·축 글자는 번역하며 단위 표기가 바뀔 수 있음)
+    arrays = lambda s: re.findall(r"\[\s*-?\d[\d.,\s-]*\]", s)
     for i, (a, b) in enumerate(zip(_scripts(ko_html), _scripts(en_html))):
-        if nums(a) != nums(b):
-            probs.append(f"{i + 1}번째 스크립트(차트 등)의 숫자가 다름")
-    if re.search(r"[가-힣]", _text(en_html)):
-        left = sorted(set(re.findall(r"[가-힣]+", _text(en_html))))[:8]
+        if arrays(a) != arrays(b):
+            probs.append(f"{i + 1}번째 스크립트(차트 등)의 숫자 배열이 다름")
+    if re.search(r"[가-힣]", en_html or ""):            # 본문·속성·차트 이름표·숨은 요약 어디든
+        left = sorted(set(re.findall(r"[가-힣]+", en_html)))[:8]
         probs.append(f"번역에 한글이 남음: {left}")
     return probs
 
