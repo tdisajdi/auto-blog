@@ -33,6 +33,8 @@ def main():
         ("전체 스타일(테마 디자인)", f"{v2}/global-styles/themes/" + "x"),
         ("추가 CSS(wpcom)", f"{wpcom}/custom-css"),
         ("추가 CSS(커스터마이저)", f"{v1}/sites/{S}/customcss"),
+        ("플러그인 목록(v1.2)", "https://public-api.wordpress.com/rest/v1.2/sites/" + str(S) + "/plugins"),
+        ("플러그인 목록(wp/v2)", f"{v2}/plugins"),
     ]
     for name, url in probes:
         try:
@@ -47,6 +49,9 @@ def main():
                 elif name == "메뉴":
                     note = " | " + "; ".join(f"{m.get('id')} {m.get('name')} 항목 {len(m.get('items') or [])}" for m in j.get("menus", []))
                     note += " | 위치: " + ", ".join(l.get("name", "") for l in j.get("locations", []))
+                elif name.startswith("플러그인"):
+                    items = j.get("plugins", []) if isinstance(j, dict) else (j if isinstance(j, list) else [])
+                    note = " | " + "; ".join(f"{p.get('slug') or p.get('plugin')}({'켜짐' if p.get('active') or p.get('status') == 'active' else '꺼짐'})" for p in items[:40])
                 elif name.startswith("템플릿"):
                     note = " | " + "; ".join(str(t.get("slug")) for t in (j if isinstance(j, list) else []))
             else:
