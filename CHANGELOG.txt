@@ -171,6 +171,11 @@
 
 
 [2026-11-19]
+■ 운영 - 플러그인 점검(읽기만)
+- 무엇: site_pages/plugin_audit.py + 수동 실행 'plugin-audit' 추가, 결과 lab/plugin_audit.txt.
+- 왜: 사용자 질문(플러그인 최적화). 사이트를 바꾸지 않고 머리말 메타 중복·사이트맵·Jetpack 모듈·Polylang·Site Kit 상태를 먼저 봄.
+- 무엇: 고칠 후보 7개를 백로그 51~57에 넣음(Polylang 빈 영어판, 무한 스크롤, 사이트맵 두 벌, 태그라인, 안 쓰는 Jetpack 기능, ads.txt, 페이지 구조화 데이터).
+- 왜: 사이트 설정 변경이라 사용자 확인 뒤 적용.
 ■ 운영 - 토큰·플러그인 확인
 - 무엇: 토큰 점검(token-check)에 플러그인 목록 읽기를 넣고 실행 - 없는 권한 0개, 플러그인 12개 확인(Rank Math·Site Kit·Polylang·Jetpack 등).
 - 왜: 사용자 질문(플러그인 제어 가능한지). 읽기만 하고 바꾼 것 없음.
