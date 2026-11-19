@@ -11,6 +11,7 @@ fix_and_check(html) → (고친 html, 남은 문제 목록, 고친 것 목록)
 import re
 
 MIN_CHARS = 2500          # 이보다 짧으면 '얇은 글'. 분량을 채우라고 몰면 반복이 생겨서 낮게 둔다
+HARD_MIN_CHARS = 2200     # 11-19: 2,200~2,500자는 [참고](안 막음), 2,200자 미만만 막음 - 보수 가이드가 되풀이 줄이다 2,446자로 막힌 일
 # 투자 권유·근거 없는 순위·과장 표현: AI 검토자가 가끔 놓쳐서(2026-10-31 VOO "핵심 자산", "최저 수준") 코드가 막는다.
 BANNED = [
     (r"(핵심|주력|필수)\s*자산", "투자 권유처럼 읽힘('핵심/주력 자산') - 특징을 사실로만 설명"),
@@ -128,6 +129,14 @@ def fix_and_check(html):
     if new != h:
         fixes.append("마크다운 표기를 HTML로 변환")
         h = new
+    # 11-19 보수 가이드: 고쳐쓰기 때마다 계좌 문장이 '…ETF를 선택해야 하며'→'…ETF를 활용해야 합니다'로 모양만 바뀌어 다시 걸림(금지 표현)
+    # → 판 2개를 버림. 'ETF를 ~해야'만 코드가 사실 꼴('~하는 방법이 있습니다')로 바꾼다. '3년 가입해야' 같은 제도 조건은 건드리지 않음(가입 뺌).
+    ends = {"합니다": "있습니다", "한다": "있다", "해요": "있어요", "하며": "있으며", "하고": "있고", "하므로": "있으므로"}
+    new = re.sub(r"(ETF를|ETF로)\s*(선택|활용|매수|구매)해야\s*(합니다|한다|해요|하며|하고|하므로)",
+                 lambda m: f"ETF를 {m.group(2)}하는 방법이 {ends[m.group(3)]}", h)
+    if new != h:
+        fixes.append("'ETF를 ~해야' 권유 꼴을 '~하는 방법이 있다'로")
+        h = new
     # 링크 뒤 조사 띄어쓰기('세무사신문 의 보도') 붙이기
     new = re.sub(r"</a>\s+(의|은|는|이|가|을|를|에서|에|와|과|도|의\s)(?=[\s,.])", r"</a>\1", h)
     if new != h:
@@ -241,8 +250,10 @@ def fix_and_check(html):
     if n_tables > 1:
         issues.append(f"표가 {n_tables}개: 표는 1개만, 나머지는 문장으로")
     body_chars = len(text_of(re.sub(r"<h1[^>]*>.*?</h1>", "", h, flags=re.S)))
-    if body_chars < MIN_CHARS:
+    if body_chars < HARD_MIN_CHARS:
         issues.append(f"너무 얇음: 본문 {body_chars}자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실로 설명을 보탤 것")
+    elif body_chars < MIN_CHARS:
+        issues.append(f"{SOFT}조금 얇음: 본문 {body_chars}자 - 같은 말을 늘리지 말고, 자료에 있는데 안 쓴 사실이 있으면 보탤 것")
     if not re.search(r"<h1[^>]*>.*?</h1>", h, flags=re.S):
         issues.append("제목(<h1>) 없음")
     if not re.search(r"태그:\s*\S", h):

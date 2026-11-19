@@ -362,3 +362,50 @@ html[lang^="en"] .o-side { display: none !important; }
 .o-nav .o-flag svg { width: 18px; height: 12px; box-shadow: 0 0 0 1px rgba(0,0,0,.25); image-rendering: pixelated; }
 .o-nav .o-flag.is-cur, .o-nav .o-flag:hover { opacity: 1; }
 @media (max-width: 860px) { .o-lang { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid rgba(127,127,127,.25); } }
+
+/* ===== 11-19 글 화면 2단계 개편(lab/THINKING '최선의 상태' 14바퀴) - 화면 틀 JS(o-post-js)가 본문 단서를 읽어 그림 ===== */
+/* 왼쪽 계기판: 읽기 온도계 + 목차 + KEY NUMBER를 한 장의 종이 카드로, 위치·따라오기는 그대로(사용자 규칙) */
+@media (min-width: 1101px) {
+  .o-post { gap: 24px; }
+  .o-post > .o-toc-col { position: sticky; top: 96px; align-self: start; background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-ink); max-height: calc(100vh - 120px); overflow: auto; }
+  .o-toc-col .o-readtemp { position: static; margin: 0; padding: 14px 14px 12px; border-bottom: 2px dashed var(--o-line); align-items: center; }
+  .o-toc-col .o-readtemp svg { width: 22px; height: 48px; }
+  .o-toc-col .o-readtemp .o-px { font-size: 12px; }
+  .o-toc-col .o-toc { position: static; max-height: none; overflow: visible; border-left: 0; padding: 12px 14px 14px; }
+  .o-toc-col .o-toc a.is-on { box-shadow: none; color: var(--o-ink) !important; }
+  .o-toc-col .o-toc a.is-on::before { content: '▸ '; color: var(--o-warm); }
+  .o-keyn { border-top: 2px dashed var(--o-line); padding: 12px 14px 14px; }
+  .o-keyn .o-px { display: inline-block; font-size: 10px; letter-spacing: .1em; color: #fff; background: var(--o-navy); padding: 3px 7px; }
+  .o-keyn b { display: block; font-size: 24px; font-weight: 800; margin-top: 6px; font-variant-numeric: tabular-nums; color: var(--o-ink); }
+}
+.o-keyn { display: none; }
+@media (min-width: 1101px) { .o-keyn { display: block; } }
+/* 결론 먼저 카드 */
+.o-read .o-answer { background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-ink); margin: 0 0 2em; }
+.o-answer-h { display: flex; justify-content: space-between; gap: 10px; background: var(--o-navy); color: #fff; padding: 8px 14px; font-family: var(--o-px); font-size: 12px; letter-spacing: .12em; }
+.o-answer-n { padding: 14px 18px 0; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.o-answer-n b { font-size: 40px; font-weight: 800; line-height: 1.1; color: var(--o-ink); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.o-answer-n small { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: #b8430f; }
+.o-read .o-answer > p { margin: 0 !important; padding: 10px 18px 18px; font-size: 18px; line-height: 1.8; }
+/* 형광펜(제목의 핵심 숫자만, 최대 5곳) */
+.o-read mark.o-hl { background: linear-gradient(transparent 58%, #ffe08a 58%); color: inherit; font-weight: 800; padding: 0 1px; }
+/* 용어 풍선 */
+.o-term { position: relative; border-bottom: 2px dotted var(--o-cold); cursor: help; outline: none; }
+.o-term .o-tip { display: none; position: absolute; left: 0; top: calc(100% + 8px); z-index: 30; width: max-content; max-width: min(300px, 80vw); background: var(--o-ink); color: #fff; font-size: 14px; font-weight: 400; line-height: 1.6; padding: 10px 12px; box-shadow: 4px 4px 0 var(--o-cold); white-space: normal; }
+.o-term:hover .o-tip, .o-term:focus .o-tip, .o-term.is-open .o-tip { display: block; }
+/* 소제목 도트 번호 */
+.o-read .wp-block-post-content h3 .o-secn { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 26px; padding: 0 6px; margin-right: 10px; vertical-align: 3px; font-family: var(--o-px); font-size: 12px; font-weight: 400; letter-spacing: .06em; color: #fff; background: var(--o-navy); box-shadow: 3px 3px 0 var(--o-warm); }
+/* 스스로 확인할 것(체크리스트) */
+.o-read .o-check { background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-line); margin: 1.2em 0 1.6em; }
+.o-check-h { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-bottom: 2px dashed var(--o-line); font-weight: 800; font-size: 16px; }
+.o-check-h span { font-family: var(--o-px); font-size: 11px; letter-spacing: .1em; color: #fff; background: #2450d4; padding: 3px 7px; font-weight: 400; }
+.o-read .o-check ul { list-style: none !important; margin: 0 !important; padding: 8px 16px 12px !important; }
+.o-read .o-check li { display: flex; gap: 12px; align-items: flex-start; margin: 8px 0; line-height: 1.7; }
+.o-read .o-check li::before { content: ''; flex: none; width: 16px; height: 16px; margin-top: 6px; border: 2px solid var(--o-ink); box-shadow: 2px 2px 0 var(--o-cold); background: #fff; }
+/* 계산표 카드(온도판 카드와 같은 문법) */
+.o-read .o-card-table { background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-line); padding: 14px 16px; }
+.o-read .o-card-table table { margin: .6em 0 0 !important; }
+.o-read .o-card-table th { background: var(--o-navy) !important; color: #fff !important; border: 1px solid var(--o-navy) !important; font-weight: 700; }
+.o-read .o-card-table td { border: 1px solid var(--o-line) !important; font-variant-numeric: tabular-nums; }
+.o-read .o-card-table > p:first-child { font-family: var(--o-sans); }
+@media (max-width: 600px) { .o-answer-n b { font-size: 32px; } .o-read .o-answer > p { font-size: 17px; } }

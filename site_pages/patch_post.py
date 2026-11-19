@@ -36,7 +36,8 @@ def main(slug):
     patches = json.load(open(os.path.join(ROOT, "lab", "patches", f"{slug}.json"), encoding="utf-8"))
     h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
     base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/"
-    r = requests.get(base + "slug:" + slug, headers=h, params={"context": "edit", "fields": "ID,status,content,URL"}, timeout=30)
+    ref = slug if slug.isdigit() else "slug:" + slug        # 글번호 또는 글 주소
+    r = requests.get(base + ref, headers=h, params={"context": "edit", "fields": "ID,status,content,URL"}, timeout=30)
     if not r.ok:
         print("글 받기 실패:", r.status_code, r.text[:200])
         return 1

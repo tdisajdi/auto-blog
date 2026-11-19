@@ -24,7 +24,7 @@
 <div class="o-byline">{{THERMO_INK}}<div><b>ONDO</b><p class="o-ko">공개 자료를 코드로 계산해 정리하는 블로그입니다. 글의 숫자가 자료와 다르면 고칩니다. 금융 전문가가 아닌 개인이 운영하며, 투자 권유가 아닙니다. <a href="https://ondo99.com/about-ondo/">소개 보기</a></p><p class="o-en">A blog that calculates public data with code. If a number in a post does not match the data, it gets corrected. Run by an individual who is not a financial professional; this is not investment advice. This English version is a translation of the Korean original. <a href="https://ondo99.com/en/about-ondo-en/">About ondo</a></p></div></div>
 <script type="text/plain" id="o-toc-js">
 {{ICON_JS}}
-(function(){var art=document.querySelector('.o-read'),rt=document.querySelector('.o-readtemp'),rb=document.querySelector('.o-readbar i'),num=rt?rt.querySelector('b'):null;function prog(){if(!art)return;var r=art.getBoundingClientRect();var p=Math.min(1,Math.max(0,(-r.top+innerHeight*0.3)/(r.height-innerHeight*0.4)));var q=Math.round(p*10)/10;if(rt)rt.style.setProperty('--p',Math.max(0.08,q));if(rb)rb.style.width=(p*100)+'%';if(num)num.textContent=Math.round(p*100);}addEventListener('scroll',prog,{passive:true});prog();var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var box=null;[].slice.call(c.querySelectorAll('h2')).forEach(function(h){if(/목차/.test(h.textContent)&&h.parentElement!==c){box=h.parentElement;}});if(box)box.classList.add('o-intoc');var hs=[].slice.call(c.querySelectorAll('h2,h3,h4')).filter(function(h){return h.textContent.trim().length>1&&!h.closest('.finq-tip')&&!h.closest('table')&&!(box&&box.contains(h));});
+(function(){var art=document.querySelector('.o-read'),rt=document.querySelector('.o-readtemp'),rb=document.querySelector('.o-readbar i'),num=rt?rt.querySelector('b'):null;function prog(){if(!art)return;var r=art.getBoundingClientRect();var p=Math.min(1,Math.max(0,(-r.top+innerHeight*0.3)/(r.height-innerHeight*0.4)));var q=Math.round(p*10)/10;if(rt)rt.style.setProperty('--p',Math.max(0.08,q));if(rb)rb.style.width=(p*100)+'%';if(num)num.textContent=Math.round(p*100);}addEventListener('scroll',prog,{passive:true});prog();var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var box=null;[].slice.call(c.querySelectorAll('h2')).forEach(function(h){if(/목차/.test(h.textContent)&&h.parentElement!==c){box=h.parentElement;}});if(box)box.classList.add('o-intoc');var hs=[].slice.call(c.querySelectorAll('h2,h3,h4')).filter(function(h){return h.textContent.trim().length>1&&!h.closest('.finq-tip')&&!h.closest('table')&&!h.closest('.sharedaddy,.jp-relatedposts,.sd-block')&&!(box&&box.contains(h));});
 if(hs.length<3)return;var side=document.querySelector('.o-toc'),mob=document.querySelector('.o-toc-mob');var so=side?side.querySelector('ol'):null,mo=mob?mob.querySelector('ol'):null;var links=[];
 hs.forEach(function(h,i){if(!h.id)h.id='o-s'+(i+1);var lv=h.tagName==='H4'?'lv4':'lv3';var t=h.textContent.trim();if(so){var li=document.createElement('li');li.className=lv;var a=document.createElement('a');a.href='#'+h.id;a.textContent=t;li.appendChild(a);so.appendChild(li);links.push([h,a]);}
 if(mo&&!box&&lv==='lv3'){var li2=document.createElement('li');var a2=document.createElement('a');a2.href='#'+h.id;a2.textContent=t;li2.appendChild(a2);mo.appendChild(li2);}});
@@ -32,6 +32,59 @@ if(side)side.hidden=false;if(mob&&mo.children.length)mob.classList.add('has-item
 if('IntersectionObserver' in window&&links.length){var cur=null;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(p){p[1].classList.toggle('is-on',p[0]===e.target);});}});},{rootMargin:'-90px 0px -70% 0px'});links.forEach(function(p){io.observe(p[0]);});}})();
 </script>
 <script>(function(){var s=document.getElementById('o-toc-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&');(new Function(t))();}})();</script>
+<script type="text/plain" id="o-post-js">
+(function(){
+var c=document.querySelector('.o-read .wp-block-post-content');if(!c||c.dataset.ondoV2)return;c.dataset.ondoV2='1';
+var en=/^en/i.test(document.documentElement.lang||'');
+var h1=document.querySelector('.o-post-head .wp-block-post-title')||document.querySelector('h1');var title=h1?h1.textContent:'';
+var NUM=/\d[\d,]*(?:\.\d+)?\s*(?:%p|%|만\s?원|억\s?원|조\s?원|원|만|억|조|million|billion)/gi;
+var keys=[];(title.match(NUM)||[]).forEach(function(k){k=k.replace(/\s+/g,' ').trim();if(keys.indexOf(k)<0)keys.push(k);});
+/* 1) 결론 카드: 첫 문단(답) */
+var first=null;[].slice.call(c.children).some(function(el){if(el.tagName==='P'&&el.textContent.trim().length>40){first=el;return true;}return el.tagName==='H3'||el.tagName==='H2';});
+if(first){var card=document.createElement('div');card.className='o-answer';
+card.innerHTML='<div class="o-answer-h"><span>ONDO READOUT · '+(en?'THE ANSWER':'결론 먼저')+'</span><span>30 SEC</span></div>'+(keys[0]?'<div class="o-answer-n"><b></b><small>'+(en?'KEY NUMBER':'핵심 숫자')+'</small></div>':'');
+if(keys[0])card.querySelector('b').textContent=keys[0];
+first.parentNode.insertBefore(card,first);card.appendChild(first);}
+/* 2) 왼쪽 계기판 KEY NUMBER */
+var col=document.querySelector('.o-toc-col');
+if(col&&keys[0]){var kn=document.createElement('div');kn.className='o-keyn';kn.innerHTML='<span class="o-px">KEY NUMBER</span><b></b>';kn.querySelector('b').textContent=keys[0];col.appendChild(kn);}
+/* 3) 형광펜: 제목의 핵심 숫자가 본문에 나오는 자리, 최대 5곳 */
+var left=5;
+function mark(node,k){var i=node.nodeValue.indexOf(k);if(i<0)return false;var r=node.splitText(i);r.splitText(k.length);var m=document.createElement('mark');m.className='o-hl';m.textContent=k;r.parentNode.replaceChild(m,r);return true;}
+keys.slice(0,2).forEach(function(k){
+ var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||p.closest('table,h1,h2,h3,h4,.o-answer-h,.o-answer-n,mark,a,script,style'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
+ var nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+ nodes.forEach(function(n){if(left>0&&n.parentNode&&mark(n,k))left--;});});
+/* 4) 용어 풍선: '용어(10자 이상 설명)' 첫 등장만. 숫자가 든 괄호는 그대로 */
+var seen={};
+[].slice.call(c.querySelectorAll('p,li')).forEach(function(p){if(p.closest('table,.o-answer-h'))return;
+ [].slice.call(p.childNodes).forEach(function(n){if(n.nodeType!==3)return;var t=n.nodeValue;
+  var re=/([가-힣A-Za-z][가-힣A-Za-z0-9·]{1,14})\(([^()\d]{10,70})\)/g,m,out=[],last=0,hit=false;
+  while((m=re.exec(t))){if(m[2].indexOf(' ')<0||seen[m[1]])continue;seen[m[1]]=1;hit=true;
+   out.push(document.createTextNode(t.slice(last,m.index)));
+   var s=document.createElement('span');s.className='o-term';s.tabIndex=0;s.setAttribute('role','button');s.setAttribute('aria-label',m[1]+': '+m[2]);
+   var w=document.createElement('span');w.textContent=m[1];var tip=document.createElement('span');tip.className='o-tip';tip.textContent=m[2];
+   s.appendChild(w);s.appendChild(tip);out.push(s);last=m.index+m[0].length;}
+  if(hit){out.push(document.createTextNode(t.slice(last)));var f=document.createDocumentFragment();out.forEach(function(x){f.appendChild(x);});n.parentNode.replaceChild(f,n);}});});
+c.addEventListener('click',function(e){var t=e.target.closest('.o-term');[].slice.call(c.querySelectorAll('.o-term.is-open')).forEach(function(x){if(x!==t)x.classList.remove('is-open');});if(t)t.classList.toggle('is-open');});
+/* 5) 체크리스트: '첫째, … 둘째, …' 문단 */
+[].slice.call(c.querySelectorAll('p')).forEach(function(p){var t=p.textContent;
+ var re=en?/(First|Second|Third|Fourth),\s*/g:/(첫째|둘째|셋째|넷째),\s*/g;
+ if(!(en?/First,/.test(t)&&/Second,/.test(t):/첫째,/.test(t)&&/둘째,/.test(t)))return;
+ var parts=t.split(re);var intro=parts[0].trim();var items=[];for(var i=2;i<parts.length;i+=2){if(parts[i].trim())items.push(parts[i].trim());}
+ if(items.length<2)return;var box=document.createElement('div');box.className='o-check';
+ box.innerHTML='<div class="o-check-h"><span>CHECK</span>'+(en?'Check for yourself':'스스로 확인할 것')+'</div>';
+ if(intro){var ip=document.createElement('p');ip.textContent=intro;p.parentNode.insertBefore(ip,p);}
+ var ul=document.createElement('ul');items.forEach(function(x){var li=document.createElement('li');li.textContent=x;ul.appendChild(li);});box.appendChild(ul);p.parentNode.replaceChild(box,p);});
+/* 6) 소제목 도트 번호 */
+var n=0;[].slice.call(c.querySelectorAll('h3')).forEach(function(h){if(h.closest('.o-intoc,.sharedaddy,.jp-relatedposts,.sd-block'))return;var t=h.textContent;var tag;
+ if(/자주 묻는 질문|FAQ|Frequently/i.test(t))tag='FAQ';else if(/^\s*(정리|Summary)\s*$/i.test(t))tag='END';else{n++;tag=(n<10?'0':'')+n;}
+ var b=document.createElement('span');b.className='o-secn';b.textContent=tag;h.insertBefore(b,h.firstChild);});
+/* 7) 계산표 카드 */
+[].slice.call(c.querySelectorAll('.ondo-calc')).forEach(function(d){d.classList.add('o-card-table');});
+})();
+</script>
+<script>(function(){var s=document.getElementById('o-post-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');(new Function(t))();}})();</script>
 <!-- /wp:html --></article>
 <!-- /wp:group -->
 <!-- wp:group {"className": "o-side", "layout": {"type": "default"}, "tagName": "aside"} -->

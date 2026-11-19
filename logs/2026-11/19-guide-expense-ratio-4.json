@@ -1,0 +1,934 @@
+{
+ "article_type": "guide",
+ "topic_id": "expense-ratio",
+ "title_seed": "ETF 총보수 0.1% 차이, 10년 뒤 얼마가 될까",
+ "category": "etf",
+ "started_at": "2026-11-19T22:26:34",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 15.7,
+   "chars": 2335
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.1,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.7,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 176.4,
+   "chars": 3337
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 96.2,
+   "chars": 219
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 35.4,
+   "chars": 412
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.6,
+   "chars": 164
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 13.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.1,
+   "chars": 941
+  },
+  {
+   "step": "검토 11(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 135.2,
+   "chars": 1055
+  },
+  {
+   "step": "검토 11(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 427
+  },
+  {
+   "step": "검토 11(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.1,
+   "chars": 183
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 98.3,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 35.6,
+   "chars": 3464
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 79.8,
+   "chars": 443
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 18.3,
+   "chars": 422
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 18.7,
+   "chars": 155
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 48.9,
+   "chars": 1018
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 10.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.4,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 207.7,
+   "chars": 3418
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.5,
+   "chars": 176
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.7,
+   "chars": 452
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.1,
+   "chars": 151
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.9,
+   "chars": 942
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 44.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 61.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 24.9,
+   "chars": 186
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 471
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.3,
+   "chars": 148
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "22:26:53",
+   "title": "ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?",
+   "sections": [
+    "실제 ETF 보수와 10년 뒤 차이",
+    "보수 차이가 커지는 이유와 구조",
+    "국내외 상장 ETF와 계좌 활용법"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "22:30:14",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "22:36:08",
+   "score": 0.61,
+   "new_serious": [
+    "[중요·사실 검증] '이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집' → 금액 예시(4만 원, 12만 원)가 기술된 문장 및 바로 앞 문장에 기준 금액(원금 1,000만 원)이 명시되어 있지 않습니다. / 고칠 방법: 문장 앞이나 내부에 '원금 1,000만 원 기준'이라는 표현을 명시하세요.",
+    "[중요·사실 검증] '이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는' → 금액 예시(13만 원, 44만 원)가 언급된 문장 및 바로 앞 문장에 기준 금액(원금 1,000만 원)이 포함되어 있지 않습니다. / 고칠 방법: 기준 금액인 '원금 1,000만 원 가정 시'라는 조건 문구를 함께 작성하세요.",
+    "[중요·사실 검증] '동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53' → 손실/차액 금액 예시(16만 원, 53만 원)가 들어간 해당 문장과 바로 앞 문장에 기준 금액(원금 1,000만 원)이 없습니다. / 고칠 방법: 문장 내에 '원금 1,000만 원 투자 기준' 조건을 추가하세요."
+   ]
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "22:36:08",
+   "score": 0.61,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "실제 상품 비교 부분에서 보수 차이뿐만 아니라 최대 낙폭(MDD) 수치가 투자자에게 주는 의미를 조금 더 상세히 풀어주면 좋겠습니다.",
+   "issues": [
+    "[사소·독자 편집] '보수 차이가 커지는 이유와 구조 보수 차이로 발생하는 금액 격차는 시간이 지날수록 선형적으로 늘어나는 것이 ' → 서브 제목의 문장과 첫 번째 문장이 거의 똑같이 겹쳐서 다소 어색합니다. / 고칠 방법: 서브 제목을 제외하고 본문 문장만 독립적으로 간결하게 다듬어 작성하십시오.",
+    "[중요·사실 검증] '이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집' → 금액 예시(4만 원, 12만 원)가 기술된 문장 및 바로 앞 문장에 기준 금액(원금 1,000만 원)이 명시되어 있지 않습니다. / 고칠 방법: 문장 앞이나 내부에 '원금 1,000만 원 기준'이라는 표현을 명시하세요.",
+    "[중요·사실 검증] '이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는' → 금액 예시(13만 원, 44만 원)가 언급된 문장 및 바로 앞 문장에 기준 금액(원금 1,000만 원)이 포함되어 있지 않습니다. / 고칠 방법: 기준 금액인 '원금 1,000만 원 가정 시'라는 조건 문구를 함께 작성하세요.",
+    "[중요·사실 검증] '동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53' → 손실/차액 금액 예시(16만 원, 53만 원)가 들어간 해당 문장과 바로 앞 문장에 기준 금액(원금 1,000만 원)이 없습니다. / 고칠 방법: 문장 내에 '원금 1,000만 원 투자 기준' 조건을 추가하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IR…' / '해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수…'"
+   ],
+   "numbers": [
+    "833만"
+   ],
+   "fixes": [
+    "'ETF를 ~해야' 권유 꼴을 '~하는 방법이 있다'로",
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2976
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "22:38:44",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "22:41:41",
+   "score": 0.76,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "실제 상품 계산 결과인 VOO와 SPY의 구체적 금액 차이(4만 원, 13만 원 등)를 핵심 요약에 함께 배치하여 체감 효과를 높이기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 스스로 확인할 기준을 제시하는 부분에서 자료의 구체적인 수치를 함께 명시하지 않았습니다. / 고칠 방법: 글 마무리의 확인 기준 설명에 자료의 구체적인 숫자(예: 보수 차이 0.083%p, 5년 MDD -19.15% 등)를 예시 수치로 함께 기술하세요.",
+    "[중요·독자 편집] '해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IRP 계좌로 직접 살 수 없습니다.' → 앞서 본문 섹션에서 이미 다룬 내용과 완전히 같은 문장을 FAQ 섹션에서 다시 되풀이하고 있습니다. / 고칠 방법: FAQ 섹션에서는 동일한 문장을 그대로 반복하는 대신 질문에 대한 답변 핵심만 짧게 요약하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 비슷한 문장 반복 1쌍 - 한 번만 남기고 지울 것. 예: '해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IR…' / '해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수…'",
+    "[참고] 같은 숫자 '1,000만원'를 6번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 3010
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:46:25",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "고쳐쓰기 2"
+  },
+  {
+   "step": "고쳐쓰기 2",
+   "at": "22:46:28",
+   "model": "gemini-3.5-flash",
+   "todo": 5
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:50:48",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 3(사실 검증)"
+  },
+  {
+   "step": "모델 전환",
+   "at": "22:53:55",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 13(사실 검증)"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "22:54:14",
+   "score": 0.97
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "22:54:14",
+   "score": 0.97,
+   "passed": true,
+   "value": 1.0,
+   "value_tip": "계산 결과가 매매 비용·세금·환율 등을 제외한 순수 총보수 기준이라는 점을 본문에서 한 번 더 명확히 짚어주기",
+   "issues": [
+    "[사소·독자 편집] '동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53' → 도입부에서 이미 언급한 0.1%p 차이에 따른 10년·20년 뒤 격차(16만 원, 53만 원) 수치와 내용을 본문 중간에서 다시 반복하고 있습니다. / 고칠 방법: 복리 효과에 대한 일반적인 설명으로 대체하고 구체적인 수치 반복은 삭제하세요."
+   ],
+   "chars": 2964
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "22:54:19",
+   "post_id": 705,
+   "url": "https://ondo99.com/?p=705",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "publish",
+  "title": "ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?",
+  "url": "https://ondo99.com/?p=705",
+  "score": 0.97,
+  "issues": [
+   "[사소·독자 편집] '동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53' → 도입부에서 이미 언급한 0.1%p 차이에 따른 10년·20년 뒤 격차(16만 원, 53만 원) 수치와 내용을 본문 중간에서 다시 반복하고 있습니다. / 고칠 방법: 복리 효과에 대한 일반적인 설명으로 대체하고 구체적인 수치 반복은 삭제하세요."
+  ]
+ },
+ "facts": "[사실 자료 - 예시 ETF 실제 데이터]\n- SPY (State Street SPDR S&P 500 ETF Trust): 해외 상장, 운용보수 0.09%, 최대 낙폭(5년) -24.50%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- VOO (Vanguard S&P 500 ETF): 해외 상장, 운용보수 0.03%, 최대 낙폭(5년) -24.52%, 환율 영향 있음 (해외 상장, 달러로 거래)\n- 360750 (TIGER 미국S&P500): 국내 상장, 운용보수 0.007%, 최대 낙폭(5년) -19.15%, 환율 영향 있음 (국내 상장이지만 해외 자산, 환헤지 안 함)\n\n[계좌 사실]\n- 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.\n[세금 참고 - 2026년 10월 기준 세법. 이 글의 주제가 아니므로 꼭 쓸 필요 없음(빠져도 누락 아님). 쓴다면 숫자 없이 아래 사실과 맞게 한두 문장만 - 이 목록을 다 옮기지 말 것]\n- 미국 상장 ETF 매매차익은 양도소득세 대상이고 다음 해 5월에 직접 신고한다(세율·공제액은 세금 가이드에서 다룸)\n- 미국 상장 ETF 배당은 미국에서 세금을 먼저 떼고(원천징수) 들어오며, 해외에서 낸 세금은 국내 세금에서 빼 준다(외국납부세액공제)\n- 이자·배당 등 금융소득이 한 해 일정 금액을 넘으면 다른 소득과 합쳐 과세된다(금융소득종합과세, 기준 금액은 세금 가이드에서 다룸)\n\n[최근 뉴스]\n- 수집된 뉴스 없음\n\n\n[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n- 실제 두 ETF: VOO(총보수 0.03%) vs 360750(0.007%), 보수 차이 0.023%p. 원금 1,000만 원, 보수 떼기 전 연 5% 가정 → 10년 뒤 VOO 쪽이 4만 원 적음, 20년 뒤 VOO 쪽이 12만 원 적음\n- 실제 두 ETF: SPY(총보수 0.09%) vs 360750(0.007%), 보수 차이 0.083%p. 원금 1,000만 원, 보수 떼기 전 연 5% 가정 → 10년 뒤 SPY 쪽이 13만 원 적음, 20년 뒤 SPY 쪽이 44만 원 적음\n- 가상의 예(실제 상품 아님): 총보수만 0.1%p 다른 두 ETF, 같은 원금 1,000만 원·같은 연 5% 가정 → 10년 뒤 약 16만 원 차이(최종 금액의 약 1.0%), 20년 뒤 약 53만 원 차이(최종 금액의 약 2.0%)\n- 원금 1,000만 원을 한 번에 넣고, 보수를 떼기 전 연 5% 수익을 가정한 계산(ondo 계산). 괄호는 가장 싼 ETF와의 차이. 총보수만 반영 - 매매 비용·세금·환율·추적 오차는 빼고 계산. 수익률 가정은 예시일 뿐 실제 수익이 아님.\n[일반 원리 - 교과서 수준 설명]\n- 총보수는 ETF 자산에서 매일 조금씩 빠져나가므로, 투자자가 따로 내는 돈이 아니라 수익률(가격)에 이미 반영된다.\n- 보수 차이는 원금이 크고 기간이 길수록 금액 차이가 커진다(복리).\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 운용보수: ETF 운용사가 매년 자산에서 떼어 가는 비용(자산 대비 %)\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n- 환헤지: 환율이 움직여도 수익률이 덜 흔들리게 막는 장치. 이름에 (H)가 붙은 국내 상장 ETF가 이 방식\n- 원천징수: 배당·이자를 줄 때 세금을 미리 떼고 주는 것\n- %p(퍼센트포인트): 비율끼리 뺀 차이. 비율이 몇 % 늘었는지(증가율)와는 다른 값\n",
+ "drafts": {
+  "1": "<h1>ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?</h1>\n<!-- 동일한 1,000만 원을 연 5% 수익률로 10년 투자할 때 총보수 0.1%p 차이가 만드는 실제 금액 차이는 약 16만 원입니다. 실제 미국 S&P500 추종 ETF의 운용보수와 낙폭 데이터를 통해 보수가 수익률에 미치는 영향을 확인해 보세요. -->\n\n<p>원금 1,000만 원을 보수 떼기 전 연 5% 수익률 조건으로 투자할 때, 총보수만 0.1%p(%퍼센트포인트: 비율끼리 뺀 차이) 차이 나는 두 ETF의 10년 뒤 격차는 약 16만 원입니다. 이는 최종 평가 금액의 약 1.0%에 해당하는 금액이며, 20년 뒤에는 약 53만 원으로 최종 금액의 약 2.0%까지 차이가 벌어집니다.</p>\n\n<p>총보수는 투자자가 매달 계좌에서 따로 내는 돈이 아니라 ETF 자산에서 매일 조금씩 빠져나갑니다. 따라서 투자자가 직접 현금을 이체할 필요 없이 수익률(가격)에 이미 반영되는 구조입니다. 2026년 11월 19일 기준 공개된 실제 상품 데이터를 통해 수수료 차이가 계좌에 미치는 영향을 구체적으로 확인해 볼 수 있습니다.</p>\n\n<h3>실제 ETF 보수와 10년 뒤 차이</h3>\n\n<p>미국 S&P 500 지수를 추종하는 대표 상품들의 수수료 구조를 살펴보면 해외 상장 상품과 국내 상장 상품 간의 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용) 차이가 명확히 나타납니다. 미국 시장에 상장된 SPY는 운용보수가 0.09%이며, 또 다른 해외 상장 ETF인 VOO는 0.03%의 보수를 책정하고 있습니다. 반면 국내 상장 상품인 360750(TIGER 미국S&P500)의 운용보수는 0.007% 수준입니다.</p>\n\n<p>비용 차이 외에 5년 기준 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율) 지표에서도 차이를 보입니다. SPY의 5년 최대 낙폭은 -24.50%였고, VOO는 -24.52%를 기록했습니다. 두 해외 상장 ETF는 모두 달러로 거래되어 환율 영향이 존재합니다. 국내 상장 상품인 360750 역시 해외 자산에 투자하며 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)를 하지 않는 상품이므로 환율 영향을 동일하게 받지만, 5년 최대 낙폭은 -19.15%로 집계되었습니다.</p>\n\n<h4>🔸 실제 상품 보수 차이의 10년 및 20년 결과</h4>\n\n<p>동일하게 원금 1,000만 원을 보수 떼기 전 연 5% 수익으로 굴린다고 가정했을 때 실제 운용보수 차이가 만드는 금액 격차는 상품 조합에 따라 달라집니다. VOO(총보수 0.03%)와 360750(총보수 0.007%)의 보수 차이는 0.023%p입니다. 이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집니다.</p>\n\n<p>SPY(총보수 0.09%)와 360750(총보수 0.007%)을 비교하면 보수 차이는 0.083%p로 늘어납니다. 이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는 차이가 44만 원까지 벌어집니다.</p>\n\n<h3>보수 차이가 커지는 이유와 구조</h3>\n\n<p>보수 차이로 발생하는 금액 격차는 시간이 지날수록 선형적으로 늘어나는 것이 아니라 복리 효과로 인해 점차 가속화됩니다. 동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53만 원으로 3배 이상 커지는 이유가 바로 여기에 있습니다.</p>\n\n<p>투자금의 규모 역시 비용 격차를 키우는 주요 변수입니다. 운용보수가 투자 자산의 일정 비율로 매 매일 차감되는 방식이기 때문에, 원금이 커질수록 매일 떼어가는 절대적인 비용 차이가 함께 증가합니다. 장기 투자를 계획할수록 초기의 미세한 보수 차이가 미래 계좌 잔고에 미치는 영향력을 반드시 고려해야 합니다.</p>\n\n<h3>국내외 상장 ETF와 계좌 활용법</h3>\n\n<p>투자하려는 ETF의 상장 위치에 따라 활용할 수 있는 절세 계좌가 달라집니다. 해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IRP 계좌로 직접 살 수 없습니다. 해외 상장 상품이 제공하는 지수 투자 효과와 계좌의 세제 혜택을 동시에 누리고 싶다면 해당 절세 계좌 내에서 동일한 지수를 추종하는 국내 상장 ETF를 활용하는 방법이 있습니다.</p>\n\n<p>배당금 지급 방식과 세율 구조에서도 차이가 발생합니다. 해외 상장 ETF에서 나오는 배당금은 현지에서 세금을 미리 떼고 지급하는 원천징수 과정을 거치게 됩니다. 세금 관련 상세 규칙과 차이에 대해서는 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 총보수가 0.1% 차이나면 투자자가 매달 계좌에서 0.1%를 직접 현금으로 이체해야 하나요?</h4>\n<p>그렇지 않습니다. 총보수는 ETF 자산 자체에서 매일 조금씩 차감되어 순자산가치에 자동으로 계산됩니다. 따라서 투자자가 고지서를 받거나 직접 이체할 필요 없이 매일 형성되는 ETF 가격과 수익률에 비용이 반영되어 있습니다.</p>\n\n<h4>🔸 해외 상장 ETF와 국내 상장 ETF는 ISA 계좌에서 똑같이 살 수 있나요?</h4>\n<p>똑같이 살 수 없습니다. 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 활용하려면 미국 S&P 500 등 같은 지수를 추종하도록 국내 증권 시장에 상장된 ETF를 선택하는 방법이 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>총보수의 미세한 차이는 투자 기간이 짧을 때는 눈에 띄지 않지만, 복리 구조와 시간 경과에 따라 계좌 잔고의 격차를 서서히 넓혀갑니다. 따라서 장기 자산 배분을 설계할 때는 자산군뿐만 아니라 각 상품이 떼어가는 수수료율의 차이를 명확히 파악하는 과정이 필요합니다.</p>\n\n<p>새로운 ETF 상품이나 비교 자료를 살펴볼 때는 다음 기준을 바탕으로 스스로 수치를 점검해 볼 수 있습니다. 첫째, 표기된 운용보수 외에 실제로 자산에서 차감되는 총보수 차이가 몇 %p인지 확인합니다. 둘째, 추종하는 기초 자산이 동일하더라도 지난 5년간 기록한 최대 낙폭(MDD) 수치에 차이가 있는지 점검합니다. 셋째, 본인이 활용하려는 연금저축이나 ISA 등 특정 계좌에서 직접 거래가 가능한 상장 위치의 상품인지 확인해야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> ETF 총보수 0.1%p 차이는 1,000만 원 투자 시 10년 뒤 약 16만 원의 격차를 만듭니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 ETF vs 국내 상장 ETF, 한 해 이익 833만 원이 가르는 세금 차이</a></p>\n\n태그: ETF총보수 수수료비교 장기투자 복리효과 SPY비교",
+  "2": "<h1>ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?</h1>\n<!-- 동일한 1,000만 원을 연 5% 수익률로 10년 투자할 때 총보수 0.1%p 차이가 만드는 실제 금액 차이는 약 16만 원입니다. 실제 미국 S&P500 추종 ETF의 운용보수와 낙폭 데이터를 통해 보수가 수익률에 미치는 영향을 확인해 보세요. -->\n\n<p>원금 1,000만 원을 보수 떼기 전 연 5% 수익률 조건으로 투자할 때, 총보수만 0.1%p(%퍼센트포인트: 비율끼리 뺀 차이) 차이 나는 두 ETF의 10년 뒤 격차는 약 16만 원입니다. 이는 최종 평가 금액의 약 1.0%에 해당하는 금액이며, 20년 뒤에는 약 53만 원으로 최종 금액의 약 2.0%까지 차이가 벌어집니다.</p>\n\n<p>총보수는 투자자가 매달 계좌에서 따로 내는 돈이 아니라 ETF 자산에서 매일 조금씩 빠져나갑니다. 따라서 투자자가 직접 현금을 이체할 필요 없이 수익률(가격)에 이미 반영되는 구조입니다. 2026년 11월 19일 기준 공개된 실제 상품 데이터를 통해 수수료 차이가 계좌에 미치는 영향을 구체적으로 확인해 볼 수 있습니다.</p>\n\n<h3>실제 ETF 보수와 10년 뒤 차이</h3>\n\n<p>미국 S&P 500 지수를 추종하는 대표 상품들의 수수료 구조를 살펴보면 해외 상장 상품과 국내 상장 상품 간의 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용) 차이가 명확히 나타납니다. 미국 시장에 상장된 SPY는 운용보수가 0.09%이며, 또 다른 해외 상장 ETF인 VOO는 0.03%의 보수를 책정하고 있습니다. 반면 국내 상장 상품인 360750(TIGER 미국S&P500)의 운용보수는 0.007% 수준입니다.</p>\n\n<p>비용 차이 외에 5년 기준 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율) 지표에서도 차이를 보입니다. SPY의 5년 최대 낙폭은 -24.50%였고, VOO는 -24.52%를 기록했습니다. 두 해외 상장 ETF는 모두 달러로 거래되어 환율 영향이 존재합니다. 국내 상장 상품인 360750 역시 해외 자산에 투자하며 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)를 하지 않는 상품이므로 환율 영향을 동일하게 받지만, 5년 최대 낙폭은 -19.15%로 집계되었습니다.</p>\n\n<h4>🔸 실제 상품 보수 차이의 10년 및 20년 결과</h4>\n\n<p>동일하게 원금 1,000만 원을 보수 떼기 전 연 5% 수익으로 굴린다고 가정했을 때 실제 운용보수 차이가 만드는 금액 격차는 상품 조합에 따라 달라집니다. VOO(총보수 0.03%)와 360750(총보수 0.007%)의 보수 차이는 0.023%p입니다. 원금 1,000만 원 기준 이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집니다.</p>\n\n<p>SPY(총보수 0.09%)와 360750(총보수 0.007%)을 비교하면 보수 차이는 0.083%p로 늘어납니다. 원금 1,000만 원 가정 시 이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는 차이가 44만 원까지 벌어집니다.</p>\n\n<h3>보수 차이가 커지는 이유와 구조</h3>\n\n<p>보수 차이로 발생하는 금액 격차는 시간이 지날수록 선형적으로 늘어나는 것이 아니라 복리 효과로 인해 점차 가속화됩니다. 원금 1,000만 원 투자 기준 동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53만 원으로 3배 이상 커지는 이유가 바로 여기에 있습니다.</p>\n\n<p>투자금의 규모 역시 비용 격차를 키우는 주요 변수입니다. 운용보수가 투자 자산의 일정 비율로 매 매일 차감되는 방식이기 때문에, 원금이 커질수록 매일 떼어가는 절대적인 비용 차이가 함께 증가합니다. 장기 투자를 계획할수록 초기의 미세한 보수 차이가 미래 계좌 잔고에 미치는 영향력을 반드시 고려해야 합니다.</p>\n\n<h3>국내외 상장 ETF와 계좌 활용법</h3>\n\n<p>투자하려는 ETF의 상장 위치에 따라 활용할 수 있는 절세 계좌가 달라집니다. 해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IRP 계좌로 직접 살 수 없습니다. 해외 상장 상품이 제공하는 지수 투자 효과와 계좌의 세제 혜택을 동시에 누리고 싶다면 해당 절세 계좌 내에서 동일한 지수를 추종하는 국내 상장 ETF를 활용하는 방법이 있습니다.</p>\n\n<p>배당금 지급 방식과 세율 구조에서도 차이가 발생합니다. 해외 상장 ETF에서 나오는 배당금은 현지에서 세금을 미리 떼고 지급하는 원천징수 과정을 거치게 됩니다. 세금 관련 상세 규칙과 차이에 대해서는 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 총보수가 0.1% 차이나면 투자자가 매달 계좌에서 0.1%를 직접 현금으로 이체해야 하나요?</h4>\n<p>그렇지 않습니다. 총보수는 ETF 자산 자체에서 매일 조금씩 차감되어 순자산가치에 자동으로 계산됩니다. 따라서 투자자가 고지서를 받거나 직접 이체할 필요 없이 매일 형성되는 ETF 가격과 수익률에 비용이 반영되어 있습니다.</p>\n\n<h4>🔸 해외 상장 ETF와 국내 상장 ETF는 ISA 계좌에서 똑같이 살 수 있나요?</h4>\n<p>똑같이 살 수 없습니다. 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택을 활용하려면 미국 S&P 500 등 같은 지수를 추종하도록 국내 증권 시장에 상장된 ETF를 선택하는 방법이 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>총보수의 미세한 차이는 투자 기간이 짧을 때는 눈에 띄지 않지만, 복리 구조와 시간 경과에 따라 계좌 잔고의 격차를 서서히 넓혀갑니다. 따라서 장기 자산 배분을 설계할 때는 자산군뿐만 아니라 각 상품이 떼어가는 수수료율의 차이를 명확히 파악하는 과정이 필요합니다.</p>\n\n<p>새로운 ETF 상품이나 비교 자료를 살펴볼 때는 다음 기준을 바탕으로 스스로 수치를 점검해 볼 수 있습니다. 첫째, 표기된 운용보수 외에 실제로 자산에서 차감되는 총보수 차이가 몇 %p인지 확인합니다. 둘째, 추종하는 기초 자산이 동일하더라도 지난 5년간 기록한 최대 낙폭(MDD) 수치에 차이가 있는지 점검합니다. 셋째, 본인이 활용하려는 연금저축이나 ISA 등 특정 계좌에서 직접 거래가 가능한 상장 위치의 상품인지 확인해야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> ETF 총보수 0.1%p 차이는 1,000만 원 투자 시 10년 뒤 약 16만 원의 격차를 만듭니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 ETF vs 국내 상장 ETF 세금 비교 가이드</a></p>\n\n태그: ETF총보수 수수료비교 장기투자 복리효과 SPY비교",
+  "3": "<h1>ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?</h1>\n<!-- 동일한 1,000만 원을 연 5% 수익률로 10년 투자할 때 총보수 0.1%p 차이가 만드는 실제 금액 차이는 약 16만 원입니다. 실제 미국 S&P500 추종 ETF의 운용보수와 낙폭 데이터를 통해 보수가 수익률에 미치는 영향을 확인해 보세요. -->\n\n<p>원금 1,000만 원을 보수 떼기 전 연 5% 수익률 조건으로 투자할 때, 총보수만 0.1%p(%퍼센트포인트: 비율끼리 뺀 차이) 차이 나는 두 ETF의 10년 뒤 격차는 약 16만 원입니다. 이는 최종 평가 금액의 약 1.0%에 해당하는 금액이며, 20년 뒤에는 약 53만 원으로 최종 금액의 약 2.0%까지 차이가 벌어집니다.</p>\n\n<p>총보수는 투자자가 매달 계좌에서 따로 내는 돈이 아니라 ETF 자산에서 매일 조금씩 빠져나갑니다. 따라서 투자자가 직접 현금을 이체할 필요 없이 수익률(가격)에 이미 반영되는 구조입니다. 2026년 11월 19일 기준 공개된 실제 상품 데이터를 통해 수수료 차이가 계좌에 미치는 영향을 구체적으로 확인해 볼 수 있습니다.</p>\n\n<h3>실제 ETF 보수와 10년 뒤 차이</h3>\n\n<p>미국 S&P 500 지수를 추종하는 대표 상품들의 수수료 구조를 살펴보면 해외 상장 상품과 국내 상장 상품 간의 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용) 차이가 명확히 나타납니다. 미국 시장에 상장된 SPY는 운용보수가 0.09%이며, 또 다른 해외 상장 ETF인 VOO는 0.03%의 보수를 책정하고 있습니다. 반면 국내 상장 상품인 360750(TIGER 미국S&P500)의 운용보수는 0.007% 수준입니다.</p>\n\n<p>비용 차이 외에 5년 기준 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율) 지표에서도 차이를 보입니다. SPY의 5년 최대 낙폭은 -24.50%였고, VOO는 -24.52%를 기록했습니다. 두 해외 상장 ETF는 모두 달러로 거래되어 환율 영향이 존재합니다. 국내 상장 상품인 360750 역시 해외 자산에 투자하며 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)를 하지 않는 상품이므로 환율 영향을 동일하게 받지만, 5년 최대 낙폭은 -19.15%로 집계되었습니다.</p>\n\n<h4>🔸 실제 상품 보수 차이의 10년 및 20년 결과</h4>\n\n<p>동일하게 1,000만 원을 보수 떼기 전 연 5% 수익으로 굴린다고 가정했을 때 실제 운용보수 차이가 만드는 금액 격차는 상품 조합에 따라 달라집니다. VOO(총보수 0.03%)와 360750(총보수 0.007%)의 보수 차이는 0.023%p입니다. 이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집니다.</p>\n\n<p>SPY(총보수 0.09%)와 360750(총보수 0.007%)을 비교하면 보수 차이는 0.083%p로 늘어납니다. 이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는 차이가 44만 원까지 벌어집니다.</p>\n\n<h3>보수 차이가 커지는 이유와 구조</h3>\n\n<p>보수 차이로 발생하는 금액 격차는 시간이 지날수록 선형적으로 늘어나는 것이 아니라 복리 효과로 인해 점차 가속화됩니다. 동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53만 원으로 3배 이상 커지는 이유가 바로 여기에 있습니다.</p>\n\n<p>투자금의 규모 역시 비용 격차를 키우는 주요 변수입니다. 운용보수가 투자 자산의 일정 비율로 매일 차감되는 방식이기 때문에, 원금이 커질수록 매일 떼어가는 절대적인 비용 차이가 함께 증가합니다. 장기 투자를 계획할수록 초기의 미세한 보수 차이가 미래 계좌 잔고에 미치는 영향력을 반드시 고려해야 합니다.</p>\n\n<h3>국내외 상장 ETF와 계좌 활용법</h3>\n\n<p>투자하려는 ETF의 상장 위치에 따라 활용할 수 있는 절세 계좌가 달라집니다. 해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IRP 계좌로 직접 살 수 없습니다. 해외 상장 상품이 제공하는 지수 투자 효과와 계좌의 세제 혜택을 동시에 누리고 싶다면 해당 절세 계좌 내에서 동일한 지수를 추종하는 국내 상장 ETF를 활용하는 방법이 있습니다.</p>\n\n<p>배당금 지급 방식과 세율 구조에서도 차이가 발생합니다. 해외 상장 ETF에서 나오는 배당금은 현지에서 세금을 미리 떼고 지급하는 원천징수 과정을 거치게 됩니다. 세금 관련 상세 규칙과 차이에 대해서는 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 총보수가 0.1% 차이나면 투자자가 매달 계좌에서 0.1%를 직접 현금으로 이체해야 하나요?</h4>\n<p>그렇지 않습니다. 총보수는 ETF 자산 자체에서 매일 조금씩 차감되어 순자산가치에 자동으로 계산됩니다. 따라서 투자자가 고지서를 받거나 직접 이체할 필요 없이 매일 형성되는 ETF 가격과 수익률에 비용이 반영되어 있습니다.</p>\n\n<h4>🔸 해외 상장 ETF와 국내 상장 ETF는 ISA 계좌에서 똑같이 살 수 있나요?</h4>\n<p>해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없으며, 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.</p>\n\n<h3>정리</h3>\n\n<p>총보수의 미세한 차이는 투자 기간이 짧을 때는 눈에 띄지 않지만, 복리 구조와 시간 경과에 따라 계좌 잔고의 격차를 서서히 넓혀갑니다. 따라서 장기 자산 배분을 설계할 때는 자산군뿐만 아니라 각 상품이 떼어가는 수수료율의 차이를 명확히 파악하는 과정이 필요합니다.</p>\n\n<p>새로운 ETF 상품이나 비교 자료를 살펴볼 때는 다음 기준을 바탕으로 스스로 수치를 점검해 볼 수 있습니다. 첫째, 표기된 운용보수 외에 실제로 자산에서 차감되는 보수 차이가 0.083%p 또는 0.023%p처럼 어느 정도 발생하는지 확인합니다. 둘째, 추종하는 기초 자산이 동일하더라도 지난 5년간 기록한 360750(-19.15%)이나 SPY(-24.50%), VOO(-24.52%)처럼 최대 낙폭(MDD) 수치에 차이가 있는지 점검합니다. 셋째, 본인이 활용하려는 연금저축이나 ISA 등 특정 계좌에서 직접 거래가 가능한 상장 위치의 상품인지 확인해야 합니다.</p>\n\n<p><strong>한 줄 정리:</strong> ETF 총보수 0.1%p 차이는 장기 투자 시 복리로 차이가 벌어집니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 ETF vs 국내 상장 ETF 세금 비교 가이드</a></p>\n\n태그: ETF총보수 수수료비교 장기투자 복리효과 SPY비교"
+ },
+ "minutes": 27.7
+}
