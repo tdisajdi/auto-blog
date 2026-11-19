@@ -440,3 +440,7 @@ html[lang^="en"] .o-side { display: none !important; }
 .o-cat.o-cat-soon { opacity: .55; cursor: default; position: relative; }
 .o-cat.o-cat-soon::after { content: "COMING SOON"; position: absolute; right: 14px; bottom: 12px; font-family: var(--o-px); font-size: 10px; letter-spacing: .1em; color: var(--o-ink-3); }
 html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
+
+/* 11-19: 글 화면 결론 카드 위 빈 여백 54px - 본문 묶음의 자동 위 여백(32px, 숨은 휴대폰 목차 다음이라 붙음) + 빈 문단(22px) */
+.o-read > .wp-block-post-content { margin-top: 0 !important; margin-block-start: 0 !important; }
+.o-read .wp-block-post-content > p:empty { display: none !important; }
