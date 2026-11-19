@@ -1,6 +1,7 @@
 import os, sys, json
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
 import blog_engine as be, media_engine as me
+os.environ["ONDO_NEW_COVER"] = "0"   # 11-19: 새 표지(글꼴 내려받기) 대신 옛 카드 경로를 시험
 sent, photos, edits = [], [], []
 def send(text, with_approve_button=False, parse_mode=None, buttons=None, reply_to=None):
     sent.append({"text":text,"buttons":buttons,"reply_to":reply_to}); return 1000+len(sent)

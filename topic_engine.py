@@ -305,7 +305,8 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
     status = "publish" if passed else "draft"
     slug = re.sub(r"-{2,}", "-", re.sub(r"[^a-z0-9-]", "", str(plan.get("slug", "")).lower().replace(" ", "-"))).strip("-") or None
     score_text = "검수 실패" if score is None else f"{score:.2f}"
-    featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"))
+    kicker = {"guide": "GUIDE", "comparison": "COMPARE", "analysis": "ANALYSIS", "issue": "ISSUE"}.get(str(article_type).split("-")[0], "DATA")
+    featured = media_engine.featured_card_id(title, os.environ.get("BLOG_CATEGORY", "etf"), kicker)
     if target and not passed:     # 다시 쓴 판이 기준 미달이면 원래 글은 건드리지 않는다
         log.finish(status="failed", reason="다시 쓴 판이 기준 미달 - 원래 글 유지", title=title, score=score,
                    issues=issues[:8])

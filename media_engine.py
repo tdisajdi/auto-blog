@@ -404,9 +404,18 @@ def upload_png(path):
             pass
 
 
-def featured_card_id(title, category_code):
-    """제목 카드를 만들어 올리고 첨부파일 ID를 돌려준다(대표 이미지용). 실패하면 None."""
-    media_id, _ = upload_png(make_title_card(title, category_code))
+def featured_card_id(title, category_code, kicker="DATA"):
+    """대표 이미지를 만들어 올리고 첨부파일 ID를 돌려준다. 실패하면 None.
+    11-19: 새 표지(ondo/media/cover.py - 사이트 디자인과 같은 종이·도트·분야색)를 먼저, 안 되면 옛 제목 카드."""
+    path = None
+    try:
+        if os.environ.get("ONDO_NEW_COVER", "1") == "0":     # 시험(시나리오)에서 옛 카드 경로를 볼 때
+            raise RuntimeError("새 표지 꺼짐")
+        from ondo.media.cover import make_cover
+        path = make_cover(title, category_code, kicker)
+    except Exception as e:
+        print(f"ℹ️ 새 표지 실패(옛 카드로): {type(e).__name__}: {e}")
+    media_id, _ = upload_png(path or make_title_card(title, category_code))
     return media_id
 
 

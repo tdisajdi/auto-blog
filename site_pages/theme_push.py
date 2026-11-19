@@ -34,7 +34,9 @@ def css_block():
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">'
              '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">'
              # 11-12 한국어 제목 도트 글꼴 Galmuri(SIL OFL 1.1, 무료 공개)
-             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css">')
+             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css">'
+             # 11-19 소제목·카드 제목 글꼴 Wanted Sans(SIL OFL 1.1) - 나눠 받기(split)라 쓰는 글자 묶음만 내려받음
+             '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.css">')
     return f"<!-- wp:html -->\n{CSS_MARK}{fonts}<style>{css}</style>\n<!-- /wp:html -->\n"
 
 
@@ -75,9 +77,43 @@ def icon_js():
         return ""
 
 
+_EMPTY = None
+
+
+def empty_categories():
+    """공개 글이 0편인 분야 slug 목록(11-19: 메뉴에서 빈 화면으로 가는 링크 숨기기). 확인 못 하면 빈 목록(아무것도 안 숨김)."""
+    global _EMPTY
+    if _EMPTY is not None:
+        return _EMPTY
+    _EMPTY = []
+    try:
+        import requests
+        import blog_engine as be
+        r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/categories",
+                         headers={"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}, params={"number": 200}, timeout=30)
+        cats = r.json().get("categories") or []
+        _EMPTY = sorted(c["slug"] for c in cats if c.get("post_count", 1) == 0 and c.get("slug"))
+        print("글 없는 분야(메뉴에서 숨김):", _EMPTY)
+    except Exception as e:
+        print("분야 글 수 확인 실패 - 메뉴 그대로:", type(e).__name__)
+    return _EMPTY
+
+
+def hide_empty(content, slugs=None):
+    """머리글·바닥글 메뉴의 빈 분야 링크는 지우고, 첫 화면 분야 카드는 링크 없는 'COMING SOON' 카드로.
+    분야에 첫 글이 공개되면 theme-push를 다시 하면 돌아온다."""
+    import re
+    for slug in (empty_categories() if slugs is None else slugs):
+        href = re.escape(f"/category/{slug}/")
+        content = re.sub(r'<a([^>]*class="[^"]*o-cat[^"]*")[^>]*href="[^"]*' + href + r'"([^>]*)>(.*?)</a>',
+                         lambda m: f'<div{m.group(1).replace("o-cat", "o-cat o-cat-soon", 1)}{m.group(2)}>{m.group(3)}</div>', content, flags=re.S)
+        content = re.sub(r'\s*<a[^>]*href="[^"]*' + href + r'"[^>]*>[^<]*</a>', "", content)
+    return content
+
+
 def fill(content):
     content = content.replace("{{ICON_JS}}", icon_js())
-    return board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg()))
+    return hide_empty(board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg())))
 
 
 def local_items():

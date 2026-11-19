@@ -1,5 +1,6 @@
 import os, sys, json
 os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
+os.environ["ONDO_NEW_COVER"] = "0"   # 11-19: 새 표지(글꼴 내려받기) 대신 옛 카드 경로를 시험
 import topic_engine as te, media_engine as me
 calls={}
 me.make_chart=lambda spec, out_path=None: calls.setdefault("chart_spec", spec) and "/tmp/x.png"
