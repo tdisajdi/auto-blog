@@ -7,7 +7,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -53,7 +53,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=1024%2C538&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -99,7 +99,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=1024%2C538&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -153,7 +153,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -208,6 +208,12 @@
   "lowContrast": [],
   "card": [
    [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+   ],
+   [
     "DIV.taxonomy-category.wp-block-post-terms",
     18,
     "0px",
@@ -215,7 +221,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    104,
+    78,
     "6px",
     ""
    ],
@@ -247,6 +253,12 @@
   "lowContrast": [],
   "card": [
    [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?w=1200&ssl=1 | true | 1200 | auto"
+   ],
+   [
     "DIV.taxonomy-category.wp-block-post-terms",
     18,
     "0px",
@@ -254,7 +266,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    104,
+    78,
     "6px",
     ""
    ],
@@ -287,16 +299,7 @@
  },
  "post-tax-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
-    3.5
-   ],
-   [
-    "※ 세금·수수료·환율 변동은 반영되지 않은 단순 복리 ",
-    2.6
-   ]
-  ]
+  "lowContrast": []
  },
  "post-tax-en-desk": {
   "overflow": 0,
@@ -310,7 +313,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -356,7 +359,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -402,7 +405,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -456,7 +459,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_84866917.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -511,6 +514,12 @@
   "lowContrast": [],
   "card": [
    [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+   ],
+   [
     "DIV.taxonomy-category.wp-block-post-terms",
     18,
     "0px",
@@ -518,7 +527,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    104,
+    78,
     "6px",
     ""
    ],
@@ -550,6 +559,12 @@
   "lowContrast": [],
   "card": [
    [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+   ],
+   [
     "DIV.taxonomy-category.wp-block-post-terms",
     18,
     "0px",
@@ -557,7 +572,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    104,
+    78,
     "6px",
     ""
    ],
@@ -590,16 +605,7 @@
  },
  "post-tax-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "투자금액·예상 수익률·기간을 넣으면 예상 결과를 계산해",
-    3.5
-   ],
-   [
-    "※ 세금·수수료·환율 변동은 반영되지 않은 단순 복리 ",
-    2.6
-   ]
-  ]
+  "lowContrast": []
  },
  "post-tax-en-mobile": {
   "overflow": 0,
