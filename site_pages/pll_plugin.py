@@ -143,6 +143,10 @@ EN_CATS = [  # (한국어 분류 주소, 영어 이름, 영어 주소, 영어 �
     ("etf", "ETFs & Investing", "etfs-investing", "Returns, dividends and fees of ETFs, calculated over the same period and on the same basis."),
     ("energy", "Energy & Commodities", "energy-commodities", "Oil, inventories and exchange rates that reach everyday costs, read from official data."),
     ("society", "Population & Society", "population-society", "How Korean society is changing, through official statistics."),
+    ("biotech", "Biotech & Drugs", "biotech-drugs", "Clinical trial results and approval schedules, organized from public records."),
+    ("patents", "Technology & Patents", "technology-patents", "New technology and patent news, organized from public sources."),
+    ("trend", "Trends", "trends", "Topics drawing more search interest, looked at with data."),
+    ("market", "Markets", "markets", "Market-wide numbers, organized."),
 ]
 
 
@@ -154,6 +158,12 @@ def en_cats():
     bad = 0
     for ko_slug, name, slug, desc in EN_CATS:
         ko = requests.get(f"{base}/slug:{ko_slug}", headers=h, timeout=20).json()
+        if ko.get("ID"):                 # 이미 영어 짝이 있으면 건너뜀(영어 분류는 이 API의 주소 찾기로 안 잡힘 - 11-19 시험)
+            code, t = call("GET", f"/ondo/v1/term-lang/{ko['ID']}")
+            have = ((t or {}).get("translations") or {}).get("en") if isinstance(t, dict) else None
+            if have:
+                print(f"- {ko_slug}: 영어 짝 이미 있음({have})")
+                continue
         en = requests.get(f"{base}/slug:{slug}", headers=h, timeout=20)
         if en.status_code != 200 or not en.json().get("ID"):
             en = requests.post(f"{base}/new", headers=h, data={"name": name, "slug": slug, "description": desc}, timeout=30)
