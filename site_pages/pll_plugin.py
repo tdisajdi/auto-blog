@@ -158,6 +158,12 @@ def en_cats():
     bad = 0
     for ko_slug, name, slug, desc in EN_CATS:
         ko = requests.get(f"{base}/slug:{ko_slug}", headers=h, timeout=20).json()
+        if ko.get("ID"):                 # 이미 영어 짝이 있으면 건너뜀(영어 분류는 이 API의 주소 찾기로 안 잡힘 - 11-19 시험)
+            code, t = call("GET", f"/ondo/v1/term-lang/{ko['ID']}")
+            have = ((t or {}).get("translations") or {}).get("en") if isinstance(t, dict) else None
+            if have:
+                print(f"- {ko_slug}: 영어 짝 이미 있음({have})")
+                continue
         en = requests.get(f"{base}/slug:{slug}", headers=h, timeout=20)
         if en.status_code != 200 or not en.json().get("ID"):
             en = requests.post(f"{base}/new", headers=h, data={"name": name, "slug": slug, "description": desc}, timeout=30)
