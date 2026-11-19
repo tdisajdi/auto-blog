@@ -64,7 +64,7 @@ CHECK_JS = """() => {
   // 11-19: 글 목록 카드 속 요소 크기(첫 화면 카드 위쪽 빈 공간 원인 찾기)
   const card = document.querySelector('.o-list .wp-block-post');
   if (card) out.card = [...card.children].map(c => [c.tagName + '.' + (c.className || '').toString().split(' ').slice(0, 2).join('.'),
-      Math.round(c.getBoundingClientRect().height), getComputedStyle(c).marginTop]).concat(
+      Math.round(c.getBoundingClientRect().height), getComputedStyle(c).marginTop, c.innerHTML.slice(0, 120)]).concat(
       [...document.querySelectorAll('.o-list .wp-block-post')].slice(0, 3).map(c => ['li-top', Math.round(c.getBoundingClientRect().top), getComputedStyle(c).marginTop]));
   out.links = [...new Set([...document.querySelectorAll('a[href]')].map(a => a.href).filter(h => h.startsWith('https://ondo99.com/') && !h.includes('#')))];
   return out;
