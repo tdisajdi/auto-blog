@@ -303,10 +303,10 @@
   "answerGap": [
    [
     "DIV.o-answer",
-    22,
+    0,
     "0px",
     "0px",
-    "P. h0 mb21.875px"
+    "DIV.o-intoc h0 mb20px"
    ],
    [
     "DIV.entry-content.wp-block-post-content",
@@ -323,10 +323,10 @@
   "answerGap": [
    [
     "DIV.o-answer",
-    22,
+    0,
     "0px",
     "0px",
-    "P. h0 mb21.875px"
+    "DIV.o-intoc h0 mb20px"
    ],
    [
     "DIV.entry-content.wp-block-post-content",
@@ -641,10 +641,10 @@
   "answerGap": [
    [
     "DIV.o-answer",
-    317,
+    316,
     "0px",
     "0px",
-    "P. h0 mb21.875px"
+    "DIV.o-intoc h276 mb20px"
    ],
    [
     "DIV.entry-content.wp-block-post-content",
@@ -661,10 +661,10 @@
   "answerGap": [
    [
     "DIV.o-answer",
-    382,
+    380,
     "0px",
     "0px",
-    "P. h0 mb21.875px"
+    "DIV.o-intoc h340 mb20px"
    ],
    [
     "DIV.entry-content.wp-block-post-content",
