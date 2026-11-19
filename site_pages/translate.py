@@ -120,12 +120,14 @@ def _auth():
 def export(pid):
     import requests
     h, S = _auth()
-    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/{pid}", headers=h,
+    ref = pid if str(pid).isdigit() else f"slug:{pid}"   # 글번호 또는 글 주소(slug)
+    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/{ref}", headers=h,
                      params={"context": "edit", "fields": "ID,title,slug,status,excerpt,content,categories,URL"}, timeout=30)
     if not r.ok:
         print("받기 실패:", r.status_code, r.text[:200])
         return 1
     j = r.json()
+    pid = j["ID"]
     os.makedirs(DIR, exist_ok=True)
     cats = [c.get("slug") for c in (j.get("categories") or {}).values()]
     meta = {"ID": j["ID"], "title": j["title"], "slug": j["slug"], "status": j["status"], "URL": j.get("URL"),
@@ -201,8 +203,10 @@ def push(pid):
 
 
 def main(argv):
-    if len(argv) == 3 and argv[1] in ("export", "check", "push") and argv[2].isdigit():
-        return {"export": export, "check": check, "push": push}[argv[1]](int(argv[2]))
+    if len(argv) == 3 and argv[1] == "export":
+        return export(argv[2])
+    if len(argv) == 3 and argv[1] in ("check", "push") and argv[2].isdigit():
+        return {"check": check, "push": push}[argv[1]](int(argv[2]))
     print(__doc__)
     return 1
 
