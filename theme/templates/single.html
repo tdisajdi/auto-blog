@@ -36,6 +36,8 @@ if('IntersectionObserver' in window&&links.length){var cur=null;var io=new Inter
 (function(){
 var c=document.querySelector('.o-read .wp-block-post-content');if(!c||c.dataset.ondoV2)return;c.dataset.ondoV2='1';
 var en=/^en/i.test(document.documentElement.lang||'');
+/* 0) 빈 문단(공백만, 높이 0이지만 아래 여백 22px) 지우기 - 결론 카드 위 빈 여백(11-19) */
+[].slice.call(c.children).forEach(function(p){if(p.tagName==='P'&&!p.textContent.trim()&&!p.querySelector('img,iframe,svg,canvas,video'))p.remove();});
 var h1=document.querySelector('.o-post-head .wp-block-post-title')||document.querySelector('h1');var title=h1?h1.textContent:'';
 var NUM=/\d[\d,]*(?:\.\d+)?\s*(?:%p|%|만\s?원|억\s?원|조\s?원|원|만|억|조|million|billion)/gi;
 var keys=[];(title.match(NUM)||[]).forEach(function(k){k=k.replace(/\s+/g,' ').trim();if(keys.indexOf(k)<0)keys.push(k);});
