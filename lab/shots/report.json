@@ -51,6 +51,10 @@
   "overflow": 0,
   "lowContrast": []
  },
+ "en-board-desk": {
+  "overflow": 0,
+  "lowContrast": []
+ },
  "home-mobile": {
   "overflow": 0,
   "lowContrast": []
@@ -100,6 +104,10 @@
   "lowContrast": []
  },
  "en-404-mobile": {
+  "overflow": 0,
+  "lowContrast": []
+ },
+ "en-board-mobile": {
   "overflow": 0,
   "lowContrast": []
  },
