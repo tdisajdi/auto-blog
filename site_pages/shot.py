@@ -61,6 +61,11 @@ CHECK_JS = """() => {
     if (ratio < need) { const k = el.textContent.trim().slice(0, 30); if (!seen.has(k)) { seen.add(k); out.lowContrast.push([k, Math.round(ratio*10)/10]); } }
   });
   out.lowContrast = out.lowContrast.slice(0, 12);
+  // 11-19: 글 목록 카드 속 요소 크기(첫 화면 카드 위쪽 빈 공간 원인 찾기)
+  const card = document.querySelector('.o-list .wp-block-post');
+  if (card) out.card = [...card.children].map(c => [c.tagName + '.' + (c.className || '').toString().split(' ').slice(0, 2).join('.'),
+      Math.round(c.getBoundingClientRect().height), getComputedStyle(c).marginTop, (c.querySelector('img') ? [c.querySelector('img').currentSrc || c.querySelector('img').src, c.querySelector('img').complete, c.querySelector('img').naturalWidth, c.querySelector('img').loading].join(' | ') : '')]).concat(
+      [...document.querySelectorAll('.o-list .wp-block-post')].slice(0, 3).map(c => ['li-top', Math.round(c.getBoundingClientRect().top), getComputedStyle(c).marginTop]));
   out.links = [...new Set([...document.querySelectorAll('a[href]')].map(a => a.href).filter(h => h.startsWith('https://ondo99.com/') && !h.includes('#')))];
   return out;
 }"""
@@ -117,6 +122,11 @@ def main():
                 try:
                     page.goto(url, wait_until=("domcontentloaded" if url.startswith("file:") else "networkidle"), timeout=45000)
                     page.wait_for_timeout(800)
+                    # 11-19: 늦게 불러오는 그림(lazy)이 전체 캡처에서 빈 칸으로 찍힘 → 끝까지 내려 불러온 뒤 찍기
+                    page.evaluate("""async () => { const h = document.body.scrollHeight;
+                        for (let y = 0; y < h; y += 600) { window.scrollTo(0, y); await new Promise(r => setTimeout(r, 120)); }
+                        window.scrollTo(0, 0); }""")
+                    page.wait_for_timeout(1200)
                     page.screenshot(path=os.path.join(OUT, f"{name}-{size}.png"), full_page=True)
                     chk = page.evaluate(CHECK_JS)
                     links.update(chk.pop("links", []))

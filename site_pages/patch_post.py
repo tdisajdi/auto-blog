@@ -37,18 +37,28 @@ def main(slug):
     h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
     base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/"
     ref = slug if slug.isdigit() else "slug:" + slug        # 글번호 또는 글 주소
-    r = requests.get(base + ref, headers=h, params={"context": "edit", "fields": "ID,status,content,URL"}, timeout=30)
+    r = requests.get(base + ref, headers=h, params={"context": "edit", "fields": "ID,status,content,excerpt,URL"}, timeout=30)
     if not r.ok:
         print("글 받기 실패:", r.status_code, r.text[:200])
         return 1
     j = r.json()
-    new, probs = apply(j["content"], patches)
+    # 11-19: "field": "excerpt"면 요약문(첫 화면 카드·검색 설명에 보이는 글)을 고침 - 본문만 고치고 요약문에 깨진 표기가 남았던 일
+    body_p = [p for p in patches if p.get("field", "content") == "content"]
+    ex_p = [p for p in patches if p.get("field") == "excerpt"]
+    new, probs = apply(j["content"], body_p) if body_p else (j["content"], [])
+    new_ex, probs2 = apply(j.get("excerpt") or "", ex_p) if ex_p else (None, [])
+    probs += probs2
     if probs:
         print("고치지 않음:")
         for p in probs:
             print(" -", p)
         return 1
-    r2 = requests.post(base + str(j["ID"]), headers=h, data={"content": new}, timeout=60)
+    data = {}
+    if body_p:
+        data["content"] = new
+    if ex_p:
+        data["excerpt"] = new_ex
+    r2 = requests.post(base + str(j["ID"]), headers=h, data=data, timeout=60)
     after = (r2.json() or {}).get("status") if r2.ok else r2.text[:200]
     print(f"고침 {len(patches)}곳: {r2.status_code} 상태 {j['status']}→{after} {j.get('URL')}")
     for p in patches:

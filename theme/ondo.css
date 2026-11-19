@@ -409,3 +409,9 @@ html[lang^="en"] .o-side { display: none !important; }
 .o-read .o-card-table td { border: 1px solid var(--o-line) !important; font-variant-numeric: tabular-nums; }
 .o-read .o-card-table > p:first-child { font-family: var(--o-sans); }
 @media (max-width: 600px) { .o-answer-n b { font-size: 32px; } .o-read .o-answer > p { font-size: 17px; } }
+
+/* 11-19 고침(모양 변경 아님 - 결함): 대표 이미지가 없는 글은 카드 위 이미지 칸(189px 빈 공간)을 접고,
+   워드프레스 기본 여백(두 번째 칸부터 margin-top 24~32px) 때문에 카드가 엇갈리던 것을 맞춤 */
+.o-list .wp-block-post-template > li { margin-top: 0 !important; margin-block-start: 0 !important; }
+.o-list .wp-block-post-featured-image:not(:has(img)) { display: none !important; }
+.o-list .wp-block-post-featured-image:not(:has(img)) + .wp-block-post-terms { padding-top: 18px; }

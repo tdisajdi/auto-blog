@@ -1,15 +1,141 @@
 {
  "home-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 359 | lazy"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    1341,
+    "0px"
+   ],
+   [
+    "li-top",
+    1341,
+    "0px"
+   ]
+  ]
  },
  "insights-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=1024%2C538&ssl=1 | true | 999 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    20,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    34,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    395,
+    "0px"
+   ],
+   [
+    "li-top",
+    395,
+    "0px"
+   ]
+  ]
  },
  "etf-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=1024%2C538&ssl=1 | true | 999 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    20,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    34,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    395,
+    "0px"
+   ],
+   [
+    "li-top",
+    395,
+    "0px"
+   ]
+  ]
  },
  "energy-desk": {
   "overflow": 0,
@@ -21,7 +147,49 @@
  },
  "category-etf-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    189,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?w=1200&ssl=1 | true | 1200 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    385,
+    "0px"
+   ],
+   [
+    "li-top",
+    385,
+    "0px"
+   ]
+  ]
  },
  "404-desk": {
   "overflow": 0,
@@ -37,7 +205,38 @@
  },
  "en-home-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    104,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    1367,
+    "0px"
+   ]
+  ]
  },
  "en-about-desk": {
   "overflow": 0,
@@ -45,7 +244,38 @@
  },
  "en-category-etf-desk": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    104,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    358,
+    "0px"
+   ]
+  ]
  },
  "en-404-desk": {
   "overflow": 0,
@@ -74,15 +304,141 @@
  },
  "home-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 334 | lazy"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    1834,
+    "0px"
+   ],
+   [
+    "li-top",
+    2276,
+    "0px"
+   ]
+  ]
  },
  "insights-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    20,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    34,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    520,
+    "0px"
+   ],
+   [
+    "li-top",
+    967,
+    "0px"
+   ]
+  ]
  },
  "etf-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    20,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    34,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    548,
+    "0px"
+   ],
+   [
+    "li-top",
+    995,
+    "0px"
+   ]
+  ]
  },
  "energy-mobile": {
   "overflow": 0,
@@ -94,7 +450,49 @@
  },
  "category-etf-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "FIGURE.wp-block-post-featured-image",
+    175,
+    "0px",
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/card_bo4txw59.png?resize=768%2C403&ssl=1 | true | 390 | auto"
+   ],
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    52,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    96,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    392,
+    "0px"
+   ],
+   [
+    "li-top",
+    834,
+    "0px"
+   ]
+  ]
  },
  "404-mobile": {
   "overflow": 0,
@@ -110,7 +508,38 @@
  },
  "en-home-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    104,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    120,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    1965,
+    "0px"
+   ]
+  ]
  },
  "en-about-mobile": {
   "overflow": 0,
@@ -118,7 +547,38 @@
  },
  "en-category-etf-mobile": {
   "overflow": 0,
-  "lowContrast": []
+  "lowContrast": [],
+  "card": [
+   [
+    "DIV.taxonomy-category.wp-block-post-terms",
+    18,
+    "0px",
+    ""
+   ],
+   [
+    "H3.wp-block-post-title",
+    104,
+    "6px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-excerpt",
+    120,
+    "0px",
+    ""
+   ],
+   [
+    "DIV.wp-block-post-date",
+    31,
+    "0px",
+    ""
+   ],
+   [
+    "li-top",
+    365,
+    "0px"
+   ]
+  ]
  },
  "en-404-mobile": {
   "overflow": 0,
