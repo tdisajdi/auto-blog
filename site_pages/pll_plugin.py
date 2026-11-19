@@ -140,9 +140,9 @@ def en_pages():
 
 
 EN_CATS = [  # (한국어 분류 주소, 영어 이름, 영어 주소, 영어 설명)
-    ("etf", "ETFs & Investing", "etf-en", "Returns, dividends and fees of ETFs, calculated over the same period and on the same basis."),
-    ("energy", "Energy & Commodities", "energy-en", "Oil, inventories and exchange rates that reach everyday costs, read from official data."),
-    ("society", "Population & Society", "society-en", "How Korean society is changing, through official statistics."),
+    ("etf", "ETFs & Investing", "etfs-investing", "Returns, dividends and fees of ETFs, calculated over the same period and on the same basis."),
+    ("energy", "Energy & Commodities", "energy-commodities", "Oil, inventories and exchange rates that reach everyday costs, read from official data."),
+    ("society", "Population & Society", "population-society", "How Korean society is changing, through official statistics."),
 ]
 
 

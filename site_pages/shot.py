@@ -13,7 +13,7 @@ OUT = os.path.join(ROOT, "lab", "shots")
 SITE = "https://ondo99.com"
 PAGES = [("home", "/"), ("insights", "/insights/"), ("etf", "/etf/"), ("energy", "/energy/"),
          ("society", "/society/"), ("category-etf", "/category/etf/"), ("404", "/no-such-page-ondo/"), ("bio", "/bio/"), ("board", "/ondo-board/"),
-         ("en-home", "/en/"), ("en-about", "/en/about-ondo-en/"), ("en-category-etf", "/en/category/etf-en/"), ("en-404", "/en/no-such-page-ondo/")]
+         ("en-home", "/en/"), ("en-about", "/en/about-ondo-en/"), ("en-category-etf", "/en/category/etfs-investing/"), ("en-404", "/en/no-such-page-ondo/")]
 SIZES = [("desk", 1440, 900), ("mobile", 390, 844)]
 
 
