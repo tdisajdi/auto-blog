@@ -67,7 +67,7 @@ def main():
                 head_report(path, r.text)
         except Exception as e:
             say(f"- {path}: 오류 {type(e).__name__}")
-    for path in ["/robots.txt", "/ads.txt", "/sitemap.xml", "/sitemap_index.xml", "/news-sitemap.xml", "/ko/", "/en/", "/feed/"]:
+    for path in ["/robots.txt", "/ads.txt", "/sitemap.xml", "/sitemap_index.xml", "/post-sitemap.xml", "/category-sitemap.xml", "/news-sitemap.xml", "/ko/", "/en/", "/feed/"]:
         try:
             r = requests.get(SITE + path, headers=ua, timeout=25, allow_redirects=True)
             body = r.text
