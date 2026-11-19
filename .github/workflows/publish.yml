@@ -520,6 +520,8 @@ jobs:
               python site_pages/pll_plugin.py $ARGS || echo "언어 작업 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "board-draft" ]; then
               python ondo/board.py draft || echo "온도판 올리기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "board-en" ]; then
+              python ondo/board.py en-create || echo "영어 온도판 만들기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "board-refresh" ]; then
               python ondo/board.py refresh || echo "온도판 갱신 실패"
               (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"

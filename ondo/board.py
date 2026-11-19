@@ -21,6 +21,23 @@ ITEMS = [
 ]
 
 
+# 영어판(11-19 사용자: 영어 화면에도 온도판) - 티커별 (이름, 단위, 뜻)
+EN = {
+    "KRW=X": ("KRW per USD", "KRW", "Higher means a weaker won (overseas assets bought in dollars cost more in won)"),
+    "^TNX": ("US 10-year Treasury yield", "%", "Higher means lower bond prices (yields and bond prices move in opposite directions)"),
+    "^VIX": ("Volatility index (VIX)", "", "Higher means the market expects bigger moves ahead"),
+    "BZ=F": ("Brent crude", "USD/bbl", "Front-month futures price - the value can jump on the day the contract rolls"),
+    "GC=F": ("Gold", "USD/oz", "Front-month futures price"),
+    "^GSPC": ("S&P 500", "", "Index of 500 large US companies (excluding dividends)"),
+    "^KS11": ("KOSPI", "", "Korea's main stock market index (excluding dividends)"),
+}
+
+
+def band_en(pos):
+    return "very high for the past year" if pos >= 85 else "high for the past year" if pos >= 60 else \
+        "around the middle of the past year" if pos > 40 else "low for the past year" if pos > 15 else "very low for the past year"
+
+
 def long_pos(close, years):
     """최근 N년 범위 속 지금 위치(0~100). 자료가 그 기간의 90%를 못 덮으면 None(11-12 3년·5년 추가)."""
     import pandas as pd
@@ -97,10 +114,10 @@ def pixel_bar(pos):
         cls = "obp-c is-now" if i == now else "obp-c"
         style = f"background:{c}" if i <= now else ""
         cells.append(f'<i class="{cls}" style="{style}"></i>')
-    return f'<div class="obp-bar" role="img" aria-label="1년 범위 중 {int(pos)}° 위치">{"".join(cells)}</div>'
+    return f'<div class="obp-bar" role="img" aria-label="1Y {int(pos)}°">{"".join(cells)}</div>'
 
 
-def render(cards, updated):
+def render(cards, updated, lang="ko"):
     """cards: [(item, stats)]. 페이지 HTML(스타일 포함). 11-12 사용자 지적('다 픽셀 컨셉 아니었어?')으로 사이트 개편 디자인에 맞춤:
     밝은 종이 카드 + 굵은 테두리·각진 그림자, 영어 라벨은 도트 글꼴, 1년 범위는 20칸 도트 막대. 숫자·한국어는 읽기 글꼴."""
     css = """<style>
@@ -136,10 +153,21 @@ def render(cards, updated):
 .obp-sec h3 span{font-family:var(--o-px,'Courier New',monospace);font-size:12px;color:#5c6575;letter-spacing:.1em;margin-right:8px}
 @media (max-width:520px){.obp-grid{grid-template-columns:1fr}}
 </style>"""
+    en = lang == "en"
+    sub = (f'The lowest value of the past year is 0° and the highest is 100°; the board shows where the current value sits in that range. As of {html.escape(updated)} · Data: Yahoo Finance · Updated every morning (Korea time)'
+           if en else f'지난 1년 가장 낮았던 값을 0°, 가장 높았던 값을 100°로 놓고 지금 값의 위치를 보여 줍니다. {html.escape(updated)} 기준 · 자료: Yahoo Finance · 매일 아침 갱신')
     out = [css, '<div class="obp">', '<p class="obp-kick">ONDO BOARD · 1 YEAR RANGE</p>',
-           f'<p class="obp-sub">지난 1년 가장 낮았던 값을 0°, 가장 높았던 값을 100°로 놓고 지금 값의 위치를 보여 줍니다. {html.escape(updated)} 기준 · 자료: Yahoo Finance · 매일 아침 갱신</p>',
+           f'<p class="obp-sub">{sub}</p>',
            '<div class="obp-grid">']
     for (tk, name, unit, d, meaning), s in cards:
+        if en:
+            name, unit, meaning = EN.get(tk, (name, unit, meaning))
+        bd = band_en(s["pos"]) if en else band(s["pos"])
+        r1 = (f'1Y low {_fmt(s["lo"], d)} ({s["lo_date"]}) · high {_fmt(s["hi"], d)} ({s["hi_date"]})' if en
+              else f'1년 최저 {_fmt(s["lo"], d)} ({s["lo_date"]}) · 최고 {_fmt(s["hi"], d)} ({s["hi_date"]})')
+        r2 = (f'vs 1Y average {_pct(s["vs_avg"])} · 1W {_pct(s["w1"])} · 1M {_pct(s["m1"])}' if en
+              else f'1년 평균 대비 {_pct(s["vs_avg"])} · 1주 {_pct(s["w1"])} · 1달 {_pct(s["m1"])}')
+        close = "close" if en else "종가"
         out.append(
             f'<div class="obp-card" data-t="{min(4, int(s["pos"]) // 20)}"><div class="obp-head"><span class="obp-code">{html.escape(CODE.get(tk, tk))}</span>'
             f'<span class="obp-chip" style="background:{temp_color(s["pos"])}"></span></div><div class="obp-body">'
@@ -147,11 +175,22 @@ def render(cards, updated):
             f'<div class="obp-val">{_fmt(s["last"], d)} <span class="obp-unit">{html.escape(unit)}</span></div>'
             f'{pixel_bar(s["pos"])}<div class="obp-scale"><span>LOW 0<b class="obp-deg">°</b></span><span>HIGH 100<b class="obp-deg">°</b></span></div>'
             + (f'<div class="obp-long">{mini_bar("3Y", s.get("long", {}).get(3))}{mini_bar("5Y", s.get("long", {}).get(5))}</div>' if any(v is not None for v in (s.get("long") or {}).values()) else "")
-            + f'<div><span class="obp-temp">{s["pos"]}<b class="obp-deg">°</b></span> <span class="obp-band">· {band(s["pos"])}</span></div>'
-            f'<div class="obp-row">1년 최저 {_fmt(s["lo"], d)} ({s["lo_date"]}) · 최고 {_fmt(s["hi"], d)} ({s["hi_date"]})</div>'
-            f'<div class="obp-row">1년 평균 대비 {_pct(s["vs_avg"])} · 1주 {_pct(s["w1"])} · 1달 {_pct(s["m1"])}</div>'
-            f'<div class="obp-note">{html.escape(meaning)} · {s["as_of"]} 종가</div></div></div>')
+            + f'<div><span class="obp-temp">{s["pos"]}<b class="obp-deg">°</b></span> <span class="obp-band">· {bd}</span></div>'
+            f'<div class="obp-row">{r1}</div>'
+            f'<div class="obp-row">{r2}</div>'
+            f'<div class="obp-note">{html.escape(meaning)} · {s["as_of"]} {close}</div></div></div>')
     out.append('</div>')
+    if en:
+        out.append('<div class="obp-sec"><h3><span>HOW TO READ</span>Reading the temperature</h3>'
+                   '<p>The temperature only means "where the current value sits within the past year\'s range". 100° does not mean it cannot go higher, and 0° does not mean it has hit bottom. '
+                   'It is a quick way to tell, when you see the same number in the news, whether it is high or low by the standard of the past year.</p></div>')
+        out.append('<div class="obp-sec"><h3><span>METHOD</span>How it is calculated</h3>'
+                   '<p>Temperature = (current value − 1-year low) ÷ (1-year high − 1-year low) × 100. Versus 1-year average = current value ÷ average of daily closes over the past year − 1. '
+                   '1-week and 1-month changes compare with the close 5 and 21 trading days earlier. Oil and gold use front-month futures, so values can jump when the contract rolls. '
+                   'Indices are price-only, excluding dividends. Indicators whose data could not be fetched are left out that day. The 20 cells split 0°–100° into steps of about 5°. The large bar and the temperature use the 1-year range; the small bars (3Y·5Y) apply the same calculation to the past 3 and 5 years - a longer period means a wider range, so the same value can show a different temperature.</p>'
+                   '<p>This page is not investment advice (<a href="/en/disclaimer-en/">Disclaimer</a>).</p></div>')
+        out.append('</div>')
+        return "\n".join(out)
     out.append('<div class="obp-sec"><h3><span>HOW TO READ</span>온도를 읽는 법</h3>'
                '<p>온도는 "지금 값이 지난 1년 범위에서 어디쯤인가"만 뜻합니다. 100°라고 더 오를 수 없다는 뜻이 아니고, 0°라고 바닥이라는 뜻도 아닙니다. '
                '같은 숫자를 뉴스에서 봤을 때 "1년 기준으로 높은 편인지 낮은 편인지"를 바로 가늠하는 용도입니다.</p></div>')
@@ -177,11 +216,12 @@ def build():
         except Exception as e:
             print(f"ℹ️ {it[1]}: 못 받음({type(e).__name__}) - 뺌")
     from ondo.config import kst_now
-    return cards, render(cards, f"{kst_now():%Y-%m-%d %H:%M} (한국 시간)")
+    now = kst_now()
+    return cards, render(cards, f"{now:%Y-%m-%d %H:%M} (한국 시간)"), render(cards, f"{now:%Y-%m-%d %H:%M} KST", "en")
 
 
 def main(status="draft"):
-    cards, page = build()
+    cards, page, page_en = build()
     print(f"온도판 카드 {len(cards)}/{len(ITEMS)}개")
     if len(cards) < 4:
         print("카드가 너무 적어 올리지 않음")
@@ -190,8 +230,28 @@ def main(status="draft"):
     import upload
     pg = {"slug": "ondo-board", "title": "ONDO BOARD · 1년 범위로 보는 지금", "html": page}
     # refresh: 매일 아침 숫자만 바꿈(공개 여부 그대로 - 11-12). draft: 처음 만들 때(공개 페이지는 안 건드림)
+    pg_en = {"slug": "ondo-board-en", "title": "ONDO BOARD · Where things stand in their 1-year range", "html": page_en}
+    if status == "en-create":
+        # 영어판 처음 만들기(11-19): 임시로 올림 → 한국어 온도판과 연결 → 공개
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from site_pages import pll_plugin
+        import requests
+        ok, msg = upload.upsert_page(pg_en, "draft")
+        print(("✅ " if ok else "❌ ") + msg)
+        h, S = pll_plugin._auth()
+        base = f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/"
+        ids = {k: requests.get(base + "slug:" + sl, headers=h, params={"fields": "ID,status"}, timeout=20).json() for k, sl in (("ko", "ondo-board"), ("en", "ondo-board-en"))}
+        code, j = pll_plugin.call("POST", "/ondo/v1/link", {"translations": {k: v["ID"] for k, v in ids.items()}})
+        print("연결:", code, (j or {}).get("linked") if isinstance(j, dict) else j)
+        if ids["en"].get("status") != "publish":
+            r = requests.post(base + str(ids["en"]["ID"]), headers=h, data={"status": "publish"}, timeout=30)
+            print("공개:", r.status_code, (r.json() or {}).get("URL") if r.ok else r.text[:150])
+        return 0
     ok, msg = upload.refresh_page(pg) if status == "refresh" else upload.upsert_page(pg, status)
     print(("✅ " if ok else "❌ ") + msg)
+    if status == "refresh":              # 영어판이 있으면 같이 숫자 갱신(없으면 건너뜀)
+        ok2, msg2 = upload.refresh_page(pg_en)
+        print(("✅ " if ok2 else "ℹ️ ") + msg2)
     return 0 if ok else 1
 
 
