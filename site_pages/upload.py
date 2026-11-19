@@ -85,5 +85,18 @@ def main(status="draft"):
     return 0 if ok_all else 1
 
 
+def refresh_slug(slug):
+    """이미 공개된 기본 페이지 하나의 본문만 저장소 파일 내용으로 바꾼다(공개 상태·제목·주소 그대로). 11-19 개인정보처리방침 한 줄 추가용."""
+    for p in load_pages():
+        if p["slug"] == slug:
+            ok, msg = refresh_page(p)
+            print(("✅ " if ok else "❌ ") + msg)
+            return 0 if ok else 1
+    print("저장소에 그 주소의 페이지 파일이 없음:", slug)
+    return 1
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 2 and sys.argv[1] == "refresh":
+        sys.exit(refresh_slug(sys.argv[2]))
     sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else "draft"))

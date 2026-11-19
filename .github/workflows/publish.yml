@@ -88,7 +88,7 @@ on:
         type: boolean
         default: false
       site_pages:
-        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·plugin-audit(플러그인 점검, 읽기만)·pll-push(전용 언어 플러그인 올리기)·pll:check / pll:set:ID:en / pll:link:ko=ID:en=ID·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·drafts-trash(연습 초안 모두 휴지통)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
+        description: '사이트 페이지 - draft(기본 페이지 비공개 초안)·publish(공개: 사용자 확인 후만)·board-draft(온도판)·token-check(권한 확인)·plugin-audit(플러그인 점검, 읽기만)·pll-push(전용 언어 플러그인 올리기)·site-tune / site-tune-undo(Jetpack 정리·태그라인)·refresh:SLUG(공개 기본 페이지 본문만 갱신)·pll:check / pll:set:ID:en / pll:link:ko=ID:en=ID·export(사이트 내용 백업)·drafts-fix(초안 종합 온도 띠 정리+링크 확인)·drafts-trash(연습 초안 모두 휴지통)·link-check(비공개 글 링크 확인)·shot(화면 캡처)'
         required: false
         default: ''
       lab_adsense:
@@ -506,6 +506,13 @@ jobs:
               python site_pages/token_check.py || echo "토큰 권한 확인 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "plugin-audit" ]; then
               python site_pages/plugin_audit.py || echo "플러그인 점검 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "site-tune" ]; then
+              python site_pages/site_tune.py apply || echo "사이트 설정 정리 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "site-tune-undo" ]; then
+              python site_pages/site_tune.py undo || echo "사이트 설정 되돌리기 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == refresh:* ]]; then
+              SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c9- | tr -cd 'a-z0-9-')
+              python site_pages/upload.py refresh "$SLUG" || echo "페이지 본문 갱신 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "pll-push" ]; then
               python site_pages/pll_plugin.py push || echo "전용 플러그인 올리기 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == pll:* ]]; then
