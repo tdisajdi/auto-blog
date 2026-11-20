@@ -1,0 +1,636 @@
+{
+ "article_type": "guide",
+ "topic_id": "mdd-risk",
+ "title_seed": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
+ "category": "etf",
+ "started_at": "2026-11-20T17:36:51",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.4,
+   "chars": 2168
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.4,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 102.2,
+   "chars": 3343
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 61.9,
+   "chars": 501
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 956
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.3,
+   "chars": 184
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.0,
+   "chars": 797
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 29.4,
+   "chars": 3347
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 26.8,
+   "chars": 519
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.1,
+   "chars": 377
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.4,
+   "chars": 208
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.4,
+   "chars": 1031
+  },
+  {
+   "step": "부분 고침 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 42.0,
+   "chars": 499
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 33.8,
+   "chars": 201
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 664
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 5.0,
+   "chars": 146
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.3,
+   "chars": 985
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "timeout",
+   "reason": "240초 안에 답이 없음",
+   "sec": 240.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 171
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.4,
+   "chars": 466
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.2,
+   "chars": 155
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "17:36:58",
+   "title": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
+   "sections": [
+    "내 자산은 얼마나 줄어들 수 있을까?",
+    "고점에서 바닥까지 얼마나 걸렸을까?",
+    "바닥에서 고점을 되찾는 데 얼마나 걸릴까?",
+    "국내 계좌로 해외 ETF를 살 수 있을까?"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "17:38:56",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "17:40:33",
+   "score": 0.82,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "하락 및 회복 기간 수치를 바탕으로 독자가 본인의 성향에 맞는 ETF를 고르는 구체적인 판단 기준을 더 명확하게 연결하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 독자가 스스로 확인할 기준 2~3개를 제시하는 문단에서 자료의 숫자(예: SCHD -18.9%, QQQ 350일 등)를 함께 포함하여 언급하지 않았습니다. / 고칠 방법: 정리 문단의 확인 기준 설명 시 자료의 실제 숫자(SCHD 최대 낙폭 -18.9%, QQQ 회복 기간 350일 등)를 함께 기재하도록 수정하세요.",
+    "[사소·독자 편집] '1,000만 원을 고점에 넣었다고 가정했을 때 가장 낮았을 때의 평가액은 TLT 500만 원, QQQ 645' → 도입부에서 언급한 낙폭 수치(-50.0%, -35.5%, -18.9%)와 1,000만 원 기준 평가액 계산 내용이 본문 초반에 중복되어 되풀이되고 있습니다. / 고칠 방법: 평가액 계산 설명을 한 번만 남기고 중복되는 수치 나열 구간을 통합하세요.",
+    "[사소·독자 편집] '최대 낙폭은 자신이 투자 기간 중 가장 크게 잃었을 때의 손실 크기를 의미하므로, 투자 상품을 선택할 때 끝' → 문장이 길고 '~합니다' 어미가 연속으로 반복되어 기계적인 느낌을 줍니다. / 고칠 방법: 문장을 짧게 나누고 어미를 다양하게 변경하세요."
+   ],
+   "numbers": [
+    "833만"
+   ],
+   "fixes": [
+    "'ETF를 ~해야' 권유 꼴을 '~하는 방법이 있다'로",
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "강조 규칙에 맞지 않는 굵게 1곳을 풂(섹션당 1개·숫자 든 사실 문장만)"
+   ],
+   "chars": 2944
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "17:41:05",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "17:41:53",
+   "score": 0.85,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "본문 내 수치와 기간 데이터를 활용하여 독자가 자신의 투자 성향에 맞는 구체적인 체크리스트를 더 간결하게 정리하는 것",
+   "issues": [
+    "[중요·사실 검증] '가장 변동성이 컸던 TLT(iShares 20+ Year Treasury Bond ETF)는 최대 낙폭 -5' → 금액 예시(500만 원)가 포함되어 있으나 기준 금액(1,000만 원)이 해당 문장이나 바로 앞 문장에 기재되어 있지 않습니다. / 고칠 방법: 문장 내에 기준 금액(예: '1,000만 원 투자 시 평가액이 500만 원으로')을 직접 포함시켜 수정하세요.",
+    "[사소·독자 편집] '1,000만 원을 고점에 넣었다고 가정했을 때 가장 낮았을 때의 평가액은' → 한 문장 내에 '가장 낮았을 때'라는 표현이 중복되어 문장이 매끄럽지 않습니다. / 고칠 방법: 중복된 표현 중 하나를 '최저점' 등의 단어로 바꾸어 수정하세요."
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈"
+   ],
+   "chars": 2931
+  },
+  {
+   "step": "부분 고침",
+   "at": "17:42:38",
+   "applied": 2
+  },
+  {
+   "step": "모델 전환",
+   "at": "17:48:03",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 13(사실 검증)"
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "17:48:55",
+   "score": 0.97
+  },
+  {
+   "step": "통과 보류",
+   "at": "17:48:55",
+   "reason": "사실 검증을 좋은 모델이 하지 못함(가벼운 모델이거나 빠짐)",
+   "fact": "confirm-weak"
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "17:48:55",
+   "score": 0.94,
+   "passed": false,
+   "value": 1.0,
+   "value_tip": "결론에 제시된 3가지 판단 기준을 독자가 자신의 실제 투자금과 성향에 대조해볼 수 있도록 한 줄씩 질문 형태로 다듬기",
+   "issues": [
+    "[사소·독자 편집] 'SCHD는 2022년 9월 30일 바닥 이후 이전 고점을 다시 되찾는 2024년 7월 17일까지 656일이 ' → 도입부와 앞선 섹션에서 이미 다룬 SCHD, QQQ, TLT의 수치와 기간 설명이 본문 내에서 반복되고 있습니다. / 고칠 방법: 중복되는 종목별 회복 기간 세부 설명 문단을 간결하게 압축하세요.",
+    "[사소·독자 편집] '최근 5년 달러 기준 Yahoo Finance 일별 종가 자료를 바탕으로 산출한 최대 낙폭과 회복 속도를 살' → 시각 자료나 데이터의 출처를 단순 소개하는 문장으로 구체적인 해석이 빠져 있습니다. / 고칠 방법: 출처 언급 대신 해당 데이터가 보여주는 핵심 특징을 한 문장으로 함께 적어주세요."
+   ],
+   "chars": 2939
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
+  "url": "https://ondo99.com/?p=756",
+  "score": 0.94,
+  "issues": [
+   "[사소·독자 편집] 'SCHD는 2022년 9월 30일 바닥 이후 이전 고점을 다시 되찾는 2024년 7월 17일까지 656일이 ' → 도입부와 앞선 섹션에서 이미 다룬 SCHD, QQQ, TLT의 수치와 기간 설명이 본문 내에서 반복되고 있습니다. / 고칠 방법: 중복되는 종목별 회복 기간 세부 설명 문단을 간결하게 압축하세요.",
+   "[사소·독자 편집] '최근 5년 달러 기준 Yahoo Finance 일별 종가 자료를 바탕으로 산출한 최대 낙폭과 회복 속도를 살' → 시각 자료나 데이터의 출처를 단순 소개하는 문장으로 구체적인 해석이 빠져 있습니다. / 고칠 방법: 출처 언급 대신 해당 데이터가 보여주는 핵심 특징을 한 문장으로 함께 적어주세요."
+  ]
+ },
+ "facts": "[사실 자료 - 예시 ETF 실제 데이터]\n- QQQ (Invesco QQQ Trust): 해외 상장, 환율 영향 있음 (해외 상장, 달러로 거래)\n- SCHD (Schwab U.S. Dividend Equity ETF): 해외 상장, 환율 영향 있음 (해외 상장, 달러로 거래)\n- TLT (iShares 20+ Year Treasury Bond ETF): 해외 상장, 환율 영향 있음 (해외 상장, 달러로 거래)\n\n[계좌 사실]\n- 해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.\n[세금 참고 - 2026년 10월 기준 세법. 이 글의 주제가 아니므로 꼭 쓸 필요 없음(빠져도 누락 아님). 쓴다면 숫자 없이 아래 사실과 맞게 한두 문장만 - 이 목록을 다 옮기지 말 것]\n- 미국 상장 ETF 매매차익은 양도소득세 대상이고 다음 해 5월에 직접 신고한다(세율·공제액은 세금 가이드에서 다룸)\n- 미국 상장 ETF 배당은 미국에서 세금을 먼저 떼고(원천징수) 들어오며, 해외에서 낸 세금은 국내 세금에서 빼 준다(외국납부세액공제)\n- 이자·배당 등 금융소득이 한 해 일정 금액을 넘으면 다른 소득과 합쳐 과세된다(금융소득종합과세, 기준 금액은 세금 가이드에서 다룸)\n\n[최근 뉴스]\n- 수집된 뉴스 없음\n\n\n[계산 예시 - 코드가 계산한 값. 이 표와 그래프는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n- 최근 5년 최대 낙폭: TLT -50.0%, QQQ -35.5%, SCHD -18.9%\n- 하락 기간(고점에서 바닥까지 떨어지는 데 걸린 날): TLT 1,767일(2021-12-03→2026-10-05), QQQ 366일(2021-12-27→2022-12-28), SCHD 262일(2022-01-11→2022-09-30)\n- 회복 기간(바닥에서 다시 고점 가격을 되찾는 데 걸린 날): TLT 아직 못 되찾음, QQQ 350일(2023-12-13), SCHD 656일(2024-07-17)\n- 1,000만 원을 고점에 넣었다면 가장 낮을 때 평가액: TLT 500만 원, QQQ 645만 원, SCHD 811만 원\n- 지금 가격의 5년 최고가 대비: TLT -47.9%, QQQ -15.1%, SCHD -5.6%\n- Yahoo Finance 일별 종가(배당 제외 가격 기준), 최근 5년, 달러 기준, ondo 계산. '얼마까지 줄었나'는 고점에 넣었다고 가정한 예시. 과거 자료로 계산한 값일 뿐 앞으로도 같다는 보장은 없음.\n[일반 원리 - 교과서 수준 설명]\n- 최대 낙폭(MDD)은 고점에서 가장 낮은 지점까지 떨어진 비율이다. 같은 수익률이어도 낙폭이 클수록 중간에 버티기 어렵다.\n- 떨어진 만큼 되찾으려면 더 큰 상승이 필요하다(예: -50%면 +100%가 필요).\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 원천징수: 배당·이자를 줄 때 세금을 미리 떼고 주는 것\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n",
+ "drafts": {
+  "1": "<h1>최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</h1>\n<!-- 최대 낙폭(MDD)과 하락 및 회복 기간을 비교해 내 투자 성향에 맞는 ETF를 고르는 기준을 안내합니다. TLT, QQQ, SCHD의 5년 최저 평가액과 손실 기간 데이터를 살펴봅니다. -->\n\n<p>최근 5년간 미국 시장 대표 ETF들의 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)을 집계해 보면 TLT -50.0%, QQQ -35.5%, SCHD -18.9%로 종목마다 자산이 줄어드는 폭에서 큰 차이를 보였습니다. 최대 낙폭은 자신이 투자 기간 중 가장 크게 잃었을 때의 손실 크기를 의미하므로, 투자 상품을 선택할 때 끝까지 버틸 수 있는지 판단하는 핵심 기준이 됩니다.</p>\n\n<p>자신의 버팀목 수준에 맞는 ETF를 골라야 주가가 바닥일 때 손절하지 않고 긴 투자 기간을 이겨낼 수 있습니다. 최근 5년 달러 기준 Yahoo Finance 일별 종가 자료를 바탕으로 산출한 최대 낙폭과 회복 속도를 살펴보겠습니다.</p>\n\n<h3>내 자산은 얼마나 줄어들 수 있을까?</h3>\n\n<strong>1,000만 원을 고점에 넣었다고 가정했을 때 가장 낮았을 때의 평가액은 TLT 500만 원, QQQ 645만 원, SCHD 811만 원으로 집계되었습니다.</strong> 최대 낙폭 수치가 클수록 고점 대비 손실액이 기하급수적으로 커집니다.\n\n<h4>🔸 종목별 고점 대비 손실 폭 차이</h4>\n<p>SCHD(Schwab U.S. Dividend Equity ETF)는 최대 낙폭이 -18.9% 수준에 머물러 평가액이 800만 원 밑으로 내려가지 않았습니다. 반면 QQQ(Invesco QQQ Trust)는 -35.5%까지 떨어지며 평가액이 600만 원 대까지 줄었습니다.</p>\n\n<p>가장 변동성이 컸던 TLT(iShares 20+ Year Treasury Bond ETF)는 최대 낙폭 -50.0%를 기록하며 고점 대비 원금이 반토막 났습니다. 주식형 ETF뿐만 아니라 채권형 ETF도 만기 구조에 따라 고점 대비 평가액이 크게 낮아질 수 있음을 보여줍니다.</p>\n\n<p>이 ETF들은 모두 해외에 상장되어 있어 달러로 거래되므로, 환율 변화에 따른 평가금액 영향도 함께 받게 됩니다.</p>\n\n<h3>고점에서 바닥까지 얼마나 걸렸을까?</h3>\n\n<strong>하락 기간을 살펴보면 SCHD가 262일로 가장 짧았고, TLT는 1,767일 동안 하락세가 이어졌습니다.</strong> 자산 가치가 줄어드는 비율도 중요하지만, 하락이 얼마나 길게 지속되는지도 투자자의 심리에 큰 영향을 미칩니다.\n\n<p>SCHD는 2022년 1월 11일 고점을 찍은 뒤 2022년 9월 30일까지 262일 만에 하락 바닥에 도달했습니다. 1년이 채 되지 않는 시간 동안 하락세가 마무리되어 상대적으로 견디기 수월했습니다.</p>\n\n<p>QQQ는 2021년 12월 27일부터 2022년 12월 28일까지 366일 동안 하락하며 약 1년간 원금이 계속 줄어드는 구간을 지났습니다. TLT는 2021년 12월 3일부터 2026년 10월 5일까지 1,767일간 하락하며 가장 오랜 기간 하락 압력을 받았습니다.</p>\n\n<h3>바닥에서 고점을 되찾는 데 얼마나 걸릴까?</h3>\n\n<strong>QQQ가 바닥을 찍고 원래 고점 가격을 되찾는 데 350일이 걸린 반면, TLT는 아직 이전 고점을 되찾지 못했습니다.</strong> 손실을 입은 후 원래 평가액으로 돌아오는 회복 기간은 종목의 기초 자산 특성에 따라 크게 갈립니다.\n\n<p>QQQ는 2022년 12월 28일 바닥을 기록한 뒤 2023년 12월 13일까지 350일 만에 고점 가격을 회복했습니다. SCHD는 2022년 9월 30일 바닥 이후 이전 고점을 다시 되찾는 2024년 7월 17일까지 656일이 걸려 회복에 상대적으로 더 많은 시간이 필요했습니다.</p>\n\n<p>현재 가격을 5년 최고가와 비교해 보면 SCHD -5.6%, QQQ -15.1%, TLT -47.9% 수준에 위치해 있습니다. 한번 -50.0% 수준까지 하락한 자산은 원래 가격으로 복구하기 위해 +100.0%의 상승률이 필요하므로 회복 난이도가 높아집니다.</p>\n\n<h3>국내 계좌로 해외 ETF를 살 수 있을까?</h3>\n\n해외 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 자산 하락 폭을 확인하고 해외에 상장된 QQQ, SCHD, TLT를 직접 매수하려 할 때 계좌 선택에 유의해야 합니다.\n\n<p>ISA나 연금저축 같은 절세 계좌의 혜택을 활용하고 싶다면 국내 상장 ETF를 선택하는 방법이 있습니다. 해외 상장 ETF가 가진 지수 및 성과를 동일하게 추종하는 국내 상장 ETF를 매수하면 해당 절세 계좌에서 거래가 가능합니다. 해외 상장 ETF와 국내 상장 ETF의 세금 계산법과 차이는 해외 상장 ETF vs 국내 상장 ETF, 한 해 이익 833만 원이 가르는 세금 차이 글에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 미국 상장 ETF 매매차익에 대한 세금은 언제 어떻게 신고하나요?</h4>\n<p>미국 상장 ETF를 거래해서 얻은 매매차익은 양도소득세 과세 대상이 됩니다. 투자자는 다음 해 5월에 관련 양도소득을 직접 국세청에 신고해야 합니다.</p>\n\n<h4>🔸 미국 상장 ETF 배당금에 붙는 세금은 어떻게 처리되나요?</h4>\n<p>미국 상장 ETF에서 나오는 배당금은 현지에서 세금을 먼저 떼는 원천징수 과정을 거쳐 계좌로 입금됩니다. 이렇게 해외에서 이미 낸 세금은 국내 세액 계산 시 외국납부세액공제로 차감 반영됩니다.</p>\n\n<h3>정리</h3>\n\n<p>최대 낙폭과 하락·회복 기간을 함께 살피면 자산이 깎이는 과정에서 자신이 버틸 수 있는 투자 상품인지 미리 가늠할 수 있습니다. 수치상의 수익률만 보고 진입하기보다 과거에 겪었던 손실 폭과 회복까지 걸린 날짜를 확인해야 투자 중도 포기를 막을 수 있습니다.</p>\n\n<p>앞으로 새로운 ETF나 투자 상품의 하락 위험을 점검할 때는 세 가지 요소를 스스로 살펴볼 수 있습니다. 먼저 최고점 대비 최저점 비율인 최대 낙폭이 본인의 심리적 한계선 안에 있는지 확인해야 합니다. 둘째로 고점에서 바닥까지 떨어지는 하락 기간 동안 계좌를 유지할 수 있는지 따져봐야 합니다. 마지막으로 손실을 입은 뒤 이전 고점을 회복하기까지 걸리는 회복 기간의 길이를 체크하는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 최대 낙폭과 회복 기간을 확인하면 하락장에서도 중도 포기 없이 버틸 수 있는 ETF를 골라낼 수 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 ETF vs 국내 상장 ETF, 한 해 이익 833만 원이 가르는 세금 차이</a></p>\n\n태그: MDD 최대낙폭 ETF투자 QQQ SCHD",
+  "2": "<h1>최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</h1>\n<!-- 최대 낙폭(MDD)과 하락 및 회복 기간을 비교해 내 투자 성향에 맞는 ETF를 고르는 기준을 안내합니다. TLT, QQQ, SCHD의 5년 최저 평가액과 손실 기간 데이터를 살펴봅니다. -->\n\n<p>최근 5년간 미국 시장 대표 ETF들의 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)을 집계해 보면 TLT -50.0%, QQQ -35.5%, SCHD -18.9%로 종목마다 자산이 줄어드는 폭에서 큰 차이를 보였습니다. 손실 크기를 사전에 파악하는 것은 투자 상품 선택 시 끝까지 버틸 수 있는지 판단하는 핵심 기준이 됩니다.</p>\n\n<p>자신의 버팀목 수준에 맞는 ETF를 골라야 주가가 바닥일 때 손절하지 않고 긴 투자 기간을 이겨낼 수 있습니다. 최근 5년 달러 기준 Yahoo Finance 일별 종가 자료를 바탕으로 산출한 최대 낙폭과 회복 속도를 살펴보겠습니다.</p>\n\n<h3>내 자산은 얼마나 줄어들 수 있을까?</h3>\n\n<strong>1,000만 원을 고점에 넣었다고 가정했을 때 가장 낮았을 때의 평가액은 TLT 500만 원, QQQ 645만 원, SCHD 811만 원으로 집계되었습니다.</strong>\n\n<h4>🔸 종목별 고점 대비 손실 폭 차이</h4>\n<p>SCHD(Schwab U.S. Dividend Equity ETF)는 최대 낙폭 -18.9%로 고점 진입 예시 금액 1,000만 원 기준 평가액이 811만 원 수준을 유지했습니다. 반면 QQQ(Invesco QQQ Trust)는 -35.5%까지 떨어지며 평가액이 645만 원으로 줄었습니다.</p>\n\n<p>가장 변동성이 컸던 TLT(iShares 20+ Year Treasury Bond ETF)는 최대 낙폭 -50.0%를 기록하며 평가액이 500만 원으로 원금이 반토막 났습니다. 주식형 ETF뿐만 아니라 채권형 ETF도 만기 구조에 따라 고점 대비 평가액이 크게 낮아질 수 있음을 보여줍니다.</p>\n\n<p>이 ETF들은 모두 해외에 상장되어 있어 달러로 거래되므로, 환율 변화에 따른 평가금액 영향도 함께 받게 됩니다.</p>\n\n<h3>고점에서 바닥까지 얼마나 걸렸을까?</h3>\n\n<strong>하락 기간을 살펴보면 SCHD가 262일로 가장 짧았고, TLT는 1,767일 동안 하락세가 이어졌습니다.</strong> 자산 가치가 줄어드는 비율도 중요하지만, 하락이 얼마나 길게 지속되는지도 투자자의 심리에 큰 영향을 미칩니다.\n\n<p>SCHD는 2022년 1월 11일 고점을 찍은 뒤 2022년 9월 30일까지 262일 만에 하락 바닥에 도달했습니다. 1년이 채 되지 않는 시간 동안 하락세가 마무리되어 상대적으로 견디기 수월했습니다.</p>\n\n<p>QQQ는 2021년 12월 27일부터 2022년 12월 28일까지 366일 동안 하락하며 약 1년간 원금이 계속 줄어드는 구간을 지났습니다. TLT는 2021년 12월 3일부터 2026년 10월 5일까지 1,767일간 하락하며 가장 오랜 기간 하락 압력을 받았습니다.</p>\n\n<h3>바닥에서 고점을 되찾는 데 얼마나 걸릴까?</h3>\n\n<strong>QQQ가 바닥을 찍고 원래 고점 가격을 되찾는 데 350일이 걸린 반면, TLT는 아직 이전 고점을 되찾지 못했습니다.</strong> 손실을 입은 후 원래 평가액으로 돌아오는 회복 기간은 종목의 기초 자산 특성에 따라 크게 갈립니다.\n\n<p>QQQ는 2022년 12월 28일 바닥을 기록한 뒤 2023년 12월 13일까지 350일 만에 고점 가격을 회복했습니다. SCHD는 2022년 9월 30일 바닥 이후 이전 고점을 다시 되찾는 2024년 7월 17일까지 656일이 걸려 회복에 상대적으로 더 많은 시간이 필요했습니다.</p>\n\n<p>현재 가격을 5년 최고가와 비교해 보면 SCHD -5.6%, QQQ -15.1%, TLT -47.9% 수준에 위치해 있습니다. 한번 -50.0% 수준까지 하락한 자산은 원래 가격으로 복구하기 위해 +100.0%의 상승률이 필요하므로 회복 난이도가 높아집니다.</p>\n\n<h3>국내 계좌로 해외 ETF를 살 수 있을까?</h3>\n\n<p>해외 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 자산 하락 폭을 확인하고 해외에 상장된 QQQ, SCHD, TLT를 직접 매수하려 할 때 계좌 선택에 유의해야 합니다.</p>\n\n<p>ISA나 연금저축 같은 절세 계좌의 혜택을 활용하고 싶다면 국내 상장 ETF를 선택하는 방법이 있습니다. 해외 상장 ETF가 가진 지수 및 성과를 동일하게 추종하는 국내 상장 ETF를 매수하면 해당 절세 계좌에서 거래가 가능합니다. 세금은 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 미국 상장 ETF 매매차익에 대한 세금은 언제 어떻게 신고하나요?</h4>\n<p>미국 상장 ETF를 거래해서 얻은 매매차익은 양도소득세 과세 대상이 됩니다. 투자자는 다음 해 5월에 관련 양도소득을 직접 국세청에 신고해야 합니다.</p>\n\n<h4>🔸 미국 상장 ETF 배당금에 붙는 세금은 어떻게 처리되나요?</h4>\n<p>미국 상장 ETF에서 나오는 배당금은 현지에서 세금을 먼저 떼는 원천징수(배당·이자를 줄 때 세금을 미리 떼고 주는 것) 과정을 거쳐 계좌로 입금됩니다. 이렇게 해외에서 이미 낸 세금은 국내 세액 계산 시 외국납부세액공제로 차감 반영됩니다.</p>\n\n<h3>정리</h3>\n\n<p>최대 낙폭과 하락·회복 기간을 함께 살피면 자산이 깎이는 과정에서 자신이 버틸 수 있는 투자 상품인지 미리 가늠할 수 있습니다. 수치상의 수익률만 보고 진입하기보다 과거에 겪었던 손실 폭과 회복까지 걸린 날짜를 확인해야 투자 중도 포기를 막을 수 있습니다.</p>\n\n<p>앞으로 새로운 ETF나 투자 상품의 하락 위험을 점검할 때는 자료의 실제 수치를 기준으로 세 가지 요소를 스스로 살펴볼 수 있습니다. 첫째, 최고점 대비 최저점 비율인 최대 낙폭이 SCHD의 -18.9%나 QQQ의 -35.5%처럼 본인의 심리적 한계선 안에 있는지 확인해야 합니다. 둘째, 바닥까지 떨어지는 하락 기간이 SCHD의 262일이나 TLT의 1,767일처럼 견딜 수 있는 수치인지 따져봐야 합니다. 셋째, 이전 고점을 다시 되찾는 회복 기간이 QQQ의 350일이나 SCHD의 656일처럼 감당 가능한지 체크하는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 최대 낙폭과 회복 기간을 확인하면 하락장에서도 중도 포기 없이 버틸 수 있는 ETF를 골라낼 수 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: 해외 상장 ETF vs 국내 상장 ETF 세금 비교 가이드</p>\n\n태그: MDD 최대낙폭 ETF투자 QQQ SCHD",
+  "3": "<h1>최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</h1>\n<!-- 최대 낙폭(MDD)과 하락 및 회복 기간을 비교해 내 투자 성향에 맞는 ETF를 고르는 기준을 안내합니다. TLT, QQQ, SCHD의 5년 최저 평가액과 손실 기간 데이터를 살펴봅니다. -->\n\n<p>최근 5년간 미국 시장 대표 ETF들의 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)을 집계해 보면 TLT -50.0%, QQQ -35.5%, SCHD -18.9%로 종목마다 자산이 줄어드는 폭에서 큰 차이를 보였습니다. 손실 크기를 사전에 파악하는 것은 투자 상품 선택 시 끝까지 버틸 수 있는지 판단하는 핵심 기준이 됩니다.</p>\n\n<p>자신의 버팀목 수준에 맞는 ETF를 골라야 주가가 바닥일 때 손절하지 않고 긴 투자 기간을 이겨낼 수 있습니다. 최근 5년 달러 기준 Yahoo Finance 일별 종가 자료를 바탕으로 산출한 최대 낙폭과 회복 속도를 살펴보겠습니다.</p>\n\n<h3>내 자산은 얼마나 줄어들 수 있을까?</h3>\n\n<strong>1,000만 원을 고점에 넣었다고 가정했을 때 최저점 평가액은 TLT 500만 원, QQQ 645만 원, SCHD 811만 원으로 집계되었습니다.</strong>\n\n<h4>🔸 종목별 고점 대비 손실 폭 차이</h4>\n<p>SCHD(Schwab U.S. Dividend Equity ETF)는 최대 낙폭 -18.9%로 고점 진입 예시 금액 1,000만 원 기준 평가액이 811만 원 수준을 유지했습니다. 반면 QQQ(Invesco QQQ Trust)는 -35.5%까지 떨어지며 평가액이 645만 원으로 줄었습니다.</p>\n\n<p>가장 변동성이 컸던 TLT(iShares 20+ Year Treasury Bond ETF)는 최대 낙폭 -50.0%를 기록하며 1,000만 원 투자 시 평가액이 500만 원으로 원금이 반토막 났습니다. 주식형 ETF뿐만 아니라 채권형 ETF도 만기 구조에 따라 고점 대비 평가액이 크게 낮아질 수 있음을 보여줍니다.</p>\n\n<p>이 ETF들은 모두 해외에 상장되어 있어 달러로 거래되므로, 환율 변화에 따른 평가금액 영향도 함께 받게 됩니다.</p>\n\n<h3>고점에서 바닥까지 얼마나 걸렸을까?</h3>\n\n<strong>하락 기간을 살펴보면 SCHD가 262일로 가장 짧았고, TLT는 1,767일 동안 하락세가 이어졌습니다.</strong> 자산 가치가 줄어드는 비율도 중요하지만, 하락이 얼마나 길게 지속되는지도 투자자의 심리에 큰 영향을 미칩니다.\n\n<p>SCHD는 2022년 1월 11일 고점을 찍은 뒤 2022년 9월 30일까지 262일 만에 하락 바닥에 도달했습니다. 1년이 채 되지 않는 시간 동안 하락세가 마무리되어 상대적으로 견디기 수월했습니다.</p>\n\n<p>QQQ는 2021년 12월 27일부터 2022년 12월 28일까지 366일 동안 하락하며 약 1년간 원금이 계속 줄어드는 구간을 지났습니다. TLT는 2021년 12월 3일부터 2026년 10월 5일까지 1,767일간 하락하며 가장 오랜 기간 하락 압력을 받았습니다.</p>\n\n<h3>바닥에서 고점을 되찾는 데 얼마나 걸릴까?</h3>\n\n<strong>QQQ가 바닥을 찍고 원래 고점 가격을 되찾는 데 350일이 걸린 반면, TLT는 아직 이전 고점을 되찾지 못했습니다.</strong> 손실을 입은 후 원래 평가액으로 돌아오는 회복 기간은 종목의 기초 자산 특성에 따라 크게 갈립니다.\n\n<p>QQQ는 2022년 12월 28일 바닥을 기록한 뒤 2023년 12월 13일까지 350일 만에 고점 가격을 회복했습니다. SCHD는 2022년 9월 30일 바닥 이후 이전 고점을 다시 되찾는 2024년 7월 17일까지 656일이 걸려 회복에 상대적으로 더 많은 시간이 필요했습니다.</p>\n\n<p>현재 가격을 5년 최고가와 비교해 보면 SCHD -5.6%, QQQ -15.1%, TLT -47.9% 수준에 위치해 있습니다. 한번 -50.0% 수준까지 하락한 자산은 원래 가격으로 복구하기 위해 +100.0%의 상승률이 필요하므로 회복 난이도가 높아집니다.</p>\n\n<h3>국내 계좌로 해외 ETF를 살 수 있을까?</h3>\n\n<p>해외 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 자산 하락 폭을 확인하고 해외에 상장된 QQQ, SCHD, TLT를 직접 매수하려 할 때 계좌 선택에 유의해야 합니다.</p>\n\n<p>ISA나 연금저축 같은 절세 계좌의 혜택을 활용하고 싶다면 국내 상장 ETF를 선택하는 방법이 있습니다. 해외 상장 ETF가 가진 지수 및 성과를 동일하게 추종하는 국내 상장 ETF를 매수하면 해당 절세 계좌에서 거래가 가능합니다. 세금은 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p>\n\n<h3>자주 묻는 질문</h3>\n\n<h4>🔸 미국 상장 ETF 매매차익에 대한 세금은 언제 어떻게 신고하나요?</h4>\n<p>미국 상장 ETF를 거래해서 얻은 매매차익은 양도소득세 과세 대상이 됩니다. 투자자는 다음 해 5월에 관련 양도소득을 직접 국세청에 신고해야 합니다.</p>\n\n<h4>🔸 미국 상장 ETF 배당금에 붙는 세금은 어떻게 처리되나요?</h4>\n<p>미국 상장 ETF에서 나오는 배당금은 현지에서 세금을 먼저 떼는 원천징수(배당·이자를 줄 때 세금을 미리 떼고 주는 것) 과정을 거쳐 계좌로 입금됩니다. 이렇게 해외에서 이미 낸 세금은 국내 세액 계산 시 외국납부세액공제로 차감 반영됩니다.</p>\n\n<h3>정리</h3>\n\n<p>최대 낙폭과 하락·회복 기간을 함께 살피면 자산이 깎이는 과정에서 자신이 버틸 수 있는 투자 상품인지 미리 가늠할 수 있습니다. 수치상의 수익률만 보고 진입하기보다 과거에 겪었던 손실 폭과 회복까지 걸린 날짜를 확인해야 투자 중도 포기를 막을 수 있습니다.</p>\n\n<p>앞으로 새로운 ETF나 투자 상품의 하락 위험을 점검할 때는 자료의 실제 수치를 기준으로 세 가지 요소를 스스로 살펴볼 수 있습니다. 첫째, 최고점 대비 최저점 비율인 최대 낙폭이 SCHD의 -18.9%나 QQQ의 -35.5%처럼 본인의 심리적 한계선 안에 있는지 확인해야 합니다. 둘째, 바닥까지 떨어지는 하락 기간이 SCHD의 262일이나 TLT의 1,767일처럼 견딜 수 있는 수치인지 따져봐야 합니다. 셋째, 이전 고점을 다시 되찾는 회복 기간이 QQQ의 350일이나 SCHD의 656일처럼 감당 가능한지 체크하는 것이 좋습니다.</p>\n\n<p><strong>한 줄 정리:</strong> 최대 낙폭과 회복 기간을 확인하면 하락장에서도 중도 포기 없이 버틸 수 있는 ETF를 골라낼 수 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: 해외 상장 ETF vs 국내 상장 ETF 세금 비교 가이드</p>\n\n태그: MDD 최대낙폭 ETF투자 QQQ SCHD"
+ },
+ "minutes": 12.1
+}
