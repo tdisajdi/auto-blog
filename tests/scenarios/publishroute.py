@@ -30,6 +30,9 @@ assert not pp.claude_route("9", "/a/x.json", d2, text)[0]                       
 os.remove(f"{tmp}/lab/patches/9.json"); assert not pp.claude_route("9", "/a/x.json", d, text)[0]
 json.dump([{"old": "<td>A S&amp;P 500 ETF T</td>", "new": "<td>S&amp;P 500 ETF Trust</td>"},
            {"field": "excerpt", "old": "x", "new": "요약"}], open(f"{tmp}/lab/patches/9.json", "w"))
+json.dump([{"old": ">A S&amp;P 500 ETF T</td>", "new": ">S&amp;P 500 ETF Trust</td>"}], open(f"{tmp}/lab/patches/9.json", "w"))
+assert pp.patches_in("9", "표 S&P 500 ETF Trust 끝")
+json.dump([{"old": "<td>A S&amp;P 500 ETF T</td>", "new": "<td>S&amp;P 500 ETF Trust</td>"}, {"field": "excerpt", "old": "x", "new": "요약"}], open(f"{tmp}/lab/patches/9.json", "w"))
 assert pp.patches_in("9", "표 S&P 500 ETF Trust 끝") and not pp.patches_in("9", "표 A S&P 500 ETF T 끝")
 assert pp.plain("<p>a&amp;b<!-- x --></p>").strip() == "a&b"
 print("publishroute ok")
