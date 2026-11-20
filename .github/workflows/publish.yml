@@ -537,6 +537,9 @@ jobs:
               python site_pages/sitemap_probe.py || echo "사이트맵 확인 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-fix" ]; then
               python site_pages/sitemap_fix.py || echo "사이트맵 캐시 비우기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "art-fetch" ]; then
+              # 11-20 표지용 공공 명화(CC0) 받기 - lab/art
+              python site_pages/fetch_art.py || echo "명화 받기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
               python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
@@ -646,6 +649,7 @@ jobs:
           git add lab/translate 2>/dev/null || true
           git add lab/recheck 2>/dev/null || true
           git add lab/sitekit_probe.txt 2>/dev/null || true
+          git add lab/art 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else
