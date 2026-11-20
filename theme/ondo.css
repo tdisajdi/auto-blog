@@ -483,3 +483,6 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-rcalc .o-cout { border-top: 2px dashed var(--o-line, #e3dccb); margin-top: 12px; padding-top: 2px; }
 .o-rcalc .o-cout .o-rrow span { flex: 1; min-width: 0; padding-right: 8px; }
 .o-rcalc .o-cgap { font-size: 12px; color: var(--o-ink-2); text-align: right; margin-top: -2px; }
+/* 오른쪽 계기판 '이 글의 자료 출처'(2026-11-20) */
+.o-rsrc { display: block; font-size: 13px; line-height: 1.5; color: var(--o-ink) !important; text-decoration: underline !important; text-underline-offset: 3px; margin: 8px 0 0; word-break: break-word; }
+.o-rsrc::after { content: " ↗"; color: var(--o-ink-2); }
