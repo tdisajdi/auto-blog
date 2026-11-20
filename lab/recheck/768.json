@@ -1,0 +1,8 @@
+{
+ "post": "768",
+ "status": "draft",
+ "model": "gemini-3.6-flash",
+ "log": "20-company-aapl.json",
+ "issues": [],
+ "patch_applied": false
+}
