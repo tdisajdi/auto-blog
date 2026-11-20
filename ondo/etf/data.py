@@ -722,8 +722,15 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
             try:
                 h_mdd = ticker.history(period="5y")
                 if not h_mdd.empty:
-                    mdd_val = f"{(h_mdd['Close'] / h_mdd['Close'].cummax() - 1.0).min() * 100:.2f}%"
-                    mdd_detail = _drawdown_detail(h_mdd['Close'])
+                    # 11-21(백로그 86): 최대 낙폭은 배당 제외 가격으로 - 한국 ETF(FDR)·낙폭 가이드·기업 소개 표와 같은 기준.
+                    # 기본 history는 배당 반영 가격이라 QQQ -35.12%(여기) vs -35.5%(가이드)처럼 글끼리 엇갈렸다.
+                    try:
+                        px = ticker.history(period="5y", auto_adjust=False)['Close']
+                    except Exception:
+                        px = None
+                    px = px if px is not None and len(px) > 10 else h_mdd['Close']
+                    mdd_val = f"{(px / px.cummax() - 1.0).min() * 100:.2f}%"
+                    mdd_detail = _drawdown_detail(px)
                     if len(h_mdd) > 10:
                         total_return_5y = (current_price - h_mdd['Close'].iloc[0]) / h_mdd['Close'].iloc[0]
                         years_span = len(h_mdd) / 250.0
