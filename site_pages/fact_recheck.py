@@ -18,7 +18,7 @@ def main(pid):
     import blog_engine as be
     from ondo.writing import desk, llm
     from ondo.checks import editlog
-    from site_pages.publish_passed import passed_log
+    from site_pages.publish_passed import passed_log, patches_in, plain
     h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
     r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
                      params={"context": "edit", "fields": "ID,title,status,content,slug"}, timeout=30)
@@ -44,7 +44,8 @@ def main(pid):
         return 1
     norm = desk._norm(text)
     issues = [it for it in data.get("issues") or [] if isinstance(it, dict) and desk._quote_found(it.get("quote", ""), norm)]
-    out = {"post": pid, "status": j["status"], "model": res.model, "log": os.path.basename(f), "issues": issues}
+    out = {"post": pid, "status": j["status"], "model": res.model, "log": os.path.basename(f), "issues": issues,
+           "patch_applied": bool(patches_in(pid, plain(j["content"])))}   # 11-20: 고친 글을 봤다는 증거(공개 두 번째 길에 씀)
     os.makedirs(os.path.join(ROOT, "lab", "recheck"), exist_ok=True)
     open(os.path.join(ROOT, "lab", "recheck", f"{pid}.json"), "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
     serious = [i for i in issues if i.get("severity") in ("치명", "중요")]

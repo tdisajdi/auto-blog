@@ -1,7 +1,10 @@
 """기준을 통과했는데 임시글로 남은 글을 공개로(2026-11-19 - 다시 쓰기 경로가 상태를 안 바꾸던 문제의 뒷정리).
   python site_pages/publish_passed.py <글번호>
 안전장치: logs/ 안에 그 글(?p=번호)의 기록이 있고 마지막 '편집장 검토'가 통과(passed)이며,
-그 판의 사실 검증(본·확인)을 좋은 모델이 했을 때만 공개한다(11-19)."""
+그 판의 사실 검증(본·확인)을 좋은 모델이 했을 때만 공개한다(11-19).
+두 번째 길(11-20 '임시글 → Claude 읽기·고치기 → 좋은 모델 사실 검증 통과만 공개'):
+  자동 검토가 사소한 지적만 남기고 끝났고(치명·중요 없음), Claude 고침(lab/patches/<번호>.json)이 지금 글에 들어가 있고,
+  그 고친 글을 좋은 모델이 다시 사실 검증해(lab/recheck/<번호>.json, patch_applied=true) 치명·중요가 0개일 때."""
 import glob
 import json
 import os
@@ -52,6 +55,67 @@ def strong_fact(d, round_no):
     return True
 
 
+SERIOUS = ("[치명", "[중요")
+
+
+def _norm(t):
+    import re
+    return re.sub(r"\s+", " ", t or "").strip()
+
+
+def patches_in(pid, text):
+    """lab/patches/<번호>.json 의 고침이 모두 글에 들어가 있나(새 문구는 있고 옛 문구는 없음). 고침 파일 없으면 None."""
+    pf = os.path.join(ROOT, "lab", "patches", f"{pid}.json")
+    if not os.path.exists(pf):
+        return None
+    try:
+        items = json.load(open(pf, encoding="utf-8"))
+    except Exception:
+        return False
+    t = _norm(text)
+    return bool(items) and all(_norm(i.get("new")) in t and (not i.get("old") or _norm(i.get("old")) not in t) for i in items)
+
+
+def claude_route(pid, logf, d, text):
+    """두 번째 길 판정 → (통과?, 이유). d=그 글의 기록, text=지금 사이트 본문(태그 뺀 글자)."""
+    from ondo.writing import llm
+    reviews = [s for s in d.get("steps", []) if str(s.get("step", "")).startswith("편집장 검토")]
+    if not reviews:
+        return False, "편집장 검토 기록 없음"
+    if any(str(i).startswith(SERIOUS) for i in reviews[-1].get("issues") or []):
+        return False, "마지막 자동 검토에 치명·중요 지적이 남음"
+    if not patches_in(pid, text):
+        return False, "Claude 고침(lab/patches)이 없거나 글에 다 들어가지 않음"
+    rf = os.path.join(ROOT, "lab", "recheck", f"{pid}.json")
+    if not os.path.exists(rf):
+        return False, "고친 뒤 좋은 모델 사실 검증(lab/recheck) 없음"
+    rc = json.load(open(rf, encoding="utf-8"))
+    if rc.get("model") not in set(llm.models_for("strong_only")):
+        return False, f"다시 검증 모델이 좋은 모델이 아님({rc.get('model')})"
+    if rc.get("log") != os.path.basename(logf):
+        return False, "다시 검증이 다른 기록 기준"
+    if not rc.get("patch_applied"):
+        return False, "다시 검증이 고침 전 글을 본 것일 수 있음(patch_applied 없음) - fact-recheck 다시"
+    if any(i.get("severity") in ("치명", "중요") for i in rc.get("issues") or []):
+        return False, "다시 검증에서 치명·중요 지적"
+    return True, "Claude 고침 + 좋은 모델 다시 검증 통과"
+
+
+def plain(html_text):
+    """태그 뺀 글자(고침 문구 대조용)."""
+    import html as _h
+    import re
+    return _h.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<!--.*?-->", "", html_text or "", flags=re.S)))
+
+
+def site_text(pid, h):
+    import requests
+    import blog_engine as be
+    r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
+                     params={"context": "edit", "fields": "content"}, timeout=30)
+    return plain(r.json().get("content", "")) if r.ok else ""
+
+
 def first_in_category(pid, h):
     """11-20(백로그 76): 이 글이 그 분야의 첫 공개 글이면 theme-push - 빈 분야라 숨겼던 메뉴·첫 화면 카드를 다시 보이게."""
     try:
@@ -72,10 +136,13 @@ def main(pid):
     import requests
     import blog_engine as be
     f, ok, score = passed_log(pid)
+    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
+    if not ok and f:
+        ok, why = claude_route(pid, f, json.load(open(f, encoding="utf-8")), site_text(pid, h))
+        print(("두 번째 길 통과: " if ok else "두 번째 길도 안 됨: ") + why)
     if not ok:
         print(f"공개 안 함: 통과 기록 없음({f}, 점수 {score})")
         return 1
-    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
     base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}"
     r = requests.post(base, headers=h, data={"status": "publish"}, timeout=30)
     j = r.json() if r.ok else {}
