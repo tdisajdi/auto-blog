@@ -3,5 +3,6 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "20-guide-mdd-risk-2.json",
- "issues": []
+ "issues": [],
+ "patch_applied": true
 }
