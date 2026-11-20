@@ -6,6 +6,7 @@
   자동 검토가 사소한 지적만 남기고 끝났고(치명·중요 없음), Claude 고침(lab/patches/<번호>.json)이 지금 글에 들어가 있고,
   그 고친 글을 좋은 모델이 다시 사실 검증해(lab/recheck/<번호>.json, patch_applied=true) 치명·중요가 0개일 때."""
 import glob
+import re
 import json
 import os
 import sys
@@ -63,6 +64,13 @@ def _norm(t):
     return re.sub(r"\s+", " ", t or "").strip()
 
 
+def _frag(s):
+    """고침 조각의 태그 뺀 글자 - 조각이 태그 중간에서 시작·끝나도('>SPY …</td' 꼴) 남은 꺾쇠 조각을 버림(11-20 768)."""
+    s = re.sub(r"^[^<]*?>", "", s or "", count=1) if re.match(r"^[^<]*>", s or "") else (s or "")
+    s = re.sub(r"<[^>]*$", "", s)
+    return _norm(plain(s))
+
+
 def patches_in(pid, text):
     """lab/patches/<번호>.json 의 고침이 모두 글에 들어가 있나(새 문구는 있고 옛 문구는 없음). 고침 파일 없으면 None."""
     pf = os.path.join(ROOT, "lab", "patches", f"{pid}.json")
@@ -75,7 +83,7 @@ def patches_in(pid, text):
     t = _norm(text)
     items = [i for i in items if i.get("field", "content") == "content"]   # 요약문(excerpt) 고침은 본문에 없음
     # 고침 문구도 태그 뺀 글자로 비교(11-20: 'S&amp;P'·'</td>'가 든 고침이 본문 글자와 안 맞던 문제)
-    return bool(items) and all(_norm(plain(i.get("new"))) in t and (not i.get("old") or _norm(plain(i.get("old"))) not in t)
+    return bool(items) and all(_frag(i.get("new")) in t and (not i.get("old") or _frag(i.get("old")) not in t)
                                for i in items)
 
 
