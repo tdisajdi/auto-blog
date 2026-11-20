@@ -30,6 +30,15 @@ def _won(v):
     return f"{round(v):,}원"
 
 
+def _won_month(total, n):
+    """적립식 한 달 금액. 나눠떨어지지 않으면 '약 20.3만 원(1,200만 원 ÷ 59번)'처럼 - 11-20: 만 원 반올림으로
+    '1,200만 원 = 매달 20만 원'(실제 59번 × 20만 = 1,180만)이 돼 글에 틀린 셈이 나감."""
+    m = total / n
+    if abs(m - round(m / 10000) * 10000) < 1:
+        return _won(m)
+    return f"약 {m / 10000:,.1f}만 원({_won(total)} ÷ {n}번)"
+
+
 def _parse_pct(v):
     """'0.0945%' → 0.0945. 실패하면 None."""
     try:
@@ -201,7 +210,7 @@ def render_dca(results, total=12_000_000):
     both = lambda f: ", ".join(f"{t} {f(r)}" for t, r in results.items())
     lines = [
         f"- 기간·조건: {one['start']}~{one['end']}({one['n']}개월), 같은 총액 {_won(total)}을 첫 달에 한 번에(거치식) vs "
-        f"매달 {_won(total / one['n'])}씩(적립식)",
+        f"매달 {_won_month(total, one['n'])}씩(적립식)",
         "- 전체 기간 수익률(거치식 / 적립식): " + both(lambda r: f"{_pct(r['lump'])} / {_pct(r['dca'])}"),
         "- 전체 기간 평가액(거치식 / 적립식): " + both(lambda r: f"{_won(total * (1 + r['lump'] / 100))} / {_won(total * (1 + r['dca'] / 100))}"),
         f"- 이 기간 안의 {one['window']}개월짜리 구간 {one['wins']['lump'] + one['wins']['dca']}개 중 거치식 수익률이 더 높았던 구간 수: "
