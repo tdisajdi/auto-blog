@@ -1,0 +1,32 @@
+"""2026-11-20: 공개 두 번째 길(Claude 고침 + 좋은 모델 다시 검증) 판정 - 네트워크 없음, 임시 폴더."""
+import json, os, sys, tempfile
+os.chdir(sys.argv[1]); sys.path.insert(0, sys.argv[1])
+from site_pages import publish_passed as pp
+from ondo.writing import llm
+
+tmp = tempfile.mkdtemp()
+pp.ROOT = tmp
+os.makedirs(f"{tmp}/lab/patches"); os.makedirs(f"{tmp}/lab/recheck")
+strong = llm.models_for("strong_only")[0]
+d = {"steps": [{"step": "편집장 검토 3", "score": 0.94, "passed": False, "issues": ["[사소·독자 편집] 반복"]}]}
+text = "앞 문장. 새 문구가 들어간 본문. 뒤 문장."
+json.dump([{"old": "옛 문구", "new": "새 문구가 들어간 본문."}], open(f"{tmp}/lab/patches/9.json", "w"))
+
+def rc(**k):
+    base = {"post": "9", "model": strong, "log": "x.json", "issues": [], "patch_applied": True}
+    base.update(k)
+    json.dump(base, open(f"{tmp}/lab/recheck/9.json", "w"))
+
+rc()
+assert pp.claude_route("9", "/a/x.json", d, text) == (True, "Claude 고침 + 좋은 모델 다시 검증 통과")
+assert not pp.claude_route("9", "/a/x.json", d, "옛 문구 본문")[0]                   # 고침이 글에 없음
+assert not pp.claude_route("9", "/a/y.json", d, text)[0]                            # 다른 기록 기준
+rc(patch_applied=False); assert "patch_applied" in pp.claude_route("9", "/a/x.json", d, text)[1]
+rc(model="gemini-lite"); assert not pp.claude_route("9", "/a/x.json", d, text)[0]
+rc(issues=[{"severity": "중요"}]); assert not pp.claude_route("9", "/a/x.json", d, text)[0]
+rc()
+d2 = {"steps": [{"step": "편집장 검토 3", "passed": False, "issues": ["[중요·사실 검증] 틀림"]}]}
+assert not pp.claude_route("9", "/a/x.json", d2, text)[0]                           # 자동 검토 중요 지적 남음
+os.remove(f"{tmp}/lab/patches/9.json"); assert not pp.claude_route("9", "/a/x.json", d, text)[0]
+assert pp.plain("<p>a&amp;b<!-- x --></p>").strip() == "a&b"
+print("publishroute ok")
