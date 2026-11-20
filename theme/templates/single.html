@@ -52,7 +52,7 @@ var col=document.querySelector('.o-toc-col');
 if(col&&keys[0]){var kn=document.createElement('div');kn.className='o-keyn';kn.innerHTML='<span class="o-px">KEY NUMBER</span><b></b>';kn.querySelector('b').textContent=keys[0];col.appendChild(kn);var ac=document.querySelector('.o-answer');if(ac&&window.IntersectionObserver){new IntersectionObserver(function(es){kn.classList.toggle('o-on',!es[0].isIntersecting);}).observe(ac);}else{kn.classList.add('o-on');}}
 /* 3) 형광펜: 제목의 핵심 숫자가 본문에 나오는 자리, 최대 5곳 */
 var left=5;
-function mark(node,k){var i=node.nodeValue.indexOf(k);if(i<0)return false;var r=node.splitText(i);r.splitText(k.length);var m=document.createElement('mark');m.className='o-hl';m.textContent=k;r.parentNode.replaceChild(m,r);return true;}
+function mark(node,k){var i=node.nodeValue.indexOf(k);if(i<0)return false;if(/%$/.test(k)&&node.nodeValue.charAt(i+k.length)==='p')k=k+'p';var r=node.splitText(i);r.splitText(k.length);var m=document.createElement('mark');m.className='o-hl';m.textContent=k;r.parentNode.replaceChild(m,r);return true;}
 keys.slice(0,2).forEach(function(k){
  var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||p.closest('table,h1,h2,h3,h4,.o-answer-h,.o-answer-n,mark,a,script,style'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
  var nodes=[];while(w.nextNode())nodes.push(w.currentNode);
