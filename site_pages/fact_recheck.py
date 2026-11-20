@@ -13,6 +13,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 
+def strip_system(content):
+    """시스템이 넣는 계산표·그래프는 검증 글에서 뺀다(11-21: 표 글자를 '작가가 표를 글로 썼다'로 '중요' 잘못 지적 - 글쓰기 때
+    검토도 표 넣기 전 글을 봄). 표 숫자는 코드 계산이라 자료와 같음."""
+    import re
+    c = re.sub(r'<div class="ondo-calc".*?</table>.*?</div>', " ", content or "", flags=re.S)
+    return re.sub(r'<figure class="ondo-chart".*?</figure>', " ", c, flags=re.S)
+
+
 def main(pid):
     import requests
     import blog_engine as be
@@ -32,7 +40,7 @@ def main(pid):
         return 1
     d = json.load(open(f, encoding="utf-8"))
     facts = d.get("facts") or ""
-    html = f"<h1>{j['title']}</h1>" + j["content"]
+    html = f"<h1>{j['title']}</h1>" + strip_system(j["content"])
     text = desk.review_text(html)
     common = desk.prompt("review_common", today=desk._today(), text=text)
     log = editlog.EditLog(d.get("article_type", "guide"), f"recheck-{pid}", j["title"])

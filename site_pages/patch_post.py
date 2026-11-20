@@ -19,6 +19,8 @@ def apply(content, patches):
     probs = []
     for p in patches:
         n = content.count(p["old"])
+        if n == 0 and p.get("new") and content.count(p["new"]) == 1:
+            continue        # 이미 들어간 고침(11-21: 같은 파일에 다음 판 고침을 이어 붙일 수 있게)
         if n != 1:
             probs.append(f"'{p['old'][:40]}…' 이 {n}번 있음(정확히 1번이어야 함)")
             continue
