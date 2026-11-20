@@ -235,7 +235,8 @@ def _collect(ticker, ea, macro_data):
                     fd = yf.Ticker(etf).funds_data
                     w = weight_in(fd.top_holdings, ticker, c.get("en", ""))
                     try:
-                        ename = yf.Ticker(etf).info.get("shortName") or etf
+                        inf = yf.Ticker(etf).info      # 11-20: shortName은 잘림('…S&P 500 ETF T') → longName 먼저
+                        ename = inf.get("longName") or inf.get("shortName") or etf
                     except Exception:
                         ename = etf
             except Exception as e:

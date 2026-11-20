@@ -73,7 +73,10 @@ def patches_in(pid, text):
     except Exception:
         return False
     t = _norm(text)
-    return bool(items) and all(_norm(i.get("new")) in t and (not i.get("old") or _norm(i.get("old")) not in t) for i in items)
+    items = [i for i in items if i.get("field", "content") == "content"]   # 요약문(excerpt) 고침은 본문에 없음
+    # 고침 문구도 태그 뺀 글자로 비교(11-20: 'S&amp;P'·'</td>'가 든 고침이 본문 글자와 안 맞던 문제)
+    return bool(items) and all(_norm(plain(i.get("new"))) in t and (not i.get("old") or _norm(plain(i.get("old"))) not in t)
+                               for i in items)
 
 
 def claude_route(pid, logf, d, text):
