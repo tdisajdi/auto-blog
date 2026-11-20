@@ -123,7 +123,7 @@ def export(pid):
     h, S = _auth()
     ref = pid if str(pid).isdigit() else f"slug:{pid}"   # 글번호 또는 글 주소(slug)
     r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{S}/posts/{ref}", headers=h,
-                     params={"context": "edit", "fields": "ID,title,slug,status,excerpt,content,categories,URL"}, timeout=30)
+                     params={"context": "edit", "fields": "ID,title,slug,status,excerpt,content,categories,tags,URL"}, timeout=30)
     if not r.ok:
         print("받기 실패:", r.status_code, r.text[:200])
         return 1
@@ -132,7 +132,8 @@ def export(pid):
     os.makedirs(DIR, exist_ok=True)
     cats = [c.get("slug") for c in (j.get("categories") or {}).values()]
     meta = {"ID": j["ID"], "title": j["title"], "slug": j["slug"], "status": j["status"], "URL": j.get("URL"),
-            "excerpt": re.sub(r"<[^>]+>", "", j.get("excerpt") or "").strip(), "categories": cats}
+            "excerpt": re.sub(r"<[^>]+>", "", j.get("excerpt") or "").strip(), "categories": cats,
+            "tags": [tg.get("name") for tg in (j.get("tags") or {}).values() if tg.get("name")]}
     open(os.path.join(DIR, f"{pid}.ko.html"), "w", encoding="utf-8").write(j["content"])
     open(os.path.join(DIR, f"{pid}.ko.json"), "w", encoding="utf-8").write(json.dumps(meta, ensure_ascii=False, indent=1))
     print("받음:", meta["title"], meta["status"], cats, len(j["content"]), "글자")
@@ -158,6 +159,13 @@ def check(pid):
     for p in probs:
         print(" -", p)
     return 1 if probs else 0
+
+
+def company_tags_en(tags):
+    """한국어 글의 태그 중 회사 이름(ondo/company.py COMPANIES의 ko)을 영어 이름으로. 회사 태그가 없으면 []."""
+    from ondo.company import COMPANIES
+    ko2en = {c["ko"]: c["en"] for c in COMPANIES.values()}
+    return [ko2en[x] for x in (tags or []) if x in ko2en]
 
 
 def push(pid):
@@ -187,6 +195,9 @@ def push(pid):
     existing = requests.get(f"{base}/posts/slug:{en['slug']}", headers=h, params={"fields": "ID,status"}, timeout=20)
     data = {"title": en["title"], "content": en["html"], "excerpt": en["excerpt"], "slug": en["slug"],
             "categories": ",".join(cat_ids), "status": "publish"}
+    en_tags = company_tags_en(meta.get("tags"))     # 11-20 회사 태그(애플 → Apple) - 영어 기업 글 ↔ 제품·기술 글 잇기
+    if en_tags:
+        data["tags"] = ",".join(en_tags)
     if existing.ok and existing.json().get("ID"):
         r = requests.post(f"{base}/posts/{existing.json()['ID']}", headers=h, data=data, timeout=60)
         verb = "바꿈"
@@ -203,7 +214,7 @@ def push(pid):
     try:   # 11-19: 영어 글에도 새 표지(영어 제목·숫자) - 실패해도 글은 그대로
         import blog_engine as be
         from ondo.media.cover import make_cover
-        path = make_cover(en["title"], (meta.get("categories") or ["etf"])[0], "GUIDE")
+        path = make_cover(en["title"], (meta.get("categories") or ["etf"])[0], "COMPANY" if en_tags else "GUIDE")
         mid = be._upload_media(path, "image/png")[0] if path else None
         print("표지:", "붙임" if mid and be.wp_set_featured_image(j["ID"], mid) else "못 붙임")
     except Exception as e:

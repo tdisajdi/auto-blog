@@ -15,4 +15,6 @@ for p in glob.glob("site_pages/en/*.html"):
     assert m and m.group(1).endswith("-en"), p
     assert not re.search(r"[가-힣]", open(p, encoding="utf-8").read()), p
 assert "financial professional" in open("site_pages/en/about.html", encoding="utf-8").read()   # 가짜 전문성 금지 문장 유지
+from site_pages.translate import company_tags_en
+assert company_tags_en(["애플", "ETF"]) == ["Apple"] and company_tags_en(["삼성전자"]) == ["Samsung Electronics"] and company_tags_en(None) == []
 print("translate ok")
