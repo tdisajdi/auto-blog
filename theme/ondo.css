@@ -488,3 +488,13 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-rsrc::after { content: " ↗"; color: var(--o-ink-2); }
 /* 계산기 한국 종목 이름(번호 아래 작게, 2026-11-20) */
 .o-rcalc .o-rnick { display: block; font-size: 11.5px; font-weight: 500; color: var(--o-ink-2); line-height: 1.4; margin-top: 1px; }
+/* 기업 소개 글 '최근 소식'(제품·기술 글 한 줄 + 링크, 2026-11-20) */
+.o-conews { margin: 36px 0 8px; padding: 18px 20px; background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-ink); }
+.o-conews h2 { font-family: var(--o-sub, inherit); font-size: 20px; margin: 0 0 8px; }
+.o-conews ul { list-style: none; margin: 0; padding: 0; }
+.o-conews li { padding: 10px 0; border-top: 1px dashed var(--o-line); font-size: 15.5px; line-height: 1.6; }
+.o-conews li:first-child { border-top: 0; }
+.o-conews time { display: block; font-size: 12px; color: var(--o-ink-2); font-variant-numeric: tabular-nums; }
+.o-conews a { color: var(--o-ink) !important; text-decoration: none !important; }
+.o-conews a:hover { text-decoration: underline !important; }
+.o-conews-more { color: var(--o-navy-3, #3d6dff); font-weight: 600; white-space: nowrap; }
