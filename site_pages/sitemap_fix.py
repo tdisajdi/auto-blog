@@ -47,8 +47,23 @@ def main():
     c2, j2 = call("POST", "/rankmath/v1/saveModule", {"module": "sitemap", "state": "on"})
     print("2) 사이트맵 끄기:", c1, json.dumps(j1, ensure_ascii=False)[:120], "/ 켜기:", c2, json.dumps(j2, ensure_ascii=False)[:120])
     show()
+    if not stale():
+        print("정상이 됨(2단계)")
+        return 0
+    # 3) 사이트맵 설정 저장(11-20 사용자 '알아서 확인'): Rank Math는 설정 저장 때 글 목록 캐시를 새로 만든다.
+    #    넣는 값은 Rank Math 기본값과 같은 쪽(글·페이지·분류 포함, 이미지 포함) - 덮어써져도 기본값.
+    #    헤더 확인(11-20): 사이트맵은 매번 새로 만들어짐(X-ac MISS, no-store) → 화면 캐시 아님, Rank Math 내부 캐시.
+    settings = {"items_per_page": "200", "include_images": "on", "include_featured_image": "off",
+                "pt_post_sitemap": "on", "pt_page_sitemap": "on", "pt_attachment_sitemap": "off",
+                "tax_category_sitemap": "on", "tax_post_tag_sitemap": "off", "authors_sitemap": "off"}
+    for body in ({"type": "sitemap", "settings": settings}, {"type": "sitemap", "settings": settings, "isReset": False}):
+        c3, j3 = call("POST", "/rankmath/v1/updateSettings", body)
+        print("3) 사이트맵 설정 저장:", c3, json.dumps(j3, ensure_ascii=False)[:200])
+        if c3 == 200:
+            break
+    show()
     ok = not stale()
-    print("정상이 됨(2단계)" if ok else "아직 옛 사이트맵 - 워드프레스닷컴 화면 캐시일 수 있음(사용자에게 보고)")
+    print("정상이 됨(3단계)" if ok else "아직 옛 사이트맵 - Rank Math 내부 캐시가 안 바뀜(다음 방법 필요)")
     return 0 if ok else 1
 
 
