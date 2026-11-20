@@ -1,10 +1,13 @@
 korea: 검색 'Korea Joseon painting' → 0건 확인
 korea: 검색 'Korean folding screen' → 0건 확인
 korea: 검색 'Korea' → 0건 확인
-❌ korea: 알맞은 공공 작품을 못 찾음
-✅ usa: The Gulf Stream / Winslow Homer / 1899; reworked by 1906 (3788KB)
+korea: 시카고 검색 'Korea painting' → 30건
+korea: 시카고 검색 'Joseon' → 30건
+✅ korea: Orchids / Kim Eung-won / Joseon dynasty(1392–1910) (410KB)
+= usa: 이미 있음
 france: 번호 437127 못 씀(공공 아님/이미지 없음/응답 없음)
 france: 검색 'Claude Monet' → 0건 확인
 france: 검색 'Camille Pissarro' → 0건 확인
-❌ france: 알맞은 공공 작품을 못 찾음
-✅ japan: Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei) / Katsushika Hokusai / ca. 1830–32 (2287KB)
+france: 시카고 검색 'Monet' → 30건
+✅ france: Arrival of the Normandy Train, Gare Saint-Lazare / Claude Monet / 1877 (653KB)
+= japan: 이미 있음
