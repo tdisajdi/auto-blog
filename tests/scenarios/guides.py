@@ -121,6 +121,9 @@ print("no judgement words in calc data ok")
 _ln2 = "- SPY (x): 해외 상장, 운용보수 0.09%, 배당수익률 1.03%, 배당성장률 4.54%, 환율 영향 있음"
 assert _xe.drop_overlapping_metrics(_ln2, "x") == "- SPY (x): 해외 상장, 운용보수 0.09%, 환율 영향 있음"
 assert _xe.drop_overlapping_metrics(_ln2, "x", keep_dividend=True) == _ln2
+# 11-20: 계산표가 배당률을 따로 계산했으면 Yahoo 배당수익률은 뺌(한 글에 3.07%·3.04% 두 개)
+assert _xe.drop_overlapping_metrics(_ln2, "지금 가격 기준 배당률 3.04%", keep_dividend=True) == \
+    "- SPY (x): 해외 상장, 운용보수 0.09%, 배당성장률 4.54%, 환율 영향 있음"
 print("dividend metrics only for dividend topics ok")
 # 11-10: 새 이름표(최근 1년 배당 합계 증가율)도 배당 주제가 아니면 뺌
 import explainer_engine as _ee3
