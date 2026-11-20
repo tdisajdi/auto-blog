@@ -64,6 +64,9 @@ def main(pid):
     r = requests.post(base, headers=h, data={"status": "publish"}, timeout=30)
     j = r.json() if r.ok else {}
     print(f"공개: {r.status_code} {j.get('status')} {j.get('URL')} (근거 {os.path.basename(f)}, 점수 {score})")
+    if j.get("status") == "publish":
+        from site_pages.pll_plugin import flush_sitemap
+        flush_sitemap()
     return 0 if j.get("status") == "publish" else 1
 
 
