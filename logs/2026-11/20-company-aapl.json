@@ -1,0 +1,417 @@
+{
+ "article_type": "company",
+ "topic_id": "AAPL",
+ "title_seed": "애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF로 사면 담기는 비중",
+ "category": "etf",
+ "started_at": "2026-11-20T23:47:51",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 11.4,
+   "chars": 4184
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 25.7,
+   "chars": 3797
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 8,
+   "status": "403",
+   "reason": "{   \"error\": {     \"code\": 403,     \"message\": \"The Gemini API free tier is not available for this project. To use the Gemini API, please set up billing to upgr",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 37.5,
+   "chars": 361
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.5,
+   "chars": 743
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.2,
+   "chars": 211
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 4.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.7,
+   "chars": 858
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 16.0,
+   "chars": 3362
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 20.9,
+   "chars": 231
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 2,
+   "status": "401",
+   "reason": "{   \"error\": {     \"code\": 401,     \"message\": \"API key not valid. Please pass a valid API key.\",     \"status\": \"UNAUTHENTICATED\",     \"details\": [       {     ",
+   "sec": 0.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 7.1,
+   "chars": 1239
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.8,
+   "chars": 143
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 34.2,
+   "chars": 854
+  },
+  {
+   "step": "부분 고침 2",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.7,
+   "chars": 1084
+  },
+  {
+   "step": "검토 3(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.4,
+   "chars": 264
+  },
+  {
+   "step": "검토 3(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 8.6,
+   "chars": 163
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 213.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.8,
+   "chars": 172
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 7.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 3(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 919
+  },
+  {
+   "step": "검토 13(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 42.6,
+   "chars": 132
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 13(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 6.2,
+   "chars": 645
+  },
+  {
+   "step": "검토 13(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.2,
+   "chars": 200
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "23:48:07",
+   "title": "애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF 비중",
+   "sections": [
+    "애플은 어떤 사업을 하고 실적은 어떻게 변해왔을까?",
+    "과거 가격 흔들림과 배당 흐름은 어떻게 움직였을까?",
+    "주요 ETF에 담긴 애플의 비중은 얼마나 될까?"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "23:48:35",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "23:50:08",
+   "score": 0.85,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목을 '애플 주식에 투자할 때 꼭 확인해야 할 실적과 ETF 비중 기준'처럼 독자의 판단을 돕는 방향으로 수정하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 질문: 제목에서 '배당'을 약속했으나 도입부 첫 문단에 배당 관련 숫자가 제시되지 않았습니다. / 고칠 방법: 도입부 첫 문단에 배당수익률(0.29%) 등의 숫자를 추가하여 제목에서 약속한 요약 답을 완성하세요.",
+    "[사소·독자 편집] '미국 대형주 지수를 따르는 대표 ETF인 SPY(State Street SPDR S&P 500 ETF T)에' → 도입부에서 이미 설명한 ETF별 비중 숫자와 100만 원 투자 시 예시를 본문 섹션에서 거의 그대로 반복하여 분량을 채웠습니다. / 고칠 방법: 중복되는 ETF 비중 설명 중 본문 섹션의 계산 예시 문장을 삭제하고 다른 투자 지표 내용으로 대체하세요."
+   ],
+   "lint": [
+    "깨진 단어 '수hundred': 한글과 영어가 한 단어에 섞임 - 올바른 한국어 단어로 고칠 것",
+    "영어 단어 'hundred' - 한국어 문장 속 영어 단어는 한국어로 바꿀 것(예: excess → 초과, absolute → 절대적)",
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '33.0%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '15.31%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 2개 삭제: 🔸 애플 주식의 10년 최고가 대비 현재 가격 차이는 ; 🔸 SPY, QQQ, XLK 등 주요 ETF에서 애플이"
+   ],
+   "chars": 3100
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "23:50:27",
+   "model": "gemini-3.6-flash",
+   "todo": 5
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "23:52:17",
+   "score": 0.82,
+   "passed": false,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 질문에 본문이 수치와 조건으로 직접 답하도록 제목과 도입부 구성을 수정하는 것이 좋겠습니다.",
+   "issues": [
+    "[사소·독자 편집] '애플은 2026년 기준 매출 4,788억 달러, 영업이익 1,581억 달러(영업이익률 33.0%), 순이익 ' → 도입부 첫 문단의 매출·영업이익률 등의 수치가 바로 다음 섹션인 '애플은 어떤 사업을 하고 실적은 어떻게 변해왔을까?'에서 거의 동일하게 되풀이되고 있습니다. / 고칠 방법: 도입부에서 제시한 핵심 숫자를 본문 섹션에서는 연도별 흐름 비교나 다른 맥락의 설명으로 연결하여 중복을 줄이세요.",
+    "[중요·독자 편집] '기술주 중심 섹터 ETF인 XLK는 애플을 15.31%로 가장 높은 비중으로 담고 있습니다. 미국 대형주 지' → 도입부에서 언급한 ETF 비중(SPY 7.70%, QQQ 8.16%, XLK 15.31%)이 '주요 ETF에 담긴 애플의 비중은 얼마나 될까?' 섹션에서 거의 그대로 반복되며, 특히 XLK 내용은 한 문단 안에서 중복 언급되고 있습니다. / 고칠 방법: 본문 섹션에서는 단순히 수치를 다시 나열하지 말고 ETF별 특징이나 차이점 중심으로 내용을 구성하세요.",
+    "[사소·독자 편집] '정리 개별 기업에 직접 투자하는 방식과 ETF를 통해 간접적으로 보유하는 방식은 자산이 노출되는 위험 수준을' → 정리 섹션의 첫 문장이 도입부의 답 문장이나 글의 핵심을 그대로 압축하기보다 새로운 설명으로 시작하여 어색합니다. / 고칠 방법: 정리 첫 문장은 도입부의 핵심 내용을 다른 말로 짧게 압축하여 표현하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '33.0%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '15.31%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "chars": 2955
+  },
+  {
+   "step": "부분 고침",
+   "at": "23:52:24",
+   "applied": 5
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "23:58:39",
+   "score": 0.94
+  },
+  {
+   "step": "편집장 검토 3",
+   "at": "23:58:39",
+   "score": 1.0,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "제목이 던진 질문에 대해 본문 초반부에서 조건과 숫자로 직접 결론을 내려주도록 보완하면 좋습니다.",
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+   ],
+   "fixes": [
+    "강조 규칙에 맞지 않는 굵게 1곳을 풂(섹션당 1개·숫자 든 사실 문장만)"
+   ],
+   "chars": 2773
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF 비중",
+  "url": "https://ondo99.com/?p=768",
+  "score": 1.0,
+  "issues": [
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것"
+  ]
+ },
+ "facts": "[회사 기본 정보 - Yahoo Finance 회사 정보]\n- 이름: 애플 (Apple Inc., 종목 코드 AAPL, 미국 상장)\n- 업종(섹터): Technology\n- 세부 업종: Consumer Electronics\n- 본사 국가: United States\n- 직원 수(정규직): 167,000명\n- 시가총액(자료 받은 날 기준): 5.09조 달러(약 6,810조 원)\n- 회사 소개 원문(Yahoo, 영어 - 이 범위 안에서만 우리말로 풀어 쓸 것, 원문에 없는 제품·비중·순위는 쓰지 말 것): Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories, including Apple Watch, AirPods, Beats products, Apple Vision Pro, Apple TV 4K, HomePod, and Apple HomeView, as well as Apple branded and third-party accessories. It also provides advertising services comprising third-party licensing arrangements and own advertising platforms; AppleCare and cloud services; and payment services, including Apple Card and Apple Pay. In addition, the company operates App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. Further, it provides digital content through subscription-based services, including Apple Arcade, a game service; Apple Fitness+, a personalized fitness service; Apple Music, which offers users a curated listening experience; Apple News+, a news and magazine service; and Apple TV, which offers original content and live sports. The company sells its products and resells third-party products through its retail and online stores, and direct sales force; its services through its various service platforms; and third-party cellular network carriers and other resellers. It serves consumer, small and mid-sized business, education, enterprise, and government markets. The company oper\n[연간 실적 - Yahoo Finance 손익계산서, 회계연도 기준]\n- 2023년: 매출 3,833억 달러, 영업이익 1,143억 달러(영업이익률 29.8%), 순이익 970억 달러\n- 2024년: 매출 3,910억 달러, 영업이익 1,232억 달러(영업이익률 31.5%), 순이익 937억 달러\n- 2025년: 매출 4,162억 달러, 영업이익 1,330억 달러(영업이익률 32.0%), 순이익 1,120억 달러\n- 2026년: 매출 4,788억 달러, 영업이익 1,581억 달러(영업이익률 33.0%), 순이익 1,322억 달러\n- 매출 변화: 2023년 → 2026년 +24.9% (연평균 +7.7%)\n[가격 흔들림 - 최근 10년 일별 종가(배당 제외 가격), ondo 계산]\n- 최대 낙폭: -38.5% (고점 2018-10-03 → 바닥 2019-01-03, 떨어지는 데 92일)\n- 회복: 280일 뒤(2019-10-10) 고점 가격 회복\n- 지금 가격의 10년 최고가 대비: -1.8%\n- 1,000만 원을 그 고점에 넣었다면 가장 낮을 때 평가액: 615만 원\n[배당 - Yahoo Finance 배당 지급 기록, 다 찬 해만, 세전]\n- 주당 연간 배당: 2020년 $0.81 → 2025년 $1.03, 5년 연평균 +5.0%\n- 지금 가격 기준 배당률: 0.29%\n[이 회사를 담은 ETF - 각 ETF 상위 보유 종목 자료(Yahoo Finance), 자료 받은 날 기준]\n- SPY(State Street SPDR S&P 500 ETF T): 애플 비중 7.70% → 이 ETF에 100만 원을 넣으면 그중 약 8만 원이 애플 몫\n- QQQ(Invesco QQQ Trust, Series 1): 애플 비중 8.16% → 이 ETF에 100만 원을 넣으면 그중 약 8만 원이 애플 몫\n- XLK(State Street Technology Select ): 애플 비중 15.31% → 이 ETF에 100만 원을 넣으면 그중 약 15만 원이 애플 몫\n- 비중은 매일 조금씩 바뀜(가격 변동·리밸런싱). 직접 사면 100%가 이 회사, ETF로 사면 나머지는 다른 종목에 나뉨 - 어느 쪽이 낫다고 판단하지 말 것\n\n[독자가 실제로 검색하는 말 - 구글·네이버 자동완성 '애플 주식', 2026-11-20. 사실 자료가 아님. '자주 묻는 질문'은 여기서 고르되 위 자료로 답할 수 있는 것만 자연스러운 질문 문장으로 쓰고, 답할 자료가 없으면 넣지 마세요. 검색어 문구를 그대로 제목·본문에 끼워 넣지 마세요]\n- 애플 주식 가격\n- 애플 주식 최고가\n- 애플 주식 가격 원화\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n",
+ "drafts": {
+  "1": "<h1>애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF 비중</h1>\n<!-- 애플은 2026년 기준 매출 4,788억 달러를 기록한 기술 기업으로, 지난 10년 최대 낙폭 -38.5%와 주요 대표 ETF 내 보유 비중을 사실 자료로 정리합니다. -->\n\n<p>애플은 2026년 기준 매출 4,788억 달러, 영업이익 1,581억 달러(영업이익률 33.0%), 순이익 1,322억 달러를 기록한 미국 상장 기업입니다. 주가 흐름을 보면 지난 10년 동안 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -38.5%였습니다. 주요 미국 지수형 ETF에도 상당한 비중으로 포함되어 있어 SPY 7.70%, QQQ 8.16%, XLK 15.31%씩 각각 담겨 있습니다.</p>\n\n<p>미국 시장에 상장된 애플(종목 코드 AAPL)의 규모와 실적 추이, 주가 변동 폭, 배당 흐름, 그리고 대표적인 ETF들에 실제로 반영된 비중을 순서대로 정리해 드립니다.</p>\n\n<h3>애플은 어떤 사업을 하고 실적은 어떻게 변해왔을까?</h3>\n\n<strong>애플은 2026년 회계연도 기준 4,788억 달러의 매출과 33.0%의 영업이익률을 기록하며 실적 성장을 이어왔습니다.</strong> 미국에 본사를 둔 이 기업은 테크놀로지 섹터의 소비재 전자제품 업종으로 분류되며, 정규직 직원 수는 167,000명입니다. 시가총액은 자료 수집일 기준 5.09조 달러(약 6,810조 원) 규모입니다.\n\n<p>사업 구조를 살펴보면 스마트폰인 아이폰, 개인용 컴퓨터인 맥, 다목적 태블릿인 아이패드를 설계 및 제조하여 판매합니다. 또한 애플 워치, 에어팟, 비츠 제품, 애플 비전 프로, 애플 TV 4K, 홈팟 등 웨어러블과 홈 액세서리 기기를 함께 제공하고 있습니다.</p>\n\n<p>기기 판매 외에도 다양한 서비스 사업을 운영합니다. 타사 라이선스 계약과 자체 광고 플랫폼을 포함한 광고 서비스, 애플케어 및 클라우드 서비스, 애플 카드와 애플 페이 같은 결제 서비스를 제공합니다. 앱 스토어를 운영하여 고객이 애플리케이션과 디지털 콘텐츠를 다운로드할 수 있게 돕습니다.</p>\n\n<p>구독 기반 서비스 영역에서는 게임 서비스인 애플 아케이드, 맞춤형 피트니스 서비스인 애플 피트니스+, 음원 서비스인 애플 뮤직, 뉴스 서비스인 애플 뉴스+, 자체 제작 콘텐츠를 제공하는 애플 TV를 운영 중입니다. 제품 및 서비스는 직영점, 온라인 스토어, 직접 판매 부서, 이동통신 사업자 및 기타 유통업체를 통해 소비자, 중소기업, 교육 기관, 기업, 정부 기관 시장에 판매됩니다.</p>\n\n<p>실적 추이를 보면 2023년 매출 3,833억 달러, 영업이익 1,143억 달러(영업이익률 29.8%), 순이익 970억 달러를 기록했습니다. 이듬해인 2024년에는 매출 3,910억 달러, 영업이익 1,232억 달러(영업이익률 31.5%), 순이익 937억 달러로 집계되었습니다.</p>\n\n<p>2025년 매출은 4,162억 달러, 영업이익 1,330억 달러(영업이익률 32.0%), 순이익 1,120억 달러로 늘어났습니다. 2026년 실적까지 포함하면 매출은 2023년 대비 24.9% 증가하였으며, 이는 연평균 +7.7% 수준의 성장률을 나타냅니다.</p>\n\n<h3>과거 가격 흔들림과 배당 흐름은 어떻게 움직였을까?</h3>\n\n<strong>최근 10년 중 가장 주가가 크게 하락했던 기간의 최대 낙폭은 -38.5%로 집계되었습니다.</strong> 해당 낙폭은 2018년 10월 3일 최고점을 기록한 이후 2019년 1월 3일 바닥에 도달할 때까지 92일 동안 진행되었습니다. 만약 1,000만 원을 그 고점에 투자했다고 가정하면 가장 낮았던 시점의 평가액은 615만 원까지 줄어들었던 셈입니다.\n\n<p>하락했던 주가가 이전 최고점 가격을 다시 회복하기까지는 바닥 이후 280일이 걸린 2019년 10월 10일이 되어서였습니다. 현재 애플의 주가 수준은 지난 10년 최고가와 비교해 -1.8% 위치에 자리 잡고 있습니다.</p>\n\n<p>주주 환원 측면에서 주당 연간 배당금은 2020년 0.81달러에서 2025년 1.03달러로 늘어났습니다. 이 기간 5년 동안의 연평균 배당 성장률은 +5.0%입니다. 현재 가격을 기준으로 계산한 배당수익률은 0.29% 수준입니다.</p>\n\n<h3>주요 ETF에 담긴 애플의 비중은 얼마나 될까?</h3>\n\n<strong>기술주 중심 섹터 ETF인 XLK는 애플을 15.31%로 가장 높은 비중으로 담고 있습니다.</strong> 미국 대형주 지수를 따르는 대표 ETF인 SPY(State Street SPDR S&P 500 ETF T)에서 애플이 차지하는 비중은 7.70%입니다. 이는 해당 ETF에 100만 원을 넣었을 때 약 8만 원이 애플 주식에 나뉘어 들어가는 구조입니다.\n\n<p>나스닥 100 지수를 추적하는 QQQ(Invesco QQQ Trust, Series 1) 내 애플 비중은 8.16%입니다. QQQ에 100만 원을 투자하는 경우에도 이 중 약 8만 원이 애플 몫으로 할당됩니다.</p>\n\n<p>기술 업종에 집중 투자하는 XLK(State Street Technology Select)의 경우 애플 비중이 15.31%에 달합니다. XLK에 100만 원을 넣으면 그중 약 15만 원이 애플 개별 종목에 배분되는 방식입니다.</p>\n\n<p>이러한 ETF 내 보유 비중은 주가의 상대적 변동이나 정기 리밸런싱에 따라 매일 조금씩 변합니다. 애플 개별 주식을 직접 매수하면 자산의 100%가 해당 회사 하나에 들어가며, ETF를 통해 매수하면 나머지 자금은 다른 수십, 수hundred 개 종목으로 분산됩니다.</p>\n\n<h3>정리</h3>\n\n<p>개별 기업에 직접 투자하는 방식과 ETF를 통해 간접적으로 보유하는 방식은 자산이 노출되는 위험 수준을 다르게 만듭니다. 직접 투자 시 단일 기업의 실적과 낙폭 위험을 전적으로 맡게 되지만, ETF를 활용하면 7.70%에서 15.31% 수준으로 비중을 조절하며 다양한 종목에 자금을 나누는 효과를 얻습니다.</p>\n\n<p>앞으로 유사한 기업 뉴스나 투자 지표를 살필 때는 세 가지 기준을 함께 확인해 보는 것이 도움이 됩니다. 첫째, 연간 영업이익률이 30% 선(애플 2026년 33.0%)을 유지하며 이익 구조를 지키고 있는지 확인하세요. 둘째, 과거 발생했던 최대 낙폭(-38.5%)과 그 고점을 회복하는 데 걸린 기간(280일)을 보고 본인의 위험 감내 수준에 맞는지 점검하세요. 셋째, 보유 중이거나 관심 있는 ETF 내 단일 종목 비중이 10%나 15%를 넘어 특정 기업에 과도하게 치우쳐 있지 않은지 파악하세요.</p>\n\n<p><strong>한 줄 정리:</strong> 애플은 영업이익률 33.0%의 실적을 바탕으로 주요 지수형 ETF에 7.7%~15.3% 비중으로 반영되어 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 애플주식 AAPL 실적분석 최대낙폭 ETF비중",
+  "2": "<h1>애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF 비중</h1>\n<!-- 애플은 2026년 기준 매출 4,788억 달러를 기록한 기술 기업으로, 지난 10년 최대 낙폭 -38.5%와 주요 대표 ETF 내 보유 비중을 사실 자료로 정리합니다. -->\n\n<p>애플은 2026년 기준 매출 4,788억 달러, 영업이익 1,581억 달러(영업이익률 33.0%), 순이익 1,322억 달러를 기록한 미국 상장 기업입니다. 주가 흐름을 보면 지난 10년 동안 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -38.5%였으며, 현재 가격 기준 배당수익률은 0.29%입니다. 주요 미국 지수형 ETF에도 상당한 비중으로 포함되어 있어 SPY 7.70%, QQQ 8.16%, XLK 15.31%씩 각각 담겨 있습니다.</p>\n\n<p>미국 시장에 상장된 애플(종목 코드 AAPL)의 규모와 실적 추이, 주가 변동 폭, 배당 흐름, 그리고 대표적인 ETF들에 실제로 반영된 비중을 순서대로 정리해 드립니다.</p>\n\n<h3>애플은 어떤 사업을 하고 실적은 어떻게 변해왔을까?</h3>\n\n<strong>애플은 2026년 회계연도 기준 4,788억 달러의 매출과 33.0%의 영업이익률을 기록하며 실적 성장을 이어왔습니다.</strong> 미국에 본사를 둔 이 기업은 테크놀로지 섹터의 소비재 전자제품 업종으로 분류되며, 정규직 직원 수는 167,000명입니다. 시가총액은 자료 수집일 기준 5.09조 달러(약 6,810조 원) 규모입니다.\n\n<p>사업 구조를 살펴보면 스마트폰인 아이폰, 개인용 컴퓨터인 맥, 다목적 태블릿인 아이패드를 설계 및 제조하여 판매합니다. 또한 애플 워치, 에어팟, 비츠 제품, 애플 비전 프로, 애플 TV 4K, 홈팟 등 웨어러블과 홈 액세서리 기기를 함께 제공하고 있습니다.</p>\n\n<p>기기 판매 외에도 다양한 서비스 사업을 운영합니다. 타사 라이선스 계약과 자체 광고 플랫폼을 포함한 광고 서비스, 애플케어 및 클라우드 서비스, 애플 카드와 애플 페이 같은 결제 서비스를 제공합니다. 앱 스토어를 운영하여 고객이 애플리케이션과 디지털 콘텐츠를 다운로드할 수 있게 돕습니다.</p>\n\n<p>구독 기반 서비스 영역에서는 게임 서비스인 애플 아케이드, 맞춤형 피트니스 서비스인 애플 피트니스+, 음원 서비스인 애플 뮤직, 뉴스 서비스인 애플 뉴스+, 자체 제작 콘텐츠를 제공하는 애플 TV를 운영 중입니다. 제품 및 서비스는 직영점, 온라인 스토어, 직접 판매 부서, 이동통신 사업자 및 기타 유통업체를 통해 소비자, 중소기업, 교육 기관, 기업, 정부 기관 시장에 판매됩니다.</p>\n\n<p>실적 추이를 보면 2023년 매출 3,833억 달러, 영업이익 1,143억 달러(영업이익률 29.8%), 순이익 970억 달러를 기록했습니다. 이듬해인 2024년에는 매출 3,910억 달러, 영업이익 1,232억 달러(영업이익률 31.5%), 순이익 937억 달러로 집계되었습니다.</p>\n\n<p>2025년 매출은 4,162억 달러, 영업이익 1,330억 달러(영업이익률 32.0%), 순이익 1,120억 달러로 늘어났습니다. 2026년 실적까지 포함하면 매출은 2023년 대비 24.9% 증가하였으며, 이는 연평균 +7.7% 수준의 성장률을 나타냅니다.</p>\n\n<h3>과거 가격 흔들림과 배당 흐름은 어떻게 움직였을까?</h3>\n\n<strong>최근 10년 중 가장 주가가 크게 하락했던 기간의 최대 낙폭은 -38.5%로 집계되었습니다.</strong> 해당 낙폭은 2018년 10월 3일 최고점을 기록한 이후 2019년 1월 3일 바닥에 도달할 때까지 92일 동안 진행되었습니다. 만약 1,000만 원을 그 고점에 투자했다고 가정하면 가장 낮았던 시점의 평가액은 615만 원까지 줄어들었던 셈입니다.\n\n<p>하락했던 주가가 이전 최고점 가격을 다시 회복하기까지는 바닥 이후 280일이 걸린 2019년 10월 10일이 되어서였습니다. 현재 애플의 주가 수준은 지난 10년 최고가와 비교해 -1.8% 위치에 자리 잡고 있습니다.</p>\n\n<p>주주 환원 측면에서 주당 연간 배당금은 2020년 0.81달러에서 2025년 1.03달러로 늘어났습니다. 이 기간 5년 동안의 연평균 배당 성장률은 +5.0%입니다. 현재 가격을 기준으로 계산한 배당수익률은 0.29% 수준입니다.</p>\n\n<h3>주요 ETF에 담긴 애플의 비중은 얼마나 될까?</h3>\n\n<strong>기술주 중심 섹터 ETF인 XLK는 애플을 15.31%로 가장 높은 비중으로 담고 있습니다.</strong> 미국 대형주 지수를 따르는 대표 ETF인 SPY(State Street SPDR S&P 500 ETF T)에서 애플이 차지하는 비중은 7.70%입니다. 나스닥 100 지수를 추적하는 QQQ(Invesco QQQ Trust, Series 1) 내 애플 비중은 8.16%이며, 기술 업종에 집중 투자하는 XLK(State Street Technology Select)의 경우 비중이 15.31%에 달합니다.\n\n<p>이러한 ETF 내 보유 비중은 주가의 상대적 변동이나 정기 리밸런싱에 따라 매일 조금씩 변합니다. 애플 개별 주식을 직접 매수하면 자산의 100%가 해당 회사 하나에 들어가며, ETF를 통해 매수하면 나머지 자금은 다른 수백 개 종목으로 분산됩니다.</p>\n\n<h3>정리</h3>\n\n<p>개별 기업에 직접 투자하는 방식과 ETF를 통해 간접적으로 보유하는 방식은 자산이 노출되는 위험 수준을 다르게 만듭니다. 직접 투자 시 단일 기업의 실적과 낙폭 위험을 전적으로 맡게 되지만, ETF를 활용하면 7.70%에서 15.31% 수준으로 비중을 조절하며 다양한 종목에 자금을 나누는 효과를 얻습니다.</p>\n\n<p>앞으로 유사한 기업 뉴스나 투자 지표를 살필 때는 세 가지 기준을 함께 확인해 보는 것이 도움이 됩니다. 첫째, 연간 영업이익률이 30% 선(애플 2026년 33.0%)을 유지하며 이익 구조를 지키고 있는지 확인하세요. 둘째, 과거 발생했던 최대 낙폭(-38.5%)과 그 고점을 회복하는 데 걸린 기간(280일)을 보고 본인의 위험 감내 수준에 맞는지 점검하세요. 셋째, 보유 중이거나 관심 있는 ETF 내 단일 종목 비중이 10%나 15%를 넘어 특정 기업에 과도하게 치우쳐 있지 않은지 파악하세요.</p>\n\n<p><strong>한 줄 정리:</strong> 애플은 영업이익률 33.0%의 실적을 바탕으로 주요 지수형 ETF에 7.7%~15.3% 비중으로 반영되어 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 애플주식 AAPL 실적분석 최대낙폭 ETF비중",
+  "3": "<h1>애플은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF 비중</h1>\n<!-- 애플은 2026년 기준 매출 4,788억 달러를 기록한 기술 기업으로, 지난 10년 최대 낙폭 -38.5%와 주요 대표 ETF 내 보유 비중을 사실 자료로 정리합니다. -->\n\n<p>애플은 2026년 기준 매출 4,788억 달러, 영업이익률 33.0%를 기록한 미국 상장 기업입니다. 주가 흐름을 보면 지난 10년 동안 발생한 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 -38.5%였으며, 현재 가격 기준 배당수익률은 0.29%입니다. 주요 미국 지수형 ETF에도 상당한 비중으로 포함되어 있어 SPY 7.70%, QQQ 8.16%, XLK 15.31%씩 각각 담겨 있습니다.</p>\n\n<p>미국 시장에 상장된 애플(종목 코드 AAPL)의 규모와 실적 추이, 주가 변동 폭, 배당 흐름, 그리고 대표적인 ETF들에 실제로 반영된 비중을 순서대로 정리해 드립니다.</p>\n\n<h3>애플은 어떤 사업을 하고 실적은 어떻게 변해왔을까?</h3>\n\n<strong>애플의 2023년 매출은 3,833억 달러에서 2026년 4,788억 달러로 늘어나 연평균 +7.7% 성장세를 보였습니다.</strong> 미국에 본사를 둔 이 기업은 테크놀로지 섹터의 소비재 전자제품 업종으로 분류되며, 정규직 직원 수는 167,000명입니다. 시가총액은 자료 수집일 기준 5.09조 달러(약 6,810조 원) 규모입니다.\n\n<p>사업 구조를 살펴보면 스마트폰인 아이폰, 개인용 컴퓨터인 맥, 다목적 태블릿인 아이패드를 설계 및 제조하여 판매합니다. 또한 애플 워치, 에어팟, 비츠 제품, 애플 비전 프로, 애플 TV 4K, 홈팟 등 웨어러블과 홈 액세서리 기기를 함께 제공하고 있습니다.</p>\n\n<p>기기 판매 외에도 다양한 서비스 사업을 운영합니다. 타사 라이선스 계약과 자체 광고 플랫폼을 포함한 광고 서비스, 애플케어 및 클라우드 서비스, 애플 카드와 애플 페이 같은 결제 서비스를 제공합니다. 앱 스토어를 운영하여 고객이 애플리케이션과 디지털 콘텐츠를 다운로드할 수 있게 돕습니다.</p>\n\n<p>구독 기반 서비스 영역에서는 게임 서비스인 애플 아케이드, 맞춤형 피트니스 서비스인 애플 피트니스+, 음원 서비스인 애플 뮤직, 뉴스 서비스인 애플 뉴스+, 자체 제작 콘텐츠를 제공하는 애플 TV를 운영 중입니다. 제품 및 서비스는 직영점, 온라인 스토어, 직접 판매 부서, 이동통신 사업자 및 기타 유통업체를 통해 소비자, 중소기업, 교육 기관, 기업, 정부 기관 시장에 판매됩니다.</p>\n\n<p>실적 추이를 보면 2023년 매출 3,833억 달러, 영업이익 1,143억 달러(영업이익률 29.8%), 순이익 970억 달러를 기록했습니다. 이듬해인 2024년에는 매출 3,910억 달러, 영업이익 1,232억 달러(영업이익률 31.5%), 순이익 937억 달러로 집계되었습니다.</p>\n\n<p>2025년 매출은 4,162억 달러, 영업이익 1,330억 달러(영업이익률 32.0%), 순이익 1,120억 달러로 늘어났습니다. 2026년 실적까지 포함하면 매출은 2023년 대비 24.9% 증가하였으며, 이는 연평균 +7.7% 수준의 성장률을 나타냅니다.</p>\n\n<h3>과거 가격 흔들림과 배당 흐름은 어떻게 움직였을까?</h3>\n\n<strong>최근 10년 중 가장 주가가 크게 하락했던 기간의 최대 낙폭은 -38.5%로 집계되었습니다.</strong> 해당 낙폭은 2018년 10월 3일 최고점을 기록한 이후 2019년 1월 3일 바닥에 도달할 때까지 92일 동안 진행되었습니다. 만약 1,000만 원을 그 고점에 투자했다고 가정하면 가장 낮았던 시점의 평가액은 615만 원까지 줄어들었던 셈입니다.\n\n<p>하락했던 주가가 이전 최고점 가격을 다시 회복하기까지는 바닥 이후 280일이 걸린 2019년 10월 10일이 되어서였습니다. 현재 애플의 주가 수준은 지난 10년 최고가와 비교해 -1.8% 위치에 자리 잡고 있습니다.</p>\n\n<p>주주 환원 측면에서 주당 연간 배당금은 2020년 0.81달러에서 2025년 1.03달러로 늘어났습니다. 이 기간 5년 동안의 연평균 배당 성장률은 +5.0%입니다. 현재 가격을 기준으로 계산한 배당수익률은 0.29% 수준입니다.</p>\n\n<h3>주요 ETF에 담긴 애플의 비중은 얼마나 될까?</h3>\n\n대표적인 지수 및 섹터 ETF들은 투자 목적에 따라 애플을 서로 다른 비중으로 담고 있습니다. 시장 전체를 담는 SPY는 7.70%, 기술주 중심인 QQQ는 8.16%인 반면, 테크 섹터에 집중하는 XLK는 15.31%로 비중 차이를 보입니다.\n\n<p>이러한 ETF 내 보유 비중은 주가의 상대적 변동이나 정기 리밸런싱에 따라 매일 조금씩 변합니다. 애플 개별 주식을 직접 매수하면 자산의 100%가 해당 회사 하나에 들어가며, ETF를 통해 매수하면 나머지 자금은 다른 수백 개 종목으로 분산됩니다.</p>\n\n<h3>정리</h3>\n\n<p>애플은 높은 수익성을 유지하는 가운데 최대 낙폭과 주요 ETF 내 편입 비중에서 차이를 보여줍니다. 직접 투자 시 단일 기업의 실적과 낙폭 위험을 전적으로 맡게 되지만, ETF를 활용하면 7.70%에서 15.31% 수준으로 비중을 조절하며 다양한 종목에 자금을 나누는 효과를 얻습니다.</p>\n\n<p>앞으로 유사한 기업 뉴스나 투자 지표를 살필 때는 세 가지 기준을 함께 확인해 보는 것이 도움이 됩니다. 첫째, 연간 영업이익률이 30% 선(애플 2026년 33.0%)을 유지하며 이익 구조를 지키고 있는지 확인하세요. 둘째, 과거 발생했던 최대 낙폭(-38.5%)과 그 고점을 회복하는 데 걸린 기간(280일)을 보고 본인의 위험 감내 수준에 맞는지 점검하세요. 셋째, 보유 중이거나 관심 있는 ETF 내 단일 종목 비중이 10%나 15%를 넘어 특정 기업에 과도하게 치우쳐 있지 않은지 파악하세요.</p>\n\n<p><strong>한 줄 정리:</strong> 애플은 영업이익률 33.0%의 실적을 바탕으로 주요 지수형 ETF에 7.7%~15.3% 비중으로 반영되어 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 애플주식 AAPL 실적분석 최대낙폭 ETF비중"
+ },
+ "minutes": 10.8
+}
