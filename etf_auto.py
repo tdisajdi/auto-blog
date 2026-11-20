@@ -123,6 +123,11 @@ def run_automation():
         raw_inputs = auto_pick["ticker"]
         print(f"ℹ️ 무인 실행 모드 - 자동 선정된 티커로 진행합니다: {raw_inputs} (사유: {auto_pick['reason']})")
 
+    if raw_inputs.strip().upper().startswith("COMPANY:"):     # 11-20 기업 소개 글(ondo/company.py)
+        from ondo import company
+        company.run_company(raw_inputs.strip().partition(":")[2], sys.modules[__name__])
+        return
+
     if raw_inputs.strip().upper().startswith(("GUIDE:", "ISSUE:")):
         import explainer_engine as xe
         kind, _, topic_id = raw_inputs.strip().partition(":")
