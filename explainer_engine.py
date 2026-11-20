@@ -214,6 +214,10 @@ def drop_overlapping_metrics(facts_text, calc_facts, keep_dividend=False):
         out = re.sub(r", 최대 낙폭\(5년\) -?[\d.]+%", "", out)
     # 배당 주제가 아니면 배당수익률·배당성장률도 뺀다 - 작가가 받은 숫자를 다 쓰려고 상관없는 문단에 끼워 넣음
     # (11-08 레버리지·적립식 가이드 두 번: "배당수익률 1.03%에 배당성장률 4.54%인 SPY…")
+    # 배당 주제라도 계산표가 '배당률'을 따로 계산했으면 Yahoo 배당수익률은 뺀다(11-20 배당성장 가이드: 한 글에
+    # SCHD 배당률 3.07%(Yahoo)와 3.04%(직전 해 배당 ÷ 가격)가 같이 나옴). '최근 1년 배당 합계 증가율'은 다른 숫자라 둠.
+    if keep_dividend and "배당률" in calc_facts:
+        out = re.sub(r", 배당수익률 -?[\d.]+%", "", out)
     if not keep_dividend:
         out = re.sub(r", (?:배당(?:수익률|성장률)|최근 1년 배당 합계 증가율\(전년 대비\)) -?[\d.]+%", "", out)
     return out
