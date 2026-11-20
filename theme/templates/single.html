@@ -52,7 +52,7 @@ var col=document.querySelector('.o-toc-col');
 if(col&&keys[0]){var kn=document.createElement('div');kn.className='o-keyn';kn.innerHTML='<span class="o-px">KEY NUMBER</span><b></b>';kn.querySelector('b').textContent=keys[0];col.appendChild(kn);var ac=document.querySelector('.o-answer');if(ac&&window.IntersectionObserver){new IntersectionObserver(function(es){kn.classList.toggle('o-on',!es[0].isIntersecting);}).observe(ac);}else{kn.classList.add('o-on');}}
 /* 3) 형광펜: 제목의 핵심 숫자가 본문에 나오는 자리, 최대 5곳 */
 var left=5;
-function mark(node,k){var i=node.nodeValue.indexOf(k);if(i<0)return false;var r=node.splitText(i);r.splitText(k.length);var m=document.createElement('mark');m.className='o-hl';m.textContent=k;r.parentNode.replaceChild(m,r);return true;}
+function mark(node,k){var i=node.nodeValue.indexOf(k);if(i<0)return false;if(/%$/.test(k)&&node.nodeValue.charAt(i+k.length)==='p')k=k+'p';var r=node.splitText(i);r.splitText(k.length);var m=document.createElement('mark');m.className='o-hl';m.textContent=k;r.parentNode.replaceChild(m,r);return true;}
 keys.slice(0,2).forEach(function(k){
  var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||p.closest('table,h1,h2,h3,h4,.o-answer-h,.o-answer-n,mark,a,script,style'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
  var nodes=[];while(w.nextNode())nodes.push(w.currentNode);
@@ -84,6 +84,37 @@ var n=0;[].slice.call(c.querySelectorAll('h3')).forEach(function(h){if(h.closest
  var b=document.createElement('span');b.className='o-secn';b.textContent=tag;h.insertBefore(b,h.firstChild);});
 /* 7) 계산표 카드 */
 [].slice.call(c.querySelectorAll('.ondo-calc')).forEach(function(d){d.classList.add('o-card-table');});
+/* 8) 오른쪽 계기판(11-20 사용자 승인): 온도판 '지금 어디쯤' · 이 글의 용어 · 함께 읽을 글. 숫자는 온도판 자료(같은 계산값)만. */
+(function(){
+var main=document.querySelector('.o-post');if(!main||document.querySelector('.o-rail'))return;
+var rail=document.createElement('aside');rail.className='o-rail';rail.setAttribute('aria-label',en?'Dashboard':'계기판');
+var inner=document.createElement('div');inner.className='o-rail-in';rail.appendChild(inner);main.appendChild(rail);
+function card(label){var d=document.createElement('div');d.className='o-rcard';var h=document.createElement('span');h.className='o-px o-rlab';h.textContent=label;d.appendChild(h);inner.appendChild(d);return d;}
+var dec=function(s){var ta=document.createElement('textarea');ta.innerHTML=s;return ta.value;};
+var termA=document.querySelector('.o-post-head .wp-block-post-terms a');var cls=document.body.className+' '+(termA?termA.href:'');
+var cat=/energ/.test(cls)?'energy':(/societ|population/.test(cls)?'society':'etf');
+var PICK={etf:['KRW=X','^GSPC','^TNX'],energy:['BZ=F','KRW=X','GC=F'],society:['^KS11','KRW=X','^TNX']}[cat];
+var COL=['#3d6dff','#2bb3c0','#f4c44e','#ff8a3d','#ec4a37'];
+var bc=card(en?'ONDO BOARD · WHERE NOW':'ONDO BOARD · 지금 어디쯤');bc.style.display='none';
+var bURL=en?'/en/ondo-board-en/':'/ondo-board/';
+fetch(bURL,{credentials:'omit'}).then(function(r){return r.text();}).then(function(t){
+ var m=t.match(/id="ondo-board-data"[^>]*data-json="([^"]*)"/);if(!m)return;var d=JSON.parse(dec(m[1]));
+ var items=PICK.map(function(k){return (d.items||[]).filter(function(x){return x.t===k;})[0];}).filter(Boolean);if(!items.length)return;
+ items.forEach(function(x){var row=document.createElement('div');row.className='o-rrow';var a=document.createElement('span');a.textContent=x.name;var b=document.createElement('b');b.textContent=x.value+(x.unit&&x.unit.length<=3?' '+x.unit:'');row.appendChild(a);row.appendChild(b);bc.appendChild(row);
+  var bar=document.createElement('div');bar.className='o-rbar';bar.title=x.pos+'°';var on=Math.min(19,Math.floor(x.pos/5));
+  for(var i=0;i<20;i++){var c=document.createElement('i');if(i<=on)c.style.background=COL[Math.min(4,Math.floor(i/4))];if(i===on)c.className='on';bar.appendChild(c);}bc.appendChild(bar);});
+ var n=document.createElement('a');n.className='o-rnote';n.href=bURL;n.textContent=(en?'Where it sits in its 1-year range (no interpretation) · ':'지난 1년 범위 중 지금 위치(해석 없음) · ')+(d.updated||'')+(en?' · Full board →':' · 온도판 전체 보기 →');bc.appendChild(n);bc.style.display='';
+}).catch(function(){});
+var terms=[].slice.call(document.querySelectorAll('.o-read .o-term')).map(function(t){var l=t.getAttribute('aria-label')||'';var k=l.indexOf(': ');return k>0?[l.slice(0,k),l.slice(k+2)]:null;}).filter(Boolean).slice(0,6);
+if(terms.length){var tc=card(en?'TERMS IN THIS POST':'이 글의 용어');terms.forEach(function(p){var d=document.createElement('div');d.className='o-rterm';var b=document.createElement('b');b.textContent=p[0];d.appendChild(b);d.appendChild(document.createTextNode(' '+p[1]));tc.appendChild(d);});}
+var pm=document.body.className.match(/postid-(\d+)/);
+if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories').then(function(r){return r.json();}).then(function(p){
+ var cid=(p.categories||[])[0];if(!cid)return;
+ return fetch('/wp-json/wp/v2/posts?categories='+cid+'&exclude='+pm[1]+'&per_page=3&_fields=link,title,date').then(function(r){return r.json();}).then(function(list){
+  if(!list||!list.length)return;var rc=card(en?'READ NEXT':'함께 읽을 글');
+  list.forEach(function(x){var a=document.createElement('a');a.className='o-rpost';a.href=x.link;a.textContent=dec(x.title&&x.title.rendered||'');var s=document.createElement('small');s.textContent=(x.date||'').slice(0,10);a.appendChild(s);rc.appendChild(a);});});
+}).catch(function(){});}
+})();
 })();
 </script>
 <script>(function(){var s=document.getElementById('o-post-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');(new Function(t))();}})();</script>

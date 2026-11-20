@@ -57,7 +57,8 @@ print("llm fallback ok")
 # 3) 교열·숫자 대조
 h, issues, fixes = lint.fix_and_check("<h1>t</h1><h3>Part 2: 숫자</h3><p>**굵게** 수익률은 N/A입니다. 외신 보도에 따르면 그렇습니다.</p>"
                                       "<p>같은 문단이 두 번 나오는 경우를 시험합니다 정말로요.</p><p>같은 문단이 두 번 나오는 경우를 시험합니다 정말로요.</p><img src=x>")
-assert "<h3>숫자</h3>" in h and "<strong>굵게</strong>" in h and "<img" not in h and h.count("같은 문단") == 1
+# 11-20: **굵게**는 <strong>으로 바뀐 뒤, 숫자 없는 굵게라 강조 규칙이 풀어 줌(별표는 남지 않음)
+assert "<h3>숫자</h3>" in h and "**" not in h and "굵게" in h and "<strong>굵게</strong>" not in h and "<img" not in h and h.count("같은 문단") == 1
 assert any("N/A" in i for i in issues) and any("외신 보도" in i for i in issues) and any("너무 얇음" in i for i in issues)
 assert any("태그 줄" in i for i in issues)
 facts = "[사실 자료]\n- 보수 0.03%, 0.20%\n- 순자산 1,234,567,890달러\n- 배당 3.456%\n- 2024년 출생아 238,300명"

@@ -52,6 +52,22 @@ def strong_fact(d, round_no):
     return True
 
 
+def first_in_category(pid, h):
+    """11-20(백로그 76): 이 글이 그 분야의 첫 공개 글이면 theme-push - 빈 분야라 숨겼던 메뉴·첫 화면 카드를 다시 보이게."""
+    try:
+        import requests
+        import blog_engine as be
+        j = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
+                         params={"fields": "categories"}, timeout=20).json()
+        firsts = [c.get("slug") for c in (j.get("categories") or {}).values() if c.get("post_count") == 1]
+        if firsts:
+            print("분야 첫 공개 글 → 메뉴 다시 보이게(theme-push):", firsts)
+            from site_pages import theme_push
+            theme_push.main("push")
+    except Exception as e:
+        print("분야 첫 글 확인 실패(메뉴는 다음 theme-push 때):", type(e).__name__)
+
+
 def main(pid):
     import requests
     import blog_engine as be
@@ -67,6 +83,7 @@ def main(pid):
     if j.get("status") == "publish":
         from site_pages.pll_plugin import flush_sitemap
         flush_sitemap()
+        first_in_category(pid, h)
     return 0 if j.get("status") == "publish" else 1
 
 

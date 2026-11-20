@@ -76,6 +76,43 @@ def _num_set(text):
     return {x for x in out if not re.fullmatch(r"(19|20)\d\d|\d{1,2}", x)}     # 연도·맨 한두 자리 숫자는 세지 않음
 
 
+_STRONG = re.compile(r"<(strong|b)>(.*?)</\1>", re.S | re.I)
+_SKIP_SEC = re.compile(r"자주\s*묻는|FAQ|정리|요약", re.I)
+
+
+def _keep_section_answers(h, fixes):
+    """11-20 강조 규칙(사용자 승인): 굵게는 '본문 섹션의 한 줄 답' - 섹션(h3)당 1개, 자료 숫자가 든 사실 문장만.
+    도입부·자주 묻는 질문·정리 섹션의 굵게, 숫자 없는 굵게, 금지 표현이 든 굵게, 두 번째부터는 풀어 준다(글자는 그대로).
+    '한 줄 정리:' 라벨과 출처 상자 제목(📌)은 건드리지 않는다."""
+    parts = re.split(r"(<h3[^>]*>.*?</h3>)", h, flags=re.S | re.I)
+    out, title, unwrapped = [], "", 0
+    for part in parts:
+        if re.match(r"<h3", part, re.I):
+            title = text_of(part)
+            out.append(part)
+            continue
+        kept = [False]
+        allowed = bool(title) and not _SKIP_SEC.search(title)
+
+        def fix(m):
+            nonlocal unwrapped
+            inner = m.group(2)
+            plain = text_of(inner)
+            if re.search(r"한\s?줄\s?(정리|요약)|📌|데이터 출처", plain):
+                return m.group(0)
+            ok = (allowed and not kept[0] and re.search(r"\d", plain)
+                  and not any(re.search(pat, plain) for pat, _ in BANNED) and not VAGUE_COMPARE.search(plain))
+            if ok:
+                kept[0] = True
+                return f"<strong>{inner}</strong>"
+            unwrapped += 1
+            return inner
+        out.append(_STRONG.sub(fix, part))
+    if unwrapped:
+        fixes.append(f"강조 규칙에 맞지 않는 굵게 {unwrapped}곳을 풂(섹션당 1개·숫자 든 사실 문장만)")
+    return "".join(out)
+
+
 def _drop_repeated_faq(h, fixes):
     """11-11(백로그 6-8): FAQ 답이 본문 숫자만 다시 읽는 문답이면 뺀다. 11-10 에너지·VOO·인구사회 사람 읽기 셋 모두 'FAQ가 본문 되풀이',
     기획 지시('본문에서 다루지 않은 각도')만으로는 안 고쳐짐. 답의 숫자가 2개 이상이고 모두 FAQ 앞 본문에 이미 있으면 되풀이로 본다.
@@ -182,6 +219,7 @@ def fix_and_check(html):
     h = re.sub(r"<p[^>]*>.*?</p>", _dedupe, h, flags=re.S)
     h = _drop_repeated_sentences(h, fixes)
     h = _drop_repeated_faq(h, fixes)
+    h = _keep_section_answers(h, fixes)
 
     # 한 줄 정리(2026-11-08 사용자 제안): 표기를 하나로 맞추고, 반복 검사에서는 뺀다(정리 내용을 한 줄로 다시 짚는 게 원래 역할)
     new = ONE_LINE.sub(lambda m: f"<p><strong>{ONE_LINE_LABEL}:</strong> {m.group(1).strip()}</p>", h)
