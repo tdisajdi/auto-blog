@@ -444,3 +444,32 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 /* 11-19: 글 화면 결론 카드 위 빈 여백 54px - 본문 묶음의 자동 위 여백(32px, 숨은 휴대폰 목차 다음이라 붙음) + 빈 문단(22px) */
 .o-read > .wp-block-post-content { margin-top: 0 !important; margin-block-start: 0 !important; }
 .o-read .wp-block-post-content > p:empty { display: none !important; }
+
+/* ══ 11-20 오른쪽 계기판(사용자 승인) - 왼쪽 계기판과 같은 카드 모양 ══
+   넓은 화면(1400px↑): 3단(목차 | 본문 | 계기판), 따라오기. 그보다 좁으면 본문 아래에 카드가 나란히, 휴대폰은 한 줄씩. */
+.o-rail { min-width: 0; }
+.o-rail-in { display: flex; flex-direction: column; gap: 22px; }
+.o-rcard { background: var(--o-card); border: 2px solid var(--o-ink); box-shadow: 6px 6px 0 var(--o-ink); padding: 14px 16px 16px; }
+.o-rlab { display: inline-block; font-size: 11px; letter-spacing: .1em; color: #fff; background: var(--o-ink); padding: 3px 7px; margin-bottom: 4px; }
+.o-rrow { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; margin: 12px 0 5px; color: var(--o-ink); }
+.o-rrow b { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.o-rbar { display: grid; grid-template-columns: repeat(20, 1fr); gap: 2px; }
+.o-rbar i { display: block; height: 9px; background: #e3e6ee; }
+.o-rbar i.on { outline: 2px solid var(--o-ink); outline-offset: 0; }
+.o-rnote { display: block; font-size: 12px; line-height: 1.6; color: var(--o-ink-2) !important; text-decoration: none !important; margin-top: 12px; }
+.o-rnote:hover { color: var(--o-navy-3) !important; }
+.o-rterm { font-size: 14px; line-height: 1.6; color: var(--o-ink-2); margin: 10px 0 0; }
+.o-rterm b { color: var(--o-ink); border-bottom: 2px dotted var(--o-cold); margin-right: 2px; }
+.o-rpost { display: block; font-size: 14px; font-weight: 700; line-height: 1.45; color: var(--o-ink) !important; text-decoration: none !important; margin: 12px 0 0; }
+.o-rpost:hover { color: var(--o-navy-3) !important; }
+.o-rpost small { display: block; font-weight: 400; font-size: 12px; color: var(--o-ink-3); margin-top: 2px; }
+@media (min-width: 1400px) {
+  .o-post { grid-template-columns: 240px minmax(0, var(--o-read)) 280px !important; max-width: 1480px; }
+  .o-rail { grid-column: 3; grid-row: 1; }
+  .o-rail-in { position: sticky; top: 96px; }
+}
+@media (max-width: 1399px) {
+  .o-rail { grid-column: 1 / -1; margin: 8px 0 32px; }
+  .o-rail-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; max-width: calc(var(--o-read) + 280px); margin: 0 auto; }
+}
+@media (min-width: 1101px) and (max-width: 1399px) { .o-rail { grid-column: 2; } .o-rail-in { max-width: none; } }

@@ -3,6 +3,7 @@
 - 예전 '종합 시장 온도'(가중치·밸류에이션 근사)는 시제품에서 뺐다 - 근거를 설명하기 어려운 숫자는 데이터 페이지 신뢰를 깎는다.
 - 워드프레스 '페이지'(주소 ondo-board)로 비공개 초안. 공개 페이지는 건드리지 않음(site_pages/upload.py 보호 장치)."""
 import html
+import json
 import os
 import sys
 from datetime import datetime
@@ -180,6 +181,11 @@ def render(cards, updated, lang="ko"):
             f'<div class="obp-row">{r2}</div>'
             f'<div class="obp-note">{html.escape(meaning)} · {s["as_of"]} {close}</div></div></div>')
     out.append('</div>')
+    # 11-20: 글 화면 오른쪽 계기판이 읽는 숫자(같은 계산값만 - 새 숫자 없음). 숨은 div의 data-json(스크립트 막힘 걱정 없음)
+    data = {"updated": updated, "items": [
+        {"t": tk, "name": (EN.get(tk, (name,))[0] if en else name), "unit": (EN.get(tk, (name, unit))[1] if en else unit),
+         "value": _fmt(s["last"], d), "pos": s["pos"], "as_of": s["as_of"]} for (tk, name, unit, d, meaning), s in cards]}
+    out.append(f'<div id="ondo-board-data" hidden data-json="{html.escape(json.dumps(data, ensure_ascii=False), quote=True)}"></div>')
     if en:
         out.append('<div class="obp-sec"><h3><span>HOW TO READ</span>Reading the temperature</h3>'
                    '<p>The temperature only means "where the current value sits within the past year\'s range". 100° does not mean it cannot go higher, and 0° does not mean it has hit bottom. '
