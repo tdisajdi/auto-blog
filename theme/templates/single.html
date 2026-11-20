@@ -105,6 +105,39 @@ fetch(bURL,{credentials:'omit'}).then(function(r){return r.text();}).then(functi
   for(var i=0;i<20;i++){var c=document.createElement('i');if(i<=on)c.style.background=COL[Math.min(4,Math.floor(i/4))];if(i===on)c.className='on';bar.appendChild(c);}bc.appendChild(bar);});
  var n=document.createElement('a');n.className='o-rnote';n.href=bURL;n.textContent=(en?'Where it sits in its 1-year range (no interpretation) · ':'지난 1년 범위 중 지금 위치(해석 없음) · ')+(d.updated||'')+(en?' · Full board →':' · 온도판 전체 보기 →');bc.appendChild(n);bc.style.display='';
 }).catch(function(){});
+/* 8b) 이 글의 계산기(11-20 사용자 요청): 글 속 계산표(.ondo-calc)의 이름·보수·조건을 그대로 읽어 표와 같은 공식으로 다시 계산. 독자가 바꾸는 건 원금·기간·이익 같은 입력값뿐 - 새 사실을 만들지 않음. */
+(function(){
+var tbs=[].slice.call(document.querySelectorAll('.o-read .ondo-calc table'));if(!tbs.length)return;
+function cells(tr){return [].slice.call(tr.children).map(function(x){return x.textContent.replace(/\s+/g,' ').trim();});}
+function num(s){var m=String(s).replace(/,/g,'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):NaN;}
+function won(v){var neg=v<0;v=Math.abs(v);var s;if(en){var k=v*1e4;s=k>=1e6?'KRW '+(Math.round(k/1e4)/100).toLocaleString('en-US')+' million':'KRW '+(Math.round(k/1e4)*1e4).toLocaleString('en-US');}else{s=(v<1&&v>0?Math.round(v*10)/10:Math.round(v)).toLocaleString('ko-KR')+'만 원';}return (neg?'-':'')+s;}
+function field(box,label,val,step,unit,fn){var l=document.createElement('label');l.className='o-cin';var s=document.createElement('span');s.textContent=label;var w=document.createElement('span');w.className='o-cin-w';var i=document.createElement('input');i.type='number';i.inputMode='decimal';i.min='0';i.step=step;i.value=val;var u=document.createElement('em');u.textContent=unit;w.appendChild(i);w.appendChild(u);l.appendChild(s);l.appendChild(w);box.appendChild(l);i.addEventListener('input',fn);return i;}
+function row(box,name,val,sub){var r=document.createElement('div');r.className='o-rrow';var a=document.createElement('span');a.textContent=name;var b=document.createElement('b');b.textContent=val;r.appendChild(a);r.appendChild(b);box.appendChild(r);if(sub){var g=document.createElement('div');g.className='o-cgap';g.textContent=sub;box.appendChild(g);}}
+function note(box,t){var n=document.createElement('div');n.className='o-rnote';n.textContent=t;box.appendChild(n);}
+var done={};
+tbs.forEach(function(t){var rows=[].slice.call(t.querySelectorAll('tr')).map(cells);if(rows.length<3)return;var h=rows[0].join('|');var cap=(t.parentElement?t.parentElement.textContent:'');
+ /* (1) 총보수 표: 원금 × ((1+수익률) × (1−총보수))^년 (guide_calcs.calc_expense와 같은 식) */
+ if(/총보수|Total fee/i.test(h)&&!done.fee){var it=rows.slice(1).map(function(r){return [r[0],num(r[1])];}).filter(function(x){return x[0]&&x[1]>=0&&x[1]<5;});if(it.length<2)return;done.fee=1;
+  var p0=num((cap.match(/원금\s*([\d,]+)\s*만/)||cap.match(/KRW\s*([\d.,]+)\s*million invested/)||[])[1]);var g0=num((cap.match(/연\s*([\d.]+)\s*%/)||cap.match(/([\d.]+)%\s*annual/)||[])[1]);
+  if(!(p0>0))p0=en?10:1000;if(!(g0>0))g0=5;
+  var c=card(en?'CALCULATOR · YOUR NUMBERS':'계산기 · 내 숫자로');c.classList.add('o-rcalc');var fx=document.createElement('div');c.appendChild(fx);var out=document.createElement('div');out.className='o-cout';
+  var ip=field(fx,en?'Principal':'원금',p0,en?'1':'100',en?'KRW mn':'만 원',calc),ig=field(fx,en?'Return before fees':'보수 떼기 전 수익률',g0,'0.5',en?'%/yr':'% /년',calc),iy=field(fx,en?'Years':'기간',10,'1',en?'yrs':'년',calc);
+  c.appendChild(out);note(c,en?'Same formula as the table in this post: principal × ((1 + return) × (1 − fee))^years. Fees only - no trading costs, tax, FX or tracking error. The return is your assumption, not a forecast.':'글 속 표와 같은 계산: 원금 × ((1+수익률) × (1−총보수))^기간. 총보수만 반영(매매 비용·세금·환율·추적 오차 제외). 수익률은 입력한 가정일 뿐 실제 수익이 아님.');
+  function calc(){var P=num(ip.value)*(en?100:1),G=num(ig.value)/100,N=Math.min(60,Math.max(0,Math.round(num(iy.value))));out.innerHTML='';if(!(P>=0)||isNaN(G)||isNaN(N))return;
+   var v=it.map(function(x){return [x[0],x[1],P*Math.pow((1+G)*(1-x[1]/100),N)];});var best=Math.max.apply(null,v.map(function(x){return x[2];}));
+   v.forEach(function(x){var d=x[2]-best;row(out,x[0]+' ('+x[1]+'%)',won(x[2]),Math.abs(d)<0.05?(en?'baseline':'기준'):(en?'Gap: ':'차이 ')+won(d));});}
+  calc();}
+ /* (2) 계좌별 세금 표: 해외 상장 = (이익−250만)×22%, 국내 상장 일반 = 이익×15.4%, ISA 일반형 = (이익−200만)×9.9%, 연금 수령 = 이익×5.5% (ondo/etf/data.py와 같은 규칙) */
+ else if(/한 해 이익|Annual gain/i.test(h)&&!done.tax){var F=[];rows[0].slice(1).forEach(function(n){var f=/해외.{0,3}상장|Overseas-listed/i.test(n)?function(g){return Math.max(0,g-250)*0.22;}:/국내.{0,3}상장|Korea-listed/i.test(n)?function(g){return g*0.154;}:/ISA/.test(n)?function(g){return Math.max(0,g-200)*0.099;}:/연금|Pension/i.test(n)?function(g){return g*0.055;}:null;if(f)F.push([n,f]);});
+  if(F.length<2)return;var ok=rows.slice(1).every(function(r){var g=num(r[0])*(en?100:1);return F.every(function(x,i){var want=num(r[i+1])*(/million/.test(r[i+1])?100:(en?0.0001:1));return Math.abs(x[1](g)-want)<=(en?1:1);});});
+  if(!ok)return;done.tax=1;
+  var c2=card(en?'CALCULATOR · YOUR GAIN':'계산기 · 내 이익으로');c2.classList.add('o-rcalc');var fx2=document.createElement('div');c2.appendChild(fx2);var out2=document.createElement('div');out2.className='o-cout';
+  var ia=field(fx2,en?'Gain in a year':'한 해 이익',en?10:1000,en?'1':'100',en?'KRW mn':'만 원',calc2);c2.appendChild(out2);
+  note(c2,en?'Same rules as the table in this post (same assumptions as its note). Overseas-listed: (gain − KRW 2.5 mn) × 22%. Korea-listed regular: gain × 15.4%. ISA: (gain − KRW 2 mn) × 9.9%. Pension: gain × 5.5%. Actual tax depends on your other gains and losses.':'글 속 표와 같은 규칙(표 아래 가정과 같은 조건). 해외 상장 (이익−250만 원)×22%, 국내 상장 일반계좌 이익×15.4%, ISA (이익−200만 원)×9.9%, 연금 수령 이익×5.5%. 실제 세금은 다른 이익·손실과 합쳐 달라질 수 있음.');
+  function calc2(){var g=num(ia.value)*(en?100:1);out2.innerHTML='';if(!(g>=0))return;F.forEach(function(x){row(out2,x[0],won(x[1](g)));});}
+  calc2();}
+});
+})();
 var terms=[].slice.call(document.querySelectorAll('.o-read .o-term')).map(function(t){var l=t.getAttribute('aria-label')||'';var k=l.indexOf(': ');return k>0?[l.slice(0,k),l.slice(k+2)]:null;}).filter(Boolean).slice(0,6);
 if(terms.length){var tc=card(en?'TERMS IN THIS POST':'이 글의 용어');terms.forEach(function(p){var d=document.createElement('div');d.className='o-rterm';var b=document.createElement('b');b.textContent=p[0];d.appendChild(b);d.appendChild(document.createTextNode(' '+p[1]));tc.appendChild(d);});}
 var pm=document.body.className.match(/postid-(\d+)/);
