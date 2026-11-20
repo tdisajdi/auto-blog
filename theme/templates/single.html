@@ -92,12 +92,13 @@ var inner=document.createElement('div');inner.className='o-rail-in';rail.appendC
 function card(label){var d=document.createElement('div');d.className='o-rcard';var h=document.createElement('span');h.className='o-px o-rlab';h.textContent=label;d.appendChild(h);inner.appendChild(d);return d;}
 var dec=function(s){var ta=document.createElement('textarea');ta.innerHTML=s;return ta.value;};
 var termA=document.querySelector('.o-post-head .wp-block-post-terms a');var cls=document.body.className+' '+(termA?termA.href:'');
-var cat=/energ/.test(cls)?'energy':(/societ|population/.test(cls)?'society':'etf');
-var PICK={etf:['KRW=X','^GSPC','^TNX'],energy:['BZ=F','KRW=X','GC=F'],society:['^KS11','KRW=X','^TNX']}[cat];
+/* 분야별(11-20 사용자 승인): 온도판 지표는 시장 숫자가 의미 있는 분야(ETF·에너지·시장)에서만. 인구사회·바이오·특허·트렌드는 숨김. 분류 링크를 못 찾으면 예전처럼 ETF. */
+var cat=!termA?'etf':(/\/category\/(etf|etfs-investing)\//.test(termA.href)?'etf':(/energ/.test(termA.href)?'energy':(/\/category\/markets?\//.test(termA.href)?'market':'')));
+var PICK={etf:['KRW=X','^GSPC','^TNX'],energy:['BZ=F','GC=F','KRW=X'],market:['^VIX','^GSPC','^KS11']}[cat];
 var COL=['#3d6dff','#2bb3c0','#f4c44e','#ff8a3d','#ec4a37'];
 var bc=card(en?'ONDO BOARD · WHERE NOW':'ONDO BOARD · 지금 어디쯤');bc.style.display='none';
 var bURL=en?'/en/ondo-board-en/':'/ondo-board/';
-fetch(bURL,{credentials:'omit'}).then(function(r){return r.text();}).then(function(t){
+if(PICK)fetch(bURL,{credentials:'omit'}).then(function(r){return r.text();}).then(function(t){
  var m=t.match(/id="ondo-board-data"[^>]*data-json="([^"]*)"/);if(!m)return;var d=JSON.parse(dec(m[1]));
  var items=PICK.map(function(k){return (d.items||[]).filter(function(x){return x.t===k;})[0];}).filter(Boolean);if(!items.length)return;
  items.forEach(function(x){var row=document.createElement('div');row.className='o-rrow';var a=document.createElement('span');a.textContent=x.name;var b=document.createElement('b');b.textContent=x.value+(x.unit&&x.unit.length<=3?' '+x.unit:'');row.appendChild(a);row.appendChild(b);bc.appendChild(row);
@@ -140,6 +141,12 @@ tbs.forEach(function(t){var rows=[].slice.call(t.querySelectorAll('tr')).map(cel
 })();
 var terms=[].slice.call(document.querySelectorAll('.o-read .o-term')).map(function(t){var l=t.getAttribute('aria-label')||'';var k=l.indexOf(': ');return k>0?[l.slice(0,k),l.slice(k+2)]:null;}).filter(Boolean).slice(0,6);
 if(terms.length){var tc=card(en?'TERMS IN THIS POST':'이 글의 용어');terms.forEach(function(p){var d=document.createElement('div');d.className='o-rterm';var b=document.createElement('b');b.textContent=p[0];d.appendChild(b);d.appendChild(document.createTextNode(' '+p[1]));tc.appendChild(d);});}
+/* 이 글의 자료 출처(11-20, 모든 분야): 본문 끝 '📌 … 출처' 상자의 설명·링크를 그대로 모음 - 새 링크를 만들지 않음 */
+(function(){var sb=[].slice.call(document.querySelectorAll('.o-read strong')).filter(function(s){return /📌/.test(s.textContent)&&/출처|source/i.test(s.textContent);})[0];if(!sb||!sb.parentElement)return;
+ var box=sb.parentElement;var links=[].slice.call(box.querySelectorAll('a[href^="http"]')).slice(0,6);
+ var txt=box.textContent.replace(sb.textContent,'').split(/직접 확인|Check it yourself/i)[0].replace(/\s+/g,' ').trim();if(!links.length&&!txt)return;
+ var sc=card(en?'SOURCES FOR THIS POST':'이 글의 자료 출처');if(txt){var d=document.createElement('div');d.className='o-rterm';d.textContent=txt.slice(0,160);sc.appendChild(d);}
+ links.forEach(function(a){var l=document.createElement('a');l.className='o-rsrc';l.href=a.href;l.target='_blank';l.rel='noopener nofollow';l.textContent=a.textContent.trim()||a.hostname;sc.appendChild(l);});})();
 var pm=document.body.className.match(/postid-(\d+)/);
 if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories').then(function(r){return r.json();}).then(function(p){
  var cid=(p.categories||[])[0];if(!cid)return;
