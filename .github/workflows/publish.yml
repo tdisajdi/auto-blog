@@ -531,6 +531,8 @@ jobs:
                 PID=$(echo "$item" | cut -d: -f1 | tr -cd '0-9'); KICK=$(echo "$item" | cut -s -d: -f2 | tr -cd 'A-Za-z')
                 python site_pages/cover_post.py "$PID" ${KICK:-DATA} || echo "표지 바꾸기 실패 $PID"
               done
+            elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-probe" ]; then
+              python site_pages/sitemap_probe.py || echo "사이트맵 확인 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-fix" ]; then
               python site_pages/sitemap_fix.py || echo "사이트맵 캐시 비우기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
