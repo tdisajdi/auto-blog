@@ -199,7 +199,7 @@
 - 무엇: 공개 두 번째 길의 '고침이 글에 들어갔나' 대조를 태그 뺀 글자끼리 하게 고침, 요약문 고침은 대조에서 뺌(publish_passed.patches_in, 시험 추가).
   왜: 표 안 고침처럼 '&amp;'·'</td>'가 든 고침은 본문 글자와 안 맞아 통과 못 하는 문제(768 고침 쓰다 발견).
 - 무엇: 고침 조각이 태그 중간('>SPY …')에서 시작해도 대조되게 꺾쇠 조각을 버림(_frag).
-  왜: fact-recheck:768이 지적 0개였는데 patch_applied=false - 표 고침 3개가 '>'로 시작해 대조 실패. 다시 검증을 한 번 더 돌림.
+  왜: fact-recheck:768이 지적 0개였는데 patch_applied=false - 표 고침 3개가 '>'로 시작해 대조 실패. 다시 검증을 한 번 더 돌림 → 지적 0개, patch_applied=true. 11-21 07:4xZ 공개 예약(762 공개 5~8시간 뒤).
 ■ 자료(코드 계산)
 - 무엇: ETF 이름을 Yahoo longName 먼저 쓰게 고침(ondo/company.py).
   왜: shortName은 잘려서 'SPDR S&P 500 ETF T', 'Technology Select '처럼 자료에 들어감(첫 시험에서 발견).
