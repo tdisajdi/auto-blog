@@ -151,8 +151,31 @@ if(terms.length){var tc=card(en?'TERMS IN THIS POST':'이 글의 용어');terms.
  var sc=card(en?'SOURCES FOR THIS POST':'이 글의 자료 출처');if(txt){var d=document.createElement('div');d.className='o-rterm';d.textContent=txt.slice(0,160);sc.appendChild(d);}
  links.forEach(function(a){var l=document.createElement('a');l.className='o-rsrc';l.href=a.href;l.target='_blank';l.rel='noopener nofollow';l.textContent=a.textContent.trim()||a.hostname;sc.appendChild(l);});})();
 var pm=document.body.className.match(/postid-(\d+)/);
-if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories').then(function(r){return r.json();}).then(function(p){
- var cid=(p.categories||[])[0];if(!cid)return;
+/* 이 회사 관련 글(11-20 사용자 결정): 회사 태그(애플·삼성전자…)로 '기업 소개 글'(ETF·투자) ↔ '제품·기술 글'(신기술·특허)을 잇는다.
+   기업 소개 글: 본문 출처 상자 앞에 '최근 소식'(제품·기술 글의 첫 문장 한 줄 + 날짜 + 링크) + 계기판 카드. 제품·기술 글: 계기판에 '이 회사 소개' 카드.
+   회사 이름 목록은 ondo/company.py COMPANIES와 맞출 것. 글이 없으면 아무것도 안 그림. */
+var CO=['애플','마이크로소프트','엔비디아','삼성전자','Apple','Microsoft','NVIDIA','Samsung Electronics'];
+function strip(h){var d=document.createElement('div');d.innerHTML=h||'';return (d.textContent||'').replace(/\s+/g,' ').trim();}
+function firstLine(s){var m=s.match(/^(.{12,110}?(?:다\.|\.\s))/);return (m?m[1]:s.slice(0,90)+(s.length>90?'…':'')).trim();}
+function coLinks(p){var tags=p.tags||[];if(!tags.length)return;
+ fetch('/wp-json/wp/v2/tags?include='+tags.join(',')+'&_fields=id,name').then(function(r){return r.json();}).then(function(ts){
+  var tg=(ts||[]).filter(function(x){return CO.indexOf(dec(x.name))>=0;})[0];if(!tg)return;var nm=dec(tg.name);
+  return fetch('/wp-json/wp/v2/posts?tags='+tg.id+'&exclude='+pm[1]+'&per_page=8&_fields=link,title,date,excerpt,categories').then(function(r){return r.json();}).then(function(list){
+   var cid=(p.categories||[])[0];var other=(list||[]).filter(function(x){return (x.categories||[]).indexOf(cid)<0;});if(!other.length)return;
+   var isCo=cat==='etf';
+   var rc=card(isCo?(en?'MORE ON '+nm.toUpperCase():nm+' 관련 글'):(en?'ABOUT '+nm.toUpperCase():nm+' 기업 소개'));
+   other.slice(0,isCo?5:2).forEach(function(x){var a=document.createElement('a');a.className='o-rpost';a.href=x.link;a.textContent=dec(x.title&&x.title.rendered||'');var s=document.createElement('small');s.textContent=(x.date||'').slice(0,10);a.appendChild(s);rc.appendChild(a);});
+   if(!isCo)return;
+   var sb=[].slice.call(document.querySelectorAll('.o-read strong')).filter(function(s){return /📌/.test(s.textContent);})[0];var anchor=sb&&sb.parentElement;
+   var host=anchor&&anchor.parentElement||document.querySelector('.o-read .wp-block-post-content');if(!host)return;
+   var box=document.createElement('section');box.className='o-conews';var h=document.createElement('h2');h.textContent=en?'Latest on '+nm:'최근 소식';box.appendChild(h);
+   var ul=document.createElement('ul');other.slice(0,5).forEach(function(x){var li=document.createElement('li');var tm=document.createElement('time');tm.textContent=(x.date||'').slice(0,10);
+    var a=document.createElement('a');a.href=x.link;a.textContent=firstLine(strip(x.excerpt&&x.excerpt.rendered))||dec(x.title&&x.title.rendered||'');var mo=document.createElement('span');mo.className='o-conews-more';mo.textContent=en?' Read more →':' 자세히 보기 →';
+    li.appendChild(tm);li.appendChild(a);a.appendChild(mo);ul.appendChild(li);});box.appendChild(ul);
+   if(anchor)host.insertBefore(box,anchor);else host.appendChild(box);});
+ }).catch(function(){});}
+if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories,tags').then(function(r){return r.json();}).then(function(p){
+ coLinks(p);var cid=(p.categories||[])[0];if(!cid)return;
  return fetch('/wp-json/wp/v2/posts?categories='+cid+'&exclude='+pm[1]+'&per_page=3&_fields=link,title,date').then(function(r){return r.json();}).then(function(list){
   if(!list||!list.length)return;var rc=card(en?'READ NEXT':'함께 읽을 글');
   list.forEach(function(x){var a=document.createElement('a');a.className='o-rpost';a.href=x.link;a.textContent=dec(x.title&&x.title.rendered||'');var s=document.createElement('small');s.textContent=(x.date||'').slice(0,10);a.appendChild(s);rc.appendChild(a);});});

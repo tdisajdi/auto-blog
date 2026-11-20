@@ -288,4 +288,4 @@ def run_company(ticker, ea):
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
                     closing_html=closing_html(ticker, weights), visual_html=visual,
-                    meta={"company": ticker, "company_ko": c["ko"]}, search_seed=c.get("seed", ""))
+                    meta={"company": ticker, "company_ko": c["ko"], "tags": [c["ko"]]}, search_seed=c.get("seed", ""))

@@ -275,6 +275,10 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         return "failed", title_seed, ""
     plan = result["plan"]
     title, body, tags = _assemble(result["html"])
+    # 11-20 회사 태그(기업 소개 글 ↔ 제품·기술 글을 잇는 고리) - 작가가 고른 태그보다 앞에 둔다
+    for _t in reversed((meta or {}).get("tags") or []):
+        if _t not in tags:
+            tags.insert(0, _t)
     title = title or plan.get("title") or title_seed
     picks = plan.get("visuals") or []
     if picks and drawer_html:
