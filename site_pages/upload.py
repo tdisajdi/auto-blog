@@ -13,9 +13,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 _HEAD = re.compile(r"^\s*<!--\s*slug:\s*([\w-]+)\s*\|\s*title:\s*(.+?)\s*-->\s*", re.S)
 
 
-def load_pages():
+def load_pages(include_en=False):
     out = []
-    for p in sorted(glob.glob(os.path.join(HERE, "*.html"))):
+    paths = sorted(glob.glob(os.path.join(HERE, "*.html")))
+    if include_en:  # 11-20 영어 소개 본문 갱신용 - 전체 올리기(main)는 예전처럼 한국어만(영어는 pll_plugin이 연결)
+        paths += sorted(glob.glob(os.path.join(HERE, "en", "*.html")))
+    for p in paths:
         s = open(p, encoding="utf-8").read()
         m = _HEAD.match(s)
         if not m:
@@ -87,7 +90,7 @@ def main(status="draft"):
 
 def refresh_slug(slug):
     """이미 공개된 기본 페이지 하나의 본문만 저장소 파일 내용으로 바꾼다(공개 상태·제목·주소 그대로). 11-19 개인정보처리방침 한 줄 추가용."""
-    for p in load_pages():
+    for p in load_pages(include_en=True):
         if p["slug"] == slug:
             ok, msg = refresh_page(p)
             print(("✅ " if ok else "❌ ") + msg)
