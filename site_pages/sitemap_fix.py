@@ -25,45 +25,17 @@ def stale():
 
 
 def main():
-    import requests
-    import blog_engine as be
+    """11-20: 전용 플러그인(1.2.0)으로 진단 → Rank Math 자체 함수로 캐시 비우기 → 확인. (예전 1~3단계 - 다시 저장·껐다 켜기·설정 저장 -
+    는 효과 없었고 설정 저장은 500이라 뺌)"""
     print("고치기 전:")
     show()
-    if not stale():
-        print("이미 정상")
-        return 0
-    # 1) 공개 글 하나 다시 저장(내용 그대로) - Rank Math가 저장 때 사이트맵 캐시를 지움
-    h = {"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}
-    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/701"
-    ex = requests.get(base, headers=h, params={"context": "edit", "fields": "excerpt"}, timeout=30).json().get("excerpt", "")
-    r = requests.post(base, headers=h, data={"excerpt": ex}, timeout=30)
-    print("1) 701 다시 저장:", r.status_code)
-    show()
-    if not stale():
-        print("정상이 됨(1단계)")
-        return 0
-    # 2) Rank Math 사이트맵 기능 껐다 켜기(캐시를 새로 만듦) - 켜는 것은 반드시
-    c1, j1 = call("POST", "/rankmath/v1/saveModule", {"module": "sitemap", "state": "off"})
-    c2, j2 = call("POST", "/rankmath/v1/saveModule", {"module": "sitemap", "state": "on"})
-    print("2) 사이트맵 끄기:", c1, json.dumps(j1, ensure_ascii=False)[:120], "/ 켜기:", c2, json.dumps(j2, ensure_ascii=False)[:120])
-    show()
-    if not stale():
-        print("정상이 됨(2단계)")
-        return 0
-    # 3) 사이트맵 설정 저장(11-20 사용자 '알아서 확인'): Rank Math는 설정 저장 때 글 목록 캐시를 새로 만든다.
-    #    넣는 값은 Rank Math 기본값과 같은 쪽(글·페이지·분류 포함, 이미지 포함) - 덮어써져도 기본값.
-    #    헤더 확인(11-20): 사이트맵은 매번 새로 만들어짐(X-ac MISS, no-store) → 화면 캐시 아님, Rank Math 내부 캐시.
-    settings = {"items_per_page": "200", "include_images": "on", "include_featured_image": "off",
-                "pt_post_sitemap": "on", "pt_page_sitemap": "on", "pt_attachment_sitemap": "off",
-                "tax_category_sitemap": "on", "tax_post_tag_sitemap": "off", "authors_sitemap": "off"}
-    for body in ({"type": "sitemap", "settings": settings}, {"type": "sitemap", "settings": settings, "isReset": False}):
-        c3, j3 = call("POST", "/rankmath/v1/updateSettings", body)
-        print("3) 사이트맵 설정 저장:", c3, json.dumps(j3, ensure_ascii=False)[:200])
-        if c3 == 200:
-            break
+    code, j = call("GET", "/ondo/v1/sitemap")
+    print("진단:", code, json.dumps(j, ensure_ascii=False)[:1500])
+    code, j = call("POST", "/ondo/v1/sitemap")
+    print("캐시 비우기:", code, json.dumps(j, ensure_ascii=False)[:300])
     show()
     ok = not stale()
-    print("정상이 됨(3단계)" if ok else "아직 옛 사이트맵 - Rank Math 내부 캐시가 안 바뀜(다음 방법 필요)")
+    print("정상이 됨" if ok else "아직 옛 사이트맵 - 진단 결과로 다음 방법 결정")
     return 0 if ok else 1
 
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -216,3 +216,62 @@ add_action( 'wp_head', function () {
 	}
 	echo '<script>window.ondoLang=' . wp_json_encode( $out ) . ';</script>' . "\n";
 }, 1 );
+
+/*
+ * 1.2.0 (2026-11-20): Rank Math 사이트맵 진단·캐시 비우기.
+ * 왜: 글 사이트맵이 7월 상태(비공개로 내린 옛 글 2개)로 멈추고 11-19 공개 글 4편이 빠짐. 응답은 매번 새로 만들어지는데(화면 캐시 아님)
+ * 글 목록만 옛것 → Rank Math 내부 캐시로 보임. REST의 toolsAction·updateSettings는 실패(Something went wrong / 500).
+ * GET  /ondo/v1/sitemap  - 사이트맵 설정(rank-math-options-sitemap 중 글·페이지·분류 관련 키만), 공개 글 수, 캐시 관련 옵션 이름
+ * POST /ondo/v1/sitemap  - Rank Math 자체 함수로 사이트맵 캐시 비우기(+ 'rank_math_sitemap' 이름의 임시값 삭제). 설정은 바꾸지 않음.
+ */
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'ondo/v1', '/sitemap', array(
+		array(
+			'methods'             => 'GET',
+			'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+			'callback'            => function () {
+				global $wpdb;
+				$opt  = get_option( 'rank-math-options-sitemap', array() );
+				$keep = array();
+				foreach ( (array) $opt as $k => $v ) {
+					if ( preg_match( '/^(pt_|tax_|items_per_page|exclude|include_|authors_|ping|html_)/', $k ) ) {
+						$keep[ $k ] = is_scalar( $v ) ? $v : wp_json_encode( $v );
+					}
+				}
+				$names = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '%rank_math%sitemap%' OR option_name LIKE '%rank-math%sitemap%' LIMIT 40" );
+				$counts = wp_count_posts( 'post' );
+				$modules = get_option( 'rank_math_modules', array() );
+				return array(
+					'settings'        => $keep,
+					'sitemap_module'  => in_array( 'sitemap', (array) $modules, true ),
+					'publish_posts'   => isset( $counts->publish ) ? (int) $counts->publish : null,
+					'private_posts'   => isset( $counts->private ) ? (int) $counts->private : null,
+					'cache_options'   => $names,
+					'cache_class'     => class_exists( '\RankMath\Sitemap\Cache' ),
+					'object_cache'    => wp_using_ext_object_cache(),
+				);
+			},
+		),
+		array(
+			'methods'             => 'POST',
+			'permission_callback' => function () { return current_user_can( 'manage_options' ); },
+			'callback'            => function () {
+				global $wpdb;
+				$done = array();
+				if ( class_exists( '\RankMath\Sitemap\Cache' ) ) {
+					if ( method_exists( '\RankMath\Sitemap\Cache', 'invalidate_storage' ) ) { \RankMath\Sitemap\Cache::invalidate_storage(); $done[] = 'invalidate_storage'; }
+					if ( method_exists( '\RankMath\Sitemap\Cache', 'clear' ) ) { \RankMath\Sitemap\Cache::clear(); $done[] = 'clear'; }
+				}
+				$rows = $wpdb->get_col( "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE '\_transient\_%rank_math%sitemap%' OR option_name LIKE '\_transient\_timeout\_%rank_math%sitemap%'" );
+				foreach ( $rows as $name ) {
+					$key = preg_replace( '/^_transient_(timeout_)?/', '', $name );
+					delete_transient( $key );
+				}
+				$done[] = 'transients:' . count( $rows );
+				if ( function_exists( 'wp_cache_flush_group' ) ) { wp_cache_flush_group( 'rank_math' ); $done[] = 'cache_group'; }
+				do_action( 'rank_math/sitemap/invalidate' );
+				return array( 'done' => $done );
+			},
+		),
+	) );
+} );
