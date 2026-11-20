@@ -208,6 +208,8 @@ def push(pid):
         print("표지:", "붙임" if mid and be.wp_set_featured_image(j["ID"], mid) else "못 붙임")
     except Exception as e:
         print("표지 실패:", type(e).__name__, e)
+    from site_pages.pll_plugin import flush_sitemap
+    flush_sitemap()
     return 0 if linked else 1
 
 

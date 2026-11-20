@@ -46,6 +46,18 @@ def call(method, route, data=None):
     return r.status_code, j
 
 
+def flush_sitemap():
+    """Rank Math 사이트맵 캐시 비우기(전용 플러그인 1.2.0, 11-20). 글을 공개·바꾼 뒤 부른다 - 저장만으로는 캐시가 안 바뀌어
+    글 사이트맵이 7월 상태로 멈춰 있었음. 실패해도 조용히 넘어감(글 공개는 그대로)."""
+    try:
+        code, j = call("POST", "/ondo/v1/sitemap")
+        print("사이트맵 캐시 비움:", code, (j or {}).get("done") if isinstance(j, dict) else j)
+        return code == 200
+    except Exception as e:
+        print("사이트맵 캐시 비우기 실패:", type(e).__name__)
+        return False
+
+
 def make_zip():
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:

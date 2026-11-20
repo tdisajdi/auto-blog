@@ -230,6 +230,12 @@ def main(status="draft"):
     import upload
     pg = {"slug": "ondo-board", "title": "ONDO BOARD · 1년 범위로 보는 지금", "html": page}
     # refresh: 매일 아침 숫자만 바꿈(공개 여부 그대로 - 11-12). draft: 처음 만들 때(공개 페이지는 안 건드림)
+    try:   # 11-20: 매일 한 번 사이트맵 캐시도 비움(승인 흐름으로 공개된 글이 사이트맵에서 빠지지 않게)
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from site_pages.pll_plugin import flush_sitemap
+        flush_sitemap()
+    except Exception as e:
+        print("사이트맵 캐시 비우기 건너뜀:", type(e).__name__)
     pg_en = {"slug": "ondo-board-en", "title": "ONDO BOARD · Where things stand in their 1-year range", "html": page_en}
     if status == "en-create":
         # 영어판 처음 만들기(11-19): 임시로 올림 → 한국어 온도판과 연결 → 공개
