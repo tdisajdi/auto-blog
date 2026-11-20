@@ -46,8 +46,8 @@ def dots():
     return "".join(out)
 
 
-def card(id_, *, chip, h1, sub, art, numfont=False):
-    return f"""<div class="cv{' pn' if numfont else ''}" id="{id_}">
+def card(id_, *, chip, h1, sub, art, numfont=False, en=False):
+    return f"""<div class="cv{' pn' if numfont else ''}{' en' if en else ''}" id="{id_}">
 <div class="dots">{dots()}</div>
 <span class="chip">{pix(['.ww.', 'wwww', 'wwww', '.ww.'], 14)}{chip}</span>
 <h1>{h1}</h1>
@@ -70,6 +70,7 @@ h1 em{{font-style:normal;color:#3d6dff;background:linear-gradient(transparent 82
 .pn h1 em{{font:700 74px/1 G11;letter-spacing:-.01em;color:#3d6dff;background:none}}
 .art{{position:absolute;right:90px;top:150px;width:330px;height:330px;display:flex;align-items:flex-end;justify-content:center}}
 .art svg{{filter:drop-shadow(0 18px 20px rgba(30,50,120,.18))}}
+.en h1{{font-size:54px;line-height:1.25;width:720px;letter-spacing:-.025em}}.en .sub{{font-size:24px}}
 .sub{{position:absolute;left:80px;bottom:72px;font:500 26px Pret;color:#6b7684;letter-spacing:-.01em}}
 .logo{{position:absolute;right:72px;bottom:66px;display:flex;align-items:center;gap:10px;font:700 26px G11;letter-spacing:.04em}}
 """
@@ -91,6 +92,14 @@ CARDS = [
          sub="한 해 이익 833만 원이 가르는 세금 차이", art=pix(ICONS["bars"], 320), numfont=True),
     card("p705", chip="ETF 가이드", h1="ETF 총보수 <em>0.1%</em> 차이,<br>10년 뒤 내 계좌엔<br>얼마 차이날까?",
          sub="10년 뒤 내 계좌엔 얼마 차이날까?", art=coins3, numfont=True),
+    card("e701", chip="ETF GUIDE", h1="Overseas-listed vs<br>Korea-listed ETFs: the<br><em>KRW 8.33 million</em> gain that<br>decides the tax difference",
+         sub="Overseas-listed vs Korea-listed ETFs", art=pix(ICONS["bars"], 300), en=True),
+    card("e705", chip="ETF GUIDE", h1="A <em>0.1%</em> gap in ETF fees:<br>how much does it cost<br>your account after<br>10 years?",
+         sub="Same index, different fee - 10 and 20 years later", art=coins3, en=True),
+    card("emdd", chip="ETF GUIDE", h1="Max drawdown (MDD):<br>picking an ETF<br>you can actually hold",
+         sub="(example title - no English post yet)", art=pix(ICONS["drop"], 300), en=True),
+    card("eaapl", chip="COMPANY · AAPL", h1="What kind of<br>company is Apple?",
+         sub="(example title - no English post yet)", art=pix(ICONS["building"], 300), en=True),
 ]
 open(f"{S}/h.html", "w", encoding="utf-8").write(f"<!doctype html><meta charset=utf-8><style>{CSS}</style><body>{''.join(CARDS)}</body>")
 print("ok")
