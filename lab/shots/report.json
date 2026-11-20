@@ -211,7 +211,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_26090222.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -241,6 +241,11 @@
     "li-top",
     1367,
     "0px"
+   ],
+   [
+    "li-top",
+    1367,
+    "0px"
    ]
   ]
  },
@@ -256,7 +261,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_26090222.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -281,6 +286,11 @@
     31,
     "0px",
     ""
+   ],
+   [
+    "li-top",
+    358,
+    "0px"
    ],
    [
     "li-top",
@@ -549,7 +559,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_26090222.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -565,7 +575,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    120,
+    96,
     "0px",
     ""
    ],
@@ -578,6 +588,11 @@
    [
     "li-top",
     1965,
+    "0px"
+   ],
+   [
+    "li-top",
+    2433,
     "0px"
    ]
   ]
@@ -594,7 +609,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_25055353.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_26090222.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -610,7 +625,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    120,
+    96,
     "0px",
     ""
    ],
@@ -623,6 +638,11 @@
    [
     "li-top",
     365,
+    "0px"
+   ],
+   [
+    "li-top",
+    832,
     "0px"
    ]
   ]
