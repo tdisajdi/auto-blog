@@ -45,6 +45,7 @@ r2 = gc.calc_dca(v_shape)
 assert r2["dca"] > r2["lump"], r2
 f, v = gc.render_dca({"SPY": r, "QQQ": None})
 assert "구간 49개 중 거치식 수익률이 더 높았던 구간 수: SPY 49개" in f and "<table" in v and f.count("SPY") == 4, f
+assert gc._won_month(12_000_000, 59) == "약 20.3만 원(1,200만 원 ÷ 59번)" and gc._won_month(12_000_000, 60) == "20만 원"
 print("dca ok")
 
 # 4) 최대 낙폭: 100 → 60(-40%) → 100 회복
