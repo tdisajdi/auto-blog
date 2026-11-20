@@ -67,11 +67,41 @@ def pick(country, spec, log):
     return None
 
 
+AIC = "https://api.artic.edu/api/v1/artworks/search"
+AIC_Q = {   # 시카고 미술관(CC0, is_public_domain) 대체 검색: (검색어, 원산지에 들어갈 낱말)
+    "korea": [("Korea painting", "Korea"), ("Joseon", "Korea"), ("Korean", "Korea")],
+    "france": [("Monet", "France"), ("Pissarro", "France"), ("Seurat", "France")],
+    "usa": [("Winslow Homer", "United States")],
+    "japan": [("Hokusai", "Japan")],
+}
+
+
+def pick_aic(country, log):
+    for q, place in AIC_Q.get(country, []):
+        r = get(AIC, {"q": q, "limit": 30, "fields": "id,title,image_id,artist_display,artist_title,date_display,place_of_origin,"
+                                                       "is_public_domain,classification_title,medium_display"})
+        data = (r.json().get("data") or []) if r else []
+        log.append(f"{country}: 시카고 검색 '{q}' → {len(data)}건")
+        for a in data:
+            if a.get("is_public_domain") and a.get("image_id") and place.lower() in str(a.get("place_of_origin", "")).lower() \
+                    and any(w in str(a.get("classification_title", "")).lower() for w in ("paint", "print", "screen", "scroll", "album")):
+                return {"objectID": a["id"], "title": a.get("title"), "artistDisplayName": a.get("artist_title") or "",
+                        "artistDisplayBio": a.get("artist_display"), "objectDate": a.get("date_display"),
+                        "culture": a.get("place_of_origin"), "classification": a.get("classification_title"),
+                        "objectURL": f"https://www.artic.edu/artworks/{a['id']}", "creditLine": "Art Institute of Chicago",
+                        "isPublicDomain": True, "_license": "CC0 (Art Institute of Chicago Open Access)",
+                        "primaryImage": f"https://www.artic.edu/iiif/2/{a['image_id']}/full/1686,/0/default.jpg"}
+    return None
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     log, done = [], 0
     for country, spec in CANDIDATES.items():
-        o = pick(country, spec, log)
+        if os.path.exists(os.path.join(OUT, f"{country}.jpg")):     # 이미 받은 나라는 건너뜀
+            log.append(f"= {country}: 이미 있음")
+            continue
+        o = pick(country, spec, log) or pick_aic(country, log)
         if not o:
             log.append(f"❌ {country}: 알맞은 공공 작품을 못 찾음")
             continue
@@ -83,7 +113,7 @@ def main():
         open(os.path.join(OUT, f"{country}.jpg"), "wb").write(r.content)
         meta = {k: o.get(k) for k in ("objectID", "title", "artistDisplayName", "artistDisplayBio", "objectDate", "culture",
                                       "classification", "objectURL", "creditLine", "isPublicDomain")}
-        meta["license"] = "CC0 (The Metropolitan Museum of Art Open Access)"
+        meta["license"] = o.get("_license") or "CC0 (The Metropolitan Museum of Art Open Access)"
         meta["image_url"] = url
         json.dump(meta, open(os.path.join(OUT, f"{country}.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         log.append(f"✅ {country}: {meta['title']} / {meta['artistDisplayName'] or meta['culture']} / {meta['objectDate']} ({len(r.content) // 1024}KB)")
