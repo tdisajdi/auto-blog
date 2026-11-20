@@ -486,3 +486,5 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 /* 오른쪽 계기판 '이 글의 자료 출처'(2026-11-20) */
 .o-rsrc { display: block; font-size: 13px; line-height: 1.5; color: var(--o-ink) !important; text-decoration: underline !important; text-underline-offset: 3px; margin: 8px 0 0; word-break: break-word; }
 .o-rsrc::after { content: " ↗"; color: var(--o-ink-2); }
+/* 계산기 한국 종목 이름(번호 아래 작게, 2026-11-20) */
+.o-rcalc .o-rnick { display: block; font-size: 11.5px; font-weight: 500; color: var(--o-ink-2); line-height: 1.4; margin-top: 1px; }
