@@ -162,7 +162,18 @@ def country_for(title, tags=(), category="etf"):
     t = " ".join([title or ""] + list(tags or []))
     if re.search(r"일본|엔화|닛케이|도쿄|Japan|yen|Nikkei", t, re.I):
         return "japan"
-    if re.search(r"유럽|프랑스|독일|Europe|France|euro\b", t, re.I):
+    # 11-21 나라별 시장 글: 그림 풀에 나라가 없으면 pick_art가 미국 그림으로 대신함
+    if re.search(r"중국|차이나|홍콩|China|Chinese|CSI300|Hong Kong", t, re.I):
+        return "china"
+    if re.search(r"인도|India|Nifty|니프티", t, re.I):
+        return "india"
+    if re.search(r"대만|Taiwan", t, re.I):
+        return "taiwan"
+    if re.search(r"영국|런던|United Kingdom|British|FTSE|\bUK\b", t, re.I):
+        return "uk"
+    if re.search(r"독일|Germany|German|DAX", t, re.I):
+        return "germany"
+    if re.search(r"유럽|프랑스|Europe|France|euro\b", t, re.I):
         return "france"
     if (category in ("society", "population-society") or re.search(r"\b\d{6}\b|코스피|코스닥|삼성|한국|국내 상장|KOSPI|Samsung|Korea", t)) \
             and not re.search(r"해외 상장|미국|S&P|나스닥|Overseas|US-listed", t):
