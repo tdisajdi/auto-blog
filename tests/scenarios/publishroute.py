@@ -97,9 +97,10 @@ def test_market_map_page():
 def test_market_map_jump_flag():
     """11-21 세계은행 인도 시가총액 1년에 2배 - 급변 표시하고 세계 비중에서 뺌, 오래된 연도 알림."""
     from site_pages import market_map as m
-    assert m.jump_flag([(2025, 10.56e12), (2024, 5.13e12)]) == (2024, 5.13e12)
+    assert m.jump_flag([(2025, 10.56e12), (2024, 5.13e12)], 1.0) == (2024, 5.13e12)    # 인도: ETF는 그대로
+    assert m.jump_flag([(2025, 2.76e12), (2024, 1.56e12)], 1.75) is None               # 한국: ETF도 크게 오름
     assert m.jump_flag([(2025, 69e12), (2024, 62e12)]) is None
-    rows = [{"code": "IND", "ko": "인도", "etf": "INDA", "kr": "", "link": "", "cap": (2025, 10.56e12), "gdp": None, "jump": (2024, 5.13e12)},
+    rows = [{"code": "IND", "ko": "인도", "etf": "INDA", "kr": "", "link": "", "cap": (2025, 10.56e12), "gdp": None, "jump": (2024, 5.13e12), "etf_year_ratio": 0.97},
             {"code": "FRA", "ko": "프랑스", "etf": "EWQ", "kr": "", "link": "", "cap": (2018, 2.4e12), "gdp": None}]
     h = m.build_html({"world": (2025, 141e12), "rows": rows})
     assert "2.1배" in h and "세계 대비 비중에서 뺐습니다" in h and "2018년이라" in h

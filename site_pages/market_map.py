@@ -56,14 +56,33 @@ def wb_latest(ind, codes, n=1):
     return {k: v[0] for k, v in out.items()} if n == 1 else out
 
 
-def jump_flag(series):
-    """11-21: 세계은행 인도 시가총액이 2024년 5.13조 → 2025년 10.56조 달러(1년에 2배) - 거래소 합산 등 집계 방식 차이로 보임.
-    최근 값이 바로 전 해의 1.6배 넘게 늘거나 0.6배 밑으로 줄면 (그 전 해, 값)을 돌려줌(표에 표시하고 세계 비중에서 뺌)."""
+def jump_flag(series, etf_ratio=None):
+    """11-21: 세계은행 인도 시가총액이 2024년 5.13조 → 2025년 10.56조 달러(1년에 2배)인데 인도 ETF 값은 거의 그대로 -
+    집계 방식이 바뀐 것으로 보임. 반면 한국은 1.8배였지만 같은 해 한국 ETF도 크게 올라 실제 변화.
+    → 시가총액 변화 배수를 같은 해 그 나라 ETF 가격 변화(달러)와 견줘 1.5배 넘게 어긋나면 (그 전 해, 값)을 돌려줌.
+    ETF 자료가 없으면 2배 넘게 바뀐 경우만."""
     if not series or len(series) < 2:
         return None
     (y1, v1), (y0, v0) = series[0], series[1]
-    if v0 > 0 and (v1 / v0 > 1.6 or v1 / v0 < 0.6):
+    if v0 <= 0 or y1 - y0 != 1:
+        return None
+    cap_ratio = v1 / v0
+    gap = cap_ratio / etf_ratio if etf_ratio else cap_ratio
+    lim = 1.5 if etf_ratio else 2.0
+    if gap > lim or gap < 1 / lim:
         return (y0, v0)
+    return None
+
+
+def year_ratio(close, y0, y1):
+    """연말 가격 비율(y1년 마지막 거래일 ÷ y0년 마지막 거래일). 자료가 없으면 None."""
+    try:
+        a = close[close.index.year == y0]
+        b = close[close.index.year == y1]
+        if len(a) and len(b):
+            return float(b.iloc[-1]) / float(a.iloc[-1])
+    except Exception:
+        pass
     return None
 
 
@@ -102,8 +121,16 @@ def collect():
             st = etf_stats(etf, fx)
         except Exception as e:
             print(f"ℹ️ {etf} 가격 실패: {type(e).__name__}")
+        ser = cap2.get(code)
+        er = None
+        if ser and len(ser) > 1:
+            try:
+                hh = gc._hist(etf, period="5y")
+                er = year_ratio(hh["Close"], ser[1][0], ser[0][0]) if hh is not None else None
+            except Exception:
+                er = None
         rows.append({"code": code, "ko": ko, "etf": etf, "kr": kr, "link": link,
-                     "cap": cap.get(code), "gdp": gdp.get(code), "jump": jump_flag(cap2.get(code)), **st})
+                     "cap": cap.get(code), "gdp": gdp.get(code), "jump": jump_flag(ser, er), "etf_year_ratio": er, **st})
     return {"world": cap.get("WLD"), "rows": rows}
 
 
@@ -128,8 +155,10 @@ def build_html(data):
         cell = f"{c[1] / 1e12:,.2f}조 달러 ({c[0]})" if c else "세계은행 자료 없음"
         if jp:
             cell += f" ※ {jp[0]}년 {jp[1] / 1e12:,.2f}조"
-            flags.append(f"{r['ko']}: {c[0]}년 값이 {jp[0]}년({jp[1] / 1e12:,.2f}조 달러)의 {c[1] / jp[1]:.1f}배로 1년 새 크게 바뀌어 "
-                         "집계 방식이 달라졌을 수 있습니다. 세계 대비 비중에서 뺐습니다.")
+            er = r.get("etf_year_ratio")
+            flags.append(f"{r['ko']}: {c[0]}년 값이 {jp[0]}년({jp[1] / 1e12:,.2f}조 달러)의 {c[1] / jp[1]:.1f}배인데"
+                         + (f", 같은 해 {r['etf']} 가격은 {(er - 1) * 100:+.0f}%만 움직였습니다" if er else "")
+                         + ". 집계 방식이 달라졌을 수 있어 세계 대비 비중에서 뺐습니다.")
             flags.append("세계은행 세계 합계에는 이 값이 그대로 들어 있어, 다른 나라의 '세계 대비' 비중이 실제보다 조금 낮게 나올 수 있습니다.")
         if c and world and c[0] < world[0] - 2:
             flags.append(f"{r['ko']}: 세계은행의 가장 최근 값이 {c[0]}년이라 다른 나라와 시점이 다릅니다.")
