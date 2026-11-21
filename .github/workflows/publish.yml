@@ -554,6 +554,9 @@ jobs:
               # 11-21 나라 하나만 다시(예: art-pool:korea)
               C=$(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr ',' ' ' | tr -cd 'a-z ')   # 11-21 여러 나라: art-pool:china,india
               python site_pages/art_pool.py $C || echo "명화 후보 받기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "market-map-publish" ]; then
+              # 11-21 사용자 '공개하자' - 세계 주식시장 지도 공개(이미 공개면 숫자만 갱신)
+              python site_pages/market_map.py publish || echo "시장 지도 공개 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "market-map" ]; then
               # 11-21 세계 주식시장 지도 페이지(세계은행 시가총액 + ETF 계산) - 비공개 초안, 공개는 사용자 확인 뒤
               python site_pages/market_map.py draft || echo "시장 지도 실패"

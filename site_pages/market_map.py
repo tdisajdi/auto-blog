@@ -1,6 +1,7 @@
 """세계 주식시장 지도 페이지(2026-11-21 사용자 '나라별 시가총액 같은 건 여러 자료를 통합해 ondo 식으로, 출처 명확히').
 
   python site_pages/market_map.py draft     # 깃허브 실행(site_pages=market-map) - 비공개 초안 페이지로 올림(공개는 사용자 확인 뒤)
+  python site_pages/market_map.py publish   # 공개(11-21 사용자 '공개하자'), 이미 공개면 숫자만 갱신
   python site_pages/market_map.py preview   # 자료만 받아 lab/market_map.html·json 으로 저장(올리지 않음)
 
 자료(모두 코드가 받아 계산, 숫자를 손으로 적지 않음):
@@ -217,10 +218,14 @@ def main(mode="preview"):
     json.dump(data, open(os.path.join(ROOT, "lab", "market_map.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1, default=str)
     open(os.path.join(ROOT, "lab", "market_map.html"), "w", encoding="utf-8").write(page_html)
     print("세계 합계:", data.get("world"), "| 나라:", [(r["ko"], r.get("cap")) for r in data["rows"]])
-    if mode != "draft":
+    if mode not in ("draft", "publish"):
         return 0
-    from site_pages.upload import upsert_page
-    ok, msg = upsert_page({"slug": SLUG, "title": TITLE, "html": page_html}, "draft")
+    from site_pages.upload import upsert_page, refresh_page
+    page = {"slug": SLUG, "title": TITLE, "html": page_html}
+    # 11-21 사용자 '공개하자' - publish는 초안을 공개로. 이미 공개된 페이지면 숫자만 새로(refresh)
+    ok, msg = upsert_page(page, mode)
+    if not ok and "이미 있어 건드리지 않음" in msg:
+        ok, msg = refresh_page(page)
     print(("✅ " if ok else "❌ ") + msg)
     return 0 if ok else 1
 
