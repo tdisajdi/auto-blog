@@ -554,6 +554,9 @@ jobs:
               # 11-21 나라 하나만 다시(예: art-pool:korea)
               C=$(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr ',' ' ' | tr -cd 'a-z ')   # 11-21 여러 나라: art-pool:china,india
               python site_pages/art_pool.py $C || echo "명화 후보 받기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "market-map" ]; then
+              # 11-21 세계 주식시장 지도 페이지(세계은행 시가총액 + ETF 계산) - 비공개 초안, 공개는 사용자 확인 뒤
+              python site_pages/market_map.py draft || echo "시장 지도 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
               python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
@@ -664,6 +667,7 @@ jobs:
           git add lab/recheck 2>/dev/null || true
           git add lab/sitekit_probe.txt 2>/dev/null || true
           git add lab/art 2>/dev/null || true
+          git add lab/market_map.json lab/market_map.html 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 변경 없음"
           else

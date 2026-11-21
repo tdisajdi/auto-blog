@@ -81,3 +81,14 @@ def test_country_market_calc():
     assert one["kr"] is not None and r["rows"][2]["kr"] is None
     facts, table = gc.render_country(r, gc.COUNTRIES["india"])
     assert "원화로 환산하면" in facts and "전망" in facts and "<table" in table and "최대 낙폭" not in facts
+
+
+def test_market_map_page():
+    """11-21 세계 주식시장 지도: 연도 다르면 세계 대비 비움, 대만은 '자료 없음', 출처 링크."""
+    from site_pages import market_map as m
+    rows = [{"code": "USA", "ko": "미국", "etf": "SPY", "kr": "", "link": "", "cap": (2024, 62e12), "gdp": (2024, 200.0), "usd": 5.0},
+            {"code": "JPN", "ko": "일본", "etf": "EWJ", "kr": "TIGER 일본니케이225", "link": "", "cap": (2023, 6e12), "gdp": None},
+            {"code": "TWN", "ko": "대만", "etf": "EWT", "kr": "", "link": "", "cap": None, "gdp": None}]
+    h = m.build_html({"world": (2024, 124e12), "rows": rows})
+    assert "50.0%" in h and "세계은행 자료 없음" in h and "data.worldbank.org" in h and "world-exchanges.org" in h
+    assert "TIGER 일본니케이225" in h and "권유하지 않습니다" in h
