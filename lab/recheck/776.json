@@ -3,13 +3,6 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "21-guide-bond-duration.json",
- "issues": [
-  {
-   "severity": "중요",
-   "quote": "미국 10년물 국채 금리가 4.06%에서 4.91%로 0.85%p 상승하는 동안 기존 발행 채권의 이자 매력이 떨어지며 장기 채권 ETF인 TLT 가격은 -4.7% 하락했습니다.",
-   "problem": "%p(퍼센트포인트) 용어가 본문에 처음 등장할 때 지정된 용어 풀이(비율끼리 뺀 차이)가 누락되었습니다.",
-   "fix": "%p가 처음 쓰인 문장에 괄호나 별도 설명을 붙여 '비율끼리 뺀 차이'라는 용어 풀이를 추가하세요."
-  }
- ],
+ "issues": [],
  "patch_applied": true
 }
