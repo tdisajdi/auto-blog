@@ -199,13 +199,12 @@ def write_etf_article(etf_list, today_str, now):
                 os.remove("confirmed_topic_context.json")
 
         def _tax_visual():
+            # 11-21 VOO·QQQ 비교(873): 세금 가이드(701, 공개됨)와 똑같은 계좌별 세금표가 들어가 공개 글과 자료가 겹침
+            # (같은 날 계좌 가이드 852·파킹형 865와 같은 실수) → 표 대신 세금 가이드로 가는 짧은 안내만
             import explainer_engine as _xe
-            _xe.ea = sys.modules[__name__]
-            try:
-                return _xe.tax_scenarios()[1]
-            except Exception as e:
-                print(f"ℹ️ 세금 계산표 실패: {type(e).__name__}")
-                return ""
+            return (f'<p style="margin:18px 0;padding:12px 16px;background:#f8f9fa;border-radius:6px;font-size:14px;">'
+                    f'이익 규모별로 해외 상장·국내 상장·ISA·연금저축의 세금이 어떻게 달라지는지는 '
+                    f'<a href="{_xe.TAX_GUIDE_URL}">해외 상장 vs 국내 상장 ETF 세금 비교</a>에 계산해 두었습니다.</p>')
 
         # 코드가 만든 그래프·표는 "시각 자료 서랍"에 넣고, 기획이 2~3개를 골라 배치한다
         drawer, drawer_html = _analysis.build_drawer({

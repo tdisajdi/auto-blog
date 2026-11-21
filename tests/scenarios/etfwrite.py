@@ -51,3 +51,8 @@ print("rate line only for rates ok")
 # 11-10: 비교 자료(competition)가 없으면 '비교 자료가 있을 때' 필수 질문을 넘기지 않음
 assert not any("비교 자료가 있을 때" in q for q in got["must_answer"]), got["must_answer"]
 print("conditional must ok")
+
+# 11-21 VOO·QQQ(873): 경쟁 상품 상자(틀린 '동일 지수'·홍보 문구)는 넣지 않음
+from ondo.etf.visuals import _add_competitive_comparison as _acc
+assert _acc({"VOO": {}, "QQQ": {}}) == ""
+print("no competition promo box ok")

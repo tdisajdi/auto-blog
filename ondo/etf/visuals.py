@@ -82,31 +82,10 @@ def _add_scenario_analysis(etf_data_cache, title_tickers):
 
 
 def _add_competitive_comparison(etf_data_cache):
-    """비교분석 강화"""
-    if len(etf_data_cache) < 2:
-        return ""
-    
-    html = '<h3 style="margin-top:30px;">⚖️ 경쟁 상품 비교: 왜 이 분석 대상인가?</h3>'
-    html += '<p style="color:#555;line-height:1.6;">동일 지수 추종 상품들 중 선택 근거:</p>'
-    html += '<ul style="padding-left:20px;line-height:1.8;color:#333;">'
-    
-    for ticker, d in etf_data_cache.items():
-        ticker_clean = ticker.replace(".KS", "").replace(".US", "")
-        expense = d.get('expense_ratio', 'N/A')
-        div_growth = d.get('dividend_growth_rate', 'N/A')
-        fx_exposure = d.get('fx_exposure', 'N/A')
-        
-        html += f'<li><strong>{ticker_clean}</strong>: 보수({expense}), 1년 배당 증가({div_growth}), 환노출({fx_exposure})</li>'
-    
-    html += '</ul>'
-    html += """
-<p style="margin-top:15px;padding:12px;background:#fffbea;border-left:3px solid #f39c12;color:#7d6608;font-size:12px;">
-<strong>💡 핵심 차별고:</strong> 이 분석이 다른 블로그와 다른 이유는 단순 "어느 ETF 좋다"가 아니라, 
-<strong>당신의 구체적 상황(연령, 납입기간, 세금계좌) 기반으로 수익률뿐 아니라 세금·환율·변동성까지</strong> 종합 검토한다는 점입니다.
-</p>
-"""
-    
-    return html
+    """11-21 VOO·QQQ 비교(873): 이 상자가 '동일 지수 추종 상품들 중 선택 근거'(서로 다른 지수인데 틀림)와
+    '다른 블로그와 다른 이유는 당신의 구체적 상황(연령·납입기간) 기반…'(하지도 않는 분석을 내세우는 홍보 문구)을 넣었음.
+    보수·배당 증가·환율은 본문 비교표와 겹치므로 상자 자체를 넣지 않는다."""
+    return ""
 
 
 
