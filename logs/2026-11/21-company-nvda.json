@@ -1,0 +1,611 @@
+{
+ "article_type": "company",
+ "topic_id": "NVDA",
+ "title_seed": "엔비디아은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF로 사면 담기는 비중",
+ "category": "etf",
+ "started_at": "2026-11-21T20:18:22",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.6,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.1,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 4.3,
+   "chars": 3104
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.3,
+   "chars": 0
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 131.1,
+   "chars": 3530
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 15.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 13.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 17.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 11.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 9.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.2,
+   "chars": 395
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.7,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 15.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 72.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 3,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 6.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 14.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(사실 검증) 다시",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 8.8,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 865
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 9.7,
+   "chars": 179
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "ok",
+   "reason": "",
+   "sec": 2.0,
+   "chars": 1061
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.5,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 12.1,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.2,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.9,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.8,
+   "chars": 0
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.5-flash",
+   "key": 1,
+   "status": "429",
+   "reason": "{   \"error\": {     \"code\": 429,     \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "sec": 0.1,
+   "chars": 0
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "20:18:43",
+   "title": "엔비디아 실적·주가 낙폭·배당과 ETF 비중 정리",
+   "sections": [
+    "엔비디아의 사업 구조와 연간 실적",
+    "주가 낙폭과 회복 과정은 어땠을까",
+    "배당 지급 기록과 주요 ETF 비중"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "20:21:05",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "모델 전환",
+   "at": "20:22:38",
+   "from_model": "gemini-3.6-flash",
+   "to_model": "gemini-3.5-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 1(사실 검증)"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "20:25:38",
+   "score": 0.7,
+   "passed": false,
+   "value": 0.6,
+   "value_missing": [
+    "제목 질문에 답함",
+    "용어 풀이"
+   ],
+   "value_tip": "제목이 던진 질문에 본문이 조건과 숫자로 직접 답하는 내용을 제목과 도입부에 추가하기",
+   "issues": [
+    "[중요·사실 검증] → [누락] 제목이 던진 질문(또는 약속)에 대한 답을, 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 말하지 않았습니다. / 고칠 방법: 도입부 첫 문단에 엔비디아의 2026년 회계연도 매출(2,159억 달러)과 최대 낙폭(-66.3%) 등의 핵심 숫자를 넣어 먼저 요약해 주세요.",
+    "[사소·독자 편집] '엔비디아의 매출은 2023년 270억 달러에서 2026년 회계연도 매출 2,159억 달러로 연평균 100.0' → 앞의 도입부 및 실적 문단에서 이미 언급한 매출액과 증가율 숫자를 바로 다음 문단에서 거의 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 매출액 문장을 삭제하고 단일 문단으로 정리하세요.",
+    "[중요·독자 편집] '엔비디아의 주당 배당금은 2020년 $0.02에서 2025년 $0.04로 5년 동안 연평균 20.1% 증가했' → 바로 앞 문단에서 이미 설명한 배당금 추이와 연도별 지급액 숫자를 동일한 내용으로 한 번 더 반복하고 있습니다. / 고칠 방법: 중복되는 배당금 연평균 증가율 문장을 삭제하세요.",
+    "[사소·독자 편집] '주가가 꺾였을 때 투자자가 겪을 수 있는 손실의 폭을 보여주는 지표입니다.' → 최대 낙폭(MDD)의 개념을 괄호 안에서 설명한 뒤 바로 의미를 풀어서 단독 문장으로 덧붙여 다소 매끄럽지 않습니다. / 고칠 방법: 앞 문장의 괄호 설명과 합쳐서 하나의 문장으로 수정하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '66.3%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "본문 숫자만 되풀이한 FAQ 1개 삭제: 🔸 연평균 배당 증가율이 낮아 보이면 배당이 줄어든 것"
+   ],
+   "chars": 2946
+  },
+  {
+   "step": "고쳐쓰기 1 실패",
+   "at": "20:26:09",
+   "reason": "모든 키·모델 한도 초과"
+  }
+ ],
+ "result": {
+  "status": "draft",
+  "title": "엔비디아 실적·주가 낙폭·배당과 ETF 비중 정리",
+  "url": "https://ondo99.com/?p=832",
+  "score": 0.7,
+  "issues": [
+   "[중요·사실 검증] → [누락] 제목이 던진 질문(또는 약속)에 대한 답을, 자료의 숫자를 넣어 도입부 첫 문단에서 한두 문장으로 먼저 말하지 않았습니다. / 고칠 방법: 도입부 첫 문단에 엔비디아의 2026년 회계연도 매출(2,159억 달러)과 최대 낙폭(-66.3%) 등의 핵심 숫자를 넣어 먼저 요약해 주세요.",
+   "[중요·독자 편집] '엔비디아의 주당 배당금은 2020년 $0.02에서 2025년 $0.04로 5년 동안 연평균 20.1% 증가했' → 바로 앞 문단에서 이미 설명한 배당금 추이와 연도별 지급액 숫자를 동일한 내용으로 한 번 더 반복하고 있습니다. / 고칠 방법: 중복되는 배당금 연평균 증가율 문장을 삭제하세요.",
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+   "[참고] 같은 숫자 '66.3%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '엔비디아의 매출은 2023년 270억 달러에서 2026년 회계연도 매출 2,159억 달러로 연평균 100.0' → 앞의 도입부 및 실적 문단에서 이미 언급한 매출액과 증가율 숫자를 바로 다음 문단에서 거의 그대로 되풀이하고 있습니다. / 고칠 방법: 중복되는 매출액 문장을 삭제하고 단일 문단으로 정리하세요.",
+   "[사소·독자 편집] '주가가 꺾였을 때 투자자가 겪을 수 있는 손실의 폭을 보여주는 지표입니다.' → 최대 낙폭(MDD)의 개념을 괄호 안에서 설명한 뒤 바로 의미를 풀어서 단독 문장으로 덧붙여 다소 매끄럽지 않습니다. / 고칠 방법: 앞 문장의 괄호 설명과 합쳐서 하나의 문장으로 수정하세요."
+  ]
+ },
+ "facts": "[회사 기본 정보 - Yahoo Finance 회사 정보]\n- 이름: 엔비디아 (NVIDIA Corporation, 종목 코드 NVDA, 미국 상장)\n- 업종(섹터): Technology\n- 세부 업종: Semiconductors\n- 본사 국가: United States\n- 직원 수(정규직): 42,000명\n- 시가총액(자료 받은 날 기준): 3.03조 달러(약 4,046조 원)\n- 회사 소개 원문(Yahoo, 영어 - 이 범위 안에서만 우리말로 풀어 쓸 것, 원문에 없는 제품·비중·순위는 쓰지 말 것): NVIDIA Corporation operates as a data center scale AI infrastructure company in the United States, Taiwan, China, Hong Kong, Europe, and internationally. It operates through Compute & Networking, and Graphics segments. The Compute & Networking segment provides data center accelerated computing and networking platforms and artificial intelligence solutions and software, and automotive platforms and autonomous and electric vehicle solutions, including software. The Graphics segment offers GeForce GPUs for gaming and PCs; Quadro/NVIDIA RTX GPUs for enterprise workstation graphics. The company's products are used in gaming, professional visualization, data center, and automotive markets. It sells its products to original equipment manufacturers, original device manufacturers, system integrators and distributors, independent software vendors, cloud service providers, add-in board manufacturers, distributors, automotive manufacturers and tier-1 automotive suppliers, and other ecosystem participants. It has a collaboration with Cisco to develop Ultra-Dense Small Form Factor Pluggable (USFP), a high-density optical module pluggable transceiver. It has a collaboration with ChipAgents to develop Build-A-Chip-Bench, a benchmark for AI agents carrying chip design tasks and The Company has a strategic alliance with MediaTek to build the next generations of AI computing platforms. NVIDIA Corporation was incorporated in 1993 and is headquartered in Santa Clara, California.\n[연간 실적 - Yahoo Finance 손익계산서, 회계연도 기준]\n- 2023년: 매출 270억 달러, 영업이익 56억 달러(영업이익률 20.7%), 순이익 44억 달러\n- 2024년: 매출 609억 달러, 영업이익 330억 달러(영업이익률 54.1%), 순이익 298억 달러\n- 2025년: 매출 1,305억 달러, 영업이익 815억 달러(영업이익률 62.4%), 순이익 729억 달러\n- 2026년: 매출 2,159억 달러, 영업이익 1,304억 달러(영업이익률 60.4%), 순이익 1,201억 달러\n- 매출 변화: 2023년 → 2026년 +700.5% (연평균 +100.0%)\n[가격 흔들림 - 최근 10년 일별 종가(배당 제외 가격), ondo 계산]\n- 최대 낙폭: -66.3% (고점 2021-11-29 → 바닥 2022-10-14, 떨어지는 데 319일)\n- 회복: 223일 뒤(2023-05-25) 고점 가격 회복\n- 지금 가격의 10년 최고가 대비: -47.5%\n- 1,000만 원을 그 고점에 넣었다면 가장 낮을 때 평가액: 337만 원\n[배당 - Yahoo Finance 배당 지급 기록, 다 찬 해만, 세전]\n- 주당 연간 배당: 2020년 $0.02 → 2025년 $0.04, 5년 연평균 +20.1%\n- 지금 가격 기준 배당률: 0.03%\n- 해마다 주당 배당: 2020년 $0.02, 2021년 $0.02, 2022년 $0.02, 2023년 $0.02, 2024년 $0.03, 2025년 $0.04\n- 2024년, 2025년은 다른 해보다 지급이 크게 많았음(가운데값의 1.5배 넘음). 시작 해가 이런 해면 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말고 해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것\n[이 회사를 담은 ETF - 각 ETF 상위 보유 종목 자료(Yahoo Finance), 자료 받은 날 기준]\n- SPY(State Street SPDR S&P 500 ETF Trust): 엔비디아 비중 7.58% → 이 ETF에 100만 원을 넣으면 그중 약 8만 원이 엔비디아 몫\n- QQQ(Invesco QQQ Trust): 엔비디아 비중 8.00% → 이 ETF에 100만 원을 넣으면 그중 약 8만 원이 엔비디아 몫\n- SMH(VanEck Semiconductor ETF): 엔비디아 비중 20.19% → 이 ETF에 100만 원을 넣으면 그중 약 20만 원이 엔비디아 몫\n- 비중은 매일 조금씩 바뀜(가격 변동·리밸런싱). 직접 사면 100%가 이 회사, ETF로 사면 나머지는 다른 종목에 나뉨 - 어느 쪽이 낫다고 판단하지 말 것\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n",
+ "drafts": {
+  "1": "<h1>엔비디아 실적·주가 낙폭·배당과 ETF 비중 정리</h1>\n<!-- 엔비디아의 2026년 실적, 과거 주가 최대 낙폭, 연도별 배당금 추이와 함께 SPY, QQQ, SMH 등 주요 ETF에 담긴 편입 비중을 상세히 살펴봅니다. -->\n\n<p>엔비디아(NVIDIA Corporation, 종목 코드 NVDA)는 2026년 회계연도 기준 매출 2,159억 달러, 영업이익 1,304억 달러를 기록하며 영업이익률 60.4%에 달하는 성과를 냈습니다. 과거 주가 흐름에서는 최대 -66.3%의 주가 하락을 겪기도 했으며, 현재 주요 지수형 및 반도체 ETF에서 최소 7%에서 최대 20% 이상의 비중을 차지하고 있습니다. 2026년 11월 21일 기준 공개된 자료를 바탕으로 엔비디아의 사업 구조, 최근 4개 회계연도 실적, 주가 변동성, 배당 추이, 주요 ETF 비중을 순서대로 살펴봅니다.</p>\n\n<h3>엔비디아의 사업 구조와 연간 실적</h3>\n\n<p>엔비디아는 미국, 대만, 중국, 홍콩, 유럽 등 전 세계를 대상으로 데이터 센터 규모의 인공지능 기반 시설 사업을 운영하는 미국 상장 기업입니다. 본사는 미국 산타클라라에 위치하며, 미국 세부 업종 분류 기준 반도체 분야에 속해 있고 정규직 직원 수는 42,000명, 시가총액은 약 3.03조 달러(약 4,046조 원)입니다. 회사의 사업 부문은 크게 컴퓨팅 및 네트워크, 그리고 그래픽 두 가지로 나뉩니다.</p>\n\n<p>컴퓨팅 및 네트워크 부문은 데이터 센터용 가속 컴퓨팅과 네트워크 플랫폼, 인공지능 솔루션과 소프트웨어를 제공하며, 자율주행 차량 및 전기차 솔루션을 포함한 자율주행 관련 플랫폼도 담당합니다. 그래픽 부문은 게이밍과 PC용 지포스 GPU, 기업용 워크스테이션을 위한 쿼드로 및 엔비디아 RTX GPU를 제공하고 있습니다. 제품은 주문자 상표 부착 생산 업체, 시스템 통합 업체, 독립 소프트웨어 개발사, 클라우드 서비스 제공사, 자동차 제조업체 등에 공급됩니다.</p>\n\n<p>실적 자료를 보면 2023년 회계연도 매출 270억 달러에서 2026년 회계연도 매출 2,159억 달러로 3년 동안 700.5% 늘어났습니다. 영업이익 역시 2023년 56억 달러(영업이익률 20.7%)에서 2026년 1,304억 달러(영업이익률 60.4%)로 커졌으며, 2026년 순이익은 1,201억 달러를 기록했습니다. <strong>엔비디아의 매출은 2023년 270억 달러에서 2026년 2,159억 달러로 연평균 100.0% 증가했습니다.</strong></p>\n\n<h3>주가 낙폭과 회복 과정은 어땠을까</h3>\n\n<p>최근 10년간 일별 종가 자료를 살펴보면 주가의 고점과 저점 사이의 변동성이 컸던 구간이 존재합니다. <strong>엔비디아는 2021년 11월 29일 고점을 기록한 이후 2022년 10월 14일 바닥까지 319일 동안 주가가 하락하며 -66.3%의 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)을 기록했습니다.</strong> 주가가 꺾였을 때 투자자가 겪을 수 있는 손실의 폭을 보여주는 지표입니다.</p>\n\n<p>만약 고점이었던 2021년 11월 29일에 1,000만 원을 넣었다면 주가가 가장 낮았던 2022년 10월 14일의 평가액은 337만 원까지 줄어들었습니다. 이 하락 폭을 극복하고 다시 이전 고점 가격을 되찾는 데까지는 바닥을 찍은 날로부터 223일(2023년 05월 25일)이 걸렸습니다. 한편 현재 가격은 최근 10년 최고가 대비 -47.5% 수준에 위치해 있습니다.</p>\n\n<h3>배당 지급 기록과 주요 ETF 비중</h3>\n\n<p>엔비디아의 주당 연간 배당금은 2020년 $0.02에서 시작해 2025년 $0.04로 늘어났으며, 현재 가격 기준 배당률은 0.03% 수준입니다. 연도별 주당 배당금은 2020년부터 2023년까지 매년 $0.02를 유지하다가 2024년 $0.03, 2025년 $0.04로 증가했습니다. 2024년과 2025년의 지급액이 이전 연도들보다 상대적으로 컸던 흐름을 보입니다. <strong>엔비디아의 주당 배당금은 2020년 $0.02에서 2025년 $0.04로 5년 동안 연평균 20.1% 증가했습니다.</strong></p>\n\n<p>엔비디아를 직접 매수하면 자산의 100%가 해당 기업 한 곳에 집중되지만, 미국 상장 ETF를 활용하면 다른 종목들과 함께 분산하여 투자할 수 있습니다. 각 ETF 내 편입 비중을 보면 S&P 500 지수를 따르는 SPY(State Street SPDR S&P 500 ETF Trust) 내 엔비디아 비중은 7.58%로, 이 ETF에 100만 원을 넣으면 약 8만 원이 엔비디아 몫으로 배분됩니다. 나스닥 100 지수를 따르는 QQQ(Invesco QQQ Trust)의 엔비디아 비중은 8.00%이며, 반도체 업종에 집중하는 SMH(VanEck Semiconductor ETF)의 엔비디아 비중은 20.19%로 100만 원 중 약 20만 원을 차지합니다. 이러한 ETF 내 비중은 주가 변동과 리밸런싱에 따라 매일 조금씩 변동합니다.</p>\n\n<h3>자주 묻는 질문</h3><h4>🔸 ETF로 엔비디아를 살 때 비중은 항상 고정되어 있나요?</h4>\n<p>ETF 내 편입 비중은 고정되어 있지 않으며 지속적으로 변경됩니다. 종목 간 주가 변동에 따른 시가총액 변화나 ETF 자산운용사의 주기적인 리밸런싱 작업에 따라 엔비디아의 실제 담긴 비중은 매일 조금씩 바뀔 수 있습니다.</p>\n<h3>정리</h3>\n\n<p>엔비디아는 2026년 회계연도 기준 2,159억 달러의 매출과 60.4%의 영업이익률을 기록하는 실적 성장을 나타냈습니다. 하지만 과거 319일 동안 주가가 -66.3% 하락했던 구간이 존재했던 만큼, 고점 매수 시 평가액이 337만 원까지 감소했던 변동성의 기록도 함께 갖고 있습니다.</p>\n\n<p>개별 기업을 직접 살 경우 단일 종목 위험에 노출되지만, SPY(7.58%), QQQ(8.00%), SMH(20.19%)와 같은 ETF를 활용하면 7~20% 수준으로 비중을 나누어 담게 됩니다. 앞으로 기업 관련 정보를 확인할 때에는 단기적인 실적 규모뿐만 아니라, 주가 하락 시 버틸 수 있는 최대 낙폭(-66.3%) 수치와 ETF 내 실시간 비중 변화를 함께 살피는 것이 판단의 기준이 됩니다.</p>\n\n<p><strong>한 줄 정리:</strong> 엔비디아는 2,159억 달러 실적과 -66.3%의 주가 변동성을 거쳤으며 ETF를 통해 7~20% 비중으로 나누어 담을 수 있습니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 엔비디아 실적 주가낙폭 배당금 ETF비중"
+ },
+ "minutes": 7.9
+}
