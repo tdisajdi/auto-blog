@@ -51,3 +51,6 @@ print("company ok")
 # 11-21 조사 은/는
 assert [co.eun(x) for x in ("애플", "엔비디아", "테슬라", "TSMC", "NAVER", "KB금융")] == ["애플은", "엔비디아는", "테슬라는", "TSMC는", "NAVER는", "KB금융은"]
 print("josa ok")
+# 11-22 배당 없는 회사는 제목 씨앗에서 '배당' 뺌
+assert "배당" not in co.title_seed("TSLA", True, False) and "배당" in co.title_seed("AAPL", True, True)
+print("title seed div ok")
