@@ -46,7 +46,7 @@
     {
       "title": "ETF 총보수 0.1% 차이, 10년 뒤 내 계좌엔 얼마 차이날까?",
       "hash": "34c5f51d0618abc02091643d9effe0e272fa00da2d514dfb4d0da36613a38221",
-      "content": "<div style=\"margin:20px 0; padding:18px 22px; border-radius:8px; background:#f8fafb; border-left:3px solid #1f3c88; box-shadow:0 1px 4px rgba(0,0,0,0.08);\"><h2 style=\"margin:0 0 12px 0; font-size:16px; color:#1f3c88; font-weight:700;\">📑 핵심 목차</h2><ul style=\"margin:0; padding-left:20px; list-style-type:decimal;\"><li><a href=\"#실제-etf-보수와-10년-뒤-차이\">실제 ETF 보수와 10년 뒤 차이</a></li><li><a href=\"#보수-차이가-커지는-이유와-구조\">보수 차이가 커지는 이유와 구조</a></li><li><a href=\"#국내외-상장-etf와-계좌-활용법\">국내외 상장 ETF와 계좌 활용법</a></li><li><a href=\"#자주-묻는-질문\">자주 묻는 질문</a></li><li><a href=\"#정리\">정리</a></li></ul></div> <!-- 동일한 1,000만 원을 연 5% 수익률로 10년 투자할 때 총보수 0.1%p 차이가 만드는 실제 금액 차이는 약 16만 원입니다. 실제 미국 S&P500 추종 ETF의 운용보수와 낙폭 데이터를 통해 보수가 수익률에 미치는 영향을 확인해 보세요. --> <p>원금 1,000만 원을 보수 떼기 전 연 5% 수익률 조건으로 투자할 때, 총보수만 0.1%p(%퍼센트포인트: 비율끼리 뺀 차이) 차이 나는 두 ETF의 10년 뒤 격차는 약 16만 원입니다. 이는 최종 평가 금액의 약 1.0%에 해당하는 금액이며, 20년 뒤에는 약 53만 원으로 최종 금액의 약 2.0%까지 차이가 벌어집니다.</p> <p>총보수는 투자자가 매달 계좌에서 따로 내는 돈이 아니라 ETF 자산에서 매일 조금씩 빠져나갑니다. 따라서 투자자가 직접 현금을 이체할 필요 없이 수익률(가격)에 이미 반영되는 구조입니다. 2026년 11월 19일 기준 공개된 실제 상품 데이터를 통해 수수료 차이가 계좌에 미치는 영향을 구체적으로 확인해 볼 수 있습니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"실제-etf-보수와-10년-뒤-차이\">실제 ETF 보수와 10년 뒤 차이</h3> <p>미국 S&P 500 지수를 추종하는 대표 상품들의 수수료 구조를 살펴보면 해외 상장 상품과 국내 상장 상품 간의 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용) 차이가 명확히 나타납니다. 미국 시장에 상장된 SPY는 운용보수가 0.09%이며, 또 다른 해외 상장 ETF인 VOO는 0.03%의 보수를 책정하고 있습니다. 반면 국내 상장 상품인 360750(TIGER 미국S&P500)의 운용보수는 0.007% 수준입니다.</p> <p>비용 차이 외에 5년 기준 최대 낙폭(MDD: 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율) 지표에서도 차이를 보입니다. SPY의 5년 최대 낙폭은 -24.50%였고, VOO는 -24.52%를 기록했습니다. 두 해외 상장 ETF는 모두 달러로 거래되어 환율 영향이 존재합니다. 국내 상장 상품인 360750 역시 해외 자산에 투자하며 환헤지(환율이 움직여도 수익률이 덜 흔들리게 막는 장치)를 하지 않는 상품이므로 환율 영향을 동일하게 받지만, 5년 최대 낙폭은 -19.15%로 집계되었습니다.</p> <h4>🔸 실제 상품 보수 차이의 10년 및 20년 결과</h4> <p>동일하게 1,000만 원을 보수 떼기 전 연 5% 수익으로 굴린다고 가정했을 때 실제 운용보수 차이가 만드는 금액 격차는 상품 조합에 따라 달라집니다. VOO(총보수 0.03%)와 360750(총보수 0.007%)의 보수 차이는 0.023%p입니다. 이 조건에서 10년 뒤 VOO의 평가 금액은 360750보다 4만 원 적고, 20년 뒤에는 12만 원 적어집니다.</p> <p>SPY(총보수 0.09%)와 360750(총보수 0.007%)을 비교하면 보수 차이는 0.083%p로 늘어납니다. 이 격차로 인해 10년 뒤 SPY의 평가 금액은 360750에 비해 13만 원 적게 나타나며, 20년 뒤에는 차이가 44만 원까지 벌어집니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"보수-차이가-커지는-이유와-구조\">보수 차이가 커지는 이유와 구조</h3> <p>보수 차이로 발생하는 금액 격차는 시간이 지날수록 선형적으로 늘어나는 것이 아니라 복리 효과로 인해 점차 가속화됩니다. 동일한 0.1%p의 보수 차이라도 10년 동안 투자했을 때 약 16만 원이던 격차가 20년이 지나면 약 53만 원으로 3배 이상 커지는 이유가 바로 여기에 있습니다.</p> <p>투자금의 규모 역시 비용 격차를 키우는 주요 변수입니다. 운용보수가 투자 자산의 일정 비율로 매일 차감되는 방식이기 때문에, 원금이 커질수록 매일 떼어가는 절대적인 비용 차이가 함께 증가합니다. 장기 투자를 계획할수록 초기의 미세한 보수 차이가 미래 계좌 잔고에 미치는 영향력을 반드시 고려해야 합니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><div class=\"ondo-calc\" style=\"margin:24px 0;overflow-x:auto;\"><p style=\"font-weight:700;margin:0 0 8px;\">같은 원금·같은 수익률이라면, 총보수만 다를 때 차이</p><table style=\"width:100%;border-collapse:collapse;font-size:14px;\"><tr><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">ETF</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">총보수</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">10년 뒤</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">20년 뒤</th></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">360750</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0.007%</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">1,628만 원 (기준)</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">2,650만 원 (기준)</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">VOO</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0.03%</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">1,624만 원 (-4만 원)</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">2,637만 원 (-12만 원)</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">SPY</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0.09%</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">1,614만 원 (-13만 원)</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">2,606만 원 (-44만 원)</td></tr></table><p style=\"font-size:12px;color:#8a96b0;margin-top:6px;\">원금 1,000만 원을 한 번에 넣고, 보수를 떼기 전 연 5% 수익을 가정한 계산(ondo 계산). 괄호는 가장 싼 ETF와의 차이. 총보수만 반영 - 매매 비용·세금·환율·추적 오차는 빼고 계산. 수익률 가정은 예시일 뿐 실제 수익이 아님.</p></div>\n<h3 id=\"국내외-상장-etf와-계좌-활용법\">국내외 상장 ETF와 계좌 활용법</h3> <p>투자하려는 ETF의 상장 위치에 따라 활용할 수 있는 절세 계좌가 달라집니다. 해외(미국 등) 상장 ETF는 ISA(개인종합자산관리계좌)·연금저축·IRP 계좌로 직접 살 수 없습니다. 해외 상장 상품이 제공하는 지수 투자 효과와 계좌의 세제 혜택을 동시에 누리고 싶다면 해당 절세 계좌 내에서 동일한 지수를 추종하는 국내 상장 ETF를 활용하는 방법이 있습니다.</p> <p>배당금 지급 방식과 세율 구조에서도 차이가 발생합니다. 해외 상장 ETF에서 나오는 배당금은 현지에서 세금을 미리 떼고 지급하는 원천징수 과정을 거치게 됩니다. 세금 관련 상세 규칙과 차이에 대해서는 해외 상장 vs 국내 상장 ETF 세금 비교 가이드에서 다룹니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"자주-묻는-질문\">자주 묻는 질문</h3> <h4>🔸 총보수가 0.1% 차이나면 투자자가 매달 계좌에서 0.1%를 직접 현금으로 이체해야 하나요?</h4> <p>그렇지 않습니다. 총보수는 ETF 자산 자체에서 매일 조금씩 차감되어 순자산가치에 자동으로 계산됩니다. 따라서 투자자가 고지서를 받거나 직접 이체할 필요 없이 매일 형성되는 ETF 가격과 수익률에 비용이 반영되어 있습니다.</p> <h4>🔸 해외 상장 ETF와 국내 상장 ETF는 ISA 계좌에서 똑같이 살 수 있나요?</h4> <p>해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없으며, 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"정리\">정리</h3> <p>총보수의 미세한 차이는 투자 기간이 짧을 때는 눈에 띄지 않지만, 복리 구조와 시간 경과에 따라 계좌 잔고의 격차를 서서히 넓혀갑니다. 따라서 장기 자산 배분을 설계할 때는 자산군뿐만 아니라 각 상품이 떼어가는 수수료율의 차이를 명확히 파악하는 과정이 필요합니다.</p> <p>새로운 ETF 상품이나 비교 자료를 살펴볼 때는 다음 기준을 바탕으로 스스로 수치를 점검해 볼 수 있습니다. 첫째, 표기된 운용보수 외에 실제로 자산에서 차감되는 보수 차이가 0.083%p 또는 0.023%p처럼 어느 정도 발생하는지 확인합니다. 둘째, 추종하는 기초 자산이 동일하더라도 지난 5년간 기록한 360750(-19.15%)이나 SPY(-24.50%), VOO(-24.52%)처럼 최대 낙폭(MDD) 수치에 차이가 있는지 점검합니다. 셋째, 본인이 활용하려는 연금저축이나 ISA 등 특정 계좌에서 직접 거래가 가능한 상장 위치의 상품인지 확인해야 합니다.</p> <p><strong>한 줄 정리:</strong> ETF 총보수 0.1%p 차이는 장기 투자 시 복리로 차이가 벌어집니다.</p> <p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 ETF vs 국내 상장 ETF 세금 비교 가이드</a></p> <div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융<br/>직접 확인: <a href=\"https://finance.yahoo.com/quote/SPY\" target=\"_blank\" rel=\"noopener nofollow\">SPY Yahoo Finance</a> · <a href=\"https://finance.yahoo.com/quote/VOO\" target=\"_blank\" rel=\"noopener nofollow\">VOO Yahoo Finance</a> · <a href=\"https://finance.naver.com/item/main.naver?code=360750\" target=\"_blank\" rel=\"noopener nofollow\">360750 네이버 금융</a></div><p style=\"margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;\">이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특정 상품의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>",
+      "content": "<div style=\"margin:20px 0; padding:18px 22px; border-radius:8px; background:#f8fafb; border-left:3px solid #1f3c88; box-shadow:0 1px 4px rgba(0,0,0,0.08);\"><h2 style=\"margin:0 0 12px 0; font-size:16px; color:#1f3c88; font-weight:700;\">📑 핵심 목차</h2><ul style=\"margin:0; padding-left:20px; list-style-type:decimal;\"><li><a href=\"#실제-etf-보수와-10년-뒤-차이\">실제 ETF 보수와 10년 뒤 차이</a></li><li><a href=\"#보수-차이가-커지는-이유와-구조\">보수 차이가 커지는 이유와 구조</a></li><li><a href=\"#국내외-상장-etf와-계좌-활용법\">국내외 상장 ETF와 계좌 활용법</a></li><li><a href=\"#자주-묻는-질문\">자주 묻는 질문</a></li><li><a href=\"#정리\">정리</a></li></ul></div> <!-- 동일한 1,000만 원을 연 5% 수익률로 10년 투자할 때 총보수 0.1%p 차이가 만드는 실제 금액 차이는 약 16만 원입니다. 실제 미국 S&P500 추종 ETF의 운용보수와 낙폭 데이터를 통해 보수가 수익률에 미치는 영향을 확인해 보세요. --> <p>원금 1,000만 원을 보수 떼기 전 연 5% 수익률 조건으로 투자할 때, 총보수만 0.1%p(%퍼센트포인트: 비율끼리 뺀 차이) 차이 나는 두 ETF의 10년 뒤 격차는 약 16만 원입니다. 이는 최종 평가 금액의 약 1.0%에 해당하는 금액이며, 20년 뒤에는 약 53만 원으로 최종 금액의 약 2.0%까지 차이가 벌어집니다.</p> <p>총보수는 투자자가 매달 계좌에서 따로 내는 돈이 아니라 ETF 자산에서 매일 조금씩 빠져나갑니다. 따라서 투자자가 직접 현금을 이체할 필요 없이",
       "status": "published",
       "notes": "guide (0.97)",
       "timestamp": "2026-11-19T13:54:19.185768",
@@ -62,7 +62,8 @@
           "topic_id": "expense-ratio"
         }
       },
-      "url": "https://ondo99.com/?p=705"
+      "url": "https://ondo99.com/?p=705",
+      "content_truncated": true
     },
     {
       "title": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
@@ -458,6 +459,207 @@
         }
       },
       "url": "https://ondo99.com/?p=870"
+    },
+    {
+      "title": "VOO QQQ 비교: 수익·낙폭·보수·세금을 같은 기준으로 보기",
+      "hash": "5e88897dada661f09715cb95f2303e9fbb7a84a567a0e9e762a82110a8795155",
+      "content": "<div style=\"margin:20px 0; padding:18px 22px; border-radius:8px; background:#f8fafb; border-left:3px solid #1f3c88; box-shadow:0 1px 4px rgba(0,0,0,0.08);\"><h2 style=\"margin:0 0 12px 0; font-size:16px; color:#1f3c88; font-weight:700;\">📑 핵심 목차</h2><ul style=\"margin:0; padding-left:20px; list-style-type:decimal;\"><li><a href=\"#두-etf는-각각-어디에-투자하며-보수는-얼마인가\">두 ETF는 각각 어디에 투자하며 보수는 얼마인가</a></li><li><a href=\"#같은-기간-수익과-낙폭은-어떻게-달랐나\">같은 기간 수익과 낙폭은 어떻게 달랐나</a></li><li><a href=\"#배당과-세금-환율-조건은-어떻게-다른가\">배당과 세금, 환율 조건은 어떻게 다른가</a></li><li><a href=\"#어떤-조건일-때-어떤-쪽의-특징이-맞는가\">어떤 조건일 때 어떤 쪽의 특징이 맞는가</a></li><li><a href=\"#자주-묻는-질문\">자주 묻는 질문</a></li></ul></div> <!-- VOO와 QQQ의 5년 수익률, 최대 낙폭, 운용보수, 세금을 동일한 조건으로 산출하여 분석합니다. 실제 데이터를 바탕으로 투자 성향에 맞는 선택 기준을 제시합니다. --> <p>최근 5년 연평균 수익률(CAGR, 여러 해의 수익을 매년 같은 비율로 불어났다고 보고 1년치로 환산한 값)은 VOO가 9.6%, QQQ가 9.4%를 기록했으며, 최근 5년 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율)은 VOO -25.41%, QQQ -35.54%, 운용보수(ETF 운용사가 매년 자산에서 떼어 가는 비용)는 VOO 0.03%, QQQ 0.18%로 나타났습니다. 단기 1개월 수익률은 VOO가 -10.58%, QQQ가 -16.10%를 기록하며 하락 폭에서 선명한 차이를 보였습니다.</p> <p>동일하게 달러로 거래되는 해외 상장 상품이지만, 두 자산이 담고 있는 종목 구성과 변동성 수준은 완전히 다른 형태를 취합니다. 이 글에서는 2026년 11월 22일 공시 데이터를 기준으로 두 자산의 기초 정보, 실제 하락장에서 나타난 낙폭, 배당과 양도소득세, 환율 조건까지 같은 기준으로 비교해 정리합니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"두-etf는-각각-어디에-투자하며-보수는-얼마인가\">두 ETF는 각각 어디에 투자하며 보수는 얼마인가</h3> <p>VOO는 2010년 9월 7일 상장된 Vanguard 운용사의 상품으로 Standard & Poor's 500 Index를 추종합니다. 반면 QQQ는 1999년 3월 10일 상장되어 Invesco에서 운용하며 NASDAQ-100 Index를 지수 기준으로 삼고 있습니다. <strong>VOO의 운용보수(연)는 0.03%이며, QQQ의 운용보수는 연 0.18%로 설정되어 있습니다.</strong></p> <p>자산의 전체 규모를 나타내는 순자산은 VOO가 약 1조 7,357억 달러 수준이며, QQQ는 약 4,638억 달러 규모를 형성하고 있습니다. 두 상품 간에는 연 0.15%p(%p, 비율끼리 뺀 차이)의 운용보수 차이가 발생합니다. 운용보수가 0.1%p 더 높은 상품과 비교했을 때 1억 원을 10년 동안 투자 유지한다고 가정하면 VOO의 경우 보수 차이로 발생하는 비용 차이가 약 992,826원으로 계산됩니다. QQQ 역시 보수가 0.1%p 높은 상품과 비교 시 1억 원 10년 보유 기준 약 979,492원의 차이가 생깁니다.</p> <p>동일 지수나 유사한 영역을 다루는 비교 대상 데이터를 살펴볼 때는 명시된 운용보수 비율뿐만 아니라 실제 운용 규모인 순자산 크기를 함께 점검해야 합니다.</p> <div class=\"ondo-visual\" data-visual=\"competition\" style=\"margin:26px 0;\"><p class=\"ondo-figtitle\" style=\"font-weight:700;margin:6px 0 8px;\">⚖️ 경쟁 상품 비교: 왜 이 분석 대상인가?</p><p style=\"color:#555;line-height:1.6;\">동일 지수 추종 상품들 중 선택 근거:</p><ul style=\"padding-left:20px;line-height:1.8;color:#333;\"><li><strong>VOO</strong>: 보수(0.03%), 1년 배당 증가(5.57%), 환노출(있음 (해외 상장, 달러로 거래))</li><li><strong>QQQ</strong>: 보수(0.18%), 1년 배당 증가(8.99%), 환노출(있음 (해외 상장, 달러로 거래))</li></ul>\n<p style=\"margin-top:15px;padding:12px;background:#fffbea;border-left:3px solid #f39c12;color:#7d6608;font-size:12px;\">\n<strong>💡 핵심 차별고:</strong> 이 분석이 다른 블로그와 다른 이유는 단순 \"어느 ETF 좋다\"가 아니라, \n<strong>당신의 구체적 상황(연령, 납입기간, 세금계좌) 기반으로 수익률뿐 아니라 세금·환율·변동성까지</strong> 종합 검토한다는 점입니다.\n</p>\n</div><div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><div id=\"ondo-slot-2\" class=\"ondo-slot\"></div>\n<h3 id=\"같은-기간-수익과-낙폭은-어떻게-달랐나\">같은 기간 수익과 낙폭은 어떻게 달랐나</h3> <p>최근 5년간 가장 높은 지점에서 가장 크게 떨어진 비율을 뜻하는 최대 낙폭(MDD)에서 두 자산의 위험 관리 수준이 갈렸습니다. <strong>최근 5년 최대 낙폭 조사 결과 VOO는 -25.41%를 기록한 반면 QQQ는 -35.54%를 기록했습니다.</strong></p> <p>하락 구간의 진행 과정을 보면 VOO는 2022년 1월 3일 고점에서 2022년 10월 12일 바닥까지 약 281일 동안 -25.41% 하락했으며, 이후 바닥에서 약 464일이 지난 2024년 1월 19일에 이전 고점 가격을 전액 회복했습니다. QQQ의 경우 2021년 12월 27일 고점에서 2022년 12월 28일 바닥까지 약 366일간 -35.54% 떨어졌고, 바닥에서 약 350일이 흐른 2023년 12월 13일에 고점을 회복했습니다.</p> <p>두 자산의 공통 비교 가능 기간인 2021년 11월 22일부터 2026년 11월 20일까지 약 5.0년 동안의 가격 변화를 보면 VOO는 가격 변화 +58.6%(연평균 +9.7%), 최대 낙폭 -24.5%를 보였습니다. 같은 기간 QQQ는 가격 변화 +57.0%(연평균 +9.5%), 최대 낙폭 -35.1%를 나타냈습니다.</p> <p>해마다 연간 가격 변화를 산출한 결과 2022년에는 VOO가 -18.7%, QQQ가 -33.2%를 나타냈고, 2023년에는 VOO +26.8%, QQQ +55.9%를 기록했습니다. 이어서 2024년에는 VOO +25.8%, QQQ +27.7%, 2025년에는 VOO +18.1%, QQQ +21.0%였으며, 2026년에는 VOO +2.0%, QQQ -0.4%로 집계되어 5개 연도 중 VOO가 더 높은 수익을 낸 해가 2번, QQQ가 더 높은 수익을 낸 해가 3번이었습니다. 두 자산 간 주간 수익률 상관계수(두 숫자가 같이 움직인 정도)는 0.95로 1에 매우 가깝게 나타나 가격 움직임의 방향이 거의 일치했습니다.</p> <table> <tr><th>구분</th><th>VOO (S&P 500)</th><th>QQQ (NASDAQ-100)</th></tr> <tr><td>기초 지수</td><td>Standard & Poor's 500 Index</td><td>NASDAQ-100 Index</td></tr> <tr><td>운용보수(연)</td><td>0.03%</td><td>0.18%</td></tr> <tr><td>순자산 규모</td><td>약 1조 7,357억 달러</td><td>약 4,638억 달러</td></tr> <tr><td>최근 5년 최대 낙폭(MDD)</td><td>-25.41%</td><td>-35.54%</td></tr> <tr><td>2021~2026 5년 누적 가격 변화</td><td>+58.6%</td><td>+57.0%</td></tr> <tr><td>최근 배당수익률</td><td>1.17%</td><td>0.51%</td></tr> </table> <p>과거 위기 시나리오 시뮬레이션 자료를 해석할 때 독자는 단순히 최종 자산의 합계만을 볼 것이 아니라, 하락장이 시작되었을 때 전고점 대비 계좌 잔액이 줄어드는 절대 액수와 이를 복구하기까지 소요된 일수를 함께 측정해야 합니다.</p> <div class=\"ondo-visual\" data-visual=\"risk\" style=\"margin:26px 0;\"><p class=\"ondo-figtitle\" style=\"font-weight:700;margin:6px 0 8px;\">⚠️ 위기 시나리오: 최악의 경우 내 계좌는?</p><p style=\"color:#555;\">각 ETF의 과거 실제 최대 낙폭(MDD)을 기준으로, 1억 원에 적용한 손실 규모입니다.</p><div style=\"margin-top:20px;padding:15px;border:1px solid #ddd;border-left:4px solid #2166ac;border-radius:4px;background:#fff;\">\n<div style=\"padding:18px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;background:#fafafa;\">\n<p style=\"margin:0 0 10px;font-weight:bold;color:#333;font-size:15px;\">VOO</p>\n<div style=\"display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;\">\n<div><span style=\"font-size:12px;color:#5c6575;\">실제 최대낙폭(MDD)</span><br/><span style=\"font-size:17px;font-weight:bold;color:#2166ac;\">-25.41%</span></div>\n<div><span style=\"font-size:12px;color:#5c6575;\">최대 손실 금액</span><br/><span style=\"font-size:17px;font-weight:bold;color:#c0392b;\">-2,541만원</span></div>\n<div><span style=\"font-size:12px;color:#5c6575;\">잔여 자산</span><br/><span style=\"font-size:17px;font-weight:bold;color:#555;\">7,459만원</span></div>\n</div>\n</div>\n\n<div style=\"padding:18px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;background:#fafafa;\">\n<p style=\"margin:0 0 10px;font-weight:bold;color:#333;font-size:15px;\">QQQ</p>\n<div style=\"display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;\">\n<div><span style=\"font-size:12px;color:#5c6575;\">실제 최대낙폭(MDD)</span><br/><span style=\"font-size:17px;font-weight:bold;color:#2166ac;\">-35.54%</span></div>\n<div><span style=\"font-size:12px;color:#5c6575;\">최대 손실 금액</span><br/><span style=\"font-size:17px;font-weight:bold;color:#c0392b;\">-3,554만원</span></div>\n<div><span style=\"font-size:12px;color:#5c6575;\">잔여 자산</span><br/><span style=\"font-size:17px;font-weight:bold;color:#555;\">6,446만원</span></div>\n</div>\n</div>\n\n<p style=\"font-size:11px;color:#555;margin-top:10px;line-height:1.5;\">\n※ 가정이 아니라 해당 ETF의 최근 5년 실제 최대 낙폭(MDD)을 1억 원에 적용한 값입니다. 과거 낙폭이 앞으로의 최대 손실을 뜻하지는 않습니다.\n</p>\n</div></div><div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"배당과-세금-환율-조건은-어떻게-다른가\">배당과 세금, 환율 조건은 어떻게 다른가</h3> <p>분배금(ETF가 투자자에게 나눠 주는 돈) 성격을 가지는 배당 지표에서 두 상품은 현금 흐름의 차이를 나타냅니다. <strong>최근 배당수익률(최근 1년 배당금을 현재 가격으로 나눈 값)은 VOO가 1.17%, QQQ가 0.51%로 집계되었습니다.</strong></p> <p>투자금 기준 배당 세액을 산출하면, VOO는 연간 배당에 대해 미국 현지 원천징수(배당·이자를 줄 때 세금을 미리 떼는 것) 세율 15%를 적용받습니다. 이자 및 배당 등 연간 금융소득 합계가 2,000만 원을 초과하면 초과 금액은 다른 소득과 합산되어 과세되는 금융소득종합과세 대상에 포함되며, 해외 ETF 배당금 역시 이 기준 금액에 합산됩니다.</p> <p>매매차익에 대한 세액 산출 시 해외 상장 상품은 1년간 발생한 양도소득에서 연 250만 원을 기본 공제한 후 22% 세율을 적용하여 다음 해 5월에 직접 신고합니다. 한 해 매매이익이 1,000만 원 발생한 경우 250만 원 공제 후 22%를 적용해 양도소득세 약 165만 원이 계산됩니다. 두 상품 모두 달러로 거래되므로 환노출(환율 변화가 수익률에 그대로 반영되는 조건) 구조를 띱니다. 해외 상장 ETF는 ISA(개인종합자산관리계좌)나 연금저축, IRP 계좌로 직접 살 수 없으며, 이러한 세제 혜택 계좌들의 혜택은 동일한 지수를 따르는 국내 상장 ETF로 받을 수 있습니다.</p> <p>계좌별 예상 세금 계산 자료를 검토할 때는 본인의 연간 예상 매매 차익 규모가 해외 상장 상품의 기본 공제 한도인 250만 원을 초과하는지 여부를 먼저 산출한 뒤 계좌 유형을 선택하는 판단 기준으로 활용할 수 있습니다.</p> <div class=\"ondo-visual\" data-visual=\"tax\" style=\"margin:26px 0;\"><div class=\"ondo-calc\" style=\"margin:24px 0;overflow-x:auto;\"><p style=\"font-weight:700;margin:0 0 8px;\">이익 규모별 예상 세금 (계좌별)</p><table style=\"width:100%;border-collapse:collapse;font-size:14px;\"><tr><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">한 해 이익</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">해외 상장 ETF (일반계좌)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">국내 상장 해외지수 ETF (일반계좌)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">ISA 일반형 (3년 유지)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">연금저축 (연금 수령)</th></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">200만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">31만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">11만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">500만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">55만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">77만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">30만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">28만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">1,000만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">165만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">154만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">79만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">55만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">2,000만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">385만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">308만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">178만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">110만 원</td></tr></table><p style=\"font-size:12px;color:#8a96b0;margin-top:6px;\">가정: 한 해에 이 ETF에서만 이익이 난 경우, 분배금·환율 변동·거래 비용 제외. 해외 상장 ETF는 연 250만 원 공제는 해외 주식 전체 합산 기준. 연금저축은 55세 이후 연금으로 받을 때 3.3~5.5% 중 5.5%로 계산(중도 인출은 16.5%). 국내 일반계좌는 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 종합과세로 더 낼 수 있음. 2026년 10월 기준 세법, ondo가 직접 계산.</p></div><figure class=\"ondo-chart\" style=\"margin:28px 0;\"><div id=\"ondo_chart_f17f88f8\" role=\"img\" aria-label=\"이익 규모별 예상 세금 비교\" style=\"width:100%;min-height:400px;\"></div><script>(function(){function draw(){var gd=document.getElementById('ondo_chart_f17f88f8');if(!gd)return;Plotly.newPlot(gd,[{\"type\": \"bar\", \"name\": \"해외 상장 ETF (일반계좌)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [0.0, 55.0, 165.0, 385.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e해외 상장 ETF (일반계좌)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#0e1a30\"}}, {\"type\": \"bar\", \"name\": \"국내 상장 해외지수 ETF (일반계좌)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [30.8, 77.0, 154.0, 308.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e국내 상장 해외지수 ETF (일반계좌)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#e8b944\"}}, {\"type\": \"bar\", \"name\": \"ISA 일반형 (3년 유지)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [0.0, 29.7, 79.2, 178.2], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003eISA 일반형 (3년 유지)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#3a7bd5\"}}, {\"type\": \"bar\", \"name\": \"연금저축 (연금 수령)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [11.0, 27.5, 55.0, 110.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e연금저축 (연금 수령)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#8a96b0\"}}],{\"title\": {\"text\": \"이익 규모별 예상 세금 비교\", \"font\": {\"size\": 16}}, \"template\": \"plotly_white\", \"barmode\": \"group\", \"height\": 400, \"margin\": {\"t\": 60, \"b\": 50, \"l\": 60, \"r\": 20}, \"yaxis\": {\"title\": \"만 원\", \"tickformat\": \",\"}, \"legend\": {\"orientation\": \"h\", \"y\": -0.18}, \"hovermode\": \"closest\"},{responsive:true,displaylogo:false});}if(window.Plotly){draw();return;}var s=document.getElementById('ondo-plotly');if(s){s.addEventListener('load',draw);return;}s=document.createElement('script');s.id='ondo-plotly';s.src='https://cdn.plot.ly/plotly-2.34.0.min.js';s.onload=draw;document.head.appendChild(s);})();</script><figcaption style=\"font-size:13px;color:#8a96b0;margin-top:6px;\">이익 규모별 예상 세금 비교 · 자료: 2026년 10월 기준 세법 세율로 ondo 계산</figcaption></figure></div><div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><div id=\"ondo-slot-1\" class=\"ondo-slot\"></div>\n<h3 id=\"어떤-조건일-때-어떤-쪽의-특징이-맞는가\">어떤 조건일 때 어떤 쪽의 특징이 맞는가</h3> <p>자산의 손실 감수 능력(변동성) 측면에서 두 상품의 실제 낙폭 수치는 명확한 기준을 제공합니다. <strong>실제 최근 5년 최대 낙폭을 적용하면 투자금 1억 원 기준 VOO는 최대 2,541만 원의 손실이 발생하여 잔여 자산이 7,459만 원으로 줄어들 수 있고, QQQ는 3,554만 원의 손실이 발생하여 잔여 자산이 6,446만 원까지 감소할 수 있습니다.</strong></p> <p>배당금의 성장세 측면을 보면 최근 1년 배당 합계 증가율은 VOO가 5.57%, QQQ가 8.99%를 기록했습니다. 그러나 단기 분기별 지급 안정성 측면에서는 차이가 존재합니다. VOO는 최근 분기 배당 4회 중 1회(2026년 9월 28일 지급액 1.8230 USD, 직전 대비 -7.08%)에서 지급액이 직전 회차보다 감소했습니다. 반면 QQQ는 최근 4회 중 2회(2026년 9월 21일 0.7510 USD로 -7.63%, 2026년 3월 23일 0.7330 USD로 -7.68%)에서 지급액이 직전 대비 줄어드는 변동성을 보였습니다.</p> <p>계좌의 총 자산이 하락장에서 35% 이상 감소하는 위험을 수용하기 어렵거나 분기별 배당 지급액의 변동성을 낮추고자 하는 조건에서는 상대적으로 MDD가 낮은 VOO의 특성이 맞물립니다. 반면 10%p 이상 더 깊은 하락 낙폭을 감내하더라도 상대적으로 높은 1년 배당 증가율을 기반으로 기술주 중심의 자산 구성을 원할 경우에는 QQQ의 특성이 부합합니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"자주-묻는-질문\">자주 묻는 질문</h3><h4>🔸 해외 상장 ETF 배당금에도 금융소득종합과세가 합산되나요?</h4> <p>해외 상장 ETF에서 지급되는 배당금은 국내 및 해외에서 발생한 이자·배당 소득과 합산되어 연간 2,000만 원을 초과할 경우 금융소득종합과세 대상에 포함됩니다. 다만 해외 상장 ETF를 매도해서 발생한 매매차익(양도소득)은 분류과세 대상이므로 연간 2,000만 원을 따지는 금융소득종합과세 합산 금액에 포함되지 않습니다.</p> <div style=\"width:100%; height:1px; background-color:#ddd; margin:40px 0;\"></div><h3 id=\"정리\">정리</h3> <p>해외 상장 지수형 상품을 검토할 때 단기 수익률 수치만 비교하는 것은 하락장에서 나타나는 하방 리스크를 간과하기 쉽습니다. VOO와 QQQ는 5년간 연평균 수익률이 비슷했으나 하락장에서 겪어야 하는 최대 낙폭에서는 큰 폭의 차이를 보여주었습니다.</p> <p>향후 동일한 유형의 지수 상품이나 공시 데이터를 살펴볼 때는 다음 세 가지 지표를 객관적 기준으로 활용할 수 있습니다. 첫째, 연간 운용보수 차이가 0.1%p 이상 날 때 장기 보유 시 발생하는 총비용 누적액을 확인합니다. 둘째, 최근 5년 이내 발생한 최대 낙폭(MDD) 수치를 본인의 원금에 대입하여 실제 감당 가능한 손실 금액(원금 대비 잔여 자산)을 산출합니다. 셋째, 배당수익률 수치와 함께 최근 분기별 배당금이 연속으로 감소한 횟수가 몇 회인지 점검하여 현금 흐름의 변동성을 확인합니다.</p> <p><strong>한 줄 정리:</strong> 장기 수익률 수치 외에 최대 낙폭과 운용보수 차이를 함께 검토해 자신에게 알맞은 지수 상품을 선택하는 것이 중요합니다.</p> <p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p> <div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong><br/>ETF 가격·배당: Yahoo Finance, 국내 ETF 정보: 네이버 금융·KRX, 그래프·표: ondo가 위 자료로 직접 계산<br/>직접 확인: <a href=\"https://finance.yahoo.com/quote/VOO\" target=\"_blank\" rel=\"noopener nofollow\">VOO Yahoo Finance</a> · <a href=\"https://finance.yahoo.com/quote/QQQ\" target=\"_blank\" rel=\"noopener nofollow\">QQQ Yahoo Finance</a><ul style=\"margin:8px 0 0 18px;\"><li><a href=\"https://news.google.com/rss/articles/CBMingJBVV95cUxON0NNeVZHSHRuSWg1XzNsTG5OOHp1V25aU1RTaVAzTGhobjFMMTRHUXcwdV9qMFl5NjhweG1xb1hGV3FaNUpEbnpqbVlRb3BuMUJaeDNfcU43TWFaSDdpbnRyMmd3UW9teVBvSmxmMnBYQ3lRNVkwSHdKemw1Y2kzUWdZdmFtNHlQVmpXWi1wbjZqX19ycXlOeVFRb285OGlYUGZmVFhhSnFIVGJYTkI5dUlDV0dtOGdsMDJROC1CangzLU5qRFJhZWlTdXNOMDJiSndqeUJxNWcyODBOUkI2ZGdDZUZVRzhCckJZMUt5RVl1VDZURkc5MXVXYVlXTGZzWUdRVUpXMzZJUlowRmRJQU9CUGFHMERmTnpGWlhn?oc=5\" target=\"_blank\" rel=\"noopener\">Benzinga</a> - ‘VOO &amp; Chill’ 열풍 지속···시장 불안에도 S&amp;P 500 지수 ETF 자금 유입 강세 - Benzinga</li><li><a href=\"https://news.google.com/rss/articles/CBMioAFBVV95cUxQTmlfNkNmSnc5eHlIaG55Mzlkd2dmR1dyZUxiWFZEV2xBZl9sQ2VKN2VhaUIxNHlBdjJmX1B1Q3daRm9HcFNqRjdMd3JnNGtKRkwwUGd3VnVhb1UxNjZDcWp6NHpjR1ZOQ2RjaWJWaVRzZXk3QllBZUlGbnBFblNXNXZyNGxCQU90ZUtjMkctZTZrUnpKSVhEQ1VDbkIyRFZm?oc=5\" target=\"_blank\" rel=\"noopener\">TradingKey</a> - S&amp;P 500 ETF 자산 사상 처음으로 1조 달러 돌파, 뱅가드 VOO 글로벌 기록 수립 - TradingKey</li><li><a href=\"https://news.google.com/rss/articles/CBMiWkFVX3lxTFBhQnk2YUtCa04xOHhaTVp0ZXNfRDZaVHBGX2hKNE1oWV9oMGlldFdIQ2lIa3M4cWNlVkNYamdHSEhVOWVGckhQVUVzTzlJLUlfcGNVNlFWamluQQ?oc=5\" target=\"_blank\" rel=\"noopener\">Simply Wall St</a> - Schwab U.S. Large-Cap Growth ETF (ARCA:SCHG) 가격, 보유 종목, 수수료 및 분석 - Simply Wall St</li><li><a href=\"https://news.google.com/rss/articles/CBMiXEFVX3lxTE50bVJnZTRRSmswLUZuQTQySVgtcUlrV0t3SHV6WW00cHQwX1ZmMWJDemJSX1QybkE5QnV0amtMRFJqeURvaDBvMlljUWRCcU9Wbkd5VDVEU3FSTGhN?oc=5\" target=\"_blank\" rel=\"noopener\">뉴스핌</a> - [ETF 특징주] 약세장에 QQQ·VOO로 몰리고 반도체 ETF는 썰물 - 뉴스핌</li><li><a href=\"https://news.google.com/rss/articles/CBMimAFBVV95cUxPN1pkbTFqcjMtRG1udi00Q2hzdTFSYU11aURLUXdNYnJiOUlOV0ZDNkh6blVNcWxxd0gzYnRkeTN2YWpXV1c1YkJOd004MWhPUjN1eXg2X0VRVkRaZ0NNNmp5WjF2cktheGU2VzRiRm9aUTAyZUdZSTNHbmxqcVpSM0MxSHkyWk96NWhzS1VQZEhULVdvMUZRMQ?oc=5\" target=\"_blank\" rel=\"noopener\">데일리바이트(DAILY BYTE)</a> - 미국 ETF, QQQ·VOO에 231억달러 몰림 - 데일리바이트(DAILY BYTE)</li><li><a href=\"https://news.google.com/rss/articles/CBMid0FVX3lxTFBFZlNvT1lQOGdkNm9DQlNhRTZFT2kxVlRGbkVSNE9TODAtY1VNWmNkc291YUNwWWdaRFRHU0tYODNVMUtOQUFscmtlRzZXY2RlazZ5ZHludzVVQ2U0TEQzNXhWcnNHLVkzNFdsczRnUHdvTVp2RHZV?oc=5\" target=\"_blank\" rel=\"noopener\">Investing.com 한국어</a> - 인베스코QQQ 트러스트 ETF, 오늘 하락하는 이유는? By Investing.com - Investing.com 한국어</li></ul></div><p style=\"margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;\">이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특정 상품의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>",
+      "status": "draft",
+      "notes": "comparison (1.00)",
+      "timestamp": "2026-11-21T20:42:07.520919",
+      "version": 1,
+      "topic_data": {
+        "VOO": {
+          "name": "Vanguard S&P 500 ETF",
+          "currency": "USD",
+          "yield": "1.17%",
+          "returns": {
+            "1개월": -10.57800480847677,
+            "3개월": -9.455013754329885,
+            "6개월": -6.415902638696107,
+            "1년": 6.094930969483927
+          },
+          "mdd": "-25.41%",
+          "mdd_detail": {
+            "pct": -25.41,
+            "peak": "2022-01-03",
+            "trough": "2022-10-12",
+            "fall_days": 281,
+            "recovered": "2024-01-19",
+            "recover_days": 464,
+            "now_vs_peak": 44.69
+          },
+          "div_cycle": "분기 배당",
+          "expense_ratio": "0.03%",
+          "top_holdings": [],
+          "earnings_info": [],
+          "yield_gap": "-3.74%",
+          "aum_str": "약 1조 7,357억 달러",
+          "simulated_result": "5년 전 1,000만 원 투자 시 현재 가치 약 1,585만 원",
+          "cagr_years": 5.02,
+          "cagr": 0.09619255303164498,
+          "div_history": [
+            {
+              "date": "2026-09-28",
+              "val": "1.8230 USD",
+              "change": "-7.08%"
+            },
+            {
+              "date": "2026-06-26",
+              "val": "1.9620 USD",
+              "change": "+4.81%"
+            },
+            {
+              "date": "2026-03-27",
+              "val": "1.8720 USD",
+              "change": "+5.70%"
+            },
+            {
+              "date": "2025-12-22",
+              "val": "1.7710 USD",
+              "change": "+1.78%"
+            }
+          ],
+          "dividend_growth_rate": "5.57%",
+          "ma200_info": {
+            "status": "MA200 하회 (중장기 하락/조정 국면)",
+            "diff_pct": -5.308977690795661
+          },
+          "dividend_stability_desc": "최근 4회 중 1회는 배당 지급액이 직전 대비 감소했습니다.",
+          "dividend_yoy": "가장 최근 배당(2026-09-28 1.8230)은 1년 전 같은 시기(2025-09-29 1.7400) 대비 +4.77% / 최근 20회 지급 중 직전 회차보다 줄어든 적 8회",
+          "fx_exposure": "있음 (해외 상장, 달러로 거래)",
+          "listing": "해외 상장",
+          "trade_value": null,
+          "hedge_cost": "0.25%",
+          "custom_attractiveness_score": 6.9,
+          "custom_attractiveness_notes": [
+            "운용보수 낮음(+1.5)",
+            "MDD 보통(0)",
+            "배당성장률 강세(+1.0)",
+            "환헤지 비용 높음(-0.6)"
+          ],
+          "tax_metrics": {
+            "taxable_dividend_tax": "175,500원(미국 원천징수 15%)",
+            "isa_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "irp_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "pension_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "account_note": "해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.",
+            "notes": "2026년 10월 기준 세법. 배당은 미국에서 15% 원천징수, 매매차익은 연 250만 원 공제 후 22% 양도소득세(다음 해 5월 직접 신고)."
+          },
+          "fee_impact_100m_10y": "약 992,826원 (수익률 0% 가정, 보수 0.1%p 차이로 10년 뒤 덜 남는 금액)",
+          "issuer": "Vanguard",
+          "index": "Large Blend",
+          "sector": "정보 없음",
+          "industry": "정보 없음",
+          "inception_date": "2010-09-07",
+          "description": "The fund manager employs an indexing investment approach designed to track the performance of the Standard & Poor's 500 Index, a widely recognized benchmark of U.S. stock market performance that is dominated by the stocks of large U.S. companies. The advisor attempts to replicate the target index by",
+          "tv_symbol": "VOO",
+          "website": "공식 홈페이지 정보 없음",
+          "investing_url": "https://kr.investing.com/etfs/vanguard-s-p-500"
+        },
+        "QQQ": {
+          "name": "Invesco QQQ Trust",
+          "currency": "USD",
+          "yield": "0.51%",
+          "returns": {
+            "1개월": -16.099006899446938,
+            "3개월": -14.627158354738965,
+            "6개월": -14.661325005185546,
+            "1년": 3.599378331711266
+          },
+          "mdd": "-35.54%",
+          "mdd_detail": {
+            "pct": -35.54,
+            "peak": "2021-12-27",
+            "trough": "2022-12-28",
+            "fall_days": 366,
+            "recovered": "2023-12-13",
+            "recover_days": 350,
+            "now_vs_peak": 50.8
+          },
+          "div_cycle": "분기 배당",
+          "expense_ratio": "0.18%",
+          "top_holdings": [],
+          "earnings_info": [],
+          "yield_gap": "-4.40%",
+          "aum_str": "약 4,638억 달러",
+          "simulated_result": "5년 전 1,000만 원 투자 시 현재 가치 약 1,570만 원",
+          "cagr_years": 5.02,
+          "cagr": 0.0940195749681283,
+          "div_history": [
+            {
+              "date": "2026-09-21",
+              "val": "0.7510 USD",
+              "change": "-7.63%"
+            },
+            {
+              "date": "2026-06-22",
+              "val": "0.8130 USD",
+              "change": "+10.91%"
+            },
+            {
+              "date": "2026-03-23",
+              "val": "0.7330 USD",
+              "change": "-7.68%"
+            },
+            {
+              "date": "2025-12-22",
+              "val": "0.7940 USD",
+              "change": "+14.41%"
+            }
+          ],
+          "dividend_growth_rate": "8.99%",
+          "ma200_info": {
+            "status": "MA200 하회 (중장기 하락/조정 국면)",
+            "diff_pct": -10.794224273523827
+          },
+          "dividend_stability_desc": "최근 4회 중 2회는 배당 지급액이 직전 대비 감소했습니다.",
+          "dividend_yoy": "가장 최근 배당(2026-09-21 0.7510)은 1년 전 같은 시기(2025-09-22 0.6940) 대비 +8.21% / 최근 20회 지급 중 직전 회차보다 줄어든 적 8회",
+          "fx_exposure": "있음 (해외 상장, 달러로 거래)",
+          "listing": "해외 상장",
+          "trade_value": null,
+          "hedge_cost": "0.25%",
+          "custom_attractiveness_score": 5.7,
+          "custom_attractiveness_notes": [
+            "운용보수 낮음(+1.5)",
+            "MDD 높음(-1.2)",
+            "배당성장률 강세(+1.0)",
+            "환헤지 비용 높음(-0.6)"
+          ],
+          "tax_metrics": {
+            "taxable_dividend_tax": "76,500원(미국 원천징수 15%)",
+            "isa_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "irp_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "pension_tax_saving": "해당 없음(해외 상장 ETF는 이 계좌로 매수 불가)",
+            "account_note": "해외(미국 등) 상장 ETF는 ISA·연금저축·IRP 계좌로 직접 살 수 없습니다. 이 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있습니다.",
+            "notes": "2026년 10월 기준 세법. 배당은 미국에서 15% 원천징수, 매매차익은 연 250만 원 공제 후 22% 양도소득세(다음 해 5월 직접 신고)."
+          },
+          "fee_impact_100m_10y": "약 979,492원 (수익률 0% 가정, 보수 0.1%p 차이로 10년 뒤 덜 남는 금액)",
+          "issuer": "Invesco",
+          "index": "Large Growth",
+          "sector": "정보 없음",
+          "industry": "정보 없음",
+          "inception_date": "1999-03-10",
+          "description": "To maintain the correspondence between the composition and weights of the securities in the trust (the \"securities\") and the stocks in the NASDAQ-100 Index®, the adviser adjusts the securities from time to time to conform to periodic changes in the identity and/or relative weights of index securitie",
+          "tv_symbol": "QQQ",
+          "website": "공식 홈페이지 정보 없음",
+          "investing_url": "https://kr.investing.com/etfs/powershares-qqqq"
+        },
+        "_meta": {
+          "tickers": [
+            "VOO",
+            "QQQ"
+          ],
+          "article_type": "comparison",
+          "topic_id": "VOO,QQQ",
+          "visuals": [
+            "competition",
+            "risk",
+            "tax"
+          ]
+        }
+      },
+      "url": "https://ondo99.com/?p=873"
     }
   ]
 }
