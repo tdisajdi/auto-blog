@@ -270,6 +270,7 @@
 - (11-11 완료, 11-19 재확인) 워드프레스 토큰 새로 받기 - 전체 권한 확인됨.
 - (11-09 완료) 7월 QQQ 글은 Claude가 비공개로 내리고 etf_article_state.json도 정리함. 남은 것: 기록 없는 환율 임시글 1개 삭제(선택).
 - 임시글 읽고 공개 여부 결정(2번 파트 표).
+- (11-21 새로) Threads 홍보 계정 연결 - lab/THREADS_SETUP.txt 따라 Meta 앱 만들고 열쇠를 GitHub 비밀값 DOTENV_CONTENTS에 더하기(저장소 파일에 넣으면 안 됨 - 공개 저장소).
 - 선택: 오피넷 API 키(무료, 국내 기름값) / UNSPLASH_ACCESS_KEY / 온도계 설명 페이지 올리기.
 - 선택: 옛 봇 전용 깃허브 시크릿 정리(GEMINI_API_KEY, GEMINI_API_KEY_1/2/3, GMAIL_APP_PASSWORD, GMAIL_USER, UNSPLASH_ACCESS_KEY).
 
