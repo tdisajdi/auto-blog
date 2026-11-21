@@ -34,6 +34,9 @@ json.dump([{"old": ">A S&amp;P 500 ETF T</td>", "new": ">S&amp;P 500 ETF Trust</
 assert pp.patches_in("9", "표 S&P 500 ETF Trust 끝")
 json.dump([{"old": "<td>A S&amp;P 500 ETF T</td>", "new": "<td>S&amp;P 500 ETF Trust</td>"}, {"field": "excerpt", "old": "x", "new": "요약"}], open(f"{tmp}/lab/patches/9.json", "w"))
 assert pp.patches_in("9", "표 S&P 500 ETF Trust 끝") and not pp.patches_in("9", "표 A S&P 500 ETF T 끝")
+# 11-21: 옛 문구가 새 문구 안에 든 고침(앞에 말 덧붙이기)도 들어간 것으로 봄 - 857 FAQ
+json.dump([{"old": "관련 세제 혜택을", "new": "아니요. 관련 세제 혜택을"}], open(f"{tmp}/lab/patches/9.json", "w"))
+assert pp.patches_in("9", "답: 아니요. 관련 세제 혜택을 쓰려면") and not pp.patches_in("9", "답: 관련 세제 혜택을 쓰려면")
 assert pp.plain("<p>a&amp;b<!-- x --></p>").strip() == "a&b"
 from site_pages.patch_post import apply
 assert apply("가 나 다", [{"old": "가", "new": "라"}, {"old": "x", "new": "나"}]) == ("라 나 다", [])   # 이미 들어간 고침은 건너뜀
