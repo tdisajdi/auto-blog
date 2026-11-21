@@ -64,3 +64,20 @@ def test_reader_note_strips_writer_directives():
     plain = "가정: 세금 제외. 과거 자료로 계산한 값일 뿐 앞으로도 같다는 보장은 없음."
     assert reader_note(plain) == plain
     assert "쓰지 말" not in table_html("t", ["a"], [["1"]], "값 - 표로 다시 쓰지 말 것.")
+
+
+def test_country_market_calc():
+    """11-21 나라별 시장: 달러·환율·원화 환산이 맞고, 국내 ETF는 상장 기간이 짧으면 그 창을 비움."""
+    import pandas as pd
+    import numpy as np
+    import guide_calcs as gc
+    idx = pd.bdate_range("2020-01-01", periods=1600)
+    u = pd.Series(np.linspace(50, 80, 1600), idx)
+    fx = pd.Series(np.linspace(1100, 1400, 1600), idx)
+    kr = pd.Series(np.linspace(10000, 13000, 500), idx[-500:])
+    r = gc.calc_country(u, fx, None, kr)
+    one = r["rows"][0]
+    assert abs((1 + one["usd"] / 100) * (1 + one["fx"] / 100) - (1 + one["krw"] / 100)) < 1e-6
+    assert one["kr"] is not None and r["rows"][2]["kr"] is None
+    facts, table = gc.render_country(r, gc.COUNTRIES["india"])
+    assert "원화로 환산하면" in facts and "전망" in facts and "<table" in table and "최대 낙폭" not in facts
