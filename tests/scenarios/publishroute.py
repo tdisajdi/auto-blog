@@ -54,3 +54,13 @@ def test_art_note_box_place_and_replace():
     assert "Cover art" in art_note.note_html(art, en=True) and "nofollow" in x
     assert art_note.note_html({}) == "" and art_note.inject(x, "").count("ondo-art") == 0
     assert art_note.inject("<p>a</p>", "B") == "<p>a</p>B"
+
+
+def test_reader_note_strips_writer_directives():
+    """11-21 표 아래 설명(독자에게 보임)에 작가용 지시문이 섞이면 뺀다."""
+    from ondo.media.charts import reader_note, table_html
+    n = reader_note("평균일 뿐. 조금 다를 수 있음 - 둘을 같은 숫자처럼 나란히 쓰지 말 것. '같이'는 상관계수.")
+    assert "말 것" not in n and "조금 다를 수 있음." in n and "상관계수" in n
+    plain = "가정: 세금 제외. 과거 자료로 계산한 값일 뿐 앞으로도 같다는 보장은 없음."
+    assert reader_note(plain) == plain
+    assert "쓰지 말" not in table_html("t", ["a"], [["1"]], "값 - 표로 다시 쓰지 말 것.")

@@ -10,6 +10,7 @@ spec 모양:
    "unit": "만 원", "source": "자료 출처"}
 """
 import html
+import re
 import json
 import uuid
 
@@ -79,9 +80,25 @@ def plotly_html(spec):
             + (f" · 자료: {src}" if src else "") + "</figcaption></figure>")
 
 
+_DIRECTIVE = re.compile(r"(말 것|마세요|하세요|쓰지 말|넣지 말|할 것)")
+
+
+def reader_note(note):
+    """표 아래 설명에서 작가용 지시 문장을 뺀다(11-21: 776 채권 글 표 아래에 '둘을 … 나란히 쓰지 말 것'이 독자에게 보임).
+    문장은 '. ' 또는 ' - ' 로 나눠 지시 꼴이 든 조각만 버린다."""
+    if not note or not _DIRECTIVE.search(note):
+        return note
+    parts = re.split(r"(?<=[.。])\s+|\s+-\s+", note)
+    kept = [x for x in parts if x and not _DIRECTIVE.search(x)]
+    print("ℹ️ 표 설명에서 작가용 지시 문장을 뺌:", [x for x in parts if x and _DIRECTIVE.search(x)])
+    kept = [x.strip() if x.strip().endswith((".", "。", ")")) else x.strip() + "." for x in kept]
+    return " ".join(kept).strip()
+
+
 def table_html(title, header, rows, note=""):
     """코드가 계산한 숫자 표(AI가 만든 표와 구분되게 출처·조건 문구를 붙인다)."""
     esc = html.escape
+    note = reader_note(note)
     th = "".join(f'<th style="border:1px solid #ddd;padding:8px;background:#f3f5f9;">{esc(str(h))}</th>' for h in header)
     body = "".join("<tr>" + "".join(f'<td style="border:1px solid #ddd;padding:8px;text-align:center;">{esc(str(c))}</td>'
                                     for c in r) + "</tr>" for r in rows)
