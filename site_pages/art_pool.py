@@ -36,12 +36,24 @@ QUERIES = {
             "Childe Hassam", "John Singer Sargent", "Mary Cassatt", "George Bellows", "American Impressionism",
             "Thomas Moran", "William Merritt Chase", "John Frederick Kensett", "Fitz Henry Lane", "Martin Johnson Heade",
             "Sanford Robinson Gifford", "George Inness", "Edward Hopper", "John Henry Twachtman", "Maurice Prendergast"],
+    # 11-21 나라별 시장 글(사용자 '주식시장 큰 나라들') - 중국·인도·영국·독일·대만
+    "china": ["Chinese painting", "Qing dynasty painting", "Ming dynasty painting", "Chinese album leaf", "Ren Bonian",
+              "Wu Changshuo", "Chinese hanging scroll", "Chinese bird and flower painting"],
+    "india": ["Indian painting", "Mughal painting", "Rajput painting", "Pahari painting", "Raja Ravi Varma",
+              "Company painting India", "Kangra painting", "Deccan painting"],
+    "uk": ["J.M.W. Turner", "John Constable", "Thomas Gainsborough", "John Atkinson Grimshaw", "Pre-Raphaelite",
+           "British landscape painting", "John William Waterhouse", "Samuel Palmer"],
+    "germany": ["Caspar David Friedrich", "Franz Marc", "August Macke", "Max Liebermann", "Carl Spitzweg",
+                "German Romantic painting", "Lovis Corinth", "Paula Modersohn-Becker"],
+    "taiwan": ["Chen Cheng-po", "Taiwan painting"],
 }
 PLACE = {"korea": ("korea",), "japan": ("japan",), "france": ("france", "french"),
-         "usa": ("united states", "america")}
+         "usa": ("united states", "america"), "china": ("china", "chinese"), "india": ("india", "indian"),
+         "uk": ("england", "british", "united kingdom", "great britain", "scotland", "english"),
+         "germany": ("germany", "german"), "taiwan": ("taiwan",)}
 KINDS = ("paint", "print", "screen", "scroll", "album", "woodblock", "drawing in color")
 # 11-21 첫 결과: 미국은 호머의 흑백 목판 삽화, 프랑스는 흑백 동판화가 상위를 채움 → 두 나라는 그림(유화·파스텔)만
-KINDS_BY = {"usa": ("paint", "pastel"), "france": ("paint", "pastel")}
+KINDS_BY = {"usa": ("paint", "pastel"), "france": ("paint", "pastel"), "uk": ("paint", "pastel"), "germany": ("paint", "pastel")}
 MIN_COLOR = 16      # 채도 이 값 아래(흑백·갈색 판화)는 버림 - 호쿠사이 38, 난초 12.5, 흑백 판화 대개 10 아래
 
 
@@ -157,7 +169,13 @@ COMMONS = {   # 11-21: 해외 미술관의 한국 그림은 비단 그림이 대
     "korea": ["Category:Minhwa", "Category:Chaekgeori", "Category:Korean folk paintings", "Category:Paintings by Kim Hong-do",
               "Category:Paintings by Sin Yun-bok", "Category:Paintings by Jeong Seon", "Category:Hyewon pungsokdo",
               "Category:Danwon pungsokdo cheop", "Category:Jakhodo"],
+    "china": ["Category:Paintings by Ren Bonian", "Category:Paintings by Wu Changshuo", "Category:Paintings by Qiu Ying"],
+    "india": ["Category:Paintings by Raja Ravi Varma"],
+    "taiwan": ["Category:Paintings by Chen Cheng-po"],
 }
+# 작가 사망 연도를 아는 분류는 '1900년 이전 제작' 대신 사망 연도로 판단(사후 70년, MAX_DEATH 이하)
+COMMONS_DEATH = {"Category:Paintings by Chen Cheng-po": 1947, "Category:Paintings by Raja Ravi Varma": 1906,
+                 "Category:Paintings by Ren Bonian": 1896, "Category:Paintings by Wu Changshuo": 1927}
 FREE = ("public domain", "pd-", "cc0", "kogl type 1", "공공누리 제1유형", "kogl-type1")
 
 
@@ -179,11 +197,15 @@ def from_commons(country, cat, log):
         artist = re.sub(r"<[^>]+>", "", str((md.get("Artist") or {}).get("value", ""))).strip()
         date = re.sub(r"<[^>]+>", "", str((md.get("DateTimeOriginal") or {}).get("value", ""))).strip()
         made = first_year(date)
-        if made and made >= 1900:
+        known = COMMONS_DEATH.get(cat)
+        if known:
+            if known > MAX_DEATH:
+                continue
+        elif made and made >= 1900:
             continue
         title = re.sub(r"<[^>]+>", "", str((md.get("ObjectName") or {}).get("value", "")) or pg["title"][5:]).strip()
         out.append({"src": "commons", "id": pg.get("pageid"), "title": title[:120], "artist": artist[:80] or "작자 미상",
-                    "artist_display": artist, "date": date[:40], "death": None,
+                    "artist_display": artist, "date": date[:40], "death": known,
                     "url": ii.get("descriptionurl"), "license": f"{lic} (Wikimedia Commons)",
                     "img": ii.get("thumburl") or ii.get("url")})
     log.append(f"{country} 위키미디어 '{cat}': {len(pages)}건 → {len(out)}건")
