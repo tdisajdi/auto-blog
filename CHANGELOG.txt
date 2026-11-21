@@ -192,6 +192,8 @@
 ■ 코드
 - 무엇: lab/THREADS_SETUP.txt - 사용자가 할 일(Meta 앱·테스터·열쇠 받기·GitHub 비밀값에 넣기) 안내. .env.example에 THREADS_ 줄 추가(값 없음).
 - 왜: 사용자 '쓰레드도 홍보용으로 관리할 수 있나'. 공식 Threads API로 내 계정에는 심사 없이 게시 가능(Meta 문서 확인). 열쇠는 비밀값이라 사용자가 넣음 - 공개 저장소라 파일로 올리면 안 된다고 안내.
+- 무엇: 넣는 방법을 바꿈 - 통합 키 파일(DOTENV_CONTENTS)을 다시 붙여 넣는 대신 새 비밀값 THREADS_ACCESS_TOKEN·THREADS_TOKEN_DATE(·THREADS_APP_SECRET)를 따로 만들면 실행 때 .env에 자동으로 덧붙임(publish.yml 6곳).
+- 왜: GitHub 비밀값은 저장 후 다시 볼 수 없어 기존 내용에 '줄만 더하기'가 안 됨(사용자 '.env 다시 줘' - Claude는 .env 값을 갖고 있지도, 출력해서도 안 됨).
 
 [2026-11-21 밤 - 계좌 가이드(?p=852) 미달 · 주제 겹침]
 ■ 점수·검토
