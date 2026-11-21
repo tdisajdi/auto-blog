@@ -130,3 +130,14 @@ import explainer_engine as _ee3
 _o3 = _ee3.drop_overlapping_metrics("- SPY (x): 해외 상장, 배당수익률 1.03%, 최근 1년 배당 합계 증가율(전년 대비) 4.54%, 환율 영향 있음", "")
 assert "증가율" not in _o3 and "배당수익률" not in _o3, _o3
 print("dividend label drop ok")
+
+# 11-21: 파킹형 ETF 계산 - 1년 수익률·흔들림, 내린 날이 없으면 '없음'(양수 '가장 크게 내린 하루' 금지), 예금 금리는 없다고 적음
+import pandas as _pdp, numpy as _npp, guide_calcs as _gp
+_ix = _pdp.bdate_range("2024-08-01", "2026-11-20")
+_cp = _pdp.Series(10000 * (1 + 0.03 / 252) ** _npp.arange(len(_ix)), index=_ix)
+_rp = _gp.calc_parking(_cp)
+assert 2.5 < _rp["r1"] < 3.5 and _rp["neg_months"] == 0 and _rp["worst_day"] > 0, _rp
+_fp, _tp = _gp.render_parking({"459580.KS": _rp}, {"459580.KS": "KODEX CD금리액티브(합성)"})
+assert "내린 날 없음" in _fp and "가장 크게 내린 하루" not in _fp and "금리 숫자는 이 자료에 없음" in _fp, _fp
+assert _gp.calc_parking(_cp[:30]) is None
+print("parking calc ok")
