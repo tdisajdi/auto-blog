@@ -66,3 +66,7 @@ print("country tags ok")
 _o = co.div_odd_lines({"series": [(2020, 1170), (2021, 1540), (2022, 1200), (2023, 1200), (2024, 900), (2025, 2429)]}, str)
 assert "2025년은 앞 해보다" in _o[1] and "좋게 나옴" in _o[1] and "나쁘게" not in _o[1], _o
 print("odd last year ok")
+
+# 11-21 팔란티어: 100억 달러 미만은 소수 한 자리
+assert co.money(1_905_000_000) == "19.1억 달러" and co.money(282_800_000_000) == "2,828억 달러", (co.money(1_905_000_000), co.money(282_800_000_000))
+print("small usd money ok")
