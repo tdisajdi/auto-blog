@@ -31,14 +31,18 @@ QUERIES = {
     "korea": ["Korean painting", "Joseon", "Korean screen", "Korea folk painting", "Kim Hong-do", "Korean landscape"],
     "japan": ["Hokusai", "Hiroshige", "Utamaro", "Kuniyoshi", "Yoshida Hiroshi", "ukiyo-e landscape", "Eisen", "Kunisada"],
     "france": ["Monet", "Renoir", "Pissarro", "Sisley", "Cezanne", "Seurat", "Signac", "Caillebotte", "Morisot",
-               "Gauguin", "Bonnard", "Matisse"],
+               "Gauguin", "Bonnard", "Matisse", "Van Gogh", "Corot", "Boudin", "Guillaumin", "Derain", "Vlaminck"],
     "usa": ["Winslow Homer", "Hudson River School", "Frederic Edwin Church", "Albert Bierstadt", "Thomas Cole",
             "Childe Hassam", "John Singer Sargent", "Mary Cassatt", "George Bellows", "American Impressionism",
-            "Thomas Moran", "William Merritt Chase"],
+            "Thomas Moran", "William Merritt Chase", "John Frederick Kensett", "Fitz Henry Lane", "Martin Johnson Heade",
+            "Sanford Robinson Gifford", "George Inness", "Edward Hopper", "John Henry Twachtman", "Maurice Prendergast"],
 }
 PLACE = {"korea": ("korea",), "japan": ("japan",), "france": ("france", "french"),
          "usa": ("united states", "america")}
 KINDS = ("paint", "print", "screen", "scroll", "album", "woodblock", "drawing in color")
+# 11-21 첫 결과: 미국은 호머의 흑백 목판 삽화, 프랑스는 흑백 동판화가 상위를 채움 → 두 나라는 그림(유화·파스텔)만
+KINDS_BY = {"usa": ("paint", "pastel"), "france": ("paint", "pastel")}
+MIN_COLOR = 16      # 채도 이 값 아래(흑백·갈색 판화)는 버림 - 호쿠사이 38, 난초 12.5, 흑백 판화 대개 10 아래
 
 
 def get(url, params=None, timeout=40):
@@ -81,7 +85,7 @@ def from_aic(country, q, log):
             continue
         if not any(p in str(a.get("place_of_origin", "")).lower() for p in PLACE[country]):
             continue
-        if not any(k in str(a.get("classification_title", "")).lower() for k in KINDS):
+        if not any(k in str(a.get("classification_title", "")).lower() for k in KINDS_BY.get(country, KINDS)):
             continue
         d = death_year(a.get("artist_display"))
         if not allowed(d, a.get("date_end") or first_year(a.get("date_display"))):
@@ -103,7 +107,7 @@ def from_cma(country, q, log):
         cul = " ".join(a.get("culture") or []).lower()
         if not any(p in cul for p in PLACE[country]):
             continue
-        if not any(k in str(a.get("type", "")).lower() for k in KINDS):
+        if not any(k in str(a.get("type", "")).lower() for k in KINDS_BY.get(country, KINDS)):
             continue
         cr = (a.get("creators") or [{}])[0]
         d = cr.get("death_year")
@@ -136,7 +140,7 @@ def from_met(country, q, log, cap=15):
         text = " ".join(str(o.get(k, "")) for k in ("culture", "artistNationality", "country")).lower()
         if not any(p in text for p in PLACE[country]):
             continue
-        if not any(k in (str(o.get("classification", "")) + str(o.get("objectName", ""))).lower() for k in KINDS):
+        if not any(k in (str(o.get("classification", "")) + str(o.get("objectName", ""))).lower() for k in KINDS_BY.get(country, KINDS)):
             continue
         d = first_year(o.get("artistEndDate"))
         if not allowed(d, o.get("objectEndDate")):
@@ -203,6 +207,8 @@ def main():
                     continue
                 c, im = got
                 s, col, full = score(im)
+                if col < MIN_COLOR:
+                    continue
                 c.update(score=s, color=col, full=full, w=im.size[0], h=im.size[1])
                 scored.append((s, c, im))
         log.append(f"   그림 받음 {len(scored)}/{min(len(cands), CAP)}")
