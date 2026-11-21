@@ -42,7 +42,7 @@ assert "<table" not in h2 and "[배당]" not in f2
 assert "애플은 어떤 회사인가" in co.title_seed("AAPL")
 c = co.closing_html("AAPL", [("SPY", "x", 6.8)])
 assert "AAPL Yahoo Finance" in c and "SPY Yahoo Finance" in c and "매수·매도를 권유하지 않습니다" in c
-assert "2020년은 앞뒤 해보다" in co.div_odd_lines({"series": [(2020, 2994), (2021, 1444), (2022, 1444), (2023, 1444), (2024, 1446), (2025, 1668)]}, str)[1]
+assert "2020년은 다음 해보다" in co.div_odd_lines({"series": [(2020, 2994), (2021, 1444), (2022, 1444), (2023, 1444), (2024, 1446), (2025, 1668)]}, str)[1]
 assert len(co.div_odd_lines({"series": [(2020, 1.0), (2021, 1.1), (2022, 1.2)]}, str)) == 1
 # 11-21 꾸준히 늘어난 배당(엔비디아)은 '튄 해'가 아님
 assert len(co.div_odd_lines({"series": [(2020, 0.016), (2021, 0.016), (2022, 0.016), (2023, 0.016), (2024, 0.034), (2025, 0.04)]}, str)) == 1
@@ -61,3 +61,8 @@ assert (_ct("AAPL"), _ct("TSM"), _ct("005930.KS")) == ("미국", "대만", "한�
 import explainer_engine as _xe9
 assert _xe9._country_tags("market-japan") == ["일본"] and _xe9._country_tags("dca-vs-lump") == []
 print("country tags ok")
+
+# 11-21 SK하이닉스: 마지막 해가 튄 경우 '좋게 나옴' 안내(시작 해 안내로 틀리게 나가던 것)
+_o = co.div_odd_lines({"series": [(2020, 1170), (2021, 1540), (2022, 1200), (2023, 1200), (2024, 900), (2025, 2429)]}, str)
+assert "2025년은 앞 해보다" in _o[1] and "좋게 나옴" in _o[1] and "나쁘게" not in _o[1], _o
+print("odd last year ok")
