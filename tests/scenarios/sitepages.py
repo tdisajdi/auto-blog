@@ -107,3 +107,12 @@ css = tp.css_block()
 assert all(f'[data-ic="{k}"]' in css for k in icons.SIL) and "--h3-line" in css and 'height:1px"] { display: none' in css
 assert "&" not in icons.js() and "data-ic" in tp.fill("{{ICON_JS}}")
 print("h3 icons ok")
+
+# 11-21 주간 성적표: GA4 줄 → 앞 주 비교 표
+from site_pages import weekly_report as _wr
+_now = _wr.rows_of({"rows": [{"dimensionValues": [{"value": "/a/"}], "metricValues": [{"value": "10"}, {"value": "30.4"}, {"value": "5"}]},
+                             {"dimensionValues": [{"value": "/%EA%B0%80/"}], "metricValues": [{"value": "3"}, {"value": "100"}, {"value": "2"}]}]})
+_ln = _wr.compare(_now, [("/a/", [4, 10, 2])])
+assert _ln[0] == {"page": "/a/", "views": 10, "prev_views": 4, "avg_sec": 30, "sessions": 5} and _ln[1]["page"] == "/가/", _ln
+assert "| /a/ | 10 | 4 | 30 |" in _wr.render(_ln, 13, 4, [("South Korea", [7])], "", "x")
+print("weekly report ok")
