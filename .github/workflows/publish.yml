@@ -543,6 +543,10 @@ jobs:
             elif [ "${{ github.event.inputs.site_pages }}" = "art-pool" ]; then
               # 11-21 표지용 명화 후보(나라별 최대 50점, CC0·사후 70년) - lab/art/pool
               python site_pages/art_pool.py || echo "명화 후보 받기 실패"
+            elif [[ "${{ github.event.inputs.site_pages }}" == art-pool:* ]]; then
+              # 11-21 나라 하나만 다시(예: art-pool:korea)
+              C=$(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr -cd 'a-z')
+              python site_pages/art_pool.py "$C" || echo "명화 후보 받기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
               python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
