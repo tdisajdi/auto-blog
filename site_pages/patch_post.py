@@ -22,6 +22,8 @@ def apply(content, patches, facts=""):
         n = content.count(p["old"])
         if n == 0 and p.get("new") and content.count(p["new"]) == 1:
             continue        # 이미 들어간 고침(11-21: 같은 파일에 다음 판 고침을 이어 붙일 수 있게)
+        if p.get("new") and p["old"] in p["new"] and p["new"] in content:
+            continue        # 11-21 873·857: 새 문구가 옛 문구를 품는 고침(앞뒤에 덧붙이기)은 다시 돌리면 또 덧붙음 → 이미 들어갔으면 건너뜀
         if n == 0 and not p.get("new"):
             continue        # 11-21 873: 지우기 고침이 이미 들어감(지운 덩어리는 다시 찾을 수 없음)
         if n != 1:
