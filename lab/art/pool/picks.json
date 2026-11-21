@@ -1,0 +1,622 @@
+{
+ "usa": [
+  {
+   "file": "usa/cma-134072.jpg",
+   "crop": [
+    0.35,
+    0,
+    1,
+    1
+   ],
+   "credit": "George Inness, Sunny Autumn Day (1892) · CC0",
+   "url": "https://clevelandart.org/art/1956.578",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-117715.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "William Merritt Chase, The Old Road to the Sea (c. 1893) · CC0",
+   "url": "https://clevelandart.org/art/1938.333",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-141639.jpg",
+   "crop": [
+    0.12,
+    0,
+    0.72,
+    1
+   ],
+   "credit": "Frederic Edwin Church, Twilight in the Wilderness (1860) · CC0",
+   "url": "https://clevelandart.org/art/1965.233",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-121358.jpg",
+   "crop": [
+    0,
+    0.1,
+    1,
+    0.95
+   ],
+   "credit": "John Henry Twachtman, Deserted Wharf (The Old Mill at Cos Cob) (before 1899) · CC0",
+   "url": "https://clevelandart.org/art/1942.122",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-93234.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "Maurice Prendergast, On the Beach, No. 3 (c. 1915–18) · CC0",
+   "url": "https://clevelandart.org/art/1926.1653",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-173665.jpg",
+   "crop": [
+    0.08,
+    0,
+    0.95,
+    0.78
+   ],
+   "credit": "Martin Johnson Heade, Orchid Blossoms (1873) · CC0",
+   "url": "https://clevelandart.org/art/1915.461",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-173480.jpg",
+   "crop": [
+    0.1,
+    0.05,
+    0.95,
+    0.9
+   ],
+   "credit": "Martin Johnson Heade, Apple Blossoms (1873) · CC0",
+   "url": "https://clevelandart.org/art/1915.687",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-163456.jpg",
+   "crop": [
+    0.4,
+    0,
+    1,
+    1
+   ],
+   "credit": "Fitz Henry Lane, Harbor of Boston, with the City in the Distance (c. 1846–47) · CC0",
+   "url": "https://clevelandart.org/art/2004.35",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-172815.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "Albert Bierstadt, Mount Starr King, Yosemite (1866) · CC0",
+   "url": "https://clevelandart.org/art/1922.684",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-93014.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Thomas Cole, View of Schroon Mountain, Essex County, New… (1838) · CC0",
+   "url": "https://clevelandart.org/art/1917.1335",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-118116.jpg",
+   "crop": [
+    0.35,
+    0,
+    0.9,
+    1
+   ],
+   "credit": "George Inness, Harvest Time (1864) · CC0",
+   "url": "https://clevelandart.org/art/1939.234",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-139728.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "George Inness, The Wood Chopper (1849) · CC0",
+   "url": "https://clevelandart.org/art/1963.501",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "usa/cma-149422.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "George Inness, The Wheat Field (c. 1875–77) · CC0",
+   "url": "https://clevelandart.org/art/1978.74",
+   "license": "CC0 (Cleveland Museum of Art)"
+  }
+ ],
+ "france": [
+  {
+   "file": "france/cma-115405.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "Paul Cezanne, The Pigeon Tower at Bellevue (1890) · CC0",
+   "url": "https://clevelandart.org/art/1936.19",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-135185.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Paul Cezanne, Mount Sainte-Victoire (c. 1904) · CC0",
+   "url": "https://clevelandart.org/art/1958.21",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-142659.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.75,
+    1
+   ],
+   "credit": "Maxime Maufra, The Cliffs at Beg-ar-Fry, Saint-Jean-du-Doigt (1895) · CC0",
+   "url": "https://clevelandart.org/art/1966.382",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-139814.jpg",
+   "crop": [
+    0.4,
+    0,
+    1,
+    1
+   ],
+   "credit": "Armand Guillaumin, The Banks of the Marne at Charenton (c. 1895) · CC0",
+   "url": "https://clevelandart.org/art/1963.573",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-135173.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Paul Cezanne, The Brook (c. 1895–1900) · CC0",
+   "url": "https://clevelandart.org/art/1958.20",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-140331.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Armand Guillaumin, Valley of the Sédelle at Pont Charraud: White… (c.1903–1911) · CC0",
+   "url": "https://clevelandart.org/art/1964.282",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-95272.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Claude Monet, Gardener's House at Antibes (1888) · CC0",
+   "url": "https://clevelandart.org/art/1916.1044",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-125234.jpg",
+   "crop": [
+    0.4,
+    0,
+    1,
+    1
+   ],
+   "credit": "Claude Monet, Low Tide at Pourville, near Dieppe, 1882 (1882) · CC0",
+   "url": "https://clevelandart.org/art/1947.196",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-120286.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "Pierre-Auguste Renoir, Roses in a Vase (c. 1890) · CC0",
+   "url": "https://clevelandart.org/art/1941.14",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-130391.jpg",
+   "crop": [
+    0,
+    0.15,
+    1,
+    0.85
+   ],
+   "credit": "Claude Monet, Spring Flowers (1864) · CC0",
+   "url": "https://clevelandart.org/art/1953.155",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-128392.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Camille Pissarro, Edge of the Woods Near L'Hermitage, Pontoise (1879) · CC0",
+   "url": "https://clevelandart.org/art/1951.356",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-118042.jpg",
+   "crop": [
+    0,
+    0.1,
+    1,
+    0.8
+   ],
+   "credit": "Eugène Boudin, The Dock of Deauville (1891) · CC0",
+   "url": "https://clevelandart.org/art/1939.165",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-136510.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Claude Monet, Water Lilies (Agapanthus) (c. 1915–26) · CC0",
+   "url": "https://clevelandart.org/art/1960.81",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "france/cma-168471.jpg",
+   "crop": [
+    0.3,
+    0,
+    0.9,
+    1
+   ],
+   "credit": "Eugène Boudin, View of the Port of Saint-Valéry-sur-Somme (1891) · CC0",
+   "url": "https://clevelandart.org/art/2010.23",
+   "license": "CC0 (Cleveland Museum of Art)"
+  }
+ ],
+ "korea": [
+  {
+   "file": "korea/cma-169545.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.75,
+    1
+   ],
+   "credit": "Yi Taek-gyun, Books and Scholars’ Accoutrements (late 1800s) · CC0",
+   "url": "https://clevelandart.org/art/2011.37",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "korea/cma-172805.jpg",
+   "crop": [
+    0.05,
+    0.25,
+    0.95,
+    0.85
+   ],
+   "credit": "작자 미상, Daoist Immortal on a Qilin and Two Attendants (late 1800s) · CC0",
+   "url": "https://clevelandart.org/art/1915.220",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "korea/cma-159836.jpg",
+   "crop": [
+    0,
+    0.3,
+    1,
+    0.95
+   ],
+   "credit": "작자 미상, Tiger Family (late 1800s) · CC0",
+   "url": "https://clevelandart.org/art/1997.148",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "korea/cma-155625.jpg",
+   "crop": [
+    0.1,
+    0.15,
+    0.95,
+    1
+   ],
+   "credit": "작자 미상, Scholar Playing a Qin (1800s) · CC0",
+   "url": "https://clevelandart.org/art/1990.69",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "korea/cma-155627.jpg",
+   "crop": [
+    0.15,
+    0.1,
+    0.95,
+    1
+   ],
+   "credit": "작자 미상, Poet Fisherman (1800s) · CC0",
+   "url": "https://clevelandart.org/art/1990.70",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "korea/cma-152317.jpg",
+   "crop": [
+    0,
+    0.2,
+    1,
+    0.75
+   ],
+   "credit": "작자 미상, Lotuses, Insects, and Birds (1800s) · CC0",
+   "url": "https://clevelandart.org/art/1985.18",
+   "license": "CC0 (Cleveland Museum of Art)"
+  }
+ ],
+ "japan": [
+  {
+   "file": "japan/cma-150167.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Poem by Fujiwara no Yoshitaka, from the… (1835–36) · CC0",
+   "url": "https://clevelandart.org/art/1980.83",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-106959.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, The Weir at Senju in Musashi Province (from… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1924.964",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-118800.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Rain Below the Mountain (from the series… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1940.1002",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-118798.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Fuji from Surugadai, in Yedo (1760–1849) · CC0",
+   "url": "https://clevelandart.org/art/1940.1000",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-152505.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Poem by Emperor Sanjo, from the series One… (1835–36) · CC0",
+   "url": "https://clevelandart.org/art/1985.326",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-111656.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Poem by Kakinomoto no Hitomaro, from One… (1835–36) · CC0",
+   "url": "https://clevelandart.org/art/1930.190",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-123046.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Carp Swimming by Water Weeds (1831) · CC0",
+   "url": "https://clevelandart.org/art/1943.3",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-152504.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Thirty-Six Views of Mt. Fuji: The Surface of… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1985.325",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-111654.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, South Wind, Clear Sky, from Thirty-Six Views… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1930.189",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-95413.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, Poem by Emperor Tenchi, from the series One… (1835–36) · CC0",
+   "url": "https://clevelandart.org/art/1916.1164",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-121643.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, An Ancient Picture of the Eight Part Bridge… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1942.147",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-118799.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, An Ancient Picture of the Boat Bridge at Sano… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1940.1001",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-103360.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Taito II, The Monkey Bridge (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1921.413",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-106960.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Katsushika Hokusai, The Brocade Bridge in Suo Province (from the… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1924.965",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-95381.jpg",
+   "crop": [
+    0,
+    0.1,
+    1,
+    0.8
+   ],
+   "credit": "Katsushika Hokusai, Ono Waterfall on the Kiso Road (from the… (early 1830s) · CC0",
+   "url": "https://clevelandart.org/art/1916.1137",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-95392.jpg",
+   "crop": [
+    0,
+    0.2,
+    1,
+    0.75
+   ],
+   "credit": "Katsushika Hokusai, The Rush Gatherer, from the series A True… (1834–35) · CC0",
+   "url": "https://clevelandart.org/art/1916.1145",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-95389.jpg",
+   "crop": [
+    0,
+    0.1,
+    1,
+    0.7
+   ],
+   "credit": "Katsushika Hokusai, The Minister Toru Daijin Standing by a Lake… (1834–35) · CC0",
+   "url": "https://clevelandart.org/art/1916.1142",
+   "license": "CC0 (Cleveland Museum of Art)"
+  },
+  {
+   "file": "japan/cma-95396.jpg",
+   "crop": [
+    0,
+    0.25,
+    1,
+    0.85
+   ],
+   "credit": "Katsushika Hokusai, Chinese Official Pausing on a Bridge to View… (1834–5) · CC0",
+   "url": "https://clevelandart.org/art/1916.1149",
+   "license": "CC0 (Cleveland Museum of Art)"
+  }
+ ]
+}

@@ -171,7 +171,9 @@ def country_for(title, tags=(), category="etf"):
 
 
 def pick_art(country, key):
-    """picks.json(Claude가 직접 본 그림과 자를 곳)에서 그 나라 그림 하나. key(제목·글 번호)로 늘 같은 그림."""
+    """picks.json(Claude가 직접 본 그림과 자를 곳)에서 그 나라 그림 하나.
+    key(글 번호·제목)마다 한 번 정하면 assigned.json에 남겨 늘 같은 그림 - 새 글은 그 나라에서 가장 적게 쓴 그림
+    (11-21: 해시로만 고르면 글 여러 편이 같은 그림을 받음)."""
     import hashlib
     import json
     try:
@@ -181,7 +183,26 @@ def pick_art(country, key):
     lst = picks.get(country) or picks.get("usa") or []
     if not lst:
         return None
-    return lst[int(hashlib.md5(str(key).encode()).hexdigest(), 16) % len(lst)]
+    ap = os.path.join(ART_DIR, "assigned.json")
+    try:
+        assigned = json.load(open(ap, encoding="utf-8"))
+    except Exception:
+        assigned = {}
+    key = str(key)
+    by_file = {a["file"]: a for a in lst}
+    if assigned.get(key) in by_file:
+        return by_file[assigned[key]]
+    used = {}
+    for f in assigned.values():
+        used[f] = used.get(f, 0) + 1
+    h = int(hashlib.md5(key.encode()).hexdigest(), 16)
+    best = min(range(len(lst)), key=lambda i: (used.get(lst[i]["file"], 0), (i - h) % len(lst)))
+    assigned[key] = lst[best]["file"]
+    try:
+        json.dump(assigned, open(ap, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    except Exception:
+        pass
+    return lst[best]
 
 
 def _mosaic(im, cells=CELLS, size=470):
