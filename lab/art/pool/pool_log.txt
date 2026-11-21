@@ -44,83 +44,125 @@ japan 시카고 'Kunisada': 100건 → 85건
 japan 클리블랜드 'Kunisada': 28건 → 28건
 japan 메트 'Kunisada': 0건 → 0건
 == japan: 조건 맞는 후보 778개, 그림 받아 점수 매기기
-   그림 받음 40/160
-✅ japan: 40점 점수 → 상위 40점 저장
-france 시카고 'Monet': 100건 → 26건
-france 클리블랜드 'Monet': 18건 → 13건
+   그림 받음 38/160
+✅ japan: 38점 점수 → 상위 38점 저장
+france 시카고 'Monet': 100건 → 24건
+france 클리블랜드 'Monet': 18건 → 11건
 france 메트 'Monet': 0건 → 0건
-france 시카고 'Renoir': 100건 → 16건
-france 클리블랜드 'Renoir': 43건 → 38건
+france 시카고 'Renoir': 100건 → 13건
+france 클리블랜드 'Renoir': 43건 → 8건
 france 메트 'Renoir': 0건 → 0건
-france 시카고 'Pissarro': 100건 → 5건
-france 클리블랜드 'Pissarro': 51건 → 27건
+france 시카고 'Pissarro': 100건 → 3건
+france 클리블랜드 'Pissarro': 51건 → 4건
 france 메트 'Pissarro': 0건 → 0건
-france 시카고 'Sisley': 100건 → 5건
-france 클리블랜드 'Sisley': 4건 → 4건
+france 시카고 'Sisley': 100건 → 7건
+france 클리블랜드 'Sisley': 4건 → 1건
 france 메트 'Sisley': 0건 → 0건
-france 시카고 'Cezanne': 100건 → 7건
-france 클리블랜드 'Cezanne': 18건 → 12건
+france 시카고 'Cezanne': 100건 → 6건
+france 클리블랜드 'Cezanne': 18건 → 4건
 france 메트 'Cezanne': 0건 → 0건
 france 시카고 'Seurat': 100건 → 5건
-france 클리블랜드 'Seurat': 9건 → 5건
+france 클리블랜드 'Seurat': 9건 → 2건
 france 메트 'Seurat': 0건 → 0건
 france 시카고 'Signac': 100건 → 4건
-france 클리블랜드 'Signac': 12건 → 9건
+france 클리블랜드 'Signac': 12건 → 0건
 france 메트 'Signac': 0건 → 0건
 france 시카고 'Caillebotte': 100건 → 4건
-france 클리블랜드 'Caillebotte': 4건 → 3건
+france 클리블랜드 'Caillebotte': 4건 → 2건
 france 메트 'Caillebotte': 0건 → 0건
 france 시카고 'Morisot': 100건 → 8건
-france 클리블랜드 'Morisot': 19건 → 12건
+france 클리블랜드 'Morisot': 19건 → 3건
 france 메트 'Morisot': 0건 → 0건
-france 시카고 'Gauguin': 100건 → 5건
-france 클리블랜드 'Gauguin': 57건 → 45건
+france 시카고 'Gauguin': 100건 → 4건
+france 클리블랜드 'Gauguin': 57건 → 6건
 france 메트 'Gauguin': 0건 → 0건
 france 시카고 'Bonnard': 100건 → 0건
-france 클리블랜드 'Bonnard': 29건 → 27건
+france 클리블랜드 'Bonnard': 29건 → 0건
 france 메트 'Bonnard': 0건 → 0건
 france 시카고 'Matisse': 100건 → 2건
 france 클리블랜드 'Matisse': 0건 → 0건
 france 메트 'Matisse': 0건 → 0건
-== france: 조건 맞는 후보 241개, 그림 받아 점수 매기기
-   그림 받음 103/160
-✅ france: 103점 점수 → 상위 50점 저장
-usa 시카고 'Winslow Homer': 100건 → 4건
-usa 클리블랜드 'Winslow Homer': 100건 → 90건
+france 시카고 'Van Gogh': 100건 → 1건
+france 클리블랜드 'Van Gogh': 100건 → 0건
+france 메트 'Van Gogh': 0건 → 0건
+france 시카고 'Corot': 100건 → 4건
+france 클리블랜드 'Corot': 41건 → 6건
+france 메트 'Corot': 0건 → 0건
+france 시카고 'Boudin': 100건 → 4건
+france 클리블랜드 'Boudin': 10건 → 6건
+france 메트 'Boudin': 0건 → 0건
+france 시카고 'Guillaumin': 100건 → 6건
+france 클리블랜드 'Guillaumin': 5건 → 3건
+france 메트 'Guillaumin': 0건 → 0건
+france 시카고 'Derain': 100건 → 3건
+france 클리블랜드 'Derain': 0건 → 0건
+france 메트 'Derain': 0건 → 0건
+france 시카고 'Vlaminck': 100건 → 4건
+france 클리블랜드 'Vlaminck': 0건 → 0건
+france 메트 'Vlaminck': 0건 → 0건
+== france: 조건 맞는 후보 111개, 그림 받아 점수 매기기
+   그림 받음 41/111
+✅ france: 41점 점수 → 상위 41점 저장
+usa 시카고 'Winslow Homer': 100건 → 3건
+usa 클리블랜드 'Winslow Homer': 100건 → 4건
 usa 메트 'Winslow Homer': 0건 → 0건
-usa 시카고 'Hudson River School': 100건 → 6건
+usa 시카고 'Hudson River School': 100건 → 5건
 usa 클리블랜드 'Hudson River School': 27건 → 0건
 usa 메트 'Hudson River School': 0건 → 0건
 usa 시카고 'Frederic Edwin Church': 100건 → 6건
 usa 클리블랜드 'Frederic Edwin Church': 4건 → 3건
 usa 메트 'Frederic Edwin Church': 0건 → 0건
-usa 시카고 'Albert Bierstadt': 100건 → 10건
+usa 시카고 'Albert Bierstadt': 100건 → 4건
 usa 클리블랜드 'Albert Bierstadt': 3건 → 3건
 usa 메트 'Albert Bierstadt': 0건 → 0건
 usa 시카고 'Thomas Cole': 100건 → 5건
-usa 클리블랜드 'Thomas Cole': 4건 → 4건
+usa 클리블랜드 'Thomas Cole': 4건 → 3건
 usa 메트 'Thomas Cole': 0건 → 0건
 usa 시카고 'Childe Hassam': 100건 → 2건
 usa 클리블랜드 'Childe Hassam': 1건 → 1건
 usa 메트 'Childe Hassam': 0건 → 0건
 usa 시카고 'John Singer Sargent': 100건 → 5건
-usa 클리블랜드 'John Singer Sargent': 12건 → 3건
+usa 클리블랜드 'John Singer Sargent': 12건 → 2건
 usa 메트 'John Singer Sargent': 0건 → 0건
-usa 시카고 'Mary Cassatt': 100건 → 2건
-usa 클리블랜드 'Mary Cassatt': 9건 → 1건
+usa 시카고 'Mary Cassatt': 100건 → 3건
+usa 클리블랜드 'Mary Cassatt': 9건 → 0건
 usa 메트 'Mary Cassatt': 0건 → 0건
-usa 시카고 'George Bellows': 100건 → 11건
-usa 클리블랜드 'George Bellows': 100건 → 91건
+usa 시카고 'George Bellows': 100건 → 10건
+usa 클리블랜드 'George Bellows': 100건 → 2건
 usa 메트 'George Bellows': 0건 → 0건
 usa 시카고 'American Impressionism': 100건 → 20건
 usa 클리블랜드 'American Impressionism': 4건 → 1건
 usa 메트 'American Impressionism': 0건 → 0건
 usa 시카고 'Thomas Moran': 100건 → 5건
-usa 클리블랜드 'Thomas Moran': 4건 → 2건
+usa 클리블랜드 'Thomas Moran': 4건 → 1건
 usa 메트 'Thomas Moran': 0건 → 0건
 usa 시카고 'William Merritt Chase': 100건 → 11건
-usa 클리블랜드 'William Merritt Chase': 7건 → 7건
+usa 클리블랜드 'William Merritt Chase': 7건 → 5건
 usa 메트 'William Merritt Chase': 0건 → 0건
-== usa: 조건 맞는 후보 274개, 그림 받아 점수 매기기
-   그림 받음 109/160
-✅ usa: 109점 점수 → 상위 50점 저장
+usa 시카고 'John Frederick Kensett': 100건 → 3건
+usa 클리블랜드 'John Frederick Kensett': 4건 → 3건
+usa 메트 'John Frederick Kensett': 0건 → 0건
+usa 시카고 'Fitz Henry Lane': 100건 → 5건
+usa 클리블랜드 'Fitz Henry Lane': 2건 → 1건
+usa 메트 'Fitz Henry Lane': 0건 → 0건
+usa 시카고 'Martin Johnson Heade': 100건 → 2건
+usa 클리블랜드 'Martin Johnson Heade': 4건 → 4건
+usa 메트 'Martin Johnson Heade': 0건 → 0건
+usa 시카고 'Sanford Robinson Gifford': 100건 → 4건
+usa 클리블랜드 'Sanford Robinson Gifford': 23건 → 3건
+usa 메트 'Sanford Robinson Gifford': 0건 → 0건
+usa 시카고 'George Inness': 100건 → 26건
+usa 클리블랜드 'George Inness': 14건 → 12건
+usa 메트 'George Inness': 0건 → 0건
+usa 시카고 'Edward Hopper': 100건 → 2건
+usa 클리블랜드 'Edward Hopper': 1건 → 0건
+usa 메트 'Edward Hopper': 0건 → 0건
+usa 시카고 'John Henry Twachtman': 100건 → 6건
+usa 클리블랜드 'John Henry Twachtman': 19건 → 2건
+usa 메트 'John Henry Twachtman': 0건 → 0건
+usa 시카고 'Maurice Prendergast': 100건 → 0건
+usa 클리블랜드 'Maurice Prendergast': 100건 → 1건
+usa 메트 'Maurice Prendergast': 0건 → 0건
+== usa: 조건 맞는 후보 133개, 그림 받아 점수 매기기
+   그림 받음 45/133
+✅ usa: 45점 점수 → 상위 45점 저장
