@@ -155,7 +155,18 @@ def main(pid):
         print(f"공개 안 함: 통과 기록 없음({f}, 점수 {score})")
         return 1
     base = f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}"
-    r = requests.post(base, headers=h, data={"status": "publish"}, timeout=30)
+    data = {"status": "publish"}
+    try:   # 11-21: 글 끝 표지 그림 설명 상자(표지와 같은 그림) - 실패해도 공개는 그대로
+        import html as _h
+        from ondo.media import art_note
+        g = requests.get(base, headers=h, params={"context": "edit", "fields": "title,content,categories"}, timeout=30).json()
+        cats = [c.get("slug") for c in (g.get("categories") or {}).values()]
+        box = art_note.for_post(_h.unescape(g.get("title") or ""), cats[0] if cats else "etf")
+        if box and g.get("content"):
+            data["content"] = art_note.inject(g["content"], box)
+    except Exception as e:
+        print("ℹ️ 표지 그림 설명 못 넣음:", type(e).__name__, e)
+    r = requests.post(base, headers=h, data=data, timeout=30)
     j = r.json() if r.ok else {}
     print(f"공개: {r.status_code} {j.get('status')} {j.get('URL')} (근거 {os.path.basename(f)}, 점수 {score})")
     if j.get("status") == "publish":

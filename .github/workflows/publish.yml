@@ -532,6 +532,12 @@ jobs:
                 SRC=$(echo "$item" | cut -s -d: -f3 | tr -cd '0-9')   # 11-21 영어판: cover:781:GUIDE:762 (원글 번호)
                 python site_pages/cover_post.py "$PID" ${KICK:-DATA} $SRC || echo "표지 바꾸기 실패 $PID"
               done
+            elif [[ "${{ github.event.inputs.site_pages }}" == art-note:* ]]; then
+              # 11-21 글 끝 '표지 그림' 설명 상자만 넣기: art-note:701,781:762 (영어판은 :원글번호)
+              for item in $(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr ',' ' '); do
+                PID=$(echo "$item" | cut -d: -f1 | tr -cd '0-9'); SRC=$(echo "$item" | cut -s -d: -f2 | tr -cd '0-9')
+                python site_pages/cover_post.py "$PID" --note $SRC || echo "그림 설명 실패 $PID"
+              done
             elif [ "${{ github.event.inputs.site_pages }}" = "sc-connect" ]; then
               python site_pages/sc_connect.py || echo "서치콘솔 연결 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-probe" ]; then

@@ -193,6 +193,9 @@ def push(pid):
         print("이 글 분야의 영어 분류가 없음 - pll:en-cats 먼저")
         return 1
     existing = requests.get(f"{base}/posts/slug:{en['slug']}", headers=h, params={"fields": "ID,status"}, timeout=20)
+    from ondo.media import art_note                    # 11-21: 글 끝 표지 그림 설명(원글과 같은 그림, 영어)
+    en["html"] = art_note.inject(en["html"], art_note.for_post(en["title"], (meta.get("categories") or ["etf"])[0],
+                                                              key=meta.get("title"), en=True))
     data = {"title": en["title"], "content": en["html"], "excerpt": en["excerpt"], "slug": en["slug"],
             "categories": ",".join(cat_ids), "status": "publish"}
     en_tags = company_tags_en(meta.get("tags"))     # 11-20 회사 태그(애플 → Apple) - 영어 기업 글 ↔ 제품·기술 글 잇기
