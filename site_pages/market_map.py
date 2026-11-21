@@ -41,17 +41,30 @@ COUNTRIES = [
 ]
 
 
-def wb_latest(ind, codes):
-    """세계은행 지표의 나라별 가장 최근 값 {코드: (연도, 값)}."""
+def wb_latest(ind, codes, n=1):
+    """세계은행 지표의 나라별 최근 값. n=1이면 {코드: (연도, 값)}, n=2면 {코드: [(최근), (그 전)]}."""
     import requests
-    r = requests.get(WB.format(codes=";".join(codes), ind=ind), params={"format": "json", "mrnev": 1, "per_page": 400},
+    r = requests.get(WB.format(codes=";".join(codes), ind=ind), params={"format": "json", "mrnev": n, "per_page": 800},
                      timeout=40)
     j = r.json()
     out = {}
     for row in (j[1] if isinstance(j, list) and len(j) > 1 and j[1] else []):
         if row.get("value") is not None:
-            out[row["countryiso3code"]] = (int(row["date"]), float(row["value"]))
-    return out
+            out.setdefault(row["countryiso3code"], []).append((int(row["date"]), float(row["value"])))
+    for k in out:
+        out[k].sort(reverse=True)
+    return {k: v[0] for k, v in out.items()} if n == 1 else out
+
+
+def jump_flag(series):
+    """11-21: 세계은행 인도 시가총액이 2024년 5.13조 → 2025년 10.56조 달러(1년에 2배) - 거래소 합산 등 집계 방식 차이로 보임.
+    최근 값이 바로 전 해의 1.6배 넘게 늘거나 0.6배 밑으로 줄면 (그 전 해, 값)을 돌려줌(표에 표시하고 세계 비중에서 뺌)."""
+    if not series or len(series) < 2:
+        return None
+    (y1, v1), (y0, v0) = series[0], series[1]
+    if v0 > 0 and (v1 / v0 > 1.6 or v1 / v0 < 0.6):
+        return (y0, v0)
+    return None
 
 
 def etf_stats(t, fx):
@@ -78,7 +91,8 @@ def etf_stats(t, fx):
 def collect():
     import guide_calcs as gc
     codes = [c[0] for c in COUNTRIES if c[0] != "TWN"] + ["WLD"]
-    cap = wb_latest("CM.MKT.LCAP.CD", codes)
+    cap2 = wb_latest("CM.MKT.LCAP.CD", codes, n=2)
+    cap = {k: v[0] for k, v in cap2.items()}
     gdp = wb_latest("CM.MKT.LCAP.GD.ZS", codes)
     fx = gc._hist("KRW=X", period="2y")
     rows = []
@@ -89,7 +103,7 @@ def collect():
         except Exception as e:
             print(f"ℹ️ {etf} 가격 실패: {type(e).__name__}")
         rows.append({"code": code, "ko": ko, "etf": etf, "kr": kr, "link": link,
-                     "cap": cap.get(code), "gdp": gdp.get(code), **st})
+                     "cap": cap.get(code), "gdp": gdp.get(code), "jump": jump_flag(cap2.get(code)), **st})
     return {"world": cap.get("WLD"), "rows": rows}
 
 
@@ -106,11 +120,20 @@ def build_html(data):
     years = sorted({r["cap"][0] for r in rows if r.get("cap")})
     yr = f"{years[0]}년" if len(years) == 1 else (f"{years[0]}~{years[-1]}년" if years else "")
     trow = []
+    flags = []
     for i, r in enumerate(rows, 1):
         c = r.get("cap")
-        share = (c[1] / world[1] * 100) if (c and world and world[0] == c[0]) else None
-        trow.append([str(i) if c else "-", r["ko"],
-                     f"{c[1] / 1e12:,.2f}조 달러 ({c[0]})" if c else "세계은행 자료 없음",
+        jp = r.get("jump")
+        share = (c[1] / world[1] * 100) if (c and world and world[0] == c[0] and not jp) else None
+        cell = f"{c[1] / 1e12:,.2f}조 달러 ({c[0]})" if c else "세계은행 자료 없음"
+        if jp:
+            cell += f" ※ {jp[0]}년 {jp[1] / 1e12:,.2f}조"
+            flags.append(f"{r['ko']}: {c[0]}년 값이 {jp[0]}년({jp[1] / 1e12:,.2f}조 달러)의 {c[1] / jp[1]:.1f}배로 1년 새 크게 바뀌어 "
+                         "집계 방식이 달라졌을 수 있습니다. 세계 대비 비중에서 뺐습니다.")
+            flags.append("세계은행 세계 합계에는 이 값이 그대로 들어 있어, 다른 나라의 '세계 대비' 비중이 실제보다 조금 낮게 나올 수 있습니다.")
+        if c and world and c[0] < world[0] - 2:
+            flags.append(f"{r['ko']}: 세계은행의 가장 최근 값이 {c[0]}년이라 다른 나라와 시점이 다릅니다.")
+        trow.append([str(i) if c else "-", r["ko"], cell,
                      f"{share:.1f}%" if share is not None else "-",
                      f"{r['gdp'][1]:,.0f}%" if r.get("gdp") else "-",
                      r["etf"], _pct(r.get("usd")), _pct(r.get("krw")), _pct(r.get("mdd"))])
@@ -121,7 +144,7 @@ def build_html(data):
     table = charts.table_html(f"나라별 주식시장 크기와 대표 ETF ({yr} 시가총액 기준)",
                               ["순위", "나라", "상장 기업 시가총액", "세계 대비", "GDP 대비", "미국 상장 대표 ETF",
                                "1년 수익(달러)", "1년 수익(원화 환산)", "5년 최대 낙폭"], trow, note)
-    top = [r for r in rows if r.get("cap") and world and r["cap"][0] == world[0]][:10]   # 세계 합계와 같은 연도만
+    top = [r for r in rows if r.get("cap") and world and r["cap"][0] == world[0] and not r.get("jump")][:10]   # 같은 연도·급변 없는 것만
     chart = ""
     if world and top:
         chart = charts.plotly_html({"title": "세계 주식시장에서 각 나라가 차지하는 비중(%)", "kind": "bar", "unit": "%",
@@ -154,7 +177,8 @@ def build_html(data):
            "세계은행 자료는 1년에 한 번 갱신되어 최근 연도가 1~2년 전일 수 있습니다. 대만은 세계은행 자료에 없습니다.</div>")
     disc = ('<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">이 페이지는 공개 데이터를 정리한 정보 제공용이며, '
             "특정 나라·상품의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>")
-    return intro + table + chart + how + invest + src + disc
+    warn = ("<h3>자료를 볼 때 주의할 점</h3><ul>" + "".join(f"<li>{html.escape(x)}</li>" for x in flags) + "</ul>") if flags else ""
+    return intro + table + chart + warn + how + invest + src + disc
 
 
 def main(mode="preview"):

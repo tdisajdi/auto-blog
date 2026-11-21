@@ -92,3 +92,14 @@ def test_market_map_page():
     h = m.build_html({"world": (2024, 124e12), "rows": rows})
     assert "50.0%" in h and "세계은행 자료 없음" in h and "data.worldbank.org" in h and "world-exchanges.org" in h
     assert "TIGER 일본니케이225" in h and "권유하지 않습니다" in h
+
+
+def test_market_map_jump_flag():
+    """11-21 세계은행 인도 시가총액 1년에 2배 - 급변 표시하고 세계 비중에서 뺌, 오래된 연도 알림."""
+    from site_pages import market_map as m
+    assert m.jump_flag([(2025, 10.56e12), (2024, 5.13e12)]) == (2024, 5.13e12)
+    assert m.jump_flag([(2025, 69e12), (2024, 62e12)]) is None
+    rows = [{"code": "IND", "ko": "인도", "etf": "INDA", "kr": "", "link": "", "cap": (2025, 10.56e12), "gdp": None, "jump": (2024, 5.13e12)},
+            {"code": "FRA", "ko": "프랑스", "etf": "EWQ", "kr": "", "link": "", "cap": (2018, 2.4e12), "gdp": None}]
+    h = m.build_html({"world": (2025, 141e12), "rows": rows})
+    assert "2.1배" in h and "세계 대비 비중에서 뺐습니다" in h and "2018년이라" in h
