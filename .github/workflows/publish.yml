@@ -154,7 +154,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
       - name: 발굴 + 토론 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
         run: python etf_auto.py --discover-and-notify --if-due
       - name: 온도판 숫자 매일 갱신 (AI 없음, 공개 여부 그대로 - 11-12)
@@ -206,7 +214,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
       - name: ETF 외 분야 발굴 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
         run: python topic_engine.py --discover --if-due
       - name: 대기 상태 파일 커밋
@@ -247,7 +263,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
 
       # 깃허브 자체 예약으로 돌 때만: 외부 알람(cron-job.org)이 1시간 넘게 안 불렀으면 텔레그램 알림 (watchdog.py)
       - name: 외부 알람 멈춤 감시
@@ -379,7 +403,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
       - name: 성과 데이터 동기화
         run: python etf_auto.py --sync-performance
       - name: 성과 데이터 커밋
@@ -420,7 +452,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
       - name: 화면 캡처 도구 설치 (주간 점검용)
         run: pip install playwright && python -m playwright install --with-deps chromium || echo "⚠️ 캡처 도구 설치 실패 - 캡처만 건너뜀"
       - name: 주간 상태 점검 리포트 전송
@@ -461,7 +501,15 @@ jobs:
       - name: 통합 키 파일(.env) 복원
         env:
           DOTENV_CONTENTS: ${{ secrets.DOTENV_CONTENTS }}
-        run: printf '%s\n' "$DOTENV_CONTENTS" > .env
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          THREADS_TOKEN_DATE: ${{ secrets.THREADS_TOKEN_DATE }}
+          THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+        run: |
+          printf '%s\n' "$DOTENV_CONTENTS" > .env
+          # 11-22 Threads 열쇠는 따로 넣은 비밀값에서 덧붙임(통합 키 파일을 다시 붙여 넣지 않아도 되게)
+          for k in THREADS_ACCESS_TOKEN THREADS_TOKEN_DATE THREADS_APP_SECRET; do
+            v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
+          done
 
       - name: 수동 실행
         env:
