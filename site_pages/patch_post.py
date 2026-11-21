@@ -24,7 +24,8 @@ def apply(content, patches):
         if n != 1:
             probs.append(f"'{p['old'][:40]}…' 이 {n}번 있음(정확히 1번이어야 함)")
             continue
-        new_nums = set(re.findall(r"\d[\d,.]*", p["new"])) - set(re.findall(r"\d[\d,.]*", content))
+        _nohref = lambda t: re.sub(r'href="[^"]*"', "", t)    # 11-21: 링크 주소 속 날짜(2026/11/19)는 글 숫자가 아님
+        new_nums = set(re.findall(r"\d[\d,.]*", _nohref(p["new"]))) - set(re.findall(r"\d[\d,.]*", _nohref(content)))
         if new_nums:
             probs.append(f"새 숫자가 들어감: {sorted(new_nums)} - 고치기에서 숫자를 더하지 않음")
             continue
