@@ -7,7 +7,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -23,14 +23,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     31,
-    "23.9219px",
+    "0px",
     ""
    ],
    [
@@ -58,7 +58,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -74,14 +74,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     34,
-    "23.9219px",
+    "0px",
     ""
    ],
    [
@@ -109,7 +109,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -125,14 +125,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     34,
-    "23.9219px",
+    "0px",
     ""
    ],
    [
@@ -168,7 +168,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -184,14 +184,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     31,
-    "23.9219px",
+    "0px",
     ""
    ],
    [
@@ -231,7 +231,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10784217.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -241,7 +241,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    52,
+    78,
     "6px",
     ""
    ],
@@ -254,7 +254,7 @@
    [
     "DIV.wp-block-post-date",
     31,
-    "2.17188px",
+    "0px",
     ""
    ],
    [
@@ -286,7 +286,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10784217.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -296,7 +296,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    52,
+    78,
     "6px",
     ""
    ],
@@ -309,7 +309,7 @@
    [
     "DIV.wp-block-post-date",
     31,
-    "2.17188px",
+    "0px",
     ""
    ],
    [
@@ -391,27 +391,31 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "회계연도",
+    "기간",
     1.1
    ],
    [
-    "매출",
+    "INDA 달러 기준",
     1.1
    ],
    [
-    "영업이익",
+    "원/달러 환율",
     1.1
    ],
    [
-    "영업이익률",
+    "INDA 원화 환산",
     1.1
    ],
    [
-    "순이익",
+    "SPY 달러 기준",
     1.1
    ],
    [
-    "Yahoo Finance 손익계산서(회계연도 기준), ",
+    "TIGER 인도니프티50",
+    1.1
+   ],
+   [
+    "Yahoo Finance 종가(배당 반영), 거래일 기",
     2.8
    ]
   ]
@@ -424,7 +428,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -440,7 +444,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    144,
     "0px",
     ""
    ],
@@ -457,12 +461,12 @@
    ],
    [
     "li-top",
-    2276,
+    2323,
     "0px"
    ],
    [
     "li-top",
-    2741,
+    2765,
     "0px"
    ]
   ]
@@ -475,7 +479,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -491,7 +495,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    144,
     "0px",
     ""
    ],
@@ -508,12 +512,12 @@
    ],
    [
     "li-top",
-    967,
+    1015,
     "0px"
    ],
    [
     "li-top",
-    1439,
+    1463,
     "0px"
    ]
   ]
@@ -526,7 +530,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -542,7 +546,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    144,
     "0px",
     ""
    ],
@@ -559,12 +563,12 @@
    ],
    [
     "li-top",
-    995,
+    1043,
     "0px"
    ],
    [
     "li-top",
-    1467,
+    1491,
     "0px"
    ]
   ]
@@ -585,7 +589,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_45028643.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_91489847.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -601,7 +605,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    96,
+    144,
     "0px",
     ""
    ],
@@ -618,12 +622,12 @@
    ],
    [
     "li-top",
-    834,
+    881,
     "0px"
    ],
    [
     "li-top",
-    1299,
+    1323,
     "0px"
    ]
   ]
@@ -648,7 +652,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10784217.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -658,7 +662,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    52,
+    78,
     "6px",
     ""
    ],
@@ -681,12 +685,12 @@
    ],
    [
     "li-top",
-    2431,
+    2457,
     "0px"
    ],
    [
     "li-top",
-    2896,
+    2922,
     "0px"
    ]
   ]
@@ -703,7 +707,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10784217.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -713,7 +717,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    52,
+    78,
     "6px",
     ""
    ],
@@ -736,12 +740,12 @@
    ],
    [
     "li-top",
-    830,
+    856,
     "0px"
    ],
    [
     "li-top",
-    1296,
+    1322,
     "0px"
    ]
   ]
@@ -808,27 +812,31 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "회계연도",
+    "기간",
     1.1
    ],
    [
-    "매출",
+    "INDA 달러 기준",
     1.1
    ],
    [
-    "영업이익",
+    "원/달러 환율",
     1.1
    ],
    [
-    "영업이익률",
+    "INDA 원화 환산",
     1.1
    ],
    [
-    "순이익",
+    "SPY 달러 기준",
     1.1
    ],
    [
-    "Yahoo Finance 손익계산서(회계연도 기준), ",
+    "TIGER 인도니프티50",
+    1.1
+   ],
+   [
+    "Yahoo Finance 종가(배당 반영), 거래일 기",
     2.8
    ]
   ]
