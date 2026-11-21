@@ -123,6 +123,9 @@ body.admin-bar .o-head { top: 32px; }
 .o-boardband { margin-top: 64px; background: var(--o-navy-2); color: #fff; }
 .o-boardband .o-wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 28px; padding-bottom: 28px; flex-wrap: wrap; }
 .o-boardband p { margin: 0; color: #d4dcec; font-size: 16px; line-height: 1.6; max-width: 40em; }
+/* 11-21 사용자: 첫 화면 문장이 어중간하게 끊겨 마지막 줄에 '씁니다.'·'비교합니다.'만 남음 → 짧은 소개 글은 줄 길이를 고르게(balance), 본문은 끝줄 한 단어 남김 방지(pretty). 지원 안 하는 브라우저는 그대로. */
+.o-hero p.o-hero-sub, .o-cat p, .o-boardband p, .o-sec-head h2, .o-cat h3 { text-wrap: balance; }
+html body p, html body li { text-wrap: pretty; }
 .o-boardband .o-px { color: var(--o-mild); font-size: 13px; display: block; margin-bottom: 6px; }
 .o-scale { height: 12px; width: 220px; background: var(--o-grad); -webkit-mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px); mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px); }
 
