@@ -591,7 +591,8 @@ def render_parking(results, names, amount=10_000_000):
             lines.append(f"- {nm(t)}: 자료 시작({r['start']})부터 연 환산 {_pct(r['ann'], 2)}")
         share = f"{r['down_share']:.1f}%" if r["down_share"] < 10 else f"{r['down_share']:.0f}%"
         worst = f"가장 크게 내린 하루 {r['worst_day']:.2f}%" if r["worst_day"] < 0 else "전날보다 내린 날 없음"
-        s = f"- {nm(t)} 흔들림: 전날보다 내린 날 비율 {share}, {worst}"
+        s = (f"- {nm(t)} 흔들림: 전날보다 내린 날 비율 {share}, {worst}" if r["worst_day"] < 0
+             else f"- {nm(t)} 흔들림: 전날보다 내린 날 없음")      # 11-21 865: '비율 0.0%, 내린 날 없음' 되풀이
         if r["worst_month"] is not None:
             s += f", 한 달 단위로 내린 달 {r['neg_months']}번/{r['months']}개월(가장 나쁜 달 {r['worst_month']:+.2f}%)"
         s += f", 최대 낙폭 {min(r['mdd'], 0) or 0:.2f}%"
