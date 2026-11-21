@@ -674,12 +674,19 @@ def get_etf_real_data(ticker_symbol, driver, macro_data):
                         if "분배수익률" in r_text:
                             match = re.search(r"(\d+\.\d+)\s*%", r_text)
                             if match: calculated_yield = f"{match.group(1)}%"
-                if '종목명' in df.columns and '비중' in df.columns:
-                    for _, row in df.dropna(subset=['종목명', '비중']).head(5).iterrows():
+                # 11-21 백로그 87: 네이버 표 머리글이 '구성종목(구성자산)'·'구성비중(%)'처럼 달라도 찾기(여러 줄 머리글은 이어 붙임)
+                cols = [" ".join(map(str, c)) if isinstance(c, tuple) else str(c) for c in df.columns]
+                nc = next((i for i, c in enumerate(cols) if "종목" in c), None)
+                wc = next((i for i, c in enumerate(cols) if "비중" in c), None)
+                if nc is not None and wc is not None and not top_holdings:
+                    for _, row in df.iloc[:, [nc, wc]].dropna().head(10).iterrows():
                         try:
-                            top_holdings.append({"symbol": "-", "name": str(row['종목명']), "weight": float(str(row['비중']).replace('%', ''))})
+                            top_holdings.append({"symbol": "-", "name": str(row.iloc[0]).strip(),
+                                                 "weight": float(str(row.iloc[1]).replace('%', '').replace(',', ''))})
                         except (ValueError, TypeError):
                             continue
+            if not top_holdings:
+                print("   ⚠️ 보유 종목 표 못 찾음 - 표 머리글:", [list(map(str, d.columns))[:5] for d in dfs][:8])
         except Exception as e:
             print(f"   ⚠️ 네이버 스크래핑 실패: {e}")
 
