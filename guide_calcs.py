@@ -430,15 +430,21 @@ def calc_fx_hedge(usd_close, fx_close, hedged_krw_close, days=252):
             "fx0": float(seg["f"].iloc[0]), "fx1": float(seg["f"].iloc[-1])}
 
 
-def render_fx_hedge(r, asset, hedged_name):
+def render_fx_hedge(r, asset, hedged_name, more=()):
+    """more: [(r, asset, hedged_name)] 같은 계산의 다른 자산 짝(11-21 백로그 92: 금 한 쌍뿐이라 작가가 같은 설명을 되풀이 → S&P500 짝 추가)."""
     from ondo.media import charts
     if not r:
         return "", ""
-    lines = [f"- 최근 1년({r['start']}부터): {asset} 달러 기준 {_pct(r['usd'])}, 원/달러 환율 {r['fx0']:,.0f}원 → {r['fx1']:,.0f}원({_pct(r['fx'])})",
-             f"- 같은 기간 원화로 환산하면(환노출) {_pct(r['krw_unhedged'])}, 환헤지 ETF {hedged_name}는 {_pct(r['hedged'])} "
-             f"→ 두 방식 차이 {_pp(r['krw_unhedged'] - r['hedged'])}"]
-    rows = [[f"{asset} (달러 기준)", _pct(r["usd"])], ["원/달러 환율 변화", _pct(r["fx"])],
-            [f"{asset} 원화 환산(환노출)", _pct(r["krw_unhedged"])], [f"{hedged_name} (환헤지)", _pct(r["hedged"])]]
+    pairs = [(r, asset, hedged_name)] + [p for p in more if p[0]]
+    lines, rows = [], []
+    for i, (x, a, hn) in enumerate(pairs):
+        if i == 0:
+            lines.append(f"- 최근 1년({x['start']}부터) 원/달러 환율 {x['fx0']:,.0f}원 → {x['fx1']:,.0f}원({_pct(x['fx'])})")
+        lines.append(f"- {a}: 달러 기준 {_pct(x['usd'])}, 원화로 환산하면(환노출) {_pct(x['krw_unhedged'])}, 환헤지 ETF {hn}는 {_pct(x['hedged'])} "
+                     f"→ 두 방식 차이 {_pp(x['krw_unhedged'] - x['hedged'])}")
+        rows += [[f"{a} (달러 기준)", _pct(x["usd"])], [f"{a} 원화 환산(환노출)", _pct(x["krw_unhedged"])],
+                 [f"{hn} (환헤지)", _pct(x["hedged"])]]
+    rows.insert(0, ["원/달러 환율 변화", _pct(r["fx"])])
     note = ("Yahoo Finance 종가(배당 제외 가격), 최근 약 1년, ondo 계산. 원화 환산 = 달러 가격 × 원/달러 환율. "
             "환헤지 ETF는 운용 방식·비용·추적 대상이 달라 차이가 환율 효과만은 아님. " + PAST_NOTE)
     table = charts.table_html("같은 자산, 환율을 막았을 때와 그대로 뒀을 때(최근 1년)", ["구분", "수익률"], rows, note)
@@ -611,7 +617,11 @@ def guide_facts(topic_id, data_cache, rates_effect=None):
             g, fx, hk = _hist("GLD", period="2y"), _hist("KRW=X", period="2y"), _hist("132030.KS", period="2y")
             if g is None or fx is None or hk is None:
                 return "", ""
-            return render_fx_hedge(calc_fx_hedge(g["Close"], fx["Close"], hk["Close"]), "GLD(금)", "KODEX 골드선물(H)")
+            more = []
+            sp, sh = _hist("SPY", period="2y"), _hist("143850.KS", period="2y")    # TIGER 미국S&P500선물(H)
+            if sp is not None and sh is not None:
+                more.append((calc_fx_hedge(sp["Close"], fx["Close"], sh["Close"]), "SPY(미국 S&P500)", "TIGER 미국S&P500선물(H)"))
+            return render_fx_hedge(calc_fx_hedge(g["Close"], fx["Close"], hk["Close"]), "GLD(금)", "KODEX 골드선물(H)", more)
         if topic_id.startswith("market-"):          # 11-21 나라별 시장
             cfg = COUNTRIES.get(topic_id[7:])
             if not cfg:

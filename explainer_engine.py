@@ -32,7 +32,7 @@ GUIDE_TOPICS = [
     {"id": "covered-call-structure", "title": "커버드콜 ETF의 높은 분배금은 어디서 나오고, 무엇을 포기할까",
      "tickers": ["JEPI", "QYLD", "QQQ"]},
     {"id": "hedged-vs-unhedged", "title": "환헤지(H) ETF와 환노출 ETF, 같은 자산인데 수익률이 다른 이유",
-     "tickers": ["GLD", "132030.KS"]},
+     "tickers": ["GLD", "132030.KS", "SPY", "143850.KS"]},   # 11-21 S&P500 짝 추가(백로그 92)
     {"id": "tr-vs-pr", "title": "이름 끝의 'TR', 배당을 재투자하는 ETF는 정말 유리할까",
      "tickers": ["069500.KS", "278530.KS"], "tax": True},
     {"id": "dca-vs-lump", "title": "적립식 vs 거치식, 실제 가격으로 돌려보면 무엇이 달랐을까",
