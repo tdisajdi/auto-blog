@@ -64,6 +64,14 @@ GUIDE_TOPICS = [
      "tickers": ["459580.KS", "488770.KS"], "tax": True},
 ]
 
+def _country_tags(topic_id):
+    """11-21 나라 시장 글(market-*) → ['인도'] 같은 나라 태그. 그 밖의 주제는 []."""
+    import guide_calcs
+    if topic_id and topic_id.startswith("market-") and topic_id[7:] in guide_calcs.COUNTRIES:
+        return [guide_calcs.COUNTRIES[topic_id[7:]]["ko"]]
+    return []
+
+
 # 독자가 실제로 검색하는 말(자동완성)을 모을 짧은 검색어(2026-11-08, topic_engine.search_questions_block)
 SEARCH_SEEDS = {"overseas-vs-domestic-tax": "해외 ETF 세금", "expense-ratio": "ETF 총보수", "covered-call-structure": "커버드콜 ETF",
                 "hedged-vs-unhedged": "환헤지 ETF", "tr-vs-pr": "TR ETF", "dca-vs-lump": "적립식 거치식",
@@ -708,6 +716,8 @@ def run_explainer(topic, etf_module):
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax, list(data_cache.keys())), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
-        meta={"example_tickers": list(data_cache.keys())},
+        meta={"example_tickers": list(data_cache.keys()),
+              # 11-21 나라 태그(백로그 95): 나라 시장 글에 나라 이름 - 나중에 나라 허브(3편↑)로 묶는 고리. 태그 화면은 검색 제외(noindex)
+              "tags": _country_tags(topic_id)},
         search_seed=SEARCH_SEEDS.get(topic_id, ""),
     )

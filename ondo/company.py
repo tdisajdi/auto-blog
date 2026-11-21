@@ -39,6 +39,13 @@ COMPANIES = {
 EMPTY = (None, "", "N/A", "nan")
 
 
+def country_tag(ticker):
+    """11-21 나라 태그(백로그 95): 본사 나라. 국내 상장은 한국, TSMC는 대만(미국 상장이지만 대만 회사), 나머지 미국."""
+    if ticker.endswith(".KS") or ticker.isdigit():
+        return "한국"
+    return {"TSM": "대만"}.get(ticker, "미국")
+
+
 def eun(word):
     """조사 은/는(11-21: '엔비디아은'·'테슬라은'이 표 제목에 나옴). 끝 글자에 받침이 있으면 '은'. 영문 끝(TSMC·NAVER)은 '는'."""
     ch = (word or "").strip()[-1:]
@@ -342,4 +349,4 @@ def run_company(ticker, ea):
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
                     closing_html=closing_html(ticker, weights, div is not None), visual_html=visual,
-                    meta={"company": ticker, "company_ko": c["ko"], "tags": [c["ko"]]}, search_seed=c.get("seed", ""))
+                    meta={"company": ticker, "company_ko": c["ko"], "tags": [c["ko"], country_tag(ticker)]}, search_seed=c.get("seed", ""))
