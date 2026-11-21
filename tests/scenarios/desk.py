@@ -437,6 +437,8 @@ print("intro repeat downgrade ok")
 
 # 11-12 백로그 13) 하루 한도(PerDay) 429는 같은 실행에서 그 (모델, 키)를 다시 안 부름 / 분당 한도는 다시 부름
 llm._excluded.clear(); llm._dead_models.clear(); llm._day_limited.clear()
+import os as _os
+if _os.path.exists("key_alerts.json"): _os.remove("key_alerts.json")   # 앞 시험에서 막힌 키 기록(7일 빼기)을 지움
 DAY = '{"error":{"code":429,"details":[{"violations":[{"quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier"}]}]}}'
 MIN = '{"error":{"code":429,"details":[{"violations":[{"quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier"}]}]}}'
 calls = []
@@ -481,3 +483,15 @@ for ok_retry, want in ((False, "weak"), (True, "strong")):
     assert desk.review.fact == want, (ok_retry, desk.review.fact)
     assert any(c[0].endswith("다시") for c in [(x["step"],) for x in log.data["calls"]]), "다시 부르기 기록 없음"
 print("fact strong-only ok")
+
+
+# 11-21 401·403으로 막힌 키는 다음 실행부터 7일 동안 안 부름(키 지문만 기록), 다 막히면 그대로 씀
+from ondo import keys as _k
+if _os.path.exists("key_alerts.json"): _os.remove("key_alerts.json")
+_k.mark_bad("KEY2")
+assert [x[2] for x in _k.gemini_keys()] == ["KEY1", "KEY3", "KEY4"], _k.gemini_keys()
+assert len(_k.gemini_keys(include_bad=True)) == 4 and "KEY2" not in open("key_alerts.json").read()
+for kk in ("KEY1", "KEY3", "KEY4"): _k.mark_bad(kk)
+assert len(_k.gemini_keys()) == 4                      # 다 막혔으면 그대로
+_os.remove("key_alerts.json")
+print("bad key skip ok")

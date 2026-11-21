@@ -697,7 +697,8 @@ def get_gemini_response(prompt, thinking_budget=0):
 
     # [추가] 403으로 영구 제외된 키를 뺀 "지금 실제로 쓸 수 있는 키 목록".
     # 이 목록을 기준으로 순환해야 이미 죽은 키에 다시 걸려 시간을 낭비하지 않는다.
-    available_keys = [k for k in GEMINI_API_KEYS if k not in _permanently_excluded_keys]
+    available_keys = [k for k in GEMINI_API_KEYS if k not in _permanently_excluded_keys and not _ondo_keys.is_bad(k)] \
+        or [k for k in GEMINI_API_KEYS if k not in _permanently_excluded_keys]   # 11-21: 7일 안에 막힌 키 빼기
     num_keys = len(available_keys)
 
     if num_keys == 0:
