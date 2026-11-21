@@ -86,6 +86,8 @@ def _missing(src, dst):
 def compare(ko_html, en_html):
     """어긋난 점 목록(비면 통과)."""
     probs = []
+    from ondo.media.art_note import BOX_RE           # 11-21 표지 그림 설명 상자는 올릴 때 영어로 다시 끼우므로 대조에서 뺌
+    ko_html, en_html = BOX_RE.sub("", ko_html or ""), BOX_RE.sub("", en_html or "")
     kv, ev = ko_values(ko_html), en_values(en_html)
     m1, m2 = _missing(kv, ev), _missing(ev, kv)
     if m1:
