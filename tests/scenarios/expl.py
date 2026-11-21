@@ -11,7 +11,7 @@ ea=types.SimpleNamespace(get_macro_data=lambda: {}, TAX_RULES_BASIS="2026년 10�
     get_macro_thermometer_indicators=lambda: {"volatility": 40}, _build_macro_thermometers_chart=lambda i: "<div>온도계</div>")
 xe.price_chart=lambda *a: "<figure class='ondo-chart'>가격</figure>"
 xe.run_explainer("GUIDE:"+xe.GUIDE_TOPICS[0]["id"], ea)
-assert got["article_type"]=="guide" and got["memo"]=="메모!" and got["meta"]=={"example_tickers":["SPY"]} and got["category_label"].startswith("ETF/")
+assert got["article_type"]=="guide" and got["memo"]=="메모!" and got["meta"]=={"example_tickers":["SPY"], "tags": []} and got["category_label"].startswith("ETF/")
 assert not os.path.exists("confirmed_topic_context.json")
 tax_guide = next(g for g in xe.GUIDE_TOPICS if g.get("tax"))
 got.clear(); xe.run_explainer("GUIDE:" + tax_guide["id"], ea)

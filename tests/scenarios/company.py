@@ -54,3 +54,10 @@ print("josa ok")
 # 11-22 배당 없는 회사는 제목 씨앗에서 '배당' 뺌
 assert "배당" not in co.title_seed("TSLA", True, False) and "배당" in co.title_seed("AAPL", True, True)
 print("title seed div ok")
+
+# 11-21 나라 태그(백로그 95): 회사는 본사 나라, 나라 시장 글은 나라 이름
+from ondo.company import country_tag as _ct
+assert (_ct("AAPL"), _ct("TSM"), _ct("005930.KS")) == ("미국", "대만", "한국")
+import explainer_engine as _xe9
+assert _xe9._country_tags("market-japan") == ["일본"] and _xe9._country_tags("dca-vs-lump") == []
+print("country tags ok")
