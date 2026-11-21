@@ -35,13 +35,16 @@ GUIDE_TOPICS = [
     {"id": "hedged-vs-unhedged", "title": "환헤지(H) ETF와 환노출 ETF, 같은 자산인데 수익률이 다른 이유",
      "tickers": ["GLD", "132030.KS", "SPY", "143850.KS"]},   # 11-21 S&P500 짝 추가(백로그 92)
     {"id": "tr-vs-pr", "title": "이름 끝의 'TR', 배당을 재투자하는 ETF는 정말 유리할까",
-     "tickers": ["069500.KS", "278530.KS"], "tax": True},
+     "tickers": ["069500.KS", "278530.KS"], "tax": True,
+     "hold": "세금 가이드(701)와 같은 세금 계산표를 받음 - TR 전용 계산(분배금 재투자 효과)을 만들기 전까지 쓰지 않음"},
     {"id": "dca-vs-lump", "title": "적립식 vs 거치식, 실제 가격으로 돌려보면 무엇이 달랐을까",
      "tickers": ["SPY", "QQQ"]},
     {"id": "mdd-risk", "title": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
      "tickers": ["QQQ", "SCHD", "TLT"]},
     {"id": "tax-accounts", "title": "ISA·연금저축·IRP로 ETF 살 때 꼭 알아야 할 차이",
-     "tickers": ["360750.KS", "SPY"], "tax": True},
+     "tickers": ["360750.KS", "SPY"], "tax": True,
+     # 11-21: 852가 세금 가이드(701)와 같은 계산표·결론으로 나옴(사용자 '어차피 거의 같은 거면 왜 썼나') → 계좌 규칙 자료(백로그 96) 전까지 보류
+     "hold": "세금 가이드(701)와 같은 세금 계산표를 받음 - 계좌 규칙 자료(백로그 96)를 만들기 전까지 쓰지 않음"},
     {"id": "dividend-growth", "title": "배당 ETF, 배당률보다 배당성장률을 먼저 봐야 하는 이유",
      "tickers": ["SCHD", "VYM", "DGRO"]},
     {"id": "bond-duration", "title": "채권 ETF는 왜 금리가 오르면 떨어질까: 만기와 듀레이션 기초",
@@ -118,6 +121,8 @@ def pick_guide_topic():
     history = _explainer_history()
     now = datetime.now()
     for t in GUIDE_TOPICS:
+        if t.get("hold"):
+            continue
         dt = history.get(("guide", t["id"]))
         if dt is None or (now - dt).days >= GUIDE_REPEAT_DAYS:
             return t
@@ -635,6 +640,9 @@ def run_explainer(topic, etf_module):
         t = next((g for g in GUIDE_TOPICS if g["id"] == topic_id), None)
         if not t:
             print(f"❌ 알 수 없는 가이드 주제: {topic_id}")
+            return
+        if t.get("hold"):                    # 11-21: 이미 공개된 글과 같은 자료를 받는 주제는 Gemini를 쓰기 전에 멈춤
+            print(f"⏸️ 보류된 가이드 주제: {topic_id} - {t['hold']}")
             return
         kind_label, title_seed, article_type = "기초 가이드", t["title"], "guide"
         facts_text, data_cache, news = _collect_facts(t["tickers"], macro_data, include_tax=t.get("tax", False))
