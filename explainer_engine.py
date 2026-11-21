@@ -64,6 +64,9 @@ GUIDE_TOPICS = [
      "tickers": ["459580.KS", "488770.KS"], "tax": True},
 ]
 
+TAX_TABLE_TOPICS = {"overseas-vs-domestic-tax", "tax-accounts"}   # 세금 계산표를 받는 주제(tax-accounts는 보류 중 - 백로그 96)
+
+
 def _country_tags(topic_id):
     """11-21 나라 시장 글(market-*) → ['인도'] 같은 나라 태그. 그 밖의 주제는 []."""
     import guide_calcs
@@ -655,7 +658,9 @@ def run_explainer(topic, etf_module):
         kind_label, title_seed, article_type = "기초 가이드", t["title"], "guide"
         facts_text, data_cache, news = _collect_facts(t["tickers"], macro_data, include_tax=t.get("tax", False))
         include_tax = t.get("tax", False)
-        if include_tax:
+        # 11-21: 세금 계산표(갈림길 833만 원)는 세금 가이드(701, 공개됨) 전용 - 다른 주제(파킹형 865)에 tax=True만 있어도
+        # 같은 표가 들어가 공개 글과 자료가 겹침(11-21 계좌 가이드 852와 같은 실수). 그 밖의 주제는 세법 사실만 받고 계산은 주제 계산을 씀.
+        if include_tax and topic_id in TAX_TABLE_TOPICS:
             calc_facts, visual = tax_scenarios()
             facts_text += "\n" + calc_facts
         else:
