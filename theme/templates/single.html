@@ -57,17 +57,18 @@ keys.slice(0,2).forEach(function(k){
  var w=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||p.closest('table,h1,h2,h3,h4,.o-answer-h,.o-answer-n,mark,a,script,style'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
  var nodes=[];while(w.nextNode())nodes.push(w.currentNode);
  nodes.forEach(function(n){if(left>0&&n.parentNode&&mark(n,k))left--;});});
-/* 4) 용어 풍선: '용어(10자 이상 설명)' 첫 등장만. 숫자가 든 괄호는 그대로 */
-var seen={};
-[].slice.call(c.querySelectorAll('p,li')).forEach(function(p){if(p.closest('table,.o-answer-h'))return;
- [].slice.call(p.childNodes).forEach(function(n){if(n.nodeType!==3)return;var t=n.nodeValue;
-  var re=/([가-힣A-Za-z][가-힣A-Za-z0-9·]{1,14})\(([^()\d]{10,70})\)/g,m,out=[],last=0,hit=false;
-  while((m=re.exec(t))){if(m[2].indexOf(' ')<0||seen[m[1]])continue;seen[m[1]]=1;hit=true;
-   out.push(document.createTextNode(t.slice(last,m.index)));
-   var s=document.createElement('span');s.className='o-term';s.tabIndex=0;s.setAttribute('role','button');s.setAttribute('aria-label',m[1]+': '+m[2]);
-   var w=document.createElement('span');w.textContent=m[1];var tip=document.createElement('span');tip.className='o-tip';tip.textContent=m[2];
-   s.appendChild(w);s.appendChild(tip);out.push(s);last=m.index+m[0].length;}
-  if(hit){out.push(document.createTextNode(t.slice(last)));var f=document.createDocumentFragment();out.forEach(function(x){f.appendChild(x);});n.parentNode.replaceChild(f,n);}});});
+/* 4) 용어 풍선(11-21 고침): 코드 용어집(ondo/writing/glossary.py)에 있는 말만, 글에 처음 나올 때 한 번, 뜻은 용어집 그대로.
+   전에는 '말(10자 넘는 괄호)'을 모두 풍선으로 만들어 '파이낸스(Yahoo Finance)'·'SCHD(펀드 이름)'·표 아래 주석까지 잡혔다(사용자 지적). */
+var GL={{GLOSSARY_JSON}};
+if((document.documentElement.lang||'ko').indexOf('ko')===0){
+ var tw=document.createTreeWalker(c,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||!p.closest('p,li')||p.closest('table,figure,figcaption,.ondo-calc,.o-answer-h,.o-answer-n,h1,h2,h3,h4,a,mark,.o-term,script,style'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT;}});
+ var tn=[];while(tw.nextNode())tn.push(tw.currentNode);
+ GL.forEach(function(g){var re=new RegExp(g[0]);for(var i=0;i<tn.length;i++){var n=tn[i];if(!n.parentNode)continue;var m=re.exec(n.nodeValue);if(!m||!m[0])continue;
+  var r=n.splitText(m.index);var rest=r.splitText(m[0].length);tn.splice(i+1,0,rest);
+  var s=document.createElement('span');s.className='o-term';s.tabIndex=0;s.setAttribute('role','button');s.setAttribute('aria-label',g[1]+': '+g[2]);
+  var w=document.createElement('span');w.textContent=m[0];var tip=document.createElement('span');tip.className='o-tip';tip.textContent=g[1]+' - '+g[2];
+  s.appendChild(w);s.appendChild(tip);r.parentNode.replaceChild(s,r);break;}});
+}
 c.addEventListener('click',function(e){var t=e.target.closest('.o-term');[].slice.call(c.querySelectorAll('.o-term.is-open')).forEach(function(x){if(x!==t)x.classList.remove('is-open');});if(t)t.classList.toggle('is-open');});
 /* 5) 체크리스트: '첫째, … 둘째, …' 문단 */
 [].slice.call(c.querySelectorAll('p')).forEach(function(p){var t=p.textContent;
