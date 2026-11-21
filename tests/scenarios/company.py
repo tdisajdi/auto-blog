@@ -42,6 +42,9 @@ assert "<table" not in h2 and "[배당]" not in f2
 assert "애플은 어떤 회사인가" in co.title_seed("AAPL")
 c = co.closing_html("AAPL", [("SPY", "x", 6.8)])
 assert "AAPL Yahoo Finance" in c and "SPY Yahoo Finance" in c and "매수·매도를 권유하지 않습니다" in c
-assert "2020년은 다른 해보다" in co.div_odd_lines({"series": [(2020, 2994), (2021, 1444), (2022, 1444), (2023, 1444), (2024, 1446), (2025, 1668)]}, str)[1]
+assert "2020년은 앞뒤 해보다" in co.div_odd_lines({"series": [(2020, 2994), (2021, 1444), (2022, 1444), (2023, 1444), (2024, 1446), (2025, 1668)]}, str)[1]
 assert len(co.div_odd_lines({"series": [(2020, 1.0), (2021, 1.1), (2022, 1.2)]}, str)) == 1
+# 11-21 꾸준히 늘어난 배당(엔비디아)은 '튄 해'가 아님
+assert len(co.div_odd_lines({"series": [(2020, 0.016), (2021, 0.016), (2022, 0.016), (2023, 0.016), (2024, 0.034), (2025, 0.04)]}, str)) == 1
+assert len(co.div_odd_lines({"series": [(2021, 1.0), (2022, 1.0), (2023, 3.0), (2024, 1.0)]}, str)) == 2   # 가운데 튄 해는 잡음
 print("company ok")

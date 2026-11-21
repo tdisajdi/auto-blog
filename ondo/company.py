@@ -117,12 +117,16 @@ def div_odd_lines(div, f2):
     ser = div.get("series") or []
     if len(ser) < 3:
         return []
-    vals = sorted(v for _, v in ser)
-    med = vals[len(vals) // 2]
-    odd = [y for y, v in ser if med > 0 and v >= med * 1.5]
+    # 11-21 엔비디아: 꾸준히 늘어난 배당(2024·2025년)을 '가운데값의 1.5배'로 이상한 해라고 표시함 →
+    # 앞뒤 해(있는 쪽) 모두보다 1.5배 넘게 튄 해만(삼성전자 2020년은 다음 해의 2배라 그대로 잡힘)
+    odd = []
+    for i, (y, v) in enumerate(ser):
+        nb = [ser[j][1] for j in (i - 1, i + 1) if 0 <= j < len(ser)]
+        if nb and min(nb) > 0 and v >= max(nb) * 1.5:
+            odd.append(y)
     out = ["- 해마다 주당 배당: " + ", ".join(f"{y}년 {f2(v)}" for y, v in ser)]
     if odd:
-        out.append(f"- {', '.join(f'{y}년' for y in odd)}은 다른 해보다 지급이 크게 많았음(가운데값의 1.5배 넘음). "
+        out.append(f"- {', '.join(f'{y}년' for y in odd)}은 앞뒤 해보다 지급이 크게 많았음(1.5배 넘음). "
                    f"시작 해가 이런 해면 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말고 "
                    f"해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것")
     return out
@@ -173,7 +177,7 @@ def build(ticker, *, profile, fin, dd, div, weights, usd_krw=None, years_dd=10):
                   f"- 지금 가격의 {years_dd}년 최고가 대비: {dd['now_vs_peak']:.1f}%",
                   f"- 1,000만 원을 그 고점에 넣었다면 가장 낮을 때 평가액: {gc._won(10_000_000 * (1 + dd['pct'] / 100))}"]
     if div:
-        f2 = (lambda v: f"{v:,.0f}원") if kr else (lambda v: f"${v:.2f}")
+        f2 = (lambda v: f"{v:,.0f}원") if kr else (lambda v: f"${v:.3f}" if abs(v) < 0.1 else f"${v:.2f}")   # 11-21 아주 작은 배당($0.016)이 $0.02로 뭉개짐
         lines += ["[배당 - Yahoo Finance 배당 지급 기록, 다 찬 해만, 세전]",
                   f"- 주당 연간 배당: {div['y0']}년 {f2(div['div0'])} → {div['y1']}년 {f2(div['div1'])}, {div['years']}년 연평균 {div['cagr']:+.1f}%",
                   f"- 지금 가격 기준 배당률: {div['yield_now']:.2f}%"]
