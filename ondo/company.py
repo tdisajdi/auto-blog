@@ -70,7 +70,9 @@ def money(v, kr=False, usd_krw=None):
         return None
     if kr:
         return f"{v / 1e12:,.1f}조 원" if abs(v) >= 1e12 else f"{v / 1e8:,.0f}억 원"
-    s = f"{v / 1e12:,.2f}조 달러" if abs(v) >= 1e12 else f"{v / 1e8:,.0f}억 달러"
+    # 11-21 팔란티어: 100억 달러 미만을 '19억·1억 달러'로 반올림해 숫자가 뭉개짐 → 소수 한 자리(19.1억 달러)
+    s = (f"{v / 1e12:,.2f}조 달러" if abs(v) >= 1e12 else f"{v / 1e8:,.0f}억 달러" if abs(v) >= 1e10
+         else f"{v / 1e8:,.1f}억 달러")
     if usd_krw:
         krw = v * usd_krw
         s += f"(약 {krw / 1e12:,.0f}조 원)" if abs(krw) >= 1e12 else f"(약 {krw / 1e8:,.0f}억 원)"
