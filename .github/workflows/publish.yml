@@ -166,7 +166,7 @@ jobs:
       - name: 발굴 + 토론 + 텔레그램 알림 (오늘 이미 보냈으면 건너뜀)
         run: python etf_auto.py --discover-and-notify --if-due
       - name: 온도판 숫자 매일 갱신 (AI 없음, 공개 여부 그대로 - 11-12)
-        run: python ondo/board.py refresh || echo "⚠️ 온도판 갱신 실패 - 내일 다시"
+        run: python ondo/board.py refresh || { echo "⚠️ 온도판 갱신 실패 - 내일 다시"; echo "❌ ⚠️ 온도판 갱신 실패 - 내일 다시" >> "$GITHUB_STEP_SUMMARY"; }
       - name: 대기 상태 파일 커밋
         run: |
           git config user.name "github-actions[bot]"
@@ -279,7 +279,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          python watchdog.py || echo "⚠️ 감시 실패 - 점검은 계속 진행"
+          python watchdog.py || { echo "⚠️ 감시 실패 - 점검은 계속 진행"; echo "❌ ⚠️ 감시 실패 - 점검은 계속 진행" >> "$GITHUB_STEP_SUMMARY"; }
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add failure_alerts.json 2>/dev/null || true
@@ -288,8 +288,8 @@ jobs:
       # 아침/낮 예약 실행이 빠졌으면 여기서 대신 보낸다 (이미 보냈으면 바로 넘어감)
       - name: 놓친 추천 보충
         run: |
-          python etf_auto.py --discover-and-notify --if-due || echo "⚠️ ETF 추천 보충 실패 - 승인 확인은 계속 진행"
-          python topic_engine.py --discover --if-due || echo "⚠️ 두 번째 글 추천 보충 실패 - 승인 확인은 계속 진행"
+          python etf_auto.py --discover-and-notify --if-due || { echo "⚠️ ETF 추천 보충 실패 - 승인 확인은 계속 진행"; echo "❌ ⚠️ ETF 추천 보충 실패 - 승인 확인은 계속 진행" >> "$GITHUB_STEP_SUMMARY"; }
+          python topic_engine.py --discover --if-due || { echo "⚠️ 두 번째 글 추천 보충 실패 - 승인 확인은 계속 진행"; echo "❌ ⚠️ 두 번째 글 추천 보충 실패 - 승인 확인은 계속 진행" >> "$GITHUB_STEP_SUMMARY"; }
 
       - name: 텔레그램 응답 확인
         id: check
@@ -462,12 +462,12 @@ jobs:
             v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
           done
       - name: 화면 캡처 도구 설치 (주간 점검용)
-        run: pip install playwright && python -m playwright install --with-deps chromium || echo "⚠️ 캡처 도구 설치 실패 - 캡처만 건너뜀"
+        run: pip install playwright && python -m playwright install --with-deps chromium || { echo "⚠️ 캡처 도구 설치 실패 - 캡처만 건너뜀"; echo "❌ ⚠️ 캡처 도구 설치 실패 - 캡처만 건너뜀" >> "$GITHUB_STEP_SUMMARY"; }
       - name: 주간 상태 점검 리포트 전송
         run: python etf_auto.py --health-report
       - name: 사이트 내용 주간 백업 (글·페이지·머리/바닥글 → site_backup/)
         run: |
-          python site_pages/export.py || echo "⚠️ 사이트 백업 실패 - 다음 주 다시"
+          python site_pages/export.py || { echo "⚠️ 사이트 백업 실패 - 다음 주 다시"; echo "❌ ⚠️ 사이트 백업 실패 - 다음 주 다시" >> "$GITHUB_STEP_SUMMARY"; }
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add site_backup 2>/dev/null || true
@@ -520,7 +520,7 @@ jobs:
           TOPIC2_TEST: ${{ github.event.inputs.topic2_test }}
         run: |
           if [ "${{ github.event.inputs.health_report }}" = "true" ]; then
-            pip install -q playwright && python -m playwright install --with-deps chromium || echo "⚠️ 캡처 도구 설치 실패"
+            pip install -q playwright && python -m playwright install --with-deps chromium || { echo "⚠️ 캡처 도구 설치 실패"; echo "❌ ⚠️ 캡처 도구 설치 실패" >> "$GITHUB_STEP_SUMMARY"; }
             python etf_auto.py --health-report
             exit $?
           fi
@@ -546,33 +546,33 @@ jobs:
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_compete }}" = "true" ]; then
-            python lab_bench.py compete --fetch || echo "경쟁 글 비교 실패"
+            python lab_bench.py compete --fetch || { echo "경쟁 글 비교 실패"; echo "❌ 경쟁 글 비교 실패" >> "$GITHUB_STEP_SUMMARY"; }
             exit 0
           fi
           if [ -n "${{ github.event.inputs.site_pages }}" ]; then
             if [ "${{ github.event.inputs.site_pages }}" = "token-check" ]; then
-              python site_pages/token_check.py || echo "토큰 권한 확인 실패"
+              python site_pages/token_check.py || { echo "토큰 권한 확인 실패"; echo "❌ 토큰 권한 확인 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "plugin-audit" ]; then
-              python site_pages/plugin_audit.py || echo "플러그인 점검 실패"
+              python site_pages/plugin_audit.py || { echo "플러그인 점검 실패"; echo "❌ 플러그인 점검 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "site-tune" ]; then
-              python site_pages/site_tune.py apply || echo "사이트 설정 정리 실패"
+              python site_pages/site_tune.py apply || { echo "사이트 설정 정리 실패"; echo "❌ 사이트 설정 정리 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "site-tune-undo" ]; then
-              python site_pages/site_tune.py undo || echo "사이트 설정 되돌리기 실패"
+              python site_pages/site_tune.py undo || { echo "사이트 설정 되돌리기 실패"; echo "❌ 사이트 설정 되돌리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == refresh:* ]]; then
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c9- | tr -cd 'a-z0-9-')
-              python site_pages/upload.py refresh "$SLUG" || echo "페이지 본문 갱신 실패"
+              python site_pages/upload.py refresh "$SLUG" || { echo "페이지 본문 갱신 실패"; echo "❌ 페이지 본문 갱신 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == tr:* ]]; then
               # 11-19 영어판 번역: tr:export:글번호 / tr:check:글번호 / tr:push:글번호
               ARGS=$(echo "${{ github.event.inputs.site_pages }}" | cut -c4- | tr -cd 'a-z0-9:-' | tr ':' ' ')
-              python site_pages/translate.py $ARGS || echo "번역 작업 실패"
+              python site_pages/translate.py $ARGS || { echo "번역 작업 실패"; echo "❌ 번역 작업 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == patch:* ]]; then
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
-              python site_pages/patch_post.py "$SLUG" || echo "글 고치기 실패"
+              python site_pages/patch_post.py "$SLUG" || { echo "글 고치기 실패"; echo "❌ 글 고치기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == publish-passed:* ]]; then
               # 11-19 기준 통과했는데 임시글로 남은 글 공개(로그에 통과 기록 있을 때만)
               PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c16- | tr -cd '0-9')
-              python site_pages/publish_passed.py "$PID" || echo "공개 실패"
+              python site_pages/publish_passed.py "$PID" || { echo "공개 실패"; echo "❌ 공개 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == cover:* ]]; then
               # 11-19 공개 글 대표 이미지를 새 표지로(cover:번호 또는 cover:번호:GUIDE). 여러 개는 cover:701:GUIDE,705:GUIDE
               for item in $(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr ',' ' '); do
@@ -587,95 +587,95 @@ jobs:
                 python site_pages/cover_post.py "$PID" --note $SRC || echo "그림 설명 실패 $PID"
               done
             elif [ "${{ github.event.inputs.site_pages }}" = "sc-connect" ]; then
-              python site_pages/sc_connect.py || echo "서치콘솔 연결 실패"
+              python site_pages/sc_connect.py || { echo "서치콘솔 연결 실패"; echo "❌ 서치콘솔 연결 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-probe" ]; then
-              python site_pages/sitemap_probe.py || echo "사이트맵 확인 실패"
+              python site_pages/sitemap_probe.py || { echo "사이트맵 확인 실패"; echo "❌ 사이트맵 확인 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "sitemap-fix" ]; then
-              python site_pages/sitemap_fix.py || echo "사이트맵 캐시 비우기 실패"
+              python site_pages/sitemap_fix.py || { echo "사이트맵 캐시 비우기 실패"; echo "❌ 사이트맵 캐시 비우기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "art-fetch" ]; then
               # 11-20 표지용 공공 명화(CC0) 받기 - lab/art
-              python site_pages/fetch_art.py || echo "명화 받기 실패"
+              python site_pages/fetch_art.py || { echo "명화 받기 실패"; echo "❌ 명화 받기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "art-pool" ]; then
               # 11-21 표지용 명화 후보(나라별 최대 50점, CC0·사후 70년) - lab/art/pool
-              python site_pages/art_pool.py || echo "명화 후보 받기 실패"
+              python site_pages/art_pool.py || { echo "명화 후보 받기 실패"; echo "❌ 명화 후보 받기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == art-pool:* ]]; then
               # 11-21 나라 하나만 다시(예: art-pool:korea)
               C=$(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr ',' ' ' | tr -cd 'a-z ')   # 11-21 여러 나라: art-pool:china,india
-              python site_pages/art_pool.py $C || echo "명화 후보 받기 실패"
+              python site_pages/art_pool.py $C || { echo "명화 후보 받기 실패"; echo "❌ 명화 후보 받기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "market-map-publish" ]; then
               # 11-21 사용자 '공개하자' - 세계 주식시장 지도 공개(이미 공개면 숫자만 갱신)
-              python site_pages/market_map.py publish || echo "시장 지도 공개 실패"
+              python site_pages/market_map.py publish || { echo "시장 지도 공개 실패"; echo "❌ 시장 지도 공개 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "market-map" ]; then
               # 11-21 세계 주식시장 지도 페이지(세계은행 시가총액 + ETF 계산) - 비공개 초안, 공개는 사용자 확인 뒤
-              python site_pages/market_map.py draft || echo "시장 지도 실패"
+              python site_pages/market_map.py draft || { echo "시장 지도 실패"; echo "❌ 시장 지도 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
-              python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
+              python site_pages/sitekit_probe.py || { echo "Site Kit 확인 실패"; echo "❌ Site Kit 확인 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "weekly-report" ]; then
               # 11-21 주간 성적표(GA4 글별 조회·머문 시간, 앞 주 비교) → lab/weekly_report.md + 텔레그램
-              python site_pages/weekly_report.py || echo "주간 성적표 실패"
+              python site_pages/weekly_report.py || { echo "주간 성적표 실패"; echo "❌ 주간 성적표 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
               # 11-19 공개 글 사실 검증을 좋은 모델로만 다시(글은 안 바꿈, 결과 lab/recheck)
               PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c14- | tr -cd '0-9')
-              python site_pages/fact_recheck.py "$PID" || echo "사실 다시 검증 실패"
+              python site_pages/fact_recheck.py "$PID" || { echo "사실 다시 검증 실패"; echo "❌ 사실 다시 검증 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "pll-push" ]; then
-              python site_pages/pll_plugin.py push || echo "전용 플러그인 올리기 실패"
+              python site_pages/pll_plugin.py push || { echo "전용 플러그인 올리기 실패"; echo "❌ 전용 플러그인 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == pll:* ]]; then
               ARGS=$(echo "${{ github.event.inputs.site_pages }}" | cut -c5- | tr -cd 'a-z0-9=:_-' | tr ':' ' ')
-              python site_pages/pll_plugin.py $ARGS || echo "언어 작업 실패"
+              python site_pages/pll_plugin.py $ARGS || { echo "언어 작업 실패"; echo "❌ 언어 작업 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "board-draft" ]; then
-              python ondo/board.py draft || echo "온도판 올리기 실패"
+              python ondo/board.py draft || { echo "온도판 올리기 실패"; echo "❌ 온도판 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "board-en" ]; then
-              python ondo/board.py en-create || echo "영어 온도판 만들기 실패"
+              python ondo/board.py en-create || { echo "영어 온도판 만들기 실패"; echo "❌ 영어 온도판 만들기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "board-refresh" ]; then
-              python ondo/board.py refresh || echo "온도판 갱신 실패"
-              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+              python ondo/board.py refresh || { echo "온도판 갱신 실패"; echo "❌ 온도판 갱신 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || { echo "화면 캡처 실패"; echo "❌ 화면 캡처 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "board-publish" ]; then
               # 11-12 사용자 '공개해': 온도판 공개 + 머리·바닥글 링크 복원(BOARD_LIVE) + 화면 확인
-              python ondo/board.py publish || echo "온도판 공개 실패"
-              python site_pages/theme_push.py push || echo "틀 올리기 실패"
-              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+              python ondo/board.py publish || { echo "온도판 공개 실패"; echo "❌ 온도판 공개 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              python site_pages/theme_push.py push || { echo "틀 올리기 실패"; echo "❌ 틀 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || { echo "화면 캡처 실패"; echo "❌ 화면 캡처 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "export" ]; then
-              python site_pages/export.py || echo "사이트 백업 실패"
+              python site_pages/export.py || { echo "사이트 백업 실패"; echo "❌ 사이트 백업 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "restore-about" ]; then
-              python site_pages/restore.py 1 || echo "About 되돌리기 실패"
+              python site_pages/restore.py 1 || { echo "About 되돌리기 실패"; echo "❌ About 되돌리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "revamp" ]; then
               # 개편 한 번에: 틀 올리기 + 분야 이름·글 분류 + 허브 페이지 + 캡처 (2026-11-11)
-              python site_pages/theme_push.py push || echo "틀 올리기 실패"
-              python site_pages/categories.py || echo "분야 정리 실패"
-              python site_pages/hub_pages.py || echo "허브 페이지 실패"
-              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+              python site_pages/theme_push.py push || { echo "틀 올리기 실패"; echo "❌ 틀 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              python site_pages/categories.py || { echo "분야 정리 실패"; echo "❌ 분야 정리 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              python site_pages/hub_pages.py || { echo "허브 페이지 실패"; echo "❌ 허브 페이지 실패" >> "$GITHUB_STEP_SUMMARY"; }
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || { echo "화면 캡처 실패"; echo "❌ 화면 캡처 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "theme-push" ] || [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ] || [ "${{ github.event.inputs.site_pages }}" = "shot" ]; then
               # 사이트 틀 올리기/되돌리기 뒤 화면 캡처(lab/shots) - 2026-11-11 전체 개편
-              if [ "${{ github.event.inputs.site_pages }}" = "theme-push" ]; then python site_pages/theme_push.py push || echo "틀 올리기 실패"; fi
-              if [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ]; then python site_pages/theme_push.py restore || echo "틀 되돌리기 실패"; fi
-              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || echo "화면 캡처 실패"
+              if [ "${{ github.event.inputs.site_pages }}" = "theme-push" ]; then python site_pages/theme_push.py push || { echo "틀 올리기 실패"; echo "❌ 틀 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }; fi
+              if [ "${{ github.event.inputs.site_pages }}" = "theme-restore" ]; then python site_pages/theme_push.py restore || { echo "틀 되돌리기 실패"; echo "❌ 틀 되돌리기 실패" >> "$GITHUB_STEP_SUMMARY"; }; fi
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/shot.py) || { echo "화면 캡처 실패"; echo "❌ 화면 캡처 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ] || [ "${{ github.event.inputs.site_pages }}" = "link-check" ]; then
               # 11-12: 초안 종합 온도 띠 정리(백업 먼저) + 비공개 글 링크 확인 → lab/link_check.json
               python site_pages/export.py || { echo "백업 실패 - 고치지 않음"; exit 0; }
-              if [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ]; then python site_pages/drafts_fix.py fix || echo "초안 정리 실패"; else python site_pages/drafts_fix.py check || echo "링크 확인 실패"; fi
+              if [ "${{ github.event.inputs.site_pages }}" = "drafts-fix" ]; then python site_pages/drafts_fix.py fix || { echo "초안 정리 실패"; echo "❌ 초안 정리 실패" >> "$GITHUB_STEP_SUMMARY"; }; else python site_pages/drafts_fix.py check || { echo "링크 확인 실패"; echo "❌ 링크 확인 실패" >> "$GITHUB_STEP_SUMMARY"; }; fi
             elif [ "${{ github.event.inputs.site_pages }}" = "drafts-trash" ]; then
               # 11-19 사용자 결정: 연습 초안 모두 휴지통으로(30일 안 복구 가능) - 백업이 안 되면 지우지 않음
               python site_pages/export.py || { echo "백업 실패 - 지우지 않음"; exit 0; }
-              python site_pages/drafts_fix.py trash || echo "초안 휴지통 옮기기 실패"
+              python site_pages/drafts_fix.py trash || { echo "초안 휴지통 옮기기 실패"; echo "❌ 초안 휴지통 옮기기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == links:* ]]; then
               # 사용자가 준 링크 내용 받기(lab/links) - 작업 환경에서 외부 사이트가 막혀서
               L="${{ github.event.inputs.site_pages }}"
-              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/fetch_links.py "${L#links:}") || echo "링크 받기 실패"
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/fetch_links.py "${L#links:}") || { echo "링크 받기 실패"; echo "❌ 링크 받기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             else
-              python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || echo "기본 페이지 올리기 실패"
+              python site_pages/upload.py "${{ github.event.inputs.site_pages }}" || { echo "기본 페이지 올리기 실패"; echo "❌ 기본 페이지 올리기 실패" >> "$GITHUB_STEP_SUMMARY"; }
             fi
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_adsense }}" = "true" ]; then
-            python lab_bench.py adsense || echo "애드센스 확인 실패"
+            python lab_bench.py adsense || { echo "애드센스 확인 실패"; echo "❌ 애드센스 확인 실패" >> "$GITHUB_STEP_SUMMARY"; }
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_noise }}" = "true" ]; then
-            python lab_bench.py noise || echo "채점 흔들림 측정 실패"
+            python lab_bench.py noise || { echo "채점 흔들림 측정 실패"; echo "❌ 채점 흔들림 측정 실패" >> "$GITHUB_STEP_SUMMARY"; }
             exit 0
           fi
           if [ "${{ github.event.inputs.lab_exam }}" = "true" ]; then
-            python lab_bench.py exam --run || echo "시험지 실행 실패"
+            python lab_bench.py exam --run || { echo "시험지 실행 실패"; echo "❌ 시험지 실행 실패" >> "$GITHUB_STEP_SUMMARY"; }
             exit 0
           fi
           if [ "${{ github.event.inputs.etf_discover }}" = "true" ]; then
