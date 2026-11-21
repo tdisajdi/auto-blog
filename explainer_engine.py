@@ -22,6 +22,7 @@ from blog_engine import _load_state, _load_json_file
 ea = None
 
 GUIDE_REPEAT_DAYS = 180
+TAX_GUIDE_URL = "https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/"   # 공개된 세금 가이드(701)
 ISSUE_REPEAT_DAYS = 30
 
 GUIDE_TOPICS = [
@@ -650,6 +651,9 @@ def run_explainer(topic, etf_module):
                                                       keep_dividend=topic_id in ("dividend-growth", "covered-call-structure"))
                 facts_text += "\n" + calc_facts
             visual = visual or price_chart(t["tickers"], data_cache)
+        if topic_id.startswith("market-"):
+            # 11-21 일본 글: 계좌 사실의 '같은 지수를 추종하는 국내 상장 ETF'가 나라 글에선 틀림(EWJ=MSCI 일본, 국내 ETF=닛케이225)
+            facts_text = facts_text.replace("같은 지수를 추종하는 국내 상장 ETF", "같은 나라 주식을 담은 국내 상장 ETF(따르는 지수는 다를 수 있음)")
     elif kind == "ISSUE" and topic_id in ISSUE_KINDS:
         k = ISSUE_KINDS[topic_id]
         kind_label, title_seed, article_type = "이슈 해설", k["title_hint"], "issue"
@@ -689,8 +693,10 @@ def run_explainer(topic, etf_module):
               # 11-08 적립식 가이드: 세금 사실을 주자 세금 소제목·세금 FAQ까지 만들고, 자료에 없는 결론('국내 추가 원천징수 없음')도 씀
               # 11-08 오후: '짧게'로는 부족 - 세금 가이드 외 8개 가이드에서 막은 지적의 22%(58개 중 13개)가 세금·계좌(서류 절차·이유 지어내기)
               + ("- [세금·계좌는 한두 문장만] 이 글의 주제는 세금이 아닙니다. 본문에 세율 숫자·신고 절차·서류·계좌 제한의 이유를 쓰지 마세요. "
-                 "필요하면 '해외 상장 ETF는 ISA·연금저축·IRP로 직접 살 수 없다'는 문장 하나와 '세금은 해외 상장 vs 국내 상장 ETF 세금 비교 "
-                 "가이드에서 다룬다'는 문장 하나까지만 쓰세요. 이 내용은 글 전체에서 한 번만 - 세금·계좌 소제목이나 FAQ로 다시 다루지 마세요.\n" if not include_tax else ""),
+                 # 11-21: 이 규칙의 '세금 비교 가이드에서 다룬다' 문장이 링크 없는 언급(771·776·823·846)의 원인 → 실제 링크를 줌
+                 "필요하면 '해외 상장 ETF는 ISA·연금저축·IRP로 직접 살 수 없다'는 문장 하나와, 세금 차이는 "
+                 f"<a href=\"{TAX_GUIDE_URL}\">해외 상장 vs 국내 상장 ETF 세금 비교</a>에 정리돼 있다는 문장 하나까지만 쓰세요(이 링크 그대로). "
+                 "이 내용은 글 전체에서 한 번만 - 세금·계좌 소제목이나 FAQ로 다시 다루지 마세요.\n" if not include_tax else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
         closing_html=_closing_block(news, include_tax, list(data_cache.keys())), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
