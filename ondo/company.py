@@ -14,6 +14,26 @@ COMPANIES = {
     "MSFT": {"ko": "마이크로소프트", "en": "Microsoft", "etfs": ["SPY", "QQQ", "XLK"], "seed": "마이크로소프트 주식"},
     "NVDA": {"ko": "엔비디아", "en": "NVIDIA", "etfs": ["SPY", "QQQ", "SMH"], "seed": "엔비디아 주식"},
     "005930.KS": {"ko": "삼성전자", "en": "Samsung Electronics", "etfs": ["069500.KS", "091160.KS"], "seed": "삼성전자 주식"},
+    # 11-21 사용자 '주식시장 큰 곳 알아보자' - 서학개미 보관금액 상위(예탁결제원 11-18: 테슬라·엔비디아·팔란티어·애플·알파벳·
+    # 아이온큐·MS 순)와 시가총액 상위(11월 애플·엔비디아·MS·알파벳·아마존·브로드컴·TSMC·일라이 릴리·버크셔·SK하이닉스)를 합침
+    "TSLA": {"ko": "테슬라", "en": "Tesla", "etfs": ["SPY", "QQQ", "XLY"], "seed": "테슬라 주식"},
+    "GOOGL": {"ko": "알파벳", "en": "Alphabet", "etfs": ["SPY", "QQQ", "XLC"], "seed": "구글 주식"},
+    "AMZN": {"ko": "아마존", "en": "Amazon", "etfs": ["SPY", "QQQ", "XLY"], "seed": "아마존 주식"},
+    "META": {"ko": "메타", "en": "Meta Platforms", "etfs": ["SPY", "QQQ", "XLC"], "seed": "메타 주식"},
+    "AVGO": {"ko": "브로드컴", "en": "Broadcom", "etfs": ["SPY", "QQQ", "SMH"], "seed": "브로드컴 주식"},
+    "PLTR": {"ko": "팔란티어", "en": "Palantir", "etfs": ["SPY", "QQQ", "XLK"], "seed": "팔란티어 주식"},
+    "TSM": {"ko": "TSMC", "en": "TSMC", "etfs": ["SMH", "SOXX"], "seed": "TSMC 주식"},
+    "LLY": {"ko": "일라이 릴리", "en": "Eli Lilly", "etfs": ["SPY", "XLV"], "seed": "일라이릴리 주식"},
+    "BRK-B": {"ko": "버크셔 해서웨이", "en": "Berkshire Hathaway", "etfs": ["SPY", "XLF"], "seed": "버크셔 해서웨이 주식"},
+    "JPM": {"ko": "JP모건", "en": "JPMorgan Chase", "etfs": ["SPY", "XLF"], "seed": "JP모건 주식"},
+    # 한국: 'ko'는 네이버 금융 보유 종목 표의 이름과 같아야 비중을 찾음(NAVER는 영문 표기)
+    "000660.KS": {"ko": "SK하이닉스", "en": "SK hynix", "etfs": ["069500.KS", "091160.KS"], "seed": "SK하이닉스 주식"},
+    "005380.KS": {"ko": "현대차", "en": "Hyundai Motor", "etfs": ["069500.KS", "091180.KS"], "seed": "현대차 주식"},
+    "000270.KS": {"ko": "기아", "en": "Kia", "etfs": ["069500.KS", "091180.KS"], "seed": "기아 주식"},
+    "373220.KS": {"ko": "LG에너지솔루션", "en": "LG Energy Solution", "etfs": ["069500.KS", "305720.KS"], "seed": "LG에너지솔루션 주식"},
+    "207940.KS": {"ko": "삼성바이오로직스", "en": "Samsung Biologics", "etfs": ["069500.KS", "244580.KS"], "seed": "삼성바이오로직스 주식"},
+    "105560.KS": {"ko": "KB금융", "en": "KB Financial Group", "etfs": ["069500.KS", "091170.KS"], "seed": "KB금융 주식"},
+    "035420.KS": {"ko": "NAVER", "en": "NAVER", "etfs": ["069500.KS"], "seed": "네이버 주식"},
 }
 
 EMPTY = (None, "", "N/A", "nan")
