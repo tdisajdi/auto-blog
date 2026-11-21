@@ -1,61 +1,3 @@
-china 시카고 'Chinese painting': 100건 → 15건
-china 클리블랜드 'Chinese painting': 100건 → 95건
-china 메트 'Chinese painting': 0건 → 0건
-china 시카고 'Qing dynasty painting': 100건 → 0건
-china 클리블랜드 'Qing dynasty painting': 100건 → 80건
-china 메트 'Qing dynasty painting': 0건 → 0건
-china 시카고 'Ming dynasty painting': 100건 → 1건
-china 클리블랜드 'Ming dynasty painting': 100건 → 87건
-china 메트 'Ming dynasty painting': 0건 → 0건
-china 시카고 'Chinese album leaf': 100건 → 30건
-china 클리블랜드 'Chinese album leaf': 100건 → 98건
-china 메트 'Chinese album leaf': 0건 → 0건
-china 시카고 'Ren Bonian': 100건 → 9건
-china 클리블랜드 'Ren Bonian': 1건 → 1건
-china 메트 'Ren Bonian': 0건 → 0건
-china 시카고 'Wu Changshuo': 100건 → 0건
-china 클리블랜드 'Wu Changshuo': 1건 → 1건
-china 메트 'Wu Changshuo': 0건 → 0건
-china 시카고 'Chinese hanging scroll': 100건 → 59건
-china 클리블랜드 'Chinese hanging scroll': 100건 → 78건
-china 메트 'Chinese hanging scroll': 0건 → 0건
-china 시카고 'Chinese bird and flower painting': 100건 → 1건
-china 클리블랜드 'Chinese bird and flower painting': 43건 → 31건
-china 메트 'Chinese bird and flower painting': 0건 → 0건
-china 위키미디어 'Category:Paintings by Ren Bonian': 0건 → 0건
-china 위키미디어 'Category:Paintings by Wu Changshuo': 100건 → 40건
-china 위키미디어 'Category:Paintings by Qiu Ying': 0건 → 0건
-== china: 조건 맞는 후보 403개, 그림 받아 점수 매기기
-   그림 받음 95/160
-✅ china: 95점 점수 → 상위 50점 저장
-india 시카고 'Indian painting': 100건 → 6건
-india 클리블랜드 'Indian painting': 100건 → 94건
-india 메트 'Indian painting': 0건 → 0건
-india 시카고 'Mughal painting': 100건 → 15건
-india 클리블랜드 'Mughal painting': 100건 → 99건
-india 메트 'Mughal painting': 0건 → 0건
-india 시카고 'Rajput painting': 100건 → 2건
-india 클리블랜드 'Rajput painting': 100건 → 98건
-india 메트 'Rajput painting': 0건 → 0건
-india 시카고 'Pahari painting': 100건 → 0건
-india 클리블랜드 'Pahari painting': 100건 → 94건
-india 메트 'Pahari painting': 0건 → 0건
-india 시카고 'Raja Ravi Varma': 100건 → 2건
-india 클리블랜드 'Raja Ravi Varma': 0건 → 0건
-india 메트 'Raja Ravi Varma': 0건 → 0건
-india 시카고 'Company painting India': 100건 → 1건
-india 클리블랜드 'Company painting India': 29건 → 17건
-india 메트 'Company painting India': 0건 → 0건
-india 시카고 'Kangra painting': 100건 → 0건
-india 클리블랜드 'Kangra painting': 9건 → 9건
-india 메트 'Kangra painting': 0건 → 0건
-india 시카고 'Deccan painting': 100건 → 0건
-india 클리블랜드 'Deccan painting': 38건 → 32건
-india 메트 'Deccan painting': 0건 → 0건
-india 위키미디어 'Category:Paintings by Raja Ravi Varma': 2건 → 1건
-== india: 조건 맞는 후보 376개, 그림 받아 점수 매기기
-   그림 받음 141/160
-✅ india: 141점 점수 → 상위 50점 저장
 uk 시카고 'J.M.W. Turner': 100건 → 1건
 uk 클리블랜드 'J.M.W. Turner': 65건 → 2건
 uk 메트 'J.M.W. Turner': 0건 → 0건
@@ -71,18 +13,22 @@ uk 메트 'John Atkinson Grimshaw': 0건 → 0건
 uk 시카고 'Pre-Raphaelite': 100건 → 1건
 uk 클리블랜드 'Pre-Raphaelite': 7건 → 1건
 uk 메트 'Pre-Raphaelite': 0건 → 0건
-uk 시카고 'British landscape painting': 100건 → 4건
+uk 시카고 'British landscape painting': 100건 → 5건
 uk 클리블랜드 'British landscape painting': 43건 → 10건
 uk 메트 'British landscape painting': 0건 → 0건
-uk 시카고 'John William Waterhouse': 100건 → 3건
+uk 시카고 'John William Waterhouse': 100건 → 4건
 uk 클리블랜드 'John William Waterhouse': 0건 → 0건
 uk 메트 'John William Waterhouse': 0건 → 0건
 uk 시카고 'Samuel Palmer': 100건 → 0건
 uk 클리블랜드 'Samuel Palmer': 36건 → 0건
 uk 메트 'Samuel Palmer': 0건 → 0건
-== uk: 조건 맞는 후보 33개, 그림 받아 점수 매기기
-   그림 받음 12/33
-✅ uk: 12점 점수 → 상위 12점 저장
+uk 위키미디어 'Category:Paintings by J. M. W. Turner': 0건 → 0건
+uk 위키미디어 'Category:Paintings by John Constable': 91건 → 47건
+uk 위키미디어 'Category:Paintings by John Atkinson Grimshaw': 68건 → 47건
+uk 위키미디어 'Category:Paintings by Thomas Gainsborough': 100건 → 48건
+== uk: 조건 맞는 후보 175개, 그림 받아 점수 매기기
+   그림 받음 92/160
+✅ uk: 92점 점수 → 상위 50점 저장
 germany 시카고 'Caspar David Friedrich': 100건 → 0건
 germany 클리블랜드 'Caspar David Friedrich': 8건 → 0건
 germany 메트 'Caspar David Friedrich': 0건 → 0건
@@ -107,16 +53,11 @@ germany 메트 'Lovis Corinth': 0건 → 0건
 germany 시카고 'Paula Modersohn-Becker': 100건 → 1건
 germany 클리블랜드 'Paula Modersohn-Becker': 2건 → 0건
 germany 메트 'Paula Modersohn-Becker': 0건 → 0건
-== germany: 조건 맞는 후보 15개, 그림 받아 점수 매기기
-   그림 받음 1/15
-✅ germany: 1점 점수 → 상위 1점 저장
-taiwan 시카고 'Chen Cheng-po': 100건 → 0건
-taiwan 클리블랜드 'Chen Cheng-po': 0건 → 0건
-taiwan 메트 'Chen Cheng-po': 0건 → 0건
-taiwan 시카고 'Taiwan painting': 100건 → 0건
-taiwan 클리블랜드 'Taiwan painting': 0건 → 0건
-taiwan 메트 'Taiwan painting': 0건 → 0건
-taiwan 위키미디어 'Category:Paintings by Chen Cheng-po': 29건 → 24건
-== taiwan: 조건 맞는 후보 24개, 그림 받아 점수 매기기
-   그림 받음 21/24
-✅ taiwan: 21점 점수 → 상위 21점 저장
+germany 위키미디어 'Category:Paintings by Caspar David Friedrich': 47건 → 40건
+germany 위키미디어 'Category:Paintings by Franz Marc': 11건 → 9건
+germany 위키미디어 'Category:Paintings by August Macke': 8건 → 8건
+germany 위키미디어 'Category:Paintings by Carl Spitzweg': 100건 → 48건
+germany 위키미디어 'Category:Paintings by Max Liebermann': 69건 → 39건
+== germany: 조건 맞는 후보 159개, 그림 받아 점수 매기기
+   그림 받음 107/159
+✅ germany: 107점 점수 → 상위 50점 저장
