@@ -126,6 +126,9 @@ body.admin-bar .o-head { top: 32px; }
 /* 11-21 사용자: 첫 화면 문장이 어중간하게 끊겨 마지막 줄에 '씁니다.'·'비교합니다.'만 남음 → 짧은 소개 글은 줄 길이를 고르게(balance), 본문은 끝줄 한 단어 남김 방지(pretty). 지원 안 하는 브라우저는 그대로. */
 .o-hero p.o-hero-sub, .o-cat p, .o-boardband p, .o-sec-head h2, .o-cat h3 { text-wrap: balance; }
 html body p, html body li { text-wrap: pretty; }
+/* 11-21 휴대폰에서 글 제목이 '국내 상 / 장'처럼 낱자 사이에서 끊김 - 워드프레스 기본 .wp-block-post-title{word-break:break-word}가 keep-all을 덮어씀 → 제목도 단어 단위로 */
+html body .wp-block-post-title, html body h1, html body h2, html body h3, html body h4 { word-break: keep-all !important; overflow-wrap: break-word; }
+html body .wp-block-post-title { text-wrap: balance; }
 .o-boardband .o-px { color: var(--o-mild); font-size: 13px; display: block; margin-bottom: 6px; }
 .o-scale { height: 12px; width: 220px; background: var(--o-grad); -webkit-mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px); mask: repeating-linear-gradient(90deg, #000 0 10px, transparent 10px 12px); }
 
