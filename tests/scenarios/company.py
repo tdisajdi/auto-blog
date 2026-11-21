@@ -48,3 +48,6 @@ assert len(co.div_odd_lines({"series": [(2020, 1.0), (2021, 1.1), (2022, 1.2)]},
 assert len(co.div_odd_lines({"series": [(2020, 0.016), (2021, 0.016), (2022, 0.016), (2023, 0.016), (2024, 0.034), (2025, 0.04)]}, str)) == 1
 assert len(co.div_odd_lines({"series": [(2021, 1.0), (2022, 1.0), (2023, 3.0), (2024, 1.0)]}, str)) == 2   # 가운데 튄 해는 잡음
 print("company ok")
+# 11-21 조사 은/는
+assert [co.eun(x) for x in ("애플", "엔비디아", "테슬라", "TSMC", "NAVER", "KB금융")] == ["애플은", "엔비디아는", "테슬라는", "TSMC는", "NAVER는", "KB금융은"]
+print("josa ok")
