@@ -352,9 +352,10 @@ def run_company(ticker, ea):
     from topic_engine import produce_article
     import explainer_engine as xe
     c = COMPANIES[ticker]
-    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker, bool(weights), div is not None), facts_text=facts,
+    # 11-21 알파벳: 배당이 5년치가 안 되면(div=False) 제목·출처에 '배당'을 넣지 않음 - bool(div)
+    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker, bool(weights), bool(div)), facts_text=facts,
                     rules=xe._SECTION_RULES + RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, "
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
-                    closing_html=closing_html(ticker, weights, div is not None), visual_html=visual,
+                    closing_html=closing_html(ticker, weights, bool(div)), visual_html=visual,
                     meta={"company": ticker, "company_ko": c["ko"], "tags": [c["ko"], country_tag(ticker)]}, search_seed=c.get("seed", ""))
