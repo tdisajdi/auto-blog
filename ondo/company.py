@@ -299,11 +299,12 @@ def _collect(ticker, ea, macro_data):
     return profile, fin, dd, div, weights
 
 
-def title_seed(ticker, has_weights=True):
+def title_seed(ticker, has_weights=True, has_div=True):
     c = COMPANIES.get(ticker, {})
     nm = c.get("ko") or ticker
     tail = ", 그리고 ETF로 사면 담기는 비중" if has_weights else ""      # 11-21: 비중 자료 없으면 제목에서도 뺌
-    return f"{eun(nm)} 어떤 회사인가: 매출·낙폭·배당{tail}"
+    head = "매출·낙폭·배당" if has_div else "매출·낙폭"                 # 11-22 테슬라: 배당 없는데 제목에 '배당' → 첫 판 '치명'
+    return f"{eun(nm)} 어떤 회사인가: {head}{tail}"
 
 
 def closing_html(ticker, weights):
@@ -336,7 +337,7 @@ def run_company(ticker, ea):
     from topic_engine import produce_article
     import explainer_engine as xe
     c = COMPANIES[ticker]
-    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker, bool(weights)), facts_text=facts,
+    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker, bool(weights), div is not None), facts_text=facts,
                     rules=xe._SECTION_RULES + RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, "
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
