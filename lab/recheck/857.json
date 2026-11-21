@@ -4,5 +4,5 @@
  "model": "gemini-3.6-flash",
  "log": "22-guide-market-india.json",
  "issues": [],
- "patch_applied": false
+ "patch_applied": true
 }
