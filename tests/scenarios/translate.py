@@ -18,3 +18,8 @@ assert "financial professional" in open("site_pages/en/about.html", encoding="ut
 from site_pages.translate import company_tags_en
 assert company_tags_en(["애플", "ETF"]) == ["Apple"] and company_tags_en(["삼성전자"]) == ["Samsung Electronics"] and company_tags_en(None) == []
 print("translate ok")
+
+# 11-21 873: '1조 7,357억'은 한 숫자로 대조
+from site_pages.translate import _merge_jo_eok as _mj
+assert _mj("약 1조 7,357억 달러") == "약 17357억 달러" and _mj("333.6조 원") == "333.6조 원"
+print("jo-eok merge ok")
