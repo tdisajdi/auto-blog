@@ -41,3 +41,16 @@ from site_pages.fact_recheck import strip_system
 assert "표글" not in strip_system('앞<div class="ondo-calc" s><table><tr><td>표글</td></tr></table><p>주</p></div>뒤')
 assert "그래프" not in strip_system('앞<figure class="ondo-chart" s><div></div><figcaption>그래프</figcaption></figure>뒤')
 print("publishroute ok")
+
+
+def test_art_note_box_place_and_replace():
+    """11-21 표지 그림 설명: 📌 출처 상자 앞, 다시 넣으면 바꿔 끼움, 영어 라벨."""
+    from ondo.media import art_note
+    art = {"about": {"ko": "설명", "en": "About"}, "credit": "C", "url": "https://x.org/a"}
+    c = '<p>본문</p><div style="a"><strong>📌 데이터 출처</strong></div><p>이 글은 공개 데이터</p>'
+    x = art_note.inject(c, art_note.note_html(art))
+    assert x.index("ondo-art") < x.index("📌") and x.count("ondo-art") == 1
+    assert art_note.inject(x, art_note.note_html(art)) == x
+    assert "Cover art" in art_note.note_html(art, en=True) and "nofollow" in x
+    assert art_note.note_html({}) == "" and art_note.inject(x, "").count("ondo-art") == 0
+    assert art_note.inject("<p>a</p>", "B") == "<p>a</p>B"
