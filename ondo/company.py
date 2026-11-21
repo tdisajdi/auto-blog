@@ -161,9 +161,17 @@ def div_odd_lines(div, f2):
             odd.append(y)
     out = ["- 해마다 주당 배당: " + ", ".join(f"{y}년 {f2(v)}" for y, v in ser)]
     if odd:
-        out.append(f"- {', '.join(f'{y}년' for y in odd)}은 앞뒤 해보다 지급이 크게 많았음(1.5배 넘음). "
-                   f"시작 해가 이런 해면 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말고 "
-                   f"해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것")
+        # 11-21 SK하이닉스: 마지막 해(2025년)가 튄 경우에도 '시작 해…나쁘게'라고 적어 틀린 안내 → 자리별로 다르게
+        first, last = ser[0][0], ser[-1][0]
+        where = "앞 해" if odd == [last] else ("다음 해" if odd == [first] else "앞뒤 해")
+        if first in odd:
+            effect = "시작 해가 이런 해라 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말 것"
+        elif last in odd:
+            effect = "마지막 해가 이런 해라 연평균 증가율이 평소 흐름보다 좋게 나옴 - 연평균 숫자만으로 '배당이 꾸준히 늘었다'고 쓰지 말 것"
+        else:
+            effect = "중간에 튄 해가 있어 연평균 증가율만으로는 해마다 흐름이 안 보임"
+        out.append(f"- {', '.join(f'{y}년' for y in odd)}은 {where}보다 지급이 크게 많았음(1.5배 넘음). "
+                   f"{effect}. 해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것")
     return out
 
 
