@@ -141,3 +141,7 @@ _fp, _tp = _gp.render_parking({"459580.KS": _rp}, {"459580.KS": "KODEX CD금리�
 assert "내린 날 없음" in _fp and "가장 크게 내린 하루" not in _fp and "금리 숫자는 이 자료에 없음" in _fp, _fp
 assert _gp.calc_parking(_cp[:30]) is None
 print("parking calc ok")
+# 11-21: 세금 계산표는 세금 가이드 전용 - 파킹형(865)에 같은 표가 들어가 공개 글과 겹침
+import explainer_engine as _xe8
+assert _xe8.TAX_TABLE_TOPICS == {"overseas-vs-domestic-tax", "tax-accounts"}
+print("tax table only for tax topics ok")
