@@ -37,6 +37,14 @@ COMPANIES = {
 }
 
 EMPTY = (None, "", "N/A", "nan")
+
+
+def eun(word):
+    """조사 은/는(11-21: '엔비디아은'·'테슬라은'이 표 제목에 나옴). 끝 글자에 받침이 있으면 '은'. 영문 끝(TSMC·NAVER)은 '는'."""
+    ch = (word or "").strip()[-1:]
+    if "가" <= ch <= "힣":
+        return word + ("은" if (ord(ch) - 0xAC00) % 28 else "는")
+    return word + ("은" if ch in "LMNlmn013678" else "는")
 PAST_NOTE = "과거 자료로 계산한 값일 뿐 앞으로도 같다는 보장은 없음."
 
 
@@ -218,7 +226,7 @@ def build(ticker, *, profile, fin, dd, div, weights, usd_krw=None, years_dd=10):
         html += charts.table_html(f"{nm} 연간 실적", ["회계연도", "매출", "영업이익", "영업이익률", "순이익"], rows_fin,
                                   "Yahoo Finance 손익계산서(회계연도 기준), ondo 정리." + ("" if kr else " 달러 기준."))
     if rows_w:
-        html += charts.table_html(f"ETF로 사면 {nm}은 얼마나 들어갈까", ["ETF", f"{nm} 비중", "100만 원 중 몫"], rows_w,
+        html += charts.table_html(f"ETF로 사면 {eun(nm)} 얼마나 들어갈까", ["ETF", f"{nm} 비중", "100만 원 중 몫"], rows_w,
                                   "각 ETF 상위 보유 종목 자료(자료 받은 날 기준), ondo 계산. 비중은 매일 바뀜. " + PAST_NOTE.replace("과거 자료로 계산한 값일 뿐 ", ""))
     return facts, html
 
@@ -295,7 +303,7 @@ def title_seed(ticker, has_weights=True):
     c = COMPANIES.get(ticker, {})
     nm = c.get("ko") or ticker
     tail = ", 그리고 ETF로 사면 담기는 비중" if has_weights else ""      # 11-21: 비중 자료 없으면 제목에서도 뺌
-    return f"{nm}은 어떤 회사인가: 매출·낙폭·배당{tail}"
+    return f"{eun(nm)} 어떤 회사인가: 매출·낙폭·배당{tail}"
 
 
 def closing_html(ticker, weights):
