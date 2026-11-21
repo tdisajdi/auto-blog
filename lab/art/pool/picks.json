@@ -934,5 +934,605 @@
     "en": "A woodblock print by Japanese artist Katsushika Hokusai (1760–1849): from a series picturing Chinese and Japanese poems, a Chinese official pausing on a bridge to take in the view."
    }
   }
+ ],
+ "china": [
+  {
+   "file": "china/commons-36303703.jpg",
+   "crop": [
+    0,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "Wu Changshuo, Peaches (1913) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%27Peaches%27_by_Wu_Changshi,_1913,_private_collection.JPG",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "중국 화가 우창숴(1844~1927)의 1913년 그림. 짙은 잎 사이로 붉은 복숭아가 달린 가지.",
+    "en": "A 1913 painting by Chinese artist Wu Changshuo (1844–1927): a branch of red peaches among dark leaves."
+   }
+  },
+  {
+   "file": "china/commons-14609475.jpg",
+   "crop": [
+    0,
+    0.12,
+    1,
+    0.6
+   ],
+   "credit": "Wu Changshuo, Peaches · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%27Peaches%27,_ink_and_color_painting_on_paper_by_Wu_Changshuo_(1844-1927).jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "중국 화가 우창숴(1844~1927)가 종이에 먹과 색으로 그린 복숭아 그림.",
+    "en": "Peaches painted in ink and color on paper by Chinese artist Wu Changshuo (1844–1927)."
+   }
+  },
+  {
+   "file": "china/cma-149608.jpg",
+   "crop": [
+    0.15,
+    0.15,
+    0.95,
+    0.85
+   ],
+   "credit": "Chen Hongshou, Laozi Riding an Ox (1598–1652) · CC0",
+   "url": "https://clevelandart.org/art/1979.27.1.2",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "중국 명나라 말 화가 천훙서우(1598/99~1652)의 화첩 '옛 대가를 따라 그린 그림' 중 한 장. 소를 타고 가는 노자를 그렸다.",
+    "en": "Laozi riding an ox: a leaf from 'Paintings after Ancient Masters', an album by late-Ming Chinese artist Chen Hongshou (1598/99–1652)."
+   }
+  },
+  {
+   "file": "china/cma-149617.jpg",
+   "crop": [
+    0.05,
+    0,
+    0.95,
+    0.9
+   ],
+   "credit": "Chen Hongshou, Mr. Five Willows (1598–1652) · CC0",
+   "url": "https://clevelandart.org/art/1979.27.2.12",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "중국 명나라 말 화가 천훙서우(1598/99~1652)의 화첩 '옛 대가를 따라 그린 그림' 중 한 장. 다섯 그루 버드나무 아래의 시인 도연명.",
+    "en": "The poet Tao Yuanming under five willows: a leaf from 'Paintings after Ancient Masters', an album by late-Ming Chinese artist Chen Hongshou (1598/99–1652)."
+   }
+  },
+  {
+   "file": "china/cma-149612.jpg",
+   "crop": [
+    0.05,
+    0.2,
+    0.85,
+    0.95
+   ],
+   "credit": "Chen Hongshou, Lotus and Rocks (1598–1652) · CC0",
+   "url": "https://clevelandart.org/art/1979.27.1.6",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "중국 명나라 말 화가 천훙서우(1598/99~1652)의 화첩 '옛 대가를 따라 그린 그림' 중 한 장. 바위 옆에 핀 연꽃.",
+    "en": "Lotus beside a rock: a leaf from 'Paintings after Ancient Masters', an album by late-Ming Chinese artist Chen Hongshou (1598/99–1652)."
+   }
+  },
+  {
+   "file": "china/commons-163504217.jpg",
+   "crop": [
+    0.3,
+    0.4,
+    1,
+    0.95
+   ],
+   "credit": "Wu Changshuo, Chrysanthemums (1920) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%E5%90%B4%E4%BF%8A%E5%8D%BF_%E8%AE%BE%E8%89%B2%E8%8F%8A%E8%8A%B1%E8%BD%B4.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "중국 화가 우창숴(1844~1927)의 1920년 채색 족자. 바위 곁에 핀 국화.",
+    "en": "A 1920 hanging scroll in color by Chinese artist Wu Changshuo (1844–1927): chrysanthemums by a rock."
+   }
+  },
+  {
+   "file": "china/commons-4144482.jpg",
+   "crop": [
+    0.25,
+    0.1,
+    1,
+    0.6
+   ],
+   "credit": "Wu Changshuo, Peonies and Daffodils (1923) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Peonies_and_Daffodils_by_Wu_Changshuo.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "중국 화가 우창숴(1844~1927)의 1923년 그림. 붉은 모란과 수선화.",
+    "en": "A 1923 painting by Chinese artist Wu Changshuo (1844–1927): red peonies and daffodils."
+   }
+  },
+  {
+   "file": "china/commons-163395364.jpg",
+   "crop": [
+    0.3,
+    0,
+    1,
+    0.6
+   ],
+   "credit": "Wu Changshuo, Red Plum Blossoms (1916) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%E5%90%B4%E4%BF%8A%E5%8D%BF_%E7%BA%A2%E6%A2%85%E5%9B%BE%E8%BD%B4.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "중국 화가 우창숴(1844~1927)의 1916년 족자. 붉은 매화 가지.",
+    "en": "A 1916 hanging scroll by Chinese artist Wu Changshuo (1844–1927): branches of red plum blossom."
+   }
+  },
+  {
+   "file": "china/cma-143237.jpg",
+   "crop": [
+    0,
+    0.3,
+    1,
+    0.85
+   ],
+   "credit": "Yun Shouping, Herbaceous Peony (1685) · CC0",
+   "url": "https://clevelandart.org/art/1967.192",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "청나라 화가 윈서우핑(1633~1690)의 1685년 그림. 분홍·흰 작약.",
+    "en": "A 1685 painting by Qing dynasty artist Yun Shouping (1633–1690): pink and white peonies."
+   }
+  },
+  {
+   "file": "china/cma-142579.jpg",
+   "crop": [
+    0.1,
+    0.3,
+    0.9,
+    0.95
+   ],
+   "credit": "Shitao, Reminiscences of Qinhuai River (1642–1707) · CC0",
+   "url": "https://clevelandart.org/art/1966.31.8",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "청나라 화가 스타오(1642~1707)의 화첩 '친화이강 회상' 중 한 장. 깎아지른 산과 강 위의 작은 배.",
+    "en": "A leaf from 'Reminiscences of Qinhuai River' by Qing dynasty artist Shitao (1642–1707): a steep mountain and a small boat on the river."
+   }
+  },
+  {
+   "file": "china/cma-149615.jpg",
+   "crop": [
+    0.1,
+    0.2,
+    0.85,
+    0.9
+   ],
+   "credit": "Chen Hongshou, Chrysanthemum and Rock (1598–1652) · CC0",
+   "url": "https://clevelandart.org/art/1979.27.1.9",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "중국 명나라 말 화가 천훙서우(1598/99~1652)의 화첩 '옛 대가를 따라 그린 그림' 중 한 장. 바위 곁의 국화.",
+    "en": "Chrysanthemums by a rock: a leaf from 'Paintings after Ancient Masters', an album by late-Ming Chinese artist Chen Hongshou (1598/99–1652)."
+   }
+  },
+  {
+   "file": "china/cma-132837.jpg",
+   "crop": [
+    0.05,
+    0.15,
+    0.95,
+    0.85
+   ],
+   "credit": "Xiao Yuncong, Album of Seasonal Landscapes (1668) · CC0",
+   "url": "https://clevelandart.org/art/1955.302.4",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "청나라 화가 샤오윈충(1596~1673)의 1668년 사계절 산수 화첩 중 한 장. 푸른 산과 나무, 집.",
+    "en": "A leaf from a 1668 album of seasonal landscapes by Qing dynasty artist Xiao Yuncong (1596–1673): blue-green mountains, trees and houses."
+   }
+  }
+ ],
+ "india": [
+  {
+   "file": "india/cma-161771.jpg",
+   "crop": [
+    0.05,
+    0.25,
+    0.95,
+    0.95
+   ],
+   "credit": "Kausa Ragaputra of Malkos, from a Ragamala (c. 1750) · CC0",
+   "url": "https://clevelandart.org/art/2001.111",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 18세기 중엽 세밀화(작자 미상). 음악의 선율을 그림으로 옮긴 '라가말라' 연작 중 한 장으로, 테라스에 앉은 두 사람을 그렸다.",
+    "en": "An 18th-century Indian miniature (artist unknown) from a Ragamala series, which pictures musical modes: two figures seated on a terrace."
+   }
+  },
+  {
+   "file": "india/cma-170861.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "A princess reclining on a terrace with attendants (c. 1730–40) · CC0",
+   "url": "https://clevelandart.org/art/2013.338",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1730~40년경 세밀화(작자 미상). 시녀들과 함께 테라스에 기대 누운 공주.",
+    "en": "An Indian miniature from about 1730–40 (artist unknown): a princess reclining on a terrace with attendants."
+   }
+  },
+  {
+   "file": "india/cma-137940.jpg",
+   "crop": [
+    0.05,
+    0.1,
+    0.95,
+    0.7
+   ],
+   "credit": "Ghulam 'Ali, from a Mughal manuscript (c. 1560) · CC0",
+   "url": "https://clevelandart.org/art/1962.279.66.a",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도 무굴 시대 화가 굴람 알리(1550~90년대 활동)의 1560년경 이야기책 삽화. 궁전 안 여러 인물.",
+    "en": "An illustration from about 1560 by Mughal-era Indian artist Ghulam 'Ali (active 1550s–1590s): many figures in a palace."
+   }
+  },
+  {
+   "file": "india/cma-170878.jpg",
+   "crop": [
+    0.05,
+    0.1,
+    0.95,
+    0.8
+   ],
+   "credit": "Muhammad Rizavi Hindi, Portrait of Muhammad Shah (1764) · CC0",
+   "url": "https://clevelandart.org/art/2013.347.a",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도 화가 무함마드 리자비 힌디(1700년대 중엽 활동)의 1764년 그림. 매를 든 무굴 황제 무함마드 샤의 초상.",
+    "en": "A 1764 painting by Indian artist Muhammad Rizavi Hindi (active mid-1700s): a portrait of the Mughal emperor Muhammad Shah holding a falcon."
+   }
+  },
+  {
+   "file": "india/cma-170866.jpg",
+   "crop": [
+    0.05,
+    0.1,
+    0.95,
+    0.8
+   ],
+   "credit": "A Princess on a Terrace with Attendants at Night (c. 1760) · CC0",
+   "url": "https://clevelandart.org/art/2013.341.a",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1760년경 세밀화(작자 미상). 밤 테라스에서 시녀들과 함께한 공주.",
+    "en": "An Indian miniature from about 1760 (artist unknown): a princess with attendants on a terrace at night."
+   }
+  },
+  {
+   "file": "india/cma-147144.jpg",
+   "crop": [
+    0.05,
+    0.05,
+    0.95,
+    0.75
+   ],
+   "credit": "Royal lovers watching rain clouds, from a Barahmasa (c. 1790) · CC0",
+   "url": "https://clevelandart.org/art/1973.104",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1790년경 세밀화(작자 미상). 열두 달을 그린 '바라마사' 연작 중 비구름의 달(바돈)을 바라보는 두 사람.",
+    "en": "An Indian miniature from about 1790 (artist unknown) from a Barahmasa series of the twelve months: a royal couple watching rain clouds in the month of Bhadon."
+   }
+  },
+  {
+   "file": "india/cma-170893.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Radha and Krishna meet in the forest during a storm (c. 1770) · CC0",
+   "url": "https://clevelandart.org/art/2013.352",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1770년경 세밀화(작자 미상). 폭풍우 치는 숲속 장면을 그렸다.",
+    "en": "An Indian miniature from about 1770 (artist unknown): a scene in a forest during a storm."
+   }
+  },
+  {
+   "file": "india/cma-101356.jpg",
+   "crop": [
+    0.05,
+    0.05,
+    0.95,
+    0.85
+   ],
+   "credit": "Oval portrait of a woman in a Chaghtai hat (c. 1740–50) · CC0",
+   "url": "https://clevelandart.org/art/1920.1967",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1740~50년경 타원형 초상화(작자 미상). 차가타이 모자를 쓴 여인.",
+    "en": "An oval Indian portrait from about 1740–50 (artist unknown): a woman in a Chaghtai hat."
+   }
+  },
+  {
+   "file": "india/cma-170891.jpg",
+   "crop": [
+    0.05,
+    0.1,
+    0.95,
+    0.85
+   ],
+   "credit": "Hunhar II, Women Enjoying the River at the Forest's Edge (c. 1765) · CC0",
+   "url": "https://clevelandart.org/art/2013.351.a",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도 화가 훈하르 2세(1700년대 중엽 활동)의 1765년경 그림. 숲가 강에서 쉬는 여인들.",
+    "en": "A painting from about 1765 by Indian artist Hunhar II (active mid-1700s): women enjoying the river at the forest's edge."
+   }
+  },
+  {
+   "file": "india/cma-170869.jpg",
+   "crop": [
+    0.05,
+    0.1,
+    0.95,
+    0.85
+   ],
+   "credit": "A prince celebrating Holi on a terrace at night (c. 1760) · CC0",
+   "url": "https://clevelandart.org/art/2013.342.a",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "인도의 1760년경 세밀화(작자 미상). 밤 테라스에서 봄 축제 홀리를 즐기는 사람들.",
+    "en": "An Indian miniature from about 1760 (artist unknown): people celebrating the spring festival of Holi on a terrace at night."
+   }
+  }
+ ],
+ "taiwan": [
+  {
+   "file": "taiwan/commons-71103591.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Scene of the New Building (1941) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Scene_of_the_new_building_by_Chen_Cheng-po_1941.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1941년 유화. 나무 사이로 보이는 새 건물과 정원.",
+    "en": "A 1941 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a new building and garden seen through trees."
+   }
+  },
+  {
+   "file": "taiwan/commons-18506.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Tamsui · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Tamsui_by_Chen_Chengpuo.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 유화. 대만 단수이의 붉은 지붕들.",
+    "en": "An oil painting by Taiwanese artist Chen Cheng-po (1895–1947): the red roofs of Tamsui, Taiwan."
+   }
+  },
+  {
+   "file": "taiwan/commons-21902.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Student Dorm of Changrong Girls' High School (1941) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Chen_Chengpo_1941b.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1941년 유화. 나무에 둘러싸인 학교 기숙사.",
+    "en": "A 1941 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a school dormitory surrounded by trees."
+   }
+  },
+  {
+   "file": "taiwan/commons-53658301.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Tamsui Scenery (1935) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%E9%99%B3%E6%BE%84%E6%B3%A2_%E6%B7%A1%E6%B0%B4%E9%A2%A8%E6%99%AF-2.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1935년 유화. 대만 단수이의 언덕 마을.",
+    "en": "A 1935 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a hillside town in Tamsui, Taiwan."
+   }
+  },
+  {
+   "file": "taiwan/commons-21909.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Entrance of Temple · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Chen_Chengpo_nd,_b.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 유화. 화려한 지붕의 사원 입구.",
+    "en": "An oil painting by Taiwanese artist Chen Cheng-po (1895–1947): the ornate entrance of a temple."
+   }
+  },
+  {
+   "file": "taiwan/commons-1514884.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Campus of Changrong Girls' High School (1941) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Chen_Chengpo_1941c.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1941년 유화. 나무 곁의 학교 건물.",
+    "en": "A 1941 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): school buildings beside a tree."
+   }
+  },
+  {
+   "file": "taiwan/commons-28131.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Tamsui High School (1936) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Chen_Chengpo_1936_Tamsui_Middle_School.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1936년 유화. 언덕길 너머로 보이는 단수이의 학교.",
+    "en": "A 1936 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a school in Tamsui seen beyond a hillside path."
+   }
+  },
+  {
+   "file": "taiwan/commons-53658643.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Sunset at Tamsui · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%E3%80%8A%E6%B7%A1%E6%B0%B4%E5%A4%95%E7%85%A7%E3%80%8B%E9%99%B3%E6%BE%84%E6%B3%A2.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 유화 '단수이 석양'. 바닷가 언덕의 붉은 지붕 마을.",
+    "en": "'Sunset at Tamsui', an oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a red-roofed town on a seaside hill."
+   }
+  },
+  {
+   "file": "taiwan/commons-53372815.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po, Summer Morning (1940) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:%E5%A4%8F%E4%B9%8B%E6%9C%9D_-_%E9%99%B3%E6%BE%84%E6%B3%A2.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1940년 유화 '여름 아침'. 물가 마을.",
+    "en": "'Summer Morning', a 1940 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a waterside village."
+   }
+  },
+  {
+   "file": "taiwan/commons-21956.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Chen Cheng-po (1938) · Public domain",
+   "url": "https://commons.wikimedia.org/wiki/File:Chen_Chengpo_1938.jpg",
+   "license": "public domain (Wikimedia Commons)",
+   "about": {
+    "ko": "대만 화가 천청보(1895~1947)의 1938년 유화. 산 아래 물가 마을.",
+    "en": "A 1938 oil painting by Taiwanese artist Chen Cheng-po (1895–1947): a waterside village below a mountain."
+   }
+  }
+ ],
+ "uk": [
+  {
+   "file": "uk/cma-95263.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "J.M.W. Turner, Queen Mab's Cave (after 1846) · CC0",
+   "url": "https://clevelandart.org/art/1916.1036",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "영국 화가 J.M.W. 터너(1775~1851)의 1846년 이후 그림 '매브 여왕의 동굴'.",
+    "en": "'Queen Mab's Cave', painted after 1846 by British artist J.M.W. Turner (1775–1851)."
+   }
+  },
+  {
+   "file": "uk/cma-154962.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Richard Wilson, Cader Idris, with the Mawddach River (c. 1774) · CC0",
+   "url": "https://clevelandart.org/art/1989.52",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "영국 화가 리처드 윌슨(1714~1782)의 1774년경 풍경화. 웨일스의 카데르 이드리스산과 모더흐강.",
+    "en": "A landscape from about 1774 by British artist Richard Wilson (1714–1782): Cader Idris mountain and the Mawddach River in Wales."
+   }
+  },
+  {
+   "file": "uk/cma-150353.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "John Martin, Ruins of an Ancient City (c. 1810–20) · CC0",
+   "url": "https://clevelandart.org/art/1981.13",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "영국 화가 존 마틴(1789~1854)의 1810~20년경 그림 '고대 도시의 폐허'.",
+    "en": "'Ruins of an Ancient City', painted about 1810–20 by British artist John Martin (1789–1854)."
+   }
+  },
+  {
+   "file": "uk/cma-152765.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "Richard Parkes Bonington, The Doge's Palace, Venice (1826) · CC0",
+   "url": "https://clevelandart.org/art/1985.56",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "영국 화가 리처드 파크스 보닝턴(1802~1828)의 1826년 그림. 베네치아 두칼레 궁전 앞 배들.",
+    "en": "An 1826 painting by British artist Richard Parkes Bonington (1802–1828): boats in front of the Doge's Palace, Venice."
+   }
+  },
+  {
+   "file": "uk/cma-146416.jpg",
+   "crop": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "credit": "John Linnell, Noah: The Eve of the Deluge (1848) · CC0",
+   "url": "https://clevelandart.org/art/1972.119",
+   "license": "CC0 (Cleveland Museum of Art)",
+   "about": {
+    "ko": "영국 화가 존 리넬(1792~1882)의 1848년 그림 '노아: 대홍수 전날'.",
+    "en": "'Noah: The Eve of the Deluge', an 1848 painting by British artist John Linnell (1792–1882)."
+   }
+  }
  ]
 }
