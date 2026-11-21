@@ -455,6 +455,98 @@ def render_fx_hedge(r, asset, hedged_name):
 
 
 # ------------------------------------------------------------
+# 8) 나라별 시장 (market-<나라>) - 11-21 사용자 '주식시장 큰 나라들'
+# ------------------------------------------------------------
+# usd: 그 나라 주식을 담은 미국 상장 대표 ETF(달러), kr: 국내 상장 같은 나라 ETF(원화, 추종 지수가 다를 수 있음)
+COUNTRIES = {
+    "japan": {"ko": "일본", "usd": "EWJ", "usd_name": "EWJ(iShares MSCI Japan)", "usd_index": "MSCI 일본 지수",
+              "kr": "241180.KS", "kr_name": "TIGER 일본니케이225", "kr_index": "닛케이225 지수"},
+    "india": {"ko": "인도", "usd": "INDA", "usd_name": "INDA(iShares MSCI India)", "usd_index": "MSCI 인도 지수",
+              "kr": "453870.KS", "kr_name": "TIGER 인도니프티50", "kr_index": "니프티50 지수"},
+    "china": {"ko": "중국", "usd": "MCHI", "usd_name": "MCHI(iShares MSCI China)", "usd_index": "MSCI 중국 지수(홍콩·미국 상장 중국 기업 포함)",
+              "kr": "192090.KS", "kr_name": "TIGER 차이나CSI300", "kr_index": "CSI300 지수(중국 본토 상하이·선전 상장 300개)"},
+    "taiwan": {"ko": "대만", "usd": "EWT", "usd_name": "EWT(iShares MSCI Taiwan)", "usd_index": "MSCI 대만 지수"},
+}
+
+
+def _ret(close, days):
+    c = close.dropna()
+    if len(c) <= days:
+        return None, None
+    seg = c.iloc[-days - 1:]
+    return (float(seg.iloc[-1]) / float(seg.iloc[0]) - 1) * 100, seg.index[0]
+
+
+def calc_country(usd_close, fx_close, ref_close=None, kr_close=None, usd_price=None):
+    """usd_close: 미국 상장 나라 ETF(배당 반영), fx_close: 원/달러, ref_close: 비교용 SPY(배당 반영),
+    kr_close: 국내 상장 같은 나라 ETF(원화), usd_price: 배당 제외 가격(최대 낙폭용). 1·3·5년 창."""
+    import pandas as pd
+    a = pd.concat([usd_close.rename("u"), fx_close.rename("f")], axis=1, join="inner").dropna()
+    rows = []
+    for label, days in (("1년", 252), ("3년", 756), ("5년", 1260)):
+        if len(a) <= days:
+            continue
+        seg = a.iloc[-days - 1:]
+        start = seg.index[0]
+        ru = (seg["u"].iloc[-1] / seg["u"].iloc[0] - 1) * 100
+        rf = (seg["f"].iloc[-1] / seg["f"].iloc[0] - 1) * 100
+        rk = ((seg["u"].iloc[-1] * seg["f"].iloc[-1]) / (seg["u"].iloc[0] * seg["f"].iloc[0]) - 1) * 100
+        row = {"label": label, "start": f"{start:%Y-%m-%d}", "usd": ru, "fx": rf, "krw": rk, "ref": None, "kr": None}
+        if ref_close is not None:
+            r = ref_close.dropna()
+            r = r[r.index >= start]
+            if len(r) > days * 0.9:
+                row["ref"] = (float(r.iloc[-1]) / float(r.iloc[0]) - 1) * 100
+        if kr_close is not None:
+            k = kr_close.dropna()
+            k = k[k.index >= start]
+            if len(k) > days * 0.9:                 # 상장한 지 짧으면 그 창은 비움(11-21 인도 ETF는 2023년 상장)
+                row["kr"] = (float(k.iloc[-1]) / float(k.iloc[0]) - 1) * 100
+        rows.append(row)
+    if not rows:
+        return None
+    dd = calc_drawdown(usd_price if usd_price is not None else usd_close)
+    return {"rows": rows, "dd": dd}
+
+
+def render_country(r, cfg):
+    from ondo.media import charts
+    if not r:
+        return "", ""
+    nm, un = cfg["ko"], cfg["usd_name"]
+    kr = cfg.get("kr_name")
+    lines = []
+    for x in r["rows"]:
+        s = (f"- 최근 {x['label']}({x['start']}부터): {un} 달러 기준 {_pct(x['usd'])}, 원/달러 환율 {_pct(x['fx'])}, "
+             f"원화로 환산하면 {_pct(x['krw'])}")
+        if x["ref"] is not None:
+            s += f" / 같은 기간 미국 SPY(달러 기준) {_pct(x['ref'])}"
+        if kr and x["kr"] is not None:
+            s += f" / 국내 상장 {kr}(원화) {_pct(x['kr'])}"
+        lines.append(s)
+    d = r.get("dd")
+    if d and d["pct"] <= -1:
+        lines.append(f"- {un} 최근 5년 최대 낙폭(배당 제외 가격): {_pct(d['pct'])} (고점 {d['peak']} → 바닥 {d['trough']}"
+                     + (f", {d['recover_days']}일 뒤 회복)" if d.get("recover_days") is not None else ", 아직 고점 회복 전)"))
+    hdr = ["기간", f"{cfg['usd']} 달러 기준", "원/달러 환율", f"{cfg['usd']} 원화 환산", "SPY 달러 기준"] + ([kr] if kr else [])
+    rows = [[x["label"], _pct(x["usd"]), _pct(x["fx"]), _pct(x["krw"]), _pct(x["ref"]) if x["ref"] is not None else "-"]
+            + ([_pct(x["kr"]) if x["kr"] is not None else "-"] if kr else []) for x in r["rows"]]
+    note = (f"Yahoo Finance 종가(배당 반영), 거래일 기준 구간, ondo 계산. 원화 환산 = 달러 가격 × 원/달러 환율. "
+            f"따르는 지수 - {cfg['usd']}: {cfg['usd_index']}" + (f", {kr}: {cfg['kr_index']}(담은 종목이 다름)" if kr else "")
+            + ". 세금·거래 비용 제외. " + PAST_NOTE)
+    table = charts.table_html(f"{nm} 주식, 달러로 볼 때와 원화로 볼 때", hdr, rows, note)
+    facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
+             f"- 한국 투자자가 {nm} 주식에 투자하는 길은 크게 두 가지다: 국내 상장 ETF(원화로 거래, ISA·연금저축 계좌에서도 살 수 있음)와 "
+             f"미국 등 해외 상장 ETF(달러로 거래, 이 계좌들로는 직접 살 수 없음).\n"
+             "- 해외 주식의 원화 수익률은 그 나라 주가 변화와 환율 변화가 함께 만든다(위 계산의 '원화 환산'). 미국 상장 ETF는 달러 기준이라 "
+             f"원화 투자자에게는 원/달러 환율이, ETF 안의 {nm} 주식에는 그 나라 통화와 달러 사이 환율도 이미 들어 있다.\n"
+             "- 같은 나라 ETF라도 따르는 지수(담는 종목 수·상장 시장)가 다르면 수익률이 다르다.\n"
+             "- 이 자료에는 그 나라 경제 전망·정책·뉴스가 없다(과거 가격 계산만 있음).\n")
+    return facts, table
+
+
+# ------------------------------------------------------------
 # 가격 받기 + 주제별 연결 (인터넷이 필요한 부분은 여기만)
 # ------------------------------------------------------------
 
@@ -520,6 +612,19 @@ def guide_facts(topic_id, data_cache, rates_effect=None):
             if g is None or fx is None or hk is None:
                 return "", ""
             return render_fx_hedge(calc_fx_hedge(g["Close"], fx["Close"], hk["Close"]), "GLD(금)", "KODEX 골드선물(H)")
+        if topic_id.startswith("market-"):          # 11-21 나라별 시장
+            cfg = COUNTRIES.get(topic_id[7:])
+            if not cfg:
+                return "", ""
+            u, fx = _hist(cfg["usd"], period="6y"), _hist("KRW=X", period="6y")
+            if u is None or fx is None:
+                return "", ""
+            up = _hist(cfg["usd"], period="5y", adjust=False)
+            ref = _hist("SPY", period="6y")
+            kr = _hist(cfg["kr"], period="6y") if cfg.get("kr") else None
+            return render_country(calc_country(u["Close"], fx["Close"], ref["Close"] if ref is not None else None,
+                                               kr["Close"] if kr is not None else None,
+                                               up["Close"] if up is not None else None), cfg)
         if topic_id == "bond-duration" and rates_effect:
             return rates_effect(data_cache)
     except Exception as e:

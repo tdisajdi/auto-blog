@@ -47,6 +47,15 @@ GUIDE_TOPICS = [
      "tickers": ["TLT", "IEF", "SHY"]},
     {"id": "leverage-decay", "title": "3배 레버리지 ETF를 오래 들고 있으면 생기는 일",
      "tickers": ["QQQ", "TQQQ"]},
+    # 11-21 나라별 시장(사용자 '주식시장 큰 나라들') - 계산은 guide_calcs.COUNTRIES
+    {"id": "market-japan", "title": "일본 주식에 투자하는 두 가지 길: 국내 상장 vs 미국 상장 ETF, 환율까지 계산해 보니",
+     "tickers": ["EWJ", "241180.KS"]},
+    {"id": "market-india", "title": "인도 주식 ETF, 달러로 볼 때와 원화로 볼 때 수익률은 얼마나 달랐을까",
+     "tickers": ["INDA", "453870.KS"]},
+    {"id": "market-china", "title": "중국 주식 ETF, 본토(CSI300)와 MSCI 중국은 무엇이 달랐을까",
+     "tickers": ["MCHI", "192090.KS"]},
+    {"id": "market-taiwan", "title": "대만 주식 ETF로 본 대만 시장: 수익률·낙폭·환율",
+     "tickers": ["EWT"]},
     {"id": "parking-etf", "title": "CD금리·머니마켓 파킹형 ETF, 예금 대신 써도 될까",
      "tickers": ["459580.KS", "488770.KS"], "tax": True},
 ]
@@ -56,7 +65,7 @@ SEARCH_SEEDS = {"overseas-vs-domestic-tax": "해외 ETF 세금", "expense-ratio"
                 "hedged-vs-unhedged": "환헤지 ETF", "tr-vs-pr": "TR ETF", "dca-vs-lump": "적립식 거치식",
                 "mdd-risk": "MDD 최대낙폭", "tax-accounts": "ISA 연금저축 ETF", "dividend-growth": "배당성장률",
                 "bond-duration": "채권 ETF 금리", "leverage-decay": "레버리지 ETF", "parking-etf": "파킹형 ETF",
-                "fx": "환율 해외 ETF", "rates": "금리 채권 ETF", "sentiment": "공포탐욕지수"}
+                "fx": "환율 해외 ETF", "market-japan": "일본 ETF", "market-india": "인도 ETF", "market-china": "중국 ETF", "market-taiwan": "대만 ETF", "rates": "금리 채권 ETF", "sentiment": "공포탐욕지수"}
 
 ISSUE_KINDS = {
     # 11-08 재시험 2번 미통과: 제목('확인할 것')이 넓어 작가가 빈자리를 일반 지식(환전 전략·야간 선물·iNAV)으로 채움.
