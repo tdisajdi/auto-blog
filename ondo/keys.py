@@ -31,12 +31,48 @@ def parse(raw):
     return out
 
 
-def gemini_keys():
-    return parse(os.environ.get("GEMINI_API_KEY", ""))
+BAD_DAYS = 7             # 401·403으로 막힌 키는 7일 동안 아예 안 부름(그 뒤 한 번 다시 시험 - 사용자가 고쳤을 수 있음)
+
+
+def _fp(key):
+    """키 지문(키 값 대신 기록용). 저장소가 공개라 키 값·이름표는 남기지 않고, 되돌릴 수 없는 짧은 지문만."""
+    import hashlib
+    return hashlib.sha256(key.encode()).hexdigest()[:12]
+
+
+def _alerts():
+    try:
+        with open(KEY_ALERT_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def is_bad(key):
+    return time.time() - _alerts().get("bad:" + _fp(key), 0) < BAD_DAYS * 86400
+
+
+def mark_bad(key):
+    state = _alerts()
+    state["bad:" + _fp(key)] = time.time()
+    try:
+        with open(KEY_ALERT_FILE, "w", encoding="utf-8") as f:
+            json.dump(state, f)
+    except OSError:
+        pass
+
+
+def gemini_keys(include_bad=False):
+    """11-21: 최근 7일 안에 401·403으로 막힌 키는 뺀다(사용자 요청 '안 되는 키는 지워 버려'). 다 막혔으면 그대로."""
+    ks = parse(os.environ.get("GEMINI_API_KEY", ""))
+    if include_bad:
+        return ks
+    good = [x for x in ks if not is_bad(x[2])]
+    return good or ks
 
 
 def number_of(key):
-    for no, _label, k in gemini_keys():
+    for no, _label, k in gemini_keys(include_bad=True):
         if k == key:
             return no
     return 0
@@ -44,7 +80,7 @@ def number_of(key):
 
 def name_of(key):
     """텔레그램용 이름: '키 3번 (aa@gmail.com)' / 이름표가 없으면 '키 3번'."""
-    for no, label, k in gemini_keys():
+    for no, label, k in gemini_keys(include_bad=True):
         if k == key:
             return f"키 {no}번 ({label})" if label else f"키 {no}번"
     return "알 수 없는 키"
@@ -61,12 +97,8 @@ ADVICE = {
 def alert_key_problem(key, kind, detail="", department="글쓰기"):
     """키 문제를 텔레그램으로 알린다(12시간에 한 번). 키 값은 절대 보내지 않는다."""
     no = number_of(key)
-    state = {}
-    try:
-        with open(KEY_ALERT_FILE, encoding="utf-8") as f:
-            state = json.load(f)
-    except (OSError, ValueError):
-        pass
+    mark_bad(key)                                    # 11-21: 다음 실행부터 7일 동안 안 부름
+    state = _alerts()
     tag = f"{no}:{kind}"
     if time.time() - state.get(tag, 0) < KEY_ALERT_HOURS * 3600:
         return False
@@ -78,6 +110,7 @@ def alert_key_problem(key, kind, detail="", department="글쓰기"):
         pass
     msg = (f"🔑 [{department}] Gemini {name_of(key)} 문제\n"
            f"{ADVICE.get(kind, '이 키로 계속 실패하고 있어요.')}\n"
+           f"7일 동안 이 키는 빼고 쓰고, 그 뒤 한 번 다시 시험해요. 아예 지우려면 GitHub 비밀값 GEMINI_API_KEY에서 이 키를 빼 주세요.\n"
            + (f"응답: {detail[:150]}\n" if detail else "")
            + "다른 키로 자동 전환해서 작업은 계속해요.")
     try:
