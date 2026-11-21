@@ -553,6 +553,69 @@ def render_country(r, cfg):
 
 
 # ------------------------------------------------------------
+# 파킹형(CD금리·머니마켓) ETF (parking-etf) - 11-21: 계산 자료가 없어 일반 종목 자료만 받던 주제.
+# 독자 질문 '예금 대신 써도 될까'에 답하는 숫자 = 1년 수익률(1년 예금 금리와 같은 기준), 얼마나 흔들렸나(내린 날 비율·
+# 가장 나빴던 하루·한 달, 최대 낙폭). 예금·CMA 금리는 자료에 없음 - 작가가 지어내지 않게 자료에 그렇게 적는다.
+# ------------------------------------------------------------
+
+def calc_parking(close):
+    """원화 종가 Series(분배 없는 적립형) → 1년·상장 뒤 연환산 수익률과 흔들림. 자료가 60거래일 미만이면 None."""
+    c = close.dropna()
+    if len(c) < 60:
+        return None
+    r1, start1 = _ret(c, 252)
+    days = (c.index[-1] - c.index[0]).days
+    ann = ((float(c.iloc[-1]) / float(c.iloc[0])) ** (365 / days) - 1) * 100 if days >= 180 else None
+    d = c.pct_change().dropna()
+    m = c.resample("ME").last().pct_change().dropna() if hasattr(c.index, "to_period") else None
+    dd = (c / c.cummax() - 1.0).min() * 100
+    return {"start": f"{c.index[0]:%Y-%m-%d}", "end": f"{c.index[-1]:%Y-%m-%d}", "r1": r1,
+            "r1_start": f"{start1:%Y-%m-%d}" if start1 is not None else None, "ann": ann,
+            "down_share": float((d < 0).mean()) * 100, "worst_day": float(d.min()) * 100,
+            "worst_month": float(m.min()) * 100 if m is not None and len(m) else None,
+            "neg_months": int((m < 0).sum()) if m is not None else None, "months": int(len(m)) if m is not None else None,
+            "mdd": float(dd)}
+
+
+def render_parking(results, names, amount=10_000_000):
+    from ondo.media import charts
+    results = {k: v for k, v in results.items() if v}
+    if not results:
+        return "", ""
+    nm = lambda t: f"{names.get(t) or t.replace('.KS', '')}"
+    lines, rows = [], []
+    for t, r in results.items():
+        if r["r1"] is not None:
+            lines.append(f"- {nm(t)}: 최근 1년({r['r1_start']}부터) {_pct(r['r1'], 2)} → {_won(amount)}이면 세전 약 {_won(amount * r['r1'] / 100)} 늘어남")
+        if r["ann"] is not None:
+            lines.append(f"- {nm(t)}: 자료 시작({r['start']})부터 연 환산 {_pct(r['ann'], 2)}")
+        share = f"{r['down_share']:.1f}%" if r["down_share"] < 10 else f"{r['down_share']:.0f}%"
+        worst = f"가장 크게 내린 하루 {r['worst_day']:.2f}%" if r["worst_day"] < 0 else "전날보다 내린 날 없음"
+        s = f"- {nm(t)} 흔들림: 전날보다 내린 날 비율 {share}, {worst}"
+        if r["worst_month"] is not None:
+            s += f", 한 달 단위로 내린 달 {r['neg_months']}번/{r['months']}개월(가장 나쁜 달 {r['worst_month']:+.2f}%)"
+        s += f", 최대 낙폭 {min(r['mdd'], 0) or 0:.2f}%"
+        lines.append(s)
+        rows.append([nm(t), _pct(r["r1"], 2) if r["r1"] is not None else "-", _pct(r["ann"], 2) if r["ann"] is not None else "-",
+                     share, f"{r['worst_day']:.2f}%" if r["worst_day"] < 0 else "없음",
+                     f"{r['neg_months']}/{r['months']}" if r["months"] else "-", f"{min(r['mdd'], 0) or 0:.2f}%"])
+    note = ("Yahoo Finance 일별 종가(원화), 거래일 기준, ondo 계산. 세금(이익의 15.4%)·거래 비용 제외. "
+            "'연 환산'은 자료 시작일부터 지금까지의 수익률을 1년 기준으로 바꾼 값. " + PAST_NOTE)
+    table = charts.table_html("파킹형 ETF, 얼마나 벌고 얼마나 흔들렸나",
+                              ["ETF", "최근 1년", "연 환산(자료 시작부터)", "내린 날 비율", "가장 나쁜 하루", "내린 달/전체 달", "최대 낙폭"],
+                              rows, note)
+    facts = (HEAD + "\n" + "\n".join(lines) + f"\n- {note}\n"
+             "- (예금·CMA·파킹통장 금리 숫자는 이 자료에 없음 - 비교 금리는 독자가 직접 확인하도록 안내만)\n"
+             "[일반 원리 - 교과서 수준 설명]\n"
+             "- 1년 수익률은 1년짜리 예금 금리(세전)와 같은 기준이라 나란히 놓고 볼 수 있다. 다만 예금 금리는 가입할 때 정해지고, "
+             "이 ETF의 수익률은 그날그날 단기 금리를 따라 바뀐다.\n"
+             "- ETF는 예금자보호 대상이 아니다(예금은 금융회사당 일정 금액까지 보호).\n"
+             "- 국내 주식시장에서 ETF를 팔면 돈은 영업일 기준 이틀 뒤(T+2)에 출금할 수 있다. 장이 열린 시간에만 사고팔 수 있다.\n"
+             "- 이자(예금)와 이 ETF의 이익은 둘 다 세금이 15.4%다(금융소득이 1년에 2천만 원을 넘으면 종합과세 대상).\n")
+    return facts, table
+
+
+# ------------------------------------------------------------
 # 가격 받기 + 주제별 연결 (인터넷이 필요한 부분은 여기만)
 # ------------------------------------------------------------
 
@@ -635,6 +698,14 @@ def guide_facts(topic_id, data_cache, rates_effect=None):
             return render_country(calc_country(u["Close"], fx["Close"], ref["Close"] if ref is not None else None,
                                                kr["Close"] if kr is not None else None,
                                                up["Close"] if up is not None else None), cfg)
+        if topic_id == "parking-etf":
+            res = {}
+            for t in data_cache:
+                h = _hist(t, period="5y")
+                if h is not None:
+                    res[t] = calc_parking(h["Close"])
+            names = {t: (d.get("name") or "")[:30] for t, d in data_cache.items()}
+            return render_parking(res, names)
         if topic_id == "bond-duration" and rates_effect:
             return rates_effect(data_cache)
     except Exception as e:
