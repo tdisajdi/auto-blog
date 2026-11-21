@@ -79,16 +79,33 @@
     흔적: Rank Math, Site Kit, Jetpack 공유/관련글, Polylang, 구글 태그(gtag), Gravatar
     title: Overseas-listed vs Korea-listed ETFs: the KRW 8.33 million gain that decides the tax difference - ondo99 | <html lang>: en-US
     설명 내용: ['For a Korean investor in a regular account, the tax on an overseas-listed ETF and a Korea-']
+- /tag/aapl/: 200 최종주소 https://ondo99.com/tag/aapl/
+  [/tag/aapl/] 메타 설명 0개 · og:title 1개 · canonical 0개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, noindex"/>
+    구조화 데이터 종류: ['CollectionPage', 'Person', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: AAPL - ondo99 | <html lang>: ko-KR
+    설명 내용: []
+- /tag/%ec%95%a0%ed%94%8c/: 200 최종주소 https://ondo99.com/tag/%EC%95%A0%ED%94%8C/
+  [/tag/%ec%95%a0%ed%94%8c/] 메타 설명 0개 · og:title 1개 · canonical 0개 · hreflang 0개 · robots 메타 1개 · twitter:card 1개
+    robots: <meta name="robots" content="follow, noindex"/>
+    구조화 데이터 종류: ['CollectionPage', 'Person', 'WebSite'] | JSON-LD 블록 1 개
+    generator: ['Site Kit by Google 1.192.0']
+    흔적: Rank Math, Site Kit, Polylang, 구글 태그(gtag), Gravatar
+    title: 애플 - ondo99 | <html lang>: ko-KR
+    설명 내용: []
+- /en/tag/apple/: 404 최종주소 https://ondo99.com/en/tag/apple/
 - /robots.txt: 200 → https://ondo99.com/robots.txt | User-agent: * / Disallow: /wp-admin/ / Allow: /wp-admin/admin-ajax.php / Sitemap: https://ondo99.com/sitemap_index.xml
 - /ads.txt: 404 → https://ondo99.com/ads.txt | <!DOCTYPE html> / <html lang="ko-KR" prefix="og: https://ogp.me/ns#"> / <head> / 	<meta charset="UTF-8" /> / 	<meta name="viewport" content="width=device-width, initial-scale=1" /> / <script>window.ondoLang=[{"
-- /sitemap.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
-- /sitemap_index.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 1개: https://ondo99.com/page-sitemap.xml | 생성: Rank Math
-- /post-sitemap.xml: 200 → https://ondo99.com/post-sitemap.xml | loc 3개: https://ondo99.com/; https://ondo99.com/2026/07/17/%eb%82%98%ec%8a%a4%eb%8b%a5-100%ec%9d%98-%eb%b9%9b%ea%b3%bc-%ea%b7%b8%eb%a6%bc%ec%9e%90-qqq-%ed%99%98%ec%9c%a8-%ec%95%95%eb%b0%95-%ec%86%8d-%eb%b0%b0%eb%8b%b9-%eb%a7%a4%eb%a0%a5%ec%9d%80/; https://ondo99.com/2026/07/11/hello/ | 생성: Rank Math
-- /category-sitemap.xml: 200 → https://ondo99.com/category-sitemap.xml | loc 2개: https://ondo99.com/category/uncategorized/; https://ondo99.com/category/etf/ | 생성: Rank Math
+- /sitemap.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 3개: https://ondo99.com/post-sitemap.xml; https://ondo99.com/page-sitemap.xml; https://ondo99.com/category-sitemap.xml | 생성: Rank Math
+- /sitemap_index.xml: 200 → https://ondo99.com/sitemap_index.xml | loc 3개: https://ondo99.com/post-sitemap.xml; https://ondo99.com/page-sitemap.xml; https://ondo99.com/category-sitemap.xml | 생성: Rank Math
+- /post-sitemap.xml: 200 → https://ondo99.com/post-sitemap.xml | loc 11개: https://ondo99.com/; https://ondo99.com/2026/11/21/apple-company-overview-revenue-mdd-dividend-etf/; https://ondo99.com/en/2026/11/21/lump-sum-vs-dca-real-prices-2021-2026/; https://ondo99.com/en/2026/11/20/max-drawdown-etf-guide/; https://ondo99.com/en/2026/11/20/etf-expense-ratio-difference-10-years/; https://ondo99.com/en/2026/11/19/overseas-vs-korea-listed-etf-tax/; https://ondo99.com/2026/11/21/lump-sum-vs-dca-actual-price-comparison/; https://ondo99.com/2026/11/20/mdd-etf-guide/ | 생성: Rank Math
+- /category-sitemap.xml: 200 → https://ondo99.com/category-sitemap.xml | loc 2개: https://ondo99.com/category/etf/; https://ondo99.com/en/category/etfs-investing/ | 생성: Rank Math
 - /news-sitemap.xml: 404 → https://ondo99.com/news-sitemap.xml
 - /ko/: 404 → https://ondo99.com/ko/
-- /en/: 200 → https://ondo99.com/en/ | 길이 195210
-- /feed/: 200 → https://ondo99.com/feed/ | 길이 21955
+- /en/: 200 → https://ondo99.com/en/ | 길이 204470
+- /feed/: 200 → https://ondo99.com/feed/ | 길이 52340
 === 2. 플러그인 설정(API, 읽기) ===
 - REST 이름공간: 200 | ['oembed/1.0', 'jetpack/v4', 'wpcomsh/v1', 'akismet/v1', 'crowdsignal-forms/v1', 'wp/v2', 'wp-block-editor/v1', 'wpcom/v2', 'ondo/v1', 'rankmath/v1', 'rankmath/v1/setupWizard', 'jetpack-premium-analytics/v1', 'jetpack/v4/woocommerce-stats', 'pll/v1', 'jetpack/v4/stats-app', 'jetpack/v4/explat', 'rest/v1.1', 'agents-manager', 'newspack-blocks/v1', 'jetpack/v4/blaze-app', 'jetpack/v4/blaze', 'rankmath/v1/ai-visibility', 'rankmath/v1/ca', 'rankmath/v1/an', 'rankmath/v1/in', 'rankmath/v1/status', 'google-site-kit/v1', 'help-center', 'jetpack-global-styles/v1', 'jetpack/v4/import', 'videopress/v1', 'jetpack/v4/videopress', 'wpcom/v3', 'jetpack-boost/v1', 'my-jetpack/v1', 'wp-site-health/v1', 'wp-abilities/v1']
 - Jetpack 모듈: 200 | 켜짐 31: ['account-protection', 'activity-log', 'ai', 'backup', 'blaze', 'blocks', 'carousel', 'comments', 'contact-form', 'copy-post', 'custom-content-types', 'json-api', 'notes', 'photon', 'photon-cdn', 'podcast', 'protect', 'publicize', 'related-posts', 'sharedaddy', 'shortcodes', 'shortlinks', 'sso', 'stats', 'subscriptions', 'tiled-gallery', 'verification-tools', 'videopress', 'widget-visibility', 'widgets', 'wpcom-reader']
