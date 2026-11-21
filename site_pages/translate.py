@@ -42,10 +42,16 @@ def _significant(v, decimals, unit):
     return v > 31
 
 
+def _merge_jo_eok(t):
+    """'1조 7,357억' → '17357억'(한 숫자). 11-21 873: 대조가 1조·7,357억 두 숫자로 읽어 영어 '$1.7357 trillion'과 안 맞음."""
+    return re.sub(r"(\d+)\s*조\s*([\d,]+(?:\.\d+)?)\s*억",
+                  lambda m: f"{int(m.group(1)) * 10000 + float(m.group(2).replace(',', '')):g}억", t)
+
+
 def ko_values(html):
     from ondo.checks.numbers import _numbers
     out = []
-    for raw, v, d, unit in _numbers(_text(html)):
+    for raw, v, d, unit in _numbers(_merge_jo_eok(_text(html))):
         if unit in _KO_SCALE:
             v = v * _KO_SCALE[unit]
         if _significant(v, d, unit if unit not in ("원", "달러", "명", "가구", "건", "개국", "배럴") else ""):
