@@ -147,3 +147,118 @@ def make_cover(title, category="etf", kicker="GUIDE", out_path=None):
     except Exception as e:
         print(f"ℹ️ 새 표지 만들기 실패(옛 카드로): {type(e).__name__}: {e}")
         return None
+
+
+# ------------------------------------------------------------
+# 명화 도트 표지(2026-11-21 사용자 결정: '자산의 나라 명화 × 80칸 고정 모자이크')
+# ------------------------------------------------------------
+ART_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "lab", "art", "pool")
+CELLS = 80          # 가로 칸 수 고정(11-20 사용자: 56칸은 세밀한 그림이 안 보임, 110칸은 사진 같음)
+
+
+def country_for(title, tags=(), category="etf"):
+    """글이 다루는 자산의 나라 → 그림 나라. 한국 종목·코스피·인구 같은 한국 이야기는 한국, 일본·엔화는 일본,
+    유럽·프랑스는 프랑스, 나머지(미국 ETF·미국 기업 대부분)는 미국."""
+    t = " ".join([title or ""] + list(tags or []))
+    if re.search(r"일본|엔화|닛케이|도쿄|Japan|yen|Nikkei", t, re.I):
+        return "japan"
+    if re.search(r"유럽|프랑스|독일|Europe|France|euro\b", t, re.I):
+        return "france"
+    if (category in ("society", "population-society") or re.search(r"\b\d{6}\b|코스피|코스닥|삼성|한국|국내 상장|KOSPI|Samsung|Korea", t)) \
+            and not re.search(r"해외 상장|미국|S&P|나스닥|Overseas|US-listed", t):
+        return "korea"
+    return "usa"
+
+
+def pick_art(country, key):
+    """picks.json(Claude가 직접 본 그림과 자를 곳)에서 그 나라 그림 하나. key(제목·글 번호)로 늘 같은 그림."""
+    import hashlib
+    import json
+    try:
+        picks = json.load(open(os.path.join(ART_DIR, "picks.json"), encoding="utf-8"))
+    except Exception:
+        return None
+    lst = picks.get(country) or picks.get("usa") or []
+    if not lst:
+        return None
+    return lst[int(hashlib.md5(str(key).encode()).hexdigest(), 16) % len(lst)]
+
+
+def _mosaic(im, cells=CELLS, size=470):
+    """정사각 그림 → 타일 모자이크 size px. 11-20 사용자가 고른 80칸 시안과 같은 방식: 1000px에 틈 있는 둥근 타일로
+    그린 뒤 줄임(작게 그리면 틈이 점무늬처럼 보이거나 사라짐 - 11-21 비교)."""
+    from PIL import Image, ImageDraw
+    small = im.convert("RGB").resize((cells, cells), Image.BOX)
+    px = small.load()
+    S = 1000
+    out = Image.new("RGB", (S, S), PAPER)
+    d = ImageDraw.Draw(out)
+    t = S / cells
+    g = t * 0.04
+    for y in range(cells):
+        for x in range(cells):
+            x0, y0 = x * t + g, y * t + g
+            d.rounded_rectangle([x0, y0, x0 + t - 2 * g, y0 + t - 2 * g], radius=t * 0.12, fill=px[x, y])
+    return out.resize((size, size), Image.LANCZOS)
+
+
+def make_art_cover(title, category="etf", kicker="GUIDE", art=None, out_path=None, tags=(), key=None):
+    """명화 도트 표지. art = picks.json 항목({file, crop:[x0,y0,x1,y1](0~1), credit}). 없으면 나라에 맞게 고름.
+    그림이 없거나 실패하면 None(부르는 쪽이 make_cover로 대신)."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont, ImageEnhance
+        art = art or pick_art(country_for(title, tags, category), key or title)
+        if not art:
+            return None
+        src = Image.open(os.path.join(ART_DIR, art["file"])).convert("RGB")
+        w, h = src.size
+        x0, y0, x1, y1 = art.get("crop") or (0, 0, 1, 1)
+        box = [int(x0 * w), int(y0 * h), int(x1 * w), int(y1 * h)]
+        s = min(box[2] - box[0], box[3] - box[1])                       # 정사각으로
+        cx, cy = (box[0] + box[2]) // 2, (box[1] + box[3]) // 2
+        sq = src.crop((cx - s // 2, cy - s // 2, cx - s // 2 + s, cy - s // 2 + s))
+        sq = ImageEnhance.Color(sq).enhance(1.12)
+        col, label = CAT.get(category, CAT["etf"])
+        img = Image.new("RGB", (W, H), PAPER)
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 0, W - 1, H - 1], outline=INK, width=10)          # 잉크 테두리(지금 표지와 같은 틀)
+        d.rectangle([10, 10, 32, H - 11], fill=col)                       # 분야색 띠
+        P = 470
+        px_, py_ = W - P - 62, 58
+        img.paste(_mosaic(sq, CELLS, P), (px_, py_))
+        f_cap = ImageFont.truetype(font_path("sub"), 15)
+        cap = art.get("credit") or ""
+        while cap and d.textlength(cap, font=f_cap) > P:
+            cap = cap[:-2].rstrip() + "…" if not cap.endswith("…") else cap[:-3].rstrip() + "…"
+        d.text((px_, py_ + P + 12), cap, font=f_cap, fill=MUTED)
+        f_lab = ImageFont.truetype(font_path("pixel"), 24)
+        d.text((80, 64), f"{label} · {kicker}", font=f_lab, fill=col)
+        tw = px_ - 80 - 44
+        size = 56
+        f_t = ImageFont.truetype(font_path("title"), size)
+        lines = _wrap(d, title, f_t, tw, 4)
+        while lines and lines[-1].endswith("…") and size > 40:          # 영어처럼 긴 제목은 조금씩 줄임
+            size -= 4
+            f_t = ImageFont.truetype(font_path("title"), size)
+            lines = _wrap(d, title, f_t, tw, 5)
+        num = key_number(title)
+        y = 120
+        for ln in lines:
+            if num and num in ln:                                         # 제목 속 숫자만 분야색(새 숫자 안 만듦)
+                a, b = ln.split(num, 1)
+                d.text((80, y), a, font=f_t, fill=INK)
+                xa = 80 + d.textlength(a, font=f_t)
+                d.text((xa, y), num, font=f_t, fill=col)
+                d.text((xa + d.textlength(num, font=f_t), y), b, font=f_t, fill=INK)
+            else:
+                d.text((80, y), ln, font=f_t, fill=INK)
+            y += int(size * 1.32)
+        for i in range(5):                                                # 온도 다섯 칸 + 서명
+            d.rectangle([80 + i * 22, H - 96, 80 + i * 22 + 15, H - 81], fill=TEMP[i])
+        d.text((80 + 5 * 22 + 12, H - 103), "ONDO", font=ImageFont.truetype(font_path("pixel"), 26), fill=INK)
+        out_path = out_path or os.path.join(os.environ.get("TMPDIR", "/tmp"), f"cover_art_{abs(hash(title)) % 10**8}.png")
+        img.save(out_path, "PNG", optimize=True)
+        return out_path
+    except Exception as e:
+        print(f"ℹ️ 명화 표지 실패(지금 표지로): {type(e).__name__}: {e}")
+        return None
