@@ -1,0 +1,52 @@
+[
+ {
+  "old": "<div class=\"ondo-visual\" data-visual=\"competition\" style=\"margin:26px 0;\"><p class=\"ondo-figtitle\" style=\"font-weight:700;margin:6px 0 8px;\">⚖️ 경쟁 상품 비교: 왜 이 분석 대상인가?</p><p style=\"color:#555;line-height:1.6;\">동일 지수 추종 상품들 중 선택 근거:</p><ul style=\"padding-left:20px;line-height:1.8;color:#333;\"><li><strong>VOO</strong>: 보수(0.03%), 1년 배당 증가(5.57%), 환노출(있음 (해외 상장, 달러로 거래))</li><li><strong>QQQ</strong>: 보수(0.18%), 1년 배당 증가(8.99%), 환노출(있음 (해외 상장, 달러로 거래))</li></ul>\n<p style=\"margin-top:15px;padding:12px;background:#fffbea;border-left:3px solid #f39c12;color:#7d6608;font-size:12px;\">\n<strong>💡 핵심 차별고:</strong> 이 분석이 다른 블로그와 다른 이유는 단순 \"어느 ETF 좋다\"가 아니라, \n<strong>당신의 구체적 상황(연령, 납입기간, 세금계좌) 기반으로 수익률뿐 아니라 세금·환율·변동성까지</strong> 종합 검토한다는 점입니다.\n</p>\n</div>",
+  "new": "",
+  "why": "틀린 '동일 지수 추종' + 하지 않는 분석을 내세운 홍보 문구 상자(코드에서도 뺌)"
+ },
+ {
+  "old": "<div class=\"ondo-visual\" data-visual=\"tax\" style=\"margin:26px 0;\"><div class=\"ondo-calc\" style=\"margin:24px 0;overflow-x:auto;\"><p style=\"font-weight:700;margin:0 0 8px;\">이익 규모별 예상 세금 (계좌별)</p><table style=\"width:100%;border-collapse:collapse;font-size:14px;\"><tr><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">한 해 이익</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">해외 상장 ETF (일반계좌)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">국내 상장 해외지수 ETF (일반계좌)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">ISA 일반형 (3년 유지)</th><th style=\"border:1px solid #ddd;padding:8px;background:#f3f5f9;\">연금저축 (연금 수령)</th></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">200만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">31만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">0원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">11만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">500만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">55만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">77만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">30만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">28만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">1,000만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">165만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">154만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">79만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">55만 원</td></tr><tr><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">2,000만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">385만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">308만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">178만 원</td><td style=\"border:1px solid #ddd;padding:8px;text-align:center;\">110만 원</td></tr></table><p style=\"font-size:12px;color:#8a96b0;margin-top:6px;\">가정: 한 해에 이 ETF에서만 이익이 난 경우, 분배금·환율 변동·거래 비용 제외. 해외 상장 ETF는 연 250만 원 공제는 해외 주식 전체 합산 기준. 연금저축은 55세 이후 연금으로 받을 때 3.3~5.5% 중 5.5%로 계산(중도 인출은 16.5%). 국내 일반계좌는 이자·배당 등 금융소득이 한 해 2,000만 원을 넘으면 종합과세로 더 낼 수 있음. 2026년 10월 기준 세법, ondo가 직접 계산.</p></div><figure class=\"ondo-chart\" style=\"margin:28px 0;\"><div id=\"ondo_chart_f17f88f8\" role=\"img\" aria-label=\"이익 규모별 예상 세금 비교\" style=\"width:100%;min-height:400px;\"></div><script>(function(){function draw(){var gd=document.getElementById('ondo_chart_f17f88f8');if(!gd)return;Plotly.newPlot(gd,[{\"type\": \"bar\", \"name\": \"해외 상장 ETF (일반계좌)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [0.0, 55.0, 165.0, 385.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e해외 상장 ETF (일반계좌)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#0e1a30\"}}, {\"type\": \"bar\", \"name\": \"국내 상장 해외지수 ETF (일반계좌)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [30.8, 77.0, 154.0, 308.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e국내 상장 해외지수 ETF (일반계좌)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#e8b944\"}}, {\"type\": \"bar\", \"name\": \"ISA 일반형 (3년 유지)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [0.0, 29.7, 79.2, 178.2], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003eISA 일반형 (3년 유지)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#3a7bd5\"}}, {\"type\": \"bar\", \"name\": \"연금저축 (연금 수령)\", \"x\": [\"200만 원\", \"500만 원\", \"1,000만 원\", \"2,000만 원\"], \"y\": [11.0, 27.5, 55.0, 110.0], \"hovertemplate\": \"%{x}: %{y:,}만 원\\u003cextra\\u003e연금저축 (연금 수령)\\u003c/extra\\u003e\", \"marker\": {\"color\": \"#8a96b0\"}}],{\"title\": {\"text\": \"이익 규모별 예상 세금 비교\", \"font\": {\"size\": 16}}, \"template\": \"plotly_white\", \"barmode\": \"group\", \"height\": 400, \"margin\": {\"t\": 60, \"b\": 50, \"l\": 60, \"r\": 20}, \"yaxis\": {\"title\": \"만 원\", \"tickformat\": \",\"}, \"legend\": {\"orientation\": \"h\", \"y\": -0.18}, \"hovermode\": \"closest\"},{responsive:true,displaylogo:false});}if(window.Plotly){draw();return;}var s=document.getElementById('ondo-plotly');if(s){s.addEventListener('load',draw);return;}s=document.createElement('script');s.id='ondo-plotly';s.src='https://cdn.plot.ly/plotly-2.34.0.min.js';s.onload=draw;document.head.appendChild(s);})();</script><figcaption style=\"font-size:13px;color:#8a96b0;margin-top:6px;\">이익 규모별 예상 세금 비교 · 자료: 2026년 10월 기준 세법 세율로 ondo 계산</figcaption></figure></div>",
+  "new": "<p style=\"margin:18px 0;padding:12px 16px;background:#f8f9fa;border-radius:6px;font-size:14px;\">이익 규모별로 해외 상장·국내 상장·ISA·연금저축의 세금이 어떻게 달라지는지는 <a href=\"https://ondo99.com/2026/11/19/overseas-vs-domestic-etf-tax/\">해외 상장 vs 국내 상장 ETF 세금 비교</a>에 계산해 두었습니다.</p>",
+  "why": "세금 가이드(701, 공개됨)와 같은 세금표 - 링크로 대신(코드에서도 바꿈)"
+ },
+ {
+  "old": "<p>계좌별 예상 세금 계산 자료를 검토할 때는 본인의 연간 예상 매매 차익 규모가 해외 상장 상품의 기본 공제 한도인 250만 원을 초과하는지 여부를 먼저 산출한 뒤 계좌 유형을 선택하는 판단 기준으로 활용할 수 있습니다.</p>",
+  "new": "",
+  "why": "빠진 세금표를 설명하던 문장"
+ },
+ {
+  "old": "이 글에서는 2026년 11월 22일 공시 데이터를 기준으로",
+  "new": "이 글에서는 2026년 11월 22일까지의 가격·배당 자료를 기준으로",
+  "why": "'공시' 틀린 말"
+ },
+ {
+  "old": "두 자산의 위험 관리 수준이 갈렸습니다.",
+  "new": "두 자산의 차이가 크게 났습니다.",
+  "why": "'위험 관리 수준' 판단어"
+ },
+ {
+  "old": "독자는 단순히 최종 자산의 합계만을 볼 것이 아니라, 하락장이 시작되었을 때 전고점 대비 계좌 잔액이 줄어드는 절대 액수와 이를 복구하기까지 소요된 일수를 함께 측정해야 합니다.",
+  "new": "최종 자산뿐 아니라 하락장에서 계좌 잔액이 얼마나 줄었고 되찾는 데 며칠 걸렸는지도 함께 볼 수 있습니다.",
+  "why": "당위"
+ },
+ {
+  "old": "실제 운용 규모인 순자산 크기를 함께 점검해야 합니다.",
+  "new": "실제 운용 규모인 순자산 크기도 함께 볼 수 있습니다.",
+  "why": "당위"
+ },
+ {
+  "old": "같은 기간 QQQ는 가격 변화 +57.0%(연평균 +9.5%), 최대 낙폭 -35.1%를 나타냈습니다.",
+  "new": "같은 기간 QQQ는 가격 변화 +57.0%(연평균 +9.5%), 최대 낙폭 -35.1%를 나타냈습니다. 이 공통 기간 숫자는 날짜를 맞춰 다시 계산한 값이라, 위의 '최근 5년' 숫자(-25.41%·-35.54%)와 조금 다릅니다.",
+  "why": "한 글에 최대 낙폭 두 개 - 기간 차이 설명"
+ },
+ {
+  "old": "상대적으로 높은 1년 배당 증가율을 기반으로 기술주 중심의 자산 구성을 원할 경우에는 QQQ의 특성이 부합합니다.",
+  "new": "나스닥 100 지수를 따르는 구성과 상대적으로 높은 1년 배당 증가율(8.99%)을 원할 경우에는 QQQ의 특성이 부합합니다.",
+  "why": "'기술주 중심' 자료에 없음 → 지수 이름으로"
+ },
+ {
+  "old": "자신에게 알맞은 지수 상품을 선택하는 것이 중요합니다.",
+  "new": "볼 수 있습니다: 두 ETF는 5년 연평균이 비슷했지만(9.6%·9.4%), 최대 낙폭은 -25.41%와 -35.54%로 달랐습니다.",
+  "why": "당위 한 줄 정리 → 숫자"
+ }
+]
