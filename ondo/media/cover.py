@@ -153,7 +153,7 @@ def make_cover(title, category="etf", kicker="GUIDE", out_path=None):
 # 명화 도트 표지(2026-11-21 사용자 결정: '자산의 나라 명화 × 80칸 고정 모자이크')
 # ------------------------------------------------------------
 ART_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "lab", "art", "pool")
-CELLS = 80          # 가로 칸 수 고정(11-20 사용자: 56칸은 세밀한 그림이 안 보임, 110칸은 사진 같음)
+CELLS = 100         # 가로 칸 수 고정(11-20 사용자: 56칸은 세밀한 그림이 안 보임, 110칸은 사진 같음 → 80칸 / 11-21 사용자: 100칸으로)
 
 
 def country_for(title, tags=(), category="etf"):
@@ -242,7 +242,7 @@ def make_art_cover(title, category="etf", kicker="GUIDE", art=None, out_path=Non
     그림이 없거나 실패하면 None(부르는 쪽이 make_cover로 대신)."""
     try:
         from PIL import Image, ImageDraw, ImageFont, ImageEnhance
-        art = art or pick_art(country_for(title, tags, category), key or title)
+        art = art or pick_art(country_for(key or title, tags, category), key or title)   # 영어판은 key=한국어 제목 → 같은 그림
         if not art:
             return None
         src = Image.open(os.path.join(ART_DIR, art["file"])).convert("RGB")
@@ -297,3 +297,9 @@ def make_art_cover(title, category="etf", kicker="GUIDE", art=None, out_path=Non
     except Exception as e:
         print(f"ℹ️ 명화 표지 실패(지금 표지로): {type(e).__name__}: {e}")
         return None
+
+
+def cover_for(title, category="etf", kicker="GUIDE", key=None, tags=(), out_path=None):
+    """표지 하나: 명화 도트 표지(11-21 사용자 확인) → 안 되면 지금 표지. key = 한국어 원글 제목(영어판도 같은 그림)."""
+    return make_art_cover(title, category, kicker, out_path=out_path, tags=tags, key=key or title) \
+        or make_cover(title, category, kicker, out_path=out_path)
