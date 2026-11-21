@@ -23,6 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "lab", "art", "pool")
 UA = {"User-Agent": "ondo-blog-cover-pool/1.0"}
 PER = 50            # 나라마다 저장할 최대 수
+CAP = 160           # 나라마다 받아서 점수 매길 최대 후보 수(11-21: 220 → 160, 시간 줄이기)
 MAX_DEATH = 1955    # 2026년 기준 사후 70년
 
 # 나라: 검색어 목록. AIC/CMA는 검색어 + 원산지 확인, Met은 검색어 + 문화권 확인
@@ -119,14 +120,17 @@ def from_cma(country, q, log):
     return out
 
 
-def from_met(country, q, log, cap=40):
+def from_met(country, q, log, cap=15):
     r = get("https://collectionapi.metmuseum.org/public/collection/v1/search",
             {"q": q, "hasImages": "true", "isPublicDomain": "true"})
     ids = ((r.json().get("objectIDs") or []) if r else [])[:cap]
     out = []
     for oid in ids:
-        o = get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}", timeout=20)
-        o = o.json() if o else {}
+        try:
+            o = requests.get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}", headers=UA, timeout=12)
+            o = o.json() if o.status_code == 200 else {}
+        except Exception:
+            o = {}
         if not o.get("isPublicDomain") or not o.get("primaryImageSmall"):
             continue
         text = " ".join(str(o.get(k, "")) for k in ("culture", "artistNationality", "country")).lower()
@@ -180,17 +184,28 @@ def main():
                     log.append(f"{country} {fn.__name__} '{q}' 실패: {type(e).__name__}")
         log.append(f"== {country}: 조건 맞는 후보 {len(cands)}개, 그림 받아 점수 매기기")
         scored = []
-        for c in cands[:220]:
-            r = get(c["img"], timeout=30)
-            if not r:
-                continue
+
+        def fetch(c):
+            # 11-21: 한 장씩 3번 다시 시도하던 방식이 30분 넘게 걸려 → 동시에 받고 늦으면 버림
             try:
+                r = requests.get(c["img"], headers=UA, timeout=15)
+                if r.status_code != 200:
+                    return None
                 im = Image.open(io.BytesIO(r.content)).convert("RGB")
+                im.thumbnail((640, 640))
+                return c, im
             except Exception:
-                continue
-            s, col, full = score(im)
-            c.update(score=s, color=col, full=full, w=im.size[0], h=im.size[1])
-            scored.append((s, c, im))
+                return None
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(8) as ex:
+            for got in ex.map(fetch, cands[:CAP]):
+                if not got:
+                    continue
+                c, im = got
+                s, col, full = score(im)
+                c.update(score=s, color=col, full=full, w=im.size[0], h=im.size[1])
+                scored.append((s, c, im))
+        log.append(f"   그림 받음 {len(scored)}/{min(len(cands), CAP)}")
         scored.sort(key=lambda x: -x[0])
         os.makedirs(os.path.join(OUT, country), exist_ok=True)
         keep = []
