@@ -172,9 +172,18 @@ COMMONS = {   # 11-21: 해외 미술관의 한국 그림은 비단 그림이 대
     "china": ["Category:Paintings by Ren Bonian", "Category:Paintings by Wu Changshuo", "Category:Paintings by Qiu Ying"],
     "india": ["Category:Paintings by Raja Ravi Varma"],
     "taiwan": ["Category:Paintings by Chen Cheng-po"],
+    # 11-21 영국·독일은 미국 미술관 원산지 표시로 거의 안 잡힘(영국 12점·독일 1점) → 작가별 분류
+    "uk": ["Category:Paintings by J. M. W. Turner", "Category:Paintings by John Constable",
+           "Category:Paintings by John Atkinson Grimshaw", "Category:Paintings by Thomas Gainsborough"],
+    "germany": ["Category:Paintings by Caspar David Friedrich", "Category:Paintings by Franz Marc",
+                "Category:Paintings by August Macke", "Category:Paintings by Carl Spitzweg", "Category:Paintings by Max Liebermann"],
 }
 # 작가 사망 연도를 아는 분류는 '1900년 이전 제작' 대신 사망 연도로 판단(사후 70년, MAX_DEATH 이하)
-COMMONS_DEATH = {"Category:Paintings by Chen Cheng-po": 1947, "Category:Paintings by Raja Ravi Varma": 1906,
+COMMONS_DEATH = {"Category:Paintings by J. M. W. Turner": 1851, "Category:Paintings by John Constable": 1837,
+                 "Category:Paintings by John Atkinson Grimshaw": 1893, "Category:Paintings by Thomas Gainsborough": 1788,
+                 "Category:Paintings by Caspar David Friedrich": 1840, "Category:Paintings by Franz Marc": 1916,
+                 "Category:Paintings by August Macke": 1914, "Category:Paintings by Carl Spitzweg": 1885,
+                 "Category:Paintings by Max Liebermann": 1935, "Category:Paintings by Chen Cheng-po": 1947, "Category:Paintings by Raja Ravi Varma": 1906,
                  "Category:Paintings by Ren Bonian": 1896, "Category:Paintings by Wu Changshuo": 1927}
 FREE = ("public domain", "pd-", "cc0", "kogl type 1", "공공누리 제1유형", "kogl-type1")
 
