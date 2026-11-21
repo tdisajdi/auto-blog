@@ -83,8 +83,11 @@ def patches_in(pid, text):
     t = _norm(text)
     items = [i for i in items if i.get("field", "content") == "content"]   # 요약문(excerpt) 고침은 본문에 없음
     # 고침 문구도 태그 뺀 글자로 비교(11-20: 'S&amp;P'·'</td>'가 든 고침이 본문 글자와 안 맞던 문제)
-    return bool(items) and all(_frag(i.get("new")) in t and (not i.get("old") or _frag(i.get("old")) not in t)
-                               for i in items)
+    # 11-21: 옛 문구가 새 문구 안에 그대로 들어 있는 고침(앞에 말 덧붙이기, 857 FAQ)은 '옛 문구 없음'을 볼 수 없음 → 새 문구만 확인
+    def ok(i):
+        n, o = _frag(i.get("new")), _frag(i.get("old")) if i.get("old") else ""
+        return n in t and (not o or o in n or o not in t)
+    return bool(items) and all(ok(i) for i in items)
 
 
 def claude_route(pid, logf, d, text):
