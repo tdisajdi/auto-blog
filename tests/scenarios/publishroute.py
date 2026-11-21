@@ -40,6 +40,10 @@ assert pp.patches_in("9", "답: 아니요. 관련 세제 혜택을 쓰려면") a
 assert pp.plain("<p>a&amp;b<!-- x --></p>").strip() == "a&b"
 from site_pages.patch_post import apply
 assert apply("가 나 다", [{"old": "가", "new": "라"}, {"old": "x", "new": "나"}]) == ("라 나 다", [])   # 이미 들어간 고침은 건너뜀
+# 11-21 873: 이미 지운 덩어리는 건너뜀 / 계산 자료에 있는 숫자는 넣을 수 있음(없는 숫자는 계속 막음)
+assert apply("가 다", [{"old": "나 ", "new": ""}]) == ("가 다", [])
+assert apply("세금 15%", [{"old": "세금 15%", "new": "세금 15%, 117만 원"}], facts="연 배당 약 117만 원")[1] == []
+assert apply("세금 15%", [{"old": "세금 15%", "new": "세금 15%, 118만 원"}], facts="연 배당 약 117만 원")[1]
 from site_pages.fact_recheck import strip_system
 assert "표글" not in strip_system('앞<div class="ondo-calc" s><table><tr><td>표글</td></tr></table><p>주</p></div>뒤')
 assert "그래프" not in strip_system('앞<figure class="ondo-chart" s><div></div><figcaption>그래프</figcaption></figure>뒤')

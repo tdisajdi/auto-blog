@@ -14,23 +14,38 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 
-def apply(content, patches):
-    """(새 본문, 문제 목록)."""
+def apply(content, patches, facts=""):
+    """(새 본문, 문제 목록). facts: 그 글을 쓸 때 받은 계산 자료 - 여기 있는 숫자는 고칠 때 넣어도 됨(11-21 873)."""
     probs = []
+    facts_nums = set(re.findall(r"\d[\d,.]*", facts or ""))
     for p in patches:
         n = content.count(p["old"])
         if n == 0 and p.get("new") and content.count(p["new"]) == 1:
             continue        # 이미 들어간 고침(11-21: 같은 파일에 다음 판 고침을 이어 붙일 수 있게)
+        if n == 0 and not p.get("new"):
+            continue        # 11-21 873: 지우기 고침이 이미 들어감(지운 덩어리는 다시 찾을 수 없음)
         if n != 1:
             probs.append(f"'{p['old'][:40]}…' 이 {n}번 있음(정확히 1번이어야 함)")
             continue
         _nohref = lambda t: re.sub(r'href="[^"]*"', "", t)    # 11-21: 링크 주소 속 날짜(2026/11/19)는 글 숫자가 아님
-        new_nums = set(re.findall(r"\d[\d,.]*", _nohref(p["new"]))) - set(re.findall(r"\d[\d,.]*", _nohref(content)))
+        new_nums = set(re.findall(r"\d[\d,.]*", _nohref(p["new"]))) - set(re.findall(r"\d[\d,.]*", _nohref(content))) - facts_nums
         if new_nums:
             probs.append(f"새 숫자가 들어감: {sorted(new_nums)} - 고치기에서 숫자를 더하지 않음")
             continue
         content = content.replace(p["old"], p["new"])
     return content, probs
+
+
+def _facts_for(pid):
+    """11-21: 그 글의 계산 자료(실행 기록 facts). 사실 다시 검증 기록(lab/recheck/<번호>.json)의 log 이름으로 찾음. 없으면 ""."""
+    import glob
+    try:
+        log = json.load(open(os.path.join(ROOT, "lab", "recheck", f"{pid}.json"), encoding="utf-8")).get("log")
+        for f in glob.glob(os.path.join(ROOT, "logs", "*", log or "-")):
+            return json.load(open(f, encoding="utf-8")).get("facts") or ""
+    except Exception:
+        pass
+    return ""
 
 
 def main(slug):
@@ -49,7 +64,8 @@ def main(slug):
     body_p = [p for p in patches if p.get("field", "content") == "content"]
     ex_p = [p for p in patches if p.get("field") == "excerpt"]
     ti_p = [p for p in patches if p.get("field") == "title"]          # 11-21: 제목도 고칠 수 있게(새 숫자 금지 같음)
-    new, probs = apply(j["content"], body_p) if body_p else (j["content"], [])
+    facts = _facts_for(str(j["ID"]))
+    new, probs = apply(j["content"], body_p, facts) if body_p else (j["content"], [])
     new_ex, probs2 = apply(j.get("excerpt") or "", ex_p) if ex_p else (None, [])
     new_ti, probs3 = apply(j.get("title") or "", ti_p) if ti_p else (None, [])
     probs += probs2 + probs3
