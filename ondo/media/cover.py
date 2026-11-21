@@ -205,6 +205,20 @@ def pick_art(country, key):
     return lst[best]
 
 
+def _restore(im):
+    """바랜 그림 살리기(11-21 비교): 대비가 아주 낮은 그림(비단 그림처럼 누렇게 바랜 것, 밝기 표준편차 < 30)만
+    채널별 자동 대비로 누런 기를 걷어 원래 색에 가깝게 + 채도 조금. 상태 좋은 그림(호쿠사이·처치 등)은 채널별로 펴면
+    색조가 바뀌므로(하늘이 보라, 후지산이 주황) 손대지 않고, 색이 약할 때만 채도를 살짝."""
+    from PIL import ImageEnhance, ImageOps, ImageStat
+    st = ImageStat.Stat(im.convert("L")).stddev[0]
+    a = ImageStat.Stat(im.convert("RGB").resize((64, 64)))
+    r, g, b = a.mean
+    col = (abs(r - g) + abs((r + g) / 2 - b)) / 2 + sum(a.stddev) / 6      # 대략의 채도
+    if st < 30:
+        return ImageEnhance.Color(ImageOps.autocontrast(im, cutoff=1.5)).enhance(1.2)
+    return ImageEnhance.Color(im).enhance(1.15 if col < 30 else 1.05)
+
+
 def _mosaic(im, cells=CELLS, size=470):
     """정사각 그림 → 타일 모자이크 size px. 11-20 사용자가 고른 80칸 시안과 같은 방식: 1000px에 틈 있는 둥근 타일로
     그린 뒤 줄임(작게 그리면 틈이 점무늬처럼 보이거나 사라짐 - 11-21 비교)."""
@@ -238,7 +252,7 @@ def make_art_cover(title, category="etf", kicker="GUIDE", art=None, out_path=Non
         s = min(box[2] - box[0], box[3] - box[1])                       # 정사각으로
         cx, cy = (box[0] + box[2]) // 2, (box[1] + box[3]) // 2
         sq = src.crop((cx - s // 2, cy - s // 2, cx - s // 2 + s, cy - s // 2 + s))
-        sq = ImageEnhance.Color(sq).enhance(1.12)
+        sq = _restore(sq)
         col, label = CAT.get(category, CAT["etf"])
         img = Image.new("RGB", (W, H), PAPER)
         d = ImageDraw.Draw(img)

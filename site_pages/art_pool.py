@@ -21,7 +21,7 @@ import requests
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "lab", "art", "pool")
-UA = {"User-Agent": "ondo-blog-cover-pool/1.0"}
+UA = {"User-Agent": "ondo-blog-cover-pool/1.0 (https://ondo99.com)"}   # 위키미디어는 사이트 주소 있는 UA 요구
 PER = 50            # 나라마다 저장할 최대 수
 CAP = 160           # 나라마다 받아서 점수 매길 최대 후보 수(11-21: 220 → 160, 시간 줄이기)
 MAX_DEATH = 1955    # 2026년 기준 사후 70년
@@ -153,6 +153,43 @@ def from_met(country, q, log, cap=15):
     return out
 
 
+COMMONS = {   # 11-21: 해외 미술관의 한국 그림은 비단 그림이 대부분이라 바램 → 위키미디어 공용(키 없이 됨)의 한국 그림 분류
+    "korea": ["Category:Minhwa", "Category:Chaekgeori", "Category:Korean folk paintings", "Category:Paintings by Kim Hong-do",
+              "Category:Paintings by Sin Yun-bok", "Category:Paintings by Jeong Seon", "Category:Hyewon pungsokdo",
+              "Category:Danwon pungsokdo cheop", "Category:Jakhodo"],
+}
+FREE = ("public domain", "pd-", "cc0", "kogl type 1", "공공누리 제1유형", "kogl-type1")
+
+
+def from_commons(country, cat, log):
+    """위키미디어 공용 분류 안의 그림. 이용 조건이 퍼블릭 도메인·CC0·공공누리 1유형인 것만."""
+    r = get("https://commons.wikimedia.org/w/api.php",
+            {"action": "query", "generator": "categorymembers", "gcmtitle": cat, "gcmtype": "file", "gcmlimit": 100,
+             "prop": "imageinfo", "iiprop": "url|extmetadata", "iiurlwidth": 800, "format": "json"})
+    pages = (((r.json().get("query") or {}).get("pages") or {}).values()) if r else []
+    out = []
+    for pg in pages:
+        ii = (pg.get("imageinfo") or [{}])[0]
+        md = ii.get("extmetadata") or {}
+        lic = str((md.get("LicenseShortName") or {}).get("value", "")).lower()
+        if not any(f in lic for f in FREE):
+            continue
+        if not str(pg.get("title", "")).lower().endswith((".jpg", ".jpeg", ".png", ".tif", ".tiff")):
+            continue
+        artist = re.sub(r"<[^>]+>", "", str((md.get("Artist") or {}).get("value", ""))).strip()
+        date = re.sub(r"<[^>]+>", "", str((md.get("DateTimeOriginal") or {}).get("value", ""))).strip()
+        made = first_year(date)
+        if made and made >= 1900:
+            continue
+        title = re.sub(r"<[^>]+>", "", str((md.get("ObjectName") or {}).get("value", "")) or pg["title"][5:]).strip()
+        out.append({"src": "commons", "id": pg.get("pageid"), "title": title[:120], "artist": artist[:80] or "작자 미상",
+                    "artist_display": artist, "date": date[:40], "death": None,
+                    "url": ii.get("descriptionurl"), "license": f"{lic} (Wikimedia Commons)",
+                    "img": ii.get("thumburl") or ii.get("url")})
+    log.append(f"{country} 위키미디어 '{cat}': {len(pages)}건 → {len(out)}건")
+    return out
+
+
 def score(im):
     """(점수, 채도, 꽉 참). 채도 = Hasler-Süsstrunk colorfulness(0~100쯤), 꽉 참 = 바탕색과 다른 칸 비율(0~1)."""
     from PIL import ImageStat
@@ -174,7 +211,12 @@ def main():
     old = {}
     if os.path.exists(os.path.join(OUT, "index.json")):
         old = json.load(open(os.path.join(OUT, "index.json"), encoding="utf-8"))
+    only = [a for a in sys.argv[1:] if a in QUERIES]       # 예: art_pool.py korea  → 한국만 다시(나머지는 그대로)
+    if only:
+        index = {k: v for k, v in old.items()}
     for country, qs in QUERIES.items():
+        if only and country not in only:
+            continue
         cands, seen = [], set()
         for q in qs:
             for fn in (from_aic, from_cma, from_met):
@@ -186,6 +228,15 @@ def main():
                             cands.append(c)
                 except Exception as e:
                     log.append(f"{country} {fn.__name__} '{q}' 실패: {type(e).__name__}")
+        for cat in COMMONS.get(country, []):
+            try:
+                for c in from_commons(country, cat, log):
+                    k = (c["src"], c["id"])
+                    if k not in seen:
+                        seen.add(k)
+                        cands.insert(0, c)          # 공용 그림을 먼저 받음(받을 수 CAP 안에 들게)
+            except Exception as e:
+                log.append(f"{country} 위키미디어 '{cat}' 실패: {type(e).__name__}")
         log.append(f"== {country}: 조건 맞는 후보 {len(cands)}개, 그림 받아 점수 매기기")
         scored = []
 
