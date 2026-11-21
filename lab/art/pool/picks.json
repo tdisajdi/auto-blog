@@ -329,76 +329,160 @@
  ],
  "korea": [
   {
-   "file": "korea/cma-169545.jpg",
-   "crop": [
-    0.25,
-    0,
-    0.75,
-    1
-   ],
-   "credit": "Yi Taek-gyun, Books and Scholars’ Accoutrements (late 1800s) · CC0",
-   "url": "https://clevelandart.org/art/2011.37",
-   "license": "CC0 (Cleveland Museum of Art)"
-  },
-  {
-   "file": "korea/cma-172805.jpg",
-   "crop": [
-    0.05,
-    0.25,
-    0.95,
-    0.85
-   ],
-   "credit": "작자 미상, Daoist Immortal on a Qilin and Two Attendants (late 1800s) · CC0",
-   "url": "https://clevelandart.org/art/1915.220",
-   "license": "CC0 (Cleveland Museum of Art)"
-  },
-  {
-   "file": "korea/cma-159836.jpg",
+   "file": "korea/commons-2911190.jpg",
    "crop": [
     0,
-    0.3,
+    0.12,
     1,
-    0.95
+    0.8
    ],
-   "credit": "작자 미상, Tiger Family (late 1800s) · CC0",
-   "url": "https://clevelandart.org/art/1997.148",
-   "license": "CC0 (Cleveland Museum of Art)"
+   "credit": "작자 미상, 까치호랑이 (조선) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Minhwa-Tiger_and_magpie-03.jpg",
+   "license": "public domain (Wikimedia Commons)"
   },
   {
-   "file": "korea/cma-155625.jpg",
+   "file": "korea/commons-36604500.jpg",
    "crop": [
-    0.1,
-    0.15,
-    0.95,
+    0.2,
+    0,
+    0.8,
     1
    ],
-   "credit": "작자 미상, Scholar Playing a Qin (1800s) · CC0",
-   "url": "https://clevelandart.org/art/1990.69",
-   "license": "CC0 (Cleveland Museum of Art)"
+   "credit": "작자 미상, 책거리 그림 (19세기) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:%EC%B1%85%EA%B1%B0%EB%A6%AC.jpg",
+   "license": "public domain (Wikimedia Commons)"
   },
   {
-   "file": "korea/cma-155627.jpg",
-   "crop": [
-    0.15,
-    0.1,
-    0.95,
-    1
-   ],
-   "credit": "작자 미상, Poet Fisherman (1800s) · CC0",
-   "url": "https://clevelandart.org/art/1990.70",
-   "license": "CC0 (Cleveland Museum of Art)"
-  },
-  {
-   "file": "korea/cma-152317.jpg",
+   "file": "korea/commons-2911186.jpg",
    "crop": [
     0,
-    0.2,
+    0.05,
     1,
     0.75
    ],
-   "credit": "작자 미상, Lotuses, Insects, and Birds (1800s) · CC0",
-   "url": "https://clevelandart.org/art/1985.18",
-   "license": "CC0 (Cleveland Museum of Art)"
+   "credit": "작자 미상, 까치호랑이(호작도) (조선) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Minhwa-Tiger_and_magpie-02.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-2802695.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.9,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 소년전홍 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Sonyeon.jeonhong.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-2800988.jpg",
+   "crop": [
+    0.3,
+    0,
+    0.9,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 춘색만원 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Chunsaek.manwon.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-64480783.jpg",
+   "crop": [
+    0.35,
+    0,
+    0.7,
+    1
+   ],
+   "credit": "이응록(Lee Eung-rok), 책가도 (1864~1872) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Chaekgeori,_1864-1872,_Lee_EungRok.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-2801461.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 주유청강 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Juyu.cheonggang.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-76323881.jpg",
+   "crop": [
+    0.1,
+    0,
+    0.45,
+    1
+   ],
+   "credit": "이택균(Yi Taek-gyun), 책가도 (1875) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Yi_Taek-gyun_-_Books_and_Scholars%E2%80%99_Accouterments_-_2011.37_-_Cleveland_Museum_of_Art.tif",
+   "license": "cc0 (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-61100755.jpg",
+   "crop": [
+    0.35,
+    0,
+    0.65,
+    1
+   ],
+   "credit": "작자 미상, 책가도 (조선) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Chaekgeori,_Late_nineteenth-century,_Private_Collection.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-2801450.jpg",
+   "crop": [
+    0.15,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 주사거배 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Jusa.geobae.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-24936591.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.8,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 기방무사 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Gibangmusa.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-24936620.jpg",
+   "crop": [
+    0.2,
+    0,
+    0.85,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 홍루대주 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Hongrudaeju.jpg",
+   "license": "public domain (Wikimedia Commons)"
+  },
+  {
+   "file": "korea/commons-24936615.jpg",
+   "crop": [
+    0.25,
+    0,
+    0.9,
+    1
+   ],
+   "credit": "신윤복(Shin Yun-bok), 청금상련 (19세기 초) · 퍼블릭 도메인",
+   "url": "https://commons.wikimedia.org/wiki/File:Hyewon-Cheonggeumsangryeon.jpg",
+   "license": "public domain (Wikimedia Commons)"
   }
  ],
  "japan": [
