@@ -411,8 +411,8 @@ def featured_card_id(title, category_code, kicker="DATA"):
     try:
         if os.environ.get("ONDO_NEW_COVER", "1") == "0":     # 시험(시나리오)에서 옛 카드 경로를 볼 때
             raise RuntimeError("새 표지 꺼짐")
-        from ondo.media.cover import make_cover
-        path = make_cover(title, category_code, kicker)
+        from ondo.media.cover import cover_for          # 11-21: 명화 도트 표지(안 되면 지금 표지)
+        path = cover_for(title, category_code, kicker)
     except Exception as e:
         print(f"ℹ️ 새 표지 실패(옛 카드로): {type(e).__name__}: {e}")
     media_id, _ = upload_png(path or make_title_card(title, category_code))

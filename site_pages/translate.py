@@ -213,8 +213,9 @@ def push(pid):
     print(f"영어 글 {verb}: {j.get('status')} {j.get('URL')} (번호 {j['ID']}) / 연결 {linked}")
     try:   # 11-19: 영어 글에도 새 표지(영어 제목·숫자) - 실패해도 글은 그대로
         import blog_engine as be
-        from ondo.media.cover import make_cover
-        path = make_cover(en["title"], (meta.get("categories") or ["etf"])[0], "COMPANY" if en_tags else "GUIDE")
+        from ondo.media.cover import cover_for         # 11-21: 원글과 같은 명화(key = 한국어 제목)
+        path = cover_for(en["title"], (meta.get("categories") or ["etf"])[0], "COMPANY" if en_tags else "GUIDE",
+                         key=meta.get("title"))
         mid = be._upload_media(path, "image/png")[0] if path else None
         print("표지:", "붙임" if mid and be.wp_set_featured_image(j["ID"], mid) else "못 붙임")
     except Exception as e:
