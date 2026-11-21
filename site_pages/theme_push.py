@@ -111,8 +111,15 @@ def hide_empty(content, slugs=None):
     return content
 
 
+def glossary_json():
+    """용어 풍선용 용어집(11-21) - ondo/writing/glossary.py TERMS를 [정규식, 이름, 뜻]으로. JS 정규식과 같은 문법만 씀."""
+    import json
+    from ondo.writing.glossary import TERMS
+    return json.dumps([[pat, name, meaning] for pat, name, meaning in TERMS], ensure_ascii=False)
+
+
 def fill(content):
-    content = content.replace("{{ICON_JS}}", icon_js())
+    content = content.replace("{{ICON_JS}}", icon_js()).replace("{{GLOSSARY_JSON}}", glossary_json())
     return hide_empty(board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg())))
 
 
