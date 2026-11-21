@@ -111,6 +111,23 @@ def weight_in(holdings, symbol, name=""):
     return None
 
 
+def div_odd_lines(div, f2):
+    """해마다 배당과, 다른 해보다 확 큰 해 표시(11-21 삼성전자: 2020년이 다른 해의 2배 가까이 - 시작 해가 이런 해면
+    '연평균 -11%'처럼 실제 흐름보다 나쁘게 보임). 원인(특별배당 등)은 자료에 없으니 쓰지 않게."""
+    ser = div.get("series") or []
+    if len(ser) < 3:
+        return []
+    vals = sorted(v for _, v in ser)
+    med = vals[len(vals) // 2]
+    odd = [y for y, v in ser if med > 0 and v >= med * 1.5]
+    out = ["- 해마다 주당 배당: " + ", ".join(f"{y}년 {f2(v)}" for y, v in ser)]
+    if odd:
+        out.append(f"- {', '.join(f'{y}년' for y in odd)}은 다른 해보다 지급이 크게 많았음(가운데값의 1.5배 넘음). "
+                   f"시작 해가 이런 해면 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말고 "
+                   f"해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것")
+    return out
+
+
 def build(ticker, *, profile, fin, dd, div, weights, usd_krw=None, years_dd=10):
     """모은 자료 → (사실 자료 글, 시스템이 넣는 표 HTML). weights: [(ETF, 이름, 비중%)]."""
     from ondo.media import charts
@@ -160,6 +177,7 @@ def build(ticker, *, profile, fin, dd, div, weights, usd_krw=None, years_dd=10):
         lines += ["[배당 - Yahoo Finance 배당 지급 기록, 다 찬 해만, 세전]",
                   f"- 주당 연간 배당: {div['y0']}년 {f2(div['div0'])} → {div['y1']}년 {f2(div['div1'])}, {div['years']}년 연평균 {div['cagr']:+.1f}%",
                   f"- 지금 가격 기준 배당률: {div['yield_now']:.2f}%"]
+        lines += div_odd_lines(div, f2)
     elif div is None:
         lines.append("[배당] - 배당 기록이 짧거나 없어 계산하지 않음(배당 이야기는 쓰지 말 것)")
     rows_w = []
@@ -249,10 +267,11 @@ def _collect(ticker, ea, macro_data):
     return profile, fin, dd, div, weights
 
 
-def title_seed(ticker):
+def title_seed(ticker, has_weights=True):
     c = COMPANIES.get(ticker, {})
     nm = c.get("ko") or ticker
-    return f"{nm}은 어떤 회사인가: 매출·낙폭·배당, 그리고 ETF로 사면 담기는 비중"
+    tail = ", 그리고 ETF로 사면 담기는 비중" if has_weights else ""      # 11-21: 비중 자료 없으면 제목에서도 뺌
+    return f"{nm}은 어떤 회사인가: 매출·낙폭·배당{tail}"
 
 
 def closing_html(ticker, weights):
@@ -260,8 +279,9 @@ def closing_html(ticker, weights):
     links = [sources.ticker_link(ticker)] + [sources.ticker_link(e) for e, _, _ in weights]
     kr = is_kr(ticker)
     return ('<div style="margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;">'
-            '<strong>📌 데이터 출처</strong><br/>회사 정보·실적·가격·배당·ETF 보유 종목: Yahoo Finance'
-            + (", 국내 ETF 보유 종목: 네이버 금융" if kr else "") + sources.check_line(links) + "</div>"
+            '<strong>📌 데이터 출처</strong><br/>회사 정보·실적·가격·배당' + ("·ETF 보유 종목" if weights and not kr else "")
+            + ": Yahoo Finance" + (", 국내 ETF 보유 종목: 네이버 금융" if kr and weights else "")   # 11-21: 비중 못 받았으면 안 적음
+            + sources.check_line(links) + "</div>"
             '<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">'
             "이 글은 공개 데이터를 정리한 정보 제공용 글이며, 특정 종목의 매수·매도를 권유하지 않습니다. 투자 판단과 책임은 본인에게 있습니다.</p>")
 
@@ -284,7 +304,7 @@ def run_company(ticker, ea):
     from topic_engine import produce_article
     import explainer_engine as xe
     c = COMPANIES[ticker]
-    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker), facts_text=facts,
+    produce_article(kind_label="기업 소개", title_seed=title_seed(ticker, bool(weights)), facts_text=facts,
                     rules=xe._SECTION_RULES + RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, "
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
