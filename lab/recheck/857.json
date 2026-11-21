@@ -3,13 +3,6 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "22-guide-market-india.json",
- "issues": [
-  {
-   "severity": "치명",
-   "quote": "위 표에서 1년·3년 성적이 서로 뒤바뀐 것도 이 차이 때문입니다.",
-   "problem": "최근 1년(INDA 원화 -11.6%, TIGER -15.0%)과 3년(INDA 원화 +19.6%, TIGER +17.0%) 모두 INDA의 원화 환산 수익률이 TIGER 인도니프티50보다 높아 성적이 뒤바뀐 적이 없는데 사실 자료와 다르게 서술했습니다.",
-   "fix": "두 기간 모두 INDA의 원화 환산 수익률이 더 높았으므로 성적이 뒤바뀌었다는 서술을 삭제하세요."
-  }
- ],
- "patch_applied": true
+ "issues": [],
+ "patch_applied": false
 }
