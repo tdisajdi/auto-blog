@@ -307,12 +307,12 @@ def title_seed(ticker, has_weights=True, has_div=True):
     return f"{eun(nm)} 어떤 회사인가: {head}{tail}"
 
 
-def closing_html(ticker, weights):
+def closing_html(ticker, weights, has_div=True):
     from ondo.media import sources
     links = [sources.ticker_link(ticker)] + [sources.ticker_link(e) for e, _, _ in weights]
     kr = is_kr(ticker)
     return ('<div style="margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;">'
-            '<strong>📌 데이터 출처</strong><br/>회사 정보·실적·가격·배당' + ("·ETF 보유 종목" if weights and not kr else "")
+            '<strong>📌 데이터 출처</strong><br/>회사 정보·실적·가격' + ("·배당" if has_div else "") + ("·ETF 보유 종목" if weights and not kr else "")
             + ": Yahoo Finance" + (", 국내 ETF 보유 종목: 네이버 금융" if kr and weights else "")   # 11-21: 비중 못 받았으면 안 적음
             + sources.check_line(links) + "</div>"
             '<p style="margin-top:20px;font-size:12px;color:#5c6575;line-height:1.7;">'
@@ -341,5 +341,5 @@ def run_company(ticker, ea):
                     rules=xe._SECTION_RULES + RULES + ("- [표 금지] 이 글에는 시스템이 계산표를 넣습니다. 본문에 <table>을 새로 만들지 말고, "
                                                        "숫자는 문장으로 해석하세요.\n" if "<table" in visual else ""),
                     category_label="ETF/기업 소개", article_type="company", topic_id=ticker.replace(".KS", ""),
-                    closing_html=closing_html(ticker, weights), visual_html=visual,
+                    closing_html=closing_html(ticker, weights, div is not None), visual_html=visual,
                     meta={"company": ticker, "company_ko": c["ko"], "tags": [c["ko"]]}, search_seed=c.get("seed", ""))
