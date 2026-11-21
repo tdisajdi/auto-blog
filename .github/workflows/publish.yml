@@ -540,6 +540,9 @@ jobs:
             elif [ "${{ github.event.inputs.site_pages }}" = "art-fetch" ]; then
               # 11-20 표지용 공공 명화(CC0) 받기 - lab/art
               python site_pages/fetch_art.py || echo "명화 받기 실패"
+            elif [ "${{ github.event.inputs.site_pages }}" = "art-pool" ]; then
+              # 11-21 표지용 명화 후보(나라별 최대 50점, CC0·사후 70년) - lab/art/pool
+              python site_pages/art_pool.py || echo "명화 후보 받기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "sitekit-probe" ]; then
               python site_pages/sitekit_probe.py || echo "Site Kit 확인 실패"
             elif [[ "${{ github.event.inputs.site_pages }}" == fact-recheck:* ]]; then
