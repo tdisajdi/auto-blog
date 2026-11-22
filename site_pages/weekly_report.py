@@ -68,6 +68,71 @@ def korea_split(countries):
     return f"- 한국 {kr}세션 / 그 외 {other}세션 (그 외에는 봇·데이터센터가 섞일 수 있음)"
 
 
+def growth_section(start, end, root=ROOT, today=None):
+    """11-22 사용자 요청(배움·확장): 기록 파일에서만 셈(인터넷 없음) - 품질 숫자(글 종류별 첫 판 통과율·사실 검증 치명),
+    원칙 재발(PROJECT_STATUS 12번 L번호), 확장 효과 확인(BACKLOG - 확인 날이 됐거나 지난 것)."""
+    import glob
+    import json
+    import re
+    today = today or dt.date.today()
+    kinds, crit = {}, 0
+    for f in glob.glob(os.path.join(root, "logs", "*", "*.json")):
+        try:
+            d = json.load(open(f, encoding="utf-8"))
+            day = dt.date.fromisoformat(str(d.get("started_at", ""))[:10])
+        except Exception:
+            continue
+        if not (start <= day <= end):
+            continue
+        revs = [x for x in d.get("steps", []) if str(x.get("step", "")).startswith("편집장 검토")]
+        if not revs:
+            continue
+        k = str(d.get("article_type") or d.get("category") or "기타")
+        a = kinds.setdefault(k, [0, 0, 0])
+        a[0] += 1
+        a[1] += bool(revs[0].get("passed"))
+        a[2] += bool(revs[-1].get("passed"))
+        crit += sum(1 for x in revs for i in (x.get("issues") or []) if str(i).startswith("[치명·사실"))
+    out = ["", "## 품질·배움·확장 (기록에서 자동 셈)"]
+    if kinds:
+        tot = [sum(v[i] for v in kinds.values()) for i in range(3)]
+        out.append(f"- 실행 {tot[0]}번: 첫 판 통과 {tot[1]} · 마지막 판 통과 {tot[2]} · 사실 검증 치명 지적 {crit}개")
+        out.append("- 글 종류별 첫 판 통과: " + ", ".join(f"{k} {v[1]}/{v[0]}" for k, v in sorted(kinds.items())))
+    else:
+        out.append("- 이번 주 실행 기록 없음")
+    try:
+        st = open(os.path.join(root, "PROJECT_STATUS.txt"), encoding="utf-8").read()
+        les = re.findall(r"\[(L\d+)·[^·\]]*·재발 (\d+)\]", st)
+        rec = [f"{l}({n}번)" for l, n in les if int(n) > 0]
+        out.append(f"- 원칙 {len(les)}개 중 재발: " + (", ".join(rec) if rec else "없음") + " (2번이면 코드로 막기)")
+    except Exception:
+        pass
+    try:
+        bl = open(os.path.join(root, "lab", "BACKLOG.txt"), encoding="utf-8").read()
+        sec = bl.split("[확장 효과 확인]", 1)[1].split("\n[", 1)[0]
+        due = []
+        for line in sec.splitlines():
+            parts = [x.strip() for x in line.lstrip("- ").split("|")]
+            if len(parts) < 5:
+                continue
+            m = re.search(r"(\d{1,2})-(\d{1,2})", parts[3])
+            done = parts[4] not in ("-", "")
+            if m and not done:
+                try:
+                    yy = today.year if int(m.group(1)) >= today.month - 1 else today.year + 1
+                    if dt.date(yy, int(m.group(1)), int(m.group(2))) <= today:
+                        due.append(parts[1])
+                except ValueError:
+                    pass
+        made = [x for x in sec.splitlines() if re.match(r"- (\d{1,2})-(\d{1,2})", x.strip())
+                and start <= dt.date(today.year, *map(int, re.match(r"- (\d{1,2})-(\d{1,2})", x.strip()).groups())) <= end]
+        out.append(f"- 이번 주 확장 {len(made)}개" + (" (주 1개 넘음 - 다음 주 줄이기)" if len(made) > 1 else ""))
+        out.append("- 확인 날이 된 확장: " + (", ".join(due) if due else "없음"))
+    except Exception:
+        pass
+    return out
+
+
 def render(lines, total_now, total_prev, countries, search, period):
     md = [f"# 주간 성적표 ({period})", "",
           f"- 전체 조회 {total_now}회 (앞 주 {total_prev}회)",
@@ -98,6 +163,7 @@ def main():
     tn, tp = int(sum(m[0] for _, m in now)), int(sum(m[0] for _, m in before))
     period = f"{s1} ~ {end}"
     md = render(lines, tn, tp, countries, search, period)
+    md += "\n".join(growth_section(s1, end)) + "\n"
     os.makedirs(os.path.join(ROOT, "lab"), exist_ok=True)
     open(os.path.join(ROOT, "lab", "weekly_report.md"), "w", encoding="utf-8").write(md)
     print(md)
