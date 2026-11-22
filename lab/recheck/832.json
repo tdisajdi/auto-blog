@@ -4,5 +4,5 @@
  "model": "gemini-3.6-flash",
  "log": "21-company-nvda-2.json",
  "issues": [],
- "patch_applied": true
+ "patch_applied": false
 }
