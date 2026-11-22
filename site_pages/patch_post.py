@@ -18,8 +18,11 @@ def apply(content, patches, facts=""):
     """(새 본문, 문제 목록). facts: 그 글을 쓸 때 받은 계산 자료 - 여기 있는 숫자는 고칠 때 넣어도 됨(11-21 873)."""
     probs = []
     facts_nums = set(re.findall(r"\d[\d,.]*", facts or ""))
-    for p in patches:
+    for k, p in enumerate(patches):
         n = content.count(p["old"])
+        if n == 0 and p.get("new") and any(p["new"] in q.get("old", "") and q.get("new") and q["new"] in content
+                                           for q in patches[k + 1:]):
+            continue        # 11-22: 나중 고침이 이 고침의 새 문구를 통째로 덮어씀(정리 섹션 새로 쓰기) - 이미 지나간 고침
         if n == 0 and p.get("new") and content.count(p["new"]) == 1:
             continue        # 이미 들어간 고침(11-21: 같은 파일에 다음 판 고침을 이어 붙일 수 있게)
         if p.get("new") and p["old"] in p["new"] and p["new"] in content:
