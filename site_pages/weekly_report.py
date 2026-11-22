@@ -61,10 +61,18 @@ def compare(now, before):
     return lines
 
 
+def korea_split(countries):
+    """11-22: 한국 / 그 외 세션 합계. 체코·네덜란드처럼 데이터센터 많은 나라가 상위라 봇일 수 있음 - 거르지 않고 나눠만 보임."""
+    kr = sum(int(v[0]) for c, v in countries if c in ("South Korea", "Korea", "대한민국"))
+    other = sum(int(v[0]) for c, v in countries) - kr
+    return f"- 한국 {kr}세션 / 그 외 {other}세션 (그 외에는 봇·데이터센터가 섞일 수 있음)"
+
+
 def render(lines, total_now, total_prev, countries, search, period):
     md = [f"# 주간 성적표 ({period})", "",
           f"- 전체 조회 {total_now}회 (앞 주 {total_prev}회)",
-          "- 나라별 방문(세션): " + (", ".join(f"{c} {int(v[0])}" for c, v in countries) or "자료 없음"), "",
+          "- 나라별 방문(세션): " + (", ".join(f"{c} {int(v[0])}" for c, v in countries) or "자료 없음"),
+          korea_split(countries), "",
           "| 페이지 | 조회 | 앞 주 | 평균 머문 시간(초) |", "|---|---|---|---|"]
     for r in lines[:20]:
         md.append(f"| {r['page'][:70]} | {r['views']} | {r['prev_views']} | {r['avg_sec']} |")
