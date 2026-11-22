@@ -315,7 +315,8 @@ assert desk._SUMMARY_REPEAT.search("환율 예시 설명이 뒤의 '정리' 섹�
 assert desk._SUMMARY_REPEAT.search("앞서 다룬 수치를 결론부에서 그대로 되풀이")
 assert not desk._SUMMARY_REPEAT.search("계좌 선택 섹션에서 GLD 수치가 중복으로 되풀이되고 있습니다.")
 # 11-08 개정: 지난 기록에서 틀렸던 사례들
-assert desk._summary_repeat("본문의 가상 계산 예시와 마지막 '정리' 섹션의 구체적 금액(10년 뒤 약 16만 원, 20년 뒤 약 53만 원) 사이에 설명 방식이 중복되어 있습니다.")
+# 11-22(백로그 98): 정리 섹션 되풀이는 더 이상 '사소'로 낮추지 않음(정리에 숫자 기준을 쓰게 하던 규칙 삭제)
+assert not desk._summary_repeat("본문의 가상 계산 예시와 마지막 '정리' 섹션의 구체적 금액(10년 뒤 약 16만 원, 20년 뒤 약 53만 원) 사이에 설명 방식이 중복되어 있습니다.")
 assert not desk._summary_repeat("표에 이미 정리된 수치를 본문에서 그대로 풀어 다시 읽어주어 내용이 중복됩니다.")
 assert not desk._summary_repeat("정리 섹션을 제외하고 본문에서 1,000만 원 원금과 5% 수익률 가정 계산 내용이 여러 번 반복됩니다.")
 assert not desk._summary_repeat("마지막 '정리' 섹션과 중복되지는 않으나 본문 내 다른 수치 설명들과 어우러져 반복되었습니다.")
@@ -495,3 +496,18 @@ for kk in ("KEY1", "KEY3", "KEY4"): _k.mark_bad(kk)
 assert len(_k.gemini_keys()) == 4                      # 다 막혔으면 그대로
 _os.remove("key_alerts.json")
 print("bad key skip ok")
+
+# 11-22(백로그 98): FAQ는 진짜 질문이 있을 때만 - 빈 목록 허용, 억지 자리 채움 없음
+_p98 = desk._valid_plan({"sections": [{"heading": "가", "goal": "g"}, {"heading": "나", "goal": "g"}, {"heading": "다", "goal": "g"}], "faq": []})
+assert _p98["faq"] == [] and desk.DEFAULT_PLAN["faq"] == []
+_u98 = desk._section_units(_p98)
+assert "자주 묻는 질문" not in _u98[-1][2] and "<h3>정리</h3>" in _u98[-1][2] and "만들지 마세요" in _u98[-1][1]
+assert "없음" in desk.plan_text(dict(_p98, intro={"goal": "x", "facts": []}))
+_u98b = desk._section_units(dict(_p98, faq=["본문에 없는 질문"]))
+assert _u98b[-1][2].startswith("<h3>자주 묻는 질문</h3>") and "150~300자" in _u98b[-1][1]
+assert len(desk.ANGLES) >= 5
+_rules98 = open(desk.PROMPTS / "rules.txt", encoding="utf-8").read()
+assert "기준 2~3개" not in _rules98 and "다시 늘어놓지 마세요" in _rules98
+assert "스스로 확인할 기준" not in open(desk.PROMPTS / "review_reader.txt", encoding="utf-8").read()
+print("skeleton 98 ok")
+

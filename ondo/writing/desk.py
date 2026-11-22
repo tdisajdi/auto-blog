@@ -29,6 +29,10 @@ WRITE_TIER = "strong" if os.environ.get("ALLOW_WEAK_WRITER") == "1" else "strong
 ANGLES = [
     "독자가 가장 먼저 궁금해할 질문 하나에서 출발해, 자료의 사실로 답을 쌓아가는 구성",
     "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정확한 그림을 보여주는 구성",
+    # 11-22(백로그 98): 22편이 같은 뼈대 - 구성 관점을 늘려 글마다 다른 흐름이 나오게
+    "자료에서 가장 눈에 띄는 숫자 하나로 시작해, 그 숫자가 왜 그렇게 나왔는지 거슬러 올라가는 구성",
+    "두 선택지(또는 두 시기)를 나란히 놓고, 어떤 조건에서 결과가 갈리는지 찾아가는 구성",
+    "시간 순서대로 무엇이 언제 바뀌었는지 따라가며, 전환점마다 숫자로 짚는 구성",
 ]
 
 
@@ -78,7 +82,7 @@ def _valid_plan(p):
             "slug": str(p.get("slug") or ""),
             "intro": {"goal": str(intro.get("goal") or "독자의 질문과 이 글의 범위"),
                       "facts": [str(f) for f in (intro.get("facts") or [])][:6]},
-            "sections": clean, "faq": faq or ["자료로 답할 수 있는 질문 2~3개를 고르세요"]}
+            "sections": clean, "faq": faq}      # 11-22: 빈 목록이면 FAQ 없는 글(억지로 자리 채우던 것이 FAQ 되풀이의 원인)
 
 
 DEFAULT_PLAN = {
@@ -89,7 +93,7 @@ DEFAULT_PLAN = {
         {"heading": "숫자로 보기", "goal": "자료의 숫자를 표로 정리하고 뜻을 설명", "facts": [], "table": True, "chars": 1100},
         {"heading": "아직 모르는 것", "goal": "확인되지 않은 점과 주의할 점", "facts": [], "table": False, "chars": 1000},
     ],
-    "faq": ["자료로 답할 수 있는 질문 2~3개를 고르세요"],
+    "faq": [],
 }
 
 
@@ -187,8 +191,8 @@ def plan_text(plan):
                 d = names[v["id"]]
                 lines.append(f"   ↳ 이 섹션 끝에 [{d['name']}]이(가) 들어갑니다(시스템이 넣음): {d['desc']}. "
                              "섹션 마지막 문단에서 이 자료를 어떻게 읽으면 되는지 한두 문장으로 이어주세요. 표로 다시 만들지 마세요.")
-    lines.append("자주 묻는 질문: " + " / ".join(plan["faq"]))
-    lines.append("정리: 핵심 메시지를 2~3문단으로 마무리 + 마지막 문단 '<p><strong>한 줄 정리:</strong> …</p>' 한 문장")
+    lines.append("자주 묻는 질문: " + " / ".join(plan["faq"]) if plan["faq"] else "자주 묻는 질문: 없음(이 글은 FAQ 섹션을 만들지 않음)")
+    lines.append("정리: 150~300자 - 본문 숫자 다시 나열 없이 '그래서 무엇이 달라지나' 1~2문장 + 마지막 문단 '<p><strong>한 줄 정리:</strong> …</p>' 한 문장")
     return "\n".join(lines)
 
 
@@ -217,11 +221,15 @@ def _section_units(plan):
                                    f"{', 표 1개 포함' if s['table'] else ', 표 만들지 말 것'})\n배정된 사실:\n"
                                    + "\n".join(f"- {f}" for f in s["facts"]),
                       f"<h3>{s['heading']}</h3>로 시작하세요."))
-    units.append(("마무리", "<h3>자주 묻는 질문</h3>(질문은 <h4>🔸 질문</h4>, 답 2~3문장, 본문 숫자 다시 나열 금지 - "
-                            "용어 뜻·자주 하는 오해·자료의 한계처럼 본문에서 안 다룬 것) 질문: "
-                            + " / ".join(plan["faq"]) + "\n그다음 <h3>정리</h3> + 300~500자 정리 + 마지막 문단 <p><strong>한 줄 정리:</strong> 글 전체의 핵심 한 문장</p>"
-                            " (+ 맞는 내부 링크가 있으면 그 뒤 문단)\n맨 마지막 줄: 태그: 태그1 태그2 태그3 태그4 태그5",
-                  "<h3>자주 묻는 질문</h3>으로 시작하고 '태그:' 줄로 끝내세요."))
+    closing = ("<h3>정리</h3> + 150~300자 정리(본문 숫자 다시 나열·점검표 금지, '그래서 무엇이 달라지나' 1~2문장) + 마지막 문단 "
+               "<p><strong>한 줄 정리:</strong> 글 전체의 핵심 한 문장</p> (+ 맞는 내부 링크가 있으면 그 뒤 문단)\n맨 마지막 줄: 태그: 태그1 태그2 태그3 태그4 태그5")
+    if plan["faq"]:
+        units.append(("마무리", "<h3>자주 묻는 질문</h3>(질문은 <h4>🔸 질문</h4>, 답 2~3문장, 본문 숫자 다시 나열 금지 - "
+                                "용어 뜻·자주 하는 오해·자료의 한계처럼 본문에서 안 다룬 것) 질문: "
+                                + " / ".join(plan["faq"]) + "\n그다음 " + closing,
+                      "<h3>자주 묻는 질문</h3>으로 시작하고 '태그:' 줄로 끝내세요."))
+    else:   # 11-22: FAQ 질문이 없으면 FAQ 섹션 없이 정리만
+        units.append(("마무리", closing + "\n(자주 묻는 질문 섹션은 만들지 마세요)", "<h3>정리</h3>로 시작하고 '태그:' 줄로 끝내세요."))
     return units
 
 
@@ -292,7 +300,9 @@ def _summary_repeat(problem):
     """독자 편집의 '중요' 되풀이 지적 가운데 필수 요소를 겨냥한 것(→ '사소'로 낮춤):
     정리 섹션 반복(11-07 규칙) + 11-09 밤부터 도입부 첫 문단의 답 숫자가 본문에서 다시 나오는 것(답은 도입부에서 먼저 - 독자 30초 기준)."""
     p = str(problem)
-    return (bool(_SUMMARY_REPEAT.search(p)) and not _SUMMARY_NOT.search(p)) or bool(_INTRO_REPEAT.search(p))
+    # 11-22(백로그 98): 정리 섹션 되풀이는 더 이상 낮추지 않음 - 정리에 '기준 2~3개를 숫자와 함께' 쓰게 하던 규칙을 없앴으므로
+    # 정리가 본문 숫자를 다시 늘어놓으면 진짜 되풀이('중요'). 도입부 답 숫자(필수 요소)만 낮춘다.
+    return bool(_INTRO_REPEAT.search(p))
 
 
 def review_text(html):
