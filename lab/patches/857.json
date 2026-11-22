@@ -68,5 +68,10 @@
   "old": "아니요, 해외 상장 ETF는 이 계좌들로 직접 살 수 없습니다. 아니요, 해외 상장 ETF는 이 계좌들로 직접 살 수 없습니다.",
   "new": "아니요, 해외 상장 ETF는 이 계좌들로 직접 살 수 없습니다.",
   "why": "고침 도구가 덧붙이기 고침을 두 번 돌려 같은 문장이 두 번 들어감 - 하나 지움(도구도 고침)"
+ },
+ {
+  "old": "<div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "new": "<p>🌏 나라별 시가총액과 투자하는 길은 <a href=\"https://ondo99.com/world-stock-markets/\">세계 주식시장 지도</a>에 모아 두었습니다.</p><div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "why": "11-22 공개된 세계 주식시장 지도 페이지로 가는 길(나라 시장 글 끝 한 줄)"
  }
 ]

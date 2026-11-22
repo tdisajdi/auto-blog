@@ -28,5 +28,10 @@
   "old": "일본 ETF 투자는 운용보수와 절세 계좌 활용 여부, 환율이 원화 수익률에 미치는 영향을 종합 비교해 결정해야 합니다.",
   "new": "같은 일본 주식이라도 국내 상장(원화)과 미국 상장(달러)은 환율과 따르는 지수 때문에 원화 수익률이 달랐습니다(최근 1년 +5.3% vs -1.2%).",
   "why": "'결정해야 합니다' 권유 → 사실 한 줄"
+ },
+ {
+  "old": "<div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "new": "<p>🌏 나라별 시가총액과 투자하는 길은 <a href=\"https://ondo99.com/world-stock-markets/\">세계 주식시장 지도</a>에 모아 두었습니다.</p><div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "why": "11-22 공개된 세계 주식시장 지도 페이지로 가는 길(나라 시장 글 끝 한 줄)"
  }
 ]

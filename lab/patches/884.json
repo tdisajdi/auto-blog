@@ -28,5 +28,10 @@
   "old": "중국 ETF 투자 시 본토와 해외 상장 지수의 구성 차이 및 환율 영향을 함께 고려해야 합니다.",
   "new": "최근 5년 원화 기준으로 본토 CSI300을 따르는 TIGER 차이나CSI300은 -7.3%, 홍콩·미국 상장 기업을 담은 MCHI는 -17.8%였습니다.",
   "why": "당위 한 줄 정리 → 숫자"
+ },
+ {
+  "old": "<div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "new": "<p>🌏 나라별 시가총액과 투자하는 길은 <a href=\"https://ondo99.com/world-stock-markets/\">세계 주식시장 지도</a>에 모아 두었습니다.</p><div style=\"margin-top:30px;padding:16px;background:#f8f9fa;border-radius:6px;font-size:13px;line-height:1.7;\"><strong>📌 데이터 출처</strong>",
+  "why": "11-22 공개된 세계 주식시장 지도 페이지로 가는 길(나라 시장 글 끝 한 줄)"
  }
 ]
