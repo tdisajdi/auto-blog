@@ -578,6 +578,9 @@ jobs:
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
               python site_pages/patch_post.py "$SLUG" || { echo "글 고치기 실패"; echo "❌ 글 고치기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+            elif [[ "${{ github.event.inputs.site_pages }}" == div-dates:* ]]; then
+              # 11-22 배당 지급일별 기록 보기(해마다 합계가 들쭉날쭉할 때 원인 확인)
+              python site_pages/div_dates.py "$(echo "${{ github.event.inputs.site_pages }}" | cut -c11- | tr -cd 'A-Za-z0-9.,-')" || echo "배당 기록 보기 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "schedule-tick" ]; then
               # 11-22 공개 예약 점검을 손으로 한 번(dry면 출력만)
               python site_pages/schedule_tick.py || { echo "공개 예약 처리 실패"; echo "❌ 공개 예약 처리 실패" >> "$GITHUB_STEP_SUMMARY"; }
