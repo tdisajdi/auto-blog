@@ -182,6 +182,8 @@ def main(pid):
         from site_pages.pll_plugin import flush_sitemap
         flush_sitemap()
         first_in_category(pid, h)
+        from ondo import indexnow        # 11-22: 빙 등 검색엔진에 새 글 알림(실패해도 공개는 그대로)
+        print(indexnow.submit([j.get("URL") or ""])[1])
     return 0 if j.get("status") == "publish" else 1
 
 

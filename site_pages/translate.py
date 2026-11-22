@@ -233,6 +233,8 @@ def push(pid):
         print("표지 실패:", type(e).__name__, e)
     from site_pages.pll_plugin import flush_sitemap
     flush_sitemap()
+    from ondo import indexnow            # 11-22: 영어 글도 빙 등에 알림(실패해도 그대로)
+    print(indexnow.submit([j.get("URL") or ""])[1])
     return 0 if linked else 1
 
 

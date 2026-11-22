@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -16,6 +16,7 @@
  *   GET/POST /ondo/v1/term-lang/<id> {lang} - 분류(카테고리) 언어 읽기·지정
  *   POST /ondo/v1/term-link {translations:{ko:3,en:9}} - 분류 번역 연결
  *   (화면) 모든 페이지 <head>에 window.ondoLang = [{slug,url,current,missing}] - 머리글 국기 버튼이 씀
+ *   (화면) /<IndexNow 키>.txt - IndexNow 키를 글자로(1.4.0, 11-22: 빙 등 검색엔진에 새 글 알림 - 키는 공개 값)
  * 권한: 해당 글을 고칠 수 있는 로그인 사용자만(분류는 분류 관리 권한).
  */
 
@@ -318,3 +319,13 @@ add_filter( 'rank_math/json_ld', function ( $data, $jsonld = null ) {
 	return $data;
 }, 99, 2 );
 
+// 1.4.0 (11-22): IndexNow 키 파일 - https://ondo99.com/<키>.txt 가 키 글자만 돌려줌(같은 호스트여야 함, ondo/indexnow.py와 같은 값)
+define( 'ONDO_INDEXNOW_KEY', '6816a36f143a41b8a683b233a22b322f' );
+add_action( 'init', function () {
+	$path = parse_url( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '', PHP_URL_PATH );
+	if ( $path === '/' . ONDO_INDEXNOW_KEY . '.txt' ) {
+		header( 'Content-Type: text/plain; charset=utf-8' );
+		echo ONDO_INDEXNOW_KEY;
+		exit;
+	}
+}, 0 );

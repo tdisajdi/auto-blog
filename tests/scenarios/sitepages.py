@@ -124,3 +124,16 @@ assert _b.count("law.go.kr") >= 20 and "아직 확인 못 한 것" in _b and "�
 assert "5월 1일부터 5월 31일" in _b and "22%" in _b and "15.4%" in _b and "108만 원" in _b
 assert not any(w in _b for w in ("추천", "사세요", "유리합니다"))
 print("tax numbers ok")
+
+# 11-22 IndexNow: 우리 사이트 주소만, 중복 제거, 키 위치 같은 호스트
+from ondo import indexnow as _ix
+_b = _ix.payload(["https://ondo99.com/a/", "https://ondo99.com/a/", "https://evil.com/x", None])
+assert _b["urlList"] == ["https://ondo99.com/a/"] and _b["keyLocation"] == "https://ondo99.com/" + _ix.KEY + ".txt"
+class _R:
+    status_code = 202; text = ""
+_ok, _m = _ix.submit(["https://ondo99.com/a/"], post=lambda u, json, timeout: _R())
+assert _ok and "202" in _m
+assert _ix.submit(["https://evil.com/x"])[0] is False
+_php = open("wp_plugin/ondo-polylang-rest/ondo-polylang-rest.php", encoding="utf-8").read() if __import__("os").path.exists("wp_plugin") else _ix.KEY
+assert _ix.KEY in _php
+print("indexnow ok")

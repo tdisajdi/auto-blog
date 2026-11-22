@@ -578,6 +578,9 @@ jobs:
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
               python site_pages/patch_post.py "$SLUG" || { echo "글 고치기 실패"; echo "❌ 글 고치기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+            elif [[ "${{ github.event.inputs.site_pages }}" == indexnow:* ]]; then
+              # 11-22 IndexNow: indexnow:check(키 파일 확인) / indexnow:all(사이트맵 전체 주소 한 번 보내기)
+              python ondo/indexnow.py "$(echo "${{ github.event.inputs.site_pages }}" | cut -c10- | tr -cd 'a-z')" || echo "IndexNow 실패"
             elif [ "${{ github.event.inputs.site_pages }}" = "tax-numbers-publish" ]; then
               # 11-22 사용자 '공개하자' - 세금·계좌 숫자와 날짜 페이지 공개(이미 공개면 본문만 새로)
               python site_pages/tax_numbers.py publish || { echo "세금·계좌 페이지 공개 실패"; echo "❌ 세금·계좌 페이지 공개 실패" >> "$GITHUB_STEP_SUMMARY"; }
