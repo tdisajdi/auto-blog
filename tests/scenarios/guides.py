@@ -97,7 +97,7 @@ print("fx hedge ok")
 
 # 계산이 없는 주제는 빈 결과, 인터넷 실패도 빈 결과(글은 가격 그래프만으로 진행)
 _acf, _act = gc.guide_facts("tax-accounts", {})
-assert "900" in _acf and "1,350,000" in _acf and "law.go.kr" in _act and "세금 계산표" not in _acf
+assert "900만 원" in _acf and "135만 원" in _acf and "9,000,000" not in _acf and "law.go.kr" in _act and "세금 계산표" not in _acf
 assert "ISA 연간 납입 한도" in _acf and "2천만" not in _acf and "13.2" not in _acf   # 원문으로 확인 못 한 숫자는 넣지 않음
 gc._hist = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("no net"))
 assert gc.guide_facts("leverage-decay", {}) == ("", "")
