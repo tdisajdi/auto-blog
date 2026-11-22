@@ -17,3 +17,13 @@ out = lint._keep_section_answers(h, f)
 assert out.count("<strong>") == 2 and "<strong>10년 뒤 16만 원 차이가 납니다.</strong>" in out and "<strong>한 줄 정리:</strong>" in out, out
 assert f and "5곳" in f[0], f
 print("strong rule ok")
+
+# 11-22 백로그 105: 앞 숫자만 다시 늘어놓는 문장(같은 섹션·앞 섹션), 도입·새 숫자 있는 비교는 안 잡음
+from ondo.checks import lint as _L
+_h = ("<p>현대차 매출은 186.3조 원, 최대 낙폭 -65.8%입니다.</p>"
+      "<h3>매출</h3><p>매출은 142.2조 원에서 186.3조 원으로 늘었습니다. 증가율은 142.2조 원 대비 31.0%입니다. "
+      "매출은 142.2조 원과 186.3조 원이었습니다.</p>"
+      "<h3>낙폭</h3><p>최대 낙폭은 -65.8%이고 회복에 172일이 걸렸습니다. 매출 142.2조 원과 186.3조 원을 다시 봅니다.</p>")
+_r = _L.repeat_sentences(_h)
+assert [(w, s[:9]) for _, w, s in _r] == [("같은 섹션", "매출은 142.2"), ("앞 섹션", "매출 142.2조")], _r
+print("repeat sentences ok")

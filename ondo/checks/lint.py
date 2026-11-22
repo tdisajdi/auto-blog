@@ -316,6 +316,8 @@ def fix_and_check(html):
     if pairs:
         tag = "" if len(pairs) >= 2 else SOFT
         issues.append(f"{tag}비슷한 문장 반복 {len(pairs)}쌍 - 한 번만 남기고 지울 것. 예: '{pairs[0][0][:40]}…' / '{pairs[0][1][:40]}…'")
+    for head, where, sent in repeat_sentences(h)[:3]:     # 11-22 백로그 105: 앞에서 쓴 숫자만 다시 늘어놓는 문장(요약 습관)
+        issues.append(f"{SOFT}{where} 숫자 되풀이: '{sent[:60]}…'({head[:20]}) - 새 정보 없이 앞의 숫자만 다시 씀: 지우거나 숫자 없이 뜻만 남길 것")
     # 같은 숫자가 서로 다른 사실일 수 있다(2,000만 원 = ISA 납입 한도이자 금융소득종합과세 기준) → 참고만
     for raw, n in repeated_numbers(text):
         issues.append(f"{SOFT}같은 숫자 '{raw}'를 {n}번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)")
@@ -492,3 +494,39 @@ def repeated_numbers(text, max_times=3):
     found = re.findall(r"\d[\d,]*(?:\.\d+)?\s*(?:%p|%|만\s?원|억\s?원|원|달러)", text)
     counts = Counter(re.sub(r"\s+", "", f) for f in found)
     return [(k, v) for k, v in counts.most_common() if v > max_times][:3]
+
+
+_REP_NUM = re.compile(r"-?\d[\d,]*(?:\.\d+)?")
+
+
+def _rep_tokens(t):
+    out = set()
+    for x in _REP_NUM.findall(t):
+        v = x.replace(",", "")
+        if re.fullmatch(r"(19|20)\d\d", v) or len(v.strip("-")) < 2:     # 연도·한 자리 숫자는 겹쳐도 되풀이로 안 봄
+            continue
+        out.add(v)
+    return out
+
+
+def repeat_sentences(h):
+    """11-22(백로그 105): 숫자(연도·한 자리 제외)가 2개 이상인데 모두 같은 섹션 앞 문장이나 앞 본문 섹션에 이미 나온 문장.
+    도입부 숫자는 본문에서 다시 설명해도 됨(예외), 표·한 줄 정리는 따로 점검하므로 뺌. → [(섹션 제목, '같은 섹션'|'앞 섹션', 문장)]"""
+    h = re.sub(r"<table.*?</table>|<!--.*?-->", " ", h or "", flags=re.S)
+    h = ONE_LINE.sub(" ", h)
+    parts = re.split(r"(<h3[^>]*>.*?</h3>)", h, flags=re.S)
+    seen, out, head = set(), [], None
+    for p in parts:
+        if p.startswith("<h3"):
+            head = text_of(p)
+            continue
+        if head is None:            # 도입부
+            continue
+        sec = set()
+        for sent in re.split(r"(?<=[.?!다])\s+", text_of(p)):
+            n = _rep_tokens(sent)
+            if len(n) >= 2 and n <= (seen | sec):
+                out.append((head, "같은 섹션" if n <= sec else "앞 섹션", sent.strip()))
+            sec |= n
+        seen |= sec
+    return out
