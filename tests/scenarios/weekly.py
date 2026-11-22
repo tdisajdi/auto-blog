@@ -23,3 +23,18 @@ weekly.check_sources = lambda: (_ for _ in ()).throw(RuntimeError("x"))
 out = weekly.run_all()
 assert any("check_keys" not in l and "Gemini" in l for l in out) and any("실패" in l for l in out), out
 print("weekly ok")
+
+# 11-22 성적표 품질·배움·확장 줄(기록 파일만 읽음)
+import datetime as _dt, json as _json, pathlib as _pl
+from site_pages import weekly_report as _wr
+_r = _pl.Path(sys.argv[1]) / "fake"
+(_r / "logs" / "2026-11").mkdir(parents=True); (_r / "lab").mkdir()
+_json.dump({"started_at": "2026-11-20T10:00:00", "article_type": "guide",
+            "steps": [{"step": "편집장 검토 1", "passed": False, "issues": ["[치명·사실 검증] x"]}, {"step": "편집장 검토 2", "passed": True}]},
+           open(_r / "logs" / "2026-11" / "a.json", "w"))
+(_r / "PROJECT_STATUS.txt").write_text("- [L1·11-22·재발 0] a\n- [L2·11-22·재발 2] b\n", encoding="utf-8")
+(_r / "lab" / "BACKLOG.txt").write_text("[확장 효과 확인]  (x)\n- 11-20 | 기능A | 기준 | 11-23 | -\n- 11-10 | 기능B | 기준 | 11-15 | 유지\n[끝난 것]\n", encoding="utf-8")
+_g = "\n".join(_wr.growth_section(_dt.date(2026, 11, 16), _dt.date(2026, 11, 22), root=str(_r), today=_dt.date(2026, 11, 23)))
+assert "첫 판 통과 0 · 마지막 판 통과 1 · 사실 검증 치명 지적 1개" in _g and "guide 0/1" in _g, _g
+assert "L2(2번)" in _g and "확장 1개" in _g and "확인 날이 된 확장: 기능A" in _g, _g
+print("growth ok")
