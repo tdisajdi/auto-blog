@@ -616,6 +616,32 @@ def render_parking(results, names, amount=10_000_000):
     return facts, table
 
 
+def render_accounts():
+    """11-22 백로그 96: 계좌 규칙(법령 원문으로 확인한 것만) → 사실 자료 + 표. 세금 계산표(701과 같은 것)는 쓰지 않음."""
+    from ondo import account_rules as ar
+    from ondo.media import charts
+    rows, lines = [], []
+    for acc, item, val, law, art in ar.RULES:
+        name, url = ar.source_line(law, art)
+        rows.append([acc, item, val, f'<a href="{url}" target="_blank" rel="noopener nofollow">{law} {art}</a>'])
+        lines.append(f"- [{acc}] {item}: {val} (근거: {name})")
+    ex = ar.credit_examples()
+    note = (f"국가법령정보센터 현행 법령 원문에서 확인({ar.AS_OF}). 세액공제율은 법조문의 소득세 기준이며 지방소득세는 따로. "
+            "법이 바뀌면 달라질 수 있으니 가입 전 금융회사·국세청 안내로 다시 확인.")
+    table = charts.table_html("ISA·연금저축·IRP 규칙 한눈에 (법령 원문 기준)", ["계좌", "항목", "내용", "근거 조문"], rows, note)
+    facts = ("[계좌 규칙 - 법령 원문에서 확인한 값. 이 표는 시스템이 본문에 넣으므로 표로 다시 만들지 말고 문장으로 해석하세요]\n"
+             + "\n".join(lines) + "\n"
+             f"- 계산 예시(코드 계산): 연금저축+IRP에 연 {ex['amount']:,}원을 넣으면 세액공제는 공제율 12%일 때 {ex['low']:,}원, "
+             f"15%일 때 {ex['high']:,}원(소득세 기준, 지방소득세 제외)\n"
+             f"- {note}\n"
+             "[이 자료에 없는 숫자 - 글에 숫자로 쓰지 말 것. 필요하면 '금융회사·국세청 안내에서 확인'으로만]\n"
+             + "\n".join(f"- {u}" for u in ar.UNCONFIRMED) + "\n"
+             "[일반 원리]\n"
+             "- 해외 증시에 상장된 ETF(예: SPY)는 ISA·연금저축에 직접 담을 수 없고, 국내에 상장된 해외지수 ETF로 담는다(위 '담을 수 있는 것' 근거).\n"
+             "- ISA는 '이익에 붙는 세금'을 줄이는 계좌, 연금저축·IRP는 '넣는 돈에 세액공제'를 주고 꺼낼 때 세금을 매기는 계좌라 쓰임이 다르다.\n")
+    return facts, table
+
+
 # ------------------------------------------------------------
 # 가격 받기 + 주제별 연결 (인터넷이 필요한 부분은 여기만)
 # ------------------------------------------------------------
@@ -638,6 +664,8 @@ def guide_facts(topic_id, data_cache, rates_effect=None):
         if topic_id == "expense-ratio":
             fees = {t.replace(".KS", ""): _parse_pct(d.get("expense_ratio")) for t, d in data_cache.items()}
             return render_expense(calc_expense(fees))
+        if topic_id == "tax-accounts":           # 11-22 백로그 96: 세금 계산표 대신 계좌 규칙(법령 원문)
+            return render_accounts()
         if topic_id == "leverage-decay":
             b, l = _hist("QQQ", period="10y"), _hist("TQQQ", period="10y")
             if b is None or l is None:
