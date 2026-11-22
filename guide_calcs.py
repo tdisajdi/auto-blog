@@ -314,7 +314,24 @@ def calc_dividend(dividends, close, years=5):
     return {"years": years, "y0": last_full - years, "y1": last_full, "div0": a0, "div1": a1, "cagr": cagr,
             "yield_now": a1 / px_now * 100,
             "yoc": (a1 / px_then * 100) if px_then else None, "px_then_date": f"{start.index[0]:%Y-%m-%d}" if len(start) else None,
-            "series": [(int(y), round(float(v), 4)) for y, v in annual.iloc[-(years + 1):].items()]}
+            "series": [(int(y), round(float(v), 4)) for y, v in annual.iloc[-(years + 1):].items()],
+            "shifts": year_shifts(d, last_full - years, last_full)}
+
+
+def year_shifts(d, y0, y1):
+    """11-22 현대차·SK하이닉스: 12월에 지급 기록이 있던 회사가 어느 해(Y) 12월 기록이 없고 다음 해 1~3월에 기록이 생기면
+    연말 몫이 해를 넘겨 Y 합계는 작게, Y+1 합계는 크게 잡힘('배당을 줄였다'로 잘못 읽힘). [(Y, 앞 12월 해, 다음 해 달)].
+    어느 해 몫인지는 자료에 없으므로 숫자를 옮기지 않고 표시만 한다."""
+    months = {}
+    for idx in d.index:
+        months.setdefault(int(idx.year), set()).add(int(idx.month))
+    out = []
+    for y in range(y0, y1 + 1):
+        prev = y - 1
+        nxt = sorted(m for m in months.get(y + 1, ()) if m <= 3)
+        if 12 in months.get(prev, ()) and 12 not in months.get(y, ()) and nxt:
+            out.append((y, prev, nxt[0]))
+    return out
 
 
 def render_dividend(results):
