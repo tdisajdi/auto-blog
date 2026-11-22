@@ -156,12 +156,21 @@ def div_odd_lines(div, f2):
         return []
     # 11-21 엔비디아: 꾸준히 늘어난 배당(2024·2025년)을 '가운데값의 1.5배'로 이상한 해라고 표시함 →
     # 앞뒤 해(있는 쪽) 모두보다 1.5배 넘게 튄 해만(삼성전자 2020년은 다음 해의 2배라 그대로 잡힘)
+    shifts = div.get("shifts") or []
+    moved = {y for y, _, _ in shifts}          # 11-22: 연말 몫이 해를 넘긴 해는 '튄 해' 비교의 이웃으로 쓰지 않음(SK하이닉스 2025가 잘못 잡힘)
     odd = []
     for i, (y, v) in enumerate(ser):
-        nb = [ser[j][1] for j in (i - 1, i + 1) if 0 <= j < len(ser)]
+        if y in moved or (y - 1) in moved:
+            continue
+        nb = [ser[j][1] for j in (i - 1, i + 1) if 0 <= j < len(ser) and ser[j][0] not in moved]
         if nb and min(nb) > 0 and v >= max(nb) * 1.5:
             odd.append(y)
     out = ["- 해마다 주당 배당: " + ", ".join(f"{y}년 {f2(v)}" for y, v in ser)]
+    for y, prev, m in shifts:
+        out.append(f"- 지급 달이 해를 넘김: {prev}년까지는 12월 지급 기록이 있었는데 {y}년에는 12월 기록이 없고 {y + 1}년 {m}월에 기록이 있음. "
+                   f"그래서 {y}년 합계는 다른 해보다 적게, {y + 1}년 합계는 많게 잡혔을 수 있음 - {y}년·{y + 1}년 합계로 "
+                   f"'배당을 줄였다·늘렸다·두 배'라고 쓰지 말 것. 쓸 수 있는 사실은 '{y}년에는 12월 지급 기록이 없고 {y + 1}년 {m}월에 있음'까지"
+                   f"(왜 바뀌었는지는 자료에 없으니 짐작해 쓰지 말 것). 연평균 증가율은 {ser[0][0]}년과 {ser[-1][0]}년 두 해만 비교한 숫자")
     if odd:
         # 11-21 SK하이닉스: 마지막 해(2025년)가 튄 경우에도 '시작 해…나쁘게'라고 적어 틀린 안내 → 자리별로 다르게
         first, last = ser[0][0], ser[-1][0]
