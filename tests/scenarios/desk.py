@@ -103,7 +103,7 @@ def post_desk(url, payload, key):
     if "독자 가치 담당" in p:
         return R(200, json.dumps(VALUE_ANSWER))
     if "기획 회의" in p:
-        assert "제목이 던진 질문" in p and "스스로 확인할 기준" in p, "모든 글 공통 필수 질문이 기획에 들어감"
+        assert "제목이 던진 질문" in p and "판단 기준" in p and "본문 섹션 안에서" in p, "모든 글 공통 필수 질문이 기획에 들어감(11-22: 기준은 본문에서)"
         return R(200, json.dumps(PLAN))
     if "심각도 기준" in p:
         assert "글의 사실 검증 담당입니다" not in p or "제목이 던진 질문" in p, "사실 검증 담당이 공통 필수 질문 누락을 확인"
