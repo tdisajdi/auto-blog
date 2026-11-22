@@ -87,7 +87,12 @@ def patches_in(pid, text):
     def ok(i):
         n, o = _frag(i.get("new")), _frag(i.get("old")) if i.get("old") else ""
         return n in t and (not o or o in n or o not in t)
-    return bool(items) and all(ok(i) for i in items)
+    # 11-22: 나중 고침이 앞 고침의 새 문구를 통째로 덮어쓴 경우(정리 섹션을 새로 쓰며 그 안의 옛 고침 문장이 사라짐, 776·809)
+    # 앞 고침은 '나중 고침의 옛 문구 안에 들어 있고, 그 나중 고침이 반영됨'이면 반영된 것으로 본다.
+    def superseded(k):
+        n = _frag(items[k].get("new"))
+        return bool(n) and any(n in _frag(j.get("old")) and ok(j) for j in items[k + 1:])
+    return bool(items) and all(ok(i) or superseded(k) for k, i in enumerate(items))
 
 
 def claude_route(pid, logf, d, text):
