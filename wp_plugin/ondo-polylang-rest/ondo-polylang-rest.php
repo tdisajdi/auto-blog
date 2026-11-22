@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -275,3 +275,46 @@ add_action( 'rest_api_init', function () {
 		),
 	) );
 } );
+
+/*
+ * 1.3.0 (2026-11-22): 검색 결과에 보이는 첫 화면 제목·설명과 구조화 데이터 바로잡기(Rank Math 설정은 건드리지 않고 화면 출력만 바꿈).
+ * 왜(lab/THINKING.txt 11-22 100바퀴): 첫 화면 설명이 옛 문구('리서치·정리해 … 인사이트를 제공하는 콘텐츠 채널'),
+ *   영어 첫 화면(/en/)의 제목·설명이 한국어, 정책·지도 '페이지'가 BlogPosting(글)로 표시, 저자 sameAs가 옛 주소(ondo99.wordpress.com).
+ * 되돌리기: 이 블록을 지우고 플러그인을 다시 올리면 원래대로.
+ */
+function ondo_seo_lang() {
+	return function_exists( 'pll_current_language' ) ? pll_current_language( 'slug' ) : 'ko';
+}
+function ondo_seo_is_home() {
+	return is_front_page() || is_home();
+}
+add_filter( 'rank_math/frontend/title', function ( $title ) {
+	if ( ! ondo_seo_is_home() ) { return $title; }
+	return 'en' === ondo_seo_lang()
+		? 'ondo99 - A blog that works out the numbers behind investing and everyday life'
+		: 'ondo99 - 투자와 생활 속 숫자를 직접 계산해 보는 블로그';
+}, 20 );
+add_filter( 'rank_math/frontend/description', function ( $desc ) {
+	if ( ! ondo_seo_is_home() ) { return $desc; }
+	return 'en' === ondo_seo_lang()
+		? 'ETF returns, dividends, fees and taxes worked out with code from public prices and statistics, from a Korean investor\'s point of view. Information only, not investment advice.'
+		: '공개된 가격과 통계로 ETF 수익률·배당·보수·세금을 코드로 직접 계산해 정리합니다. 투자 권유가 아닌 정보 제공용 블로그입니다.';
+}, 20 );
+add_filter( 'rank_math/json_ld', function ( $data, $jsonld = null ) {
+	if ( ! is_array( $data ) ) { return $data; }
+	foreach ( $data as $key => $node ) {
+		if ( ! is_array( $node ) ) { continue; }
+		// 페이지(소개·정책·지도)는 글(BlogPosting)이 아님 - WebPage 노드만 남김
+		if ( is_page() && isset( $node['@type'] ) && in_array( $node['@type'], array( 'BlogPosting', 'Article', 'NewsArticle' ), true ) ) {
+			unset( $data[ $key ] );
+			continue;
+		}
+		// 저자·사이트 대표의 옛 주소(ondo99.wordpress.com) 지우기
+		if ( isset( $node['sameAs'] ) ) {
+			$same = array_values( array_filter( (array) $node['sameAs'], function ( $u ) { return false === strpos( (string) $u, 'wordpress.com' ); } ) );
+			if ( $same ) { $data[ $key ]['sameAs'] = $same; } else { unset( $data[ $key ]['sameAs'] ); }
+		}
+	}
+	return $data;
+}, 99, 2 );
+
