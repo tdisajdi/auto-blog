@@ -116,3 +116,11 @@ _ln = _wr.compare(_now, [("/a/", [4, 10, 2])])
 assert _ln[0] == {"page": "/a/", "views": 10, "prev_views": 4, "avg_sec": 30, "sessions": 5} and _ln[1]["page"] == "/가/", _ln
 assert "| /a/ | 10 | 4 | 30 |" in _wr.render(_ln, 13, 4, [("South Korea", [7])], "", "x")
 print("weekly report ok")
+
+# 11-22 세금·계좌 숫자와 날짜 페이지: 법령 링크·확인 못 한 것·권유 없음
+from site_pages import tax_numbers as _tn
+_b = _tn.build_html()
+assert _b.count("law.go.kr") >= 20 and "아직 확인 못 한 것" in _b and "권하지 않습니다" in _b
+assert "5월 1일부터 5월 31일" in _b and "22%" in _b and "15.4%" in _b and "108만 원" in _b
+assert not any(w in _b for w in ("추천", "사세요", "유리합니다"))
+print("tax numbers ok")
