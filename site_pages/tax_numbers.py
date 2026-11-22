@@ -77,7 +77,7 @@ def build_html():
                f"{ex['low'] // 10000:,}만 원, 15%일 때 {ex['high'] // 10000:,}만 원을 세금에서 뺍니다"
                f"(소득세 기준, 지방소득세는 아래 '아직 확인 못 함').</p>")
     out.append("<h3>아직 확인 못 한 것</h3>")
-    out.append("<p>아래는 원문을 받지 못했거나 원문에서 표·그림으로만 나와 글자로 확인하지 못한 것입니다. 확인되기 전에는 이 사이트의 글에 숫자로 쓰지 않습니다.</p>")
+    out.append("<p>아래는 원문을 받지 못했거나 원문에서 표·그림으로만 나와 글자로 확인하지 못한 것입니다. 새 글에는 확인 전까지 숫자로 쓰지 않고, 이미 쓴 글(예: 해외 상장 ETF 세금 글의 미국 배당 15%)은 원문을 확인하는 대로 근거를 붙이거나 고칩니다.</p>")
     out.append("<ul>" + "".join(f"<li>{html.escape(x)}</li>" for x in NOT_YET) + "</ul>")
     out.append("<h3>출처</h3><ul>"
                + "".join(f'<li><a href="{u}" target="_blank" rel="noopener">{html.escape(n)}</a></li>' for n, u in list(ar.LAW.values()) + [LOCAL_TAX])
