@@ -41,6 +41,15 @@ def apply(content, patches, facts=""):
             continue
         _nohref = lambda t: re.sub(r'href="[^"]*"', "", t)    # 11-21: 링크 주소 속 날짜(2026/11/19)는 글 숫자가 아님
         new_nums = set(re.findall(r"\d[\d,.]*", _nohref(p["new"]))) - set(re.findall(r"\d[\d,.]*", _nohref(content))) - facts_nums
+        if new_nums:   # 11-22 852: '1,080,000원' → '108만 원'처럼 단위만 바꾼 같은 값은 새 숫자가 아님
+            have = re.sub(r"[,\s]", "", _nohref(content) + " " + (facts or ""))
+            def _same_value(x):
+                m = re.search(re.escape(x) + r"\s*(만|억)", p["new"])
+                if not m:
+                    return False
+                v = float(x.replace(",", "")) * (10000 if m.group(1) == "만" else 100000000)
+                return v.is_integer() and str(int(v)) in have
+            new_nums = {x for x in new_nums if not _same_value(x)}
         if new_nums:
             probs.append(f"새 숫자가 들어감: {sorted(new_nums)} - 고치기에서 숫자를 더하지 않음")
             continue
