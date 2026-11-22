@@ -137,3 +137,14 @@ assert _ix.submit(["https://evil.com/x"])[0] is False
 _php = open("wp_plugin/ondo-polylang-rest/ondo-polylang-rest.php", encoding="utf-8").read() if __import__("os").path.exists("wp_plugin") else _ix.KEY
 assert _ix.KEY in _php
 print("indexnow ok")
+
+# 11-22 원칙 L9: 수동 실행 스크립트가 깃허브 표현식 길이 제한(21000)에 가까워지면 실패 - 깨졌던 판 20,679자, 11-22 정상 17,128자(들여쓰기 포함)
+import os as _os
+_wf = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "..", ".github", "workflows", "publish.yml")
+for _cand in (_wf, "/home/user/auto-blog/.github/workflows/publish.yml"):
+    if _os.path.exists(_cand):
+        _t = open(_cand, encoding="utf-8").read()
+        _a = _t.find("      - name: 수동 실행"); _b = _t.find("      - name: 상태 파일 커밋", _a)
+        assert _a > 0 and _b > _a and (_b - _a) < 19000, f"수동 실행 스크립트 {_b - _a}자 - 19,000자 넘음(깃허브 제한 21000 위험 - 깨졌던 판 20,679자, 백로그 107: 분기를 파이썬으로 옮기기)"
+        print("workflow length ok", _b - _a)
+        break
