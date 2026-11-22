@@ -1,17 +1,5 @@
 [
   {
-    "timestamp": "2026-11-09T13:21:43.969417",
-    "total_calls": 22,
-    "by_model": {
-      "gemini-3.5-flash-lite": 12,
-      "gemini-3.6-flash": 7,
-      "gemini-3.1-flash-lite": 3
-    },
-    "model_switch_events": {
-      "gemini-3.5-flash-lite": 1
-    }
-  },
-  {
     "timestamp": "2026-11-10T02:07:44.366088",
     "total_calls": 17,
     "by_model": {
@@ -884,6 +872,14 @@
   },
   {
     "timestamp": "2026-11-22T08:08:57.698316",
+    "total_calls": 1,
+    "by_model": {
+      "gemini-3.6-flash": 1
+    },
+    "model_switch_events": {}
+  },
+  {
+    "timestamp": "2026-11-22T08:11:56.428400",
     "total_calls": 1,
     "by_model": {
       "gemini-3.6-flash": 1
