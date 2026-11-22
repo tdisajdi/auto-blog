@@ -72,6 +72,9 @@ def _valid_plan(p):
             chars = 1000
         clean.append({"heading": _clean_heading(s["heading"]), "goal": str(s["goal"]),
                       "facts": [str(f) for f in facts][:10], "table": bool(s.get("table")), "chars": chars})
+    if not any("판단 기준" in s["goal"] for s in clean):   # 11-22 현대차: 기획(가벼운 모델)이 배정 지시를 빠뜨려 작가가 '[누락] 판단 기준' → 첫 섹션(가장 눈에 띄는 숫자)에 코드로 배정
+        clean[0]["goal"] += (" 판단 기준: 이 섹션에 배정된 숫자를 독자가 다음에 다시 볼 때 무엇을 보면 되는지 한 문장으로"
+                             "(새 숫자를 늘어놓지 말고 배정된 숫자를 읽는 법, 매수·매도 권유 아님).")
     if sum(s["table"] for s in clean) > 1:          # 표는 1개만 - 첫 번째 것만 남긴다
         first = next(i for i, s in enumerate(clean) if s["table"])
         for i, s in enumerate(clean):

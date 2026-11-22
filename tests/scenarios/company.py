@@ -90,3 +90,11 @@ print("dividend shift ok")
 # 11-21 팔란티어: 100억 달러 미만은 소수 한 자리
 assert co.money(1_905_000_000) == "19.1억 달러" and co.money(282_800_000_000) == "2,828억 달러", (co.money(1_905_000_000), co.money(282_800_000_000))
 print("small usd money ok")
+
+# 11-22 기획이 판단 기준 배정을 빠뜨려도 코드가 첫 섹션 goal에 넣음(한 섹션에만)
+from ondo.writing import desk as _dk
+_p = _dk._valid_plan({"sections": [{"heading": f"제목{i}", "goal": "목표"} for i in range(3)]})
+assert "판단 기준" in _p["sections"][0]["goal"] and all("판단 기준" not in s["goal"] for s in _p["sections"][1:])
+_p = _dk._valid_plan({"sections": [{"heading": "a", "goal": "x"}, {"heading": "b", "goal": "y 판단 기준: z"}, {"heading": "c", "goal": "w"}]})
+assert "판단 기준" not in _p["sections"][0]["goal"]
+print("criteria assign ok")
