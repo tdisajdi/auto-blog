@@ -2,6 +2,7 @@
 
   python site_pages/tax_numbers.py preview   lab/tax_numbers.html 로 미리 보기 파일만 만듦
   python site_pages/tax_numbers.py draft     워드프레스 '페이지'로 비공개 초안(공개된 같은 주소 페이지는 안 건드림)
+  python site_pages/tax_numbers.py publish   초안을 공개로(11-22 사용자 허락), 이미 공개면 본문만 새로
 원칙: 숫자·날짜는 법령 원문(lab/official, 국가법령정보센터)에서 글자로 확인한 것만. 확인 못 한 것은 '아직 확인 못 함'에 적고 숫자로 쓰지 않음.
       계좌 규칙은 ondo/account_rules.py(같은 출처)에서 가져옴 - 법이 바뀌면 그 파일과 아래 TAX를 고치고 다시 만듦.
 """
@@ -94,11 +95,14 @@ def main(mode="preview"):
                     f"<h1>{TITLE}</h1>{body}</body>")
         print("미리 보기:", path)
         return 0
-    if mode != "draft":
+    if mode not in ("draft", "publish"):
         print(__doc__)
         return 1
-    from site_pages.upload import upsert_page
-    ok, msg = upsert_page({"slug": SLUG, "title": TITLE, "html": body}, "draft")
+    from site_pages.upload import upsert_page, refresh_page
+    page = {"slug": SLUG, "title": TITLE, "html": body}
+    ok, msg = upsert_page(page, mode)          # 11-22 사용자 '공개하자' - publish는 초안을 공개로
+    if not ok and "이미 있어 건드리지 않음" in msg:   # 이미 공개된 뒤 법이 바뀌어 다시 만들면 본문만 새로
+        ok, msg = refresh_page(page)
     print(("✅ " if ok else "❌ ") + msg)
     return 0 if ok else 1
 
