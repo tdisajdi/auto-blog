@@ -621,6 +621,16 @@ def _day_move(macro_data):
     return f" (전일 대비 {pct:.2f}% {macro_data.get('usd_krw_direction', '')})".rstrip(" )") + ")"
 
 
+MARKET_MAP_URL = "https://ondo99.com/world-stock-markets/"     # 11-22 공개된 세계 주식시장 지도 페이지
+
+
+def _map_link(topic_id):
+    """11-22: 나라 시장 글(market-*) 끝에 세계 주식시장 지도로 가는 한 줄 - 지도 페이지로 가는 길(메뉴는 디자인 변경이라 따로)."""
+    if not (topic_id or "").startswith("market-"):
+        return ""
+    return (f'<p>🌏 나라별 시가총액과 투자하는 길은 <a href="{MARKET_MAP_URL}">세계 주식시장 지도</a>에 모아 두었습니다.</p>')
+
+
 def _closing_block(news, include_tax, tickers=None):
     from ondo.media import sources    # 11-11 '직접 확인' 링크(예시 종목 페이지)
     check = sources.check_line([sources.ticker_link(t) for t in (tickers or [])])
@@ -719,7 +729,7 @@ def run_explainer(topic, etf_module):
                  f"<a href=\"{TAX_GUIDE_URL}\">해외 상장 vs 국내 상장 ETF 세금 비교</a>에 정리돼 있다는 문장 하나까지만 쓰세요(이 링크 그대로). "
                  "이 내용은 글 전체에서 한 번만 - 세금·계좌 소제목이나 FAQ로 다시 다루지 마세요.\n" if not include_tax else ""),
         category_label=f"ETF/{kind_label}", article_type=article_type, topic_id=topic_id, memo=memo,
-        closing_html=_closing_block(news, include_tax, list(data_cache.keys())), visual_html=visual,
+        closing_html=_map_link(topic_id) + _closing_block(news, include_tax, list(data_cache.keys())), visual_html=visual,
         # 예시 종목은 그 종목의 재사용 금지·주제 분포에 넣지 않는다(종목 분석 글이 아님).
         meta={"example_tickers": list(data_cache.keys()),
               # 11-21 나라 태그(백로그 95): 나라 시장 글에 나라 이름 - 나중에 나라 허브(3편↑)로 묶는 고리. 태그 화면은 검색 제외(noindex)

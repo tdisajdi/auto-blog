@@ -145,3 +145,6 @@ print("parking calc ok")
 import explainer_engine as _xe8
 assert _xe8.TAX_TABLE_TOPICS == {"overseas-vs-domestic-tax", "tax-accounts"}
 print("tax table only for tax topics ok")
+# 11-22: 나라 시장 글 끝에 세계 주식시장 지도 링크
+assert "world-stock-markets" in _xe8._map_link("market-india") and _xe8._map_link("dca-vs-lump") == ""
+print("market map link ok")
