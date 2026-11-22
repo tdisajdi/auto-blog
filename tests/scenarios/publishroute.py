@@ -124,4 +124,7 @@ assert apply("본문 최종 정리", _P2) == ("본문 최종 정리", []) and ap
 json.dump(_P2, open(f"{tmp}/lab/patches/9.json", "w"))
 assert pp.patches_in("9", "본문 최종 정리") and not pp.patches_in("9", "본문 첫 정리")
 print("double supersede ok")
+# 11-22 852: 단위만 바꾼 같은 값(1,080,000원 → 108만 원)은 허용, 정말 새 숫자는 계속 막음
+assert apply("세액공제 1,080,000원", [{"old": "1,080,000원", "new": "108만 원"}])[1] == []
+assert apply("세액공제 1,080,000원", [{"old": "1,080,000원", "new": "109만 원"}])[1]
 
