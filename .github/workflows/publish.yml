@@ -273,6 +273,15 @@ jobs:
             v="${!k}"; [ -n "$v" ] && printf '%s=%s\n' "$k" "$v" >> .env || true
           done
 
+      # 11-22 백로그 97: 공개 예약(lab/publish_schedule.json)을 세션 알림 대신 여기서 - 무거운 단계보다 먼저(늦지 않게)
+      - name: 공개 예약 처리
+        run: |
+          python site_pages/schedule_tick.py || { echo "⚠️ 공개 예약 처리 실패 - 점검은 계속 진행"; echo "❌ ⚠️ 공개 예약 처리 실패" >> "$GITHUB_STEP_SUMMARY"; }
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lab/publish_schedule.json lab/translate 2>/dev/null || true
+          git diff --staged --quiet || (git commit -m "chore: 공개 예약 기록 ($(date -u +'%Y-%m-%d %H:%M UTC'))" -q && bash git_push_retry.sh) || true
+
       # 깃허브 자체 예약으로 돌 때만: 외부 알람(cron-job.org)이 1시간 넘게 안 불렀으면 텔레그램 알림 (watchdog.py)
       - name: 외부 알람 멈춤 감시
         if: github.event_name == 'schedule'
@@ -569,6 +578,9 @@ jobs:
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
               python site_pages/patch_post.py "$SLUG" || { echo "글 고치기 실패"; echo "❌ 글 고치기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+            elif [ "${{ github.event.inputs.site_pages }}" = "schedule-tick" ]; then
+              # 11-22 공개 예약 점검을 손으로 한 번(dry면 출력만)
+              python site_pages/schedule_tick.py || { echo "공개 예약 처리 실패"; echo "❌ 공개 예약 처리 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == publish-passed:* ]]; then
               # 11-19 기준 통과했는데 임시글로 남은 글 공개(로그에 통과 기록 있을 때만)
               PID=$(echo "${{ github.event.inputs.site_pages }}" | cut -c16- | tr -cd '0-9')
@@ -719,6 +731,7 @@ jobs:
           git add lab/plugin_audit.txt 2>/dev/null || true
           git add lab/translate 2>/dev/null || true
           git add lab/recheck 2>/dev/null || true
+          git add lab/publish_schedule.json 2>/dev/null || true
           git add lab/sitekit_probe.txt lab/weekly_report.md 2>/dev/null || true
           git add lab/art 2>/dev/null || true
           git add lab/market_map.json lab/market_map.html 2>/dev/null || true
