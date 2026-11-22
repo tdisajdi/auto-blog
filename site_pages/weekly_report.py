@@ -118,7 +118,7 @@ def growth_section(start, end, root=ROOT, today=None):
         pass
     try:
         st = open(os.path.join(root, "PROJECT_STATUS.txt"), encoding="utf-8").read()
-        les = re.findall(r"\[(L\d+)·[^·\]]*·재발 (\d+)\]", st)
+        les = re.findall(r"\[(L\d+)·[^\]]*?재발 (\d+)", st)
         rec = [f"{l}({n}번)" for l, n in les if int(n) > 0]
         out.append(f"- 원칙 {len(les)}개 중 재발: " + (", ".join(rec) if rec else "없음") + " (2번이면 코드로 막기)")
     except Exception:
