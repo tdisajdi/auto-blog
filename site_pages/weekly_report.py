@@ -100,6 +100,22 @@ def growth_section(start, end, root=ROOT, today=None):
         out.append("- 글 종류별 첫 판 통과: " + ", ".join(f"{k} {v[1]}/{v[0]}" for k, v in sorted(kinds.items())))
     else:
         out.append("- 이번 주 실행 기록 없음")
+    try:   # 11-22: 공개 전 Claude가 고친 곳 수(lab/patches) - 글 만드는 장치가 배울수록 줄어야 함
+        cnt = []     # 날짜 = 그 글을 쓴 실행 기록(lab/recheck의 log)의 시작일 - 파일 시각은 깃허브에서 모두 같아 못 씀
+        for f in glob.glob(os.path.join(root, "lab", "patches", "*.json")):
+            rc = os.path.join(root, "lab", "recheck", os.path.basename(f))
+            if not os.path.exists(rc):
+                continue
+            logn = json.load(open(rc, encoding="utf-8")).get("log") or "-"
+            for lf in glob.glob(os.path.join(root, "logs", "*", logn)):
+                day = dt.date.fromisoformat(str(json.load(open(lf, encoding="utf-8")).get("started_at", ""))[:10])
+                if start <= day <= end:
+                    cnt.append(len(json.load(open(f, encoding="utf-8"))))
+                break
+        if cnt:
+            out.append(f"- Claude 고침: 이번 주 고친 글 {len(cnt)}편, 글당 평균 {sum(cnt) / len(cnt):.1f}곳 (줄수록 좋음)")
+    except Exception:
+        pass
     try:
         st = open(os.path.join(root, "PROJECT_STATUS.txt"), encoding="utf-8").read()
         les = re.findall(r"\[(L\d+)·[^·\]]*·재발 (\d+)\]", st)

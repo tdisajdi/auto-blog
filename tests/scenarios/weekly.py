@@ -38,3 +38,9 @@ _g = "\n".join(_wr.growth_section(_dt.date(2026, 11, 16), _dt.date(2026, 11, 22)
 assert "첫 판 통과 0 · 마지막 판 통과 1 · 사실 검증 치명 지적 1개" in _g and "guide 0/1" in _g, _g
 assert "L2(2번)" in _g and "확장 1개" in _g and "확인 날이 된 확장: 기능A" in _g, _g
 print("growth ok")
+(_r / "lab" / "patches").mkdir(); (_r / "lab" / "recheck").mkdir()
+_json.dump([{"old": "a", "new": "b"}] * 3, open(_r / "lab" / "patches" / "9.json", "w"))
+_json.dump({"log": "a.json"}, open(_r / "lab" / "recheck" / "9.json", "w"))
+_g = "\n".join(_wr.growth_section(_dt.date(2026, 11, 16), _dt.date(2026, 11, 22), root=str(_r), today=_dt.date(2026, 11, 23)))
+assert "고친 글 1편, 글당 평균 3.0곳" in _g, _g
+print("patch count ok")
