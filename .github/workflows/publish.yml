@@ -578,6 +578,9 @@ jobs:
               # 11-19 공개 글 문장 몇 개만 고치기(lab/patches/<slug>.json)
               SLUG=$(echo "${{ github.event.inputs.site_pages }}" | cut -c7- | tr -cd 'a-z0-9-')
               python site_pages/patch_post.py "$SLUG" || { echo "글 고치기 실패"; echo "❌ 글 고치기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+            elif [ "${{ github.event.inputs.site_pages }}" = "tax-numbers-publish" ]; then
+              # 11-22 사용자 '공개하자' - 세금·계좌 숫자와 날짜 페이지 공개(이미 공개면 본문만 새로)
+              python site_pages/tax_numbers.py publish || { echo "세금·계좌 페이지 공개 실패"; echo "❌ 세금·계좌 페이지 공개 실패" >> "$GITHUB_STEP_SUMMARY"; }
             elif [ "${{ github.event.inputs.site_pages }}" = "tax-numbers" ]; then
               # 11-22 백로그 103 '세금·계좌 숫자와 날짜' 페이지 - 비공개 초안으로만(공개는 사용자 허락 뒤)
               python site_pages/tax_numbers.py draft || { echo "세금·계좌 페이지 실패"; echo "❌ 세금·계좌 페이지 실패" >> "$GITHUB_STEP_SUMMARY"; }
