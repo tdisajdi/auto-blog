@@ -96,7 +96,9 @@ assert "두 방식 차이" in f and "<table" in v
 print("fx hedge ok")
 
 # 계산이 없는 주제는 빈 결과, 인터넷 실패도 빈 결과(글은 가격 그래프만으로 진행)
-assert gc.guide_facts("tax-accounts", {}) == ("", "")
+_acf, _act = gc.guide_facts("tax-accounts", {})
+assert "900" in _acf and "1,350,000" in _acf and "law.go.kr" in _act and "세금 계산표" not in _acf
+assert "ISA 연간 납입 한도" in _acf and "2천만" not in _acf and "13.2" not in _acf   # 원문으로 확인 못 한 숫자는 넣지 않음
 gc._hist = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("no net"))
 assert gc.guide_facts("leverage-decay", {}) == ("", "")
 print("guide fallback ok")
@@ -143,7 +145,7 @@ assert _gp.calc_parking(_cp[:30]) is None
 print("parking calc ok")
 # 11-21: 세금 계산표는 세금 가이드 전용 - 파킹형(865)에 같은 표가 들어가 공개 글과 겹침
 import explainer_engine as _xe8
-assert _xe8.TAX_TABLE_TOPICS == {"overseas-vs-domestic-tax", "tax-accounts"}
+assert _xe8.TAX_TABLE_TOPICS == {"overseas-vs-domestic-tax"}
 print("tax table only for tax topics ok")
 # 11-22: 나라 시장 글 끝에 세계 주식시장 지도 링크
 assert "world-stock-markets" in _xe8._map_link("market-india") and _xe8._map_link("dca-vs-lump") == ""

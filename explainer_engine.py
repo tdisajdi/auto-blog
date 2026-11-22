@@ -42,9 +42,9 @@ GUIDE_TOPICS = [
     {"id": "mdd-risk", "title": "최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기",
      "tickers": ["QQQ", "SCHD", "TLT"]},
     {"id": "tax-accounts", "title": "ISA·연금저축·IRP로 ETF 살 때 꼭 알아야 할 차이",
-     "tickers": ["360750.KS", "SPY"], "tax": True,
-     # 11-21: 852가 세금 가이드(701)와 같은 계산표·결론으로 나옴(사용자 '어차피 거의 같은 거면 왜 썼나') → 계좌 규칙 자료(백로그 96) 전까지 보류
-     "hold": "세금 가이드(701)와 같은 세금 계산표를 받음 - 계좌 규칙 자료(백로그 96)를 만들기 전까지 쓰지 않음"},
+     "tickers": ["360750.KS"],
+     # 11-21: 852가 세금 가이드(701)와 같은 계산표·결론 → 11-22 계좌 규칙 자료(ondo/account_rules.py, 법령 원문)로 바꾸고 보류 풂
+     },
     {"id": "dividend-growth", "title": "배당 ETF, 배당률보다 배당성장률을 먼저 봐야 하는 이유",
      "tickers": ["SCHD", "VYM", "DGRO"]},
     {"id": "bond-duration", "title": "채권 ETF는 왜 금리가 오르면 떨어질까: 만기와 듀레이션 기초",
@@ -64,7 +64,7 @@ GUIDE_TOPICS = [
      "tickers": ["459580.KS", "488770.KS"], "tax": True},
 ]
 
-TAX_TABLE_TOPICS = {"overseas-vs-domestic-tax", "tax-accounts"}   # 세금 계산표를 받는 주제(tax-accounts는 보류 중 - 백로그 96)
+TAX_TABLE_TOPICS = {"overseas-vs-domestic-tax"}   # 세금 계산표를 받는 주제(11-22 tax-accounts는 계좌 규칙 자료로 바꿈)
 
 
 def _country_tags(topic_id):
