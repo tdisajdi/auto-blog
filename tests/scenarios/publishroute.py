@@ -118,3 +118,10 @@ def test_market_map_jump_flag():
             {"code": "FRA", "ko": "프랑스", "etf": "EWQ", "kr": "", "link": "", "cap": (2018, 2.4e12), "gdp": None}]
     h = m.build_html({"world": (2025, 141e12), "rows": rows})
     assert "2.1배" in h and "세계 대비 비중에서 뺐습니다" in h and "2018년이라" in h
+# 11-22 832·854: 덮어쓰기 두 번(앞 고침 → 첫 정리 → 최종 정리)
+_P2 = [{"old": "가 확인해야", "new": "가 확인"}, {"old": "옛 가 확인 끝", "new": "첫 정리"}, {"old": "첫 정리", "new": "최종 정리"}]
+assert apply("본문 최종 정리", _P2) == ("본문 최종 정리", []) and apply("본문 첫 정리", _P2) == ("본문 최종 정리", [])
+json.dump(_P2, open(f"{tmp}/lab/patches/9.json", "w"))
+assert pp.patches_in("9", "본문 최종 정리") and not pp.patches_in("9", "본문 첫 정리")
+print("double supersede ok")
+
