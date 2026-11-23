@@ -3,10 +3,11 @@
  "menus.json": "ok",
  "pages": {
   "draft": 1,
-  "publish": 12
+  "publish": 19
  },
  "posts": {
-  "draft": 67
+  "draft": 17,
+  "publish": 12
  },
  "templates/template-parts.json": "ok",
  "templates/templates.json": "ok"

@@ -1,0 +1,18 @@
+{
+ "ID": 666,
+ "URL": "https://ondo99.com/en/about-ondo-en/",
+ "categories": [],
+ "content": "<p>ondo is a blog that calculates the numbers used in investing and everyday life directly from public data, and explains what those numbers mean.</p>\n<h2>Why the name ondo</h2>\n<p>ondo is the Korean word for temperature, &#8220;on-do&#8221;, written in English letters just as it sounds. Just as we read the weather by its temperature, the idea is to measure where numbers such as exchange rates, interest rates and stock indexes stand right now.</p>\n<p>That is why the signs on this blog come from a thermometer. The bars on the board run from cold blue to hot red and show where a number sits within its range over the past year. Here, temperature means position, not good or bad: hot does not mean buy, and cold does not mean sell.</p>\n<p>And the temperature is taken from the point of view of someone living in Korea. That is why even overseas ETFs are calculated with returns converted into Korean won and with Korean taxes.</p>\n<h2>Who runs this blog</h2>\n<p>The person who runs this blog is not a financial professional. That is why the posts here never tell you what to buy. Instead, they explain what to look at, so that the next time you see the same number you can judge it for yourself.</p>\n<h2>How the posts are made</h2>\n<p>The numbers in each post are not copied by hand. They are downloaded from public data and calculated with code. Examples include the returns of two ETFs over the same period, how exchange rates changed a return in Korean won, and how many days it took to recover after the largest drop.</p>\n<p>Before a post is published, it is checked in order: whether its numbers match the data, whether it is easy to read, and whether it contains exaggeration or investment advice. If a number does not match the data, the post is not published.</p>\n<p>The English pages are translations of the original Korean posts. If the two versions ever differ, the Korean original is the reference.</p>\n<h2>Data sources</h2>\n<ul>\n<li>Prices and dividends: Yahoo Finance, public data from fund managers and the Korea Exchange</li>\n<li>Crude oil inventories: U.S. Energy Information Administration (EIA)</li>\n<li>Population and social statistics: Statistics Korea (KOSIS)</li>\n<li>Clinical trials and research: ClinicalTrials.gov (U.S. National Institutes of Health), OpenAlex</li>\n<li>News: each post names the outlet and links to the article</li>\n</ul>\n<p>Each post states the reference date and the calculation method for its data. If you find a wrong number or know a better source, please let us know through the <a href=\"/en/contact-en/\">contact page</a>, and we will check and correct it.</p>\n",
+ "date": "2026-11-19T14:31:30+09:00",
+ "excerpt": "<p>ondo is a blog that calculates the numbers used in investing and everyday life directly from public data, and explains what those numbers mean. Why the name ondo ondo is the Korean word for temperature, &#8220;on-do&#8221;, written in English letters just as it sounds. Just as we read the weather by its temperature, the idea [&hellip;]</p>\n",
+ "featured_image": "",
+ "menu_order": 0,
+ "metadata": [],
+ "modified": "2026-11-20T13:51:40+09:00",
+ "parent": false,
+ "slug": "about-ondo-en",
+ "status": "publish",
+ "tags": [],
+ "title": "About ondo",
+ "type": "page"
+}
