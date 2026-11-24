@@ -21,3 +21,9 @@ assert kinds["같은 숫자가 글마다 다름"] == [(1, 2)]
 _, issues, _ = lint.fix_and_check("<h1>t</h1>" + "<p>" + "가" * 2600 + "</p>" + summ)
 assert any("첫째·둘째·셋째" in i for i in issues), issues
 print("crosspost ok")
+# 11-24(873): 사실 검증 인용문의 숫자를 잘못 옮기면(21일→22일) 지적을 버림, 말만 바뀐 인용은 인정
+from ondo.writing import desk
+_t = desk._norm("이 글에서는 2026년 11월 21일까지의 가격·배당 자료를 기준으로 보고, 2021년 11월 22일부터 비교합니다.")
+assert not desk._quote_found("이 글에서는 2026년 11월 22일까지의 가격·배당 자료를 기준으로", _t)
+assert desk._quote_found("이 글에서는 2026년 11월 21일까지의 가격 배당 자료를", _t)
+print("quote ok")

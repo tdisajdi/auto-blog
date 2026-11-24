@@ -283,7 +283,15 @@ def _norm(t):
 def _quote_found(quote, text_norm):
     """AI가 인용한 문장이 실제 본문에 있는지(앞 15글자 기준). 없는 문장을 지적하면 버린다."""
     q = _norm(quote)
-    return not q or q[:15] in text_norm
+    if not q:
+        return True
+    i = text_norm.find(q[:15])
+    if i < 0:
+        return False
+    # 11-24(873): 앞 15글자는 같은데 숫자를 잘못 옮긴 인용('11월 21일'→'22일')은 버림 - 그 자리 문장에 인용문의 숫자가 다 있어야 함.
+    # 말을 조금 바꿔 옮긴 인용은 그대로 인정(숫자만 봄).
+    window = text_norm[i:i + len(q) + 20]
+    return all(n in window for n in re.findall(r"\d+(?:[.,]\d+)?", q[:60]))
 
 
 # 정리 섹션 반복 판정(11-08 개정): 섹션을 가리키는 말만('정리된·정리하여' 같은 동사는 아님), 부정문·도입부 언급은 제외.
