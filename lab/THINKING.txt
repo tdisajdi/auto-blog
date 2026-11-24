@@ -1314,4 +1314,4 @@ D10 Q: 끝? A: 합계 9, 시작 2027-02. 새 것 없음 ×2 → 멈춤.
 버린 생각: 굵은 한 줄 답 없애기(원인 아님·훑어 읽기 장치), 규칙 문장만 더 세게(이미 있음), 코드가 되풀이 문장 자동 삭제(문맥 깨짐).
 
 
-(이보다 옛 기록: lab/archive/THINKING-YYYY-MM.txt - grep -r 로 찾기)
+(이보다 옛 기록: archive/THINKING-YYYY-MM.txt - grep -r 로 찾기)

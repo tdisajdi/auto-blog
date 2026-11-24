@@ -178,6 +178,11 @@
 
 
 
+[2026-11-24 밤 - 보관함 archive/ 따로]
+■ 일하는 방식
+- 무엇: 처음 '옛 기록은 lab/archive'로 옮김 → 사용자 제안(저장만 하는 보관함, 혹시라도 읽지 않게)으로 맨 위 archive/로 옮기고 .rgignore로 검색 도구가 건너뜀(Grep에 안 잡힘 확인, 일부러 볼 때만 경로 지정). 긴 사슬 원문은 archive/에 바로, THINKING엔 결론 10줄. 다시 고칠 때는 '처음 A → 오류로 B' 한 줄로 이음(CHANGELOG도).
+  왜: lab/ 안에 두면 넓게 검색할 때 옛 기록이 같이 나와 토큰을 씀. 찬반 - 반대 '안 읽으면 옛 교훈을 잃음' → 교훈은 원칙(L)·DECISIONS·PROJECT_STATUS 마지막 한 줄로 이미 뽑아 둠 확인. 채택.
+
 [2026-11-24 밤 - 기록 크기 관리 + 다시 쓰기 옛 고침 치우기]
 ■ 일하는 방식
 - 무엇: CHANGELOG·THINKING은 최근 7일만, 옛것은 lab/archive/달별 파일로(site_pages/archive_logs.py - 이번에 CHANGELOG 3,085→1,281줄, THINKING 1,723→1,309줄, 사라진 줄 0). 큰 기록 통째로 Read 금지, THINKING 항목당 10줄 이내. 크기 한도 시험 tests/test_doc_sizes.py.
@@ -1287,4 +1292,4 @@
 - 백로그 36('~해야 합니다') 측정 후 보류: 통과 글 편당 3.6번이지만 검토는 '사소'로만 봄(통과 영향 0), 세금 신고 같은 사실 의무도 섞임.
 
 
-(이보다 옛 기록: lab/archive/CHANGELOG-YYYY-MM.txt - grep -r 로 찾기)
+(이보다 옛 기록: archive/CHANGELOG-YYYY-MM.txt - grep -r 로 찾기)
