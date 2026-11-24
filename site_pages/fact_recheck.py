@@ -64,4 +64,5 @@ def main(pid):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1]) if len(sys.argv) == 2 and sys.argv[1].isdigit() else (print(__doc__) or 1))
+    ids = [a for a in sys.argv[1:] if a.isdigit()]      # 11-24: 여러 글 한 번에(fact-recheck:701,705)
+    sys.exit(max(main(a) for a in ids) if ids else (print(__doc__) or 1))
