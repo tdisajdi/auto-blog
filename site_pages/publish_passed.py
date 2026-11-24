@@ -137,13 +137,14 @@ def site_text(pid, h):
 
 
 def first_in_category(pid, h):
-    """11-20(백로그 76): 이 글이 그 분야의 첫 공개 글이면 theme-push - 빈 분야라 숨겼던 메뉴·첫 화면 카드를 다시 보이게."""
+    """11-20(백로그 76) → 11-24: 이 글로 그 분야가 글 3편(theme_push.MIN_POSTS)이 되면 theme-push - 빈 분야라 숨겼던 메뉴·첫 화면 카드를 다시 보이게."""
     try:
         import requests
         import blog_engine as be
+        from site_pages.theme_push import MIN_POSTS
         j = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/posts/{pid}", headers=h,
                          params={"fields": "categories"}, timeout=20).json()
-        firsts = [c.get("slug") for c in (j.get("categories") or {}).values() if c.get("post_count") == 1]
+        firsts = [c.get("slug") for c in (j.get("categories") or {}).values() if c.get("post_count") == MIN_POSTS]
         if firsts:
             print("분야 첫 공개 글 → 메뉴 다시 보이게(theme-push):", firsts)
             from site_pages import theme_push

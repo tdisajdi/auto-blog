@@ -80,6 +80,7 @@ def icon_js():
 
 
 _EMPTY = None
+MIN_POSTS = 3     # 11-24: 분야 메뉴는 글 3편부터(심사 중 '글 1편짜리 분야'가 보이지 않게 - 11-21 허브 원칙, 사용자 위임으로 Claude 결정)
 
 
 def empty_categories():
@@ -94,8 +95,8 @@ def empty_categories():
         r = requests.get(f"https://public-api.wordpress.com/rest/v1.1/sites/{be.WP_SITE_ID}/categories",
                          headers={"Authorization": f"Bearer {be.WP_OAUTH_TOKEN}"}, params={"number": 200}, timeout=30)
         cats = r.json().get("categories") or []
-        _EMPTY = sorted(c["slug"] for c in cats if c.get("post_count", 1) == 0 and c.get("slug"))
-        print("글 없는 분야(메뉴에서 숨김):", _EMPTY)
+        _EMPTY = sorted(c["slug"] for c in cats if c.get("post_count", MIN_POSTS) < MIN_POSTS and c.get("slug"))
+        print(f"글 {MIN_POSTS}편 안 되는 분야(메뉴에서 숨김):", _EMPTY)
     except Exception as e:
         print("분야 글 수 확인 실패 - 메뉴 그대로:", type(e).__name__)
     return _EMPTY
