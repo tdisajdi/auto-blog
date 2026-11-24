@@ -1,7 +1,7 @@
 {
  "post": "756",
- "status": "draft",
- "model": "gemini-3.6-flash",
+ "status": "publish",
+ "model": "gemini-3.5-flash",
  "log": "20-guide-mdd-risk-2.json",
  "issues": [],
  "patch_applied": true

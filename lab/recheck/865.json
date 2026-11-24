@@ -3,6 +3,13 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "22-guide-parking-etf-2.json",
- "issues": [],
- "patch_applied": true
+ "issues": [
+  {
+   "severity": "중요",
+   "quote": "자료 시작일 기준으로 살펴보면 KODEX CD금리액티브(합성)는 2023년 6월 8일부터 연 환산 +3.20%를 나타냈습니다. KODEX 머니마켓액티브는 2024년 8월 6일부터 연 환산 +3.30%의 성과를 기록 중입니다.",
+   "problem": "두 ETF의 자료 시작일(2023년 6월 8일과 2024년 8월 6일)이 달라 집계 기간이 다른 숫자를 같은 기준인 것처럼 나란히 제시했습니다.",
+   "fix": "두 상품의 자료 시작 시점이 달라 단순 비교가 어렵다는 점을 밝히거나 최근 1년처럼 동일한 기간을 기준으로 비교하여 서술하세요."
+  }
+ ],
+ "patch_applied": false
 }

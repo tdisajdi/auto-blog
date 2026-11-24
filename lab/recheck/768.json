@@ -1,6 +1,6 @@
 {
  "post": "768",
- "status": "draft",
+ "status": "publish",
  "model": "gemini-3.6-flash",
  "log": "20-company-aapl.json",
  "issues": [],
