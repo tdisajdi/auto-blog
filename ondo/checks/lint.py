@@ -284,6 +284,12 @@ def fix_and_check(html):
     for v in VAGUE_SOURCES:
         if v in text:
             issues.append(f"확인할 수 없는 출처 표현: '{v}' - 링크 있는 기사로 바꾸거나 삭제")
+    # 11-24(L11): 정리의 '첫째·둘째·셋째' 틀이 공개·예약 12편 모두 같았음(외부 검토) - 규칙만으론 남아서 코드로
+    from ondo.checks.crosspost import summary_pattern, time_words
+    if summary_pattern(0, h):
+        issues.append("정리 섹션의 '첫째·둘째·셋째' 목록 - 모든 글이 같은 꼴이 됨. 이 글만의 '그래서 무엇이 달라지나' 1~2문장으로 쓸 것")
+    for _k, _ids, what in time_words(0, h)[:1]:   # 11-24: '국회 심의 중'처럼 시점을 타는 말은 금방 틀린 글이 됨
+        issues.append(f"{SOFT}시점을 타는 말('…{what.strip()[:40]}…') - 자료에 날짜와 근거가 없으면 빼고, 있으면 '○년 ○월 기준'을 붙일 것")
     n_tables = len(re.findall(r"<table", h, flags=re.I))
     if n_tables > 1:
         issues.append(f"표가 {n_tables}개: 표는 1개만, 나머지는 문장으로")
