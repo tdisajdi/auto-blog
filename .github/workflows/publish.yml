@@ -744,6 +744,7 @@ jobs:
           git add lab/plugin_audit.txt 2>/dev/null || true
           git add lab/translate 2>/dev/null || true
           git add lab/recheck 2>/dev/null || true
+          git add lab/patches 2>/dev/null || true
           git add lab/publish_schedule.json 2>/dev/null || true
           git add lab/sitekit_probe.txt lab/weekly_report.md 2>/dev/null || true
           git add lab/art 2>/dev/null || true
