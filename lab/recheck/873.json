@@ -3,13 +3,6 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "22-comparison-voo-qqq.json",
- "issues": [
-  {
-   "severity": "치명",
-   "quote": "이 글에서는 2026년 11월 22일까지의 가격·배당 자료를 기준으로 두 자산의 기초 정보,",
-   "problem": "사실 자료의 기간별 가격 수익률 기준일은 2026년 11월 21일인데 본문에는 2026년 11월 22일로 다르게 작성되었습니다.",
-   "fix": "기준일 날짜를 사실 자료에 맞게 '2026년 11월 21일'로 수정하세요."
-  }
- ],
+ "issues": [],
  "patch_applied": true
 }
