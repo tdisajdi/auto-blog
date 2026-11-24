@@ -1,0 +1,388 @@
+{
+ "article_type": "company",
+ "topic_id": "005930",
+ "title_seed": "삼성전자는 어떤 회사인가: 매출·낙폭·배당",
+ "category": "etf",
+ "started_at": "2026-11-25T06:20:50",
+ "mode": "single",
+ "calls": [
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 5.3,
+   "chars": 0
+  },
+  {
+   "step": "기획",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 10.0,
+   "chars": 2087
+  },
+  {
+   "step": "쓰기(한 번에)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 17.0,
+   "chars": 3883
+  },
+  {
+   "step": "검토 1(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 10,
+   "status": "ok",
+   "reason": "",
+   "sec": 20.4,
+   "chars": 473
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 175
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.5,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.7,
+   "chars": 146
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.4,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 9,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 10,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 0.6,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.9,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.3,
+   "chars": 0
+  },
+  {
+   "step": "검토 1(독자 가치)",
+   "model": "gemini-3.1-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 14.2,
+   "chars": 1012
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 24.5,
+   "chars": 3519
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 4,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 3.2,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 28.5,
+   "chars": 185
+  },
+  {
+   "step": "검토 2(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 5,
+   "status": "ok",
+   "reason": "",
+   "sec": 3.6,
+   "chars": 758
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 6,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 2.0,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 7,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.8,
+   "chars": 158
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 1,
+   "status": "503",
+   "reason": "{   \"error\": {     \"code\": 503,     \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "sec": 1.1,
+   "chars": 0
+  },
+  {
+   "step": "검토 2(독자 가치)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.6,
+   "chars": 846
+  },
+  {
+   "step": "검토 12(사실 검증)",
+   "model": "gemini-3.6-flash",
+   "key": 1,
+   "status": "ok",
+   "reason": "",
+   "sec": 29.8,
+   "chars": 197
+  },
+  {
+   "step": "검토 12(독자 편집)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 3,
+   "status": "ok",
+   "reason": "",
+   "sec": 1.4,
+   "chars": 506
+  },
+  {
+   "step": "검토 12(정책·신뢰)",
+   "model": "gemini-3.5-flash-lite",
+   "key": 4,
+   "status": "ok",
+   "reason": "",
+   "sec": 0.9,
+   "chars": 133
+  }
+ ],
+ "steps": [
+  {
+   "step": "기획",
+   "at": "06:21:10",
+   "title": "삼성전자는 어떤 회사인가: 1,233조 시총과 최근 50% 낙폭의 기록",
+   "sections": [
+    "1,233조 원 시총의 삼성전자는 어떤 사업을 하는가?",
+    "2022년부터 2025년까지의 실적 흐름은 어떠한가?",
+    "최근 10년 최고가 대비 50% 떨어진 낙폭과 배당의 실제 모습은?"
+   ],
+   "model": "gemini-3.5-flash-lite",
+   "angle": "흔한 오해나 단편적인 반응을 먼저 짚고, 자료로 더 정"
+  },
+  {
+   "step": "쓰기 방식",
+   "at": "06:21:30",
+   "mode": "single",
+   "reason": "모델 gemini-3.6-flash"
+  },
+  {
+   "step": "모델 전환",
+   "at": "06:22:29",
+   "from_model": "gemini-3.5-flash-lite",
+   "to_model": "gemini-3.1-flash-lite",
+   "reason": "앞 모델이 막힘(위 호출 기록 참고)",
+   "for_step": "검토 1(독자 가치)"
+  },
+  {
+   "step": "편집장 검토 1",
+   "at": "06:22:32",
+   "score": 0.88,
+   "passed": false,
+   "value": 0.4,
+   "value_missing": [
+    "제목 질문에 답함",
+    "판단 기준 제시",
+    "숫자 해석"
+   ],
+   "value_tip": "배당 흐름을 판단할 때 2020년처럼 특수한 해가 포함된 전체 기간 평균 대신, 최근 3년(2023~2025)과 같은 구간별 흐름을 먼저 확인하라는 구체적인 판단 기준(decision rule)을 추가할 것.",
+   "issues": [
+    "[중요·사실 검증] → [누락] 독자가 같은 종류의 숫자를 다시 볼 때 무엇을 보면 되는지(판단 기준)를 본문 섹션 안에서 자료의 숫자로 설명하는 내용이 없습니다. / 고칠 방법: 본문 섹션 안에서 실적이나 배당, 낙폭 등의 숫자를 다시 볼 때 독자가 참고할 수 있는 판단 기준을 자료의 숫자를 활용하여 설명하는 문장을 추가하세요."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 숫자 '50.1%'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '1,444원'를 5번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "fixes": [
+    "맨 글자 줄을 문단(<p>)으로 감쌈",
+    "계산표가 들어가는 글이라 작가가 만든 표 삭제"
+   ],
+   "chars": 2816
+  },
+  {
+   "step": "고쳐쓰기 1",
+   "at": "06:22:59",
+   "model": "gemini-3.6-flash",
+   "todo": 4
+  },
+  {
+   "step": "통과 확인 검토",
+   "at": "06:24:33",
+   "score": 0.97
+  },
+  {
+   "step": "편집장 검토 2",
+   "at": "06:24:33",
+   "score": 0.94,
+   "passed": true,
+   "value": 0.8,
+   "value_missing": [
+    "제목 질문에 답함"
+   ],
+   "value_tip": "배당 연평균 감소 수치 해석 시 2020년 특수성을 고려해야 한다는 점을 본문처럼 더 강조하고, 매출 및 영업이익 변화에 대한 구체적 해석을 보완하는 것.",
+   "issues": [
+    "[사소·독자 편집] '거대한 시가총액을 가진 회사도 실적 주기에 따라 영업이익이 10분의 1 수준으로 줄어들거나 주가가 반토막이 ' → 도입부 직후 문단에서 시가총액 1,233.4조 원과 실적 변동 관련 내용을 동일한 의미로 반복하여 분량을 채우고 있습니다. / 고칠 방법: 중복되는 서론 문단을 삭제하고 바로 다음 사업 부문 소개로 이어지도록 구성하십시오.",
+    "[사소·독자 편집] '삼성전자의 연간 매출은 2022년 302.2조 원에서 2025년 333.6조 원으로 10.4% 증가하며 연평' → 앞선 실적 설명 문단과 숫자가 중복되며 어미가 반복되고 있습니다. / 고칠 방법: 실적 흐름 섹션의 문장 수를 줄이고 핵심 데이터만 간결하게 배치하십시오."
+   ],
+   "lint": [
+    "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+    "[참고] 같은 섹션 숫자 되풀이: '2021년부터 2024년까지는 1,444원~1,446원 안팎을 유지하다가 2025년에 1,668원으로 늘어났…'(최근 10년 최고가 대비 50% 떨어) - 새 정보 없이 앞의 숫자만 다시 씀: 지우거나 숫자 없이 뜻만 남길 것",
+    "[참고] 같은 숫자 '50.1%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+    "[참고] 같은 숫자 '1,444원'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)"
+   ],
+   "numbers": [
+    "1,600원"
+   ],
+   "chars": 2954
+  },
+  {
+   "step": "다시 쓰기",
+   "at": "06:24:39",
+   "post_id": 809,
+   "url": "https://ondo99.com/?p=809",
+   "ok": true
+  }
+ ],
+ "result": {
+  "status": "passed_draft",
+  "title": "삼성전자는 어떤 회사인가: 1,233조 시총과 최근 50% 낙폭의 기록",
+  "url": "https://ondo99.com/?p=809",
+  "score": 0.94,
+  "issues": [
+   "[참고] 한 줄 정리에 숫자가 많음 - 숫자는 많아야 1개, 기억할 핵심 하나만 남길 것",
+   "[참고] 같은 섹션 숫자 되풀이: '2021년부터 2024년까지는 1,444원~1,446원 안팎을 유지하다가 2025년에 1,668원으로 늘어났…'(최근 10년 최고가 대비 50% 떨어) - 새 정보 없이 앞의 숫자만 다시 씀: 지우거나 숫자 없이 뜻만 남길 것",
+   "[참고] 같은 숫자 '50.1%'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[참고] 같은 숫자 '1,444원'를 4번 씀 - 같은 사실을 되풀이한 것이면 줄일 것(다른 사실이면 그대로 둠)",
+   "[사소·독자 편집] '거대한 시가총액을 가진 회사도 실적 주기에 따라 영업이익이 10분의 1 수준으로 줄어들거나 주가가 반토막이 ' → 도입부 직후 문단에서 시가총액 1,233.4조 원과 실적 변동 관련 내용을 동일한 의미로 반복하여 분량을 채우고 있습니다. / 고칠 방법: 중복되는 서론 문단을 삭제하고 바로 다음 사업 부문 소개로 이어지도록 구성하십시오.",
+   "[사소·독자 편집] '삼성전자의 연간 매출은 2022년 302.2조 원에서 2025년 333.6조 원으로 10.4% 증가하며 연평' → 앞선 실적 설명 문단과 숫자가 중복되며 어미가 반복되고 있습니다. / 고칠 방법: 실적 흐름 섹션의 문장 수를 줄이고 핵심 데이터만 간결하게 배치하십시오."
+  ]
+ },
+ "facts": "[회사 기본 정보 - Yahoo Finance 회사 정보]\n- 이름: 삼성전자 (Samsung Electronics Co., Ltd., 종목 코드 005930, 한국 상장)\n- 업종(섹터): Technology\n- 세부 업종: Consumer Electronics\n- 본사 국가: South Korea\n- 시가총액(자료 받은 날 기준): 1,233.4조 원\n- 회사 소개 원문(Yahoo, 영어 - 이 범위 안에서만 우리말로 풀어 쓸 것, 원문에 없는 제품·비중·순위는 쓰지 말 것): Samsung Electronics Co., Ltd. engages in the consumer electronics, information technology and mobile communications, and device solutions businesses worldwide. The company operates through four divisions: Device eXperience (DX), Device Solutions (DS), SDC, and Harman. The company offers smartphones, tablets, audio sounds, watches, switches, and accessories; TVs, and sound devices; appliances, including refrigerators, washing machines and dryers, vacuum cleaners, cooking appliances, dishwashers, air conditioners, and air purifiers; monitors and memory storage products; displays, and smart and LED signages; and other accessories. It also engages in venture capital investments, cloud services, network devices installation, semiconductor equipment services, digital advertising platforms, marketing, consulting, connected services provider, logistics, financing, and software design activities. In addition, the company provides toll processing and sales of semiconductors and display panels; development and sale of network solutions; manufacture of semiconductors and food; the provision of repair services for electronic devices; and development and supply of semiconductor process defect and quality control software, as well as digital televisions, foundry, system large scale integration (LSI). Further, it provides connected car systems, audio and visual products, enterprise automation solutions, and connected services. The company operates an industrial space. Samsung Electronics Co.\n[연간 실적 - Yahoo Finance 손익계산서, 회계연도 기준]\n- 2022년: 매출 302.2조 원, 영업이익 43.4조 원(영업이익률 14.4%), 순이익 54.7조 원\n- 2023년: 매출 258.9조 원, 영업이익 6.6조 원(영업이익률 2.5%), 순이익 14.5조 원\n- 2024년: 매출 300.9조 원, 영업이익 32.7조 원(영업이익률 10.9%), 순이익 33.6조 원\n- 2025년: 매출 333.6조 원, 영업이익 43.6조 원(영업이익률 13.1%), 순이익 44.3조 원\n- 매출 변화: 2022년 → 2025년 +10.4% (연평균 +3.3%)\n[가격 흔들림 - 최근 10년 일별 종가(배당 제외 가격), ondo 계산]\n- 최대 낙폭: -50.1% (고점 2026-06-18 → 바닥 2026-11-23, 떨어지는 데 158일)\n- 회복: 아직 고점 가격을 못 되찾음\n- 지금 가격의 10년 최고가 대비: -50.1%\n- 1,000만 원을 그 고점에 넣었다면 가장 낮을 때 평가액: 499만 원\n[배당 - Yahoo Finance 배당 지급 기록, 다 찬 해만, 세전]\n- 주당 연간 배당: 2020년 2,994원 → 2025년 1,668원, 5년 연평균 -11.0%\n- 지금 가격 기준 배당률: 0.94%\n- 해마다 주당 배당: 2020년 2,994원, 2021년 1,444원, 2022년 1,444원, 2023년 1,444원, 2024년 1,446원, 2025년 1,668원\n- 2020년은 다음 해보다 지급이 크게 많았음(1.5배 넘음). 시작 해가 이런 해라 연평균 증가율이 평소 흐름보다 나쁘게 나옴 - 연평균 숫자만으로 '배당이 줄고 있다'고 쓰지 말 것. 해마다 숫자를 함께 볼 것. 많았던 이유는 자료에 없으니 짐작해 쓰지 말 것\n\n\n[용어 풀이 - 이 말이 본문에 처음 나올 때 괄호나 한 문장으로 쉽게 풀어 주세요. 뜻은 아래 그대로(다르게 설명하지 말 것). 본문에 안 쓰는 말은 풀지 않아도 됩니다]\n- 최대 낙폭(MDD): 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율. 그 기간 중 가장 크게 잃었을 때의 크기\n",
+ "drafts": {
+  "1": "<h1>삼성전자는 어떤 회사인가: 1,233조 시총과 최근 50% 낙폭의 기록</h1>\n<!-- 삼성전자는 시가총액 1,233.4조 원 규모의 글로벌 기업으로 최근 최대 낙폭 -50.1%를 기록했습니다. 2022년부터 2025년까지의 연간 실적 흐름과 주당 배당금 추이를 공개 자료를 통해 알기 쉽게 정리해 드립니다. -->\n\n<p>한국 주식 시장에 상장된 삼성전자(종목 코드 005930)는 시가총액 1,233.4조 원 규모의 글로벌 IT 기업으로, 2026년 11월 23일 기준 10년 최고가 대비 -50.1%의 최대 낙폭을 기록했습니다. 하루가 다르게 변하는 주가 변동성 속에서 수많은 투자자가 이 거대한 기업의 실제 실적과 배당 흐름이 어떻게 움직이고 있는지 궁금해하곤 합니다.</p>\n\n<p>거대한 시가총액을 가진 회사도 실적 주기에 따라 영업이익이 10분의 1 수준으로 줄어들거나 주가가 반토막이 나는 상황을 피할 수 없습니다. 시가총액 1,233.4조 원이라는 숫자가 과연 어떤 사업 포트폴리오와 실적 변동, 그리고 배당 기록 위에 서 있는지 공개된 수치로 살펴보겠습니다.</p>\n\n<h3>1,233조 원 시총의 삼성전자는 어떤 사업을 하는가?</h3>\n\n<p>삼성전자는 본사가 대한민국(South Korea)에 위치한 한국 상장 기업으로 테크놀로지(Technology) 섹터 및 소비자 가전(Consumer Electronics) 세부 업종에 속해 있습니다. 전 세계를 대상으로 정보기술과 모바일 통신, 가전 및 디바이스 솔루션 사업을 영위하고 있으며 시가총액은 1,233.4조 원에 달합니다.</p>\n\n<p>회사의 주요 운영은 크게 4개 부문으로 나뉘어 이루어집니다. <strong>삼성전자는 DX, DS, SDC, Harman 등 4개 부문을 중심으로 스마트폰부터 반도체, 전장 부품에 이르는 다양한 제품 포트폴리오와 서비스를 전 세계에 제공하고 있습니다.</strong></p>\n\n<h4>🔸 4개 사업 부문과 제품 포트폴리오</h4>\n<ul>\n  <li>Device eXperience (DX): 스마트폰, 태블릿, 오디오 사운드, 시계, 스위치, 액세서리를 비롯해 TV, 사운드 장치, 냉장고, 세탁기·건조기, 청소기, 조리기구, 식기세척기, 에어컨, 공기청정기 등 가전제품을 담당합니다.</li>\n  <li>Device Solutions (DS) 및 SDC: 모니터, 메모리 저장 장치, 디스플레이, 스마트 및 LED 사이니지와 함께 반도체 위탁생산(파운드리), 시스템 LSI 사업을 운영합니다.</li>\n  <li>Harman: 커넥티드 카 시스템, 오디오 및 비주얼 제품, 기업 자동화 솔루션과 연결 서비스를 공급합니다.</li>\n  <li>기타 서비스 및 투자: 벤처 캐피털 투자, 클라우드 서비스, 네트워크 장비 설치, 디지털 광고 플랫폼, 물류, 금융, 소프트웨어 설계, 결함 및 품질 관리 소프트웨어 개발 등을 수행합니다.</li>\n</ul>\n\n<p>각 부문은 전 세계 시장을 무대로 유기적으로 연결되어 있으며 전자 기기 수리 서비스와 네트워크 솔루션 개발 등 부수적인 사업 활동도 함께 펼치고 있습니다.</p>\n\n<h3>2022년부터 2025년까지의 실적 흐름은 어떠한가?</h3>\n\n<p>기업의 거대한 규모를 파악한 뒤 많은 분이 '최근 수년간 실제 벌어들인 돈은 어떻게 변했을까?'라는 의문을 갖게 됩니다. 삼성전자의 2022년부터 2025년까지 회계연도 기준 연간 손익계산서를 보면 사업 주기에 따른 실적 변화가 명확하게 드러납니다.</p>\n\n\n\n<p>4개년 실적 흐름에서 가장 저점을 기록한 해는 2023년입니다. 이 해 영업이익은 6.6조 원까지 감소하며 영업이익률이 2.5%로 떨어졌으나, 2025년에는 매출액 333.6조 원, 영업이익 43.6조 원을 기록하며 13.1%의 영업이익률을 회복했습니다. <strong>삼성전자의 연간 매출은 2022년 302.2조 원에서 2025년 333.6조 원으로 10.4% 증가하며 연평균 3.3%의 성장률을 보였습니다.</strong></p>\n\n<h3>최근 10년 최고가 대비 50% 떨어진 낙폭과 배당의 실제 모습은?</h3>\n\n<p>주식의 가격 흔들림을 측정할 때는 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율로 그 기간 중 가장 크게 잃었을 때의 크기)을 확인하는 것이 중요합니다. 삼성전자의 최근 10년 일별 종가 자료 기준으로 계산된 최대 낙폭은 -50.1%입니다. <strong>삼성전자는 2026년 6월 18일 고점을 기록한 이후 2026년 11월 23일 바닥까지 158일 동안 -50.1%의 최대 낙폭을 기록했습니다.</strong></p>\n\n<p>만약 1,000만 원을 가장 가격이 높았던 고점에 투자했다고 가정하면, 가장 가격이 낮아졌을 때의 평가액은 499만 원까지 줄어들게 됩니다. 해당 하락 이후 현재까지 고점 가격을 다시 되찾지 못했습니다.</p>\n\n<p>한편 주가 하락폭과 별개로 배당금 지급 추이도 함께 점검해야 합니다. 해마다 지급된 주당 연간 배당금 수치는 다음과 같습니다.</p>\n\n<ul>\n  <li>2020년: 2,994원</li>\n  <li>2021년: 1,444원</li>\n  <li>2022년: 1,444원</li>\n  <li>2023년: 1,444원</li>\n  <li>2024년: 1,446원</li>\n  <li>2025년: 1,668원</li>\n</ul>\n\n<p>주당 연간 배당은 2020년 2,994원에서 2025년 1,668원으로 집계되어 5년 연평균 -11.0%의 변화를 나타냅니다. 단, 2020년 배당금이 다음 해인 2021년(1,444원)보다 1.5배 이상 크게 많았던 특수성이 있어 연평균 수치만으로 배당이 지속해서 감소한다고 단정할 수는 없습니다. 2021년부터 2024년까지는 1,444원~1,446원 안팎을 유지하다가 2025년에 1,668원으로 늘어났으며, 현재 가격 기준 삼성전자의 배당률은 0.94%입니다.</p>\n\n<h3>정리</h3>\n\n<p>삼성전자는 4대 핵심 사업 부문을 통해 300조 원대 매출과 40조 원대 영업이익을 다시 달성하는 회복세를 보여주었지만, 158일 만에 -50.1%라는 큰 가격 흔들림을 겪기도 했습니다. 이처럼 거대한 시가총액 기업이라도 사업 주기와 주가 변동성에 따라 주가와 배당률(현재 0.94%)이 크게 달라질 수 있으므로 실적과 가격 지표를 복합적으로 관찰하는 시각이 필요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 삼성전자는 연 매출 330조 원대를 회복했으나 158일간 -50.1%의 최대 낙폭을 기록한 대형 기술주입니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 삼성전자 005930 삼성전자실적 삼성전자배당 최대낙폭",
+  "2": "<h1>삼성전자는 어떤 회사인가: 1,233조 시총과 최근 50% 낙폭의 기록</h1>\n<!-- 삼성전자는 시가총액 1,233.4조 원 규모의 글로벌 기업으로 최근 최대 낙폭 -50.1%를 기록했습니다. 2022년부터 2025년까지의 연간 실적 흐름과 주당 배당금 추이를 공개 자료를 통해 알기 쉽게 정리해 드립니다. -->\n\n<p>한국 주식 시장에 상장된 삼성전자(종목 코드 005930)는 시가총액 1,233.4조 원 규모의 글로벌 IT 기업으로, 2026년 11월 23일 기준 10년 최고가 대비 -50.1%의 최대 낙폭을 기록했습니다. 하루가 다르게 변하는 주가 변동성 속에서 과연 이 거대한 시가총액 회사의 실적과 주가가 어떤 폭으로 움직였는지 확인해 볼 필요가 있습니다.</p>\n\n<p>거대한 시가총액을 가진 회사도 실적 주기에 따라 영업이익이 10분의 1 수준으로 줄어들거나 주가가 반토막이 나는 상황을 피할 수 없습니다. 시가총액 1,233.4조 원이라는 숫자가 과연 어떤 사업 포트폴리오와 실적 변동, 그리고 배당 기록 위에 서 있는지 공개된 수치로 살펴보겠습니다.</p>\n\n<h3>1,233조 원 시총의 삼성전자는 어떤 사업을 하는가?</h3>\n\n<p>삼성전자는 본사가 대한민국(South Korea)에 위치한 한국 상장 기업으로 테크놀로지(Technology) 섹터 및 소비자 가전(Consumer Electronics) 세부 업종에 속해 있습니다. 전 세계를 대상으로 정보기술과 모바일 통신, 가전 및 디바이스 솔루션 사업을 영위하고 있으며 시가총액은 1,233.4조 원에 달합니다.</p>\n\n<p>회사의 주요 운영은 크게 4개 부문으로 나뉘어 이루어집니다. <strong>삼성전자는 DX, DS, SDC, Harman 등 4개 부문을 중심으로 스마트폰부터 반도체, 전장 부품에 이르는 다양한 제품 포트폴리오와 서비스를 전 세계에 제공하고 있습니다.</strong></p>\n\n<h4>🔸 4개 사업 부문과 제품 포트폴리오</h4>\n<ul>\n  <li>Device eXperience (DX): 스마트폰, 태블릿, 오디오 사운드, 시계, 스위치, 액세서리를 비롯해 TV, 사운드 장치, 냉장고, 세탁기·건조기, 청소기, 조리기구, 식기세척기, 에어컨, 공기청정기 등 가전제품을 담당합니다.</li>\n  <li>Device Solutions (DS) 및 SDC: 모니터, 메모리 저장 장치, 디스플레이, 스마트 및 LED 사이니지와 함께 반도체 위탁생산(파운드리), 시스템 LSI 사업을 운영합니다.</li>\n  <li>Harman: 커넥티드 카 시스템, 오디오 및 비주얼 제품, 기업 자동화 솔루션과 연결 서비스를 공급합니다.</li>\n  <li>기타 서비스 및 투자: 벤처 캐피털 투자, 클라우드 서비스, 네트워크 장비 설치, 디지털 광고 플랫폼, 물류, 금융, 소프트웨어 설계, 결함 및 품질 관리 소프트웨어 개발 등을 수행합니다.</li>\n</ul>\n\n<p>각 부문은 전 세계 시장을 무대로 유기적으로 연결되어 있으며 전자 기기 수리 서비스와 네트워크 솔루션 개발 등 부수적인 사업 활동도 함께 펼치고 있습니다.</p>\n\n<h3>2022년부터 2025년까지의 실적 흐름은 어떠한가?</h3>\n\n<p>기업의 거대한 규모를 파악한 뒤 실적 숫자를 볼 때 독자는 영업이익률이 10% 이상을 유지하는지, 혹은 저점 대비 이익이 회복하는지를 주요 판단 기준으로 삼을 수 있습니다. 삼성전자의 2022년부터 2025년까지 회계연도 기준 연간 손익계산서를 보면 사업 주기에 따른 실적 변화가 명확하게 드러납니다.</p>\n\n<p>4개년 실적 흐름에서 가장 저점을 기록한 해는 2023년입니다. 이 해 영업이익은 6.6조 원까지 감소하며 영업이익률이 2.5%로 떨어졌으나, 2025년에는 매출액 333.6조 원, 영업이익 43.6조 원을 기록하며 13.1%의 영업이익률을 회복했습니다. <strong>삼성전자의 연간 매출은 2022년 302.2조 원에서 2025년 333.6조 원으로 10.4% 증가하며 연평균 3.3%의 성장률을 보였습니다.</strong></p>\n\n<h3>최근 10년 최고가 대비 50% 떨어진 낙폭과 배당의 실제 모습은?</h3>\n\n<p>주식의 가격 흔들림을 측정할 때는 최대 낙폭(MDD, 가장 높았던 값에서 가장 낮았던 값까지 떨어진 비율로 그 기간 중 가장 크게 잃었을 때의 크기)을 확인하는 것이 중요합니다. 삼성전자의 최근 10년 일별 종가 자료 기준으로 계산된 최대 낙폭은 -50.1%입니다. 독자가 주가 변동이나 배당을 볼 때 판단 기준으로 활용할 수 있는 핵심 지표는 과거 고점 대비 -50% 수준의 낙폭이 발생했을 때 자산이 반토막이 나는 리스크 수치와, 기준 배당률인 0.94% 및 주당 1,400원~1,600원대의 배당 유지력입니다. <strong>삼성전자는 2026년 6월 18일 고점을 기록한 이후 2026년 11월 23일 바닥까지 158일 동안 -50.1%의 최대 낙폭을 기록했습니다.</strong></p>\n\n<p>만약 1,000만 원을 가장 가격이 높았던 고점에 투자했다고 가정하면, 가장 가격이 낮아졌을 때의 평가액은 499만 원까지 줄어들게 됩니다. 해당 하락 이후 현재까지 고점 가격을 다시 되찾지 못했습니다.</p>\n\n<p>한편 주가 하락폭과 별개로 배당금 지급 추이도 함께 점검해야 합니다. 해마다 지급된 주당 연간 배당금 수치는 다음과 같습니다.</p>\n\n<ul>\n  <li>2020년: 2,994원</li>\n  <li>2021년: 1,444원</li>\n  <li>2022년: 1,444원</li>\n  <li>2023년: 1,444원</li>\n  <li>2024년: 1,446원</li>\n  <li>2025년: 1,668원</li>\n</ul>\n\n<p>주당 연간 배당은 2020년 2,994원에서 2025년 1,668원으로 집계되어 5년 연평균 -11.0%의 변화를 나타냅니다. 단, 2020년 배당금이 다음 해 배당보다 1.5배 이상 크게 많았던 특수성이 있어 연평균 수치만으로 배당이 지속해서 감소한다고 단정할 수는 없습니다. 2021년부터 2024년까지는 1,444원~1,446원 안팎을 유지하다가 2025년에 1,668원으로 늘어났으며, 현재 가격 기준 삼성전자의 배당률은 0.94%입니다.</p>\n\n<h3>정리</h3>\n\n<p>삼성전자는 4대 핵심 사업 부문을 통해 300조 원대 매출과 40조 원대 영업이익을 다시 달성하는 회복세를 보여주었지만, 158일 만에 대폭의 가격 흔들림을 겪기도 했습니다. 이처럼 거대한 시가총액 기업이라도 사업 주기와 주가 변동성에 따라 주가와 배당률이 크게 달라질 수 있으므로 실적과 가격 지표를 복합적으로 관찰하는 시각이 필요합니다.</p>\n\n<p><strong>한 줄 정리:</strong> 삼성전자는 연 매출 330조 원대를 회복했으나 158일간 -50.1%의 최대 낙폭을 기록한 대형 기술주입니다.</p>\n\n<p>👉 함께 보면 좋은 글: <a href=\"https://ondo99.com/2026/11/20/mdd-etf-guide/\">최대 낙폭(MDD)으로 내가 버틸 수 있는 ETF 고르기</a></p>\n\n태그: 삼성전자 005930 삼성전자실적 삼성전자배당 최대낙폭"
+ },
+ "minutes": 3.8
+}
