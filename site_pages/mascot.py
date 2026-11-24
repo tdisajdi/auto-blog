@@ -12,6 +12,10 @@ PAL = {"K": "#2b2b3a", "W": "#ffffff", "R": "#e8504a", "B": "#4a7fd8", "L": "#cf
        "Y": "#f5c542", "O": "#f08a3c", "G": "#4fb286", "g": "#bfe8d3", "r": "#ffd9d6"}
 LEGS_A = ["...K....K...", "..KK....KK.."]
 LEGS_B = ["....K..K....", "...KK..KK..."]
+# 누르면 가는 곳(11-24 사용자 요청): 역할에 맞는 페이지 - 소개 / 계산 방법(온도판) / 법령 원문 확인
+LINKS = {"ONDO": ("https://ondo99.com/about-ondo/", "온도: ondo 소개"),
+         "TICK": ("https://ondo99.com/ondo-board/", "눈금: 숫자 계산 방법(온도판)"),
+         "SOURCE": ("https://ondo99.com/tax-account-numbers/", "출처: 법령 원문으로 확인한 숫자")}
 # (영어 이름표, 한국어 이름, 역할, 설명, 몸 13줄)
 CHARS = [
     ("ONDO", "온도", "길잡이 · 시장의 '온도'를 재요",
@@ -59,10 +63,12 @@ def sprite(body, px=4, walk=True):
 
 def strip_html():
     """바닥글 바로 위 걷는 띠."""
-    walkers = "".join(
-        f'<div class="o-walker" style="animation-delay:-{i * 9}s">{sprite(c[4])}<span>{c[0]}</span></div>'
-        for i, c in enumerate(CHARS))
-    return f'<div class="o-mascots" aria-hidden="true">{walkers}</div>'
+    walkers = []
+    for i, c in enumerate(CHARS):
+        url, label = LINKS.get(c[0], ("https://ondo99.com/about-ondo/", c[1]))
+        walkers.append(f'<a class="o-walker" href="{url}" title="{label}" aria-label="{label}" '
+                       f'style="animation-delay:-{i * 9}s">{sprite(c[4])}<span>{c[0]}</span></a>')
+    return f'<div class="o-mascots">{"".join(walkers)}</div>'
 
 
 def not_found_html():
@@ -73,10 +79,14 @@ def not_found_html():
 
 CSS = """
 /* 11-24 캐릭터 띠(site_pages/mascot.py) */
-.o-mascots { position: relative; height: 84px; overflow: hidden; background: var(--o-paper, #f6f7f9); }
+.o-mascots { position: relative; height: 92px; overflow: hidden; background: var(--o-paper, #f6f7f9); }
 .o-walker { position: absolute; bottom: 4px; left: -80px; animation: o-walk 27s linear infinite; }
 .o-walker span, .o-404-mascot span { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: var(--o-px); font-size: 11px; letter-spacing: .05em; background: #2b2b3a; color: #fff; padding: 1px 7px; border-radius: 8px; white-space: nowrap; }
 .o-walker svg { display: block; }
+a.o-walker { text-decoration: none !important; cursor: pointer; padding-top: 22px; }
+.o-walker span { top: 0; }
+.o-mascots:hover .o-walker, .o-mascots:focus-within .o-walker { animation-play-state: paused; }
+.o-walker:hover span, .o-walker:focus span { background: #e8504a; }
 .o-walker .o-lb { visibility: hidden; }
 .o-walker .o-la { animation: o-step .5s steps(1) infinite; }
 .o-walker .o-lb { animation: o-step .5s steps(1) infinite reverse; }
