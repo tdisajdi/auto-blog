@@ -231,7 +231,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -286,7 +286,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -391,31 +391,27 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "기간",
+    "회계연도",
     1.1
    ],
    [
-    "MCHI 달러 기준",
+    "매출",
     1.1
    ],
    [
-    "원/달러 환율",
+    "영업이익",
     1.1
    ],
    [
-    "MCHI 원화 환산",
+    "영업이익률",
     1.1
    ],
    [
-    "SPY 달러 기준",
+    "순이익",
     1.1
    ],
    [
-    "TIGER 차이나CSI300",
-    1.1
-   ],
-   [
-    "Yahoo Finance 종가(배당 반영), 거래일 기",
+    "Yahoo Finance 손익계산서(회계연도 기준), ",
     2.8
    ]
   ]
@@ -652,7 +648,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -690,7 +686,7 @@
    ],
    [
     "li-top",
-    2861,
+    2887,
     "0px"
    ]
   ]
@@ -707,7 +703,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_54550297.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -745,7 +741,7 @@
    ],
    [
     "li-top",
-    1322,
+    1348,
     "0px"
    ]
   ]
@@ -812,31 +808,27 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "기간",
+    "회계연도",
     1.1
    ],
    [
-    "MCHI 달러 기준",
+    "매출",
     1.1
    ],
    [
-    "원/달러 환율",
+    "영업이익",
     1.1
    ],
    [
-    "MCHI 원화 환산",
+    "영업이익률",
     1.1
    ],
    [
-    "SPY 달러 기준",
+    "순이익",
     1.1
    ],
    [
-    "TIGER 차이나CSI300",
-    1.1
-   ],
-   [
-    "Yahoo Finance 종가(배당 반영), 거래일 기",
+    "Yahoo Finance 손익계산서(회계연도 기준), ",
     2.8
    ]
   ]
