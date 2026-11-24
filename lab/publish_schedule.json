@@ -1,5 +1,5 @@
 {
- "mode": "live",
+ "mode": "dry",
  "note": "백로그 97 - site_pages/schedule_tick.py가 10분 점검마다 읽음. dry=출력만, live=공개. 사용자 속도 규칙은 코드가 다시 확인.",
  "items": [
   {
