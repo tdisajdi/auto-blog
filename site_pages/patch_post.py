@@ -19,11 +19,11 @@ def apply(content, patches, facts=""):
     probs = []
     facts_nums = set(re.findall(r"\d[\d,.]*", facts or ""))
     def _done_later(k, text):
-        """11-22: 나중 고침이 k번 고침의 새 문구를 통째로 덮어썼고, 그 나중 고침도 이미 들어갔거나 또 덮어쓰였나(여러 번 겹쳐도 따라감)."""
+        """11-22: 나중 고침이 k번 고침의 새 문구를 통째로(11-24: 또는 그 일부를) 덮어썼고, 그 나중 고침도 이미 들어갔거나 또 덮어쓰였나(여러 번 겹쳐도 따라감)."""
         nk = patches[k].get("new")
         for j in range(k + 1, len(patches)):
             q = patches[j]
-            if nk and nk in q.get("old", "") and q.get("new") and (q["new"] in text or _done_later(j, text)):
+            if nk and (nk in q.get("old", "") or (len(q.get("old", "")) >= 8 and q["old"] in nk)) and q.get("new") and (q["new"] in text or _done_later(j, text)):
                 return True
         return False
     for k, p in enumerate(patches):
