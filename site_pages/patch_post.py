@@ -111,4 +111,6 @@ def main(slug):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 2 and re.fullmatch(r"\d+(-\d+)+", sys.argv[1]):   # 11-24: 여러 글 한 번에(patch:701-705-756)
+        sys.exit(max(main(s) for s in sys.argv[1].split("-")))
     sys.exit(main(sys.argv[1]) if len(sys.argv) == 2 else (print(__doc__) or 1))

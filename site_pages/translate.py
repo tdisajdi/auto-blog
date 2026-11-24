@@ -239,8 +239,8 @@ def push(pid):
 
 
 def main(argv):
-    if len(argv) == 3 and argv[1] == "export":
-        return export(argv[2])
+    if len(argv) >= 3 and argv[1] == "export":   # 11-24: 여러 글 한 번에(tr:export:701:705:756)
+        return max(export(a) for a in argv[2:])
     if len(argv) == 3 and argv[1] in ("check", "push") and argv[2].isdigit():
         return {"check": check, "push": push}[argv[1]](int(argv[2]))
     print(__doc__)
