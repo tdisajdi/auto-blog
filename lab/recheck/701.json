@@ -3,12 +3,6 @@
  "status": "publish",
  "model": "gemini-3.6-flash",
  "log": "19-guide-overseas-vs-domestic-tax.json",
- "issues": [
-  {
-   "severity": "중요",
-   "quote": "이익 규모별 예상 세금 (계좌별) 한 해 이익 해외 상장 ETF (일반계좌) 국내 상장 해외지수 ETF (일반계좌)",
-   "problem": "시스템이 표를 자동으로 삽입하므로 본문에 텍스트 형태로 표를 직접 작성하면 안 됩니다.",
-   "fix": "본문에 중복 삽입된 텍스트 표와 관련 가정 문구를 삭제하세요."
-  }
- ]
+ "issues": [],
+ "patch_applied": true
 }
