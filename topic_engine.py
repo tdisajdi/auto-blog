@@ -83,6 +83,19 @@ UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.3
 # 공용 도우미
 # ============================================================
 
+
+def _retire_old_fixes(post_id):
+    """11-24: 같은 자리에 다시 쓰면 옛 본문용 고침(lab/patches)·다시 검증(lab/recheck)은 맞지 않음 →
+    이름을 바꿔 치움(지우지 않음). 안 치우면 새 글 공개 판정이 옛 고침을 찾다가 막힘(809 등 보류 9편 다시 쓰기)."""
+    import datetime
+    root = os.path.dirname(os.path.abspath(__file__))
+    tag = datetime.datetime.utcnow().strftime("%Y%m%d%H%M")
+    for sub in ("patches", "recheck"):
+        f = os.path.join(root, "lab", sub, f"{post_id}.json")
+        if os.path.exists(f):
+            os.replace(f, os.path.join(root, "lab", sub, f"{post_id}.before-rewrite-{tag}.json"))
+            print(f"ℹ️ 다시 쓰기: 옛 {sub}/{post_id}.json → before-rewrite-{tag}")
+
 def google_news(query, max_results=5):
     """구글 뉴스 RSS 검색(한국어). 링크는 구글 뉴스 주소라 본문 수집은 안 되고 제목·매체만 쓴다."""
     url = f"https://news.google.com/rss/search?q={urllib.parse.quote_plus(query)}&hl=ko&gl=KR&ceid=KR:ko"
@@ -330,6 +343,8 @@ def produce_article(*, kind_label, title_seed, facts_text, rules, category_label
         url = replace_url if ok else "글 바꾸기 실패(위 로그 참고)"
         blog_engine.LAST_PUBLISHED_POST_ID = post_id
         log.step("다시 쓰기", post_id=post_id, url=replace_url, ok=ok)
+        if ok:
+            _retire_old_fixes(post_id)
     else:
         ok, url = publish_to_wordpress(title, body, tags=tags, status=status, slug=slug, featured_image=featured)
     score_text = "검수 실패" if score is None else f"{score:.2f}"
