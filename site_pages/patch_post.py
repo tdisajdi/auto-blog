@@ -27,6 +27,8 @@ def apply(content, patches, facts=""):
                 return True
         return False
     for k, p in enumerate(patches):
+        if p.get("applied"):
+            continue        # 11-24: 이미 글에 들어간 고침(성공한 실행이 표시) - 823·865·873이 옛 고침 때문에 세 번 멈춤(L17 재발 → 코드로)
         n = content.count(p["old"])
         if n == 0 and p.get("new") and p["new"] not in content and _done_later(k, content):
             continue        # 11-22: 나중 고침이 이 고침의 새 문구를 통째로 덮어씀(정리 섹션 새로 쓰기) - 이미 지나간 고침
@@ -104,10 +106,17 @@ def main(slug):
         data["title"] = new_ti
     r2 = requests.post(base + str(j["ID"]), headers=h, data=data, timeout=60)
     after = (r2.json() or {}).get("status") if r2.ok else r2.text[:200]
-    print(f"고침 {len(patches)}곳: {r2.status_code} 상태 {j['status']}→{after} {j.get('URL')}")
-    for p in patches:
+    fresh = [p for p in patches if not p.get("applied")]
+    print(f"고침 {len(fresh)}곳(이미 들어간 {len(patches) - len(fresh)}곳 건너뜀): {r2.status_code} 상태 {j['status']}→{after} {j.get('URL')}")
+    for p in fresh:
         print(" -", p.get("why", ""))
-    return 0 if r2.ok and after == j["status"] else 1
+    ok = r2.ok and after == j["status"]
+    if ok:      # 11-24: 들어간 고침에 표시 → 다음 실행은 그 줄을 보지 않음(워크플로가 lab/patches를 커밋)
+        for p in patches:
+            p["applied"] = True
+        path = os.path.join(ROOT, "lab", "patches", f"{slug}.json")
+        open(path, "w", encoding="utf-8").write(json.dumps(patches, ensure_ascii=False, indent=1) + "\n")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
