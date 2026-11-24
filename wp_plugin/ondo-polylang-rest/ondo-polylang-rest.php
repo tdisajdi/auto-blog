@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -292,14 +292,14 @@ function ondo_seo_is_home() {
 add_filter( 'rank_math/frontend/title', function ( $title ) {
 	if ( ! ondo_seo_is_home() ) { return $title; }
 	return 'en' === ondo_seo_lang()
-		? 'ondo99 - A blog that works out the numbers behind investing and everyday life'
-		: 'ondo99 - 투자와 생활 속 숫자를 직접 계산해 보는 블로그';
+		? 'ondo99 - ETF, dividend and currency numbers on the same basis'
+		: 'ondo99 - ETF·배당·환율 숫자를 같은 기준으로 계산하는 블로그';
 }, 20 );
 add_filter( 'rank_math/frontend/description', function ( $desc ) {
 	if ( ! ondo_seo_is_home() ) { return $desc; }
 	return 'en' === ondo_seo_lang()
-		? 'ETF returns, dividends, fees and taxes worked out with code from public prices and statistics, from a Korean investor\'s point of view. Information only, not investment advice.'
-		: '공개된 가격과 통계로 ETF 수익률·배당·보수·세금을 코드로 직접 계산해 정리합니다. 투자 권유가 아닌 정보 제공용 블로그입니다.';
+		? 'What does a 0.1% ETF fee gap cost after 10 years? ETF returns, dividends and currency effects, calculated over the same period on the same basis. Information only, not investment advice.'
+		: 'ETF 보수 0.1% 차이는 10년 뒤 얼마일까? ETF·배당·환율을 같은 기간, 같은 기준으로 계산해 숫자로 보여 줍니다. 투자 권유가 아닌 정보 제공용입니다.';
 }, 20 );
 add_filter( 'rank_math/json_ld', function ( $data, $jsonld = null ) {
 	if ( ! is_array( $data ) ) { return $data; }

@@ -1,6 +1,6 @@
 """사이트 설정 정리(2026-11-19 사용자 허락: '4번은 알아서 최선으로').
 
-  python site_pages/site_tune.py apply   - 아래 Jetpack 기능 끄기 + 사이트 한 줄 소개(태그라인) 넣기
+  python site_pages/site_tune.py apply   - 아래 Jetpack 기능 끄기 + 사이트 한 줄 소개(태그라인) 넣기 + 사이트 아이콘(11-24)
   python site_pages/site_tune.py undo    - 끈 기능 다시 켜기 + 태그라인 비우기(되돌리기)
 
 끄는 것과 이유(lab/THINKING.txt 11-19 플러그인 최적화):
@@ -20,7 +20,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from site_pages.pll_plugin import call, _auth  # noqa: E402
 
 OFF = ["infinite-scroll", "sitemaps", "seo-tools", "likes", "comment-likes", "gravatar-hovercards", "post-by-email", "latex"]
-TAGLINE = "공개 자료로 직접 계산해 숫자를 풀어 쓰는 블로그"
+TAGLINE = "ETF·배당·환율 숫자를 같은 기준으로 계산하는 블로그"   # 11-24 추상적 자랑(직접 계산) → 무엇을 계산하는지
+ICON = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lab", "mascot", "site-icon-512.png")  # 11-24 W 마크 대신 온도 캐릭터
 
 
 def modules():
@@ -39,6 +40,31 @@ def set_tagline(text):
     after = (r.json().get("updated") or {}).get("blogdescription") if ok else r.text[:200]
     print("- 태그라인:", r.status_code, json.dumps(after, ensure_ascii=False))
     return ok
+
+
+def set_icon():
+    """사이트 아이콘(검색 결과·탭에 보이는 작은 그림)을 온도 캐릭터로. 이미 같은 이름 파일이 아이콘이면 건너뜀."""
+    import requests
+    h, S = _auth()
+    base = f"https://public-api.wordpress.com/rest/v1.1/sites/{S}"
+    cur = requests.get(f"{base}/settings", headers=h, timeout=30)
+    cur_id = (cur.json().get("settings") or {}).get("site_icon") if cur.ok else None
+    if cur_id:
+        m = requests.get(f"{base}/media/{cur_id}", headers=h, timeout=30)
+        if m.ok and "ondo-site-icon" in (m.json().get("file") or ""):
+            print("- 사이트 아이콘: 이미 온도 캐릭터")
+            return True
+    with open(ICON, "rb") as f:
+        up = requests.post(f"{base}/media/new", headers=h, timeout=60,
+                           files={"media[]": ("ondo-site-icon.png", f, "image/png")})
+    media = (up.json().get("media") or [{}])[0] if up.ok else {}
+    if not media.get("ID"):
+        print("- 사이트 아이콘 올리기 실패:", up.status_code, up.text[:200])
+        return False
+    r = requests.post(f"{base}/settings", headers=h, data={"site_icon": media["ID"]}, timeout=30)
+    after = (r.json().get("updated") or {}).get("site_icon") if r.ok else r.text[:200]
+    print("- 사이트 아이콘:", r.status_code, after)
+    return r.ok and str(after) == str(media["ID"])
 
 
 def run(active):
@@ -61,6 +87,8 @@ def run(active):
     if wrong:
         print("뜻대로 안 바뀐 것:", wrong)
     if not set_tagline(TAGLINE if not active else ""):
+        bad += 1
+    if not active and not set_icon():
         bad += 1
     return 1 if (bad or wrong) else 0
 
