@@ -1,13 +1,5 @@
 [
   {
-    "timestamp": "2026-11-19T18:03:44.903792",
-    "total_calls": 1,
-    "by_model": {
-      "gemini-3.6-flash": 1
-    },
-    "model_switch_events": {}
-  },
-  {
     "timestamp": "2026-11-19T18:06:00.395780",
     "total_calls": 1,
     "by_model": {
@@ -819,5 +811,13 @@
     "model_switch_events": {
       "gemini-3.5-flash-lite": 1
     }
+  },
+  {
+    "timestamp": "2026-11-24T21:36:16.994901",
+    "total_calls": 1,
+    "by_model": {
+      "gemini-3.6-flash": 1
+    },
+    "model_switch_events": {}
   }
 ]
