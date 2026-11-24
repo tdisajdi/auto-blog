@@ -30,6 +30,8 @@ def css_block():
         css += "\n" + icons.css_rules()
     except Exception as e:
         print("소제목 장식 CSS 못 만듦:", type(e).__name__, e)
+    from site_pages import mascot   # 11-24 캐릭터 띠·404
+    css += mascot.CSS
     fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap">'
              '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">'
@@ -119,6 +121,8 @@ def glossary_json():
 
 
 def fill(content):
+    from site_pages import mascot   # 11-24 바닥글 위 걷는 캐릭터·404 캐릭터
+    content = content.replace("{{MASCOT_STRIP}}", mascot.strip_html()).replace("{{MASCOT_404}}", mascot.not_found_html())
     content = content.replace("{{ICON_JS}}", icon_js()).replace("{{GLOSSARY_JSON}}", glossary_json())
     return hide_empty(board_links(content.replace("{{THERMO_INK}}", svg(True)).replace("{{THERMO}}", svg())))
 
