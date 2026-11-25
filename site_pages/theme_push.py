@@ -176,9 +176,51 @@ def main(mode):
     return 0 if not bad else 1
 
 
+OK_FILE = os.path.join(ROOT, "lab", "theme_ok.json")
+
+
+def theme_hash():
+    """테마 원본 파일(theme/ 전체 + 마스코트) 지문 - 모양을 바꾸면 달라짐."""
+    import hashlib
+    h = hashlib.sha256()
+    files = sorted(os.path.join(dp, f) for dp, _d, fs in os.walk(os.path.join(ROOT, "theme")) for f in fs
+                   if not f.endswith(".pyc"))
+    files.append(os.path.join(ROOT, "site_pages", "mascot.py"))
+    for f in files:
+        h.update(os.path.relpath(f, ROOT).encode())
+        h.update(open(f, "rb").read())
+    return h.hexdigest()[:16]
+
+
+def gate():
+    """11-25 사용자 '규칙 왜 무시해?' - 디자인을 시안·확인 없이 두 번 올림(L21) → 확인 기록이 있는 테마만 올림.
+    올리기 전에: python site_pages/theme_push.py approve "사용자 확인: 무엇(날짜)" 또는 "버그 고침: 무엇(모양 안 바뀜)"."""
+    import json
+    try:
+        ok = json.load(open(OK_FILE, encoding="utf-8"))
+    except Exception:
+        ok = {}
+    if ok.get("hash") != theme_hash():
+        print("❌ 테마 확인 기록이 지금 테마와 다름 - 올리지 않음. 모양이 바뀌었으면 시안을 보이고 사용자 확인을 받은 뒤 approve.")
+        return False
+    print(f"확인 기록: {ok.get('note')}")
+    return True
+
+
 if __name__ == "__main__":
     m = sys.argv[1] if len(sys.argv) > 1 else ""
+    if m == "approve":
+        import json
+        note = " ".join(sys.argv[2:]).strip()
+        if not (note.startswith("사용자 확인:") or note.startswith("버그 고침:")):
+            print("사용: theme_push.py approve \"사용자 확인: …\" 또는 \"버그 고침: …(모양 안 바뀜)\"")
+            sys.exit(2)
+        open(OK_FILE, "w", encoding="utf-8").write(json.dumps({"hash": theme_hash(), "note": note}, ensure_ascii=False, indent=1) + "\n")
+        print("기록함:", note)
+        sys.exit(0)
     if m not in ("push", "restore"):
-        print("사용: theme_push.py push|restore")
+        print("사용: theme_push.py push|restore|approve")
         sys.exit(2)
+    if m == "push" and not gate():
+        sys.exit(1)
     sys.exit(main(m))
