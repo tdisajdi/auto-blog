@@ -59,7 +59,7 @@ def plotly_html(spec):
         data.append(tr)
     layout = {"title": {"text": spec.get("title", ""), "font": {"size": 16}}, "template": "plotly_white",
               "barmode": "group", "height": 400, "margin": {"t": 60, "b": 50, "l": 60, "r": 20},
-              "yaxis": {"title": unit, "tickformat": ","}, "legend": {"orientation": "h", "y": -0.18},
+              "yaxis": {"title": unit, "tickformat": ",.2~f", "rangemode": "tozero", "zeroline": True, "zerolinecolor": "#94a3b8"}, "legend": {"orientation": "h", "y": -0.18},
               "hovermode": "x unified" if kind == "line" else "closest"}
     js = (
         "<script>(function(){"
