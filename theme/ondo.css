@@ -519,3 +519,8 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-read .wp-block-post-content > .ondo-art img.emoji, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] img.emoji { display: none !important; }
 .o-read .wp-block-post-content > .ondo-art strong, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] strong { color: var(--o-ink) !important; }
 .o-read .wp-block-post-content > p[style*="font-size:12px"] { margin-top: 16px !important; padding-top: 12px; border-top: 1px solid var(--o-line); }
+
+/* 11-25 사용자 확인: 글 끝 각주 글씨 PC 12.5 / 휴대폰 13(링크가 한 줄에 들어가고 누르기 편한 크기), 안내 문구 PC 11 */
+html body .o-read .wp-block-post-content > .ondo-art, html body .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { font-size: 12.5px !important; line-height: 1.7 !important; }
+html body .o-read .wp-block-post-content > p[style*="font-size:12px"] { font-size: 11px !important; }
+@media (max-width: 600px) { html body .o-read .wp-block-post-content > .ondo-art, html body .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { font-size: 13px !important; } html body .o-read .wp-block-post-content > p[style*="font-size:12px"] { font-size: 12px !important; } }
