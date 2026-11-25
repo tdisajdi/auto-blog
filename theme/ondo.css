@@ -514,3 +514,8 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-read .sharedaddy .sd-content ul { margin-bottom: 0 !important; }
 .o-read .o-byline { margin-top: 26px !important; }
 
+/* 11-25 사용자 확인(B안): 글 끝 출처는 상자 없이 각주처럼 - 본문(읽기 층) 규칙: 도트·이름표·그림자 없이 깔끔하게 */
+.o-read .wp-block-post-content > .ondo-art, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { background: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; margin: 14px 0 0 !important; font-size: 13.5px !important; line-height: 1.75 !important; color: var(--o-ink-2) !important; }
+.o-read .wp-block-post-content > .ondo-art img.emoji, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] img.emoji { display: none !important; }
+.o-read .wp-block-post-content > .ondo-art strong, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] strong { color: var(--o-ink) !important; }
+.o-read .wp-block-post-content > p[style*="font-size:12px"] { margin-top: 16px !important; padding-top: 12px; border-top: 1px solid var(--o-line); }
