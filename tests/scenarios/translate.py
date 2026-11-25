@@ -23,3 +23,7 @@ print("translate ok")
 from site_pages.translate import _merge_jo_eok as _mj
 assert _mj("약 1조 7,357억 달러") == "약 17357억 달러" and _mj("333.6조 원") == "333.6조 원"
 print("jo-eok merge ok")
+# 11-25 823: 한국어 '3배'와 영어 '3x'는 같은 숫자(대조가 3x를 못 읽어 예약 영어판이 멈춤)
+from site_pages import translate as tr
+assert not tr.compare("<p>기간별 실제 수익률 vs 3배 단순 계산</p>", "<p>Actual return vs 3x simple calculation</p>"), "3x"
+print("3x ok")

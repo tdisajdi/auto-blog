@@ -47,4 +47,12 @@ assert d2["items"][0].get("failed") and st.pick(d2["items"], T("2026-12-01T09:20
 d3 = {"mode": "live", "items": [{"id": 5, "kind": "en", "at": "2026-12-01T06:07:00Z"}]}
 st.run(d3, T("2026-12-01T06:10:00"), status=stat, english=lambda pid: 2); assert not d3["items"][0].get("done") and not d3["items"][0].get("failed")
 st.run(d3, T("2026-12-01T06:20:00"), status=stat, english=lambda pid: 0); assert d3["items"][0]["done"]
+# 11-25: 영어판은 예정 6시간 안에 미리 대조, 어긋나면 한 번만 알림, 3시간 뒤 다시 대조
+al = []; st._alert = lambda t: al.append(t)
+d4 = {"mode": "live", "items": [{"id": 6, "kind": "en", "at": "2026-12-01T12:47:00Z"}]}
+st.run(d4, T("2026-12-01T05:00:00"), status=stat, precheck=lambda pid: 1); assert "pre" not in d4["items"][0]   # 7시간 전 - 아직
+st.run(d4, T("2026-12-01T07:00:00"), status=stat, precheck=lambda pid: 1); assert d4["items"][0]["pre"] == "어긋남" and len(al) == 1
+st.run(d4, T("2026-12-01T08:00:00"), status=stat, precheck=lambda pid: 1); assert len(al) == 1                  # 3시간 안엔 다시 안 함
+st.run(d4, T("2026-12-01T10:10:00"), status=stat, precheck=lambda pid: 1); assert len(al) == 1                  # 같은 문제 - 알림 한 번
+st.run(d4, T("2026-12-01T13:20:00") - dt.timedelta(hours=3), status=stat, precheck=lambda pid: 0)
 print("schedule ok")

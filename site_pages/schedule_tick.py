@@ -108,10 +108,49 @@ def sync_done(items, status=_wp_status):
     return changed
 
 
-def run(data, now, status=_wp_status, publish=None, english=None):
-    """한 번 처리. (바뀌었나, 출력 줄). publish/english는 시험에서 바꿔 끼움."""
+PRE_H, PRE_AGAIN_H = 6, 3
+
+
+def _precheck(pid):
+    """0 대조 통과 / 1 어긋남·영어 파일 없음. 올리지는 않음(원문 새로 받기 → 대조만)."""
+    from site_pages import translate
+    if not os.path.exists(os.path.join(translate.DIR, f"{pid}.en.html")):
+        print("영어 파일 없음")
+        return 1
+    if translate.export(str(pid)):
+        return 1
+    return translate.check(int(pid))
+
+
+def precheck_due(items, now, check=None):
+    """11-25 823 영어판이 예정 시각에야 대조에 걸려 3시간 멈춤(사용자 '다음에 일어나지 않게') →
+    예정 6시간 안에 든 영어판은 미리 대조하고(3시간마다 다시 - 그 사이 한국어를 고쳤을 수 있음), 어긋나면 그때 바로 알림."""
+    changed = False
+    for it in items:
+        if it.get("kind") != "en" or it.get("done") or it.get("failed"):
+            continue
+        left = _t(it["at"]) - now
+        if not (dt.timedelta(0) < left <= dt.timedelta(hours=PRE_H)):
+            continue
+        last = it.get("pre_at")
+        if last and now - _t(last) < dt.timedelta(hours=PRE_AGAIN_H):
+            continue
+        rc = (check or _precheck)(it["id"])
+        was_bad = it.get("pre") == "어긋남"
+        it["pre_at"], it["pre"] = _z(now), ("통과" if rc == 0 else "어긋남")
+        changed = True
+        print(f"미리 대조: {it['id']} 영어판 → {it['pre']}")
+        if rc != 0 and not was_bad:          # 새로 어긋날 때만 알림(같은 문제로 3시간마다 울리지 않게)
+            _alert(f"⚠️ 영어판 미리 대조 어긋남: {it['id']} (예정 {it['at']}) - 공개 전에 고칠 것, 로그 확인")
+    return changed
+
+
+def run(data, now, status=_wp_status, publish=None, english=None, precheck=None):
+    """한 번 처리. (바뀌었나, 출력 줄). publish/english/precheck는 시험에서 바꿔 끼움."""
     items = data.get("items") or []
     changed = sync_done(items, status)
+    if data.get("mode") == "live":
+        changed = precheck_due(items, now, precheck) or changed
     it, notes = pick(items, now)
     for n in notes:
         print("미룸:", n)
