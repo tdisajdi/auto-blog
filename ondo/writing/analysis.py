@@ -186,7 +186,8 @@ def ticker_facts(ticker, d, ea, today_label):
              _line("최근 1년 배당 합계 증가율(그 전 1년 합계 대비, 코드 계산 - 여러 해 평균이 아니라 한 해 변화)", d.get("dividend_growth_rate")),
              _line("1,000만 원을 한 번에 넣었다면(가격 기준 계산, 배당 제외)", d.get("simulated_result")),
              _line("환율 영향", d.get("fx_exposure")),
-             _line("계좌", ea.OVERSEAS_ACCOUNT_NOTE if overseas else "국내 상장 ETF라 ISA·연금저축·IRP 계좌로도 살 수 있음"),
+             # 11-25: 계좌 사실을 '꼭 넣을 내용'으로 줘서 모든 글에 같은 문단 + 검토가 빼면 '누락' 지적(823) → 선택으로 밝힘(원칙 L1·L13)
+             _line("계좌(이 글의 주제가 아니면 빠져도 누락 아님)", ea.OVERSEAS_ACCOUNT_NOTE if overseas else "국내 상장 ETF라 ISA·연금저축·IRP 계좌로도 살 수 있음"),
              ]
     # 세금: 코드가 직접 계산(가정을 이름표에 붙인다)
     y = _num(d.get("yield"))
