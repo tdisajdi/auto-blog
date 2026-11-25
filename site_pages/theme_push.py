@@ -89,6 +89,16 @@ def empty_categories():
     if _EMPTY is not None:
         return _EMPTY
     _EMPTY = []
+    try:      # 11-25: 공개 wp-json은 한국어·영어 분야를 다 줌(WP.com 목록은 한국어만 → 영어 메뉴에 빈 Energy·Society가 남았음, 사용자 지적)
+        import requests
+        r = requests.get("https://ondo99.com/wp-json/wp/v2/categories", params={"per_page": 100, "_fields": "slug,count"}, timeout=30)
+        cats = r.json() if r.ok else []
+        if cats and all("count" in c for c in cats):
+            _EMPTY = sorted(c["slug"] for c in cats if c["count"] < MIN_POSTS and c.get("slug"))
+            print(f"글 {MIN_POSTS}편 안 되는 분야(메뉴에서 숨김, 한·영):", _EMPTY)
+            return _EMPTY
+    except Exception as e:
+        print("공개 분야 목록 실패 - WP.com 목록으로:", type(e).__name__)
     try:
         import requests
         import blog_engine as be
