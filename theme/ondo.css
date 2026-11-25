@@ -545,3 +545,7 @@ html body .o-read .o-tsbtn{margin:0 0 6px 0}
  html body .o-read .ondo-calc td:first-child,html body .o-read .ondo-calc th:first-child{position:sticky;left:0;z-index:1;background:var(--o-card,#fffdf7) !important;box-shadow:2px 0 0 var(--o-line,#e3dccb)}
  html body .o-read .ondo-calc th:first-child{background:var(--o-ink,#18202c) !important}}
 html body .o-read .ondo-calc tr:nth-child(odd) td{background:#f7f4ec !important}html body .o-read figure.ondo-chart figcaption{color:var(--o-ink-3,#5c6575) !important}
+
+/* 11-25 사용자 확인: 첫 화면 문구 질문 링크 */
+html body .o-hero-sub a.o-hero-q { color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+html body .o-hero-sub a.o-hero-q:hover { color: var(--o-hot); }

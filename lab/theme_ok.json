@@ -1,5 +1,8 @@
 {
- "hash": "ee0efb78aec8fa6e",
- "note": "버그 고침: 테마 DESIGN.md 안내 줄 참조만 고침(모양 안 바뀜)",
- "shots": []
+ "hash": "a1d41dcefd944c19",
+ "note": "사용자 확인: 11-25 첫 화면 문구 추천안 A",
+ "shots": [
+  "hero_ko_pc.png",
+  "hero_ko_m.png"
+ ]
 }
