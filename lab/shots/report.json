@@ -231,7 +231,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_39713512.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -241,7 +241,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    78,
+    52,
     "6px",
     ""
    ],
@@ -254,7 +254,7 @@
    [
     "DIV.wp-block-post-date",
     31,
-    "0px",
+    "26.0938px",
     ""
    ],
    [
@@ -286,7 +286,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_39713512.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -296,7 +296,7 @@
    ],
    [
     "H3.wp-block-post-title",
-    78,
+    52,
     "6px",
     ""
    ],
@@ -309,7 +309,7 @@
    [
     "DIV.wp-block-post-date",
     31,
-    "0px",
+    "26.0938px",
     ""
    ],
    [
@@ -389,20 +389,7 @@
  },
  "post-mock-desk": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "구분",
-    1.1
-   ],
-   [
-    "수익률",
-    1.1
-   ],
-   [
-    "Yahoo Finance 종가(배당 제외 가격), 최근",
-    2.8
-   ]
-  ]
+  "lowContrast": []
  },
  "home-mobile": {
   "overflow": 0,
@@ -636,7 +623,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_39713512.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -646,13 +633,13 @@
    ],
    [
     "H3.wp-block-post-title",
-    78,
+    52,
     "6px",
     ""
    ],
    [
     "DIV.wp-block-post-excerpt",
-    120,
+    144,
     "0px",
     ""
    ],
@@ -669,12 +656,12 @@
    ],
    [
     "li-top",
-    2396,
+    2393,
     "0px"
    ],
    [
     "li-top",
-    2887,
+    2885,
     "0px"
    ]
   ]
@@ -691,7 +678,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_39713512.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -701,13 +688,13 @@
    ],
    [
     "H3.wp-block-post-title",
-    78,
+    52,
     "6px",
     ""
    ],
    [
     "DIV.wp-block-post-excerpt",
-    120,
+    144,
     "0px",
     ""
    ],
@@ -724,12 +711,12 @@
    ],
    [
     "li-top",
-    856,
+    854,
     "0px"
    ],
    [
     "li-top",
-    1348,
+    1346,
     "0px"
    ]
   ]
@@ -794,16 +781,7 @@
  },
  "post-mock-mobile": {
   "overflow": 0,
-  "lowContrast": [
-   [
-    "수익률",
-    1.1
-   ],
-   [
-    "Yahoo Finance 종가(배당 제외 가격), 최근",
-    2.8
-   ]
-  ]
+  "lowContrast": []
  },
  "_broken_links": [
   [
