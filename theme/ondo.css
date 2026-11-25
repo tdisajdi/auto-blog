@@ -524,3 +524,24 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 html body .o-read .wp-block-post-content > .ondo-art, html body .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { font-size: 12.5px !important; line-height: 1.7 !important; }
 html body .o-read .wp-block-post-content > p[style*="font-size:12px"] { font-size: 11px !important; }
 @media (max-width: 600px) { html body .o-read .wp-block-post-content > .ondo-art, html body .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { font-size: 13px !important; } html body .o-read .wp-block-post-content > p[style*="font-size:12px"] { font-size: 12px !important; } }
+
+/* 11-25 사용자 확인: 표·그래프 도트 느낌(single.html 같은 날 스크립트와 짝) */
+html body .o-read .ondo-calc table { display: table !important; width: 100% !important; }
+html body .o-read .ondo-calc td { text-align: right !important; font-variant-numeric: tabular-nums; padding: 9px 12px !important; }
+html body .o-read .ondo-calc td:first-child { text-align: center !important; font-weight: 700; color: var(--o-ink); }
+html body .o-read .ondo-calc th { text-align: center !important; padding: 9px 10px !important; }
+html body .o-read .ondo-calc tr:nth-child(odd) td { background: #f7f4ec !important; }
+html body.single-post .o-read .wp-block-post-content .ondo-calc td.o-key, html body .o-read .ondo-calc td.o-key { color: var(--o-hot, #ec4a37) !important; font-weight: 800; }
+html body .o-read .o-px-tag{display:inline-block;font-family:var(--o-px);font-size:11px;letter-spacing:.1em;color:#fff;background:var(--o-ink,#18202c);padding:3px 8px;margin-bottom:6px}
+html body .o-read figure.ondo-chart{border:2px solid var(--o-ink,#18202c);box-shadow:4px 4px 0 var(--o-ink,#18202c);background:var(--o-card,#fffdf7);padding:14px 14px 10px}
+html body .o-read .o-tsbtn{display:inline-flex;gap:0;margin-left:10px;vertical-align:top}
+html body .o-read .o-tsbtn button{font:700 12px/1 inherit;padding:5px 12px;border:2px solid var(--o-ink,#18202c);background:var(--o-card,#fffdf7);color:var(--o-ink,#18202c);cursor:pointer;margin-left:-2px}
+html body .o-read .o-tsbtn button.on{background:#f4c44e}
+html body .o-read .o-rng{margin-left:8px}
+html body .o-read .o-tsbtn{margin:0 0 6px 0}
+@media (max-width:600px){html body .o-read .ondo-calc td,html body .o-read .ondo-calc th{padding:8px 4px !important;font-size:13px;letter-spacing:-.02em}
+ html body .o-read figure.ondo-chart{padding:12px 8px 8px;box-shadow:3px 3px 0 var(--o-ink,#18202c)}}
+@media (max-width:600px){html body .o-read .ondo-calc table{display:block !important;overflow-x:auto;width:100% !important}
+ html body .o-read .ondo-calc td:first-child,html body .o-read .ondo-calc th:first-child{position:sticky;left:0;z-index:1;background:var(--o-card,#fffdf7) !important;box-shadow:2px 0 0 var(--o-line,#e3dccb)}
+ html body .o-read .ondo-calc th:first-child{background:var(--o-ink,#18202c) !important}}
+html body .o-read .ondo-calc tr:nth-child(odd) td{background:#f7f4ec !important}html body .o-read figure.ondo-chart figcaption{color:var(--o-ink-3,#5c6575) !important}
