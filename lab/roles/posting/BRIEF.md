@@ -18,6 +18,8 @@
   - 다시 쓰기(임시글): inputs `{"topic": "<주제 ID>", "replace_url": "https://ondo99.com/?p=<글번호>", "publish": "false"}`
   - 최신본 받기: `{"site_pages": "tr:export:<글번호>"}` → 끝나면 `git pull` 후 `lab/translate/<글번호>.ko.html`
 - 10분마다 도는 점검이 대기 중인 실행을 취소할 수 있다 → 실행 목록에서 cancelled면 다시 넣는다.
+- 실행을 넣기 전에 대기(queued/pending) 중인 실행이 있는지 먼저 본다 - 대기열이 하나라 새 실행이 대기 중인 것(회장의 검증 등)을 밀어내 취소시킨다(11-25 832 때 873 검증이 취소됨).
+- CHANGELOG.txt·PROJECT_STATUS.txt는 고치지 않는다(회장 몫 - 같은 줄을 같이 고치면 합칠 때 충돌). 기록은 LESSONS·IMPROVE와 PR 본문에.
 - 실행이 '성공'이어도 믿지 않는다 - 로그에서 점수·통과/미달·'고침 N곳' 줄을 읽는다. [L3]
 - Gemini 하루 한도가 끝나면(한국 오후 5시쯤 풀림) 다시 쓰기를 멈추고 회장에게 알린다. [CLAUDE.md 일하는 방식]
 
