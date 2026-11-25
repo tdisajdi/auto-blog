@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -203,6 +203,40 @@ add_action( 'rest_api_init', function () {
 				foreach ( $pairs as $l2 => $i2 ) { $t = (array) $st['translations']; if ( ! isset( $t[ $l2 ] ) || (int) $t[ $l2 ] !== $i2 ) { $ok = false; } }
 			}
 			return array( 'linked' => $ok, 'terms' => $out );
+		},
+	) );
+} );
+
+// 1.4.3 (2026-11-25): 글 공유 미리보기 그림(og:image)을 '계산노트' 카드로 - 사용자 확정. Rank Math의 글별 공유 그림 칸에 넣음
+// (블로그 화면의 대표 이미지·본문은 그대로). POST /ondo/v1/og-image {post, media} / GET /ondo/v1/og-image/<post>
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'ondo/v1', '/og-image', array(
+		'methods'             => 'POST',
+		'permission_callback' => function () { return current_user_can( 'edit_posts' ); },
+		'args'                => array( 'post' => array( 'required' => true ), 'media' => array( 'required' => true ) ),
+		'callback'            => function ( $request ) {
+			$post  = (int) $request['post'];
+			$media = (int) $request['media'];
+			if ( ! get_post( $post ) || ! current_user_can( 'edit_post', $post ) ) {
+				return new WP_Error( 'ondo_bad_post', '글 없음: ' . $post, array( 'status' => 400 ) );
+			}
+			$url = wp_get_attachment_url( $media );
+			if ( ! $url ) {
+				return new WP_Error( 'ondo_bad_media', '그림 없음: ' . $media, array( 'status' => 400 ) );
+			}
+			update_post_meta( $post, 'rank_math_facebook_image', $url );
+			update_post_meta( $post, 'rank_math_facebook_image_id', $media );
+			update_post_meta( $post, 'rank_math_twitter_use_facebook', 'on' );
+			return array( 'post' => $post, 'url' => $url );
+		},
+	) );
+	register_rest_route( 'ondo/v1', '/og-image/(?P<post>\d+)', array(
+		'methods'             => 'GET',
+		'permission_callback' => function () { return current_user_can( 'edit_posts' ); },
+		'callback'            => function ( $request ) {
+			$post = (int) $request['post'];
+			return array( 'post' => $post, 'url' => get_post_meta( $post, 'rank_math_facebook_image', true ),
+				'twitter_use_facebook' => get_post_meta( $post, 'rank_math_twitter_use_facebook', true ) );
 		},
 	) );
 } );
