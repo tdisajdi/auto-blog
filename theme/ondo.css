@@ -504,3 +504,13 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-conews a { color: var(--o-ink) !important; text-decoration: none !important; }
 .o-conews a:hover { text-decoration: underline !important; }
 .o-conews-more { color: var(--o-navy-3, #3d6dff); font-weight: 600; white-space: nowrap; }
+
+/* 11-25 사용자 '글 끝이 텅텅 비어 보임 - 좁게': 구분선·표지 그림·출처·안내 문구·공유하기·ondo 소개 사이 위아래 여백을 줄임(내용·순서는 그대로) */
+.o-read .o-endsep { margin: 32px 0 14px !important; }
+.o-read .wp-block-post-content > .ondo-art, .o-read .wp-block-post-content > div[style*="background:#f8f9fa"] { margin-top: 12px !important; }
+.o-read .wp-block-post-content > p[style*="font-size:12px"] { margin-top: 12px !important; margin-bottom: 0 !important; }
+.o-read .sharedaddy { margin-top: 0 !important; }
+.o-read .sharedaddy h3.sd-title { margin-top: 30px !important; padding-top: 40px !important; margin-bottom: 10px !important; }
+.o-read .sharedaddy .sd-content ul { margin-bottom: 0 !important; }
+.o-read .o-byline { margin-top: 26px !important; }
+
