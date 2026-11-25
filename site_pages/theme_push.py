@@ -211,11 +211,24 @@ if __name__ == "__main__":
     m = sys.argv[1] if len(sys.argv) > 1 else ""
     if m == "approve":
         import json
-        note = " ".join(sys.argv[2:]).strip()
+        args = sys.argv[2:]
+        shots = []
+        if "--shots" in args:      # 11-25: 시안을 PC·휴대폰 둘 다 만들어 보였는지
+            k = args.index("--shots")
+            shots, args = args[k + 1:], args[:k]
+        note = " ".join(args).strip()
+        sys.path.insert(0, os.path.join(ROOT, "site_pages"))
+        import design_lint
+        if design_lint.run():
+            print("❌ 디자인 규칙 검사에 걸림 - 확인 기록 안 남김(고치거나, 사용자 확인 받은 새 색이면 그 줄에 /* 색 허용: 이유 */)")
+            sys.exit(1)
+        if note.startswith("사용자 확인:") and (len(shots) < 2 or not all(os.path.exists(f) for f in shots)):
+            print("❌ 사용자 확인 기록엔 사용자에게 보인 시안 그림 2장(PC·휴대폰)이 필요: approve \"사용자 확인: …\" --shots pc.png 휴대폰.png")
+            sys.exit(2)
         if not (note.startswith("사용자 확인:") or note.startswith("버그 고침:")):
             print("사용: theme_push.py approve \"사용자 확인: …\" 또는 \"버그 고침: …(모양 안 바뀜)\"")
             sys.exit(2)
-        open(OK_FILE, "w", encoding="utf-8").write(json.dumps({"hash": theme_hash(), "note": note}, ensure_ascii=False, indent=1) + "\n")
+        open(OK_FILE, "w", encoding="utf-8").write(json.dumps({"hash": theme_hash(), "note": note, "shots": [os.path.basename(f) for f in shots]}, ensure_ascii=False, indent=1) + "\n")
         print("기록함:", note)
         sys.exit(0)
     if m not in ("push", "restore"):
