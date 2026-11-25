@@ -20,7 +20,11 @@ def test_every_writer_rule_verbatim():
 
 def test_manual_refs_exist():
     """0~6번이 가리키는 R·C·D 번호가 원문 칸에 실제로 있는지(목록이 바뀌어 번호가 밀리면 잡음)."""
-    b = open(pb.BRIEF, encoding="utf-8").read()
+    for path, _f in pb.ROLES:
+        _refs_ok(open(path, encoding="utf-8").read())
+
+
+def _refs_ok(b):
     head, auto = b[:b.index(pb.START)], b[b.index(pb.START):]
     for kind in "RCD":
         have = {int(n) for n in re.findall(rf"^{kind}(\d+)\. ", auto, re.M)}

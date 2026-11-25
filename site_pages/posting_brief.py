@@ -93,24 +93,64 @@ def build():
     return "\n".join(out)
 
 
-def current():
-    s = open(BRIEF, encoding="utf-8").read()
+EN_BRIEF = os.path.join(ROOT, "lab", "roles", "english", "BRIEF.md")
+EN_DOC_LINES = [
+    ("lab/DECISIONS.txt", ["- 11-19 사람 읽기 통과 글만 Claude가 영어 번역", "- 11-20 텔레그램 요청 없이", "- 11-20 속도:",
+                           "- 11-11(11-22·11-24 다시 확인)"]),
+    ("CLAUDE.md", ["- 사용자는 금융 전문가가 아니다.", "- 상록 글은 요청 없이도", "- 공개 속도(애드센스"]),
+    ("design/DESIGN_NOTES.txt", ["- 영어판 본문 위 'Contents' 상자", "- 표지 그림 설명(class=\"ondo-art\")", "- 세계 주식시장 지도 링크"]),
+    ("PROJECT_STATUS.txt", ["- [L17·", "- [L24·"]),
+]
+
+
+def _doc_lines(spec, tag="D"):
+    out, j = [], 0
+    for fn, heads in spec:
+        lines = open(os.path.join(ROOT, fn), encoding="utf-8").read().split("\n")
+        for h in heads:
+            hit = [l for l in lines if l.startswith(h)]
+            if len(hit) != 1:
+                raise SystemExit(f"{fn}: '{h}'로 시작하는 줄이 {len(hit)}개 - 줄 머리를 고칠 것")
+            j += 1
+            out.append(f"{tag}{j}. ({fn}) {hit[0][2:].strip()}")
+    return out
+
+
+def build_english():
+    src = open(os.path.join(ROOT, "site_pages", "translate.py"), encoding="utf-8").read()
+    tree = ast.parse(src)
+    doc = ast.get_docstring(tree)
+    fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "compare")
+    body = "\n".join(src.split("\n")[fn.lineno - 1:fn.end_lineno])
+    out = [START, "", "## 7. 원문 규칙 - 그대로 (요약 없음)", "",
+           "### R. 번역 도구와 대조 규칙 (site_pages/translate.py - 대조가 어긋나면 올라가지 않음)", "```", doc, "```",
+           "대조 코드 원문(compare) - 이 조건을 모두 통과해야 함:", "```python", body, "```", "",
+           "### D. 영어판에 닿는 결정·원칙 (원문 그대로)"] + _doc_lines(EN_DOC_LINES) + ["", END]
+    return "\n".join(out)
+
+
+def current(path=None):
+    s = open(path or BRIEF, encoding="utf-8").read()
     if START in s and END in s:
         return s[s.index(START):s.index(END) + len(END)]
     return None
 
 
+ROLES = [(BRIEF, build), (EN_BRIEF, build_english)]
+
+
 def write():
-    s = open(BRIEF, encoding="utf-8").read()
-    new = build()
-    s = (s[:s.index(START)] + new + s[s.index(END) + len(END):]) if START in s else (s.rstrip("\n") + "\n\n" + new + "\n")
-    open(BRIEF, "w", encoding="utf-8").write(s)
-    print("BRIEF AUTO 칸 갱신:", new.count("\nR"), "R ·", new.count("\nC"), "C")
+    for path, fn in ROLES:
+        s = open(path, encoding="utf-8").read()
+        new = fn()
+        s = (s[:s.index(START)] + new + s[s.index(END) + len(END):]) if START in s else (s.rstrip("\n") + "\n\n" + new + "\n")
+        open(path, "w", encoding="utf-8").write(s)
+        print(os.path.relpath(path, ROOT), "원문 칸 갱신")
 
 
 if __name__ == "__main__":
     if sys.argv[1:] == ["check"]:
-        ok = current() == build()
+        ok = all(current(p) == f() for p, f in ROLES)
         print("지침서 원문 규칙:", "원본과 같음" if ok else "원본과 다름 - python site_pages/posting_brief.py 로 갱신")
         sys.exit(0 if ok else 1)
     write()
