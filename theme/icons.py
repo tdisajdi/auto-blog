@@ -81,6 +81,10 @@ def css_rules():
         f'{sel}::after {{ content: ""; position: absolute; left: 0; top: 0; width: 32px; height: 32px; background: no-repeat center / 32px 32px; image-rendering: pixelated; }}',
         # 글마다 들어 있는 회색 구분선(소제목 앞 div)은 이제 소제목 줄이 대신함 → 숨김
         '.o-read .wp-block-post-content > div[style*="height:1px"] { display: none !important; }',
+        # 11-25 사용자: '이 글 공유하기' 줄이 글자 폭에서 끊김(Jetpack 제목이 글자 폭 상자) → 소제목처럼 한 줄 끝까지
+        f"{sel}.sd-title, .o-read .sharedaddy h3.sd-title {{ display: block !important; width: 100% !important; }}",
+        # 11-25 사용자: 정리와 표지 그림·출처 상자 사이에도 구분선 - 소제목과 같은 도트 줄(아이콘 없이)
+        ".o-read .o-endsep { height: 4px; margin: 44px 0 26px; background: repeating-linear-gradient(90deg, var(--h3-line) 0 6px, transparent 6px 10px); }",
     ]
     out += [f'{sel}[data-ic="{k}"]::after {{ background-image: url("{uri(soft_icon(k))}"); }}' for k in SIL]
     return "\n".join(out)

@@ -186,6 +186,8 @@ if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories,ta
 /* 11-25: 옛 그래프 세로축 형식(",")이 0 눈금을 -2.7e-16으로 보임(776, 사용자 지적) - 이미 공개된 글도 화면에서 고침. 새 글은 charts.py에서 고침. */
 (function(){function fx(){if(!window.Plotly)return;[].slice.call(document.querySelectorAll('.js-plotly-plot')).forEach(function(g){try{var y=(g.layout||{}).yaxis||{};if(y.tickformat===','){Plotly.relayout(g,{'yaxis.tickformat':',.2~f','yaxis.rangemode':'tozero','yaxis.zeroline':true});}}catch(e){}});}
 window.addEventListener('load',function(){fx();setTimeout(fx,1500);setTimeout(fx,5000);});})();
+/* 11-25 사용자: 정리 뒤 표지 그림·출처 상자 앞에 구분선(소제목 줄과 같은 도트 줄) */
+(function(){var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var k=[].slice.call(c.children).filter(function(e){return /^\s*(🖼️?|📌)?\s*(표지 그림|데이터 출처|Cover art|Data sources?)/i.test(e.textContent||'');})[0];if(k){var d=document.createElement('div');d.className='o-endsep';k.parentNode.insertBefore(d,k);}})();
 </script>
 <script>(function(){var s=document.getElementById('o-post-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');(new Function(t))();}})();</script>
 <!-- /wp:html --></article>
