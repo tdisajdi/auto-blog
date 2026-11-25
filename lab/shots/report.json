@@ -7,7 +7,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -23,14 +23,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     31,
-    "47.8438px",
+    "0px",
     ""
    ],
    [
@@ -58,7 +58,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -74,14 +74,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     34,
-    "47.8438px",
+    "0px",
     ""
    ],
    [
@@ -109,7 +109,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=1024%2C576&ssl=1 | true | 999 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -125,14 +125,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     34,
-    "47.8438px",
+    "0px",
     ""
    ],
    [
@@ -168,7 +168,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -184,14 +184,14 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
    [
     "DIV.wp-block-post-date",
     31,
-    "47.8438px",
+    "0px",
     ""
    ],
    [
@@ -231,7 +231,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 359 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -286,7 +286,7 @@
     "FIGURE.wp-block-post-featured-image",
     189,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?w=1200&ssl=1 | true | 1200 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?w=1200&ssl=1 | true | 1200 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -391,27 +391,15 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "회계연도",
+    "구분",
     1.1
    ],
    [
-    "매출",
+    "수익률",
     1.1
    ],
    [
-    "영업이익",
-    1.1
-   ],
-   [
-    "영업이익률",
-    1.1
-   ],
-   [
-    "순이익",
-    1.1
-   ],
-   [
-    "Yahoo Finance 손익계산서(회계연도 기준), ",
+    "Yahoo Finance 종가(배당 제외 가격), 최근",
     2.8
    ]
   ]
@@ -424,7 +412,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -440,7 +428,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
@@ -457,7 +445,7 @@
    ],
    [
     "li-top",
-    2252,
+    2299,
     "0px"
    ],
    [
@@ -475,7 +463,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -491,7 +479,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
@@ -508,7 +496,7 @@
    ],
    [
     "li-top",
-    943,
+    991,
     "0px"
    ],
    [
@@ -526,7 +514,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -542,7 +530,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
@@ -559,7 +547,7 @@
    ],
    [
     "li-top",
-    971,
+    1019,
     "0px"
    ],
    [
@@ -585,7 +573,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_10809877.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_77350206.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -601,7 +589,7 @@
    ],
    [
     "DIV.wp-block-post-excerpt",
-    72,
+    120,
     "0px",
     ""
    ],
@@ -618,7 +606,7 @@
    ],
    [
     "li-top",
-    810,
+    857,
     "0px"
    ],
    [
@@ -648,7 +636,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 334 | lazy"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -703,7 +691,7 @@
     "FIGURE.wp-block-post-featured-image",
     175,
     "0px",
-    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_66033543.png?resize=768%2C432&ssl=1 | true | 390 | auto"
+    "https://i0.wp.com/ondo99.com/wp-content/uploads/2026/11/cover_art_88244031.png?resize=768%2C432&ssl=1 | true | 390 | auto"
    ],
    [
     "DIV.taxonomy-category.wp-block-post-terms",
@@ -808,27 +796,15 @@
   "overflow": 0,
   "lowContrast": [
    [
-    "회계연도",
+    "구분",
     1.1
    ],
    [
-    "매출",
+    "수익률",
     1.1
    ],
    [
-    "영업이익",
-    1.1
-   ],
-   [
-    "영업이익률",
-    1.1
-   ],
-   [
-    "순이익",
-    1.1
-   ],
-   [
-    "Yahoo Finance 손익계산서(회계연도 기준), ",
+    "Yahoo Finance 종가(배당 제외 가격), 최근",
     2.8
    ]
   ]
