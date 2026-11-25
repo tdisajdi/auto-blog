@@ -682,6 +682,9 @@ jobs:
               # 11-19 사용자 결정: 연습 초안 모두 휴지통으로(30일 안 복구 가능) - 백업이 안 되면 지우지 않음
               python site_pages/export.py || { echo "백업 실패 - 지우지 않음"; exit 0; }
               python site_pages/drafts_fix.py trash || { echo "초안 휴지통 옮기기 실패"; echo "❌ 초안 휴지통 옮기기 실패" >> "$GITHUB_STEP_SUMMARY"; }
+            elif [[ "${{ github.event.inputs.site_pages }}" == render* ]]; then
+              # 11-25: 공개 글 화면 점검(그래프 눈금·깨진 그림·가로 넘침·같은 상자 두 번) + 휴대폰 화면 lab/shots/render
+              (pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null 2>&1 && python site_pages/render_check.py $(echo "${{ github.event.inputs.site_pages }}" | cut -c8- | tr -cd '0-9-' | tr '-' ' ')) || { echo "화면 점검에서 문제 발견"; echo "❌ 화면 점검에서 문제 발견(lab/render_check.json)" >> "$GITHUB_STEP_SUMMARY"; }
             elif [[ "${{ github.event.inputs.site_pages }}" == og:* ]]; then
               # 11-25: 글 공유 미리보기 그림을 계산노트 카드로(og:823-826)
               python site_pages/og_image.py $(echo "${{ github.event.inputs.site_pages }}" | cut -c4- | tr -cd '0-9-' | tr '-' ' ') || { echo "공유 그림 실패"; echo "❌ 공유 그림 실패" >> "$GITHUB_STEP_SUMMARY"; }
@@ -748,6 +751,7 @@ jobs:
           git add lab/translate 2>/dev/null || true
           git add lab/recheck 2>/dev/null || true
           git add lab/patches 2>/dev/null || true
+          git add lab/render_check.json 2>/dev/null || true
           git add lab/publish_schedule.json 2>/dev/null || true
           git add lab/sitekit_probe.txt lab/weekly_report.md 2>/dev/null || true
           git add lab/art 2>/dev/null || true
