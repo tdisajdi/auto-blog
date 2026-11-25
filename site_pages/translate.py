@@ -17,7 +17,7 @@ sys.path.insert(0, ROOT)
 DIR = os.path.join(ROOT, "lab", "translate")
 _HEAD = re.compile(r"^\s*<!--\s*title:\s*(.+?)\s*\|\s*slug:\s*([\w-]+)\s*\|\s*excerpt:\s*(.*?)\s*-->\s*", re.S)
 
-_EN_NUM = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*(%p|%|percentage points?|trillion|billion|million|thousand|times\b)?", re.I)   # times = 한국어 '배'(11-19)
+_EN_NUM = re.compile(r"(?<![\w.])(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?\s*(%p|%|percentage points?|trillion|billion|million|thousand|times\b|x\b)?", re.I)   # times = 한국어 '배'(11-19)
 _EN_SCALE = {"trillion": 1e12, "billion": 1e9, "million": 1e6, "thousand": 1e3}
 _KO_SCALE = {"조": 1e12, "억": 1e8, "만": 1e4}
 
