@@ -186,6 +186,47 @@ if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories,ta
 /* 11-25: 옛 그래프 세로축 형식(",")이 0 눈금을 -2.7e-16으로 보임(776, 사용자 지적) - 이미 공개된 글도 화면에서 고침. 새 글은 charts.py에서 고침. */
 (function(){function fx(){if(!window.Plotly)return;[].slice.call(document.querySelectorAll('.js-plotly-plot')).forEach(function(g){try{var y=(g.layout||{}).yaxis||{};if(y.tickformat===','){Plotly.relayout(g,{'yaxis.tickformat':',.2~f','yaxis.rangemode':'tozero','yaxis.zeroline':true});}}catch(e){}});}
 window.addEventListener('load',function(){fx();setTimeout(fx,1500);setTimeout(fx,5000);});})();
+/* 11-25 사용자 확인: 표(핵심 '실제' 열 빨강, '차이'→'실제 − 계산') + 움직이는 그래프에 도트 느낌(도트 막대·값 표시·잉크 축·종이색 격자). 움직임·마우스 값은 그대로. */
+(function(){
+ /* 표: 핵심 열('실제')을 빨갛게, '차이' 머리를 풀어 씀 */
+ [].slice.call(document.querySelectorAll('.o-read .ondo-calc table')).forEach(function(t){
+   var hs=[].slice.call(t.querySelectorAll('tr:first-child th')); var ki=-1;
+   hs.forEach(function(h,i){var s=h.textContent.trim(); if(/실제|Actual/i.test(s)&&ki<0)ki=i; if(s==='차이'&&hs.some(function(x){return /×\s*3|x3/.test(x.textContent)}))h.textContent='실제 − 계산';});
+   if(ki>=0)[].slice.call(t.querySelectorAll('tr')).forEach(function(r){var c=r.children[ki]; if(c&&c.tagName==='TD')c.classList.add('o-key');});
+ });
+ /* 막대그래프 → 도트 막대(값을 막대 끝에) */
+})();
+(function(){
+ var INK='#18202c', LINE='#e3dccb', PAL=['#ec4a37','#3d6dff','#f4c44e','#2bb3c0'];
+ var FONT='Pretendard, "Noto Sans KR", system-ui, sans-serif';
+ function px(gd){
+  var d=gd.data||[]; if(!d.length)return;
+  var yt=(gd.layout.yaxis||{}).title;var unit=(typeof yt==='string'?yt:(yt||{}).text)||'';
+  d.forEach(function(t,i){var c=PAL[i%PAL.length];
+   if(t.type==='bar'){
+    Plotly.restyle(gd,{'marker.color':c,'marker.line.color':INK,'marker.line.width':2,
+     'marker.pattern.shape':'.','marker.pattern.fgcolor':'rgba(255,255,255,.55)','marker.pattern.size':7,'marker.pattern.solidity':.35,'marker.pattern.fillmode':'overlay','marker.pattern.bgcolor':c,
+     text:[t.y.map(function(v){return (v>0?'+':'')+(+v).toFixed(1)+(unit==='%'?'%':'');})],
+     texttemplate:'%{text}',textposition:'outside',cliponaxis:false,
+     'textfont.color':INK,'textfont.size':13,'textfont.family':FONT,
+     hovertemplate:'%{x} · %{fullData.name}<br><b>%{y:+.1f}'+(unit==='%'?'%':'')+'</b><extra></extra>'},[i]);
+   } else {
+    Plotly.restyle(gd,{'line.color':c,'line.width':2.5,'marker.symbol':'square','marker.size':6,'marker.color':c},[i]);
+   }});
+  Plotly.relayout(gd,{
+   'font.family':FONT,'font.color':INK,'paper_bgcolor':'rgba(0,0,0,0)','plot_bgcolor':'#fffdf7',
+   'title.font.size':15,'title.font.color':INK,'title.x':0.02,'title.xanchor':'left',
+   'xaxis.showline':true,'xaxis.linecolor':INK,'xaxis.linewidth':2,'xaxis.ticks':'','xaxis.tickfont.size':13,
+   'yaxis.showline':false,'yaxis.gridcolor':LINE,'yaxis.griddash':'dot','yaxis.gridwidth':1,'yaxis.zerolinecolor':INK,'yaxis.zerolinewidth':2,
+   'yaxis.tickfont.color':'#5c6575','yaxis.ticksuffix':unit==='%'?'%':'','yaxis.title.text':'',
+   'legend.font.size':13,'legend.itemsizing':'constant','bargap':0.32,'bargroupgap':0.12,
+   'hoverlabel.bgcolor':INK,'hoverlabel.bordercolor':INK,'hoverlabel.font.color':'#fff','hoverlabel.font.family':FONT,
+   'margin.t':56,'uniformtext.minsize':12,'uniformtext.mode':'show','margin.l':48});
+  var fig=gd.closest('figure'); if(fig&&!fig.querySelector('.o-px-tag')){var tg=document.createElement('div');tg.className='o-px-tag';tg.textContent='DATA';fig.insertBefore(tg,fig.firstChild);}
+ }
+ function run(){if(!window.Plotly)return 0;var n=0;[].slice.call(document.querySelectorAll('.o-read .js-plotly-plot')).forEach(function(g){if(g.__px||!g.data)return;g.__px=1;try{px(g);}catch(e){}n++;});return n;}
+ var k=0,t=setInterval(function(){run();if(++k>40)clearInterval(t);},750);
+})();
 /* 11-25 사용자: 정리 뒤 표지 그림·출처 상자 앞에 구분선(소제목 줄과 같은 도트 줄) */
 (function(){var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var k=[].slice.call(c.children).filter(function(e){return /^\s*(🖼️?|📌)?\s*(표지 그림|데이터 출처|Cover art|Data sources?)/i.test(e.textContent||'');})[0];if(k){var d=document.createElement('div');d.className='o-endsep';k.parentNode.insertBefore(d,k);}})();
 /* 11-25 사용자 확인(B안): 글 끝 각주 순서 - 데이터 출처를 먼저, 표지 그림을 뒤로 + 머리의 🖼·📌 기호 뺌 */
