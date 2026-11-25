@@ -188,6 +188,19 @@ if(pm&&window.fetch){fetch('/wp-json/wp/v2/posts/'+pm[1]+'?_fields=categories,ta
 window.addEventListener('load',function(){fx();setTimeout(fx,1500);setTimeout(fx,5000);});})();
 /* 11-25 사용자: 정리 뒤 표지 그림·출처 상자 앞에 구분선(소제목 줄과 같은 도트 줄) */
 (function(){var c=document.querySelector('.o-read .wp-block-post-content');if(!c)return;var k=[].slice.call(c.children).filter(function(e){return /^\s*(🖼️?|📌)?\s*(표지 그림|데이터 출처|Cover art|Data sources?)/i.test(e.textContent||'');})[0];if(k){var d=document.createElement('div');d.className='o-endsep';k.parentNode.insertBefore(d,k);}})();
+/* 11-25 사용자 '글 끝 상자가 허접해 보임': 표지 그림·데이터 출처·안내 문구를 옆 칸 카드와 같은 모양(검은 테두리·그림자·이름표) 한 장으로 */
+(function(){var c=document.querySelector('.o-read .wp-block-post-content');if(!c||c.querySelector('.o-endcard'))return;
+var kids=[].slice.call(c.children);var en=document.documentElement.lang.indexOf('en')===0;
+function find(re){return kids.filter(function(e){return re.test((e.textContent||'').trim());})[0];}
+var src=find(/^(📌)?\s*(데이터 출처|Data sources?)/i),art=find(/^(🖼️?)?\s*(표지 그림|Cover art)/i);
+var note=kids.filter(function(e){return e.tagName==='P'&&/(정보 제공용|for information only|informational|not investment advice|does not recommend)/i.test(e.textContent||'');}).pop();
+if(!src&&!art)return;
+function body(box){var b=box.cloneNode(true);[].slice.call(b.querySelectorAll('img.emoji')).forEach(function(i){i.remove();});var s=b.querySelector('strong,b');if(s)s.remove();while(b.firstChild&&(b.firstChild.nodeName==='BR'||(b.firstChild.nodeType===3&&!b.firstChild.textContent.trim())))b.removeChild(b.firstChild);var d=document.createElement('div');while(b.firstChild)d.appendChild(b.firstChild);return d;}
+var card=document.createElement('div');card.className='o-endcard';var lab=document.createElement('span');lab.className='o-px o-rlab';lab.textContent=en?'SOURCES':'이 글의 출처';card.appendChild(lab);
+[[src,en?'Data':'자료'],[art,en?'Cover art':'표지 그림']].forEach(function(x){if(!x[0])return;var r=document.createElement('div');r.className='o-endrow';var t=document.createElement('b');t.textContent=x[1];r.appendChild(t);r.appendChild(body(x[0]));card.appendChild(r);});
+if(note){var n=document.createElement('p');n.className='o-endnote';n.textContent=note.textContent.trim();card.appendChild(n);}
+var first=[src,art].filter(Boolean).sort(function(a,b){return a.compareDocumentPosition(b)&4?-1:1;})[0];first.parentNode.insertBefore(card,first);
+[src,art,note].forEach(function(e){if(e)e.remove();});})();
 </script>
 <script>(function(){var s=document.getElementById('o-post-js');if(s){var t=s.textContent.replace(/&#038;/g,'&').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');(new Function(t))();}})();</script>
 <!-- /wp:html --></article>
