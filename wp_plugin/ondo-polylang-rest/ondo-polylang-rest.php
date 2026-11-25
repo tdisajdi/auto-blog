@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ondo Polylang REST
  * Description: Polylang(무료판)의 글 언어 지정·번역 연결을 REST API로 여는 작은 전용 플러그인. ondo 자동 발행용.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: ondo
  * License: GPL-2.0-or-later
  * Requires PHP: 7.4
@@ -206,6 +206,11 @@ add_action( 'rest_api_init', function () {
 		},
 	) );
 } );
+
+// 1.4.2 (2026-11-25): 네이버 서치어드바이저 소유 확인 태그(공개 값 - 사용자가 받아 줌). 첫 화면에만 있으면 되지만 모든 화면에 넣어도 무해.
+add_action( 'wp_head', function () {
+	echo '<meta name="naver-site-verification" content="7ce78d43ca429e49f89378e47702adfeb975b83e" />' . "\n";
+}, 1 );
 
 // 머리글 국기 버튼용: 지금 보는 화면의 각 언어판 주소(번역이 없으면 그 언어 첫 화면)
 add_action( 'wp_head', function () {
