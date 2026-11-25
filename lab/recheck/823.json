@@ -3,6 +3,13 @@
  "status": "draft",
  "model": "gemini-3.6-flash",
  "log": "21-guide-leverage-decay.json",
- "issues": [],
- "patch_applied": true
+ "issues": [
+  {
+   "severity": "중요",
+   "quote": "살 수 없습니다. TQQQ처럼 미국에 상장된 ETF는 ISA·연금저축·IRP 계좌의 상품 목록에 없습니다.",
+   "problem": "자료에 포함된 '해당 계좌들의 세제 혜택은 같은 지수를 추종하는 국내 상장 ETF로 받을 수 있다'는 내용이 누락되어 독자가 관련 지수 ETF 활용 방안이 없다고 오해할 수 있습니다.",
+   "fix": "미국 상장 ETF를 직접 살 수 없다는 설명 뒤에 같은 지수를 추종하는 국내 상장 ETF를 활용하면 해당 계좌의 세제 혜택을 받을 수 있다는 내용을 함께 밝히세요."
+  }
+ ],
+ "patch_applied": false
 }
