@@ -16,6 +16,7 @@
 ## 2. 도구
 - 워드프레스 API는 이 환경에서 막힘 → 한국어 최신본은 깃허브 실행 `{"site_pages": "tr:export:<글번호>"}`(publish.yml, ref=main) 뒤 `git pull`.
 - 실행 넣기 전에 대기(queued/pending) 중인 실행이 있는지 먼저 본다 - 대기열이 하나라 새 실행이 대기 중인 것을 밀어내 취소시킨다(한글 지부 11-25 기록).
+- CHANGELOG.txt·PROJECT_STATUS.txt는 고치지 않는다(회장 몫 - 합칠 때 충돌). 기록은 LESSONS·IMPROVE와 PR 본문에.
 - 대조는 이 환경에서 바로 됨: `python site_pages/translate.py check <글번호>`.
 
 ## 3. 작업 순서
