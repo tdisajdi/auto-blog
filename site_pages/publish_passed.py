@@ -89,9 +89,10 @@ def patches_in(pid, text):
         return n in t and (not o or o in n or o not in t)
     # 11-22: 나중 고침이 앞 고침의 새 문구를 통째로 덮어쓴 경우(정리 섹션을 새로 쓰며 그 안의 옛 고침 문장이 사라짐, 776·809)
     # 앞 고침은 '나중 고침의 옛 문구 안에 들어 있고, 그 나중 고침이 반영됨'이면 반영된 것으로 본다.
-    def superseded(k):     # 덮어쓰기가 여러 번 겹쳐도(앞 고침 → 첫 정리 → 최종 정리) 끝까지 따라감
+    def superseded(k):     # 11-24: 나중 고침이 앞 고침의 새 문구 '일부'만 바꾼 경우도(patch_post와 같게, 823). 덮어쓰기가 여러 번 겹쳐도(앞 고침 → 첫 정리 → 최종 정리) 끝까지 따라감
         n = _frag(items[k].get("new"))
-        return bool(n) and any(n in _frag(items[j].get("old")) and (ok(items[j]) or superseded(j))
+        return bool(n) and any((n in _frag(items[j].get("old")) or (len(_frag(items[j].get("old"))) >= 8 and _frag(items[j].get("old")) in n))
+                               and (ok(items[j]) or superseded(j))
                                for j in range(k + 1, len(items)))
     return bool(items) and all(ok(i) or superseded(k) for k, i in enumerate(items))
 
