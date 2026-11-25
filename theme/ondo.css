@@ -514,14 +514,3 @@ html[lang^="en"] .o-cat.o-cat-soon::after { content: "SOON"; }
 .o-read .sharedaddy .sd-content ul { margin-bottom: 0 !important; }
 .o-read .o-byline { margin-top: 26px !important; }
 
-/* 11-25 글 끝 '이 글의 출처' 카드(single.html이 표지 그림·출처·안내 문구를 묶음) - 옆 칸 카드(.o-rcard)와 같은 모양 */
-.o-read .o-endcard { background: var(--o-card, #fff); border: 2px solid var(--o-line); box-shadow: none; padding: 14px 18px 12px; margin: 0 0 10px; }   /* 11-25 사용자 '본문에서 붕 뜸' → 검정 테두리·그림자 대신 연한 테두리(출처는 본문보다 조용하게) */
-.o-read .o-endcard .o-rlab { background: var(--o-ink-2, #3a4556); }
-.o-read .o-endcard .o-rlab { margin-bottom: 6px; }
-.o-read .o-endrow { display: grid; grid-template-columns: 84px 1fr; gap: 14px; padding: 11px 0; border-top: 2px dashed var(--o-line); font-size: 14px; line-height: 1.7; color: var(--o-ink-2); }
-.o-read .o-endrow:first-of-type { border-top: 0; padding-top: 6px; }
-.o-read .o-endrow b { font-size: 13px; font-weight: 800; color: var(--o-ink); }
-.o-read .o-endrow a { color: var(--o-navy-3); }
-.o-read .o-endnote { margin: 0 !important; padding-top: 10px; border-top: 2px dashed var(--o-line); font-size: 12px !important; line-height: 1.6; color: var(--o-ink-3, #6b7280) !important; }
-@media (max-width: 520px) { .o-read .o-endrow { grid-template-columns: 1fr; gap: 2px; } }
-
