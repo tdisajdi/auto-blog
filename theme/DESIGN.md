@@ -51,7 +51,7 @@
 - 머리말 메뉴는 한국어(읽기 층), 로고·BOARD 버튼만 도트.
 
 ## 바꿀 때 같이 바꿀 것
-design/DESIGN_NOTES.txt '사이트 디자인을 갈아엎을 때' 목록(ondo/config.py 색, media_engine, charts PALETTE, 썸네일).
+design/DESIGN_NOTES.txt [색·글꼴] 칸의 '같이 바꿀 것' 목록(ondo/config.py 색, media_engine, charts PALETTE, 썸네일).
 
 ## 11-19 글 화면 2단계(사용자: '본문이 재미없다, 왼쪽처럼 우리만의 느낌을' → lab/THINKING '최선의 상태' 14바퀴)
 - 원칙: 부품은 본문 글을 **대신하지 않고 감싸거나 위에 더한다**(분량 유지). 화면 틀 JS(single.html o-post-js)가 본문 단서를 읽어 그림 → 이미 공개된 글에도 적용, 단서 없으면 그 부품만 생략.
