@@ -1,18 +1,14 @@
 {
-  "ticker": "ISSUE:fx",
-  "label": "이슈 해설 - 최근 1년 원/달러 환율 변화가 해외 ETF의 원화 수익률을 얼마나 바꿨나",
+  "ticker": "ISSUE:rates",
+  "label": "이슈 해설 - 금리 변화가 채권 ETF와 성장주 ETF에 주는 영향",
   "article_type": "이슈 해설",
-  "reason": "원/달러 환율이 전일 대비 0.8% 상승 (1,345.50원)",
+  "reason": "미국 10년물 금리 4.848%",
   "candidates": [],
-  "created_at": "2026-11-22T22:31:23.447795",
-  "reminder_count": 3,
-  "message_id": 591,
+  "created_at": "2026-11-26T22:31:20.643580",
+  "reminder_count": 0,
+  "message_id": 593,
   "message_ids": [
-    576,
-    581,
-    587,
-    591
+    593
   ],
-  "sent_at": "2026-11-25T22:31:15.293587",
-  "last_reminded_at": "2026-11-25T22:31:14.674143"
+  "sent_at": "2026-11-26T22:31:21.382377"
 }
